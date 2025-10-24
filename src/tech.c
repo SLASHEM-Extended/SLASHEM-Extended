@@ -6687,6 +6687,7 @@ secureidchoice:
 		if (delay > -100) delay = -100;
 		set_occupation(tinker, "tinkering", 0);
 		t_timeout = rnz(200);
+		if (uarmg && uarmg->oartifact == ART_SABRINA_S_UTILITY_GLOVES && t_timeout > 1) t_timeout /= 2;
 		break;
 	    case T_RAGE:     	
 		/*if (Upolyd) {

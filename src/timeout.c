@@ -572,12 +572,13 @@ nh_timeout()
 
 	u.barbertimer++;
 
-	if (SimeoutBug || u.uprops[SIMEOUT_BUG].extrinsic || have_simeoutstone() || (uarmg && uarmg->oartifact == ART_LUUUUUUUUUUUD) || (uarmf && uarmf->oartifact == ART_HELP_PEOPLE_AND_YOURSELF) || (ublindf && ublindf->oartifact == ART_TOTAL_PERSPECTIVE_VORTEX) ) {
+	if (SimeoutBug || u.uprops[SIMEOUT_BUG].extrinsic || have_simeoutstone() || (uarmc && uarmc->oartifact == ART_LYDIA_S_VEIL_OF_SECRETS) || (uarmg && uarmg->oartifact == ART_LUUUUUUUUUUUD) || (uarmf && uarmf->oartifact == ART_HELP_PEOPLE_AND_YOURSELF) || (uarmg && uarmg->oartifact == ART_SABRINA_S_UTILITY_GLOVES) || (ublindf && ublindf->oartifact == ART_TOTAL_PERSPECTIVE_VORTEX) ) {
 		if (!rn2(2500)) {
 			increasesanity_noeffect(1, FALSE);
 		}
 	} else if (u.usanity && !isevilvariant && !rn2(isfriday ? 2500 : 1000)) {
 		u.usanity--;
+		if (uarmg && uarmg->oartifact == ART_CORVIN_S_GRIP_OF_PERSISTEN) u.usanity--;
 
 		/* mineral helps against sanity --Amy */
 		if (uwep && objects[uwep->otyp].oc_material == MT_MINERAL) {
@@ -1420,6 +1421,20 @@ nh_timeout()
 
 	}
 
+	if (uarmc && uarmc->oartifact == ART_MATTHIAS__CLOAK_OF_TEN_SHA) {
+
+	    struct trap *t;
+
+	    for (t = ftrap; t != 0; t = t->ntrap) {
+		if (t && !rn2(5000) && !t->tseen && (t->trapdiff < rnd(150)) && !t->hiddentrap) {
+			t->tseen = 1;
+			u.cnd_traprevealcount++;
+			map_trap(t, TRUE);
+		}
+	    }
+
+	}
+
 	if (uwep && uwep->oartifact == ART_DO_THE_CONTROL) {
 
 	    struct trap *t;
@@ -2120,7 +2135,7 @@ nh_timeout()
 			}
 		}
 
-		if (!rn2(slipchance) && !(uarmf && uarmf->oartifact == ART_NATURAL_SPRING) && !(uarmf && uarmf->oartifact == ART_SO_WONDERFULLY_FLUFFY_SOFT) && !(uarmf && uarmf->oartifact == ART_JENNY_SUPERSOFT) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS) ) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) ) {
+		if (!rn2(slipchance) && !(uarmf && uarmf->oartifact == ART_NATURAL_SPRING) && !(uarmf && uarmf->oartifact == ART_MAREN_S_GALE_BOOTS) && !(uarmf && uarmf->oartifact == ART_INGRID_S_IRONHOOF_BOOTS) && !(uarmf && uarmf->oartifact == ART_LARS_S_IRONSTRIDE_BOOTS) && !(uarmg && uarmg->oartifact == ART_ERASMUS__SCRIPTED_GAUNTLET && !rn2(2)) && !(uarmf && uarmf->oartifact == ART_SO_WONDERFULLY_FLUFFY_SOFT) && !(uarmf && uarmf->oartifact == ART_JENNY_SUPERSOFT) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS) ) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) ) {
 			    slip_or_trip();
 
 			    if (!rn2(uarmh ? 5000 : 1000) && !(uarmh && itemhasappearance(uarmh, APP_BIKER_HELMET)) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
@@ -2351,7 +2366,7 @@ nh_timeout()
 
 	}
 
-	if (u.umoved && (uarmf && itemhasappearance(uarmf, APP_IRREGULAR_BOOTS) ) && !rn2(100) && !(uarmf && uarmf->oartifact == ART_NATURAL_SPRING) && !(uarmf && uarmf->oartifact == ART_SO_WONDERFULLY_FLUFFY_SOFT) && !(uarmf && uarmf->oartifact == ART_JENNY_SUPERSOFT) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS) ) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) && ((rnd(7) > P_SKILL(P_HIGH_HEELS)) || (PlayerCannotUseSkills) ) ) {
+	if (u.umoved && (uarmf && itemhasappearance(uarmf, APP_IRREGULAR_BOOTS) ) && !rn2(100) && !(uarmf && uarmf->oartifact == ART_NATURAL_SPRING) && !(uarmf && uarmf->oartifact == ART_MAREN_S_GALE_BOOTS) && !(uarmf && uarmf->oartifact == ART_INGRID_S_IRONHOOF_BOOTS) && !(uarmf && uarmf->oartifact == ART_LARS_S_IRONSTRIDE_BOOTS) && !(uarmg && uarmg->oartifact == ART_ERASMUS__SCRIPTED_GAUNTLET && !rn2(2)) && !(uarmf && uarmf->oartifact == ART_SO_WONDERFULLY_FLUFFY_SOFT) && !(uarmf && uarmf->oartifact == ART_JENNY_SUPERSOFT) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS) ) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) && ((rnd(7) > P_SKILL(P_HIGH_HEELS)) || (PlayerCannotUseSkills) ) ) {
 			    slip_or_trip();
 
 			    if (!rn2(uarmh ? 5000 : 1000) && !(uarmh && itemhasappearance(uarmh, APP_BIKER_HELMET)) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
@@ -2378,7 +2393,7 @@ nh_timeout()
 
 	}
 
-	if (u.umoved && RngeIrregularity && !rn2(100) && !(uarmf && uarmf->oartifact == ART_NATURAL_SPRING) && !(uarmf && uarmf->oartifact == ART_SO_WONDERFULLY_FLUFFY_SOFT) && !(uarmf && uarmf->oartifact == ART_JENNY_SUPERSOFT) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS) ) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) && ((rnd(7) > P_SKILL(P_HIGH_HEELS)) || (PlayerCannotUseSkills) ) ) {
+	if (u.umoved && RngeIrregularity && !rn2(100) && !(uarmf && uarmf->oartifact == ART_NATURAL_SPRING) && !(uarmf && uarmf->oartifact == ART_MAREN_S_GALE_BOOTS) && !(uarmf && uarmf->oartifact == ART_INGRID_S_IRONHOOF_BOOTS) && !(uarmf && uarmf->oartifact == ART_LARS_S_IRONSTRIDE_BOOTS) && !(uarmg && uarmg->oartifact == ART_ERASMUS__SCRIPTED_GAUNTLET && !rn2(2)) && !(uarmf && uarmf->oartifact == ART_SO_WONDERFULLY_FLUFFY_SOFT) && !(uarmf && uarmf->oartifact == ART_JENNY_SUPERSOFT) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS) ) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) && ((rnd(7) > P_SKILL(P_HIGH_HEELS)) || (PlayerCannotUseSkills) ) ) {
 			    slip_or_trip();
 
 			    if (!rn2(uarmh ? 5000 : 1000) && !(uarmh && itemhasappearance(uarmh, APP_BIKER_HELMET)) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
@@ -2513,7 +2528,7 @@ nh_timeout()
 
 	}
 
-	if (u.umoved && (uarmf && uarmf->oartifact == ART_UNEVEN_STILTS) && !rn2(100) && !(uarmf && uarmf->oartifact == ART_NATURAL_SPRING) && !(uarmf && uarmf->oartifact == ART_SO_WONDERFULLY_FLUFFY_SOFT) && !(uarmf && uarmf->oartifact == ART_JENNY_SUPERSOFT) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS) ) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) && ((rnd(7) > P_SKILL(P_HIGH_HEELS)) || (PlayerCannotUseSkills) ) ) {
+	if (u.umoved && (uarmf && uarmf->oartifact == ART_UNEVEN_STILTS) && !rn2(100) && !(uarmf && uarmf->oartifact == ART_NATURAL_SPRING) && !(uarmf && uarmf->oartifact == ART_MAREN_S_GALE_BOOTS) && !(uarmf && uarmf->oartifact == ART_INGRID_S_IRONHOOF_BOOTS) && !(uarmf && uarmf->oartifact == ART_LARS_S_IRONSTRIDE_BOOTS) && !(uarmg && uarmg->oartifact == ART_ERASMUS__SCRIPTED_GAUNTLET && !rn2(2)) && !(uarmf && uarmf->oartifact == ART_SO_WONDERFULLY_FLUFFY_SOFT) && !(uarmf && uarmf->oartifact == ART_JENNY_SUPERSOFT) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS) ) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) && ((rnd(7) > P_SKILL(P_HIGH_HEELS)) || (PlayerCannotUseSkills) ) ) {
 			    slip_or_trip();
 
 			    if (!rn2(uarmh ? 5000 : 1000) && !(uarmh && itemhasappearance(uarmh, APP_BIKER_HELMET)) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
@@ -5576,7 +5591,7 @@ nh_timeout()
 		case FUMBLING:
 			/* call this only when a move took place.  */
 			/* otherwise handle fumbling msgs locally. */
-			if (u.umoved && !Levitation && !(uarmf && uarmf->oartifact == ART_NATURAL_SPRING) && !(uarmf && uarmf->oartifact == ART_SO_WONDERFULLY_FLUFFY_SOFT) && !(uarmf && uarmf->oartifact == ART_JENNY_SUPERSOFT) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS)) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) && (!PlayerInHighHeels || (PlayerCannotUseSkills) || (rnd(7) > P_SKILL(P_HIGH_HEELS) ) ) ) {
+			if (u.umoved && !Levitation && !(uarmf && uarmf->oartifact == ART_NATURAL_SPRING) && !(uarmf && uarmf->oartifact == ART_MAREN_S_GALE_BOOTS) && !(uarmf && uarmf->oartifact == ART_INGRID_S_IRONHOOF_BOOTS) && !(uarmf && uarmf->oartifact == ART_LARS_S_IRONSTRIDE_BOOTS) && !(uarmg && uarmg->oartifact == ART_ERASMUS__SCRIPTED_GAUNTLET && !rn2(2)) && !(uarmf && uarmf->oartifact == ART_SO_WONDERFULLY_FLUFFY_SOFT) && !(uarmf && uarmf->oartifact == ART_JENNY_SUPERSOFT) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS)) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) && (!PlayerInHighHeels || (PlayerCannotUseSkills) || (rnd(7) > P_SKILL(P_HIGH_HEELS) ) ) ) {
 			    slip_or_trip();
 
 			/* based on the evil patch idea by jonadab: stupidity or amnesia from falling on your head --Amy */

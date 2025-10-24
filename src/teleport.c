@@ -2784,6 +2784,7 @@ boolean allowtrap;
 		if (uwep && uwep->oartifact == ART_IMHULLU && rn2(10)) return;
 		if (uarm && uarm->oartifact == ART_SAIL_IN_THE_WIND && rn2(2)) return;
 		if (uarmf && uarmf->oartifact == ART_STAND_TALL_IN_THE_STORM) return;
+		if (uarmf && uarmf->oartifact == ART_LARS_S_IRONSTRIDE_BOOTS) return;
 
 newtry:
 		direction = rnd(8);
@@ -2842,6 +2843,7 @@ int distance;
 		if (uwep && uwep->oartifact == ART_IMHULLU && rn2(10)) return;
 		if (uarm && uarm->oartifact == ART_SAIL_IN_THE_WIND && rn2(2)) return;
 		if (uarmf && uarmf->oartifact == ART_STAND_TALL_IN_THE_STORM) return;
+		if (uarmf && uarmf->oartifact == ART_LARS_S_IRONSTRIDE_BOOTS) return;
 
 newtry:
 		direction = rnd(8);
@@ -2894,6 +2896,7 @@ boolean allowtrap;
 		if (uwep && uwep->oartifact == ART_IMHULLU && rn2(10)) return;
 		if (uarm && uarm->oartifact == ART_SAIL_IN_THE_WIND && rn2(2)) return;
 		if (uarmf && uarmf->oartifact == ART_STAND_TALL_IN_THE_STORM) return;
+		if (uarmf && uarmf->oartifact == ART_LARS_S_IRONSTRIDE_BOOTS) return;
 
 newtry:
 		direction = rnd(8);

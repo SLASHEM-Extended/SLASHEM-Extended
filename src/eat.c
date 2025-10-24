@@ -4675,11 +4675,15 @@ gluttonous()
 void
 violated_vegetarian()
 {
-    u.uconduct.unvegetarian++;
-    if (Role_if(PM_MONK) || Role_if(PM_HALF_BAKED) || have_anorexia() || Role_if(PM_FAILED_EXISTENCE) || Race_if(PM_SYLPH) ) {
-	You_feel("guilty.");
-	adjalign(-5);
-    }
+	u.uconduct.unvegetarian++;
+
+	if (Role_if(PM_MONK) || Role_if(PM_HALF_BAKED) || have_anorexia() || Role_if(PM_FAILED_EXISTENCE) || Race_if(PM_SYLPH) ) {
+		You_feel("guilty.");
+		adjalign(-5);
+	}
+
+	if (uarmg && uarmg->oartifact == ART_NALI_THE_BNALI) badeffect();
+
 	if (Role_if(PM_FAILED_EXISTENCE)) badeffect();
 
 	if (uarmh && uarmh->oartifact == ART_NUTRITION_AND_DIETETICS) statdebuff();
@@ -9397,7 +9401,7 @@ register int num;
 	if (Full_nutrient && num > 1 && u.uhunger < 2500) num /= 2;
 	if (StrongFull_nutrient && num > 1 && u.uhunger < 2500) num /= 2;
 
-	if (num < 0 && (CutNutritionEffect || u.uprops[CUT_NUTRITION].extrinsic || have_cutnutritionstone() || (uchain && uchain->oartifact == ART_CAN_TOTALLY_EAT__BUT_LACK_) || have_estealdoctor() || autismweaponcheck(ART_HAVANA_NERO) ) ) num /= 3;
+	if (num < 0 && (CutNutritionEffect || u.uprops[CUT_NUTRITION].extrinsic || have_cutnutritionstone() || (uarmh && uarmh->oartifact == ART_GISELA_S_TRICK) || (uchain && uchain->oartifact == ART_CAN_TOTALLY_EAT__BUT_LACK_) || have_estealdoctor() || autismweaponcheck(ART_HAVANA_NERO) ) ) num /= 3;
 
 	u.uhunger -= num;
 	newuhs(TRUE);
@@ -9413,7 +9417,7 @@ register int num;
 #ifdef DEBUG
 	debugpline("lesshungry(%d)", num);
 #endif
-	if (num > 0 && (CutNutritionEffect || u.uprops[CUT_NUTRITION].extrinsic || have_cutnutritionstone() || have_estealdoctor() || autismweaponcheck(ART_HAVANA_NERO) ) ) num /= 3;
+	if (num > 0 && (CutNutritionEffect || u.uprops[CUT_NUTRITION].extrinsic || have_cutnutritionstone() || (uarmh && uarmh->oartifact == ART_GISELA_S_TRICK) || have_estealdoctor() || autismweaponcheck(ART_HAVANA_NERO) ) ) num /= 3;
 
 	if (Race_if(PM_GERTEUT)) {
 		num *= 4;

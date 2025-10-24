@@ -75,7 +75,7 @@
 #define GRAVE           42
 #define ALTAR           43
 #define PENTAGRAM		44
-#define WELL		45
+#define WELL		45	/* everything below this point counts as "outdoors" --Amy */
 #define POISONEDWELL	46
 #define WAGON		47
 #define BURNINGWAGON	48

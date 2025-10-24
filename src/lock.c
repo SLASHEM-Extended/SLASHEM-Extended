@@ -468,6 +468,10 @@ pick_lock(pickp) /* pick a lock with a given object */
 	    c = 'n';			/* in case there are no boxes here */
 	    for(otmp = level.objects[cc.x][cc.y]; otmp; otmp = otmp->nexthere)
 		if (Is_box(otmp)) {
+
+		    int boxunlockchance = 10;
+		    int pickbreakchance = 10;
+
 		    ++count;
 		    if (!can_reach_floor()) {
 			You_cant("reach %s from up here.", the(xname(otmp)));
@@ -507,6 +511,14 @@ pick_lock(pickp) /* pick a lock with a given object */
 		    }
 		    switch(picktyp) {
 			case CREDIT_CARD:
+
+			    boxunlockchance = ACURR(A_DEX);
+			    if (Role_if(PM_ROGUE)) boxunlockchance += 20;
+			    if (Role_if(PM_CYBERNINJA)) boxunlockchance += 20;
+			    if (Role_if(PM_LOCKSMITH)) boxunlockchance += 40;
+			    if (uarmg && uarmg->oartifact == ART_BRIGITTE_S_SAFETY_MITTENS) boxunlockchance += 40;
+			    if (uarmg && uarmg->oartifact == ART_SABRINA_S_UTILITY_GLOVES) boxunlockchance += 40;
+
 			    if(!rn2(isfriday ? 10 : 20) && !((pick->oartifact == ART_MASTER_IN_ANOTHER_LANGUAGE) && rn2(10)) && (!pick->blessed || !rn2(3)) && !pick->oartifact) {
 				Your("credit card breaks in half!");
 				useup(pick);
@@ -518,9 +530,17 @@ pick_lock(pickp) /* pick a lock with a given object */
 				pick->obrittle = pick->obrittle2 = 3;
 				return(1);
 			    }
-			    ch = ACURR(A_DEX) + 20*Role_if(PM_ROGUE) + 40*Role_if(PM_LOCKSMITH) + 20*Role_if(PM_CYBERNINJA);
+			    ch = boxunlockchance;
 			    break;
 			case DATA_CHIP:
+
+			    boxunlockchance = ACURR(A_DEX);
+			    if (Role_if(PM_ROGUE)) boxunlockchance += 20;
+			    if (Role_if(PM_CYBERNINJA)) boxunlockchance += 20;
+			    if (Role_if(PM_LOCKSMITH)) boxunlockchance += 40;
+			    if (uarmg && uarmg->oartifact == ART_BRIGITTE_S_SAFETY_MITTENS) boxunlockchance += 40;
+			    if (uarmg && uarmg->oartifact == ART_SABRINA_S_UTILITY_GLOVES) boxunlockchance += 40;
+
 			    if(!rn2(isfriday ? 10 : 20) && (!pick->blessed || !rn2(3)) && !pick->oartifact) {
 				Your("data chip breaks in half!");
 				useup(pick);
@@ -532,18 +552,44 @@ pick_lock(pickp) /* pick a lock with a given object */
 				pick->obrittle = pick->obrittle2 = 3;
 				return(1);
 			    }
-			    ch = ACURR(A_DEX) + 20*Role_if(PM_ROGUE) + 40*Role_if(PM_LOCKSMITH) + 20*Role_if(PM_CYBERNINJA);
+			    ch = boxunlockchance;
 			    break;
 			case LOCK_PICK:
 			case HAIRCLIP:
-			    if(!rn2(isfriday ? 20 : Role_if(PM_LOCKSMITH) ? 60: (Role_if(PM_ROGUE) || Role_if(PM_CYBERNINJA)) ? 40 : 30) && !((pick->oartifact == ART_THEEVERS_PIK) && rn2(7)) &&
+
+			    boxunlockchance = (ACURR(A_DEX) * 4);
+			    if (Role_if(PM_ROGUE)) boxunlockchance += 25;
+			    if (Role_if(PM_CYBERNINJA)) boxunlockchance += 30;
+			    if (Role_if(PM_LOCKSMITH)) boxunlockchance += 50;
+			    if (uarmg && uarmg->oartifact == ART_BRIGITTE_S_SAFETY_MITTENS) boxunlockchance += 50;
+			    if (uarmg && uarmg->oartifact == ART_SABRINA_S_UTILITY_GLOVES) boxunlockchance += 50;
+
+			    pickbreakchance = 30;
+			    if (isfriday) {
+				pickbreakchance *= 2;
+				pickbreakchance /= 3;
+			    }
+			    if (Role_if(PM_LOCKSMITH)) pickbreakchance *= 2;
+			    if (uarmg && uarmg->oartifact == ART_BRIGITTE_S_SAFETY_MITTENS) pickbreakchance *= 2;
+			    if (uarmg && uarmg->oartifact == ART_SABRINA_S_UTILITY_GLOVES) pickbreakchance *= 2;
+			    if (Role_if(PM_ROGUE)) {
+				pickbreakchance *= 4;
+				pickbreakchance /= 3;
+			    }
+			    if (Role_if(PM_CYBERNINJA)) {
+				pickbreakchance *= 4;
+				pickbreakchance /= 3;
+			    }
+			    if (pickbreakchance < 1) pickbreakchance = 1;
+
+			    if(!rn2(pickbreakchance) && !((pick->oartifact == ART_THEEVERS_PIK) && rn2(7)) &&
 			    		(!pick->blessed || !rn2(3)) && !pick->oartifact) {
 				You("break your pick!");
 				useup(pick);
 				*pickp = (struct obj *)0;
 				return(1);
 			    }
-			    if(!rn2(isfriday ? 20 : Role_if(PM_LOCKSMITH) ? 60: (Role_if(PM_ROGUE) || Role_if(PM_CYBERNINJA)) ? 40 : 30) && !((pick->oartifact == ART_THEEVERS_PIK) && rn2(7)) &&
+			    if(!rn2(pickbreakchance) && !((pick->oartifact == ART_THEEVERS_PIK) && rn2(7)) &&
 			    		(!pick->blessed || !rn2(3)) && pick->oartifact) {
 				if (pick->oartifact == ART_DITHERS_WUMA) {
 					FemaleTrapJette += 50000;
@@ -554,11 +600,16 @@ pick_lock(pickp) /* pick a lock with a given object */
 				}
 				return(1);
 			    }
-			    ch = 4*ACURR(A_DEX) + 25*Role_if(PM_ROGUE) + 50*Role_if(PM_LOCKSMITH) + 30*Role_if(PM_CYBERNINJA);
+			    ch = boxunlockchance;
 			    break;
 			case SKELETON_KEY:
 			case CONTROVERSY_CODE:
 			case SECRET_KEY:
+
+			    boxunlockchance = (ACURR(A_DEX) + 75);
+			    if (uarmg && uarmg->oartifact == ART_BRIGITTE_S_SAFETY_MITTENS) boxunlockchance += 100;
+			    if (uarmg && uarmg->oartifact == ART_SABRINA_S_UTILITY_GLOVES) boxunlockchance += 100;
+
 			    if(!rn2(isfriday ? 7 : 15) && !((pick->oartifact == ART_HAKAPERS_QUALITY) && rn2(5)) && !(pick->oartifact == ART_VANULLA_SCORE) && (!pick->blessed || !rn2(3)) && !pick->oartifact) {
 				Your("key didn't quite fit the lock and snapped!");
 				useup(pick);
@@ -574,7 +625,7 @@ pick_lock(pickp) /* pick a lock with a given object */
 				pick->obrittle = pick->obrittle2 = 3;
 				return(1);
 			    }
-			    ch = 75 + ACURR(A_DEX);
+			    ch = boxunlockchance;
 			    break;
 			default:	ch = 0;
 		    }
@@ -592,6 +643,8 @@ pick_lock(pickp) /* pick a lock with a given object */
 	    }
 	} else {			/* pick the lock in a door */
 	    struct monst *mtmp;
+	    int doorunlockchance = 10;
+	    int pickbreakchance = 10;
 
 	    if (u.utrap && u.utraptype == TT_PIT) {
 		You_cant("reach over the edge of the pit.");
@@ -649,47 +702,123 @@ pick_lock(pickp) /* pick a lock with a given object */
 
 		    switch(picktyp) {
 			case CREDIT_CARD:
-			    if(!rn2(isfriday ? 10 : Role_if(PM_LOCKSMITH) ? 40 : (Role_if(PM_TOURIST) || Role_if(PM_CYBERNINJA)) ? 30 : 20) && !((pick->oartifact == ART_MASTER_IN_ANOTHER_LANGUAGE) && rn2(10)) &&
+
+			    doorunlockchance = (ACURR(A_DEX) * 2);
+			    if (Role_if(PM_ROGUE)) doorunlockchance += 20;
+			    if (Role_if(PM_CYBERNINJA)) doorunlockchance += 20;
+			    if (Role_if(PM_LOCKSMITH)) doorunlockchance += 40;
+			    if (uarmg && uarmg->oartifact == ART_BRIGITTE_S_SAFETY_MITTENS) doorunlockchance += 40;
+			    if (uarmg && uarmg->oartifact == ART_SABRINA_S_UTILITY_GLOVES) doorunlockchance += 40;
+
+			    pickbreakchance = 20;
+			    if (isfriday) {
+				pickbreakchance /= 2;
+			    }
+			    if (Role_if(PM_LOCKSMITH)) pickbreakchance *= 2;
+			    if (uarmg && uarmg->oartifact == ART_BRIGITTE_S_SAFETY_MITTENS) pickbreakchance *= 2;
+			    if (uarmg && uarmg->oartifact == ART_SABRINA_S_UTILITY_GLOVES) pickbreakchance *= 2;
+			    if (Role_if(PM_TOURIST)) {
+				pickbreakchance *= 3;
+				pickbreakchance /= 2;
+			    }
+			    if (Role_if(PM_CYBERNINJA)) {
+				pickbreakchance *= 3;
+				pickbreakchance /= 2;
+			    }
+			    if (pickbreakchance < 1) pickbreakchance = 1;
+
+			    if(!rn2(pickbreakchance) && !((pick->oartifact == ART_MASTER_IN_ANOTHER_LANGUAGE) && rn2(10)) &&
 				    (!pick->blessed || !rn2(3)) && !pick->oartifact) {
 				You("break your card off in the door!");
 				useup(pick);
 				*pickp = (struct obj *)0;
 				return(0);
 			    }
-			    if(!rn2(isfriday ? 10 : Role_if(PM_LOCKSMITH) ? 40 : (Role_if(PM_TOURIST) || Role_if(PM_CYBERNINJA)) ? 30 : 20) && !((pick->oartifact == ART_MASTER_IN_ANOTHER_LANGUAGE) && rn2(10)) &&
+			    if(!rn2(pickbreakchance) && !((pick->oartifact == ART_MASTER_IN_ANOTHER_LANGUAGE) && rn2(10)) &&
 				    (!pick->blessed || !rn2(3)) && pick->oartifact) {
 				Your("credit card becomes dull and is no longer capable of picking locks!");
 				pick->obrittle = pick->obrittle2 = 3;
 				return(0);
 			    }
-			    ch = 2*ACURR(A_DEX) + 20*Role_if(PM_ROGUE) + 40*Role_if(PM_LOCKSMITH) + 20*Role_if(PM_CYBERNINJA);
+			    ch = doorunlockchance;
 			    break;
 			case DATA_CHIP:
-			    if(!rn2(isfriday ? 10 : Role_if(PM_LOCKSMITH) ? 40 : (Role_if(PM_TOURIST) || Role_if(PM_CYBERNINJA)) ? 30 : 20) &&
+
+			    doorunlockchance = (ACURR(A_DEX) * 2);
+			    if (Role_if(PM_ROGUE)) doorunlockchance += 20;
+			    if (Role_if(PM_CYBERNINJA)) doorunlockchance += 20;
+			    if (Role_if(PM_LOCKSMITH)) doorunlockchance += 40;
+			    if (uarmg && uarmg->oartifact == ART_BRIGITTE_S_SAFETY_MITTENS) doorunlockchance += 40;
+			    if (uarmg && uarmg->oartifact == ART_SABRINA_S_UTILITY_GLOVES) doorunlockchance += 40;
+
+			    pickbreakchance = 20;
+			    if (isfriday) {
+				pickbreakchance /= 2;
+			    }
+			    if (Role_if(PM_LOCKSMITH)) pickbreakchance *= 2;
+			    if (uarmg && uarmg->oartifact == ART_BRIGITTE_S_SAFETY_MITTENS) pickbreakchance *= 2;
+			    if (uarmg && uarmg->oartifact == ART_SABRINA_S_UTILITY_GLOVES) pickbreakchance *= 2;
+			    if (Role_if(PM_TOURIST)) {
+				pickbreakchance *= 3;
+				pickbreakchance /= 2;
+			    }
+			    if (Role_if(PM_CYBERNINJA)) {
+				pickbreakchance *= 3;
+				pickbreakchance /= 2;
+			    }
+			    if (pickbreakchance < 1) pickbreakchance = 1;
+
+			    if(!rn2(pickbreakchance) &&
 				    (!pick->blessed || !rn2(3)) && !pick->oartifact) {
 				You("break your chip off in the door!");
 				useup(pick);
 				*pickp = (struct obj *)0;
 				return(0);
 			    }
-			    if(!rn2(isfriday ? 10 : Role_if(PM_LOCKSMITH) ? 40 : (Role_if(PM_TOURIST) || Role_if(PM_CYBERNINJA)) ? 30 : 20) &&
+			    if(!rn2(pickbreakchance) &&
 				    (!pick->blessed || !rn2(3)) && pick->oartifact) {
 				Your("data chip becomes dull and is no longer capable of picking locks!");
 				pick->obrittle = pick->obrittle2 = 3;
 				return(0);
 			    }
-			    ch = 2*ACURR(A_DEX) + 20*Role_if(PM_ROGUE) + 40*Role_if(PM_LOCKSMITH) + 20*Role_if(PM_CYBERNINJA);
+			    ch = doorunlockchance;
 			    break;
 			case LOCK_PICK:
 			case HAIRCLIP:
-			    if(!rn2(isfriday ? 20 : Role_if(PM_LOCKSMITH) ? 60 : (Role_if(PM_ROGUE) || Role_if(PM_CYBERNINJA)) ? 40 : 30) && !((pick->oartifact == ART_THEEVERS_PIK) && rn2(7)) &&
+
+			    doorunlockchance = (ACURR(A_DEX) * 3);
+			    if (Role_if(PM_ROGUE)) doorunlockchance += 30;
+			    if (Role_if(PM_CYBERNINJA)) doorunlockchance += 30;
+			    if (Role_if(PM_LOCKSMITH)) doorunlockchance += 60;
+			    if (uarmg && uarmg->oartifact == ART_BRIGITTE_S_SAFETY_MITTENS) doorunlockchance += 60;
+			    if (uarmg && uarmg->oartifact == ART_SABRINA_S_UTILITY_GLOVES) doorunlockchance += 60;
+
+			    pickbreakchance = 30;
+			    if (isfriday) {
+				pickbreakchance *= 2;
+				pickbreakchance /= 3;
+			    }
+			    if (Role_if(PM_LOCKSMITH)) pickbreakchance *= 2;
+			    if (uarmg && uarmg->oartifact == ART_BRIGITTE_S_SAFETY_MITTENS) pickbreakchance *= 2;
+			    if (uarmg && uarmg->oartifact == ART_SABRINA_S_UTILITY_GLOVES) pickbreakchance *= 2;
+			    if (Role_if(PM_CYBERNINJA)) {
+				pickbreakchance *= 4;
+				pickbreakchance /= 3;
+			    }
+			    if (Role_if(PM_ROGUE)) {
+				pickbreakchance *= 4;
+				pickbreakchance /= 3;
+			    }
+			    if (pickbreakchance < 1) pickbreakchance = 1;
+
+			    if(!rn2(pickbreakchance) && !((pick->oartifact == ART_THEEVERS_PIK) && rn2(7)) &&
 				    (!pick->blessed || !rn2(3)) && !pick->oartifact) {
 				You("break your pick!");
 				useup(pick);
 				*pickp = (struct obj *)0;
 				return(0);
 			    }
-			    if(!rn2(isfriday ? 20 : Role_if(PM_LOCKSMITH) ? 60 : (Role_if(PM_ROGUE) || Role_if(PM_CYBERNINJA)) ? 40 : 30) && !((pick->oartifact == ART_THEEVERS_PIK) && rn2(7)) &&
+			    if(!rn2(pickbreakchance) && !((pick->oartifact == ART_THEEVERS_PIK) && rn2(7)) &&
 				    (!pick->blessed || !rn2(3)) && pick->oartifact) {
 				if (pick->oartifact == ART_DITHERS_WUMA) {
 					FemaleTrapJette += 50000;
@@ -700,18 +829,46 @@ pick_lock(pickp) /* pick a lock with a given object */
 				}
 				return(0);
 			    }
-			    ch = 3*ACURR(A_DEX) + 30*Role_if(PM_ROGUE) + 60*Role_if(PM_LOCKSMITH) + 30*Role_if(PM_CYBERNINJA);
+			    ch = doorunlockchance;
 			    break;
 			case SKELETON_KEY:
 			case CONTROVERSY_CODE:
 			case SECRET_KEY:
-			    if(!rn2(isfriday ? 7 : Role_if(PM_LOCKSMITH) ? 40 : Role_if(PM_CYBERNINJA) ? 30 : 15) && !((pick->oartifact == ART_HAKAPERS_QUALITY) && rn2(5)) && !(pick->oartifact == ART_VANULLA_SCORE) && (!pick->blessed || !rn2(3)) && !pick->oartifact) {
+
+			    doorunlockchance = (ACURR(A_DEX) + 70);
+			    if (Role_if(PM_CYBERNINJA)) doorunlockchance += 5;
+			    if (Role_if(PM_LOCKSMITH)) doorunlockchance += 10;
+			    if (uarmg && uarmg->oartifact == ART_BRIGITTE_S_SAFETY_MITTENS) doorunlockchance += 50;
+			    if (uarmg && uarmg->oartifact == ART_SABRINA_S_UTILITY_GLOVES) doorunlockchance += 50;
+
+			    pickbreakchance = 15;
+			    if (isfriday) {
+				pickbreakchance /= 2;
+			    }
+			    if (Role_if(PM_LOCKSMITH)) {
+				pickbreakchance *= 8;
+				pickbreakchance /= 3;
+			    }
+			    if (uarmg && uarmg->oartifact == ART_BRIGITTE_S_SAFETY_MITTENS) {
+				pickbreakchance *= 8;
+				pickbreakchance /= 3;
+			    }
+			    if (uarmg && uarmg->oartifact == ART_SABRINA_S_UTILITY_GLOVES) {
+				pickbreakchance *= 8;
+				pickbreakchance /= 3;
+			    }
+			    if (Role_if(PM_CYBERNINJA)) {
+				pickbreakchance *= 2;
+			    }
+			    if (pickbreakchance < 1) pickbreakchance = 1;
+
+			    if(!rn2(pickbreakchance) && !((pick->oartifact == ART_HAKAPERS_QUALITY) && rn2(5)) && !(pick->oartifact == ART_VANULLA_SCORE) && (!pick->blessed || !rn2(3)) && !pick->oartifact) {
 				Your("key wasn't designed for this door and broke!");
 				useup(pick);
 				*pickp = (struct obj *)0;
 				return(0);
 			    }
-			    if(!rn2(isfriday ? 7 : Role_if(PM_LOCKSMITH) ? 40 : Role_if(PM_CYBERNINJA) ? 30 : 15) && !((pick->oartifact == ART_HAKAPERS_QUALITY) && rn2(5)) && !(pick->oartifact == ART_VANULLA_SCORE) && (!pick->blessed || !rn2(3)) && pick->oartifact) {
+			    if(!rn2(pickbreakchance) && !((pick->oartifact == ART_HAKAPERS_QUALITY) && rn2(5)) && !(pick->oartifact == ART_VANULLA_SCORE) && (!pick->blessed || !rn2(3)) && pick->oartifact) {
 				Your("key becomes brittle and is no longer capable of picking locks!");
 				if (pick->oartifact == ART_UNBRIT_SOV) {
 					u.badfcursed += 10000;
@@ -720,7 +877,7 @@ pick_lock(pickp) /* pick a lock with a given object */
 				pick->obrittle = pick->obrittle2 = 3;
 				return(0);
 			    }
-			    ch = 70 + ACURR(A_DEX) + 10*Role_if(PM_LOCKSMITH) + 5*Role_if(PM_CYBERNINJA);
+			    ch = doorunlockchance;
 			    break;
 			default:    ch = 0;
 		    }

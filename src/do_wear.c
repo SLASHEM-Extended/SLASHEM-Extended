@@ -883,7 +883,7 @@ Boots_on()
 
     if (uarmf && uarmf->oartifact == ART_RATCH_CLOSURE_SCRATCHING && uarmf->spe < 1) uarmf->spe++;
 
-	if (uarmf && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) {
+	if (uarmf && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone() || (ublindf && ublindf->oartifact == ART_LEANDRA_S_WORD)) ) {
 		curse(uarmf);
 
 		if (AutocursingXtra) {
@@ -2141,7 +2141,7 @@ Cloak_on()
 		}
 	}
 
-	if (uarmc && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) {
+	if (uarmc && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone() || (ublindf && ublindf->oartifact == ART_LEANDRA_S_WORD)) ) {
 		curse(uarmc);
 
 		if (AutocursingXtra) {
@@ -2837,6 +2837,12 @@ Helmet_on()
 		}
     }
 
+    if (uarmh && uarmh->oartifact == ART_GISELA_S_TRICK) {
+		curse(uarmh);
+		uarmh->hvycurse = TRUE;
+		You_hear("Gisela's annoying laughter. Damn, seems you fell for her trap again.");
+    }
+
     if (uarmh && uarmh->oartifact == ART_GAME_IS_NOW_FULL_OF_BUGS) {
 		randomnastytrapeffect(rnz(5000), 1000);
 		if (!uarmh->cursed) {
@@ -2984,7 +2990,7 @@ Helmet_on()
 		if (!uarmh->cursed) curse(uarmh); /* don't tell the poor sap about their horrible fate */
     }
 
-	if (uarmh && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) {
+	if (uarmh && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone() || (ublindf && ublindf->oartifact == ART_LEANDRA_S_WORD)) ) {
 		curse(uarmh);
 
 		if (AutocursingXtra) {
@@ -3502,6 +3508,11 @@ Gloves_on()
 
 	}
 
+	if (uarmg && uarmg->oartifact == ART_OTTO_S_STEELWEAVE_GLOVES && !is_metallic(uarmg)) {
+		objects[uarmg->otyp].oc_material = MT_IRON;
+		Your("gloves become metallic.");
+	}
+
 	if (uarmg && itemhasappearance(uarmg, APP_GAMEBLE_GLOVES)) {
 
 		if (rn2(2)) {
@@ -3654,7 +3665,7 @@ Gloves_on()
 		uarmg->hvycurse = 1;
     }
 
-	if (uarmg && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) {
+	if (uarmg && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone() || (ublindf && ublindf->oartifact == ART_LEANDRA_S_WORD)) ) {
 		curse(uarmg);
 
 		if (AutocursingXtra) {
@@ -4200,7 +4211,7 @@ Shield_on()
 		else uarms->spe = -(rnd(7));
     }
 
-	if (uarms && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) {
+	if (uarms && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone() || (ublindf && ublindf->oartifact == ART_LEANDRA_S_WORD)) ) {
 		curse(uarms);
 
 		if (AutocursingXtra) {
@@ -4475,7 +4486,7 @@ Shirt_on()
 
 	}
 
-	if (uarmu && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) {
+	if (uarmu && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone() || (ublindf && ublindf->oartifact == ART_LEANDRA_S_WORD)) ) {
 		curse(uarmu);
 
 		if (AutocursingXtra) {
@@ -5042,7 +5053,7 @@ sexysqueaking:
 	if (uarm && uarm->oartifact == ART_ARMOR_OF_ISILDUR && uarm->spe < 1) uarm->spe = rnd(10);
 	if (uarm && uarm->oartifact == ART_COCKBANGER_ARMOR && uarm->spe < 1) uarm->spe = rnd(10);
 
-	if (uarm && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) {
+	if (uarm && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone() || (ublindf && ublindf->oartifact == ART_LEANDRA_S_WORD)) ) {
 		curse(uarm);
 
 		if (AutocursingXtra) {
@@ -5481,7 +5492,7 @@ Amulet_on()
 		if (!uamul->cursed) curse(uamul);
     }
 
-	if (uamul && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) {
+	if (uamul && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone() || (ublindf && ublindf->oartifact == ART_LEANDRA_S_WORD)) ) {
 		curse(uamul);
 
 		if (AutocursingXtra) {
@@ -5713,7 +5724,7 @@ Implant_on()
 		getnastytrapintrinsic();
     }
 
-	if (uimplant && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) {
+	if (uimplant && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone() || (ublindf && ublindf->oartifact == ART_LEANDRA_S_WORD)) ) {
 		curse(uimplant);
 
 		if (AutocursingXtra) {
@@ -6161,7 +6172,7 @@ register struct obj *obj;
 		obj->hvycurse = 1;
     }
 
-	if (obj && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) {
+	if (obj && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone() || (ublindf && ublindf->oartifact == ART_LEANDRA_S_WORD)) ) {
 		curse(obj);
 
 		if (AutocursingXtra) {
@@ -6367,7 +6378,37 @@ register struct obj *otmp;
 			pline("Yur bldnflt crrrss tsefl!!!!!111");
 		}
 	}
+
+	if (otmp && otmp->oartifact == ART_MONIQUE_S_NONSENSE) {
+		u.tempsupernastytrap_manler += 2000;
+	}
+
+	if (otmp && otmp->oartifact == ART_GIRLFRIEND_DOESN_T_WANNA_C) {
+		curse(otmp);
+	}
+
+	if (otmp && otmp->oartifact == ART_LAMEZA_S_EQUALITY) {
+		int hpnivelamount = (u.uhpmax + u.uenmax) / 2;
+		if (hpnivelamount < 1) hpnivelamount = 1;
+		u.uhpmax = hpnivelamount;
+		u.uenmax = hpnivelamount;
+		if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+		if (u.uen > u.uenmax) u.uen = u.uenmax;
+
+		if (uarmf) {
+			(void) Boots_off();
+		}
+
+		flags.botl = TRUE;
+
+		curse(otmp);
+	}
+
 	if (otmp && otmp->oartifact == ART_ARABELLA_S_SEE_NO_EVIL_MON) {
+		curse(otmp);
+	}
+
+	if (otmp && otmp->oartifact == ART_MILARY_S_DAILY_SIGH) {
 		curse(otmp);
 	}
 
@@ -6405,7 +6446,7 @@ register struct obj *otmp;
 	    flags.botl = 1;
 	}
 
-	if (otmp && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) {
+	if (otmp && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone() || (ublindf && ublindf->oartifact == ART_LEANDRA_S_WORD)) ) {
 		curse(otmp);
 
 		if (AutocursingXtra) {
@@ -6825,6 +6866,20 @@ boolean noisy;
 	if (!is_suit(otmp) && !is_boots(otmp) && Race_if(PM_WEAPONIZED_DINOSAUR) && !Upolyd) {
 		if (noisy) pline("As a dinosaur, the only types of armor you can wear are suits and boots.");
 		return 0;
+	}
+
+	if (is_boots(otmp) && ublindf && ublindf->oartifact == ART_LAMEZA_S_EQUALITY) {
+		if (flags.female) {
+			if (!ishighheeled(otmp)) {
+				if (noisy) pline("You're female, and therefore obligated to always wear high heels!");
+				return 0;
+			}
+		} else {
+			if (ishighheeled(otmp)) {
+				if (noisy) pline("You're male, and therefore not allowed to wear high heels!");
+				return 0;
+			}
+		}
 	}
 
 	if (is_suit(otmp) && uamul && uamul->oartifact == ART_DIKKIN_S_DRAGON_TEETH) {
@@ -7843,6 +7898,9 @@ find_ac()
 	if (uarms && uarms->oartifact == ART_AL_UD) uac -= 4;
 	if (uarmf && uarmf->oartifact == ART_TANK_SOLE_PAIR) uac -= 15;
 	if (uarm && uarm->oartifact == ART_THA_WALL) uac -= 9;
+	if (uarmf && uarmf->oartifact == ART_LARS_S_IRONSTRIDE_BOOTS && (u.ualign.type == A_LAWFUL) ) uac -= 1;
+	if (uarmg && uarmg->oartifact == ART_OTTO_S_STEELWEAVE_GLOVES) uac -= 2;
+	if (uarmc && uarmc->oartifact == ART_CLARA_S_WINDCLOAK) uac -= 1;
 	if (uarm && uarm->oartifact == ART_DONNICA_S_SUPERLATIVE) uac -= 30;
 	if (uarmc && uarmc->oartifact == ART_NATALIA_S_PROTECTOR_POWER && flags.female && FemtrapActiveNatalia) uac -= 8;
 	if (uarmh && uarmh->oartifact == ART_LEHOBAUM) uac -= 100;
@@ -7851,8 +7909,10 @@ find_ac()
 	if (uwep && uwep->oartifact == ART_KALI_S_ORBIT) uac -= 10;
 	if (uarmc && uarmc->oartifact == ART_PLUM_AURA) uac -= 5;
 	if (uamul && uamul->oartifact == ART_IMPROVED_SIGN) uac -= 3;
+	if (uarmc && uarmc->oartifact == ART_VIKTOR_S_TRAVELERSCAPE && u.ualign.type == A_LAWFUL) uac -= 7;
 	if (uamul && uamul->oartifact == ART_ARTWORK) uac -= 5;
 	if (uarmg && uarmg->oartifact == ART_BODY_COMPOSURE) uac -= 10;
+	if (uarmc && uarmc->oartifact == ART_TOBIAS__IRONWEAVE_DRAPE) uac -= 10;
 	if (uarmc && uarmc->oartifact == ART_MANT_PENDLE) uac -= 5;
 	if (uarmc && uarmc->oartifact == ART_LESHTHORN) uac -= 5;
 	if (uarmc && uarmc->oartifact == ART_PANZER_MANTLE) uac -= 5;
@@ -7860,6 +7920,8 @@ find_ac()
 	if (uarmh && uarmh->oartifact == ART_BABY_JOYN_ME_IN_THERE) uac -= 4;
 	if (uarms && uarms->oartifact == ART_EDIVA_S_SEE_THROUGH) uac -= 5;
 	if (uarmc && uarmc->oartifact == ART_KINLEY_S_WIDENESS) uac -= 5;
+	if (uarmh && uarmh->oartifact == ART_FREDERIK_S_COMBAT_HELMET) uac -= 3;
+	if (uarmh && uarmh->oartifact == ART_GREGOR_S_SENTINEL_HELM) uac -= 3;
 	if (uarmc && uarmc->oartifact == ART_SI) uac -= 8;
 	if (uarm && uarm->oartifact == ART_PURPLE_SOCKET) uac -= 4;
 	if (uamul && uamul->oartifact == ART_PLANTIT) {
@@ -8660,7 +8722,7 @@ glibr()
 	/* brass knuckles do not fall off, unless (hypothetically) you're wearing heavy ones with a STR of 1 --Amy */
 	if (otmp && (otmp->otyp == BRASS_KNUCKLES || otmp->otyp == SUPER_KNUCKLES || otmp->otyp == ULTRA_KNUCKLES || otmp->otyp == MASTER_KNUCKLES || otmp->otyp == ELITE_KNUCKLES || otmp->oartifact == ART_GREEN_ASSISTANT) ) isknuckles = TRUE;
 
-	if (otmp && !welded(otmp) && !(isknuckles && ACURR(A_STR) > 1) ) {
+	if (otmp && !welded(otmp) && !(uarmg && uarmg->oartifact == ART_CORVIN_S_GRIP_OF_PERSISTEN) && !(isknuckles && ACURR(A_STR) > 1) ) {
 		const char *thiswep;
 
 		/* nice wording if both weapons are the same type */

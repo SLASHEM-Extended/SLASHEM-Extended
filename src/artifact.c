@@ -740,6 +740,7 @@ init_randarts()
 	artilist[ART_GRADIUS].otyp = randartshortsword();
 	artilist[ART_U_TSCHELLI].otyp = randartpaddle();
 	artilist[ART_TELESTAFFEN].otyp = randartrobe();
+	artilist[ART_EVELYN_S_ROBE_OF_REVERSAL].otyp = randartrobe();
 	artilist[ART_ZURA_S_DRESSCODE].otyp = randartrobe();
 	artilist[ART_HANDSOME_THREESOME].otyp = randartrobe();
 	artilist[ART_ROBUN_NUMBER].otyp = randartrobe();
@@ -788,8 +789,9 @@ init_randarts()
 	artilist[ART_UNBINDALL_CHEAT].otyp = randartcloakX();
 	artilist[ART_FIND_ME_NEVERTHELESS].otyp = randartcloakX();
 	artilist[ART_OLD_PERSON_TALK].otyp = randartcloakX();
-	artilist[ART_HENRIETTA_S_DOGSHIT_BOOTS].otyp = randartbootsX();
 	artilist[ART_GRAVE_ROUSE].otyp = randartbootsX();
+	artilist[ART_VERA_S_EMBERTRAIL_BOOTS].otyp = randartbootsX();
+	artilist[ART_HENRIETTA_S_DOGSHIT_BOOTS].otyp = randartbootsX();
 	artilist[ART_FANNY_S_BROOK_THAT_YOU_MIS].otyp = randartbootsX();
 	artilist[ART_IDEAL_BASE].otyp = randartbootsX();
 	artilist[ART_DAT_NIGGA_S_GOT_DA_BLING].otyp = randartbootsX();
@@ -892,6 +894,7 @@ init_randarts()
 	artilist[ART_RITA_S_TENDER_STILETTOS].otyp = randartbootsX();
 	artilist[ART_EROTIC_STAT_TRAIN].otyp = randartbootsX();
 	artilist[ART_POLYFITTED].otyp = randartrobeX();
+	artilist[ART_GREGOR_S_STARLIT_VESTMENTS].otyp = randartrobeX();
 	artilist[ART_SPECIAL_ROBUNG].otyp = randartrobeX();
 	artilist[ART_COME_ON_AMMY].otyp = randartrobeX();
 	artilist[ART_YETA_S_BEAR_BEING].otyp = randartrobeX();
@@ -1437,6 +1440,57 @@ init_appearance_randarts()
 	artilist[ART_SANDRA_S_MEGAPOWER].otyp = find_appearance_armor(APP_RETRACTABLE_BLOCK_HEELS);
 	artilist[ART_WELL__MIGHT_AS_WELL_WEAR_T].otyp = find_appearance_armor(APP_INSTAFEMINISM_SHOES);
 
+	artilist[ART_SOFIA_S_CLOAK_OF_THE_MOONL].otyp = find_appearance_armor(APP_VAMPIRIC_CLOAK);
+	artilist[ART_LILIANE_S_GLAMOUR_VEIL].otyp = find_appearance_armor(APP_GODLESS_CLOAK);
+	artilist[ART_CLARA_S_WINDCLOAK].otyp = find_appearance_armor(APP_CHILLING_CLOAK);
+	artilist[ART_VERENA_S_CLOAK_OF_BLOOMING].otyp = find_appearance_armor(APP_FORGETFUL_CLOAK);
+	artilist[ART_LYDIA_S_VEIL_OF_SECRETS].otyp = find_appearance_armor(APP_SHELL_CLOAK);
+	artilist[ART_VIKTOR_S_TRAVELERSCAPE].otyp = find_appearance_armor(APP_CONTAMINATED_COAT);
+	artilist[ART_EMIL_S_MANTLE_OF_RESOLVE].otyp = find_appearance_armor(APP_AVENGER_CLOAK);
+	artilist[ART_INGRID_S_WEATHERED_SHROUD].otyp = find_appearance_armor(APP_NURSE_CLOAK);
+	artilist[ART_TOBIAS__IRONWEAVE_DRAPE].otyp = find_appearance_armor(APP_DNETHACK_CLOAK);
+	artilist[ART_HELENA_S_MANTLE_OF_WARMTH].otyp = find_appearance_armor(APP_SOFT_CLOAK);
+	artilist[ART_ROLAND_S_TEMPEST_CLOAK].otyp = find_appearance_armor(APP_LONG_RANGE_CLOAK);
+	artilist[ART_MATTHIAS__CLOAK_OF_TEN_SHA].otyp = find_appearance_armor(APP_FALSE_COPES);
+	artilist[ART_SILVIA_S_DREAMBAND].otyp = find_appearance_armor(APP_INTERNET_HELMET);
+	artilist[ART_FREDERIK_S_COMBAT_HELMET].otyp = find_appearance_armor(APP_ANTI_GOVERNMENT_HELMET);
+	artilist[ART_GREGOR_S_SENTINEL_HELM].otyp = find_appearance_armor(APP_COMPLETE_HELMET);
+	artilist[ART_HENRIETTA_S_CRYSTAL_HOOD].otyp = find_appearance_armor(APP_WATER_PIPE_HELMET);
+	artilist[ART_DANTE_S_ASHEN_VISOR].otyp = find_appearance_armor(APP_SCUBA_HELMET);
+	artilist[ART_GISELA_S_TRICK].otyp = find_appearance_armor(APP_BUG_TRACKING_HELMET);
+	artilist[ART_RENEE_S_FEATHERED_HOOD].otyp = find_appearance_armor(APP_INKCOAT_HELMET);
+	artilist[ART_ANTON_S_CROWN_OF_ECHOES].otyp = find_appearance_armor(APP_DREAM_HELMET);
+	artilist[ART_FRIEDRICH_S_BATTLE_VISOR].otyp = find_appearance_armor(APP_TWISTED_VISOR_HELMET);
+	artilist[ART_KASPAR_S_HELM_OF_THE_HORNE].otyp = find_appearance_armor(APP_SERRATED_HELMET);
+	artilist[ART_CLARA_S_WHISPERHELM].otyp = find_appearance_armor(APP_PETSENSE_HELMET);
+	artilist[ART_AMARA_S_MINDGUARD_HELM].otyp = find_appearance_armor(APP_BULL_HELMET);
+	artilist[ART_CORVIN_S_GRIP_OF_PERSISTEN].otyp = find_appearance_armor(APP_GRAFFITI_GLOVES);
+	artilist[ART_BEATRIX_S_SHADOWGRASP].otyp = find_appearance_armor(APP_VAMPIRIC_GLOVES);
+	artilist[ART_OTTO_S_STEELWEAVE_GLOVES].otyp = find_appearance_armor(APP_COMFORTABLE_GLOVES);
+	artilist[ART_CLARA_S_GLOVES_OF_THE_TIDE].otyp = find_appearance_armor(APP_SLIPPERY_GLOVES);
+	artilist[ART_LEON_S_GAUNTLETS_OF_EMBERG].otyp = find_appearance_armor(APP_RIDING_GLOVES);
+	artilist[ART_NADIA_S_GLOVES_OF_SHIFTING].otyp = find_appearance_armor(APP_BOXING_GLOVES);
+	artilist[ART_ERASMUS__SCRIPTED_GAUNTLET].otyp = find_appearance_armor(APP_SPANISH_GLOVES);
+	artilist[ART_BRIGITTE_S_SAFETY_MITTENS].otyp = find_appearance_armor(APP_DEMOLITION_GLOVES);
+	artilist[ART_NALI_THE_BNALI].otyp = find_appearance_armor(APP_FLOWER_GLOVES);
+	artilist[ART_MATTHIAS_S_GAUNTLETS_OF_FA].otyp = find_appearance_armor(APP_GAMEBLE_GLOVES);
+	artilist[ART_SABRINA_S_UTILITY_GLOVES].otyp = find_appearance_armor(APP_RE_GREASING_GLOVES);
+	artilist[ART_NADIA_S_FROSTBIND_GLOVES].otyp = find_appearance_armor(APP_TRANSLUCENT_GLOVES);
+	artilist[ART_HELENE_S_EMBERTOUCH_GLOVES].otyp = find_appearance_armor(APP_NIMBLE_GLOVES);
+	artilist[ART_LARS_S_IRONSTRIDE_BOOTS].otyp = find_appearance_armor(APP_HOT_BOOTS);
+	artilist[ART_ERIK_S_MARCHING_BOOTS].otyp = find_appearance_armor(APP_SNOW_BOOTS);
+	artilist[ART_ROWAN_S_SILENT_PATH_BOOTS].otyp = find_appearance_armor(APP_RADIANT_HEELS);
+	artilist[ART_DIETER_S_BOOTS_OF_THE_DEEP].otyp = find_appearance_armor(APP_IMAGINARY_HEELS);
+	artilist[ART_EVA_S_STORMWALKERS].otyp = find_appearance_armor(APP_REFLECTIVE_SLIPPERS);
+	artilist[ART_DARIUS_S_STORMWALKERS].otyp = find_appearance_armor(APP_PRINTED_SANDALS);
+	artilist[ART_INGRID_S_IRONHOOF_BOOTS].otyp = find_appearance_armor(APP_BAYONET_HEELS);
+	artilist[ART_ALRIC_S_MARCHING_BOOTS].otyp = find_appearance_armor(APP_FOREIGN_BODY_SHOES);
+	artilist[ART_LIORA_S_BOOTS_OF_MIRAGE_ST].otyp = find_appearance_armor(APP_LEATHER_FLEECE_BOOTS);
+	artilist[ART_OTMAR_S_PHANTOM_STEPS].otyp = find_appearance_armor(APP_FLUFFY_SANDALS);
+	artilist[ART_MAREN_S_GALE_BOOTS].otyp = find_appearance_armor(APP_REPAIR_WORTHY_BOOTS);
+	artilist[ART_ROBE_OF_ELARION__THE_DREAM].otyp = find_appearance_armor(APP_CAMO_ROBE);
+	artilist[ART_AVELINE_S_ROBE_OF_THE_FIRS].otyp = find_appearance_armor(APP_ARENA_ROBE);
+
 	artilist[ART_IRIS_S_HIDDEN_ALLERGY].otyp = find_appearance_armor(APP_SILVER_STILETTOS);
 	artilist[ART_IRIS_S_SECRET_VULNERABILIT].otyp = find_appearance_armor(APP_ECHO_HELMET);
 	artilist[ART_IRIS_S_UNREVEALED_LOVE].otyp = find_appearance_armor(APP_DEMONIC_CLOAK);
@@ -1711,7 +1765,7 @@ void
 restore_artifacts(fd)
 int fd;
 {
-	const char *tname; /* bugfix by Chris_ANG */
+	const char *tname; /* bugfix by Chris_ANG, ported to SLEX by Amy */
 
 	mread(fd, (void *) artiexist, sizeof artiexist);
 	mread(fd, (void *) artidisco, sizeof artidisco);
@@ -4708,7 +4762,7 @@ long wp_mask;
 	    /* xray_range is now modified in allmain.c --Amy */
 	}
 	/* KMH -- Reflection when wielded */
-	if ((spfx & SPFX_REFLECT)) { /* fix by Chris_ANG - why the heck was this on being wielded only??? */
+	if ((spfx & SPFX_REFLECT)) { /* fix by Chris_ANG (ported to SLEX by Amy) - why the heck was this on being wielded only??? */
 	    if (on) EReflecting |= wp_mask;
 	    else EReflecting &= ~wp_mask;
 	}
@@ -5174,6 +5228,11 @@ int tmp;
 					int boosteramount = abs((int)Luck);
 					return rnd(boosteramount);
 				}
+				break;
+
+			case ART_HELENE_S_EMBERTOUCH_GLOVES:
+				if (u.ualign.type == A_CHAOTIC) return ( rnd((int)weap->attk.damd * 2) );
+
 				break;
 
 			case ART_ORRATH_S_EVENTIDE:
@@ -7367,6 +7426,58 @@ chargingchoice:
 			break;
 		}
 
+		if (obj->oartifact == ART_SABRINA_S_UTILITY_GLOVES) {
+			register struct obj *sabrinaitem;
+
+			if (CannotSelectItemsInPrompts) break;
+
+			pline("You may repair a damaged item.");
+repairitemchoiceSAB:
+			sabrinaitem = getobj(allnoncount, "magically repair");
+			if (!sabrinaitem) {
+				if (yn("Really exit with no object selected?") == 'y')
+					pline("You just wasted the opportunity to repair your items.");
+				else goto repairitemchoiceSAB;
+				pline("A feeling of loss comes over you.");
+				break;
+			}
+			if (sabrinaitem && stack_too_big(sabrinaitem)) {
+				pline("The stack was too big and therefore didn't get repaired!");
+			} else if (sabrinaitem && greatest_erosion(sabrinaitem) > 0) {
+				if (!Blind) {
+					pline("Your %s looks better!",xname(sabrinaitem));
+				}
+				if (sabrinaitem->oeroded > 0) sabrinaitem->oeroded--;
+				if (sabrinaitem->oeroded2 > 0) sabrinaitem->oeroded2--;
+				if (sabrinaitem && objects[(sabrinaitem)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(sabrinaitem)) {
+					if (!sabrinaitem->cursed) bless(sabrinaitem);
+					else uncurse(sabrinaitem, FALSE);
+				}
+
+			} else pline("Your %s is still as undamaged as ever.",xname(sabrinaitem));
+
+			break;
+		}
+
+		if (obj->oartifact == ART_AVELINE_S_ROBE_OF_THE_FIRS) {
+
+			You_feel("restored to health!");
+			u.uhp = u.uhpmax;
+			if (Upolyd) u.mh = u.mhmax;
+			flags.botl = TRUE;
+
+			buzz(21, 10, u.ux, u.uy, -1, 0);
+			buzz(21, 10, u.ux, u.uy, 1, 0);
+			buzz(21, 10, u.ux, u.uy, -1, 1);
+			buzz(21, 10, u.ux, u.uy, 1, 1);
+			buzz(21, 10, u.ux, u.uy, 0, 1);
+			buzz(21, 10, u.ux, u.uy, -1, -1);
+			buzz(21, 10, u.ux, u.uy, 1, -1);
+			buzz(21, 10, u.ux, u.uy, 0, -1);
+
+			break;
+		}
+
 		if (obj->oartifact == ART_LIVE_LONG__IF_YOU_CAN) {
 			use_temporary_tech(T_TELEKINESIS);
 
@@ -7390,6 +7501,29 @@ chargingchoiceTT:
 			break;
 		}
 
+		if (obj->oartifact == ART_ROBE_OF_ELARION__THE_DREAM) {
+
+			if (!rn2(3)) {
+				u.aggravation = 1;
+				u.heavyaggravation = 1;
+
+				(void) makemon(mkclass(S_GHOST,0), 0, 0, NO_MM_FLAGS);
+
+				u.aggravation = 0;
+				u.heavyaggravation = 0;
+			}
+
+			incr_itimeout(&Invulnerable, 5);
+			You_feel(FunnyHallu ? "like a super-duper hero!" : "invulnerable!");
+
+			break;
+		}
+
+		if (obj->oartifact == ART_LIORA_S_BOOTS_OF_MIRAGE_ST) {
+			tele();
+			break;
+		}
+
 		if (obj->oartifact == ART_LYCIA_S_WUSH) {
 			if (!obj->cursed) bless(obj);
 			else uncurse(obj, TRUE);
@@ -7404,6 +7538,96 @@ chargingchoiceTT:
 
 			if (maderoomX) pline("Some annoying terrain was cleaned up!");
 			else pline("There was nothing to clean up...");
+
+			break;
+		}
+
+		if (obj->oartifact == ART_NADIA_S_GLOVES_OF_SHIFTING) {
+
+			register struct obj *objX;
+
+			if (u.uhpmax < 2) break;
+			if (Upolyd && u.mhmax < 2) break;
+
+			u.uhpmax--;
+			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+
+			if (Upolyd) {
+				u.mhmax--;
+				if (u.mh > u.mhmax) u.mh = u.mhmax;
+			}
+
+			flags.botl = TRUE;
+
+			You_feel("like someone is helping you!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Ba, tip bloka l'da budet proklinat' svoye der'mo snova tak ili inache." : "Daedeldaedimm!");
+
+			for(objX = invent; objX ; objX = objX->nobj) {
+
+				long wornmask;
+				if (objX->oclass == COIN_CLASS) continue;
+				wornmask = (objX->owornmask & ~(W_BALL|W_ART|W_ARTI));
+				if (wornmask) {
+				    /* handle a couple of special cases; we don't
+				       allow auxiliary weapon slots to be used to
+				       artificially increase number of worn items */
+				    if (objX == uswapwep) {
+					if (!u.twoweap) wornmask = 0L;
+				    } else if (objX == uquiver) {
+					if (objX->oclass == WEAPON_CLASS) {
+					    /* mergeable weapon test covers ammo,
+					       missiles, spears, daggers & knives */
+					    if (!objects[objX->otyp].oc_merge) 
+						wornmask = 0L;
+					} else if (objX->oclass == GEM_CLASS) {
+					    /* possibly ought to check whether
+					       alternate weapon is a sling... */
+					    if (!uslinging()) wornmask = 0L;
+					} else {
+					    /* weptools don't merge and aren't
+					       reasonable quivered weapons */
+					    wornmask = 0L;
+					}
+				    }
+				}
+
+				if ( (!rn2(5) || wornmask) && objX->cursed && !stack_too_big(objX)) {
+					uncurse(objX, FALSE);
+				}
+			}
+
+			break;
+		}
+
+		if (obj->oartifact == ART_BEATRIX_S_SHADOWGRASP) {
+
+			if (u.ualign.type == A_CHAOTIC) {
+				phase_door(0);
+			} else {
+				make_confused(HConfusion + rnz(20), FALSE);
+				You_feel("confused!");
+			}
+
+			break;
+		}
+
+		if (obj->oartifact == ART_RENEE_S_FEATHERED_HOOD) {
+
+			incr_itimeout(&HLevitation, 200);
+			HLevitation |= I_SPECIAL;
+			flags.botl = TRUE;
+
+			You("float into the air!");
+
+			break;
+		}
+
+		if (obj->oartifact == ART_FREDERIK_S_COMBAT_HELMET) {
+			if (FunnyHallu)
+				You_feel("like a tough motherfucker!");
+			else
+				You("are resistant to normal damage.");
+			incr_itimeout(&HHalf_physical_damage, 100);
 
 			break;
 		}
@@ -7628,6 +7852,35 @@ findmorestonesX:
 			use_temporary_tech(T_MELTEE);
 
 			break;
+		}
+
+		if (obj->oartifact == ART_MATTHIAS_S_GAUNTLETS_OF_FA) {
+			use_temporary_tech(T_TURN_UNDEAD);
+			break;
+		}
+
+		if (obj->oartifact == ART_LAMEZA_S_EQUALITY) {
+			use_temporary_tech(T_EXTRA_LONG_SQUEAK);
+			break;
+		}
+
+		if (obj->oartifact == ART_NALI_THE_BNALI) {
+			use_temporary_tech(T_EVISCERATE);
+			break;
+		}
+
+		if (obj->oartifact == ART_CLARA_S_WINDCLOAK) {
+			use_temporary_tech(T_DASH);
+
+			break;
+
+		}
+
+		if (obj->oartifact == ART_ROLAND_S_TEMPEST_CLOAK) {
+			use_temporary_tech(T_CHAIN_THUNDERBOLT);
+
+			break;
+
 		}
 
 		if (obj->oartifact == ART_BUGGEDNESS_OF_THE_COMPANY) {

@@ -690,6 +690,19 @@ boolean yours; /* is it your fault (for killing monsters) */
 			if (damu < 1) damu = 1;
 		}
 
+		if (uarmc && uarmc->oartifact == ART_EMIL_S_MANTLE_OF_RESOLVE && u.ualign.type == A_LAWFUL && damu > 0 && ( (!Upolyd && u.uhp < (u.uhpmax / 10)) || (Upolyd && u.mh < (u.mhmax / 10)) ) ) {
+			damu++;
+			damu /= 10;
+			if (damu < 1) damu = 1;
+		}
+
+		if (damu > 0 && uarmh && uarmh->oartifact == ART_FRIEDRICH_S_BATTLE_VISOR) {
+			damu++;
+			damu *= 9;
+			damu /= 10;
+			if (damu < 1) damu = 1;
+		}
+
 		if (damu > 0 && uarmf && itemhasappearance(uarmf, APP_MARJI_SHOES)) {
 			damu++;
 			damu *= 9;

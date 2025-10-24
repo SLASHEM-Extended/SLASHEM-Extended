@@ -1835,8 +1835,8 @@ struct you {
 	boolean boomshined;
 	boolean kyliemode;
 
-	boolean aggravation;
-	boolean heavyaggravation;
+	boolean aggravation; /* aggravate monster - summoned monsters can be higher in level */
+	boolean heavyaggravation; /* playerextrinsicaggravatemon (currently in potion.c) is TRUE */
 
 	boolean outtadepthtrap;
 

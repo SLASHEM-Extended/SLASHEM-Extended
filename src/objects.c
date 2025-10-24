@@ -6268,6 +6268,7 @@ TOOL("data chip", (char *)0,    1, 0, 0, 0,  400,  0,  10, MT_PLATINUM, CLR_GRAY
 
 /* Light sources */
 /* [Tom] made candles cheaper & more common */
+/* tallow candle must be first */
 TOOL("tallow candle", "candle", 0, 1, 0, 0, 3514,  0, 20, MT_WAX, CLR_WHITE, 1),
 TOOL("wax candle", "candle",    0, 1, 0, 0, 3514,  0, 20, MT_WAX, CLR_WHITE, 1),
 TOOL("magic candle",  "candle", 0, 1, 1, 0,  500,  0, 20, MT_WAX, CLR_WHITE, 20),
@@ -6283,6 +6284,7 @@ TOOL("oil lamp", "lamp",        0, 0, 0, 0, 2500, 0,  40, MT_COPPER, CLR_YELLOW,
 TOOL("brass lantern", (char *)0,1, 0, 0, 0,  1000, 0,  30, MT_COPPER, CLR_YELLOW, 1),
 TOOL("dim lantern", (char *)0,1, 0, 0, 0,  500, 0,  50, MT_SINNUM, CLR_BROWN, 1), /* spawns with more fuel */
 TOOL("magic lamp", "lamp",      0, 0, 1, 0,  1000, 0,  40, MT_COPPER, CLR_YELLOW, 25),
+/* magic lamp is last light source */
 
 /* Instruments */
 /* KMH -- made less common */

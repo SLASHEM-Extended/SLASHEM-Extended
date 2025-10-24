@@ -3143,6 +3143,10 @@ docast()
 			pline_The("spell fires twice!");
 			spelleffects(spell_no, FALSE, FALSE);
 		}
+		if (uarmh && uarmh->oartifact == ART_ANTON_S_CROWN_OF_ECHOES && !rn2(10)) {
+			pline_The("spell fires twice!");
+			spelleffects(spell_no, FALSE, FALSE);
+		}
 
 		if (SpellColorPlatinum && u.uen < 0) {
 			u.uenmax -= (0 - u.uen);
@@ -7701,6 +7705,11 @@ castanyway:
 
 	}
 
+	if (uarmh && uarmh->oartifact == ART_ANTON_S_CROWN_OF_ECHOES && !rn2(100)) {
+		wake_nearby();
+		pline_The("echoes of your spellcasting chant are resounding in the dungeon.");
+	}
+
 	if (Race_if(PM_RELEASIER)) {
 		verbalize("%s", !rn2(3) ? "Kjear! Hahahahaha!" : !rn2(2) ? "Aa-hu!" : "Hiarwigo!");
 	}
@@ -7722,6 +7731,15 @@ castanyway:
 
 	flags.botl = 1;
 	exercise(A_WIS, TRUE);
+
+	/* Erasmus' gauntlets cause you to cast a random spell on occasion; don't run this code if we're already processing a random spell --Amy
+	 * this has to be done after we've established that you successfully cast a spell, so you can't just attempt a 100% fail spell a gazillion times
+	 * until you randomly hit the 1% chance of getting a random spell, because if such an exploit exists, some player WILL abuse it... */
+	if (uarmg && uarmg->oartifact == ART_ERASMUS__SCRIPTED_GAUNTLET && !rn2(100)) {
+		pline_The("magical energy goes out of control...");
+		spell_metronome(1, 8);
+		return(1);
+	}
 
 	/* pseudo is a temporary "false" object containing the spell stats. */
 metronomedoit:
@@ -16358,6 +16376,8 @@ int spell;
 	if (uarmf && uarmf->oartifact == ART_THICKER_THAN_THE_HEAD) chance -= 20;
 	if (uarm && uarm->oartifact == ART_MADE_OF_IRON) chance -= 20;
 	if (uarms && uarms->oartifact == ART_HEAVE_FIELD) chance -= 20;
+	if (uarmh && uarmh->oartifact == ART_FREDERIK_S_COMBAT_HELMET) chance -= 15;
+	if (uarmh && uarmh->oartifact == ART_FRIEDRICH_S_BATTLE_VISOR) chance -= 20;
 	if (StrongMagicVacuum) chance -= 50;
 
 	if (Race_if(PM_PLAYER_GOLEM)) {
@@ -16371,6 +16391,7 @@ int spell;
 	if (uarmh && uarmh->oartifact == ART_ZERO_PERCENT_FAILURE) chance += 10;
 	if (uarmf && uarmf->oartifact == ART_SPELLBOOTS) chance += 10;
 	if (uarmc && uarmc->oartifact == ART_HENRIETTA_S_HEAVY_CASTER) chance += 15;
+	if (uarmg && uarmg->oartifact == ART_ERASMUS__SCRIPTED_GAUNTLET) chance += 30;
 	if (uimplant && uimplant->oartifact == ART_SPINAL_MATRIX_OF_RAISTLIN) chance += 20;
 	if (uimplant && uimplant->oartifact == ART_SYNAPSE_CROWN_OF_GANDALF) chance += 15;
 	if (uarm && uarm->oartifact == ART_ROBXOR_ZSCH) chance += 20;

@@ -29477,6 +29477,9 @@ static NEARDATA const char * const fake_plines[] = {
 	"Ouch, the narrow peep-toes are sqeezing your feet! They're your shoe size, right? Wait, it says 'CN' in front of the number... guess chinese shoe sizes aren't the same as european shoe sizes...",
 	"You're afraid that the girls will kick you in the back of your head!",
 	"It seems that the girls are no longer trying to aim their kicks at the back of your head.",
+	"Suddenly there's a loud rushing noise!",
+	"Suddenly there's a loud rushing noise! But it was just a gust of wind, nothing dangerous.",
+	"Suddenly there's a loud rushing noise! Oh no, an elemental or vortex or something is nearby and wants to engulf you!",
 
 };
 

@@ -29482,6 +29482,7 @@ loopback:
 		if (ct > 0 && (uamul && uamul->oartifact == ART_WALT_VERSUS_ANNA && (ptr->msound == MS_FART_QUIET) )) ct += 5;
 		if (ct > 0 && (uamul && uamul->oartifact == ART_WALT_VERSUS_ANNA && (ptr->msound == MS_FART_LOUD) )) ct += 5;
 		if (ct > 0 && (uamul && uamul->oartifact == ART_WALT_VERSUS_ANNA && (ptr->msound == MS_STENCH) )) ct += 20;
+		if (ct > 0 && (ublindf && ublindf->oartifact == ART_MILARY_S_DAILY_SIGH && (ptr->msound == MS_MOLEST) )) ct += 10;
 		if (ct > 0 && (Role_if(PM_JOCKEY) && (ptr->mlet == S_UNICORN))) ct += 1;
 		if (ct > 0 && (Role_if(PM_JOCKEY) && (ptr->mlet == S_CENTAUR))) ct += 1;
 		if (ct > 0 && (Role_if(PM_JOCKEY) && (ptr->mlet == S_QUADRUPED))) ct += 2;
@@ -29669,6 +29670,9 @@ loopback:
 		if (ct > 0 && (uarmf && itemhasappearance(uarmf, APP_PRINCESS_PUMPS) && attacktype(ptr, AT_LASH) )) ct += 2;
 		if (ct > 0 && (uarmf && itemhasappearance(uarmf, APP_PRINCESS_PUMPS) && attacktype(ptr, AT_STNG) )) ct += 2;
 		if (ct > 0 && uarmh && itemhasappearance(uarmh, APP_GRUNTER_HELMET) && dmgtype(ptr, AD_DISE) ) ct += 5;
+		if (ct > 0 && (uarmf && uarmf->oartifact == ART_EVA_S_STORMWALKERS && dmgtype(ptr, AD_MALK) )) ct += 5;
+		if (ct > 0 && (uarmf && uarmf->oartifact == ART_DARIUS_S_STORMWALKERS && dmgtype(ptr, AD_MALK) )) ct += 10;
+		if (ct > 0 && (uarmf && uarmf->oartifact == ART_DARIUS_S_STORMWALKERS && metallivorous(ptr) )) ct += 10;
 		if (ct > 0 && (Role_if(PM_PSION) && dmgtype(ptr, AD_IDAM) )) ct += 2;
 		if (ct > 0 && (Role_if(PM_PSION) && dmgtype(ptr, AD_ANTI) )) ct += 5;
 		if (ct > 0 && (Role_if(PM_PSION) && dmgtype(ptr, AD_TECH) )) ct += 2;
@@ -31101,6 +31105,7 @@ int     spc;
 		if ((uamul && uamul->oartifact == ART_WALT_VERSUS_ANNA && (mons[last].msound == MS_FART_QUIET) )) num += 5;
 		if ((uamul && uamul->oartifact == ART_WALT_VERSUS_ANNA && (mons[last].msound == MS_FART_LOUD) )) num += 5;
 		if ((uamul && uamul->oartifact == ART_WALT_VERSUS_ANNA && (mons[last].msound == MS_STENCH) )) num += 20;
+		if ((ublindf && ublindf->oartifact == ART_MILARY_S_DAILY_SIGH && (mons[last].msound == MS_MOLEST) )) num += 10;
 		if ((Role_if(PM_DEMAGOGUE) && (mons[last].mresists & MR_PLUSFOUR))) num += 1;
 		if ((Role_if(PM_SOCIAL_JUSTICE_WARRIOR) && (mons[last].mflags2 & M2_DEMON) )) num += 5;
 		if ((Role_if(PM_DEMAGOGUE) && (mons[last].mflags3 & M3_NOTAME) )) num += 2;
@@ -31279,6 +31284,9 @@ int     spc;
 		if ((uarmf && itemhasappearance(uarmf, APP_PRINCESS_PUMPS) && attacktype(&mons[last], AT_LASH) )) num += 2;
 		if ((uarmf && itemhasappearance(uarmf, APP_PRINCESS_PUMPS) && attacktype(&mons[last], AT_STNG) )) num += 2;
 		if (uarmh && itemhasappearance(uarmh, APP_GRUNTER_HELMET) && dmgtype(&mons[last], AD_DISE) ) num += 5;
+		if ((uarmf && uarmf->oartifact == ART_EVA_S_STORMWALKERS && dmgtype(&mons[last], AD_MALK) )) num += 5;
+		if ((uarmf && uarmf->oartifact == ART_DARIUS_S_STORMWALKERS && dmgtype(&mons[last], AD_MALK) )) num += 10;
+		if ((uarmf && uarmf->oartifact == ART_DARIUS_S_STORMWALKERS && metallivorous(&mons[last]) )) num += 10;
 		if ((Role_if(PM_PSION) && dmgtype(&mons[last], AD_IDAM) )) num += 2;
 		if ((Role_if(PM_PSION) && dmgtype(&mons[last], AD_ANTI) )) num += 5;
 		if ((Role_if(PM_PSION) && dmgtype(&mons[last], AD_TECH) )) num += 2;
@@ -32363,6 +32371,7 @@ int     spc;
 		if ((uamul && uamul->oartifact == ART_WALT_VERSUS_ANNA && (mons[first].msound == MS_FART_QUIET) )) num -= 5;
 		if ((uamul && uamul->oartifact == ART_WALT_VERSUS_ANNA && (mons[first].msound == MS_FART_LOUD) )) num -= 5;
 		if ((uamul && uamul->oartifact == ART_WALT_VERSUS_ANNA && (mons[first].msound == MS_STENCH) )) num -= 20;
+		if ((ublindf && ublindf->oartifact == ART_MILARY_S_DAILY_SIGH && (mons[first].msound == MS_MOLEST) )) num -= 10;
 		if ((Role_if(PM_DEMAGOGUE) && (mons[first].mresists & MR_PLUSFOUR))) num -= 1;
 		if ((Role_if(PM_SOCIAL_JUSTICE_WARRIOR) && (mons[first].mflags2 & M2_DEMON) )) num -= 5;
 		if ((Role_if(PM_DEMAGOGUE) && (mons[first].mflags3 & M3_NOTAME) )) num -= 2;
@@ -32541,6 +32550,9 @@ int     spc;
 		if ((uarmf && itemhasappearance(uarmf, APP_PRINCESS_PUMPS) && attacktype(&mons[first], AT_LASH) )) num -= 2;
 		if ((uarmf && itemhasappearance(uarmf, APP_PRINCESS_PUMPS) && attacktype(&mons[first], AT_STNG) )) num -= 2;
 		if (uarmh && itemhasappearance(uarmh, APP_GRUNTER_HELMET) && dmgtype(&mons[first], AD_DISE) ) num -= 5;
+		if ((uarmf && uarmf->oartifact == ART_EVA_S_STORMWALKERS && dmgtype(&mons[first], AD_MALK) )) num -= 5;
+		if ((uarmf && uarmf->oartifact == ART_DARIUS_S_STORMWALKERS && dmgtype(&mons[first], AD_MALK) )) num -= 10;
+		if ((uarmf && uarmf->oartifact == ART_DARIUS_S_STORMWALKERS && metallivorous(&mons[first]) )) num -= 10;
 		if ((Role_if(PM_PSION) && dmgtype(&mons[first], AD_IDAM) )) num -= 2;
 		if ((Role_if(PM_PSION) && dmgtype(&mons[first], AD_ANTI) )) num -= 5;
 		if ((Role_if(PM_PSION) && dmgtype(&mons[first], AD_TECH) )) num -= 2;
@@ -34112,6 +34124,7 @@ register struct permonst *ptr;
 	if (!rn2(Aggravate_monster ? 500 : 100)) return TRUE; /* low chance of getting random peaceful monsters --Amy */
 
 	/* chaotic alignment is too easy and lawful is too hard. Make it easier for neutral and especially lawful by having monsters generate peaceful more often. --Amy */
+	/* convict is a pariah to their own race --Amy */
 	if ( (sgn(u.ualign.type) == sgn(ptr->maligntyp) ) && !rn2(20) && !Role_if(PM_CONVICT) && u.ualign.type == A_LAWFUL) return TRUE;
 	if ( (sgn(u.ualign.type) == sgn(ptr->maligntyp) ) && !rn2(50) && !Role_if(PM_CONVICT) && u.ualign.type == A_NEUTRAL) return TRUE;
 
@@ -34188,6 +34201,8 @@ register struct permonst *ptr;
 
 	if (ptr->mlet == S_UNICORN && uarmc && uarmc->oartifact == ART_KYS_YOURSELF && !rn2(4)) return TRUE;
 	if (uarmc && uarmc->oartifact == ART_KYS_YOURSELF && is_female(ptr) && humanoid(ptr) && rn2(10)) return TRUE;
+
+	if (ublindf && ublindf->oartifact == ART_GIRLFRIEND_DOESN_T_WANNA_C && is_female(ptr) && !rn2(2)) return TRUE;
 
 	if (uarmf && uarmf->oartifact == ART_CRUEL_GODDESS_ANA && !rn2(100)) return TRUE;
 

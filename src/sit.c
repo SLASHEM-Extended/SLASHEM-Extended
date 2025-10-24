@@ -292,6 +292,20 @@ dosit()
 				TimeStopped += rnd(30);
 			}
 
+			if (uarmh && uarmh->oartifact == ART_SILVIA_S_DREAMBAND) {
+				if (!level.flags.nommap) {
+					pline("A map coalesces in your mind!");
+					do_mappingZ();
+				}
+			}
+
+			if (uarm && uarm->oartifact == ART_ROBE_OF_ELARION__THE_DREAM) {
+				u.uhp = u.uhpmax;
+				u.uen = u.uenmax;
+				if (Upolyd) u.mh = u.mhmax;
+				flags.botl = TRUE;
+			}
+
 		}
 
 	} else if(IS_THRONE(typ)) {

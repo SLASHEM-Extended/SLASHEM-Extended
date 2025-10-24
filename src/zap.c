@@ -9674,6 +9674,7 @@ struct obj **ootmp;	/* to return worn armor for caller to disintegrate */
 		if (u.tempfirelightspellbonus) {
 			tmp *= 3; tmp /= 2;
 		}
+		if (uarm && uarm->oartifact == ART_AVELINE_S_ROBE_OF_THE_FIRS) tmp *= 2;
 		if (spellcaster)
 		    skilldmg = spell_damage_bonus(SPE_FIREBALL);
 		if (!rn2(33)) (burnarmor(mon));
@@ -9848,6 +9849,12 @@ struct obj **ootmp;	/* to return worn armor for caller to disintegrate */
 		    break;
 		}
 		tmp = d(nd,7);
+
+		if (uarmh && uarmh->oartifact == ART_AMARA_S_MINDGUARD_HELM && u.ualign.type == A_NEUTRAL) {
+			tmp *= 3;
+			tmp /= 2;
+		}
+
 		pline("The beam confuses %s!",mon_nam(mon));
 		mon->mconf = TRUE;
 		if (Role_if(PM_PSION)) mon->mstun = TRUE;

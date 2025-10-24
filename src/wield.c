@@ -613,7 +613,7 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 		pline("You realize that you've made a horrible mistake.");
 	}
 
-	if (uwep && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) {
+	if (uwep && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone() || (ublindf && ublindf->oartifact == ART_LEANDRA_S_WORD)) ) {
 		curse(uwep);
 
 		if (AutocursingXtra) {
@@ -1017,7 +1017,7 @@ swapweaponchoice:
 			pline("You realize that you've made a horrible mistake.");
 		}
 
-		if (uswapwep && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) {
+		if (uswapwep && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone() || (ublindf && ublindf->oartifact == ART_LEANDRA_S_WORD)) ) {
 			curse(uswapwep);
 
 			if (AutocursingXtra) {

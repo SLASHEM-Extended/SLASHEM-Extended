@@ -10166,6 +10166,12 @@ int dmgamount; /* original amount of damage, which can be reduced */
 	if (FemtrapActiveMagdalena && humanoid(mtmp->data) && is_female(mtmp->data) && dmgamount > 1) dmgamount /= 2;
 
 	if (u.usteed && (mtmp == u.usteed)) { /* steed can take reduced damage if you got the riding skill */
+
+		if (uarmg && uarmg->oartifact == ART_NALI_THE_BNALI) {
+			dmgamount *= 4; dmgamount /= 5;
+			if (dmgamount < 1) dmgamount = 1;
+		}
+
 		if (!PlayerCannotUseSkills && u.petdmgreduced) { /* only if you didn't turn the damage reduction off */
 			switch (P_SKILL(P_RIDING)) {
 				default: break;
@@ -10180,6 +10186,12 @@ int dmgamount; /* original amount of damage, which can be reduced */
 		}
 
 	} else if (mtmp->mtame) { /* pet that isn't currently your steed can take reduced damage if you got the petkeeping skill */
+
+		if (uarmg && uarmg->oartifact == ART_NALI_THE_BNALI) {
+			dmgamount *= 4; dmgamount /= 5;
+			if (dmgamount < 1) dmgamount = 1;
+		}
+
 		if (!PlayerCannotUseSkills && u.petdmgreduced) { /* only if you didn't turn the damage reduction off */
 			switch (P_SKILL(P_PETKEEPING)) {
 				default: break;

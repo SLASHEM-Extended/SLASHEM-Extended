@@ -2041,6 +2041,7 @@ u_slow_down()
 	if (bmwride(ART_MARLOWE_S_CAMEL)) return;
 	if (uarmc && uarmc->oartifact == ART_FAST_AURORA) return;
 	if (uwep && uwep->oartifact == ART_MAILIE_S_SELF_CENTRATION) return;
+	if (uarmf && uarmf->oartifact == ART_ERIK_S_MARCHING_BOOTS) return;
 	if (Race_if(PM_SAMEDI)) return;
 	if (bmwride(ART_SENATOR_S_SPEED)) return;
 	if (uarmf && itemhasappearance(uarmf, APP_NOT_SLOWING_DOWN_BOOTS) && rn2(10)) return; /* 90% resistance */
@@ -2569,13 +2570,23 @@ mattacku(mtmp)
 	   && mtmp->data != &mons[PM_SUCCUBUS]
 	   && mtmp->data != &mons[PM_INCUBUS]
  	   && mtmp->data != &mons[PM_NEWS_DAEMON]
- 	   && mtmp->data != &mons[PM_PRINTER_DAEMON])
-	    if(!mtmp->mcan && !rn2(mtmp->data == &mons[PM_PERCENTI_OPENS_A_GATE_] ? 5 : mtmp->data == &mons[PM_CHEATER_LION] ? 5 : mtmp->data == &mons[PM_TEA_HUSSY] ? 5 : mtmp->data == &mons[PM_PERCENTI_PASSES_TO_YOU_] ? 5 : 23)) {
+ 	   && mtmp->data != &mons[PM_PRINTER_DAEMON]) {
+
+		int demongatingchance = 23; /* 1 in X chance of a demon being gated in; make sure to check monmove.c for demon spotters etc. !!!!!!! --Amy */
+		if (mtmp->data == &mons[PM_PERCENTI_OPENS_A_GATE_]) demongatingchance = 5;
+		if (mtmp->data == &mons[PM_CHEATER_LION]) demongatingchance = 5;
+		if (mtmp->data == &mons[PM_TEA_HUSSY]) demongatingchance = 5;
+		if (mtmp->data == &mons[PM_PERCENTI_PASSES_TO_YOU_]) demongatingchance = 5;
+
+		if (ublindf && ublindf->oartifact == ART_MILARY_S_DAILY_SIGH) demongatingchance *= 3;
+
+
+	    if(!mtmp->mcan && !rn2(demongatingchance)) {
 			msummon(mtmp, FALSE);
 			pline("%s opens a gate!",Monnam(mtmp) );
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Sovetskaya nadeyetsya, chto demony zapolnyayut ves' uroven' i ubit' vas." : "Pitschaeff!");
 		}
-
+	}
 
 /*	Special arbitrator handling code --Amy */
 
@@ -7018,9 +7029,12 @@ struct monst *mon;
 		if (uarmu && uarmu->oartifact == ART_COVER_THE_SEXY_BUTT) armpro += 2;
 		if (uarmc && uarmc->oartifact == ART_TRINSER_SMILEY) armpro++;
 		if (uarm && uarm->otyp == NOPE_DRAGON_SCALES) armpro += 2;
+		if (uarmc && uarmc->oartifact == ART_EMIL_S_MANTLE_OF_RESOLVE) armpro += 2;
+		if (uarmh && uarmh->oartifact == ART_GISELA_S_TRICK) armpro += 3;
 		if (uarm && uarm->oartifact == ART_EMSE_TRADE) armpro += 3;
 		if (uarmh && uarmh->oartifact == ART_SENOBIA_S_CROWN) armpro++;
 		if (uarm && uarm->oartifact == ART_SMALLIST) armpro++;
+		if (uarmh && uarmh->oartifact == ART_HENRIETTA_S_CRYSTAL_HOOD) armpro += 2;
 		if (uarmc && uarmc->oartifact == ART_NATALIA_S_PROTECTOR_POWER && flags.female && FemtrapActiveNatalia) armpro += 3;
 		if (uarm && uarm->otyp == NOPE_DRAGON_SCALE_MAIL) armpro += 2;
 		if (uarms && uarms->otyp == NOPE_DRAGON_SCALE_SHIELD) armpro += 2;
@@ -8944,7 +8958,7 @@ dopois:
 
 	    case AD_STCK:
 		hitmsg(mtmp, mattk);
-		if (uncancelled && !u.ustuck && !(uarmg && uarmg->oartifact == ART_GRAPPLER_S_GRASP) && !(uwep && uwep->oartifact == ART_LATCHSTACK) && !(uactivesymbiosis && sticks(&mons[u.usymbiote.mnum]) ) && !sticks(youmonst.data)) {
+		if (uncancelled && !u.ustuck && !(uarmg && uarmg->oartifact == ART_GRAPPLER_S_GRASP) && !(uarmh && uarmh->oartifact == ART_GISELA_S_TRICK) && !(uwep && uwep->oartifact == ART_LATCHSTACK) && !(uactivesymbiosis && sticks(&mons[u.usymbiote.mnum]) ) && !sticks(youmonst.data)) {
 			setustuck(mtmp);
 			pline("%s grabs you!", Monnam(mtmp));
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Tam net vykhoda! Ty predatel' russkogo naroda i, sledovatel'no, budut zaderzhany navsegda!" : "Wroa!");
@@ -9277,7 +9291,7 @@ dopois:
 			if (mtmp->mcan) break;
 			/* Continue below */
 		} else if (rn2(5) && !(StealersActive) &&
-			(dmgtype(youmonst.data, AD_SEDU) || (uarmg && uarmg->oartifact == ART_LORSKEL_S_SPECIAL_PROTECTI) || (ublindf && ublindf->oartifact == ART_CLICKPASS) || (uwep && uwep->oartifact == ART_LUCKY_DAGGER) || (uwep && uwep->oartifact == ART_THIN_DAGGER) || autismringcheck(ART_PALMIA_PRIDE) || (uamul && uamul->oartifact == ART_BEGGER_S_PENDANT) || (uwep && uwep->oartifact == ART_SEA_ANGERANCHOR) || (uarmh && uarmh->oartifact == ART_BIG_REAR_END) || (uarmh && uarmh->oartifact == ART_SHREW_WIND) || (uwep && uwep->oartifact == ART_FUNE_NO_IKARI) || (uarm && uarm->oartifact == ART_BELLY_W) || (uleft && uleft->oartifact == ART_DOUBLE_ADORNING && uleft->spe >= 0) || (uright && uright->oartifact == ART_DOUBLE_ADORNING && uright->spe >= 0) || (uarm && uarm->oartifact == ART_TRIANGLE_GIRL && flags.female && u.ulevel < 10) || (uwep && uwep->oartifact == ART_ST_ICKYNESS) || (uarmf && uarmf->oartifact == ART_SHE_S_NOT_FORGOTTEN) || (uwep && uwep->oartifact == ART_ONE_HUNDRED_STARS) || (uwep && uwep->oartifact == ART_SNATCHER) || (uwep && uwep->oartifact == ART_SILPHEED) || (uarmc && uarmc->otyp == CLOAK_OF_THEFT_PREVENTION) || (uarmu && uarmu->oartifact == ART_STRIPED_SHIRT_OF_THE_THIEF)
+			(dmgtype(youmonst.data, AD_SEDU) || (uarmg && uarmg->oartifact == ART_LORSKEL_S_SPECIAL_PROTECTI) || (ublindf && ublindf->oartifact == ART_CLICKPASS) || (uwep && uwep->oartifact == ART_LUCKY_DAGGER) || (uwep && uwep->oartifact == ART_THIN_DAGGER) || autismringcheck(ART_PALMIA_PRIDE) || (uamul && uamul->oartifact == ART_BEGGER_S_PENDANT) || (uwep && uwep->oartifact == ART_SEA_ANGERANCHOR) || (uarmh && uarmh->oartifact == ART_BIG_REAR_END) || (uarmh && uarmh->oartifact == ART_SHREW_WIND) || (uwep && uwep->oartifact == ART_FUNE_NO_IKARI) || (ublindf && ublindf->oartifact == ART_MILARY_S_DAILY_SIGH) || (uarm && uarm->oartifact == ART_BELLY_W) || (uleft && uleft->oartifact == ART_DOUBLE_ADORNING && uleft->spe >= 0) || (uright && uright->oartifact == ART_DOUBLE_ADORNING && uright->spe >= 0) || (uarm && uarm->oartifact == ART_TRIANGLE_GIRL && flags.female && u.ulevel < 10) || (uwep && uwep->oartifact == ART_ST_ICKYNESS) || (uarmf && uarmf->oartifact == ART_SHE_S_NOT_FORGOTTEN) || (uwep && uwep->oartifact == ART_ONE_HUNDRED_STARS) || (uwep && uwep->oartifact == ART_SNATCHER) || (uwep && uwep->oartifact == ART_SILPHEED) || (uarmc && uarmc->otyp == CLOAK_OF_THEFT_PREVENTION) || (uarmu && uarmu->oartifact == ART_STRIPED_SHIRT_OF_THE_THIEF)
 			|| dmgtype(youmonst.data, AD_SSEX)
 						) ) {
 			pline("%s %s.", Monnam(mtmp), mtmp->minvent ?
@@ -12418,7 +12432,7 @@ do_stone2:
 		break;
 	    case AD_STCK:
 	    pline("You are covered with some sticky substance!");
-		if (!u.ustuck && !(uarmg && uarmg->oartifact == ART_GRAPPLER_S_GRASP) && !(uwep && uwep->oartifact == ART_LATCHSTACK) && !(uactivesymbiosis && sticks(&mons[u.usymbiote.mnum]) ) && !sticks(youmonst.data)) {
+		if (!u.ustuck && !(uarmg && uarmg->oartifact == ART_GRAPPLER_S_GRASP) && !(uarmh && uarmh->oartifact == ART_GISELA_S_TRICK) && !(uwep && uwep->oartifact == ART_LATCHSTACK) && !(uactivesymbiosis && sticks(&mons[u.usymbiote.mnum]) ) && !sticks(youmonst.data)) {
 			setustuck(mtmp);
 			pline("%s grabs you!", Monnam(mtmp));
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Tam net vykhoda! Ty predatel' russkogo naroda i, sledovatel'no, budut zaderzhany navsegda!" : "Wroa!");
@@ -16777,7 +16791,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_STCK:
 		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || rn2(5)) )
 		{ 
-			if (!u.ustuck && !(uarmg && uarmg->oartifact == ART_GRAPPLER_S_GRASP) && !(uwep && uwep->oartifact == ART_LATCHSTACK) && !(uactivesymbiosis && sticks(&mons[u.usymbiote.mnum]) ) && !sticks(youmonst.data)) {
+			if (!u.ustuck && !(uarmg && uarmg->oartifact == ART_GRAPPLER_S_GRASP) && !(uarmh && uarmh->oartifact == ART_GISELA_S_TRICK) && !(uwep && uwep->oartifact == ART_LATCHSTACK) && !(uactivesymbiosis && sticks(&mons[u.usymbiote.mnum]) ) && !sticks(youmonst.data)) {
 				setustuck(mtmp);
 				pline("%s gazes to hold you in place!", Monnam(mtmp));
 				if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -19555,9 +19569,22 @@ register int n;
 		if (n < 1) n = 1;
 	}
 
+	if (n > 0 && uarmh && uarmh->oartifact == ART_FRIEDRICH_S_BATTLE_VISOR) {
+		n++;
+		n *= 9;
+		n /= 10;
+		if (n < 1) n = 1;
+	}
+
 	if (n > 0 && uarmf && itemhasappearance(uarmf, APP_MARJI_SHOES) ) {
 		n++;
 		n *= 9;
+		n /= 10;
+		if (n < 1) n = 1;
+	}
+
+	if (uarmc && uarmc->oartifact == ART_EMIL_S_MANTLE_OF_RESOLVE && u.ualign.type == A_LAWFUL && n > 0 && ( (!Upolyd && u.uhp < (u.uhpmax / 10)) || (Upolyd && u.mh < (u.mhmax / 10)) ) ) {
+		n++;
 		n /= 10;
 		if (n < 1) n = 1;
 	}
@@ -21655,6 +21682,12 @@ register struct attack *mattk;
 		if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = mtmp->mhpmax;
 	}
 
+	if (uarmc && uarmc->oartifact == ART_INGRID_S_WEATHERED_SHROUD && !rn2(20)) {
+		mtmp->mcanmove = FALSE;
+		mtmp->mfrozen = 2;
+		pline("%s is stopped for a moment!", Monnam(mtmp));
+	}
+
 	if (uwep && uwep->oartifact == ART_RHORN) {
 		pline("%s is damaged by your thorns!", Monnam(mtmp));
 		if((mtmp->mhp -= rnd(u.ulevel) ) <= 0) {
@@ -21679,6 +21712,16 @@ register struct attack *mattk;
 	if (uamul && uamul->otyp == AMULET_OF_THORNS) {
 		pline("%s is damaged by your thorns!", Monnam(mtmp));
 		if((mtmp->mhp -= rnd(4)) <= 0) {
+			pline("%s bleeds to death!", Monnam(mtmp));
+			xkilled(mtmp,0);
+			if (mtmp->mhp > 0) return 1;
+			return 2;
+		}
+	}
+
+	if (uarmh && uarmh->oartifact == ART_KASPAR_S_HELM_OF_THE_HORNE && !rn2(5)) {
+		pline("%s is damaged by your thorns!", Monnam(mtmp));
+		if((mtmp->mhp -= rnd(10)) <= 0) {
 			pline("%s bleeds to death!", Monnam(mtmp));
 			xkilled(mtmp,0);
 			if (mtmp->mhp > 0) return 1;
@@ -21790,6 +21833,24 @@ register struct attack *mattk;
 		pline("%s is poisoned!", Monnam(mtmp));
 		if((mtmp->mhp -= rnd(5) ) <= 0) {
 			pline("%s dies!", Monnam(mtmp));
+			xkilled(mtmp,0);
+			if (mtmp->mhp > 0) return 1;
+			return 2;
+		}
+	}
+
+	if (uarmf && uarmf->oartifact == ART_EVA_S_STORMWALKERS && (!resists_elec(mtmp) || player_will_pierce_resistance()) && (is_waterypool(u.ux, u.uy) || is_watertunnel(u.ux, u.uy)) ) {
+		if((mtmp->mhp -= rnd(8) ) <= 0) {
+			pline("%s is electrocuted and dies!", Monnam(mtmp));
+			xkilled(mtmp,0);
+			if (mtmp->mhp > 0) return 1;
+			return 2;
+		}
+	}
+
+	if (uarmf && uarmf->oartifact == ART_DARIUS_S_STORMWALKERS && (!resists_elec(mtmp) || player_will_pierce_resistance()) && !rn2(10) ) {
+		if((mtmp->mhp -= rnd(4) ) <= 0) {
+			pline("%s is electrocuted and dies!", Monnam(mtmp));
 			xkilled(mtmp,0);
 			if (mtmp->mhp > 0) return 1;
 			return 2;

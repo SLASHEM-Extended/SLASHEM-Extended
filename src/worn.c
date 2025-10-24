@@ -412,6 +412,8 @@ register struct monst *mon;
 
 	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_LUNG_INFUSER_OF_LINK && mon->mtame) base -= 5;
 
+	if (uarmh && uarmh->oartifact == ART_GREGOR_S_SENTINEL_HELM && mon->mtame && u.ualign.type == A_LAWFUL) base -= 1;
+
 	if (FemtrapActiveMarleen && humanoid(mon->data) && is_female(mon->data) ) {
 		if (SuperFemtrapMarleen) base -= (10 + mon->m_lev);
 		else base -= mon->m_lev;

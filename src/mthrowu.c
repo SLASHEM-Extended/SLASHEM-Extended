@@ -501,6 +501,18 @@ shieldblockboo:
 			else You("skillfully evade %s.", onm);
 			return(0);
 
+	} else if (uarmh && uarmh->oartifact == ART_RENEE_S_FEATHERED_HOOD && !rn2(4)) {
+
+			if(Blind || !flags.verbose) You("skillfully evade a projectile.");
+			else You("skillfully evade %s.", onm);
+			return(0);
+
+	} else if (uarmg && uarmg->oartifact == ART_CLARA_S_GLOVES_OF_THE_TIDE && !rn2(10)) {
+
+			if(Blind || !flags.verbose) You("brush off a projectile.");
+			else You("brush off %s.", onm);
+			return(0);
+
 	} else if (powerfulimplants() && (!rn2(extrachance) || !rn2(extrachance) || !rn2(extrachance)) && uimplant && uimplant->oartifact == ART_GYMNASTIC_LOVE && !rn2(3)) {
 
 			if(Blind || !flags.verbose) You("skillfully evade a projectile.");
@@ -756,6 +768,13 @@ shieldblockboo:
 			if (Half_physical_damage && (rn2(2) || (uwep && uwep->oartifact == ART_SOOTHE_)) ) dam = (dam+1) / 2;
 			if (StrongHalf_physical_damage && (rn2(2) || (uwep && uwep->oartifact == ART_SOOTHE_)) ) dam = (dam+1) / 2;
 
+			if (uarmh && uarmh->oartifact == ART_RENEE_S_FEATHERED_HOOD && (dam > 1)) {
+				dam += 1;
+				dam *= 9;
+				dam /= 10;
+				if (dam < 1) dam = 1;
+			}
+
 			if (dam && u.uac < /*-1*/0) { /* AC protects against this damage now, at least a bit --Amy */
 
 				int tempval;
@@ -796,7 +815,7 @@ shieldblockboo:
 
 			}
 
-			if (dam >= 2 && GushLevel > rnd(100)) dam = (dam+1) / 2;
+			if (dam >= 2 && (GushLevel > rnd(100)) ) dam = (dam+1) / 2;
 
 			losehp(dam, knm, kprefix);
 			exercise(A_STR, FALSE);

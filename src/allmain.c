@@ -2030,6 +2030,11 @@ moveloop()
 				moveamt /= 2;
 			}
 
+			if (uarmf && uarmf->oartifact == ART_LARS_S_IRONSTRIDE_BOOTS && u.umoved && moveamt > 1 && (u.ualign.type == A_CHAOTIC) && !rn2(3) ) {
+				if (youmonst.data->mmove > 1 || !rn2(2))
+				moveamt /= 2;
+			}
+
 			if ((uarmf && itemhasappearance(uarmf, APP_FETISH_HEELS)) && u.umoved && moveamt > 1) {
 				if (youmonst.data->mmove > 1 || !rn2(2))
 				moveamt /= 2;
@@ -2322,7 +2327,8 @@ moveloop()
 				moveamt += speedbonus(moveamt, NORMAL_SPEED);
 			}
 
-			if (uarmh && (uarmh->oartifact == ART_REAL_SPEED_DEVIL) && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
+			if (uarmh && uarmh->oartifact == ART_REAL_SPEED_DEVIL && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
+			if (uarmf && uarmf->oartifact == ART_MAREN_S_GALE_BOOTS && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uimplant && uimplant->oartifact == ART_COMBAT_NODE_OF_THARION_BLA && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uimplant && uimplant->oartifact == ART_CORELINK_OF_CU_CHULAINN && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uimplant && uimplant->oartifact == ART_SHADOW_SPINE_OF_VELAN_DUSK && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
@@ -2370,6 +2376,8 @@ moveloop()
 			if (!rn2(10) && uarmc && itemhasappearance(uarmc, APP_GREEK_CLOAK) ) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 
 			if (uarmf && uarmf->oartifact == ART_WARP_SPEED && (is_waterypool(u.ux, u.uy) || is_watertunnel(u.ux, u.uy))) moveamt += (speedbonus(moveamt * 5, NORMAL_SPEED * 5));
+
+			if (uarmg && uarmg->oartifact == ART_CLARA_S_GLOVES_OF_THE_TIDE && (is_waterypool(u.ux, u.uy) || is_watertunnel(u.ux, u.uy))) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 
 			if (Race_if(PM_DUTHOL) && !Upolyd && is_sand(u.ux, u.uy)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 
@@ -2747,8 +2755,17 @@ nyssarachoice:
 
 nyssaraend:
 
+		if (uarmf && uarmf->oartifact == ART_DIETER_S_BOOTS_OF_THE_DEEP && !rn2(10000)) {
+			castspecificspell(SPE_DETECT_TREASURE);
+		}
+
 		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_WENDLEWOOD && !rn2(5000)) {
 			use_temporary_tech(T_CLONE_JAVELIN);
+		}
+
+		if (uarmc && uarmc->oartifact == ART_CLARA_S_WINDCLOAK && !rn2(1000)) {
+			wake_nearby();
+			pline("Suddenly there's a loud rushing noise!");
 		}
 
 		if (uarmf && uarmf->oartifact == ART__K_FCJZ_OEAL_I_NE___P_OAMB) {
@@ -3861,6 +3878,10 @@ nyssaraend:
 			}
 		}
 
+		if (uarmf && uarmf->oartifact == ART_VERA_S_EMBERTRAIL_BOOTS && u.umoved && !rn2(20)) {
+			buzz(21, 2, u.ux, u.uy, -u.dx, -u.dy);
+		}
+
 		if (tech_inuse(T_AFTERBURNER) && u.umoved) {
 			buzz(21, 2 + (GushLevel / 10), u.ux, u.uy, -u.dx, -u.dy);
 		}
@@ -4939,6 +4960,18 @@ newbossKTA:
 			}
 		}
 
+		if (uarmc && uarmc->oartifact == ART_VERENA_S_CLOAK_OF_BLOOMING) { /* might be a bit laggy --Amy */
+			register int zx, zy;
+			register struct rm *lev;
+
+			for(zx = 0; zx < COLNO; zx++) for(zy = 0; zy < ROWNO; zy++) {
+				lev = &levl[zx][zy];
+				if (IS_TREE(lev->typ) && !rn2(20000)) {
+					(void) makemon(specialtensmon(79), zx, zy, MM_ADJACENTOK); /* M1_ANIMAL */
+				}
+			}
+		}
+
 		for(ttmp = ftrap; ttmp; ttmp = ttmp->ntrap) { /* this function is probably expensive... --Amy */
 
 			if (ttmp && (ttmp->ttyp == PERSISTENT_FART_TRAP || ttmp->ttyp == ATTACKING_HEEL_TRAP)) {
@@ -5589,6 +5622,43 @@ greasingdone:
 				}
 			}
 			if (nanorepaired) pline("Your nanomachines have repaired some of the damage they sustained!");
+		}
+
+		if (uarmg && uarmg->oartifact == ART_NADIA_S_GLOVES_OF_SHIFTING) {
+
+			if (!rn2(25) && u.uen > 0) {
+				u.uen--;
+				flags.botl = TRUE;
+			}
+
+			if (uarm && !rn2(50000)) {
+				if (uarm->oeroded) uarm->oeroded--;
+				if (uarm->oeroded2) uarm->oeroded2--;
+			}
+			if (uarms && !rn2(50000)) {
+				if (uarms->oeroded) uarms->oeroded--;
+				if (uarms->oeroded2) uarms->oeroded2--;
+			}
+			if (uarmg && !rn2(50000)) {
+				if (uarmg->oeroded) uarmg->oeroded--;
+				if (uarmg->oeroded2) uarmg->oeroded2--;
+			}
+			if (uarmf && !rn2(50000)) {
+				if (uarmf->oeroded) uarmf->oeroded--;
+				if (uarmf->oeroded2) uarmf->oeroded2--;
+			}
+			if (uarmh && !rn2(50000)) {
+				if (uarmh->oeroded) uarmh->oeroded--;
+				if (uarmh->oeroded2) uarmh->oeroded2--;
+			}
+			if (uarmc && !rn2(50000)) {
+				if (uarmc->oeroded) uarmc->oeroded--;
+				if (uarmc->oeroded2) uarmc->oeroded2--;
+			}
+			if (uarmu && !rn2(50000)) {
+				if (uarmu->oeroded) uarmu->oeroded--;
+				if (uarmu->oeroded2) uarmu->oeroded2--;
+			}
 		}
 
 		if (uwep && uwep->oartifact == ART_JORMUNGANDR_S_COIL && !rn2(1000)) {
@@ -6638,6 +6708,12 @@ newbossPOMP:
 		if (uimplant && uimplant->oartifact == ART_FOCUS_GEM_OF_KAEDRA_MOONVE && !rn2(1000)) {
 			make_confused(HConfusion + rn1(5,5), FALSE);
 			You("suddenly feel confused!");
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		}
+
+		if (uarmh && uarmh->oartifact == ART_CLARA_S_WHISPERHELM && !rn2(500)) {
+			pline("Suddenly, your %s starts spinning...", body_part(HEAD));
+			make_confused(HConfusion + rn1(5, 10), TRUE);
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		}
 
@@ -8177,6 +8253,12 @@ newbossJANI:
 			}
 		}
 		if (u.currentweather == WEATHER_THUNDERSTORM) {
+
+			int lightningboltchance = 100;
+			if (uarmc && uarmc->oartifact == ART_ROLAND_S_TEMPEST_CLOAK) lightningboltchance /= 3;
+
+			if (lightningboltchance < 1) lightningboltchance = 1; /* fail safe */
+
 			int weatherparticles = rn1(171,30);
 			while (weatherparticles > 0) {
 				weatherparticles--;
@@ -8195,7 +8277,7 @@ newbossJANI:
 				}
 			}
 
-			if (!rn2(100)) {
+			if (!rn2(lightningboltchance)) {
 				int dirx, diry;
 			      cx = rn2(COLNO);
 			      cy = rn2(ROWNO);
@@ -10828,6 +10910,40 @@ newbossO:
 
 		}
 
+		if (!rn2(HorrorEffectXtra ? 100 : 200) && (uarmh && uarmh->oartifact == ART_GISELA_S_TRICK) ) {
+
+			int lcount = rnd(monster_difficulty() ) + 1;
+
+		    if (!obsidianprotection()) switch (rn2(11)) {
+		    case 0: make_sick(Sick ? Sick/2L + 1L : (long)rn1(ACURR(A_CON),20),
+				"horrible sickness", TRUE, SICK_NONVOMITABLE);
+			    break;
+		    case 1: make_blinded(Blinded + lcount, TRUE);
+			    break;
+		    case 2: if (!Confusion)
+				You("suddenly feel %s.", FunnyHallu ? "trippy" : "confused");
+			    make_confused(HConfusion + lcount, TRUE);
+			    break;
+		    case 3: make_stunned(HStun + lcount, TRUE);
+			    break;
+		    case 4: make_numbed(HNumbed + lcount, TRUE);
+			    break;
+		    case 5: make_frozen(HFrozen + lcount, TRUE);
+			    break;
+		    case 6: make_burned(HBurned + lcount, TRUE);
+			    break;
+		    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE, TRUE);
+			    break;
+		    case 8: (void) make_hallucinated(HHallucination + lcount, TRUE, 0L);
+			    break;
+		    case 9: make_feared(HFeared + lcount, TRUE);
+			    break;
+		    case 10: make_dimmed(HDimmed + lcount, TRUE);
+			    break;
+		    }
+
+		}
+
 		if (uimplant) {
 			u.uimplantturns++;
 			if (u.uimplantturns >= 200) {
@@ -10980,6 +11096,13 @@ newbossO:
 
 		if (TronEffect || u.uprops[TRON_EFFECT].extrinsic || have_tronstone() || Race_if(PM_SLYER_ALIEN) || (uarmh && itemhasappearance(uarmh, APP_HARDCORE_CLOTH)) ) {
 			if (u.trontrapdirection > 0 && (u.trontrapturn + 1) < moves) u.trontrapdirection = -1;
+		}
+
+		if (uarmg && uarmg->oartifact == ART_LEON_S_GAUNTLETS_OF_EMBERG && !rn2(1000)) {
+			(void) burnarmor(&youmonst);
+			destroy_item(SCROLL_CLASS, AD_FIRE);
+			destroy_item(SPBOOK_CLASS, AD_FIRE);
+			destroy_item(POTION_CLASS, AD_FIRE);
 		}
 
 		if (DestructionEffect && !rn2(DestructionEffXtra ? 20 : 100)) {
@@ -12343,6 +12466,11 @@ newbossB:
 
 		}
 
+		if (uarmg && uarmg->oartifact == ART_HELENE_S_EMBERTOUCH_GLOVES && (u.ualign.type == A_LAWFUL) && !rn2(100)) {
+			Your("gloves burn you!");
+			make_burned(HBurned + rnz(10), FALSE);
+		}
+
 		if (is_burningwagon(u.ux, u.uy) && !u.uswallow && !FireImmunity) {
 			pline("The wagon burns you!");
 			stop_occupation();
@@ -12360,7 +12488,7 @@ newbossB:
 
 		}
 
-		if (is_moorland(u.ux, u.uy) && !(uarmf && uarmf->otyp == BUOYANT_BOOTS) && !(uarms && uarms->otyp == SHIELDBOAT) && !u.uswallow && !(u.usteed && is_swimmer(u.usteed->data)) && !(uarmf && itemhasappearance(uarmf, APP_MUD_BOOTS)) && !Flying && !Levitation && !Race_if(PM_BOVER)) {
+		if (is_moorland(u.ux, u.uy) && !(uarmf && uarmf->oartifact == ART_DIETER_S_BOOTS_OF_THE_DEEP) && !(uarmf && uarmf->oartifact == ART_ERIK_S_MARCHING_BOOTS) && !(uarmf && uarmf->otyp == BUOYANT_BOOTS) && !(uarms && uarms->otyp == SHIELDBOAT) && !u.uswallow && !(u.usteed && is_swimmer(u.usteed->data)) && !(uarmf && itemhasappearance(uarmf, APP_MUD_BOOTS)) && !Flying && !Levitation && !Race_if(PM_BOVER)) {
 			Norep("Swimming in moorland causes continuous damage.");
 			losehp(rnd(5 + (level_difficulty() / 5)), "swimming in moorland", KILLED_BY);
 			stop_occupation();
@@ -12441,7 +12569,7 @@ newbossB:
 			stop_occupation();
 		}
 
-		if (u.umoved && is_pavedfloor(u.ux, u.uy) && !(uarm && uarm->oartifact == ART_TRACKSPUR) && !(uarmf && uarmf->oartifact == ART_EVERYWHERE_AT_ONCE) && !(uarmf && itemhasappearance(uarmf, APP_DYKE_BOOTS)) && !Flying && !Levitation) {
+		if (u.umoved && is_pavedfloor(u.ux, u.uy) && !(uarmf && uarmf->oartifact == ART_ERIK_S_MARCHING_BOOTS) && !(uarm && uarm->oartifact == ART_TRACKSPUR) && !(uarmf && uarmf->oartifact == ART_EVERYWHERE_AT_ONCE) && !(uarmf && itemhasappearance(uarmf, APP_DYKE_BOOTS)) && !Flying && !Levitation) {
 			Norep("Walking on paved floor makes lots of noise.");
 			wake_nearby();
 
@@ -15431,7 +15559,10 @@ pastds2:
 			regenrate = (16 - (GushLevel / 5));
 			if (regenrate < 6) regenrate = 6;
 			if (Race_if(PM_HAXOR)) regenrate /= 2;
-			if (is_grassland(u.ux, u.uy)) regenrate *= 2;
+			if (is_grassland(u.ux, u.uy)) regenrate /= 2;
+			if (uarmg && uarmg->oartifact == ART_MATTHIAS_S_GAUNTLETS_OF_FA) regenrate /= 2;
+
+			if (regenrate < 1) regenrate = 1;
 
 			if (u.mh < 1)
 			    rehumanize();
@@ -15754,6 +15885,13 @@ pastds2:
 				if (u.uen > u.uenmax)  u.uen = u.uenmax;
 				flags.botl = 1;
 
+			}
+
+			if (!CannotRegenerateMP() && uarmc && uarmc->oartifact == ART_SOFIA_S_CLOAK_OF_THE_MOONL && u.ualign.type == A_NEUTRAL && !(levl[u.ux][u.uy].lit)) {
+				u.uen++;
+				if (Race_if(PM_PIERCER)) u.uen++;
+				if (u.uen > u.uenmax)  u.uen = u.uenmax;
+				flags.botl = 1;
 			}
 
 			if (!CannotRegenerateMP() && !contaminationcheck(2) && Race_if(PM_RODNEYAN)) { /* rodney has special built-in energy regeneration --Amy */
@@ -16385,6 +16523,12 @@ pastds2:
 			if (Race_if(PM_DEVELOPER) && !u.uevent.udemigod && moves > 20000) {
 				u.uevent.udemigod = TRUE;
 				u.udg_cnt = rn1(250, 50);
+			}
+
+			if (uarmh && uarmh->oartifact == ART_DANTE_S_ASHEN_VISOR && levl[u.ux][u.uy].lit && !rn2(100)) {
+				if (!Blind) pline("The bright light blinds you!");
+				make_blinded(Blinded + rn1(3,2), FALSE);
+
 			}
 
 			if (Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit && !rn2(1000)) {

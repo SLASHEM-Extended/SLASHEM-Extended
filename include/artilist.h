@@ -21836,8 +21836,8 @@ A("The Fucking Wall",				EVIL_DRAGON_SCALE_MAIL, /* +50 AC, but positive enchant
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
 
-A("Indewalbe",				EVIL_DRAGON_SCALE_SHIELD, /* astral vision */
-	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+A("Indewalbe",				EVIL_DRAGON_SCALE_SHIELD,
+	(SPFX_RESTR|SPFX_EVIL|SPFX_XRAY), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 25000L ),
 
 A("Sidemonde",				MAGIC_DRAGON_SCALES, /* peacevision */
@@ -22136,8 +22136,8 @@ A("Fast Aurora",				CLOAK_OF_ELEMENTALISM, /* protects you from slowing like spe
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
 
-A("Astro Labyrinth",				PSIONIC_CLOAK, /* astral vision, blue spells, prime curses itself and deactivates poison resistance */
-	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+A("Astro Labyrinth",				PSIONIC_CLOAK, /* blue spells, prime curses itself and deactivates poison resistance */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_XRAY), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5555L ),
 
 A("Desired Ascendance",				CLOAK_OF_DISPLACEMENT, /* +1 MC */
@@ -26291,6 +26291,238 @@ A("Massivity Cuteblock",				SABINE_BLOCK_HEEL_SANDALS, /* hard to destruct, resi
 A("Janet's Detachment",				LOW_BOOTS, /* initialized to always be buckle slippers, janet trap effect, death resistance, diminished bleeding, free action, +5 CHA */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Sofia's Cloak of the Moonlit Path",				LEATHER_CLOAK, /* initialized to always be vampiric cloak, double invis if it's nighttime; if you're neutral and standing on an unlit tile, you regenerate an extra point of Pw per turn */
+	(SPFX_RESTR|SPFX_STLTH|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 10000L ),
+
+A("Liliane's Glamour Veil",				LEATHER_CLOAK, /* initialized to always be godless cloak, +7 CHA, reduces shop service prices by 33%, aggravate monster */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Clara's Windcloak",				LEATHER_CLOAK, /* initialized to always be chilling cloak, very fast speed, +1 AC, can be invoked to perform the air dash technique even if you don't know that one, 1 in 1000 chance per turn to cause "wake_nearby"; the various fall_through functions in trap.c ask whether you really want to fall through a trapdoor */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NEUTRAL, NON_PM, NON_PM, 6000L ),
+
+A("Verena's Cloak of Blooming Seasons",				LEATHER_CLOAK, /* initialized to always be forgetful cloak, acts like 10 extra healthstones if you're on a terrain type >= WELL, fire resistance if it's a new moon, poison resistance if it's a full moon and cold resistance otherwise, all trees on the current level have an individual 1 in 20000 chance per turn to spawn a random M1_ANIMAL */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 15000L ),
+
+A("Lydia's Veil of Secrets",				LEATHER_CLOAK, /* initialized to always be shell cloak, invisibility, allows you to backstab opponents, simeout */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_STLTH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 3000L ),
+
+A("Viktor's Travelerscape",				LEATHER_CLOAK, /* initialized to always be contaminated coat, full nutrients; if you're lawful, it grants +7 AC */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_TCTRL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Emil's Mantle of Resolve",				LEATHER_CLOAK, /* initialized to always be avenger cloak, resist fear, psi and confusion, +2 MC; if you're lawful and below 10% of your maximum HP, all damage you take is reduced by 90% */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 7000L ),
+
+A("Ingrid's Weathered Shroud",				LEATHER_CLOAK, /* initialized to always be nurse cloak, cold resistance, protects items from water, -4 CHA, monsters who hit you in melee have 1 in 20 chance of being paralyzed for 2 turns */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Tobias' Ironweave Drape",				LEATHER_CLOAK, /* initialized to always be dnethack cloak, +10 AC; if the current turn counter is divisible by 5, you're resistant to petrification and disintegration */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Helena's Mantle of Warmth",				LEATHER_CLOAK, /* initialized to always be soft cloak, double fire resistance, disables cold resistance */
+	(SPFX_RESTR|SPFX_DEFN|SPFX_EVIL|SPFX_REGEN), 0, 0,
+	NO_ATTK, DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Roland's Tempest Cloak",				LEATHER_CLOAK, /* initialized to always be long-range cloak, can be invoked to perform the chain thunderbolt technique even if you don't know that one; if the weather is "thunderstorm", triples the odds of a lightning bolt being fired */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_ELEC), NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Matthias' Cloak of Ten Shadows",				LEATHER_CLOAK, /* initialized to always be false copes, displacement, trap revealing (1 in 5000) */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Silvia's Dreamband",				STANDARD_HELMET, /* initialized to always be internet helmet, sleeping in a bed does do_mappingZ() */
+	(SPFX_RESTR|SPFX_EREGEN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3500L ),
+
+A("Frederik's Combat Helmet",				STANDARD_HELMET, /* initialized to always be anti-government helmet, +3 AC, +2 STR, resist confusion and fear, -15% spellcasting success chances, can be invoked for 100 turns of half physical damage */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_LAWFUL, NON_PM, NON_PM, 3000L ),
+
+A("Gregor's Sentinel Helm",				STANDARD_HELMET, /* initialized to always be complete helmet, see invisible, +3 AC, blindness resistance; if you're lawful, all pets have +1 AC; if you're chaotic, you have -2 increase accuracy */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 6000L ),
+
+A("Henrietta's Crystal Hood",				STANDARD_HELMET, /* initialized to always be water-pipe helmet, +2 MC, disables stealth */
+	(SPFX_RESTR|SPFX_DEFN|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Dante's Ashen Visor",				STANDARD_HELMET, /* initialized to always be scuba helmet, unbreathing, 1 in 100 chance when you're on a lit tile to be blinded for rn1(3,2) turns */
+	(SPFX_RESTR|SPFX_DEFN|SPFX_EVIL), 0, 0,
+	NO_ATTK, DFNS(AD_DRST), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4500L ),
+
+A("Gisela's Trick",				STANDARD_HELMET, /* initialized to always be bug-tracking helmet, heavily autocurses, double horror effect, cut nutrition, confusion resistance, +10 INT, +3 MC, prevents monsters from grabbing you */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_REFLECT), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Renee's Feathered Hood",				STANDARD_HELMET, /* initialized to always be inkcoat helmet, 25% chance to evade missiles, can be invoked to get 200 turns of controlled levitation, "dam" in thitu (mthrowu.c) is reduced by 10% */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NEUTRAL, NON_PM, NON_PM, 4000L ),
+
+A("Anton's Crown of Echoes",				STANDARD_HELMET, /* initialized to always be dream helmet, +4 INT, 1 in 10 chance that a spell you cast triggers twice and 1 in 100 chance that casting a spell wakes up nearby monsters */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Friedrich's Battle Visor",				STANDARD_HELMET, /* initialized to always be twisted visor helmet, +3 melee damage, reduces damage you take by 10%, -20% spell success chance */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Kaspar's Helm of the Horned Dawn",				STANDARD_HELMET, /* initialized to always be serrated helmet, 1 in 5 chance that monsters who hit you in melee take d10 damage; if you're chaotic, it grants +3 STR */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3500L ),
+
+A("Clara's Whisperhelm",				STANDARD_HELMET, /* initialized to always be petsense helmet, 1 in 500 chance per turn to become confused for rn1(5,10) turns */
+	(SPFX_RESTR|SPFX_ESP|SPFX_SEARCH|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Amara's Mindguard Helm",				STANDARD_HELMET, /* initialized to always be bull helmet, resist confusion and psi; if you're neutral, zhitm effects with ZT_SPC2 deal 1.5 times as much damage */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Corvin's Grip of Persistence",				REGULAR_GLOVES, /* initialized to always be graffiti gloves, allows you to keep wielding your weapon even if you're glibbed, sanity goes down faster over time, resist fear */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Beatrix's Shadowgrasp",				REGULAR_GLOVES, /* initialized to always be vampiric gloves, +3 DEX, invoking it as a chaotic character works like a phase door scroll while if you're a different alignment, you get confused for rnz(20) turns */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_ATTK|SPFX_DRLI), 0, 0,
+	DRLI(0, 2), NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_CHAOTIC, NON_PM, NON_PM, 7000L ),
+
+A("Otto's Steelweave Gloves",				REGULAR_GLOVES, /* initialized to always be comfortable gloves, +2 AC, reduces carry cap by 200; putting them on while they're of a non-metallic material sets their material to IRON */
+	(SPFX_RESTR|SPFX_HPHDAM|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Clara's Gloves of the Tides",				REGULAR_GLOVES, /* initialized to always be slippery gloves, unbreathing, 50% speed increase if you're on a water tile, 10% chance to avoid missile attacks */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3500L ),
+
+A("Leon's Gauntlets of Embergrip",				REGULAR_GLOVES, /* initialized to always be riding gloves, 1 in 1000 chance that random items in your inventory are destroyed by fire */
+	(SPFX_RESTR|SPFX_ATTK|SPFX_EVIL), 0, 0,
+	FIRE(0, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Nadia's Gloves of Shifting Threads",				REGULAR_GLOVES, /* initialized to always be boxing gloves, each of your armor pieces has an independent 1 in 50k chance per turn to repair one level of damage, can be invoked to replicate wand of remove curse effect but doing so reduces your max HP by one, 1 in 25 chance per turn to lose one point of Pw (no effect if you're already at zero) */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 12000L ),
+
+A("Erasmus' Scripted Gauntlets",				REGULAR_GLOVES, /* initialized to always be spanish gloves, +30% spellcasting chance, 50% chance to resist fumbling, but every time you cast a spell there's a 1% chance that you cast a random spell instead */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Brigitte's Safety Mittens",				REGULAR_GLOVES, /* initialized to always be demolition gloves, defusing, makes all items immune to corrosion, improves success chances when handling locks, -3 DEX */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Nali The Bnali",				REGULAR_GLOVES, /* initialized to always be flower gloves, double ruea trap effect, bad alignment effect, double full nutrients, +rn1(8,8) kick damage, +5 melee damage, violating the vegetarian conduct causes a random bad effect, can be invoked to perform the eviscerate technique even if you don't know that one, +6 CHA, +2 DEX, all pets and steeds take 20% less damage and if you're wearing high heels, you have undead warning while if you're wearing sexy flats, all gray-colored monsters are displayed */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Matthias's Gauntlets of Faith",				REGULAR_GLOVES, /* initialized to always be gameble gloves, your melee weapon attacks deal rn1(10,10) damage to undead and demons, resist curse and sickness, can be invoked to perform the turn undead technique even if you don't know that one; if you're polymorphed, "regenrate" (allmain.c) is halved (i.e. the regeneration rate is doubled) */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_LAWFUL, NON_PM, NON_PM, 6000L ),
+
+A("Sabrina's Utility Gloves",				REGULAR_GLOVES, /* initialized to always be re-greasing gloves, simeout effect, +2 DEX, disarming, halves timeout for the tinker technique (but doesn't actually grant that one), boosts success chances when handling locks, can be invoked to repair one degree of erosion on an item of your choice */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NEUTRAL, NON_PM, NON_PM, 5000L ),
+
+A("Nadia's Frostbind Gloves",				REGULAR_GLOVES, /* initialized to always be translucent gloves, unarmed attack has 1 in 20 chance to slow down the opponent if he doesn't resist, disables fire resistance */
+	(SPFX_RESTR|SPFX_ATTK|SPFX_EVIL), 0, 0,
+	COLD(0, 12), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Helene's Embertouch Gloves",				REGULAR_GLOVES, /* initialized to always be nimble gloves, your melee weapons deal d10 fire damage (d20 if you're chaotic); if you're chaotic, the fire damage is doubled; if you're lawful, 1 in 100 chance per turn to get rnz(10) turns of burn status */
+	(SPFX_RESTR|SPFX_DEFN|SPFX_ATTK|SPFX_EVIL), 0, 0,
+	FIRE(0, 10), DFNS(AD_FIRE), NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 3000L ),
+
+A("Lars's Ironstride Boots",				LOW_BOOTS, /* initialized to always be hot boots, immunity to pushplayer effects, prevents fumbling, +2 STR; if lawful, +1 AC; if chaotic, 1 in 3 chance when you've moved that you move at half speed */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 20000L ),
+
+A("Erik's Marching Boots",				LOW_BOOTS, /* initialized to always be snow boots, free action, protects you from slowness attacks, +200 carry capacity, prevents you from taking damage in moorland and doesn't wake up monsters if you walk over paved floors */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 4000L ),
+
+A("Rowan's Silent Path Boots",				LOW_BOOTS, /* initialized to always be radiant heels, double stealth, allows you to backstab monsters, chat command doesn't work */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_STLTH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Dieter's Boots of the Deep Stride",				LOW_BOOTS, /* initialized to always be imaginary heels, prevents moorland damage and protects items from water, 1 in 10000 chance per turn to cast the detect treasure spell even if you don't know that one */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Eva's Stormwalkers",				LOW_BOOTS, /* initialized to always be reflective slippers, shock immunity, +5 spawn chance for AD_MALK; if you're on a water square, monsters who hit you in melee take d8 lightning damage */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Darius's Stormwalkers",				LOW_BOOTS, /* initialized to always be printed sandals, very fast speed, lightning immunity, +10 spawn frequency for AD_MALK monsters and metallivores, monsters who hit you in melee have 1 in 10 chance of taking d4 lightning damage */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 4000L ),
+
+A("Ingrid's Ironhoof Boots",				LOW_BOOTS, /* initialized to always be bayonet heels, +3 STR, prevents fumbling, aggravate monster and disables stealth */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Alric's Marching Boots",				LOW_BOOTS, /* initialized to always be foreign body shoes, +500 carry cap, disables stealth */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Liora's Boots of Mirage Steps",				LOW_BOOTS, /* initialized to always be leather fleece boots, displacement, can be invoked for teleport self */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Otmar's Phantom Steps",				LOW_BOOTS, /* initialized to always be fluffy sandals, flying, double stealth, 50% chance to not trigger a trap like pickpocket, but all ghost-class monsters always know where you are */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_STLTH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Maren's Gale Boots",				LOW_BOOTS, /* initialized to always be repair-worthy boots, prevents fumbling, very fast speed, occasionally adds extra speed like real speed devil */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
+
+A("Robe of Elarion, the Dreamtide Sage",				PLAIN_ROBE, /* initialized to always be camo robe, +5 WIS, sleeping in a bed sets your HP and Pw to the maximum, can be invoked for 5 turns of invulnerability but doing so has 1 in 3 chance of spawning a random ghost-class monster with superaggravate rules */
+	(SPFX_RESTR|SPFX_EREGEN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 25000L ),
+
+A("Aveline's Robe of the First Flame",				PLAIN_ROBE, /* initialized to always be arena robe, see invisible, sight bonus, fire immunity, all zhitm effects with ZT_FIRE deal double damage, can be invoked to fire strength-10 fire blasts in all directions and reset your HP to full, disables stealth, water damage effects ignore the luck-based resistance */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 30000L ),
+
+A("Leandra's Word",				LENSES, /* double autocursing effect, +2 CHA, +1 all other stats, 50% chance to resist stat damage effects, resist sleep, cannot have stealth while wearing it */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Milary's Daily Sigh",				CONDOME, /* double sonja trap effect, autocurses, +10 spawn freq for MS_MOLEST, extra weapon practice, +5 soft cap for all stats, makes you resistant to theft from nymphs, demons are three times less likely to gate in more of themselves */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_TCTRL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("The girlfriend doesn't wanna climb",				CLIMBING_SET, /* SOL trap effect, autocurses, M2_FEMALE have 50% chance of spawning peaceful, and hostile ones have 50% to have appr=0 */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Lameza's Equality",				CLIMBING_SET, /* double ksenia trap effect, autocurses, hunger, putting it on sets your HP and Pw maximums to the average of those two values and removes your currently worn shoes, if you're male you can't put on high heels while if you're female you can't put on non-high-heeled shoes; if you have 200 or less nutrition, you have the ina trap effect active; can be invoked to perform the extra long squeak technique, even if you don't know that one */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Monique's Nonsense",				EYECLOSER, /* double manler effect (and putting it on increases the timeout of that by 2000), claudia trap effect, clairvoyance, flying, scent view, echolocation and if you're wielding an axe-class weapon, you have +5 melee increase damage and +10 STR */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_SEEK), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Vera's Embertrail Boots",				LOW_BOOTS, /* randart2 boots, 1 in 20 chance when you've moved to fire a strength-2 blast of fire behind you, disables stealth */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Evelyn's Robe of Reversal",				PLAIN_ROBE, /* randart robe, double reflection */
+	(SPFX_RESTR|SPFX_REFLECT), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Gregor's Starlit Vestments",				PLAIN_ROBE, /* randart2 robe */
+	(SPFX_RESTR|SPFX_XRAY), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 75000L ),
 
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 

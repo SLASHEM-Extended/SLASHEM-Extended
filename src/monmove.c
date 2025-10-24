@@ -4059,16 +4059,27 @@ altarfound:
 
 	appr = mtmp->mflee ? -1 : 1;
 
-	if (monsndx(ptr) == PM_DEMON_SPOTTER && !mtmp->cham && !rn2(23) && !mtmp->mpeaceful && !mtmp->mtame) {
-		msummon(mtmp, FALSE);
-		pline("%s opens a gate!",Monnam(mtmp) );
-		if (PlayerHearsSoundEffects) pline(issoviet ? "Sovetskaya nadeyetsya, chto demony zapolnyayut ves' uroven' i ubit' vas." : "Pitschaeff!");
+	if (monsndx(ptr) == PM_DEMON_SPOTTER && !mtmp->cham && !mtmp->mpeaceful && !mtmp->mtame) {
+		int demongatingchance = 23;
+		if (ublindf && ublindf->oartifact == ART_MILARY_S_DAILY_SIGH) demongatingchance *= 3;
+
+		if (!rn2(demongatingchance)) {
+			msummon(mtmp, FALSE);
+			pline("%s opens a gate!",Monnam(mtmp) );
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Sovetskaya nadeyetsya, chto demony zapolnyayut ves' uroven' i ubit' vas." : "Pitschaeff!");
+		}
 
 	}
-	if (monsndx(ptr) == PM_FUNK_CAR && distu(mtmp->mx,mtmp->my) < 65 && !mtmp->cham && !rn2(184) && !mtmp->mpeaceful && !mtmp->mtame) {
-		msummon(mtmp, FALSE);
-		pline("%s opens a gate!",Monnam(mtmp) );
-		if (PlayerHearsSoundEffects) pline(issoviet ? "Sovetskaya nadeyetsya, chto demony zapolnyayut ves' uroven' i ubit' vas." : "Pitschaeff!");
+	if (monsndx(ptr) == PM_FUNK_CAR && distu(mtmp->mx,mtmp->my) < 65 && !mtmp->cham && !mtmp->mpeaceful && !mtmp->mtame) {
+
+		int demongatingchance = 184;
+		if (ublindf && ublindf->oartifact == ART_MILARY_S_DAILY_SIGH) demongatingchance *= 3;
+
+		if (!rn2(demongatingchance)) {
+			msummon(mtmp, FALSE);
+			pline("%s opens a gate!",Monnam(mtmp) );
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Sovetskaya nadeyetsya, chto demony zapolnyayut ves' uroven' i ubit' vas." : "Pitschaeff!");
+		}
 
 	}
 
@@ -4225,6 +4236,12 @@ altarfound:
 		}
 	}
 
+	if (ptr == &mons[PM_DECISION_WEAKSKI]) appr = (!rn2(3) ? -1 : rn2(2) ? 0 : 1);
+	if (ptr == &mons[PM_STOIAKMIDM]) appr = (!rn2(3) ? -1 : rn2(2) ? 0 : 1);
+	if (ptr == &mons[PM_SPACKMATICIAN]) appr = (!rn2(3) ? -1 : rn2(2) ? 0 : 1);
+	if (ptr == &mons[PM_HEADER_RA____AUTO]) appr = (!rn2(3) ? -1 : rn2(2) ? 0 : 1);
+	if (ptr == &mons[PM_IRMGARD]) appr = (!rn2(3) ? -1 : rn2(2) ? 0 : 1);
+
 	if (appr == 1 && !rn2(5) && (uarm && itemhasappearance(uarm, APP_CAMO_ROBE)) ) appr = 0;
 
 	if (appr == 1 && uarmf && uarmf->oartifact == ART_SMELL_LIKE_DOG_SHIT && !rn2(10)) appr = 0;
@@ -4236,25 +4253,21 @@ altarfound:
 	if (appr == 1 && uarmf && uarmf->oartifact == ART_LAUGH_WHEN_YOU_FALL && (multi < 0) && rn2(10)) appr = 0;
 
 	if (monsterrandomwalk(ptr)) appr = 0;
-	if (monsterflees(ptr)) appr = -1;
-
-	if (uarmh && uarmh->oartifact == ART_VERSCENT_ && monstersoundtype(mtmp) == MS_STENCH) appr = -1;
-	if (uarmh && uarmh->oartifact == ART_VERSCENT_ && mtmp->egotype_perfumespreader) appr = -1;
-
 	if (appr == 1 && monstersoundtype(mtmp) == MS_METALMAFIA && distu(mtmp->mx,mtmp->my) <= 3*3 ) appr = 0;
 
 	if (appr == 1 && u.usteed && uarm && uarm->oartifact == ART_FAER_ME && distu(mtmp->mx,mtmp->my) < 3*3 && (mtmp->m_lev < (GushLevel / 2) ) ) appr = 0;
 
-	if (ptr == &mons[PM_DECISION_WEAKSKI]) appr = (!rn2(3) ? -1 : rn2(2) ? 0 : 1);
-	if (ptr == &mons[PM_STOIAKMIDM]) appr = (!rn2(3) ? -1 : rn2(2) ? 0 : 1);
-	if (ptr == &mons[PM_SPACKMATICIAN]) appr = (!rn2(3) ? -1 : rn2(2) ? 0 : 1);
-	if (ptr == &mons[PM_HEADER_RA____AUTO]) appr = (!rn2(3) ? -1 : rn2(2) ? 0 : 1);
-	if (ptr == &mons[PM_IRMGARD]) appr = (!rn2(3) ? -1 : rn2(2) ? 0 : 1);
+	if (ublindf && ublindf->oartifact == ART_GIRLFRIEND_DOESN_T_WANNA_C && is_female(mtmp->data) && !mtmp->mpeaceful && !rn2(2) && (appr == 1)) appr = 0;
 
 	if (ptr == &mons[PM_WILD_ELEPHANT] && (mtmp->mhp >= mtmp->mhpmax)) appr = 0;
 	if (ptr == &mons[PM_NORMAL_BOAR] && (mtmp->mhp >= mtmp->mhpmax)) appr = 0;
 	if (ptr == &mons[PM_JAVELINA] && (mtmp->mhp >= mtmp->mhpmax)) appr = 0;
 	if (ptr == &mons[PM_JAVELIN_A] && (mtmp->mhp >= mtmp->mhpmax)) appr = 0;
+
+	if (monsterflees(ptr)) appr = -1;
+
+	if (uarmh && uarmh->oartifact == ART_VERSCENT_ && monstersoundtype(mtmp) == MS_STENCH) appr = -1;
+	if (uarmh && uarmh->oartifact == ART_VERSCENT_ && mtmp->egotype_perfumespreader) appr = -1;
 
 	if (u.katitrapocc && !mtmp->mpeaceful) appr = -1; /* they're supposed to let you perform your occupation in peace */
 	if (u.singtrapocc && !mtmp->mpeaceful) appr = -1;
@@ -4440,7 +4453,7 @@ altarfound:
 	       nidist > (couldsee(nix,niy) ? 144 : 36) && appr == 1) appr = 0;
 
 		/* special coding for "homing" giant wasps from the hunger games --Amy */
-		if ((ptr == &mons[PM_TRACKER_JACKER] || ptr == &mons[PM_FIGHTING_ENTITY] || ptr == &mons[PM_PERSON_WHO_IS_REALLY_AFTER_YOU__NO__YOU_RE_NOT_PARANOID_] || autismweaponcheck(ART_EMERALD_SWORD) || ptr == &mons[PM_TRACKBAG] || ptr == &mons[PM_BLACK_SUN_BASS] || ptr == &mons[PM_LINDEN_BASS] || (FemtrapActiveElla && mtmp->female && humanoid(mtmp->data) && (mtmp->mhp < (mtmp->mhpmax * 9 / 10) )) || ptr == &mons[PM_ASSHOLE_WHO_CANNOT_ENJOY_ANYTHING__NOT_EVEN_A_PAIR_OF_CUDDLE_HEELS] || ptr == &mons[PM_KILLER_GIANT_RAT] || ptr == &mons[PM_POLICE_DOG] || ptr == &mons[PM_MANBOO] || ptr == &mons[PM_SOLARFISH] || ptr == &mons[PM_POLICE_HUSKY] || ptr == &mons[PM_BIG_POLICE_DOG] || ptr == &mons[PM_CURSED____LEFTHANDED_FARTING_ELEPHANT] || ptr == &mons[PM_VERONA_MARBLE] || ptr == &mons[PM_CHASE_BIRD] || ptr == &mons[PM_JAYCEE] || ptr == &mons[PM_OOGABOOGAGOBILITGOOK_SEEKER_AREHETYPE_FUCKING_RETARD_ASS_SHIT_FLINGING_MONKEY_MONSTER] || ptr == &mons[PM_FULL_REFUGE] || ptr == &mons[PM_DRIVE_TRAIN] || ptr == &mons[PM_XTREME_TRACKER] || ptr == &mons[PM_REFUGE_UHLERT] || ptr == &mons[PM_THE_ULTIMATE_REFUGE]) && !mtmp->mpeaceful) appr = 1;
+		if ((ptr == &mons[PM_TRACKER_JACKER] || (uarmf && uarmf->oartifact == ART_OTMAR_S_PHANTOM_STEPS && (ptr->mlet == S_GHOST)) || ptr == &mons[PM_FIGHTING_ENTITY] || ptr == &mons[PM_PERSON_WHO_IS_REALLY_AFTER_YOU__NO__YOU_RE_NOT_PARANOID_] || autismweaponcheck(ART_EMERALD_SWORD) || ptr == &mons[PM_TRACKBAG] || ptr == &mons[PM_BLACK_SUN_BASS] || ptr == &mons[PM_LINDEN_BASS] || (FemtrapActiveElla && mtmp->female && humanoid(mtmp->data) && (mtmp->mhp < (mtmp->mhpmax * 9 / 10) )) || ptr == &mons[PM_ASSHOLE_WHO_CANNOT_ENJOY_ANYTHING__NOT_EVEN_A_PAIR_OF_CUDDLE_HEELS] || ptr == &mons[PM_KILLER_GIANT_RAT] || ptr == &mons[PM_POLICE_DOG] || ptr == &mons[PM_MANBOO] || ptr == &mons[PM_SOLARFISH] || ptr == &mons[PM_POLICE_HUSKY] || ptr == &mons[PM_BIG_POLICE_DOG] || ptr == &mons[PM_CURSED____LEFTHANDED_FARTING_ELEPHANT] || ptr == &mons[PM_VERONA_MARBLE] || ptr == &mons[PM_CHASE_BIRD] || ptr == &mons[PM_JAYCEE] || ptr == &mons[PM_OOGABOOGAGOBILITGOOK_SEEKER_AREHETYPE_FUCKING_RETARD_ASS_SHIT_FLINGING_MONKEY_MONSTER] || ptr == &mons[PM_FULL_REFUGE] || ptr == &mons[PM_DRIVE_TRAIN] || ptr == &mons[PM_XTREME_TRACKER] || ptr == &mons[PM_REFUGE_UHLERT] || ptr == &mons[PM_THE_ULTIMATE_REFUGE]) && !mtmp->mpeaceful) appr = 1;
 
 	if (uarmh && itemhasappearance(uarmh, APP_BUG_TRACKING_HELMET) && !rn2(3) ) appr = 1; 
 

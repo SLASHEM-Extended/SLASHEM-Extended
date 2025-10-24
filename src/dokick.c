@@ -61,6 +61,7 @@ register boolean clumsy;
 	if (uwep && uwep->oartifact == ART_FEETSERN) dmg += 5;
 	if (uarm && uarm->oartifact == ART_JEANETTA_S_REVENGE) dmg += 5;
 	if (uarmu && uarmu->oartifact == ART_FRIEDERIKE_S_BUNDLING) dmg += 5;
+	if (uarmg && uarmg->oartifact == ART_NALI_THE_BNALI) dmg += rn1(8,8);
 	if (uarmf && uarmf->otyp == SHOCK_ISOLATED_HEELS) {
 		dmg += 2;
 		if (verysmall(mon->data)) dmg += 5;

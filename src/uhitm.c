@@ -938,6 +938,7 @@ register struct monst *mtmp;
 	if (bmwride(ART_KERSTIN_S_COWBOY_BOOST)) tmp += 2;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_DUAL_MASTERY) tmp += 5;
 	if (uarmf && uarmf->oartifact == ART_PROPERTY_GRUMBLE) tmp -= 5;
+	if (uarmh && uarmh->oartifact == ART_GREGOR_S_SENTINEL_HELM && u.ualign.type == A_CHAOTIC) tmp -= 2;
 	if (uarmg && uarmg->oartifact == ART_UNKNOWINGNESS_AS_A_WEAPON && !(objects[uarmg->otyp].oc_name_known)) tmp += 5;
 	if (uwep && uwep->oartifact == ART_FALCO_S_ORB) tmp += 1;
 	if (uwep && uwep->oartifact == ART_VERY_SPECIFICNESS) tmp += 1;
@@ -2308,6 +2309,16 @@ int dieroll;
 			}
 		}
 
+		if (uarmg && uarmg->oartifact == ART_NADIA_S_FROSTBIND_GLOVES && !rn2(20)) {
+			if (!resist(mon, WEAPON_CLASS, 0, NOTELL) ) {
+			    unsigned int oldspeed = mon->mspeed;
+			    mon_adjust_speed(mon, -1, (struct obj *)0);
+			    if (mon->mspeed != oldspeed && canseemon(mon))
+				pline("%s slows down.", Monnam(mon));
+
+			}
+		}
+
 		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_VIRAL_CORE_OF_ISKAR_THE_PA && !resists_cold(mon) ) {
 			tmp += rnd(6);
 			if (!rn2(10) && !resist(mon, WEAPON_CLASS, 0, NOTELL) ) {
@@ -2992,7 +3003,8 @@ int dieroll;
 
 		    if (!valid_weapon_attack || mon == u.ustuck) {
 			;	/* no special bonuses */
-		    } else if (mon->mflee && (Role_if(PM_ROGUE) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_TENDON_COIL_OF_DRAXUN_THE_) || (uwep && uwep->oartifact == ART_SUPERSTAB) || (uarmc && uarmc->oartifact == ART_CLANCY_S_FURTIVENESS) || (uarmc && uarmc->oartifact == ART_BEHIND_CUNTINGNESS) || autismringcheck(ART_POISED_STRIKE) || (uarmc && uarmc->oartifact == ART_STRIPED_SHIRT_OF_THE_MURDE) || (uarmf && uarmf->oartifact == ART_BACKGROUND_HOLDING) || Race_if(PM_VIETIS) || Role_if(PM_MURDERER) || Role_if(PM_DISSIDENT) || Role_if(PM_ASSASSIN) ) && !Upolyd) {
+		    } else if (mon->mflee && (Role_if(PM_ROGUE) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_TENDON_COIL_OF_DRAXUN_THE_) || (uwep && uwep->oartifact == ART_SUPERSTAB) || (uarmc && uarmc->oartifact == ART_CLANCY_S_FURTIVENESS) || (uarmc && uarmc->oartifact == ART_BEHIND_CUNTINGNESS) || autismringcheck(ART_POISED_STRIKE) || (uarmc && uarmc->oartifact == ART_LYDIA_S_VEIL_OF_SECRETS) || (uarmf && uarmf->oartifact == ART_ROWAN_S_SILENT_PATH_BOOTS) || (uarmc && uarmc->oartifact == ART_STRIPED_SHIRT_OF_THE_MURDE) || (uarmf && uarmf->oartifact == ART_BACKGROUND_HOLDING) || Race_if(PM_VIETIS) || Role_if(PM_MURDERER) || Role_if(PM_DISSIDENT) || Role_if(PM_ASSASSIN) ) && !Upolyd) {
+			/* backstab! */
 			if (!issoviet) You("strike %s from behind!", mon_nam(mon));
 			else pline("K schast'yu, vy ne chuvstvuyete sebya vo vsem, chto vasha spina koloto odolevayet!");
 			tmp += issoviet ? GushLevel : rno(GushLevel); /* nerf by Amy */
@@ -4453,6 +4465,8 @@ int dieroll;
 		if (uimplant && uimplant->oartifact == ART_MELDAM_PERCS) tmp += (powerfulimplants() ? 2 : 1);
 		if (uleft && uleft->oartifact == ART_SHL_THEME) tmp += 2;
 		if (uright && uright->oartifact == ART_SHL_THEME) tmp += 2;
+		if (!thrown && uarmg && uarmg->oartifact == ART_NALI_THE_BNALI) tmp += 5;
+		if (!thrown && uarmh && uarmh->oartifact == ART_FRIEDRICH_S_BATTLE_VISOR) tmp += 3;
 		if (!thrown && uleft && uleft->oartifact == ART_BUFFIST) tmp += 2;
 		if (!thrown && uright && uright->oartifact == ART_BUFFIST) tmp += 2;
 		if (!thrown && uarms && uarms->oartifact == ART_BOENGSCHRACK) tmp += 2;
@@ -4467,6 +4481,7 @@ int dieroll;
 		if (uarmg && uarmg->oartifact == ART_FLOEMMELFLOEMMELFLOEMMELFL) tmp += 1;
 		if (uarm && uarm->oartifact == ART_DESTRUCTO_S_COAT) tmp += 4;
 		if (uarm && uarm->otyp == DARK_DRAGON_SCALES) tmp += 1;
+		if (ublindf && ublindf->oartifact == ART_MONIQUE_S_NONSENSE && uwep && (weapon_type(uwep) == P_AXE) ) tmp += 5;
 		if (uarm && uarm->otyp == DARK_DRAGON_SCALE_MAIL) tmp += 1;
 		if (uarms && uarms->otyp == DARK_DRAGON_SCALE_SHIELD) tmp += 1;
 		if (ublindf && ublindf->oartifact == ART_MEANINGFUL_CHALLENGE) tmp += 1;
@@ -4788,6 +4803,15 @@ int dieroll;
 		if (obj && obj->oartifact == ART_RANKIS && !rn2(100)) {
 			TimeStopped += rn1(2,2);
 			pline((Role_if(PM_SAMURAI) || Role_if(PM_NINJA)) ? "Jikan ga teishi shimashita." : "Time has stopped.");
+		}
+
+		if (uarmg && uarmg->oartifact == ART_HELENE_S_EMBERTOUCH_GLOVES && !resists_fire(mon)) {
+			if (u.ualign.type == A_CHAOTIC) tmp += rnd(20);
+			else tmp += rnd(10);
+		}
+
+		if (uarmg && uarmg->oartifact == ART_MATTHIAS_S_GAUNTLETS_OF_FA && (is_undead(mon->data) || mon->egotype_undead || is_demon(mon->data)) ) {
+			tmp += rn1(10,10);
 		}
 
 		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_NEURAL_GRAFT_OF_VAELRIC_TH && (is_undead(mon->data) || mon->egotype_undead || passes_walls(mon->data)) ) {

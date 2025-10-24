@@ -7902,6 +7902,12 @@ dochat()
 
     boolean eligiblesymbio = FALSE;
 
+    if (uarmf && uarmf->oartifact == ART_ROWAN_S_SILENT_PATH_BOOTS) {
+	pline("You're on the silent path and cannot talk!");
+	if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+	return(0);
+    }
+
     if (Muteness || u.uprops[MUTENESS].extrinsic || have_mutenessstone() || (uarmh && uarmh->oartifact == ART_CLELIA_S_TONGUE_BREAKER) ) {
 	pline("You're muted!");
 	if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */

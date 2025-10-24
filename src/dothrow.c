@@ -2977,6 +2977,7 @@ boolean polearming;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_AR_ARMALYTE) tmp -= 2;
 	if (u.martialstyle == MARTIALSTYLE_MUAYTHAI) tmp -= 5;
 	if (u.martialstyle == MARTIALSTYLE_BOXING) tmp -= 5;
+	if (uarmh && uarmh->oartifact == ART_GREGOR_S_SENTINEL_HELM && u.ualign.type == A_CHAOTIC) tmp -= 2;
 
 	if (uarm && uarm->oartifact == ART_DAMMIT_PICK_UP) tmp -= 5;
 

@@ -7155,6 +7155,7 @@ shk_offer_price(slang, charge, shkp)
 ** Smooth out the lower/upper bounds on the price to get something
 ** done.  Make sure that it (1) varies depending on charisma and
 ** (2) is constant.
+** Amy note: this is for services; buy/sell prices are in another function
 */
 static void
 shk_smooth_charge(pcharge, lower, upper)
@@ -7204,6 +7205,13 @@ shk_smooth_charge(pcharge, lower, upper)
 	if (ublindf && ublindf->oartifact == ART_STRIKE_OVER_THE_EARS) *pcharge *= 2;
 
 	if (Is_blackmarket(&u.uz)) *pcharge *= 3;
+
+	if (uarmc && uarmc->oartifact == ART_LILIANE_S_GLAMOUR_VEIL) {
+		if (*pcharge > 1) {
+			*pcharge *= 2;
+			*pcharge /= 3;
+		}
+	}
 
 	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_AT_YOUR_SERVICE) {
 		if (*pcharge > 1) {

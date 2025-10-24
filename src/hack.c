@@ -5559,9 +5559,22 @@ int k_format; /* WAC k_format is an int */
 		if (n < 1) n = 1;
 	}
 
+	if (n > 0 && uarmh && uarmh->oartifact == ART_FRIEDRICH_S_BATTLE_VISOR) {
+		n++;
+		n *= 9;
+		n /= 10;
+		if (n < 1) n = 1;
+	}
+
 	if (n > 0 && uarmf && itemhasappearance(uarmf, APP_MARJI_SHOES) ) {
 		n++;
 		n *= 9;
+		n /= 10;
+		if (n < 1) n = 1;
+	}
+
+	if (uarmc && uarmc->oartifact == ART_EMIL_S_MANTLE_OF_RESOLVE && u.ualign.type == A_LAWFUL && n > 0 && ( (!Upolyd && u.uhp < (u.uhpmax / 10)) || (Upolyd && u.mh < (u.mhmax / 10)) ) ) {
+		n++;
 		n /= 10;
 		if (n < 1) n = 1;
 	}
@@ -5935,14 +5948,17 @@ weight_cap() /* your current max carry cap (the one displayed on the bottom stat
 	if (ACURR(A_STR) == 2) carrcap -= 100;
 	if (uarmg && uarmg->oartifact == ART_HANDBOXED) carrcap += 1000;
 	if (uwep && uwep->oartifact == ART_GIRLFUL_BONKING) carrcap -= 500;
+	if (uarmg && uarmg->oartifact == ART_OTTO_S_STEELWEAVE_GLOVES) carrcap -= 200;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_GIRLFUL_BONKING) carrcap -= 500;
 	if (uleft && uleft->oartifact == ART_CORGON_S_RING) carrcap += 100;
 	if (uright && uright->oartifact == ART_CORGON_S_RING) carrcap += 100;
 	if (have_daisybag()) carrcap += 1000;
 	if (uarm && uarm->oartifact == ART_COLLECTING_EXPANSION) carrcap += 2000;
+	if (uarmf && uarmf->oartifact == ART_ERIK_S_MARCHING_BOOTS) carrcap += 200;
 	if (uarm && uarm->oartifact == ART_SCHOOL_SATCHEL) carrcap += 2000;
 	if (uarm && uarm->oartifact == ART_NATAS_IS_BACK) carrcap += 2000;
 	if (uamul && uamul->oartifact == ART_ATLAS_WEIGHT_CRUNCH) carrcap += 1000;
+	if (uarmf && uarmf->oartifact == ART_ALRIC_S_MARCHING_BOOTS) carrcap += 500;
 	if (uarmc && uarmc->oartifact == ART_SI) carrcap += 1000;
 	if (uwep && uwep->oartifact == ART_LYSARITH_S_TIDEBREAKER) carrcap += 1000;
 	if (uarmg && uarmg->oartifact == ART_LIMIT_) {

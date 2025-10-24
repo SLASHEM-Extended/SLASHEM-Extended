@@ -2971,6 +2971,14 @@ boolean td;	/* td == TRUE : trap door or hole */
 	} else if (!next_to_u()) {
 	    dont_fall = "are jerked back by your pet!";
 	}
+
+	if (uarmc && uarmc->oartifact == ART_CLARA_S_WINDCLOAK && !In_sokoban(&u.uz) && !dont_fall) {
+		You("are about to fall through a trapdoor! Using your cloak, you can avoid falling in.");
+		if (yn("Do you want to escape the trapdoor?") == 'y') {
+			dont_fall = "don't fall in.";
+		}
+	}
+
 	if (dont_fall) {
 	    You("%s", dont_fall);
 	    /* hero didn't fall through, but any objects here might */
@@ -3096,6 +3104,14 @@ boolean td;	/* td == TRUE : trap door or hole */
 	} else if (!next_to_u()) {
 	    dont_fall = "are jerked back by your pet!";
 	}
+
+	if (uarmc && uarmc->oartifact == ART_CLARA_S_WINDCLOAK && !In_sokoban(&u.uz) && !dont_fall) {
+		You("are about to fall through a trapdoor! Using your cloak, you can avoid falling in.");
+		if (yn("Do you want to escape the trapdoor?") == 'y') {
+			dont_fall = "don't fall in.";
+		}
+	}
+
 	if (dont_fall) {
 	    You("%s", dont_fall);
 	    /* hero didn't fall through, but any objects here might */
@@ -3218,6 +3234,14 @@ boolean td;	/* td == TRUE : trap door or hole */
 	} else if (!next_to_u()) {
 	    dont_fall = "are jerked back by your pet!";
 	}
+
+	if (uarmc && uarmc->oartifact == ART_CLARA_S_WINDCLOAK && !In_sokoban(&u.uz) && !dont_fall) {
+		You("are about to fall through a trapdoor! Using your cloak, you can avoid falling in.");
+		if (yn("Do you want to escape the trapdoor?") == 'y') {
+			dont_fall = "don't fall in.";
+		}
+	}
+
 	if (dont_fall) {
 	    You("%s", dont_fall);
 	    /* hero didn't fall through, but any objects here might */
@@ -3975,6 +3999,8 @@ unsigned trflags;
 
 	/* Traps are 50% more likely to fail for a pickpocket */
 	if (!In_sokoban(&u.uz) && Role_if(PM_PICKPOCKET) && ttype != MAGIC_PORTAL && rn2(2)) return;
+
+	if (!In_sokoban(&u.uz) && uarmf && uarmf->oartifact == ART_OTMAR_S_PHANTOM_STEPS && ttype != MAGIC_PORTAL && rn2(2)) return;
 
 	if (!In_sokoban(&u.uz) && uarmf && uarmf->oartifact == ART_TRAPAVOIDER && !rn2(5) && ttype != MAGIC_PORTAL) {
 		You("avoid a trap!");
@@ -25705,11 +25731,14 @@ register boolean force, here;
 		if ((obj->where != OBJ_FLOOR) && uwep && uwep->oartifact == ART_GARY_S_RIVALRY ) continue;
 		if ((obj->where != OBJ_FLOOR) && powerfulimplants() && uimplant && uimplant->oartifact == ART_NEWFOUND_AND_USEFUL) continue;
 		if ((obj->where != OBJ_FLOOR) && uarmf && uarmf->oartifact == ART_JESUS_FOOTWEAR) continue;
+		if ((obj->where != OBJ_FLOOR) && uarmf && uarmf->oartifact == ART_DIETER_S_BOOTS_OF_THE_DEEP) continue;
 		if ((obj->where != OBJ_FLOOR) && uarmf && uarmf->oartifact == ART_ALL_WEATHER_HEELS) continue;
 		if ((obj->where != OBJ_FLOOR) && uarmc && uarmc->oartifact == ART_SCHWUUUUUUUUUUH) continue;
 		if ((obj->where != OBJ_FLOOR) && uarm && uarm->oartifact == ART_DREHN_PIPE) continue;
 		if ((obj->where != OBJ_FLOOR) && uarmc && uarmc->oartifact == ART_OUT_OF_THE_RAIN) continue;
 		if ((obj->where != OBJ_FLOOR) && powerfulimplants() && uimplant && uimplant->oartifact == ART_GREAT_HARBOR_WAVE) continue;
+
+		if ((obj->where != OBJ_FLOOR) && uarmc && uarmc->oartifact == ART_INGRID_S_WEATHERED_SHROUD) continue;
 
 		if ((obj->where != OBJ_FLOOR) && uwep && uwep->oartifact == ART_ROLLROLLROLL___) continue;
 		if ((obj->where != OBJ_FLOOR) && uball && uball->oartifact == ART_ROLLROLLROLL___) continue;
@@ -25765,7 +25794,7 @@ register boolean force, here;
 		} else if(Is_container(obj) && !Is_box(obj) && !(obj->oartifact == ART_BAG_OF_THE_HESPERIDES) && !(obj->oartifact == ART_KNOW_OF_THE_CURSE) && !(obj->oartifact == ART_SEMINARIOS_KARTOFFLES) && !(obj->otyp == ICE_BOX_OF_WATERPROOFING) && !(obj->otyp == DISPERSION_BOX) &&
 			(obj->otyp != OILSKIN_SACK || (obj->cursed && !(obj->oartifact == ART_SURFING_FUN) && !rn2(3)))) {
 			water_damage(obj->cobj, force, FALSE);
-		} else if (!force && !Race_if(PM_ANCIPITAL) && (Luck - luckpenalty + 5 + (issoviet ? 0 : rnd(20)) ) > rn2(20)) {
+		} else if (!force && !(uarm && uarm->oartifact == ART_AVELINE_S_ROBE_OF_THE_FIRS) && !Race_if(PM_ANCIPITAL) && (Luck - luckpenalty + 5 + (issoviet ? 0 : rnd(20)) ) > rn2(20)) {
 			/*  chance per item of sustaining damage:
 			 *	max luck (full moon):	 5%
 			 *	max luck (elsewhen):	10%

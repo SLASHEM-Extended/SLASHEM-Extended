@@ -1263,6 +1263,7 @@ newsym(x,y)
 		(uarmh && uarmh->otyp == HELM_OF_UNLIVING_ESP && mon->data->mlet == S_GOLEM && distu(mon->mx, mon->my) < 626) ||
 		(uarmh && uarmh->otyp == HELM_OF_UNLIVING_ESP && mindless(mon->data) && distu(mon->mx, mon->my) < 26) ||
 		(uarmf && uarmf->oartifact == ART_VERA_S_FREEZER && mon->data->mcolor == CLR_WHITE) ||
+		(uarmg && uarmg->oartifact == ART_NALI_THE_BNALI && PlayerInSexyFlats && mon->data->mcolor == CLR_GRAY) ||
 		(uarmc && uarmc->oartifact == ART_SILVERY_LINES && mon->data->mcolor == CLR_BRIGHT_GREEN) ||
 		(Burnopathy && Burned && infravision(mon->data) && distu(mon->mx, mon->my) < (StrongBurnopathy ? 170 : 101) ) ||
 		(Dimmopathy && Dimmed && mon->m_lev > u.ulevel && distu(mon->mx, mon->my) < (StrongDimmopathy ? 226 : 101) ) ||
@@ -1416,6 +1417,7 @@ newsym(x,y)
 		(uarmh && uarmh->otyp == HELM_OF_UNLIVING_ESP && mon->data->mlet == S_GOLEM && distu(mon->mx, mon->my) < 626) ||
 		(uarmh && uarmh->otyp == HELM_OF_UNLIVING_ESP && mindless(mon->data) && distu(mon->mx, mon->my) < 26) ||
 		(uarmf && uarmf->oartifact == ART_VERA_S_FREEZER && mon->data->mcolor == CLR_WHITE) ||
+		(uarmg && uarmg->oartifact == ART_NALI_THE_BNALI && PlayerInSexyFlats && mon->data->mcolor == CLR_GRAY) ||
 		(uarmc && uarmc->oartifact == ART_SILVERY_LINES && mon->data->mcolor == CLR_BRIGHT_GREEN) ||
 		(Burnopathy && Burned && infravision(mon->data) && distu(mon->mx, mon->my) < (StrongBurnopathy ? 170 : 101) ) ||
 		(Dimmopathy && Dimmed && mon->m_lev > u.ulevel && distu(mon->mx, mon->my) < (StrongDimmopathy ? 226 : 101) ) ||
@@ -1739,6 +1741,7 @@ newsymX(x,y)
 		(uarmh && uarmh->otyp == HELM_OF_UNLIVING_ESP && mon->data->mlet == S_GOLEM && distu(mon->mx, mon->my) < 626) ||
 		(uarmh && uarmh->otyp == HELM_OF_UNLIVING_ESP && mindless(mon->data) && distu(mon->mx, mon->my) < 26) ||
 		(uarmf && uarmf->oartifact == ART_VERA_S_FREEZER && mon->data->mcolor == CLR_WHITE) ||
+		(uarmg && uarmg->oartifact == ART_NALI_THE_BNALI && PlayerInSexyFlats && mon->data->mcolor == CLR_GRAY) ||
 		(uarmc && uarmc->oartifact == ART_SILVERY_LINES && mon->data->mcolor == CLR_BRIGHT_GREEN) ||
 		(Burnopathy && Burned && infravision(mon->data) && distu(mon->mx, mon->my) < (StrongBurnopathy ? 170 : 101) ) ||
 		(Dimmopathy && Dimmed && mon->m_lev > u.ulevel && distu(mon->mx, mon->my) < (StrongDimmopathy ? 226 : 101) ) ||
@@ -1892,6 +1895,7 @@ newsymX(x,y)
 		(uarmh && uarmh->otyp == HELM_OF_UNLIVING_ESP && mon->data->mlet == S_GOLEM && distu(mon->mx, mon->my) < 626) ||
 		(uarmh && uarmh->otyp == HELM_OF_UNLIVING_ESP && mindless(mon->data) && distu(mon->mx, mon->my) < 26) ||
 		(uarmf && uarmf->oartifact == ART_VERA_S_FREEZER && mon->data->mcolor == CLR_WHITE) ||
+		(uarmg && uarmg->oartifact == ART_NALI_THE_BNALI && PlayerInSexyFlats && mon->data->mcolor == CLR_GRAY) ||
 		(uarmc && uarmc->oartifact == ART_SILVERY_LINES && mon->data->mcolor == CLR_BRIGHT_GREEN) ||
 		(Burnopathy && Burned && infravision(mon->data) && distu(mon->mx, mon->my) < (StrongBurnopathy ? 170 : 101) ) ||
 		(Dimmopathy && Dimmed && mon->m_lev > u.ulevel && distu(mon->mx, mon->my) < (StrongDimmopathy ? 226 : 101) ) ||
@@ -3917,6 +3921,7 @@ struct monst *mon;
 	if (uarmh && uarmh->otyp == HELM_OF_UNLIVING_ESP && mon->data->mlet == S_GOLEM && distu(mon->mx, mon->my) < 626) return TRUE;
 	if (uarmh && uarmh->otyp == HELM_OF_UNLIVING_ESP && mindless(mon->data) && distu(mon->mx, mon->my) < 26) return TRUE;
 	if (uarmf && uarmf->oartifact == ART_VERA_S_FREEZER && mon->data->mcolor == CLR_WHITE) return TRUE;
+	if (uarmg && uarmg->oartifact == ART_NALI_THE_BNALI && PlayerInSexyFlats && mon->data->mcolor == CLR_GRAY) return TRUE;
 	if (uarmc && uarmc->oartifact == ART_SILVERY_LINES && mon->data->mcolor == CLR_BRIGHT_GREEN) return TRUE;
 	if (Burnopathy && Burned && infravision(mon->data) && distu(mon->mx, mon->my) < (StrongBurnopathy ? 170 : 101) ) return TRUE;
 	if (Dimmopathy && Dimmed && mon->m_lev > u.ulevel && distu(mon->mx, mon->my) < (StrongDimmopathy ? 226 : 101) ) return TRUE;

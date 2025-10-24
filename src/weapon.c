@@ -8942,6 +8942,7 @@ boolean extraskills;
 		if (obj->otyp == SECRET_KEY) skill = P_BLOCK_HEELS;
 		if (obj->otyp == CASINO_CHIP) skill = P_WEDGE_HEELS;
 		if (obj->otyp >= LARGE_BOX && obj->otyp <= BAG_OF_TRICKS) skill = P_WEIGHT_LIFTING;
+		if (obj->otyp >= TALLOW_CANDLE && obj->otyp <= MAGIC_LAMP) skill = P_GENERAL_COMBAT;
 
 		if (skill == P_NONE) { /* gifts should always be able to unlock a skill; random if none is associated --Amy */
 			skill = randomgoodskill();
