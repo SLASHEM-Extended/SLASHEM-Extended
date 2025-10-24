@@ -13394,16 +13394,8 @@ peffects(otmp)
 
 		if (otmp->oartifact == ART_KODO_BANGO) {
 
-			int codetofind = u.secretcodenumber;
-			while (codetofind < 1000) codetofind *= 10; /* to fill up digits with zeroes --Amy */
+			give_code_number();
 
-			char stringcode[11] = { 0 };
-			sprintf(stringcode, "%d", codetofind);
-			int whichdigit = rn2(4);
-
-			if (wizard) pline("string is %s, code is %d", stringcode, u.secretcodenumber);
-
-			pline("One of the secret code digits is %c.", stringcode[whichdigit]);
 		}
 
 		struct obj *wonderpot;
@@ -19311,7 +19303,16 @@ int kind;
 void
 give_code_number()
 {
-	pline("code to be implemented.");
+	int codetofind = u.secretcodenumber;
+	while (codetofind < 1000) codetofind *= 10; /* to fill up digits with zeroes --Amy */
+
+	char stringcode[11] = { 0 };
+	sprintf(stringcode, "%d", codetofind);
+	int whichdigit = rn2(4);
+
+	if (wizard) pline("string is %s, code is %d", stringcode, u.secretcodenumber);
+
+	pline("One of the secret code digits is %c.", stringcode[whichdigit]);
 }
 
 /* will the player succeed in damaging an immune opponent with the resistance piercing trinsic? --Amy */
