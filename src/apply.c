@@ -380,7 +380,8 @@ use_symbiote(obj)
 			return 1;
 		}
 		if (mtmp->mfrenzied) {
-			pline(FunnyHallu ? "Suddenly the monster rakes its claws over your skin and reveals that you're indeed noble because you're bleeding blue blood." : "Frenzied monsters will never turn into symbiotes.");
+			if (FunnyHallu) pline("Suddenly the monster rakes its claws over your %s and reveals that you're indeed noble because you're bleeding blue %s.", body_part(BODY_SKIN), body_part(BLOOD));
+			else pline("Frenzied monsters will never turn into symbiotes.");
 			return 1;
 
 		}
@@ -675,9 +676,9 @@ use_stethoscope(obj)
 		    pline_The("%s seems healthy enough.", surface(u.ux,u.uy));
 		return res;
 	} else if (obj->cursed && !rn2(2)) {
-		if (obj->otyp == STETHOSCOPE) You_hear("your heart beat.");
+		if (obj->otyp == STETHOSCOPE) You_hear("your %s beat.", body_part(HEART));
 		else {
-			pline_The("stethoscope pierces your heart!");
+			pline_The("stethoscope pierces your %s!", body_part(HEART));
 			if (u.uhpmax > 0) u.uhpmax--;
 			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 			if (Upolyd) {

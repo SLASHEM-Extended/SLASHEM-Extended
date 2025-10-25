@@ -5469,11 +5469,11 @@ int duration;
 			FemaleTrapSandra += duration;
 			break;
 		case 19:
-			if (!FemtrapActiveRuth) pline("You gotta dance! You've suddenly become super sexy and attractive, and neither sleep nor paralysis can stop you in your tracks. And you can kick your enemies to stomp their toes flat. But if you ever stand still for too long, a bunch of bloodthirsty female painted toenails is going to hurt your beautiful skin, so make sure you keep moving!");
+			if (!FemtrapActiveRuth) pline("You gotta dance! You've suddenly become super sexy and attractive, and neither sleep nor paralysis can stop you in your tracks. And you can kick your enemies to stomp their toes flat. But if you ever stand still for too long, a bunch of bloodthirsty female painted toenails is going to hurt your beautiful %s, so make sure you keep moving!", body_part(BODY_SKIN));
 			FemaleTrapNatalje += duration;
 			break;
 		case 20:
-			if (!FemtrapActiveRuth) pline("Lots of shreds of skin will be scraped off your shins, and the girls will enjoy it.");
+			if (!FemtrapActiveRuth) pline("Lots of shreds of %s will be scraped off your shins, and the girls will enjoy it.", body_part(BODY_SKIN));
 			FemaleTrapJeanetta += duration;
 			break;
 		case 21:
@@ -5777,7 +5777,7 @@ int duration;
 			FemaleTrapJane += duration;
 			break;
 		case 95:
-			if (!FemtrapActiveRuth) pline("The Asian girls want to fart you in the face, and if you allow it, they'll be nice to you, but treat them badly and they'll slit your skin with very sharp female fingernails!");
+			if (!FemtrapActiveRuth) pline("The Asian girls want to fart you in the face, and if you allow it, they'll be nice to you, but treat them badly and they'll slit your %s with very sharp female fingernails!", body_part(BODY_SKIN));
 			FemaleTrapSueLyn += duration;
 			break;
 		case 96:
@@ -5901,11 +5901,11 @@ getfeminismtrapintrinsic()
 			FemaleTrapSandra |= FROMOUTSIDE;
 			break;
 		case 19:
-			if (!FemtrapActiveRuth) pline("You gotta dance! You've suddenly become super sexy and attractive, and neither sleep nor paralysis can stop you in your tracks. And you can kick your enemies to stomp their toes flat. But if you ever stand still for too long, a bunch of bloodthirsty female painted toenails is going to hurt your beautiful skin, so make sure you keep moving!");
+			if (!FemtrapActiveRuth) pline("You gotta dance! You've suddenly become super sexy and attractive, and neither sleep nor paralysis can stop you in your tracks. And you can kick your enemies to stomp their toes flat. But if you ever stand still for too long, a bunch of bloodthirsty female painted toenails is going to hurt your beautiful %s, so make sure you keep moving!", body_part(BODY_SKIN));
 			FemaleTrapNatalje |= FROMOUTSIDE;
 			break;
 		case 20:
-			if (!FemtrapActiveRuth) pline("Lots of shreds of skin will be scraped off your shins, and the girls will enjoy it.");
+			if (!FemtrapActiveRuth) pline("Lots of shreds of %s will be scraped off your shins, and the girls will enjoy it.", body_part(BODY_SKIN));
 			FemaleTrapJeanetta |= FROMOUTSIDE;
 			break;
 		case 21:
@@ -6212,7 +6212,7 @@ getfeminismtrapintrinsic()
 			FemaleTrapJane |= FROMOUTSIDE;
 			break;
 		case 95:
-			if (!FemtrapActiveRuth) pline("The Asian girls want to fart you in the face, and if you allow it, they'll be nice to you, but treat them badly and they'll slit your skin with very sharp female fingernails!");
+			if (!FemtrapActiveRuth) pline("The Asian girls want to fart you in the face, and if you allow it, they'll be nice to you, but treat them badly and they'll slit your %s with very sharp female fingernails!", body_part(BODY_SKIN));
 			FemaleTrapSueLyn |= FROMOUTSIDE;
 			break;
 		case 96:

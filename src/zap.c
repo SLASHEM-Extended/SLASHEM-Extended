@@ -6475,7 +6475,7 @@ boolean ordinary;
 				asitem = some_armor(&youmonst);
 
 				if (!asitem) {
-					pline("Your skin itches.");
+					pline("Your %s itches.", body_part(BODY_SKIN));
 				} else if (asitem && asitem->blessed && rn2(5)) pline("Your body shakes violently!");
 				else if (asitem && (asitem->spe > 1) && (rn2(asitem->spe)) ) pline("Your body shakes violently!");
 				else if (asitem && asitem->oartifact && rn2(20)) pline("Your body shakes violently!");
@@ -6487,7 +6487,7 @@ boolean ordinary;
 						update_inventory();
 					 }
 				} else if (!destroy_arm(asitem)) {
-					pline("Your skin itches.");
+					pline("Your %s itches.", body_part(BODY_SKIN));
 				}
 			}
 
@@ -9837,7 +9837,7 @@ struct obj **ootmp;	/* to return worn armor for caller to disintegrate */
 
 			if (is_vampire(mon->data)) {
 				tmp *= 2; /* vampires take more damage from sunlight --Amy */
-				pline(literes ? "The light ray slightly burns %s's pale skin." : "The light ray sears %s's pale skin!",mon_nam(mon));
+				pline(literes ? "The light ray slightly burns %s's pale %s." : "The light ray sears %s's pale %s!", mon_nam(mon), mbodypart(mon, BODY_SKIN));
 			}
 
 		}
@@ -10167,7 +10167,7 @@ xchar sx, sy;
 			dam = d(nd,8);
 			if (maybe_polyd(is_vampire(youmonst.data), Race_if(PM_VAMPIRE)) || Role_if(PM_GOFF) ) {
 				dam *= 2; /* vampires are susceptible to sunlight --Amy */
-				pline("Your pale skin is seared by the light ray!");
+				pline("Your pale %s is seared by the light ray!", body_part(BODY_SKIN));
 			}
 		}
 		if (uarmc && uarmc->oartifact == ART_SKI_CAN_CERIUM_FORM) contaminate(dam, TRUE);

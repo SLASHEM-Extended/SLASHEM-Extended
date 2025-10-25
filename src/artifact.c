@@ -9314,7 +9314,7 @@ tscheinschroll:
 				HProtection |= FROMOUTSIDE;
 			} 
 			u.ublessed += 2;
-			Your("skin feels harder.");
+			Your("%s feels harder.", body_part(BODY_SKIN));
 			break;
 		}
 
@@ -11362,12 +11362,12 @@ retrytrinsic:
 						if (intloss) {
 							if (HCorrosivity & INTRINSIC) {
 								HCorrosivity &= ~INTRINSIC;
-								You_feel("the protective layer on your skin disappearing!");
+								You_feel("the protective layer on your %s disappearing!", body_part(BODY_SKIN));
 								hasmadeachange = 1;
 							}
 							if (HCorrosivity & TIMEOUT) {
 								HCorrosivity &= ~TIMEOUT;
-								You_feel("the protective layer on your skin disappearing!");
+								You_feel("the protective layer on your %s disappearing!", body_part(BODY_SKIN));
 								hasmadeachange = 1;
 							}
 						} else {

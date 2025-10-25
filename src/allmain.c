@@ -7001,7 +7001,7 @@ newbossUTE:
 					else if (!extralongsqueak()) badeffect();
 					break;
 				case 3:
-					pline("Elif suddenly uses her very sharp-edged female fingernails and cuts your unprotected skin!");
+					pline("Elif suddenly uses her very sharp-edged female fingernails and cuts your unprotected %s!", body_part(BODY_SKIN));
 					if (Upolyd && u.mhmax > 1) {
 						u.mhmax--;
 						if (u.mh > u.mhmax) u.mh = u.mhmax;
@@ -12537,16 +12537,16 @@ newbossB:
 			/* This isn't much of a downside, since usually angels with positive alignment fly anyway :D --Amy */
 
 			if (u.ualign.record > 0) {
-				Norep("The yellow liquid actually feels comfortable on your skin.");
+				Norep("The yellow liquid actually feels comfortable on your %s.", body_part(BODY_SKIN));
 			}
 
 			else if (u.ualign.record == 0) {
-				Norep("The yellow liquid tickles your skin.");
+				Norep("The yellow liquid tickles your %s.", body_part(BODY_SKIN));
 				losehp(1, "swimming in urine while nominally aligned", KILLED_BY);
 			}
 
 			else if (u.ualign.record < 0) {
-				pline("The yellow liquid %scorrodes your unprotected skin!", !Acid_resistance ? "severely " : "");
+				pline("The yellow liquid %scorrodes your unprotected %s!", !Acid_resistance ? "severely " : "", body_part(BODY_SKIN));
 				losehp(rnd(5 + (level_difficulty() / 2)), "foolishly swimming in urine", KILLED_BY);
 				if (!Acid_resistance) losehp(rnd(10 + level_difficulty()), "foolishly swimming in urine", KILLED_BY);
 				if (!rn2(10)) badeffect();
@@ -23600,7 +23600,7 @@ newturn:
 				if (u.legscratching <= 5)
 			    	    pline("It stings a little.");
 				else if (u.legscratching <= 10)
-			    	    pline("It hurts quite a bit as some of your skin is scraped off!");
+			    	    pline("It hurts quite a bit as some of your %s is scraped off!", body_part(BODY_SKIN));
 				else if (u.legscratching <= 20)
 				    pline("Blood drips from your %s as the heel scratches over your open wounds!", body_part(LEG));
 				else if (u.legscratching <= 40)

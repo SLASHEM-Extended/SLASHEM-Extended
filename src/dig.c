@@ -1395,7 +1395,7 @@ struct obj *obj;
 		else if (obj->otyp == SOFT_LADY_SHOE) pline("You feel wonderful intense pain as the incredibly soft lady shoe hits you.");
 		else if (obj->otyp == STEEL_WHIP) {
 			if (flags.female) You_feel("like a submissive girl as you whip yourself!");
-			else pline("You enjoy the feeling of pain as the whip hits your bare skin!");
+			else pline("You enjoy the feeling of pain as the whip hits your bare %s!", body_part(BODY_SKIN));
 		}
 		else if (obj->otyp == HIGH_HEELED_SANDAL) pline("Ouch - you hit yourself with a massive high heel! It's very painful!");
 		else if (obj->otyp == WEDGED_LITTLE_GIRL_SANDAL) pline("You hit yourself with a lovely wedge heel! Even though it looks very innocuous, you can definitely feel intense pain...");

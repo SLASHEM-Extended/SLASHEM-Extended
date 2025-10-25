@@ -5492,7 +5492,7 @@ glovecheckZ:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 	    case ESCALATING_TRAP:
 		seetrap(trap);
 		pline("You stepped on a trigger!");
-		pline("Something hits your %s.", body_part(rn2(19) ) );
+		pline("Something hits your %s.", body_part(rn2(MAXBODYPART) ) );
 		losehp(1 + u.chokhmahdamage + rnd(u.ualign.sins > 0 ? (isqrt(u.ualign.sins) + 1) : (1)),"escalating trap",KILLED_BY_AN);
 		u.chokhmahdamage++;
 		break;
@@ -8429,10 +8429,10 @@ newbossPENT:
 					 }
 				}
 				else if(!destroy_arm(otmpD)) {
-					pline("Your skin itches.");
+					pline("Your %s itches.", body_part(BODY_SKIN));
 				}
 			} 
-			else pline("Your skin itches.");
+			else pline("Your %s itches.", body_part(BODY_SKIN));
 		}
 
 		break;
@@ -16820,7 +16820,7 @@ skillrandomizeredo:
 
 			if (!FemtrapActiveRuth) {
 				pline("Whoops... you seem to have stumbled into a trap that was set by Sue Lyn.");
-				pline("The Asian girls want to fart you in the face, and if you allow it, they'll be nice to you, but treat them badly and they'll slit your skin with very sharp female fingernails!");
+				pline("The Asian girls want to fart you in the face, and if you allow it, they'll be nice to you, but treat them badly and they'll slit your %s with very sharp female fingernails!", body_part(BODY_SKIN));
 			}
 			u.cnd_feminismtrapamount++;
 			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -18475,7 +18475,7 @@ skillrandomizeredo:
 
 			if (!FemtrapActiveRuth) {
 				pline("Whoops... you seem to have stumbled into a trap that was set by Natalje.");
-				pline("You gotta dance! You've suddenly become super sexy and attractive, and neither sleep nor paralysis can stop you in your tracks. And you can kick your enemies to stomp their toes flat. But if you ever stand still for too long, a bunch of bloodthirsty female painted toenails is going to hurt your beautiful skin, so make sure you keep moving!");
+				pline("You gotta dance! You've suddenly become super sexy and attractive, and neither sleep nor paralysis can stop you in your tracks. And you can kick your enemies to stomp their toes flat. But if you ever stand still for too long, a bunch of bloodthirsty female painted toenails is going to hurt your beautiful %s, so make sure you keep moving!", body_part(BODY_SKIN));
 			}
 			u.cnd_feminismtrapamount++;
 			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -18497,7 +18497,7 @@ skillrandomizeredo:
 
 			if (!FemtrapActiveRuth) {
 				pline("Whoops... you seem to have stumbled into a trap that was set by Jeanetta.");
-				pline("Lots of shreds of skin will be scraped off your shins, and the girls will enjoy it.");
+				pline("Lots of shreds of %s will be scraped off your shins, and the girls will enjoy it.", body_part(BODY_SKIN));
 			}
 			u.cnd_feminismtrapamount++;
 			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -19443,7 +19443,7 @@ skillrandomizeredo:
 				if (u.legscratching <= 5)
 			    	    pline("It stings a little.");
 				else if (u.legscratching <= 10)
-			    	    pline("It hurts quite a bit as some of your skin is scraped off!");
+			    	    pline("It hurts quite a bit as some of your %s is scraped off!", body_part(BODY_SKIN));
 				else if (u.legscratching <= 20)
 				    pline("Blood drips from your %s as the heel scratches over your open wounds!", body_part(LEG));
 				else if (u.legscratching <= 40)
@@ -19486,7 +19486,7 @@ skillrandomizeredo:
 
 				case 10:
 
-				pline("Suddenly, a spiked battle boot squeezes and stings your skin!" );
+				pline("Suddenly, a spiked battle boot squeezes and stings your %s!", body_part(BODY_SKIN));
 
 				losehp(projectiledamage,"battle boot with spikes",KILLED_BY_AN);
 				    if (!rn2(6))
@@ -19778,7 +19778,7 @@ skillrandomizeredo:
 						}
 
 					if (randomkick == 14) {
-						pline("A block-heeled lady boot kicks you, and burns your skin!");
+						pline("A block-heeled lady boot kicks you, and burns your %s!", body_part(BODY_SKIN));
 						make_burned(HBurned + (monster_difficulty() * 5),FALSE);
 						losehp(projectiledamage,"being kicked by block-heeled lady boots",KILLED_BY);
 					}
@@ -19854,7 +19854,7 @@ skillrandomizeredo:
 				if (u.legscratching <= 5)
 			    	    pline("It stings a little.");
 				else if (u.legscratching <= 10)
-			    	    pline("It hurts quite a bit as some of your skin is scraped off!");
+			    	    pline("It hurts quite a bit as some of your %s is scraped off!", body_part(BODY_SKIN));
 				else if (u.legscratching <= 20)
 				    pline("Blood drips from your %s as the heel scratches over your open wounds!", body_part(LEG));
 				else if (u.legscratching <= 40)

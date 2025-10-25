@@ -5505,7 +5505,7 @@ metalmafiaagain:
 
 		if (mtmp->mtame) {
 			if (mtmp->mhp < mtmp->mhpmax/3)
-				pline("%s points a %s at %s heart.", Monnam(mtmp), mbodypart(mtmp, FINGER), mhis(mtmp));
+				pline("%s points a %s at %s %s.", Monnam(mtmp), mbodypart(mtmp, FINGER), mhis(mtmp), mbodypart(mtmp, HEART));
 			else if (mtmp->mtame && hastoeat && !mtmp->isminion && moves > EDOG(mtmp)->hungrytime)
 				pline("%s grunts long and deeply.", Monnam(mtmp));
 			else if (mtmp->mconf || mtmp->mflee || mtmp->mtrapped)

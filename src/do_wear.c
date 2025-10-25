@@ -828,7 +828,7 @@ Boots_on()
 
     if (uarmf && uarmf->oartifact == ART_LILAC_BEAUTY) {
 		pline("Your incredibly beautiful footwear speaks:");
-		verbalize("%s, you're not our owner. We allow you to wear us anyway, but if you ever dare to take us off, we will scratch your shins to the bone and rip your unprotected skin to shreds. Keep wearing us if you want to avoid a bloodbath!", playeraliasname);
+		verbalize("%s, you're not our owner. We allow you to wear us anyway, but if you ever dare to take us off, we will scratch your shins to the bone and rip your unprotected %s to shreds. Keep wearing us if you want to avoid a bloodbath!", playeraliasname, body_part(BODY_SKIN));
     }
 
     if (uarmf && uarmf->oartifact == ART_I_M_A_BITCH__DEAL_WITH_IT && uarmf->spe < 0) {
@@ -908,7 +908,7 @@ Boots_off()
 {
     if (uarmf && uarmf->oartifact == ART_LILAC_BEAUTY) {
 		pline("You angered your beautiful lilac pumps!");
-		pline("In a terrible blood rush, they scratch up and down your legs again and again. Your blood squirts everywhere while the tender, but very sharp-edged heel is destroying every shred of your skin it can reach.");
+		pline("In a terrible blood rush, they scratch up and down your legs again and again. Your blood squirts everywhere while the tender, but very sharp-edged heel is destroying every shred of your %s it can reach.", body_part(BODY_SKIN));
 		losexp("being scratched to death by an angry pair of lilac pumps", TRUE, FALSE);
 		pline("Frustrated, the lovely leather pumps settle down.");
     }
@@ -4384,7 +4384,7 @@ Shirt_on()
 	if(uarmu->otyp == RUFFLED_SHIRT){
 
 		if ((Role_if(PM_NOBLEMAN) || Role_if(PM_NOBLEWOMAN) || Role_if(PM_ACTIVISTOR) || Race_if(PM_PEACEMAKER) ) && !uarmu->cursed ) {if (yn_function("Do you want your noble shirt to stick?", ynchars, 'n') == 'y') { curse(uarmu);
-			pline("Your shirt tickles comfortably on your smooth skin!");
+			pline("Your shirt tickles comfortably on your smooth %s!", body_part(BODY_SKIN));
 			}
 		}
 
@@ -6622,9 +6622,9 @@ dotakeoff()
 	if (!armorpieces) {
 	     /* assert( GRAY_DRAGON_SCALES > YELLOW_DRAGON_SCALE_MAIL ); */
 		if (uskin)
-		    pline_The("%s merged with your skin!",
+		    pline_The("%s merged with your %s!",
 			      uskin->otyp >= GRAY_DRAGON_SCALES ?
-				"dragon scales are" : "dragon scale mail is");
+				"dragon scales are" : "dragon scale mail is", body_part(BODY_SKIN));
 		else
 		    pline("Not wearing any armor.%s", (iflags.cmdassist && 
 				(uleft || uright || uamul || uimplant || ublindf)) ?

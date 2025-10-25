@@ -676,7 +676,7 @@ shieldblockboo:
 
 		if (obj && objects[obj->otyp].oc_material == MT_SILVER && (hates_silver(youmonst.data) || (uarmf && uarmf->oartifact == ART_IRIS_S_HIDDEN_ALLERGY) || (uarmh && uarmh->oartifact == ART_IRIS_S_SECRET_VULNERABILIT) || (uarmc && uarmc->oartifact == ART_IRIS_S_UNREVEALED_LOVE) || (uarmg && uarmg->oartifact == ART_IRIS_S_FAVORED_MATERIAL) || autismweaponcheck(ART_PORKMAN_S_BALLS_OF_STEEL) ) ) {
 			dam += rnd(20);
-			pline_The("silver sears your flesh!");
+			pline_The("silver sears your %s!", body_part(BODY_FLESH));
 			exercise(A_CON, FALSE);
 		}
 		if (obj && objects[obj->otyp].oc_material == MT_COPPER && hates_copper(youmonst.data)) {
@@ -1329,8 +1329,8 @@ blockingdone:
 	    }
 	    if (objects[otmp->otyp].oc_material == MT_SILVER &&
 		    hates_silver(mtmp->data)) {
-		if (vis) pline_The("silver sears %s flesh!",
-				s_suffix(mon_nam(mtmp)));
+		if (vis) pline_The("silver sears %s %s!",
+				s_suffix(mon_nam(mtmp)), mbodypart(mtmp, BODY_FLESH) );
 		else if (verbose) pline("Its flesh is seared!");
 	    }
 	    if (objects[otmp->otyp].oc_material == MT_VIVA && hates_viva(mtmp->data)) {

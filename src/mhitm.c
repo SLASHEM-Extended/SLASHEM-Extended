@@ -3554,10 +3554,10 @@ struct monst *magr, *mdef;
 	    if (objects[obj->otyp].oc_material == MT_SILVER &&
 		    hates_silver(mdef->data) && canseemon(mdef)) {
 		if (vis)
-		    pline_The("silver sears %s flesh!",
-			    s_suffix(mon_nam(mdef)));
+		    pline_The("silver sears %s %s!",
+			    s_suffix(mon_nam(mdef)), mbodypart(mdef, BODY_FLESH) );
 		else
-		    pline("%s flesh is seared!", s_suffix(Monnam(mdef)));
+		    pline("%s %s is seared!", s_suffix(Monnam(mdef)), mbodypart(mdef, BODY_FLESH) );
 	    }
 	    if (objects[obj->otyp].oc_material == MT_VIVA && hates_viva(mdef->data) && canseemon(mdef)) {
 		    pline("%s is severely hurt by the radiation!", s_suffix(Monnam(mdef)));
@@ -4569,8 +4569,8 @@ physical:
                                         if (!rn2(10)) {
                                                 if (vis) {
                                                         strcpy(buf, Monnam(magr));
-                                                        pline("%s plunges the stake into the heart of %s.",
-                                                                buf, mon_nam(mdef));
+                                                        pline("%s plunges the stake into the %s of %s.",
+                                                                buf, mbodypart(mdef, HEART), mon_nam(mdef));
                                                         pline("%s's body vaporizes!", Monnam(mdef));
                                                 }
                                                 mondead(mdef); /* no corpse */

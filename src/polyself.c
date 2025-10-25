@@ -3267,7 +3267,7 @@ skinback(silently)
 boolean silently;
 {
 	if (uskin) {
-		if (!silently) Your("skin returns to its original form.");
+		if (!silently) Your("%s returns to its original form.", body_part(BODY_SKIN));
 		uarm = uskin;
 		uskin = (struct obj *)0;
 		/* undo save/restore hack */
@@ -3287,55 +3287,91 @@ int part;
 	*humanoid_parts[] = { "arm", "eye", "face", "finger",
 		"fingertip", "foot", "hand", "handed", "head", "leg",
 		"light headed", "neck", "spine", "toe", "hair",
-		"blood", "lung", "nose", "stomach"},
+		"blood", "lung", "nose", "stomach",
+		"heart", "skin", "flesh", "beat",
+		"bones", "ear", "ears", "creak", "crack"
+		},
 	*jelly_parts[] = { "pseudopod", "dark spot", "front",
 		"pseudopod extension", "pseudopod extremity",
 		"pseudopod root", "grasp", "grasped", "cerebral area",
 		"lower pseudopod", "viscous", "middle", "surface",
 		"pseudopod extremity", "ripples", "juices",
-		"surface", "sensor", "stomach" },
+		"tiny cilia", "chemosensor", "vacuoles",
+		"cytoskeletal structure", "membrane", "cortex", "shift",
+		"cytoskeletal filaments", "outer membrane", "outer membranes", "creak", "crack"
+		},
 	*animal_parts[] = { "forelimb", "eye", "face", "foreclaw", "claw tip",
 		"rear claw", "foreclaw", "clawed", "head", "rear limb",
 		"light headed", "neck", "spine", "rear claw tip",
-		"fur", "blood", "lung", "nose", "stomach" },
+		"fur", "blood", "lung", "nose", "stomach",
+		"heart", "skin", "flesh", "beat",
+		"bones", "ear", "ears", "creak", "crack"
+		},
 	*bird_parts[] = { "wing", "eye", "face", "wing", "wing tip",
 		"foot", "wing", "winged", "head", "leg",
 		"light headed", "neck", "spine", "toe",
-		"feathers", "blood", "lung", "bill", "stomach" },
+		"feathers", "blood", "lung", "bill", "stomach",
+		"heart", "skin", "flesh", "beat",
+		"bones", "ear", "ears", "creak", "crack"
+		},
 	*horse_parts[] = { "foreleg", "eye", "face", "forehoof", "hoof tip",
 		"rear hoof", "foreclaw", "hooved", "head", "rear leg",
 		"light headed", "neck", "backbone", "rear hoof tip",
-		"mane", "blood", "lung", "nose", "stomach"},
+		"mane", "blood", "lung", "nose", "stomach",
+		"heart", "skin", "flesh", "beat",
+		"bones", "ear", "ears", "creak", "crack"
+		},
 	*sphere_parts[] = { "appendage", "optic nerve", "body", "tentacle",
-		"tentacle tip", "lower appendage", "tentacle", "tentacled",
-		"body", "lower tentacle", "rotational", "equator", "body",
+		"tentacle tip", "lower appendage", "primary tentacle", "tentacled",
+		"center", "lower tentacle", "rotational", "equator", "skeleton",
 		"lower tentacle tip", "cilia", "life force", "retina",
-		"olfactory nerve", "interior" },
+		"olfactory nerve", "interior",
+		"core", "surface", "subsurface layers", "pulse",
+		"auras", "tympanic membrane", "tympanic membranes", "flicker", "blink out"
+		},
 	*fungus_parts[] = { "mycelium", "visual area", "front", "hypha",
-		"hypha", "root", "strand", "stranded", "cap area",
-		"rhizome", "sporulated", "stalk", "root", "rhizome tip",
-		"spores", "juices", "gill", "gill", "interior" },
-	*vortex_parts[] = { "region", "eye", "front", "minor current",
-		"minor current", "lower current", "swirl", "swirled",
+		"hypha extension", "root", "strand", "stranded", "cap area",
+		"rhizome", "sporulated", "stalk", "skeleton", "rhizome tip",
+		"spores", "juices", "gill", "respiratory orifice", "interior",
+		"hyphal network", "cuticle", "flesh", "twitch",
+		"exoskeleton", "tympanic area", "tympanic area", "stretch", "tear"
+		},
+	*vortex_parts[] = { "region", "eye", "front", "major current",
+		"minor current", "nether current", "swirl", "swirled",
 		"central core", "lower current", "addled", "center",
-		"currents", "edge", "currents", "life force",
-		"center", "leading edge", "interior" },
+		"currents", "edge", "rotational part", "life force",
+		"center", "leading edge", "interior",
+		"core", "vaporous currents", "subsurface currents", "pulse",
+		"bits", "vapor", "vapor", "weaken", "falter"
+		},
 	*snake_parts[] = { "vestigial limb", "eye", "face", "large scale",
-		"large scale tip", "rear region", "scale gap", "scale gapped",
+		"large scale tip", "lower region", "scale gap", "scale gapped",
 		"head", "rear region", "light headed", "neck", "length",
-		"rear scale", "scales", "blood", "lung", "forked tongue", "stomach" },
-	*wallmonst_parts[] = { "long wall", "center core", "top region", "wall extension",
+		"rear scale", "scales", "blood", "lung", "forked tongue", "stomach",
+		"heart", "skin", "flesh", "beat",
+		"bones", "ear", "ears", "creak", "crack"
+		},
+	*wallmonst_parts[] = { "long wall", "center core", "top region", "moving wall",
 		"wall extension", "bottom region", "wall extension", "extended", "central core", "tall wall",
 		"misdirectional", "support column", "large column", "lower extension", "painting",
-		"stone fragments", "inner segment", "front support", "middle wall"},
+		"stone fragments", "inner segment", "front support", "middle wall",
+		"main column", "mineral", "stone", "rattle",
+		"cement", "upper extension", "upper extension", "moan", "shatter"
+		},
 	*turret_parts[] = { "gun arm", "lens", "calculation region", "gun",
 		"laser point", "foot", "laser gun", "gunned", "CPU", "pod",
 		"frenzied", "support", "back", "mainframe", "combat inhibitor",
-		"electrical energy", "RAM", "power", "armor"},
+		"electrical energy", "RAM", "power", "armor",
+		"chip", "cables", "software", "ping",
+		"backbone", "listening unit", "listening unit", "screak", "shatter"
+		},
 	*fish_parts[] = { "fin", "eye", "premaxillary", "pelvic axillary",
 		"pelvic fin", "anal fin", "pectoral fin", "finned", "head", "peduncle",
 		"played out", "gills", "dorsal fin", "caudal fin",
-		"scales", "blood", "gill", "nostril", "stomach" };
+		"scales", "blood", "gill", "nostril", "stomach",
+		"heart", "skin", "flesh", "beat",
+		"bones", "ear", "ears", "creak", "crack"
+		},
 	/* claw attacks are overloaded in mons[]; most humanoids with
 	   such attacks should still reference hands rather than claws */
 	static const char not_claws[] = {

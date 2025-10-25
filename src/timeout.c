@@ -756,7 +756,7 @@ nh_timeout()
 
 	if (u.bodyfluideffect) {
 		u.bodyfluideffect--;
-		if (!u.bodyfluideffect) pline("Your acidic skin disappears.");
+		if (!u.bodyfluideffect) pline("Your acidic %s disappears.", body_part(BODY_SKIN));
 		if (u.bodyfluideffect < 0) u.bodyfluideffect = 0; /* fail safe */
 	}
 
@@ -1299,7 +1299,7 @@ nh_timeout()
 	if (u.thornspell) {
 		u.thornspell--;
 		if (u.thornspell < 0) u.thornspell = 0;
-		if (!(u.thornspell)) pline("Your thorny skin shatters.");
+		if (!(u.thornspell)) pline("Your thorny %s shatters.", body_part(BODY_SKIN));
 	}
 
 	if (u.enchantspell) {
@@ -2840,7 +2840,7 @@ nh_timeout()
 				if (u.legscratching <= 5)
 			    	    pline("It stings a little.");
 				else if (u.legscratching <= 10)
-			    	    pline("It hurts quite a bit as some of your skin is scraped off!");
+			    	    pline("It hurts quite a bit as some of your %s is scraped off!", body_part(BODY_SKIN));
 				else if (u.legscratching <= 20)
 				    pline("Blood drips from your %s as the heel scratches over your open wounds!", body_part(LEG));
 				else if (u.legscratching <= 40)
@@ -2883,7 +2883,7 @@ nh_timeout()
 
 				case 10:
 
-				pline("Suddenly, your footwear squeezes and stings your skin, and you notice their soles are covered with spikes!" );
+				pline("Suddenly, your footwear squeezes and stings your %s, and you notice their soles are covered with spikes!", body_part(BODY_SKIN));
 
 				losehp(rnd(10)+ rnd( monster_difficulty() + 1),"sentient footwear with spikes",KILLED_BY_AN);
 				    if (!rn2(6))
@@ -3175,7 +3175,7 @@ nh_timeout()
 						}
 
 					if (randomkick == 14) {
-						pline("Your block-heeled lady boot kicks you, and burns your skin!");
+						pline("Your block-heeled lady boot kicks you, and burns your %s!", body_part(BODY_SKIN));
 						make_burned(HBurned + (monster_difficulty() * 5),FALSE);
 						losehp(rnd(10) + rnd( monster_difficulty() + 1),"being kicked by block-heeled lady boots",KILLED_BY);
 					}
@@ -3253,7 +3253,7 @@ nh_timeout()
 				if (u.legscratching <= 5)
 			    	    pline("It stings a little.");
 				else if (u.legscratching <= 10)
-			    	    pline("It hurts quite a bit as some of your skin is scraped off!");
+			    	    pline("It hurts quite a bit as some of your %s is scraped off!", body_part(BODY_SKIN));
 				else if (u.legscratching <= 20)
 				    pline("Blood drips from your %s as the heel scratches over your open wounds!", body_part(LEG));
 				else if (u.legscratching <= 40)
@@ -5096,7 +5096,7 @@ nh_timeout()
 
 		 case FEMTRAP_JEANETTA:
 
-			pline("Jeanetta is done collecting your skin shreds. Better don't visit her trophy hall unless you got a strong stomach.");
+			pline("Jeanetta is done collecting your %s shreds. Better don't visit her trophy hall unless you got a strong stomach.", body_part(BODY_SKIN));
 
 		 break;
 

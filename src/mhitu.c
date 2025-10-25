@@ -190,14 +190,14 @@ on the first floor, especially when you're playing as something with drain resis
 			}
 
 			if (uwep && uwep->oartifact == ART_GIRLFUL_BONKING) {
-				pline("Ouch, it hurts your soft skin!");
+				pline("Ouch, it hurts your soft %s!", body_part(BODY_SKIN));
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
 				losehp(d(2,monsterlev), "evil claw attack", KILLED_BY_AN);
 			}
 
 			if (u.twoweap && uswapwep && uswapwep->oartifact == ART_GIRLFUL_BONKING) {
-				pline("Ouch, it hurts your soft skin!");
+				pline("Ouch, it hurts your soft %s!", body_part(BODY_SKIN));
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
 				losehp(d(2,monsterlev), "evil claw attack", KILLED_BY_AN);
@@ -234,7 +234,7 @@ on the first floor, especially when you're playing as something with drain resis
 
 			if (!rn2(player_shades_of_grey() ? 50 : (u.ualign.type == A_LAWFUL) ? 500 : (u.ualign.type == A_NEUTRAL) ? 750 : 1000) && (!issoviet || !rn2(5)) && ((rn2(3) >= armproX) || ((rnd(100) > armprolimitX) && ((armproX < 4) || (rnd(armproX) < 4) ) ) ) ) {
 			if (!Drain_resistance || !rn2(StrongDrain_resistance ? 16 : 4)) {
-			pline("%s sinks %s teeth deep into your skin and drinks your %s!", Monnam(mtmp), mhis(mtmp), body_part(BLOOD));
+			pline("%s sinks %s teeth deep into your %s and drinks your %s!", Monnam(mtmp), mhis(mtmp), body_part(BODY_SKIN), body_part(BLOOD));
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Kha-kha-kha kha kha, eto ne byl otklyuchen, i teper' vy osushilos'. Sovetskaya Pyat' Lo ne khochet, chtoby eta igra byla vyigrana v lyubom sluchaye." : "SCHHUEUEOEUEOEUEOEUEOE");
 		      losexp("life drainage", FALSE, TRUE);
 			}
@@ -248,7 +248,7 @@ kseniaagain:
 				    thick_skinned(youmonst.data) ? '.' : YouBecameThickSkinned ? '.' : '!');
 
 			if (humanoid(mtmp->data) && is_female(mtmp->data) && FemtrapActiveJeanetta) {
-				pline("%s uses her cute little boots to scrape a bit of skin off your %s!", Monnam(mtmp), body_part(LEG));
+				pline("%s uses her cute little boots to scrape a bit of %s off your %s!", Monnam(mtmp), body_part(BODY_SKIN), body_part(LEG));
 
 		/* this can now increase the player's legscratching variable. Since the damage you take depends on how much
 		 * legscratching you already have, and you might get hit by a long-lasting effect of this trap, we need to
@@ -795,12 +795,12 @@ elena12:
 				}
 
 				if (randomkick == 4) {
-				pline("%s painfully stomps your body with %s erotic lady boots!", Monnam(mtmp), mhis(mtmp) );
-				u.uhp -= 1;
-				u.uhpmax -= 1;
-				u.uen -= 1;
-				u.uenmax -= 1;
-				losehp(d(3,monsterlev), "being stomped by an erotic lady boot", KILLED_BY);
+					pline("%s painfully stomps your body with %s erotic lady boots!", Monnam(mtmp), mhis(mtmp) );
+					u.uhp -= 1;
+					u.uhpmax -= 1;
+					u.uen -= 1;
+					u.uenmax -= 1;
+					losehp(d(3,monsterlev), "being stomped by an erotic lady boot", KILLED_BY);
 				}
 
 				if (randomkick == 5) {
@@ -812,30 +812,30 @@ elena12:
 				}
 
 				if (randomkick == 6) {
-				pline("Think of the sweet red leather your sputa will flow down.");
-				morehungry(1000);
-	      make_vomiting(Vomiting+20, TRUE);
-		if (Sick && Sick < 100) 	set_itimeout(&Sick, (Sick * 2) + 10); /* higher chance to survive long enough --Amy */
+					pline("Think of the sweet red leather your sputa will flow down.");
+					morehungry(1000);
+				      make_vomiting(Vomiting+20, TRUE);
+					if (Sick && Sick < 100) 	set_itimeout(&Sick, (Sick * 2) + 10); /* higher chance to survive long enough --Amy */
 				}
 
 				if (randomkick == 7) {
-				pline("You decide to close your %ss for a while, thinking about the lovely %s and %s sexy red overknees.", body_part(EYE), m_monnam(mtmp), mhis(mtmp) );
-		    make_blinded(Blinded+monsterlev,FALSE);
+					pline("You decide to close your %ss for a while, thinking about the lovely %s and %s sexy red overknees.", body_part(EYE), m_monnam(mtmp), mhis(mtmp) );
+				    make_blinded(Blinded+monsterlev,FALSE);
 				}
 
 				if (randomkick == 8) {
-				pline("Wow... those wonderful high heels are soooooo mesmerizing and beautiful...");
-		make_hallucinated(HHallucination + monsterlev,FALSE,0L);
+					pline("Wow... those wonderful high heels are soooooo mesmerizing and beautiful...");
+				make_hallucinated(HHallucination + monsterlev,FALSE,0L);
 				}
 
 				if (randomkick == 9) {
-				pline("You wonder where %s got %s plateau heels from. Who the hell wears those in a dungeon, anyway? Your %s spins in bewilderment.", mon_nam(mtmp), mhis(mtmp), body_part(HEAD));
-		    make_confused(HConfusion+monsterlev,FALSE);
+					pline("You wonder where %s got %s plateau heels from. Who the hell wears those in a dungeon, anyway? Your %s spins in bewilderment.", mon_nam(mtmp), mhis(mtmp), body_part(HEAD));
+				    make_confused(HConfusion+monsterlev,FALSE);
 				}
 
 				if (randomkick == 10) {
-				pline("Argh! The massive heel strained a vital muscle!");
-		    make_stunned(HStun+monsterlev,FALSE);
+					pline("Argh! The massive heel strained a vital muscle!");
+				    make_stunned(HStun+monsterlev,FALSE);
 				}
 
 				if (randomkick == 11) {
@@ -852,23 +852,23 @@ elena12:
 				}
 
 				if (randomkick == 12) {
-				pline("Ow, %s is stomping you repeatedly with %s slutty boots!", m_monnam(mtmp), mhis(mtmp));
-		    make_numbed(HNumbed+monsterlev,FALSE);
+					pline("Ow, %s is stomping you repeatedly with %s slutty boots!", m_monnam(mtmp), mhis(mtmp));
+				    make_numbed(HNumbed+monsterlev,FALSE);
 				}
 
 				if (randomkick == 13) {
-				pline("The fact that %s is wearing such incredibly high heels is giving you the creeps.", m_monnam(mtmp));
-		    make_frozen(HFrozen+monsterlev,FALSE);
+					pline("The fact that %s is wearing such incredibly high heels is giving you the creeps.", m_monnam(mtmp));
+				    make_frozen(HFrozen+monsterlev,FALSE);
 				}
 
 				if (randomkick == 14) {
-				pline("Your skin is burned by %s's block-heeled lady boots!", m_monnam(mtmp));
-		    make_burned(HBurned+monsterlev,FALSE);
+					pline("Your %s is burned by %s's block-heeled lady boots!", m_monnam(mtmp), body_part(BODY_SKIN));
+				    make_burned(HBurned+monsterlev,FALSE);
 				}
 
 				if (randomkick == 15) {
-				pline("You shudder in fear as you see the violent %s using %s high-heeled plateau boots as lethal weapons.", l_monnam(mtmp), mhis(mtmp));
-		    make_feared(HFeared+monsterlev,FALSE);
+					pline("You shudder in fear as you see the violent %s using %s high-heeled plateau boots as lethal weapons.", l_monnam(mtmp), mhis(mtmp));
+				    make_feared(HFeared+monsterlev,FALSE);
 				}
 
 				if (FemtrapActiveElena && !rn2(3)) {
@@ -956,7 +956,7 @@ elena14:
 			if (u.legscratching <= 5)
 		    	    pline("It stings a little.");
 			else if (u.legscratching <= 10)
-		    	    pline("It hurts quite a bit as some of your skin is scraped off!");
+		    	    pline("It hurts quite a bit as some of your %s is scraped off!", body_part(BODY_SKIN));
 			else if (u.legscratching <= 20)
 			    pline("Blood drips from your %s as the heel scratches over your open wounds!", body_part(LEG));
 			else if (u.legscratching <= 40)
@@ -1224,9 +1224,9 @@ elena20:
 
 				if (comboscratch == 1) {
 					if (u.legscratching <= 5)
-				    	    pline("Little skin rashes are developing on your shins. It actually feels soothing.");
+				    	    pline("Little %s rashes are developing on your shins. It actually feels soothing.", body_part(BODY_SKIN));
 					else if (u.legscratching <= 10)
-				    	    pline("You see that the high heel scratched a bit of skin off your shins.");
+				    	    pline("You see that the high heel scratched a bit of %s off your shins.", body_part(BODY_SKIN));
 					else if (u.legscratching <= 20)
 					    pline("The heel actually managed to hurt your %s, and you're bleeding a little!", body_part(LEG));
 					else if (u.legscratching <= 40)
@@ -1236,9 +1236,9 @@ elena20:
 				}
 				else if (comboscratch == 2) {
 					if (u.legscratching <= 5)
-				    	    pline("When the heel scratched back up again, you noticed your unprotected skin getting hurt.");
+				    	    pline("When the heel scratched back up again, you noticed your unprotected %s getting hurt.", body_part(BODY_SKIN));
 					else if (u.legscratching <= 10)
-				    	    pline("You love the fact that the heel ripped off some of your skin.");
+				    	    pline("You love the fact that the heel ripped off some of your %s.", body_part(BODY_SKIN));
 					else if (u.legscratching <= 20)
 					    pline("Wow, the high heel has caused a bloody wound with their scratching combo!");
 					else if (u.legscratching <= 40)
@@ -1248,9 +1248,9 @@ elena20:
 				}
 				else if (comboscratch == 3) {
 					if (u.legscratching <= 5)
-				    	    pline("Your skin is scratched very beautifully by the lovely stiletto heel.");
+				    	    pline("Your %s is scratched very beautifully by the lovely stiletto heel.", body_part(BODY_SKIN));
 					else if (u.legscratching <= 10)
-				    	    pline("The female high-heeled combat boot destroyed large amounts of your skin!");
+				    	    pline("The female high-heeled combat boot destroyed large amounts of your %s!", body_part(BODY_SKIN));
 					else if (u.legscratching <= 20)
 					    pline("You see your %s squirting while the unfair high heel abuses your %s with their scratching combos!", body_part(BLOOD), body_part(LEG));
 					else if (u.legscratching <= 40)
@@ -1330,7 +1330,7 @@ elena22:
 					if (u.legscratching <= 5)
 				    	    pline("It stings a little.");
 					else if (u.legscratching <= 10)
-				    	    pline("It hurts quite a bit as some of your skin is scraped off!");
+				    	    pline("It hurts quite a bit as some of your %s is scraped off!", body_part(BODY_SKIN));
 					else if (u.legscratching <= 20)
 					    pline("Blood drips from your %s as the heel scratches over your open wounds!", body_part(LEG));
 					else if (u.legscratching <= 40)
@@ -1363,21 +1363,21 @@ elena23:
 				if (monsterlev <= 0) monsterlev = 1;
 				randomkick = rnd(12);
 				if (randomkick == 1) {
-				pline("%s steps on your %s with %s block heels!", Monnam(mtmp), body_part(HAND), mhis(mtmp) );
+					pline("%s steps on your %s with %s block heels!", Monnam(mtmp), body_part(HAND), mhis(mtmp) );
 				    incr_itimeout(&Glib, 20); /* painfully jamming your fingers */
 				    flags.botl = TRUE;
-				losehp(d(1,monsterlev), "lovely block-heeled boot", KILLED_BY_AN);
+					losehp(d(1,monsterlev), "lovely block-heeled boot", KILLED_BY_AN);
 				}
 				if (randomkick == 2) {
-				pline("%s jams your %ss with %s wonderful high-heeled combat boots!", Monnam(mtmp), body_part(TOE), mhis(mtmp) );
+					pline("%s jams your %ss with %s wonderful high-heeled combat boots!", Monnam(mtmp), body_part(TOE), mhis(mtmp) );
 
-				register long side = rn2(2) ? RIGHT_SIDE : LEFT_SIDE;
-				  const char *sidestr = (side == RIGHT_SIDE) ? "right" : "left";
-			    set_wounded_legs(side, HWounded_legs + rnd(60-ACURR(A_DEX)));
-			    exercise(A_STR, FALSE);
-			    exercise(A_DEX, FALSE);
+					register long side = rn2(2) ? RIGHT_SIDE : LEFT_SIDE;
+					  const char *sidestr = (side == RIGHT_SIDE) ? "right" : "left";
+				    set_wounded_legs(side, HWounded_legs + rnd(60-ACURR(A_DEX)));
+				    exercise(A_STR, FALSE);
+				    exercise(A_DEX, FALSE);
 
-				losehp(d(1,monsterlev), "block-heeled lady boot", KILLED_BY_AN);
+					losehp(d(1,monsterlev), "block-heeled lady boot", KILLED_BY_AN);
 				}
 
 				if (randomkick == 3) {
@@ -1399,61 +1399,60 @@ elena23:
 				}
 
 				if (randomkick == 4) {
-				pline("%s painfully stomps your body with %s fleecy combat boots!", Monnam(mtmp), mhis(mtmp) );
-				u.uhp -= 1;
-				u.uhpmax -= 1;
-				u.uen -= 1;
-				u.uenmax -= 1;
-				losehp(d(3,monsterlev), "being stomped by a fleecy combat boot", KILLED_BY);
+					pline("%s painfully stomps your body with %s fleecy combat boots!", Monnam(mtmp), mhis(mtmp) );
+					u.uhp -= 1;
+					u.uhpmax -= 1;
+					u.uen -= 1;
+					u.uenmax -= 1;
+					losehp(d(3,monsterlev), "being stomped by a fleecy combat boot", KILLED_BY);
 				}
 
 				if (randomkick == 5) {
-				pline("The beautiful block heel kicks your ass, which feels very fleecy-soft.");
-				morehungry(monsterlev * 5);
-
+					pline("The beautiful block heel kicks your ass, which feels very fleecy-soft.");
+					morehungry(monsterlev * 5);
 				}
 
 				if (randomkick == 6) {
-				pline("The massive heel hits your optical nerve, and suddenly you can't see a thing." );
-				make_blinded(Blinded+monsterlev,FALSE);
+					pline("The massive heel hits your optical nerve, and suddenly you can't see a thing." );
+					make_blinded(Blinded+monsterlev,FALSE);
 				}
 
 				if (randomkick == 7) {
-				pline("Suddenly %s fully hits your %s with %s massive block heel.", mon_nam(mtmp), body_part(HEAD), mhis(mtmp) );
-				make_confused(HConfusion+monsterlev,FALSE);
+					pline("Suddenly %s fully hits your %s with %s massive block heel.", mon_nam(mtmp), body_part(HEAD), mhis(mtmp) );
+					make_confused(HConfusion+monsterlev,FALSE);
 				}
 
 				if (randomkick == 8) {
-				pline("You sustain a critical hit by the sexy high heel.");
-				make_stunned(HStun+monsterlev,FALSE);
+					pline("You sustain a critical hit by the sexy high heel.");
+					make_stunned(HStun+monsterlev,FALSE);
 				}
 
 				if (randomkick == 9) {
-				if (!rn2(25)) {
-					pline("The lovely block heel was contaminated! Seems they're not really as lovely as you thought!" );
-					    make_sick(rn1(25,25), "contaminated block heel", TRUE, SICK_VOMITABLE);
-					losehp(d(1,monsterlev), "unclean block heel", KILLED_BY_AN);
-					}
-				else {
-				pline("You're hit by a poisoned part of %s's footwear!", mon_nam(mtmp));
+					if (!rn2(25)) {
+						pline("The lovely block heel was contaminated! Seems they're not really as lovely as you thought!" );
+						make_sick(rn1(25,25), "contaminated block heel", TRUE, SICK_VOMITABLE);
+						losehp(d(1,monsterlev), "unclean block heel", KILLED_BY_AN);
+						}
+					else {
+						pline("You're hit by a poisoned part of %s's footwear!", mon_nam(mtmp));
 						poisoned("block heel", A_STR, "poisoned block heel", 8);
-					losehp(d(1,monsterlev), "impregnated block heel", KILLED_BY_AN);
+						losehp(d(1,monsterlev), "impregnated block heel", KILLED_BY_AN);
 					}
 				}
 
 				if (randomkick == 10) {
-				pline("Ow, %s is stomping you repeatedly with %s wonderful combat boots!", mon_nam(mtmp), mhis(mtmp));
-				make_numbed(HNumbed+monsterlev,FALSE);
+					pline("Ow, %s is stomping you repeatedly with %s wonderful combat boots!", mon_nam(mtmp), mhis(mtmp));
+					make_numbed(HNumbed+monsterlev,FALSE);
 				}
 
 				if (randomkick == 11) {
-				pline("The sexy block heel scrapes quite some skin off your shins!");
-				make_burned(HBurned+monsterlev,FALSE);
+					pline("The sexy block heel scrapes quite some %s off your shins!", body_part(BODY_SKIN));
+					make_burned(HBurned+monsterlev,FALSE);
 				}
 
 				if (randomkick == 12) {
-				pline("You are hit by %s's high-heeled female footwear, and suddenly become afraid of %s like the little coward you are. Wimp. :-P", l_monnam(mtmp), mhis(mtmp));
-				make_feared(HFeared+monsterlev,FALSE);
+					pline("You are hit by %s's high-heeled female footwear, and suddenly become afraid of %s like the little coward you are. Wimp. :-P", l_monnam(mtmp), mhis(mtmp));
+					make_feared(HFeared+monsterlev,FALSE);
 				}
 				if (FemtrapActiveElena && !rn2(3)) {
 					pline("You long for more!");
@@ -1644,7 +1643,7 @@ elena23:
 
 			if ((uarmg && itemhasappearance(uarmg, APP_PRINCESS_GLOVES)) && !rn2(15)) {
 
-				pline("%s angrily cuts up your unprotected princess skin.", Monnam(mtmp));
+				pline("%s angrily cuts up your unprotected princess %s.", Monnam(mtmp), body_part(BODY_SKIN));
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
 				monsterlev = rnd(monsterlev);
@@ -1657,7 +1656,7 @@ elena23:
 
 			if ((uarmf && itemhasappearance(uarmf, APP_PRINCESS_PUMPS) ) && !rn2(15)) {
 
-				pline("%s angrily cuts up your unprotected princess skin.", Monnam(mtmp));
+				pline("%s angrily cuts up your unprotected princess %s.", Monnam(mtmp), body_part(BODY_SKIN));
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
 				monsterlev = rnd(monsterlev);
@@ -3301,7 +3300,7 @@ elena36:
 elena37:
 					u.cnd_shoedamageamount++;
 					if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
-					pline("Ouch! The spiked boot soles bore themselves into your skin!");
+					pline("Ouch! The spiked boot soles bore themselves into your %s!", body_part(BODY_SKIN));
 					losehp(rnd(10),"a spiked battle boot",KILLED_BY);
 				    if (!rn2(6))
 					poisoned("spikes", A_STR, "poisoned boot spike", 8);
@@ -6509,7 +6508,7 @@ newboss:
 				if(u.uenmax == 0) {
 					u.youaredead = 1;
 					/* dnethack wouldn't do anything here, but this is the Evil Patch(TM) - instadeath! */
-					You_feel("little mouths sucking on your exposed skin... and scream in agony as your body is sucked away completely.");
+					You_feel("little mouths sucking on your exposed %s... and scream in agony as your body is sucked away completely.", body_part(BODY_SKIN));
 
 					killer = "being sucked into the elder priest's belly and digested whole";
 					killer_format = KILLED_BY;
@@ -7556,7 +7555,7 @@ hitmu(mtmp, mattk)
 
 			if (objects[otmp->otyp].oc_material == MT_SILVER &&
 				(hates_silver(youmonst.data) || (uarmf && uarmf->oartifact == ART_IRIS_S_HIDDEN_ALLERGY) || (uarmh && uarmh->oartifact == ART_IRIS_S_SECRET_VULNERABILIT) || (uarmc && uarmc->oartifact == ART_IRIS_S_UNREVEALED_LOVE) || (uarmg && uarmg->oartifact == ART_IRIS_S_FAVORED_MATERIAL) || autismweaponcheck(ART_PORKMAN_S_BALLS_OF_STEEL)) ) {
-			    pline("The silver sears your flesh!");
+			    pline("The silver sears your %s!", body_part(BODY_FLESH));
 			}
 			if (objects[otmp->otyp].oc_material == MT_COPPER &&
 				hates_copper(youmonst.data)) {
@@ -7587,8 +7586,8 @@ hitmu(mtmp, mattk)
 			    if (otmp->oartifact == ART_STAKE_OF_VAN_HELSING) {
 				if (!rn2(10)) {
 				    u.youaredead = 1;
-				    pline("%s plunges the stake into your heart.",
-					    Monnam(mtmp));
+				    pline("%s plunges the stake into your %s.",
+					    Monnam(mtmp), body_part(HEART));
 				    killer = "a wooden stake in the heart.";
 				    killer_format = KILLED_BY_AN;
 				    u.ugrave_arise = NON_PM; /* No corpse */
@@ -7611,7 +7610,7 @@ hitmu(mtmp, mattk)
 
 			    if (otmp->oartifact == ART_VAMPDOAING && rn2(2)) {
 				    u.youaredead = 1;
-				    pline("%s plunges the stake into your heart.", Monnam(mtmp));
+				    pline("%s plunges the stake into your %s.", Monnam(mtmp), body_part(HEART));
 				    killer = "a wooden stake in the heart.";
 				    killer_format = KILLED_BY_AN;
 				    u.ugrave_arise = NON_PM; /* No corpse */
@@ -8435,7 +8434,7 @@ dopois:
 		if (statsavingthrow) break;
 		if (uncancelled && multi >= 0 && !rn2(3)) {
 		    if (Free_action && rn2(StrongFree_action ? 100 : 20))
-			You_feel("horrible tentacles probing your flesh!");
+			You_feel("horrible tentacles probing your %s!", body_part(BODY_FLESH));
 		    else {
 			if (Blind) You("are mercilessly tickled!");
 			else You("are mercilessly tickled by %s!", mon_nam(mtmp));
@@ -9064,12 +9063,12 @@ dopois:
 				}
 
 				else if (u.ualign.record == 0) {
-					pline("The yellow liquid tickles your skin.");
+					pline("The yellow liquid tickles your %s.", body_part(BODY_SKIN));
 					losehp(1, "being pulled into a urine lake while nominally aligned", KILLED_BY);
 				}
 
 				else if (u.ualign.record < 0) {
-					pline("The yellow liquid %scorrodes your unprotected skin!", !Acid_resistance ? "severely " : "");
+					pline("The yellow liquid %scorrodes your unprotected %s!", !Acid_resistance ? "severely " : "", body_part(BODY_SKIN));
 					losehp(rnd(10 + (level_difficulty() / 2)), "being pulled into a urine lake", KILLED_BY);
 					if (!Acid_resistance) losehp(rnd(30 + level_difficulty()), "being pulled into a urine lake", KILLED_BY);
 					if (!rn2(3)) badeffect();
@@ -10961,7 +10960,7 @@ dopois:
 
 			if (objects[otmp->otyp].oc_material == MT_SILVER &&
 				(hates_silver(youmonst.data) || (uarmf && uarmf->oartifact == ART_IRIS_S_HIDDEN_ALLERGY) || (uarmh && uarmh->oartifact == ART_IRIS_S_SECRET_VULNERABILIT) || (uarmc && uarmc->oartifact == ART_IRIS_S_UNREVEALED_LOVE) || (uarmg && uarmg->oartifact == ART_IRIS_S_FAVORED_MATERIAL) || autismweaponcheck(ART_PORKMAN_S_BALLS_OF_STEEL) ) ) {
-			    pline("The silver sears your flesh!");
+			    pline("The silver sears your %s!", body_part(BODY_FLESH));
 			}
 			if (objects[otmp->otyp].oc_material == MT_COPPER &&
 				hates_copper(youmonst.data)) {
@@ -10992,8 +10991,8 @@ dopois:
 			    if (otmp->oartifact == ART_STAKE_OF_VAN_HELSING) {
 				if (!rn2(10)) {
 				    u.youaredead = 1;
-				    pline("%s plunges the stake into your heart.",
-					    Monnam(mtmp));
+				    pline("%s plunges the stake into your %s.",
+					    Monnam(mtmp), body_part(HEART));
 				    killer = "a wooden stake in the heart.";
 				    killer_format = KILLED_BY_AN;
 				    u.ugrave_arise = NON_PM; /* No corpse */
@@ -11016,7 +11015,7 @@ dopois:
 
 			    if (otmp->oartifact == ART_VAMPDOAING && rn2(2)) {
 				    u.youaredead = 1;
-				    pline("%s plunges the stake into your heart.", Monnam(mtmp));
+				    pline("%s plunges the stake into your %s.", Monnam(mtmp), body_part(HEART));
 				    killer = "a wooden stake in the heart.";
 				    killer_format = KILLED_BY_AN;
 				    u.ugrave_arise = NON_PM; /* No corpse */
@@ -20543,9 +20542,9 @@ enjoyable:
 
 		if ((uarmc && uarmc->oartifact == ART_CATHERINE_S_SEXUALITY) || complications) {
 			u.youaredead = 1;
-			pline("Oh no... your heart... it's... getting... unsteady...");
+			pline("Oh no... your %s... it's... getting... unsteady...", body_part(HEART));
 			pline("BEEPBEEP BEEPBEEP BEEP BEEP BEEEEEEEEEEEEEEEEEEEEP!");
-			pline("You die from a heart failure.");
+			pline("You die from a %s failure.", body_part(HEART));
 			killer_format = KILLED_BY;
 			killer = "complications from childbirth";
 			done(DIED);

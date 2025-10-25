@@ -3291,7 +3291,9 @@ boolean pick;
 
 	/* strong winds over the Grand Canyon. Please don't ask me how they can continue working underwater. :-) --Amy */
 
-		pline(FunnyHallu ? "This whirl is like the eye of a hurricane, but it tickles!" : "There are scathing winds here! Your skin is scraped off!");
+		if (FunnyHallu) pline("This whirl is like the eye of a hurricane, but it tickles!");
+		else pline("There are scathing winds here! Your %s is scraped off!", body_part(BODY_SKIN));
+
 		losehp(rnz(u.legscratching), "scathing winds", KILLED_BY);
 
 		You("tumble...");

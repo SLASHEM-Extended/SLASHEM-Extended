@@ -2811,7 +2811,7 @@ convertdone:
 
 				case 1: pline("%s puts the knife to %s lower %s and cuts...", Monnam(mtmp), mhis(mtmp), mbodypart(mtmp, ARM)); break;
 				case 2: pline("%s uses a sharp object to cut open %s belly...", Monnam(mtmp), mhis(mtmp)); break;
-				case 3: pline("%s slides %s body along a rough surface and sustains terrible skin rashes.", Monnam(mtmp), mhis(mtmp)); break;
+				case 3: pline("%s slides %s body along a rough surface and sustains terrible %s rashes.", Monnam(mtmp), mhis(mtmp), mbodypart(mtmp, BODY_SKIN)); break;
 				case 4: pline("%s rips %s butt open with a metallic edge.", Monnam(mtmp), mhis(mtmp)); break;
 				case 5: pline("%s scratches up and down %s %s with a sexy leather pump until it starts bleeding.", Monnam(mtmp), mhis(mtmp), mbodypart(mtmp, LEG)); break;
 				case 6: pline("%s slits %s %s full length with a sharp-edged zipper.", Monnam(mtmp), mhis(mtmp), mbodypart(mtmp, LEG)); break;

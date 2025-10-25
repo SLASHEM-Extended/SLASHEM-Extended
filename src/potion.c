@@ -3089,8 +3089,8 @@ badeffect()
 					 }
 				}
 
-				else if (!otmp2) pline("Your skin itches.");
-			      else if(!destroy_arm(otmp2)) pline("Your skin itches.");
+				else if (!otmp2) pline("Your %s itches.", body_part(BODY_SKIN));
+			      else if(!destroy_arm(otmp2)) pline("Your %s itches.", body_part(BODY_SKIN));
 
 			}
 
@@ -3532,7 +3532,7 @@ badeffect()
 		break;
 
 		case 320:
-			pline("Suddenly your %s hurts!", body_part(rn2(19) ) );
+			pline("Suddenly your %s hurts!", body_part(rn2(MAXBODYPART) ) );
 			losehp(1 + u.chokhmahdamage + rnd(u.ualign.sins > 0 ? (isqrt(u.ualign.sins) + 1) : (1)),"escalating damage effect",KILLED_BY_AN);
 			u.chokhmahdamage++;
 
@@ -4652,8 +4652,8 @@ reallybadeffect()
 					 }
 				}
 
-				else if (!otmp2) pline("Your skin itches.");
-			      else if(!destroy_arm(otmp2)) pline("Your skin itches.");
+				else if (!otmp2) pline("Your %s itches.", body_part(BODY_SKIN));
+			      else if(!destroy_arm(otmp2)) pline("Your %s itches.", body_part(BODY_SKIN));
 
 			}
 
@@ -4944,7 +4944,7 @@ reallybadeffect()
 		break;
 
 		case 49:
-			pline("Suddenly your %s hurts!", body_part(rn2(19) ) );
+			pline("Suddenly your %s hurts!", body_part(rn2(MAXBODYPART) ) );
 			losehp(1 + u.chokhmahdamage + rnd(u.ualign.sins > 0 ? (isqrt(u.ualign.sins) + 1) : (1)),"escalating damage effect",KILLED_BY_AN);
 			u.chokhmahdamage++;
 
@@ -7912,8 +7912,8 @@ destroyarmorattack()
 			}
 		}
 
-		else if (!otmp2) pline("Your skin itches.");
-	      else if(!destroy_arm(otmp2)) pline("Your skin itches.");
+		else if (!otmp2) pline("Your %s itches.", body_part(BODY_SKIN));
+	      else if(!destroy_arm(otmp2)) pline("Your %s itches.", body_part(BODY_SKIN));
 
 	}
 

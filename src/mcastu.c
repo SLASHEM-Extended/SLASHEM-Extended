@@ -677,7 +677,7 @@ castmu(mtmp, mattk, thinks_it_foundyou, foundyou)
 			dmg = 0;
 		} else if (maybe_polyd(is_vampire(youmonst.data), Race_if(PM_VAMPIRE)) || Role_if(PM_GOFF) ) {
 			dmg *= 2; /* vampires are susceptible to sunlight --Amy */
-			pline("Your pale skin is seared!");
+			pline("Your pale %s is seared!", body_part(BODY_SKIN));
 		}
 		break;
 	    case AD_SPC2:
@@ -1138,8 +1138,8 @@ newbossRLN:
 			 }
 		}
 
-		else if (!otmp2) pline("Your skin itches.");
-	      else if(!destroy_arm(otmp2)) pline("Your skin itches.");
+		else if (!otmp2) pline("Your %s itches.", body_part(BODY_SKIN));
+	      else if(!destroy_arm(otmp2)) pline("Your %s itches.", body_part(BODY_SKIN));
 	}
 	dmg = 0;
 	break;
@@ -2477,7 +2477,7 @@ newboss:
 	if (dmg > 1) dmg /= 2;
 
 	if (dmg <= 5)
-	    Your("skin itches badly for a moment.");
+	    Your("%s itches badly for a moment.", body_part(BODY_SKIN));
 	else if (dmg <= 10)
 	    pline("Wounds appear on your body!");
 	else if (dmg <= 20)

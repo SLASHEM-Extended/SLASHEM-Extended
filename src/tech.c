@@ -7612,7 +7612,7 @@ breakstare:
 	    case T_IRON_SKIN:
 		num = 9 + techlevX(tech_no);
 	    	set_tech_duration(tech_no, num + 1);
-		pline("Your skin becomes harder.");
+		pline("Your %s becomes harder.", body_part(BODY_SKIN));
 
 	      t_timeout = rnz(2000);
 	      break;
@@ -13562,7 +13562,7 @@ tech_timeout()
 			You("stop whirling.");
 			break;
 		    case T_IRON_SKIN:
-			Your("skin is no longer hard as iron.");
+			Your("%s is no longer hard as iron.", body_part(BODY_SKIN));
 			break;
 		    case T_POWER_SURGE:
 			pline_The("awesome power within you fades.");

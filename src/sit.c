@@ -1061,7 +1061,8 @@ rndcurse()			/* curse a few inventory items at random! */
 
 		if (!rn2(symcurchance)) {
 			cursesymbiote();
-			pline(FunnyHallu ? "You feel like you have a heart attack!" : "Your symbiote feels deathly cold!");
+			if (FunnyHallu) pline("You feel like you have a %s attack!", body_part(HEART));
+			else pline("Your symbiote feels deathly cold!");
 		}
 	}
 

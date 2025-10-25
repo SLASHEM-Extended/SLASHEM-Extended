@@ -7536,8 +7536,8 @@ destroyagain:
 			 }
 		}
 
-		else if (!otmp2) pline("Your skin itches.");
-	      else if(!destroy_arm(otmp2)) pline("Your skin itches.");
+		else if (!otmp2) pline("Your %s itches.", body_part(BODY_SKIN));
+	      else if(!destroy_arm(otmp2)) pline("Your %s itches.", body_part(BODY_SKIN));
 		exercise(A_STR, FALSE);
 		exercise(A_CON, FALSE);
 

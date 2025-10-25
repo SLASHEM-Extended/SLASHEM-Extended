@@ -422,7 +422,7 @@ struct monst *mtmp;
 
 		u.cnd_nadjatrapcnt++;
 
-		pline("%s is really angry about the fact that you tried to hit her, and uses a pair of buckled shoes to scratch up and down your %s, ripping a lot of skin to shreds.", Monnam(mtmp), body_part(LEG));
+		pline("%s is really angry about the fact that you tried to hit her, and uses a pair of buckled shoes to scratch up and down your %s, ripping a lot of %s to shreds.", Monnam(mtmp), body_part(LEG), body_part(BODY_SKIN));
 
 		/* this can now increase the player's legscratching variable. Since the damage you take depends on how much
 		 * legscratching you already have, and you might get hit by a long-lasting effect of this trap, we need to
@@ -438,7 +438,7 @@ struct monst *mtmp;
 			losehp(rnd(u.legscratching), "the wrath of Nadja's buckled lady shoes", KILLED_BY);
 		}
 		if (u.legscratching > 40) {
-			pline("You are severely hurt, but %s just doesn't want to stop punishing you with her very female buckled shoes. She continues destroying your unprotected skin and announces that if you hit her one more time, she will kill you.", mon_nam(mtmp));
+			pline("You are severely hurt, but %s just doesn't want to stop punishing you with her very female buckled shoes. She continues destroying your unprotected %s and announces that if you hit her one more time, she will kill you.", mon_nam(mtmp), body_part(BODY_SKIN));
 			losehp(rnd(u.legscratching), "the wrath of Nadja's buckled lady shoes", KILLED_BY);
 		}
 	}
@@ -6291,7 +6291,7 @@ melatechoice:
               || (!(PlayerCannotUseSkills) && (P_SKILL(weapon_type(obj)) >= P_EXPERT))
               || obj->oartifact == ART_STAKE_OF_VAN_HELSING) {
                 if (!rn2(10)) {
-                    You("plunge your stake into the heart of %s.", mon_nam(mon));
+                    You("plunge your stake into the %s of %s.", mbodypart(mon, HEART), mon_nam(mon));
                     vapekilled = TRUE;
                 } else {
                     You("drive your stake into %s.", mon_nam(mon));
@@ -6311,7 +6311,7 @@ melatechoice:
             }
 
 		if (obj->oartifact == ART_VAMPDOAING && rn2(2)) {
-			You("plunge your stake into the heart of %s.", mon_nam(mon));
+			You("plunge your stake into the %s of %s.", mbodypart(mon, HEART), mon_nam(mon));
 			vapekilled = TRUE;
 		}
 
@@ -6773,7 +6773,7 @@ melatechoice:
 			case 237: pline("Your sexy leather pumps scratch up and down %s's %s.", mon_nam(mon), makeplural(mbodypart(mon, LEG))); break;
 			case 238: pline("You draw %s by sliding your female mocassins over %s's %s.", mbodypart(mon, BLOOD), mon_nam(mon), makeplural(mbodypart(mon, HAND))); break;
 			case 239: pline("With your Nike(TM) sneakers, you place a strong kick into %s's eggs.", mon_nam(mon)); break;
-			case 240: pline("You scratch open %s's skin with your velcro shoes.", mon_nam(mon)); break;
+			case 240: pline("You scratch open %s's %s with your velcro shoes.", mon_nam(mon), mbodypart(mon, BODY_SKIN)); break;
 			case 241: pline("You blast %s with a fire bolt.", mon_nam(mon)); break;
 			case 242: pline("You chill %s with a frost bolt.", mon_nam(mon)); break;
 			case 243: pline("You dig into %s's body with your pick-axe.", mon_nam(mon)); break;
@@ -6816,30 +6816,30 @@ melatechoice:
 			case 280: pline("You mercilessly clobber %s's groin, who doubles over in pain.", mon_nam(mon)); break;
 			case 281: pline("Your blow slams into %s's %s with overwhelming impact.", mon_nam(mon), mbodypart(mon, ARM)); break;
 			case 282: pline("Your crushing swipe slams right into %s's %s, fracturing a bone.", mon_nam(mon), mbodypart(mon, LEG)); break;
-			case 283: pline("Your vicious hit tears %s's skin open.", mon_nam(mon)); break;
+			case 283: pline("Your vicious hit tears %s's %s open.", mon_nam(mon), mbodypart(mon, BODY_SKIN)); break;
 			case 284: pline("You nicked %s, leaving a small scar.", mon_nam(mon)); break;
 			case 285: pline("The point of your weapon glances off %s's knuckle bone, opening a small wound.", mon_nam(mon)); break;
 			case 286: pline("You stab %s's %s, causing it to lose balance.", mon_nam(mon), mbodypart(mon, LEG)); break;
 			case 287: pline("%s ducks and almost manages to avoid your thrust, but ends up getting hit in the %s.", Monnam(mon), mbodypart(mon, HEAD)); break;
-			case 288: pline("You aim a blow straight at %s's heart, but end up scraping the ribs instead.", mon_nam(mon)); break;
+			case 288: pline("You aim a blow straight at %s's %s, but end up scraping the ribs instead.", mon_nam(mon), mbodypart(mon, HEART)); break;
 			case 289: pline("You sting %s, who receives a new scar.", mon_nam(mon)); break;
-			case 290: pline("You leave a small burn scar on %s's skin.", mon_nam(mon)); break;
+			case 290: pline("You leave a small burn scar on %s's %s.", mon_nam(mon), mbodypart(mon, BODY_SKIN)); break;
 			case 291: pline("You blast across %s's %s, whose skull is encased in energy and dazed.", mon_nam(mon), mbodypart(mon, HEAD)); break;
 			case 292: pline("You spray hideous acrid fumes causing %s to gasp and choke.", mon_nam(mon)); break;
 			case 293: pline("You kick %s in the chest, who is knocked off its %s by the force of your blast.", mon_nam(mon), makeplural(mbodypart(mon, FOOT))); break;
-			case 294: pline("You disfigure %s's skin, granting it a horrific scar.", mon_nam(mon)); break;
+			case 294: pline("You disfigure %s's %s, granting it a horrific scar.", mon_nam(mon), mbodypart(mon, BODY_SKIN)); break;
 			case 295: pline("You clip %s with your tooth, leaving a small bite mark.", mon_nam(mon)); break;
-			case 296: pline("Your quick snap breaks the skin on %s's %s.", mon_nam(mon), mbodypart(mon, HAND)); break;
+			case 296: pline("Your quick snap breaks the %s on %s's %s.", mbodypart(mon, BODY_SKIN), mon_nam(mon), mbodypart(mon, HAND)); break;
 			case 297: pline("You scrape across %s's %s causing it to stumble.", mon_nam(mon), mbodypart(mon, LEG)); break;
 			case 298: pline("Your rake catches %s in the %s leaving it dazed.", mon_nam(mon), mbodypart(mon, HEAD)); break;
 			case 299: pline("You grab %s's %s and try to yank it off its %s.", mon_nam(mon), mbodypart(mon, LEG), makeplural(mbodypart(mon, FOOT))); break;
 			case 300: pline("Your stout fetid breath causes %s to gasp and choke.", mon_nam(mon)); break;
 			case 301: pline("You chilled %s, leaving a small frostburn scar.", mon_nam(mon)); break;
-			case 302: pline("The skin on %s's %s shrinks and cracks.", mon_nam(mon), mbodypart(mon, HEAD)); break;
+			case 302: pline("The %s on %s's %s shrinks and cracks.", mbodypart(mon, BODY_SKIN), mon_nam(mon), mbodypart(mon, HEAD)); break;
 			case 303: pline("Thankfully %s is not a %s, and therefore you hit.", mon_nam(mon), rndmonnam()); break;
 			case 304: pline("Yet again your left fist finds its way to %s's %s!", mon_nam(mon), mbodypart(mon, FACE)); break;
 			case 305: pline("%s becomes all %s from your vicious attack!", Monnam(mon), rndcolor()); break;
-			case 306: pline("You open pretty wounds on %s's skin!", mon_nam(mon)); break;
+			case 306: pline("You open pretty wounds on %s's %s!", mon_nam(mon), mbodypart(mon, BODY_SKIN)); break;
 			case 307: pline("Your sharp-edged brown combat boot heels scratch very pretty lovely huggable wounds on %s's %s!", mon_nam(mon), makeplural(mbodypart(mon, LEG))); break;
 			case 308: pline("You tried fawn on %s.", mon_nam(mon)); break;
 			case 309: pline("You strike %s with dark force.", mon_nam(mon)); break;
@@ -6853,7 +6853,7 @@ melatechoice:
 			case 317: pline("You manage to scar %s's %s!", mon_nam(mon), mbodypart(mon, FACE)); break;
 			case 318: pline("You batter %s with a series of punches!", mon_nam(mon)); break;
 			case 319: pline("%s sustains a paper cut!", Monnam(mon)); break;
-			case 320: pline("Your 9mm rounds hit %s but only cause a flesh wound.", mon_nam(mon)); break;
+			case 320: pline("Your 9mm rounds hit %s but only cause a %s wound.", mon_nam(mon), mbodypart(mon, BODY_FLESH)); break;
 			case 321: pline("You successfully land a groin attack on %s!", mon_nam(mon)); break;
 			case 322: pline("Yay, you got another hit! Yay!"); break;
 			case 323: pline("%s takes cover but gets clipped by your attack anyway.", Monnam(mon)); break;
@@ -6864,7 +6864,7 @@ melatechoice:
 			case 328: pline("You open one of %s's buckles.", mon_nam(mon)); break;
 			case 329: pline("You start to untie %s's lacings.", mon_nam(mon)); break;
 			case 330: pline("One of %s's velcro lashes is now open!", mon_nam(mon)); break;
-			case 331: pline("You furiously claw at %s's skin!", mon_nam(mon)); break;
+			case 331: pline("You furiously claw at %s's %s!", mon_nam(mon), mbodypart(mon, BODY_SKIN)); break;
 			case 332: pline("You prick %s with a needle.", mon_nam(mon)); break;
 			case 333: pline("You sneeze into %s's %s.", mon_nam(mon), mbodypart(mon, FACE)); break;
 			case 334: pline("You ratch over %s's back, drawing %s.", mon_nam(mon), mbodypart(mon, BLOOD)); break;
@@ -6912,7 +6912,7 @@ melatechoice:
 			case 376: pline("%s decides to be nice and guides you, allowing your attack to hit %s!", (!rn2(3) ? align_gname(A_LAWFUL) : rn2(2) ? align_gname(A_NEUTRAL) : align_gname(A_CHAOTIC)), mon_nam(mon)); break;
 			case 377: pline("%s complains that you didn't address it with the correct pronoun, but you give it a big slap in the %s in retaliation.", mon_nam(mon), mbodypart(mon, FACE)); break;
 			case 378: pline("You slap %s's butt a couple of times with your left %s.", mon_nam(mon), body_part(HAND)); break;
-			case 379: pline("You sting your fingernails into various skin-covered body parts of %s.", mon_nam(mon)); break;
+			case 379: pline("You sting your fingernails into various %s-covered body parts of %s.", mbodypart(mon, BODY_SKIN), mon_nam(mon)); break;
 			case 380: pline("Yeah! You cursed %s! Now your next attack will deal even more damage!", mon_nam(mon)); break;
 			case 381: pline("You listen to the wonderful scratching sound as your stiletto heel scratches over the full length of %s's %s.", mon_nam(mon), mbodypart(mon, LEG)); break;
 			case 382: pline("The lashes of your cute velcro shoes scratch open both of %s's %s, and %s is flowing like rivers.", mon_nam(mon), makeplural(mbodypart(mon, LEG)), mbodypart(mon, BLOOD)); break;
@@ -7099,7 +7099,7 @@ melatechoice:
 			case 563: pline("Your %snails pinch %s.", body_part(FINGER), mon_nam(mon)); break;
 			case 564: pline("%s loses one single drop of blood as a result of your stinging attack.", Monnam(mon)); break;
 			case 565: pline("You use your high heels as a blunt weapon to batter %s's bones.", mon_nam(mon)); break;
-			case 566: pline("You use your high heels as a sharp weapon to remove the skin from %s's %s.", mon_nam(mon), mbodypart(mon, LEG)); break;
+			case 566: pline("You use your high heels as a sharp weapon to remove the %s from %s's %s.", mbodypart(mon, BODY_SKIN), mon_nam(mon), mbodypart(mon, LEG)); break;
 			case 567: pline("Your weapon hits %s, but since it's so dull, it only deals a single point of damage.", mon_nam(mon)); break;
 			case 568: pline("Your d20 only rolled a 2, so %s loses very little health.", mon_nam(mon)); break;
 			case 569: pline("%s's %s look quite attractive, but you can't be fooled and land a hit.", Monnam(mon), pantsdescription(mon)); break;
@@ -7171,7 +7171,7 @@ melatechoice:
 			case 635: pline("The sexual predator of %s is constantly groping you, so you slap and kick him, but he doesn't seem deterred...", mon_nam(mon)); break; /* not "mhim" */
 			case 636: pline("You try to break the choke hold that %s is using on you by biting %s in the %s.", mon_nam(mon), mhim(mon), mbodypart(mon, ARM)); break;
 			case 637: pline("You use your teeth to deal an ugly, festering wound to %s.", mon_nam(mon)); break;
-			case 638: pline("Your bite ripped off plenty of skin from %s!", mon_nam(mon)); break;
+			case 638: pline("Your bite ripped off plenty of %s from %s!", mbodypart(mon, BODY_SKIN), mon_nam(mon)); break;
 			case 639: pline("As you pull back your teeth from %s's lower %s, %s is bleeding profusely.", mon_nam(mon), mbodypart(mon, LEG), mhe(mon)); break;
 			case 640: pline("You bite %s viciously but suddenly taste %s, and hurriedly stop biting %s because you're not a vampire.", mon_nam(mon), mbodypart(mon, BLOOD), mhim(mon)); break;
 			case 641: pline("Even though you slashed your blade across %s's body and %s's bleeding all over, %s doesn't stop fighting!", mon_nam(mon), mhe(mon), mhe(mon)); break;
@@ -7517,7 +7517,7 @@ melatechoice:
 				case 200: pline("Your weapon slices %s in half!", mon_nam(mon)); break;
 				case 201: pline("%s's %s caves in!", Monnam(mon), mbodypart(mon,HEAD)); break;
 				case 202: pline("You broke %s's %s!", mon_nam(mon), mbodypart(mon,SPINE)); break;
-				case 203: pline("Your weapon slices into %s's heart!", mon_nam(mon)); break;
+				case 203: pline("Your weapon slices into %s's %s!", mon_nam(mon), mbodypart(mon, HEART)); break;
 				case 204: pline("You smashed %s's ribcage!", mon_nam(mon)); break;
 				case 205: pline("You stab %s in the %s.", mon_nam(mon), mbodypart(mon,STOMACH)); break;
 				case 206: pline("You cut off %s's %s.", mon_nam(mon), mbodypart(mon,HAND)); break;
@@ -7526,7 +7526,7 @@ melatechoice:
 				case 209: pline("You gave %s a gigantic bruise.", mon_nam(mon)); break;
 				case 210: pline("You cut off %s's %s!", mon_nam(mon), mbodypart(mon,ARM)); break;
 				case 211: pline("You cut off %s's %s!", mon_nam(mon), mbodypart(mon,LEG)); break;
-				case 212: pline("You stab %s in the heart.", mon_nam(mon)); break;
+				case 212: pline("You stab %s in the %s.", mon_nam(mon), mbodypart(mon, HEART)); break;
 				case 213: pline("You slash at %s's %s.", mon_nam(mon), mbodypart(mon,FACE)); break;
 				case 214: pline("You throw %s down at the ground.", mon_nam(mon)); break;
 				case 215: pline("You attempt to strangle %s.", mon_nam(mon)); break;
@@ -7599,7 +7599,7 @@ melatechoice:
 				case 282: pline("You send %s to where it belongs: Sovngarde.", mon_nam(mon)); break;
 				case 283: pline("In your mission to purge the dungeon of all stupid monsters, you remove %s from this world.", mon_nam(mon)); break;
 				case 284: pline("You separate %s's jaw from its %s, who is thrashing about spraying blood on every bystander and then dies.", mon_nam(mon), mbodypart(mon, FACE)); break;
-				case 285: pline("Your hit to %s's midsection cleaves clear to its groin. The small flap of flesh cannot support its body anymore and as a result its collapses and dies.", mon_nam(mon)); break;
+				case 285: pline("Your hit to %s's midsection cleaves clear to its groin. The small flap of %s cannot support its body anymore and as a result its collapses and dies.", mon_nam(mon), mbodypart(mon, BODY_FLESH)); break;
 				case 286: pline("Your extremely sharp blade decapitates %s, who lives for three more seconds and then expires.", mon_nam(mon)); break;
 				case 287: pline("With your tsurugi, you neatly split %s in half from %s to groin, and the halves slide uncomfortably down to the %s.", mon_nam(mon), mbodypart(mon, HEAD), surface(mon->mx, mon->my)); break;
 				case 288: pline("There is a solid crunch as you club %s's %s and break it.", mon_nam(mon), mbodypart(mon, LEG)); break;
@@ -7626,51 +7626,51 @@ melatechoice:
 				case 305: pline("You crush %s's lower torso and hip, who drops to its knees with %s gushing out of its mouth.", mon_nam(mon), mbodypart(mon, BLOOD)); break;
 				case 306: pline("Your hit didn't seem like much, but the bone driven into %s's kidney begs to differ. After a few seconds, %s dies of shock.", mon_nam(mon), mon_nam(mon)); break;
 				case 307: pline("You hit %s's %s from above and drive it into its torso, causing its to waddle in tearing pain before finally dying in agony.", mon_nam(mon), mbodypart(mon, HEAD)); break;
-				case 308: pline("A thump to %s's chest explodes its heart. Its %s bulge in surprise as it drops to the knee and then falls over to the side, dead.", mon_nam(mon), makeplural(mbodypart(mon, EYE))); break;
+				case 308: pline("A thump to %s's chest explodes its %s. Its %s bulge in surprise as it drops to the knee and then falls over to the side, dead.", mon_nam(mon), mbodypart(mon, HEART), makeplural(mbodypart(mon, EYE))); break;
 				case 309: pline("Your hit to %s's %s breaks it in half. It falls forward shattering its wrist and bashing its %s against a rock, caving its skull in. %s pools around %s's corpse.", mon_nam(mon), mbodypart(mon, LEG), mbodypart(mon, HEAD), mbodypart(mon, BLOOD), mon_nam(mon)); break;
 				case 310: pline("Your sledgehammer strikes %s's skull, which explodes like a pumpkin. You're covered in brain, %s and bone.", mon_nam(mon), mbodypart(mon, BLOOD)); break;
 				case 311: pline("%s's %s is knocked clean off.", Monnam(mon), mbodypart(mon, HEAD)); break;
 				case 312: pline("With a titanic swing you break close to 50 of %s's bones, whose body is pulverized as a result.", mon_nam(mon)); break;
 				case 313: pline("You viciously skewer %s's thigh.", mon_nam(mon)); break;
 				case 314: pline("Your powerful thrust rips past %s's garment, tearing into the abdominal wall.", mon_nam(mon)); break;
-				case 315: pline("With a mighty thrust you strike %s's %s, piercing the skin and fracturing the bones with a snap.", mon_nam(mon), mbodypart(mon, ARM)); break;
-				case 316: pline("Your terrible strike hits %s's %s, digging deep into the flesh and fracturing bones.", mon_nam(mon), mbodypart(mon, LEG)); break;
+				case 315: pline("With a mighty thrust you strike %s's %s, piercing the %s and fracturing the bones with a snap.", mon_nam(mon), mbodypart(mon, ARM), mbodypart(mon, BODY_SKIN)); break;
+				case 316: pline("Your terrible strike hits %s's %s, digging deep into the %s and fracturing bones.", mon_nam(mon), mbodypart(mon, LEG), mbodypart(mon, BODY_FLESH)); break;
 				case 317: pline("You puncture %s's waist, dislocating its hip.", mon_nam(mon)); break;
 				case 318: pline("You cut off %s's %s.", mon_nam(mon), mbodypart(mon, NOSE)); break;
 				case 319: pline("%s smoothly blocks your thrust with its cheek, which is shanked right through the jaw, knocking it loose. Teeth shatter and %s sprays everywhere.", mon_nam(mon), mbodypart(mon, BLOOD)); break;
 				case 320: pline("The point of your weapon slides along the edge of %s's hilt, slicing as it goes and separating all the %s.", mon_nam(mon), makeplural(mbodypart(mon, FINGER))); break;
-				case 321: pline("The tip of your blade strikes deep into %s's %s past armor, skin and muscle, and then you violently rip it out tearing the %s apart and puncturing an artery.", mon_nam(mon), mbodypart(mon, LEG), mbodypart(mon, LEG)); break;
+				case 321: pline("The tip of your blade strikes deep into %s's %s past armor, %s and muscle, and then you violently rip it out tearing the %s apart and puncturing an artery.", mon_nam(mon), mbodypart(mon, LEG), mbodypart(mon, BODY_SKIN), mbodypart(mon, LEG)); break;
 				case 322: pline("Your clipped strike lands on %s's collarbone, shattering it.", mon_nam(mon)); break;
 				case 323: pline("You shank %s between the ribs.", mon_nam(mon)); break;
 				case 324: pline("%s's %s explodes like a stuck grape and is totally ruined.", Monnam(mon), mbodypart(mon, EYE)); break;
-				case 325: pline("%s's %s is sliced with a deep gash and torn apart, hanging from its body by a flap of skin.", Monnam(mon), mbodypart(mon, ARM)); break;
-				case 326: pline("You puncture %s's %s, cutting clear through the bone and ripping the flesh on either side.", mon_nam(mon), mbodypart(mon, LEG)); break;
+				case 325: pline("%s's %s is sliced with a deep gash and torn apart, hanging from its body by a flap of %s.", Monnam(mon), mbodypart(mon, ARM), mbodypart(mon, BODY_SKIN)); break;
+				case 326: pline("You puncture %s's %s, cutting clear through the bone and ripping the %s on either side.", mon_nam(mon), mbodypart(mon, LEG), mbodypart(mon, BODY_FLESH)); break;
 				case 327: pline("%s's carotid artery is nicked, with arterial %s spraying out of the wound in a wide area creating a fine red mist.", Monnam(mon), mbodypart(mon, BLOOD)); break;
 				case 328: pline("You stab %s's %s like a ripe melon, and are startled by the contents as %s collapses in agony.", mon_nam(mon), mbodypart(mon, STOMACH), mon_nam(mon)); break;
 				case 329: pline("Your spear's point rips through %s's %s, touching the brain.", mon_nam(mon), mbodypart(mon, NOSE)); break;
 				case 330: pline("You gouge a %s vessel out of %s's %s which flips around like a hose spraying %s everywhere. As %s's body hits the ground, it dies of shock and %s loss.", mbodypart(mon, BLOOD), mon_nam(mon), mbodypart(mon, LEG), mbodypart(mon, BLOOD), mon_nam(mon), mbodypart(mon, BLOOD)); break;
 				case 331: pline("Everything below %s's waist goes numb as its %s is fractured by your pointy weapon.", mon_nam(mon), mbodypart(mon, SPINE)); break;
 				case 332: pline("%s's body goes limp as you stab your weapon severing its %s column.", Monnam(mon), mbodypart(mon, SPINE)); break;
-				case 333: pline("You rip %s's %s off the body, exposing its heart, which sprays %s in its %s. It is the last thing %s sees.", mon_nam(mon), mbodypart(mon, ARM), mbodypart(mon, BLOOD), mbodypart(mon, FACE), mon_nam(mon)); break;
-				case 334: pline("You stabbed %s through the heart, who realizes that it's too late now, and dies.", mon_nam(mon)); break;
+				case 333: pline("You rip %s's %s off the body, exposing its %s, which sprays %s in its %s. It is the last thing %s sees.", mon_nam(mon), mbodypart(mon, ARM), mbodypart(mon, HEART), mbodypart(mon, BLOOD), mbodypart(mon, FACE), mon_nam(mon)); break;
+				case 334: pline("You stabbed %s through the %s, who realizes that it's too late now, and dies.", mon_nam(mon), mbodypart(mon, HEART)); break;
 				case 335: pline("You gouge %s in the groin, making a %sy mess of intestines and genitalia.", mon_nam(mon), mbodypart(mon, BLOOD)); break;
 				case 336: pline("%s keeps trying to reach and remove the shaft of your weapon from its %s, but for some reason its %s aren't responding. It ceases to care in a few moments.", Monnam(mon), mbodypart(mon, FACE), makeplural(mbodypart(mon, ARM))); break;
 				case 337: pline("After your stab to the gut, %s can't manage to move anymore. It struggles to hold its intestines in while it slowly dies.", mon_nam(mon)); break;
 				case 338: pline("%s's %s is sliced off by your blade. It tries to scream but only makes a gurgling rattle and dies.", Monnam(mon), mbodypart(mon, FACE)); break;
 				case 339: pline("Your weapon's point doesn't stop at %s's %s socket. Any bystander standing behind %s could tell what brain tastes like.", mon_nam(mon), mbodypart(mon, EYE), mon_nam(mon)); break;
 				case 340: pline("There is a clang as %s's %s strikes the ground with the %s severed. It spins around in agony spraying %s on everyone before dying.", mon_nam(mon), mbodypart(mon, HAND), mbodypart(mon, ARM), mbodypart(mon, BLOOD)); break;
-				case 341: pline("%s flings its %s up in an attempt to block your attack, but they end up stripped of flesh and horribly burnt.", Monnam(mon), makeplural(mbodypart(mon, HAND))); break;
+				case 341: pline("%s flings its %s up in an attempt to block your attack, but they end up stripped of %s and horribly burnt.", Monnam(mon), makeplural(mbodypart(mon, HAND)), mbodypart(mon, BODY_FLESH)); break;
 				case 342: pline("%s's %s are engulfed in energy, scorching its lower body.", Monnam(mon), makeplural(mbodypart(mon, FOOT))); break;
 				case 343: pline("%s is struck full on in the %s by your blast, burning its %s to cinders.", Monnam(mon), mbodypart(mon, FACE), makeplural(mbodypart(mon, EYE))); break;
-				case 344: pline("Your hellish blast encompasses %s, whose agony is unreal as it suffers serious burns on all exposed skin.", mon_nam(mon)); break;
+				case 344: pline("Your hellish blast encompasses %s, whose agony is unreal as it suffers serious burns on all exposed %s.", mon_nam(mon), mbodypart(mon, BODY_SKIN)); break;
 				case 345: pline("You engulf %s's %s and render all the %s useless.", mon_nam(mon), mbodypart(mon, HAND), makeplural(mbodypart(mon, FINGER))); break;
-				case 346: pline("%s's skin and %s begin to melt.", Monnam(mon), mbodypart(mon, FACE)); break;
+				case 346: pline("%s's %s and %s begin to melt.", Monnam(mon), mbodypart(mon, BODY_SKIN), mbodypart(mon, FACE)); break;
 				case 347: pline("You sear %s's %s, leaving nothing but a charred stump.", mon_nam(mon), mbodypart(mon, ARM)); break;
 				case 348: pline("Your blast burns %s horribly, causing second degree burns to covered areas and more serious ones to exposed areas.", mon_nam(mon)); break;
-				case 349: pline("Your blast sears %s's flesh, causing second and third degree burns all over.", mon_nam(mon)); break;
-				case 350: pline("Your furnace rends %s's flesh with energy, causing hideous burns all over.", mon_nam(mon)); break;
+				case 349: pline("Your blast sears %s's %s, causing second and third degree burns all over.", mon_nam(mon), mbodypart(mon, BODY_FLESH)); break;
+				case 350: pline("Your furnace rends %s's %s with energy, causing hideous burns all over.", mon_nam(mon), mbodypart(mon, BODY_FLESH)); break;
 				case 351: pline("You strike %s in the %s, which melts in an entertaining fashion. Fire erupts from its mouth as it falls over and dies soon later.", mon_nam(mon), mbodypart(mon, NECK)); break;
-				case 352: pline("%s's clothing and armor is vaporized and its skin roasted off. %s's blackened skeleton and musculature flail about the battlefield for another moment before collapsing.", Monnam(mon), Monnam(mon)); break;
+				case 352: pline("%s's clothing and armor is vaporized and its %s roasted off. %s's blackened skeleton and musculature flail about the battlefield for another moment before collapsing.", Monnam(mon), mbodypart(mon, BODY_SKIN), Monnam(mon)); break;
 				case 353: pline("%s's torso is blasted open, knocking its %s and shoulders to the ground.", Monnam(mon), mbodypart(mon, HEAD)); break;
 				case 354: pline("You see %s's %s instantly vaporize.", mon_nam(mon), mbodypart(mon, HEAD)); break;
 				case 355: pline("%s's upper body is consumed in flames and melted. All that is left is a burnt stump on two twitching %s.", Monnam(mon), makeplural(mbodypart(mon, LEG))); break;
@@ -7681,14 +7681,14 @@ melatechoice:
 				case 360: pline("Everything except %s's bones burn to a crisp. Its skeleton twitches before collapsing.", mon_nam(mon)); break;
 				case 361: pline("There is a blinding flash, and nothing remains of %s, except perhaps a smoking pair of boots.", mon_nam(mon)); break;
 				case 362: pline("Your snap connects at %s's groin, who doubles over in pain and terror.", mon_nam(mon)); break;
-				case 363: pline("You viciously gouge %s, ripping chunks of skin from its %s.", mon_nam(mon), mbodypart(mon, ARM)); break;
-				case 364: pline("You latch on to %s's %s, ripping flesh and bone.", mon_nam(mon), mbodypart(mon, LEG)); break;
+				case 363: pline("You viciously gouge %s, ripping chunks of %s from its %s.", mon_nam(mon), mbodypart(mon, BODY_SKIN), mbodypart(mon, ARM)); break;
+				case 364: pline("You latch on to %s's %s, ripping %s and bone.", mon_nam(mon), mbodypart(mon, LEG), mbodypart(mon, BODY_FLESH)); break;
 				case 365: pline("You get under %s and trip its %s, then take the opportunity to shred the back of its thigh.", mon_nam(mon), makeplural(mbodypart(mon, LEG))); break;
 				case 366: pline("You strike %s's abdomen, destroying the kidney in the process.", mon_nam(mon)); break;
 				case 367: pline("%s uses its %s to block your attack, allowing you to viciously bite shredding its scalp with %s running down into its %s.", Monnam(mon), mbodypart(mon, HEAD), mbodypart(mon, BLOOD), makeplural(mbodypart(mon, EYE))); break;
 				case 368: pline("You hideously mangle %s's %s and bite off the %s.", mon_nam(mon), mbodypart(mon, HAND), makeplural(mbodypart(mon, FINGER))); break;
 				case 369: pline("%s experiences a burst of inconceivable agony as its %s is torn apart by your attack.", Monnam(mon), mbodypart(mon, LEG)); break;
-				case 370: pline("You viciously bite %s's %s, shredding it to pieces. There is nothing left but shreds of skin.", mon_nam(mon), mbodypart(mon, ARM)); break;
+				case 370: pline("You viciously bite %s's %s, shredding it to pieces. There is nothing left but shreds of %s.", mon_nam(mon), mbodypart(mon, ARM), mbodypart(mon, BODY_SKIN)); break;
 				case 371: pline("You tear out %s's throat with your claws while also breaking its shoulder and collarbone.", mon_nam(mon)); break;
 				case 372: pline("You tear %s's %s apart and its %s are ripped out like a piece of fruit.", mon_nam(mon), mbodypart(mon, FACE), makeplural(mbodypart(mon, EYE))); break;
 				case 373: pline("%s's gut burns and twists as you crush its internal organs.", Monnam(mon)); break;
@@ -7699,7 +7699,7 @@ melatechoice:
 				case 378: pline("%s's %s is removed from a tear that reaches from %s to abdomen. %s's %s falls down to the side and lands in its guts as it staggers and falls down dead.", Monnam(mon), mbodypart(mon, ARM), mbodypart(mon, NECK), Monnam(mon), mbodypart(mon, HEAD)); break;
 				case 379: pline("Your crushing bite cracks %s's skull.", mon_nam(mon)); break;
 				case 380: pline("%s suddenly finds it hard to breathe with its throat lying on the ground. It collapses next to it, dead.", Monnam(mon)); break;
-				case 381: pline("You hold %s's still beating heart in your feral claw... wait, never mind, it's stopped now.", mon_nam(mon)); break;
+				case 381: pline("You hold %s's still beating %s in your feral claw... wait, never mind, it's stopped now.", mon_nam(mon), mbodypart(mon, HEART)); break;
 				case 382: {
 					strcpy(buf, mon_nam(mon));
 
@@ -7715,19 +7715,19 @@ melatechoice:
 				case 390: pline("%s's body is engulfed in a maelstrom of cold.", Monnam(mon)); break;
 				case 391: pline("You shoot a breath of frozen air, clutching %s's throat.", mon_nam(mon)); break;
 				case 392: pline("You catch %s in a devastating blast of cold, forming ice around it, and it slips and falls.", mon_nam(mon)); break;
-				case 393: pline("Large swaths of exposed skin crack and turn bright red as %s is severely frost burnt by you!", mon_nam(mon)); break;
-				case 394: pline("The abyssal cold freezes %s's exposed skin, which cracks and blackens.", mon_nam(mon)); break;
+				case 393: pline("Large swaths of exposed %s crack and turn bright red as %s is severely frost burnt by you!", mbodypart(mon, BODY_SKIN), mon_nam(mon)); break;
+				case 394: pline("The abyssal cold freezes %s's exposed %s, which cracks and blackens.", mon_nam(mon), mbodypart(mon, BODY_SKIN)); break;
 				case 395: pline("%s is battered about by freezing cold, hypothermia setting in. It loses its mind as its body begins to shut down.", Monnam(mon)); break;
 				case 396: pline("You drain %s's %s of vital energy and reduce them to blackened frostburn stumps.", mon_nam(mon), makeplural(mbodypart(mon, ARM))); break;
 				case 397: pline("Swirling cold engulfs %s's %s, freezing its lower body.", mon_nam(mon), makeplural(mbodypart(mon, LEG))); break;
 				case 398: pline("You catch %s's %s in the freezing cold, who is unable to shut its %s in time, and they freeze solid.", mon_nam(mon), mbodypart(mon, HEAD), makeplural(mbodypart(mon, EYE))); break;
-				case 399: pline("%s is caught in the center of the cold, all heat and energy draining from its body and suffering serious burns on all exposed skin.", Monnam(mon)); break;
+				case 399: pline("%s is caught in the center of the cold, all heat and energy draining from its body and suffering serious burns on all exposed %s.", Monnam(mon), mbodypart(mon, BODY_SKIN)); break;
 				case 400: pline("You encase %s's %s in ice, whose %s turn into ice sculptures and shatter.", mon_nam(mon), mbodypart(mon, HAND), makeplural(mbodypart(mon, FINGER))); break;
-				case 401: pline("Your blast freezes %s seriously, damaging all exposed skin and causing third and fourth degree burns.", mon_nam(mon)); break;
-				case 402: pline("Your blast sears %s's flesh, causing third and fourth degree burns over exposed and unexposed skin.", mon_nam(mon)); break;
-				case 403: pline("Your icy torrent blackens and freezes %s's flesh, nerve and muscle.", mon_nam(mon)); break;
+				case 401: pline("Your blast freezes %s seriously, damaging all exposed %s and causing third and fourth degree burns.", mon_nam(mon), mbodypart(mon, BODY_SKIN)); break;
+				case 402: pline("Your blast sears %s's %s, causing third and fourth degree burns over exposed and unexposed %s.", mon_nam(mon), mbodypart(mon, BODY_FLESH), mbodypart(mon, BODY_SKIN)); break;
+				case 403: pline("Your icy torrent blackens and freezes %s's %s, nerve and muscle.", mon_nam(mon), mbodypart(mon, BODY_FLESH)); break;
 				case 404: pline("You sap the very vital energy of %s's spirit, whose life begins to slip away.", mon_nam(mon)); break;
-				case 405: pline("You engulf %s in intense cold causing its heart to stop, leaving a very well preserved corpse.", mon_nam(mon)); break;
+				case 405: pline("You engulf %s in intense cold causing its %s to stop, leaving a very well preserved corpse.", mon_nam(mon), mbodypart(mon, HEART)); break;
 				case 406: pline("Your breath literally freezes in %s's throat as its %s is frozen. %s drops to the knees and the shock shatters its frozen %s, causing it to die of suffocation shortly later.", mon_nam(mon), mbodypart(mon, NECK), Monnam(mon), mbodypart(mon, NECK)); break;
 				case 407: pline("Frost climbs up %s's %s moments before it freezes solid and shatters. %s falls impaling its %s on its own weapon.", mon_nam(mon), mbodypart(mon, LEG), mon_nam(mon), mbodypart(mon, FACE)); break;
 				case 408: pline("%s thrashes around in horrible pain before dropping down dead.", Monnam(mon)); break;
@@ -7750,7 +7750,7 @@ melatechoice:
 				case 425: pline("Suddenly, the police appears and shouts 'Put your %s in the air!' At first, you think they're coming for you, but then your surprised %s watch %s get put in %scuffs and abducted.", makeplural(mbodypart(mon, HAND)), makeplural(body_part(EYE)), mon_nam(mon), mbodypart(mon, HAND)); break;
 				case 426: pline("You somehow manage to melt %s's body completely by peeing on it. Apparently your pee is really acidic or something.", mon_nam(mon)); break;
 				case 427: pline("You throw %s into a heap of cow dung, and for some reason that causes %s's body to dissolve completely.", mon_nam(mon), mon_nam(mon)); break;
-				case 428: pline("You steal %s's briar heart, causing it to die instantly!", mon_nam(mon)); break;
+				case 428: pline("You steal %s's briar %s, causing it to die instantly!", mon_nam(mon), mbodypart(mon, HEART)); break;
 				case 429: pline("Your minddrill tears apart %s's brain, who screams in agony and dies.", mon_nam(mon)); break;
 				case 430: pline("With your sexy butt, you blow some weaponized farting gas into %s's %s, causing its body to swell up and explode into chunks.", mon_nam(mon), mbodypart(mon, FACE)); break;
 				case 431: pline("%s dies and unlocks the 'Killed by %s' achievement in the process!", Monnam(mon), playeraliasname); break;
@@ -7775,7 +7775,7 @@ melatechoice:
 				case 450: pline("%s tries to laugh fiendishly in an attempt to mock you, but you quickly throw a knife and hit %s right in that ugly %s of %s.", Monnam(mon), mhim(mon), mbodypart(mon, FACE), mhis(mon)); break;
 				case 451: pline("You murderer, you killed the beautiful %s!", l_monnam(mon)); break;
 				case 452: pline("You decide that all beauty must fade, and therefore ruin the wonderful %s. You sick bastard.", l_monnam(mon)); break;
-				case 453: pline("You asshole! %s just wanted to live a peaceful life and now you killed it in cold blood! Hopefully you'll die of a heart attack!", Monnam(mon)); break;
+				case 453: pline("You asshole! %s just wanted to live a peaceful life and now you killed it in cold blood! Hopefully you'll die of a %s attack!", Monnam(mon), body_part(HEART)); break;
 				case 454: pline("You vow to genocide the entire %s race as you kill this particular specimen.", l_monnam(mon)); break;
 				case 455: pline("%s has an appointment with Doctor Ben Dovah!", Monnam(mon)); break;
 				case 456: pline("You manage to win the 'Beat up %s' game! But in order to win the SLEX game, you need to defeat many other opponents as well!", mon_nam(mon)); break;
@@ -7811,7 +7811,7 @@ melatechoice:
 				case 486: pline("Your %s bash %s's butt cheeks very %sily.", makeplural(body_part(HAND)), mon_nam(mon), mbodypart(mon, BLOOD)); break;
 				case 487: pline("You ram a syringe containing a narcotic that could daze an elephant into %s's %s, who immediately enters a very deep sleep.", mon_nam(mon), mbodypart(mon, ARM)); break;
 				case 488: pline("You infect %s with malaria and because it doesn't have sickle cell anemia, it dies.", mon_nam(mon)); break;
-				case 489: pline("You perform open heart surgery on %s, who ends up bleeding to death.", mon_nam(mon)); break;
+				case 489: pline("You perform open %s surgery on %s, who ends up bleeding to death.", mbodypart(mon, HEART), mon_nam(mon)); break;
 				case 490: pline("You manage to strangle %s to death!", mon_nam(mon)); break;
 				case 491: pline("You run over %s with your car.", mon_nam(mon)); break;
 				case 492: pline("You completely mangle %s's %s.", mon_nam(mon), mbodypart(mon, FACE)); break;
@@ -7886,12 +7886,12 @@ melatechoice:
 				}
 				case 553: pline("Your mighty swing severs %s's %s across the breastbone, who stumbles backwards and dies.", mon_nam(mon), mbodypart(mon, ARM)); break;
 				case 554: pline("You cut open %s's skull and cleave its brain.", mon_nam(mon)); break;
-				case 555: pline("%s stops your blade with its torso, and has its ribs pierced and heart punctured, dying instantly.", Monnam(mon)); break;
+				case 555: pline("%s stops your blade with its torso, and has its ribs pierced and %s punctured, dying instantly.", Monnam(mon), mbodypart(mon, HEART)); break;
 				case 556: pline("You cut %s's femoral artery wide open, causing instant death, but you're also showered with %s in the process.", mon_nam(mon), mbodypart(mon, BLOOD)); break;
 				case 557: pline("You cut %s across the abdomen, whose guts rejoice as they flee the body.", mon_nam(mon)); break;
 				case 558: pline("You cover %s's %s in a white leaden dust, and then it shatters, falling to the ground.", mon_nam(mon), mbodypart(mon, ARM)); break;
 				case 559: pline("You lie on the ground and as %s approaches, you bludgeon %s with a devastating bicycle kick.", mon_nam(mon), mhim(mon)); break;
-				case 560: pline("Now %s gets however skin-fully.", mon_nam(mon)); break;
+				case 560: pline("Now %s gets however %s-fully.", mon_nam(mon), mbodypart(mon, BODY_SKIN)); break;
 				case 561: pline("%s fallow together.", Monnam(mon)); break;
 				case 562: pline("You firstoh %s with your knife.", mon_nam(mon)); break;
 				case 563: pline("You stab %s in the crotch, severing a major artery! Blood spurts all over!", mon_nam(mon)); break;
@@ -7968,7 +7968,7 @@ melatechoice:
 				case 630: pline("Your cop wanted level is %d right now, but %s is one cop asshole that won't be busting you, that's for sure.", u.copwantedlevel, mon_nam(mon)); break;
 				case 631: pline("Yeah, it seems that your specific attack with ID %d is super-effective against %s!", u.adrunsattack, mon_nam(mon)); break;
 				case 632: pline("You're capable of telling good weapons apart from crappy ones due to your weapon enchantment knowledge of %d, and just used one of the good weapons to pound %s into submission!", u.weapchantrecskill, mon_nam(mon)); break;
-				case 633: pline("With your sanity of %d, your sight of %s is perfectly clear. Every millisecond of your attack plays out before your %s, letting you see exactly how your blade cuts through flesh.", u.usanity, mon_nam(mon), makeplural(body_part(EYE)) ); break;
+				case 633: pline("With your sanity of %d, your sight of %s is perfectly clear. Every millisecond of your attack plays out before your %s, letting you see exactly how your blade cuts through %s.", u.usanity, mon_nam(mon), makeplural(body_part(EYE)), mbodypart(mon, BODY_FLESH) ); break;
 				case 634: pline("You've used your quest artifact for %d turns straight, and are now really proficient with it. Case in point, %s fell in a single hit.", u.artifinitythreshold, mon_nam(mon)); break;
 				case 635: pline("There's the danger of you meeting Mr. Conclusio, in fact the counter has already increased to %d. So you decide to not waste any more time, and cut down the hapless %s.", u.conclusiocount, l_monnam(mon)); break;
 				case 636: pline("You use the hidden power number %d to get rid of %s!", u.hiddenpowerskill, mon_nam(mon)); break;
@@ -11022,7 +11022,7 @@ register int roll;
 		case 472: pline("You failed to look at the pokedex and thus didn't realize that %s's armor class is impossible for you to hit.", mon_nam(mdef)); break;
 		case 473: pline("%s pours a bottle of salt over your %s.", Monnam(mdef), body_part(HEAD)); break;
 		case 474: pline("%s does not budge!", Monnam(mdef)); break;
-		case 475: pline("%s slides its buckle over your skin and you fail to get your attack off!", Monnam(mdef)); break;
+		case 475: pline("%s slides its buckle over your %s and you fail to get your attack off!", Monnam(mdef), body_part(BODY_SKIN)); break;
 		case 476: pline("%s's zipper doesn't come up!", Monnam(mdef)); break;
 		case 477: pline("%s uses its lacings as a shackle and ties you up!", Monnam(mdef)); break;
 		case 478: pline("Your attempt to open %s's velcro lash fails!", mon_nam(mdef)); break;
@@ -11071,7 +11071,7 @@ register int roll;
 		case 521: pline("You were so stupid and smashed a sink with your weapon when trying to hit %s, and now you have to buy a new one for 500 zorkmids.", mon_nam(mdef)); break;
 		case 522: pline("You must somehow have contracted a weakness, because %s is losing no lines!", mon_nam(mdef)); break;
 		case 523: pline("You are such a failure and therefore have to clean the dog shit off of the %s shoes.", l_monnam(mdef)); break;
-		case 524: pline("%s extends %s beautiful claws and pinches your skin drawing %s, then retracts the cute claws again.", Monnam(mdef), mhis(mdef), body_part(BLOOD)); break;
+		case 524: pline("%s extends %s beautiful claws and pinches your %s drawing %s, then retracts the cute claws again.", Monnam(mdef), mhis(mdef), body_part(BODY_SKIN), body_part(BLOOD)); break;
 		case 525: pline("%s doesn't feel like helping you and therefore decides that this time your attack misses.", u_gname()); break;
 		case 526: pline("%s has just decided to send bad luck your way, and here's the first sign of it: you missed %s even though normally you should have hit.", (!rn2(3) ? align_gname(A_LAWFUL) : rn2(2) ? align_gname(A_NEUTRAL) : align_gname(A_CHAOTIC)), mon_nam(mdef)); break;
 		case 527: pline("%s demands that you use 'xe/xir' pronouns when addressing it, and while you ponder the meaning of that, your opening for an attack has ceased to exist.", Monnam(mdef)); break;
@@ -11348,9 +11348,9 @@ register int roll;
 		case 794: pline("Idiot! Didn't you realize that %s was peaceful to you? If you were to attack now, that 'peaceful' status would change to 'hostile'! Be glad that the game prevented you from executing the attack!", mon_nam(mdef)); break;
 		case 795: pline("The game reminds you that %s is actually your pet, and therefore you cancel your attack.", mon_nam(mdef)); break;
 		case 796: pline("Terrified by the fact that violence seems to be the only option in this dungeon, you decide to be nice to %s, so you run up to %s, hug %s, and start to heart and kiss %s.", mon_nam(mdef), mhim(mdef), mhim(mdef), mhim(mdef)); break;
-		case 797: pline("You realize that the reason why %s is ripping off %sy shreds of skin from you isn't hate, but love, and decide to return that love by kissing %s %s.", mon_nam(mdef), body_part(BLOOD), mhis(mdef), mbodypart(mdef, FACE)); break;
+		case 797: pline("You realize that the reason why %s is ripping off %sy shreds of %s from you isn't hate, but love, and decide to return that love by kissing %s %s.", mon_nam(mdef), body_part(BLOOD), body_part(BODY_SKIN), mhis(mdef), mbodypart(mdef, FACE)); break;
 		case 798: pline("%s steps on your %s, and when you try to fight back with your razor-sharp %snails, you find out to your dismay that you cannot move them at all!", Monnam(mdef), body_part(FOOT), body_part(TOE)); break;
-		case 799: pline("You try repeatedly to bite %s's ugly skin but the little bastard constantly deflects your attacks!", mon_nam(mdef)); break;
+		case 799: pline("You try repeatedly to bite %s's ugly %s but the little bastard constantly deflects your attacks!", mon_nam(mdef), mbodypart(mdef, BODY_SKIN)); break;
 		case 800: pline("Suddenly %s calls for a particularly strict teacher woman, and she says that if you don't stop fighting, you will get a stern talking to!", mon_nam(mdef)); break;
 		case 801: pline("You little victim, sucks to be constantly bullied by %s, eh?", mon_nam(mdef)); break;
 		case 802: pline("%s shouts 'Ey wolloh fuck you!'", Monnam(mdef)); break;
@@ -11385,7 +11385,7 @@ register int roll;
 			pline("You try to fully hammer the annoying %s on the %s but unfortunately you're standing in waist-high water. As you draw back to attack, suddenly your body is just a tad too deep in the water and the STUPID programming aborts your attack entirely, while %s keeps fighting without having to face the same problems.", l_monnam(mdef), mbodypart(mdef, HEAD), buf); break;
 		}
 		case 829: pline("You furiously try to smash %s's stupid %s in, but %s last hit knocked you back just far enough that your swing passes harmlessly through the air in front of %s.", mon_nam(mdef), mbodypart(mdef, FACE), mhis(mdef), mhim(mdef)); break;
-		case 830: pline("You want to rip apart every little bit of skin from the asshole that is %s, but you just don't seem to have the strength to land an effective hit!", mon_nam(mdef)); break;
+		case 830: pline("You want to rip apart every little bit of %s from the asshole that is %s, but you just don't seem to have the strength to land an effective hit!", mbodypart(mdef, BODY_SKIN), mon_nam(mdef)); break;
 		case 831: pline("Even though you absolutely want to kill %s and devour %s corpse, you seem unable to hit %s at all!", mon_nam(mdef), mhis(mdef), mhim(mdef)); break;
 		case 832: pline("%s is so unfair and blocks your attack, making you wish that blocking was banned from this game.", Monnam(mdef)); break;
 		case 833: pline("%s uses hit and run tactics to pepper you with arrows while you cannot get into melee attack range, and when you complain to the game master about it, he tells you to suck it up and learn how to play the game properly.", Monnam(mdef)); break;

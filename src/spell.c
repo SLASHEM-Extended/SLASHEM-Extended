@@ -3338,7 +3338,7 @@ cast_protection()
 
 	    find_ac();
 	} else {
-	    Your("skin feels warm for a moment.");
+	    Your("%s feels warm for a moment.", body_part(BODY_SKIN));
 	}
 }
 
@@ -4423,7 +4423,7 @@ repairhomiechoice:
 				pline("You just wasted the opportunity to enchant your armor.");
 			else goto repairhomiechoice;
 			/* the player can probably feel this, so no need for a !Blind check :) */
-			pline("Your embarrassing skin rash clears up slightly.");
+			pline("Your embarrassing %s rash clears up slightly.", body_part(BODY_SKIN));
 		}
 	}
 
@@ -10838,7 +10838,7 @@ secureidchoice:
 
 	case SPE_THORNS:
 
-		pline("You throw up a thorny skin!");
+		pline("You throw up a thorny %s!", body_part(BODY_SKIN));
 		u.thornspell = 10 + (spell_damage_bonus(SPE_THORNS) * 2);
 		/* casting it repeatedly will not give you a longer duration --Amy */
 
@@ -13853,7 +13853,7 @@ controlagain:
 
 			case 1: pline("You put the knife to your lower %s and cut...", body_part(ARM)); break;
 			case 2: pline("You use a sharp object to cut open your belly..."); break;
-			case 3: pline("You slide your body along a rough surface and sustain terrible skin rashes."); break;
+			case 3: pline("You slide your body along a rough surface and sustain terrible %s rashes.", body_part(BODY_SKIN)); break;
 			case 4: pline("You rip your butt open with a metallic edge."); break;
 			case 5: pline("You scratch up and down your %s with a sexy leather pump until it starts bleeding.", body_part(LEG)); break;
 			case 6: pline("You slit your %s full length with a sharp-edged zipper.", body_part(LEG)); break;
@@ -14455,7 +14455,7 @@ repairarmorchoice:
 				pline("You just wasted the opportunity to enchant your armor.");
 			else goto repairarmorchoice;
 			/* the player can probably feel this, so no need for a !Blind check :) */
-			pline("Your embarrassing skin rash clears up slightly.");
+			pline("Your embarrassing %s rash clears up slightly.", body_part(BODY_SKIN));
 		}
 		break;
 

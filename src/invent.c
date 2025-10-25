@@ -14057,7 +14057,7 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_INDUSTRIAL_BOOTS))
 			pline("These boots should be worn in the industrial district, where you'll feel protected from harm.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_CHRISTMAS_CHILD_MODE_BOOTS))
-			pline("If you're such a christmas child that is afraid of corona, you can wear these boots, but then everyone who spreads corona will strike fear into your heart. On the plus side, you'll be faster while under the effect of fear.");
+			pline("If you're such a christmas child that is afraid of corona, you can wear these boots, but then everyone who spreads corona will strike fear into your %s. On the plus side, you'll be faster while under the effect of fear.", body_part(HEART));
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_BAREFOOT_SHOES))
 			pline("Since these shoes aren't looking that great, they reduce your charisma by one when worn.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_SANDALS_WITH_SOCKS))
@@ -16267,7 +16267,7 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 			case FIRE_BOOTS:
 				pline("A pair of boots that grants great AC and magic cancellation but also burns you when worn. They are usually generated cursed."); break;
 			case ZIPPER_BOOTS:
-				pline("By watching these boots closely, you notice their zippers are trying to touch and damage your skin. They're sharp-edged too, so be careful."); break;
+				pline("By watching these boots closely, you notice their zippers are trying to touch and damage your %s. They're sharp-edged too, so be careful.", body_part(BODY_SKIN)); break;
 			case BOOTS_OF_SHOCK_RESISTANCE:
 				pline("These boots grant shock resistance, but you take a little damage whenever you equip something metallic."); break;
 			case LEVITATION_BOOTS:

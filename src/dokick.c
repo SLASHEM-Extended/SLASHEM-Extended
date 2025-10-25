@@ -883,7 +883,7 @@ register boolean clumsy;
 
 	if (uarmf && uarmf->oartifact == ART_ABRASIVE_RUPIKA) {
 		mon->bleedout += rnd(6);
-		pline("Your rough soles abrade some skin from %s's %s!", mon_nam(mon), makeplural(mbodypart(mon, LEG)) );
+		pline("Your rough soles abrade some %s from %s's %s!", mbodypart(mon, BODY_SKIN), mon_nam(mon), makeplural(mbodypart(mon, LEG)) );
 	}
 
 	if (uarmf && uarmf->oartifact == ART_KRISTIN_S_CHEAP_EDGE) {
@@ -990,7 +990,7 @@ register boolean clumsy;
 			pline("But %s shows no indication that your attack did anything...", mon_nam(mon) );
 		} else if (mon->permspeed != MSLOW) {
 			mon_adjust_speed(mon, -1, (struct obj *)0);
-			pline("Your heel scrapes off a bit of skin from %s's %s.", mon_nam(mon), makeplural(mbodypart(mon,LEG)) );
+			pline("Your heel scrapes off a bit of %s from %s's %s.", mbodypart(mon, BODY_SKIN), mon_nam(mon), makeplural(mbodypart(mon,LEG)) );
 
 		} else {
 			pline("Your heel just doesn't stop scratching over %s's %s, and %s is squirting everywhere!", mon_nam(mon), makeplural(mbodypart(mon,LEG)), mbodypart(mon, BLOOD) );

@@ -6070,7 +6070,7 @@ destroyarmorchoice:
 				if (yn("Really exit with no object selected?") == 'y')
 					pline("You just wasted the opportunity to enchant your armor.");
 				else goto destroyarmorchoice;
-				strange_feeling(sobj,"Your skin itches.");
+				strange_feeling(sobj,"Your %s itches.", body_part(BODY_SKIN));
 				exercise(A_STR, FALSE);
 				exercise(A_CON, FALSE);
 				break;
@@ -6095,7 +6095,7 @@ destroyarmorchoice:
 		}
 		if(!sobj->cursed || !otmp || !otmp->cursed) {
 		    if(!destroy_arm(otmp)) {
-			strange_feeling(sobj,"Your skin itches.");
+			strange_feeling(sobj,"Your %s itches.", body_part(BODY_SKIN));
 			exercise(A_STR, FALSE);
 			exercise(A_CON, FALSE);
 			return(1);
