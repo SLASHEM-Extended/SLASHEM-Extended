@@ -6532,7 +6532,7 @@ melatechoice:
 
 		else if ((Role_if(PM_SPACEWARS_FIGHTER) || (monstersoundtype(mon) == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || FemtrapActiveAriane || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || sanitymessage) && (!rn2(5) || (monstersoundtype(mon) == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) ) ) {
 
-			switch (rnd(647)) {
+			switch (rnd(656)) {
 	
 			case 1: pline("%s staggers from your furious assault.", Monnam(mon)); break;
 			case 2: pline("Your cut barely scratches %s's scales.", mon_nam(mon)); break;
@@ -7186,6 +7186,15 @@ melatechoice:
 			case 645: pline("You cherry-tap %s with your super wimpy weapon while your character is underwater, abusing the fact that monsters can't fight back from dry land like the filthy exploit abuser you are.", mon_nam(mon)); break;
 			case 646: pline("Since you have the time stop spell active, you automatically hit %s.", mon_nam(mon)); break;
 			case 647: pline("You're currently at the 'whack' part of your 'alternate between move and whack' kiting strategy that you're employing against %s.", mon_nam(mon)); break;
+			case 648: pline("You shout 'Objection!' It's super effective!"); break;
+			case 649: pline("You present a piece of evidence, the judge approves it, and %s's credibility goes down as a result.", mon_nam(mon)); break;
+			case 650: pline("%s screams as %s's shot by your pistol bullet!", Monnam(mon), mhe(mon)); break;
+			case 651: pline("You lash %s with your fleecy whip a couple of times.", mon_nam(mon)); break;
+			case 652: pline("You broke one of %s's psyche-locks, but there's still %d remaining!", mon_nam(mon), rnd(4)); break;
+			case 653: pline("You angrily point your index finger at %s, who is intimidated and starts sweating bullets!", mon_nam(mon)); break;
+			case 654: pline("You slam both of your %s on the desk while disproving %s's last statement, causing %s to wince.", makeplural(body_part(HAND)), mon_nam(mon), mhim(mon)); break;
+			case 655: pline("You manage to make %s break down, but %s quickly recovers!", mon_nam(mon), mhe(mon)); break;
+			case 656: pline("Great, you've landed an effective hit on %s! Quickly, land another to finish %s off before %s recovers!", mon_nam(mon), mhim(mon), mhe(mon)); break;
 
 			default: pline("You hit %s!", mon_nam(mon)); break;
 	
@@ -7304,7 +7313,7 @@ melatechoice:
 
 			else if ((Role_if(PM_SPACEWARS_FIGHTER) || (monstersoundtype(mon) == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || FemtrapActiveAriane || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || (u.usanity > rn2(1000)) ) && (!rn2(5) || (monstersoundtype(mon) == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) ) && !thrown) {
 
-				switch (rnd(773)) {
+				switch (rnd(782)) {
 
 				case 1: pline("You crush %s's skull into jelly.", mon_nam(mon)); break;
 				case 2: pline("You decapitate %s with a backhand stroke.", mon_nam(mon)); break;
@@ -8104,6 +8113,15 @@ melatechoice:
 				case 771: pline("Lamer, with time stop spells everyone could have defeated %s!", mon_nam(mon)); break;
 				case 772: pline("You've been kiting %s for a long time, and now you landed the finishing blow without taking even a single hit yourself.", mon_nam(mon)); break;
 				case 773: pline("Kaboooooom, nothing remains of %s after you fired your fatman at it.", mon_nam(mon)); break;
+				case 774: pline("That wasn't a fight, it was an execution."); break;
+				case 775: pline("And it's curtains for %s.", mon_nam(mon)); break;
+				case 776: pline("The judge declares %s guilty, and the verdict is the electric chair!", mon_nam(mon)); break;
+				case 777: pline("Suddenly, a bolt of lightning shoots through the dungeon's ceiling, and hits %s in the %s, who falls down dead instantly.", mon_nam(mon), mbodypart(mon, HEAD)); break;
+				case 778: pline("Your crossbow shoots %s in the %s, causing a gigantic fountain of %s to shoot out.", mon_nam(mon), mbodypart(mon, NECK), mbodypart(mon, BLOOD)); break;
+				case 779: pline("You present your attorney's badge to %s, and for once, it somehow completely annihilates %s.", mon_nam(mon), mhim(mon)); break;
+				case 780: pline("You broke %s's last psyche-lock, causing %s to experience a mental breakdown!", mon_nam(mon), mhim(mon)); break;
+				case 781: pline("You assume your triumph pose while the awesome music (Cornered - Variation) starts to play. Moments later, the judge declares your client innocent while %s is sent to jail.", mon_nam(mon)); break;
+				case 782: pline("%s starts to bleed profusely after being hit by your thrown spear, and tries to run away... only to bleed to death shortly after.", Monnam(mon)); break;
 
 				default: pline("You hit %s very hard!", mon_nam(mon)); break;
 	
@@ -10528,7 +10546,7 @@ register int roll;
 
 	} else if ((Role_if(PM_SPACEWARS_FIGHTER) || (monstersoundtype(mdef) == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || FemtrapActiveAriane || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || (u.usanity > rn2(1000)) ) && (!rn2(5) || (monstersoundtype(mdef) == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) ) && canspotmon(mdef) && flags.verbose) {
 
-		switch (rnd(840)) {
+		switch (rnd(854)) {
 
 		case 1: pline("%s cringes from your strike behind its %sshield.", Monnam(mdef), which_armor(mdef, W_ARMS) ? "" : "nonexistant "); break;
 		case 2: pline("You smash into %s's %sshield, striking sparks.", mon_nam(mdef), which_armor(mdef, W_ARMS) ? "" : "nonexistant "); break;
@@ -11378,6 +11396,20 @@ register int roll;
 		case 838: pline("Until you tell Amy about your lame autowin exploit that involves abusing a loophole in the game which is certainly not meant to be there, you'll always miss %s no matter what, so better confess your sins to the developer so she can patch out the bad bug.", mon_nam(mdef)); break;
 		case 839: pline("With your fatman, you fire a mini-nuke at %s... but since you're such a horribly bad shot, you miss, meaning you've just wasted your super precious ammo for nothing at all.", mon_nam(mdef)); break;
 		case 840: pline("%s threatens 'I'm gonna rob out your %s!'", Monnam(mdef), makeplural(body_part(EYE)) ); break;
+		case 841: pline("You present a piece of evidence, but the judge just shakes his head and penalizes you."); break;
+		case 842: pline("%s's attorney shouts 'Objection!', and proceeds to disprove your point with some forged evidence.", Monnam(mdef)); break;
+		case 843: pline("You are on the way to being forced to turn in your attorney's badge if you keep being such a doofus!"); break;
+		case 844: pline("Your bullet hits %s's shoulder pad, dealing no damage.", mon_nam(mdef)); break;
+		case 845: pline("You present your attorney's badge to %s, which (obviously) doesn't have any effect.", mon_nam(mdef)); break;
+		case 846: pline("You fail to break %s's psyche-lock, and take some mind damage in retaliation!", mon_nam(mdef)); break;
+		case 847: pline("%s pleads the Fifth, and thereby prevents you from incriminating %s!", Monnam(mdef), mhim(mdef)); break;
+		case 848: pline("The opposing attorney decides to disallow your line of questioning, and the corrupt bastard of a judge complies, so your conjecture was for nothing."); break;
+		case 849: pline("%s has plenty of weapons at %s disposal, and decides to use one that incapacitates you.", Monnam(mdef), mhis(mdef)); break;
+		case 850: pline("Look, I get that you're suffering from choice paralysis, but even I could've told you that this type of attack wouldn't help against %s.", mon_nam(mdef)); break;
+		case 851: pline("Now you've missed %s for the umpteenth time. Will you finally wise up and use some attack spells or wands or something? Perhaps a technique?", mon_nam(mdef)); break;
+		case 852: pline("Now you've plugged away futilely for long enough with that wimpy weapon of yours! Seriously, use some other strategy or you won't ever defeat %s!", mon_nam(mdef)); break;
+		case 853: pline("%s's wimpy desk slam (which is rather lame compared to yours) somehow intimidates you because you're probably not very good at what you're doing.", Monnam(mdef)); break;
+		case 854: pline("%s is waggling %s %s at you, and somehow your confidence falters from seeing that gesture.", Monnam(mdef), mhis(mdef), mbodypart(mdef, FINGER)); break;
 
 		default: pline("You missed %s!", mon_nam(mdef)); break;
 
