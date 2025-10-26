@@ -5913,7 +5913,7 @@ int tech_no;
                 Your("%s %s become blurs as they reach for your quiver!",
 			uarmg ? "gloved" : "bare",      /* Del Lamb */
 			makeplural(body_part(HAND)));
-                set_tech_duration(tech_no, rnd((int) (techlevX(tech_no)/6 + 1)) + 2);
+                set_tech_duration(tech_no, (int) ( (techlevX(tech_no)/6 + 1) + rn1(2,2)) );
                 t_timeout = rnz(1500);
 		break;
             case T_INVOKE_DEITY: /* ask for healing if your alignment record is positive --Amy */
@@ -6199,7 +6199,7 @@ secureidchoice:
             case T_KIII:
 		You("scream \"KIIILLL!\"");
 		aggravate();
-                set_tech_duration(tech_no, rnd((int) (techlevX(tech_no)/2 + 1)) + 2);
+                set_tech_duration(tech_no, (int) ((techlevX(tech_no)/2 + 1) + rn1(2,2)) );
                 t_timeout = rnz(1500);
 		break;
 	    case T_CALM_STEED:
@@ -6368,12 +6368,12 @@ secureidchoice:
 		t_timeout = rnz(7500);
 		if (uarmc && uarmc->oartifact == ART_PRIESTEST_BLESS) t_timeout = rnz(6000);
 		break;
-	    case T_E_FIST: 
+	    case T_E_FIST:
 	    	blitz_e_fist();
 #if 0
 		str = makeplural(body_part(HAND));
                 You("focus the powers of the elements into your %s", str);
-                set_tech_duration(tech_no, rnd((int) (techlevX(tech_no)/3 + 1)) + d(1,4) + 2);
+                set_tech_duration(tech_no, (int) (techlevX(tech_no)/3 + 1) + d(1,4) + 2) );
 #endif
 		t_timeout = rnz(1500);
 	    	break;
@@ -6527,7 +6527,7 @@ secureidchoice:
 
 		/* Invoke */
 		You("invoke the sigil of tempest!");
-                set_tech_duration(tech_no, d(1,6) + rnd(techlevX(tech_no)/2 + 1) + 2);
+                set_tech_duration(tech_no, d(1,6) + (techlevX(tech_no) / 2) + 3);
 		u_wipe_engr(2);
                 t_timeout = rnz(50);
 		return(0);
@@ -6544,7 +6544,7 @@ secureidchoice:
 
 		/* Invoke */
 		You("invoke the sigil of control!");
-                set_tech_duration(tech_no, d(1,4) + rnd(techlevX(tech_no)/2 + 1) + 2);
+                set_tech_duration(tech_no, d(1,4) + (techlevX(tech_no) / 2) + 3);
 		u_wipe_engr(2);
                 t_timeout = rnz(50);
 		return(0);
@@ -6561,7 +6561,7 @@ secureidchoice:
 
 		/* Invoke */
 		You("invoke the sigil of discharge!");
-                set_tech_duration(tech_no, d(1,4) + rnd(techlevX(tech_no)/2 + 1) + 2);
+                set_tech_duration(tech_no, d(1,4) + (techlevX(tech_no) / 2) + 3);
 		u_wipe_engr(2);
                 t_timeout = rnz(50);
 		return(0);
@@ -6641,7 +6641,7 @@ secureidchoice:
 
 		You("invoke the ward against flame!");
 		HFire_resistance += rn1(100,50);
-		HFire_resistance += techlevX(tech_no);
+		HFire_resistance += (techlevX(tech_no) * 5);
 		t_timeout = rnz(1500);
 
 	    	break;
@@ -6654,7 +6654,7 @@ secureidchoice:
 
 		You("invoke the ward against ice!");
 		HCold_resistance += rn1(100,50);
-		HCold_resistance += techlevX(tech_no);
+		HCold_resistance += (techlevX(tech_no) * 5);
 		t_timeout = rnz(1500);
 
 	    	break;
@@ -6667,7 +6667,7 @@ secureidchoice:
 
 		You("invoke the ward against lightning!");
 		HShock_resistance += rn1(100,50);
-		HShock_resistance += techlevX(tech_no);
+		HShock_resistance += (techlevX(tech_no) * 5);
 		t_timeout = rnz(1500);
 
 	    	break;
@@ -6707,7 +6707,7 @@ secureidchoice:
 		break;	    
 	    case T_BLINK:
 	    	You_feel("the flow of time slow down.");
-                set_tech_duration(tech_no, rnd(techlevX(tech_no) + 1) + 2);
+                set_tech_duration(tech_no, techlevX(tech_no) + 3);
 		t_timeout = rnz(1500);
 	    	break;
             case T_CHI_STRIKE:
@@ -7627,7 +7627,7 @@ breakstare:
 	      break;
 
 	    case T_CONCENTRATING:
-		num = 1 + (techlevX(tech_no) / 2);
+		num = 7 + (techlevX(tech_no) / 2);
 	    	set_tech_duration(tech_no, num + 1);
 
 		pline("You start concentrating.");
@@ -7680,7 +7680,7 @@ buttpetmarker:
 	    case T_DOUBLE_THROWNAGE:
 
             Your("%s %s become blurs as they reach for your throwing weapons!", uarmg ? "gloved" : "bare", makeplural(body_part(HAND)));
-            set_tech_duration(tech_no, rnd((int) (techlevX(tech_no)/6 + 1)) + 2);
+            set_tech_duration(tech_no, (int) (techlevX(tech_no) / 6) + 3 );
             t_timeout = rnz(1500);
 
 	      break;
@@ -7690,7 +7690,7 @@ buttpetmarker:
 			pline("You aren't wearing a shield!");
 			return(0);
 		}
-		num = 1 + techlevX(tech_no);
+		num = 5 + techlevX(tech_no);
 	    	set_tech_duration(tech_no, num + 1);
 		pline("You ready your shield as an additional weapon.");
 
@@ -8887,7 +8887,7 @@ incarnationfinish:
 
 	    case T_SPECTRAL_SWORD:
 		You("focus the powers of the elements into your weapon.");
-		set_tech_duration(tech_no, rnd((int) (techlevX(tech_no)/3 + 1)) + d(1,4) + 2);
+		set_tech_duration(tech_no, (int) (techlevX(tech_no)/3 + 1) + d(1,4) + 2);
 		t_timeout = rnz(1500);
 		break;
 
@@ -9389,7 +9389,7 @@ revid_end:
 		break;
 
 	    case T_EDDY_WIND:
-		num = 1 + techlevX(tech_no);
+		num = 3 + techlevX(tech_no);
 	    	set_tech_duration(tech_no, num + 1);
 		pline("You prepare a powerful axe-and-sword-mill!");
 
