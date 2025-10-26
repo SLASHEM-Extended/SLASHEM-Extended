@@ -5861,61 +5861,81 @@ int tech_no;
 	/* switch to the tech and do stuff */
         switch (techid(tech_no)) {
             case T_RESEARCH:
-		/* WAC stolen from the spellcasters...'A' can identify from
-        	   historical research*/
-		if(Hallucination || (Stunned && !Stun_resist) || (Confusion && !Conf_resist) ) {
-		    You("can't concentrate right now!");
-		    return(0);
-		} else if((ACURR(A_INT) + ACURR(A_WIS)) < rnd(60)) {
-			pline("Nothing in your pack looks familiar.");
-                    t_timeout = rnz(2000);
-		    break;
-		} else if(invent) {
-			You("examine your possessions.");
-			identify_pack((int) ((techlevX(tech_no) / 10) + 1), 0, 0);
-		} else {
-			/* KMH -- fixed non-compliant string */
-		    You("are already quite familiar with the contents of your pack.");
-		    break;
-		}
-                t_timeout = rnz(5000);
+			/* WAC stolen from the spellcasters...'A' can identify from historical research */
+			if(Hallucination || (Stunned && !Stun_resist) || (Confusion && !Conf_resist) ) {
+			    You("can't concentrate right now!");
+			    return(0);
+			} else if((ACURR(A_INT) + ACURR(A_WIS)) < rnd(60)) {
+				pline("Nothing in your pack looks familiar.");
+	                    t_timeout = rnz(2000);
+			    break;
+			} else if(invent) {
+				You("examine your possessions.");
+				identify_pack((int) ((techlevX(tech_no) / 10) + 1), 0, 0);
+			} else {
+				/* KMH -- fixed non-compliant string */
+			    You("are already quite familiar with the contents of your pack.");
+			    break;
+			}
+			t_timeout = rnz(5000);
 		break;
+
             case T_EVISCERATE:
-		/* only when empty handed, in human form */
-		if (Upolyd || uwep || uarmg) {
-		    You_cant("do this while %s!", Upolyd ? "polymorphed" :
-			    uwep ? "holding a weapon" : "wearing gloves");
-		    return 0;
-		}
-		Your("fingernails extend into claws!");
-		aggravate();
-		set_tech_duration(tech_no, d(2,4) + techlevX(tech_no)/2 + 2);
-		t_timeout = rnz(2000);
+			/* only when empty handed, in human form */
+			if (Upolyd || uwep || uarmg) {
+			    You_cant("do this while %s!", Upolyd ? "polymorphed" :
+				    uwep ? "holding a weapon" : "wearing gloves");
+
+			    if (u.temptechhack) {
+				if (uwep) {
+					if (yn("Unwield your weapon?") == 'y') {
+						setuwep((struct obj *)0, FALSE, TRUE);
+					}
+				}
+				if (uarmg) {
+					if (yn("Take off your gloves?") == 'y') {
+						Gloves_off();
+					}
+				}
+			    }
+
+			    if (Upolyd || uwep || uarmg) {
+				return 0;
+			    }
+			}
+			Your("fingernails extend into claws!");
+			aggravate();
+			set_tech_duration(tech_no, d(2,4) + techlevX(tech_no)/2 + 2);
+			t_timeout = rnz(2000);
 		break;
+
             case T_BERSERK:
-		You("fly into a berserk rage!");
-		set_tech_duration(tech_no, d(2,8) +
-               		(techlevX(tech_no)/2) + 2);
-		incr_itimeout(&HFast, techt_inuse(tech_no));
-		t_timeout = rnz(1500);
+			You("fly into a berserk rage!");
+			set_tech_duration(tech_no, d(2,8) + (techlevX(tech_no)/2) + 2);
+			incr_itimeout(&HFast, techt_inuse(tech_no));
+			t_timeout = rnz(1500);
 		break;
+
             case T_REINFORCE:
-		/* WAC spell-users can study their known spells*/
-		if(Hallucination || (Stunned && !Stun_resist) || (Confusion && !Conf_resist) ) {
-		    You("can't concentrate right now!");
-		    break;
-               	} else {
-		    You("concentrate...");
-		    if (studyspell()) t_timeout = rnz(1500); /*in spell.c*/
-		}
-               break;
+			/* WAC spell-users can study their known spells*/
+			if(Hallucination || (Stunned && !Stun_resist) || (Confusion && !Conf_resist) ) {
+			    You("can't concentrate right now!");
+			    break;
+			} else {
+			    You("concentrate...");
+			    if (studyspell()) t_timeout = rnz(1500); /*in spell.c*/
+			}
+		break;
+
             case T_FLURRY:
-                Your("%s %s become blurs as they reach for your quiver!",
+			Your("%s %s become blurs as they reach for your quiver!",
 			uarmg ? "gloved" : "bare",      /* Del Lamb */
 			makeplural(body_part(HAND)));
-                set_tech_duration(tech_no, (int) ( (techlevX(tech_no)/6 + 1) + rn1(2,2)) );
-                t_timeout = rnz(1500);
+			set_tech_duration(tech_no, (int) ( (techlevX(tech_no)/6 + 1) + rn1(2,2)) );
+
+			t_timeout = rnz(1500);
 		break;
+
             case T_INVOKE_DEITY: /* ask for healing if your alignment record is positive --Amy */
 
 			if (Race_if(PM_MACTHEIST)) {
@@ -5973,7 +5993,15 @@ int tech_no;
 			use_skill(P_SPIRITUALITY, Role_if(PM_PRIEST) ? 10 : 2);
                 t_timeout = rnz(3000);
 		break;
+
             case T_APPRAISAL:
+
+			if (u.temptechhack && !uwep) {
+				if (yn("You're not wielding a weapon, do you want to wield one to make use of this technique?") == 'y') {
+					dowield();
+				}
+			}
+
 			if(!uwep) {
 				You("are not wielding anything!");
 				return(0);
@@ -6015,7 +6043,7 @@ int tech_no;
 
             case T_PHASE_DOOR:
 			phase_door(0);
-                if (!Role_if(PM_CAMPERSTRIKER) || !rn2(4)) t_timeout = rnz(1000);
+			if (!Role_if(PM_CAMPERSTRIKER) || !rn2(4)) t_timeout = rnz(1000);
 		break;
 
             case T_PANIC_DIGGING:
@@ -6067,30 +6095,41 @@ secureidchoice:
 		break;
 
             case T_PRACTICE:
-			if(!uwep || (weapon_type(uwep) == P_NONE)) {
-			You("are not wielding a weapon!");
-			return(0);
-		} else if(uwep->known == TRUE) {
-                    practice_weapon();
-		} else {
-			if (not_fully_identified(uwep)) {
-				You("examine %s.", doname(uwep));
-				if (rnd(15) <= ACURR(A_INT)) {
-					makeknown(uwep->otyp);
-					uwep->known = TRUE;
-					if (u.weapchantrecskill < 100 || !rn2(u.weapchantrecskill)) {
-						u.weapchantrecskill++;
-						if (u.weapchantrecskill > 250) u.weapchantrecskill = 250;
+
+			if (u.temptechhack) {
+				if(!uwep || (weapon_type(uwep) == P_NONE)) {
+					if (yn("Do you want to wield some proper weapon for this technique?") == 'y') {
+						dowield();
 					}
-					You("discover it is %s",doname(uwep));
-				} else
-					pline("Unfortunately, you didn't learn anything new.");
-			} 
-			/*WAC Added practicing code - in weapon.c*/
-			practice_weapon();
-		}
+				}
+			}
+
+			if(!uwep || (weapon_type(uwep) == P_NONE)) {
+				You("are not wielding a weapon!");
+				return(0);
+			} else if(uwep->known == TRUE) {
+	                    practice_weapon();
+			} else {
+				if (not_fully_identified(uwep)) {
+					You("examine %s.", doname(uwep));
+					if (rnd(15) <= ACURR(A_INT)) {
+						makeknown(uwep->otyp);
+						uwep->known = TRUE;
+						if (u.weapchantrecskill < 100 || !rn2(u.weapchantrecskill)) {
+							u.weapchantrecskill++;
+							if (u.weapchantrecskill > 250) u.weapchantrecskill = 250;
+						}
+						You("discover it is %s",doname(uwep));
+					} else
+						pline("Unfortunately, you didn't learn anything new.");
+				} 
+				/*WAC Added practicing code - in weapon.c*/
+				practice_weapon();
+			}
+
 			t_timeout = rnz(1000);
 		break;
+
             case T_SURGERY:
 		if (Hallucination || (Stunned && !Stun_resist) || (Confusion && !Conf_resist) ) {
 		    You("are in no condition to perform surgery!");
@@ -6173,42 +6212,46 @@ secureidchoice:
                     t_timeout = rnz(1500);
 		    flags.botl = TRUE;
 		} else You("don't need your healing powers!");
+
 		break;
+
             case T_HEAL_HANDS:
-		if (Slimed) {
-		    Your("body is on fire!");
-		    burn_away_slime();
-		    t_timeout = rnz(3000);
-		} else if (Sick) {
-		    You("lay your hands on the foul sickness...");
-		    make_sick(0L, (char*)0, TRUE, SICK_ALL);
-		    t_timeout = rnz(3000);
-		} else if (Upolyd ? u.mh < u.mhmax : u.uhp < u.uhpmax) {
-		    pline("A warm glow spreads through your body!");
-		    healup(techlevX(tech_no) * 4, 0, FALSE, FALSE);
-		    percentheal(1);
-		    t_timeout = rnz(3000);
-		} else {
-			pline("%s", nothing_happens);
-			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
-				pline("Oh wait, actually something bad happens...");
-				badeffect();
+			if (Slimed) {
+			    Your("body is on fire!");
+			    burn_away_slime();
+			    t_timeout = rnz(3000);
+			} else if (Sick) {
+			    You("lay your hands on the foul sickness...");
+			    make_sick(0L, (char*)0, TRUE, SICK_ALL);
+			    t_timeout = rnz(3000);
+			} else if (Upolyd ? u.mh < u.mhmax : u.uhp < u.uhpmax) {
+			    pline("A warm glow spreads through your body!");
+			    healup(techlevX(tech_no) * 4, 0, FALSE, FALSE);
+			    percentheal(1);
+			    t_timeout = rnz(3000);
+			} else {
+				pline("%s", nothing_happens);
+				if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+					pline("Oh wait, actually something bad happens...");
+					badeffect();
+				}
 			}
-		}
 		break;
+
             case T_KIII:
-		You("scream \"KIIILLL!\"");
-		aggravate();
-                set_tech_duration(tech_no, (int) ((techlevX(tech_no)/2 + 1) + rn1(2,2)) );
-                t_timeout = rnz(1500);
+			You("scream \"KIIILLL!\"");
+			aggravate();
+			set_tech_duration(tech_no, (int) ((techlevX(tech_no)/2 + 1) + rn1(2,2)) );
+			t_timeout = rnz(1500);
 		break;
-	    case T_CALM_STEED:
+
+		case T_CALM_STEED:
 
 		if (u.usteed) pline("You calm your steed.");
-		int calmedX;
-		calmedX = 0;
+			int calmedX;
+			calmedX = 0;
 
-                if (u.usteed) {
+			if (u.usteed) {
 
 
                         pline("%s gets tamer.", Monnam(u.usteed));
@@ -6223,25 +6266,28 @@ secureidchoice:
 				}
 
                         t_timeout = rnz(1500);
-                } else
+			} else
                         Your("technique is only effective when riding a monster.");
-                break;
+		break;
+
             case T_TURN_UNDEAD:
 			if (!turn_undead()) t_timeout = rnz(10);
 			else t_timeout = rnz(50);
-			break;
-	    case T_VANISH:
-		if (Invisible && Fast) {
-			You("are already quite nimble and undetectable.");
-		}
-                set_tech_duration(tech_no, rn1(10,10) + (techlevX(tech_no) * 2) );
-		if (!Invisible) pline("In a puff of smoke,  you disappear!");
-		if (!Fast) You_feel("more nimble!");
-		incr_itimeout(&HInvis, techt_inuse(tech_no));
-		incr_itimeout(&HFast, techt_inuse(tech_no));
-		newsym(u.ux,u.uy);      /* update position */
-		t_timeout = rnz(1500);
 		break;
+
+		case T_VANISH:
+			if (Invisible && Fast) {
+				You("are already quite nimble and undetectable.");
+			}
+			set_tech_duration(tech_no, rn1(10,10) + (techlevX(tech_no) * 2) );
+			if (!Invisible) pline("In a puff of smoke,  you disappear!");
+			if (!Fast) You_feel("more nimble!");
+			incr_itimeout(&HInvis, techt_inuse(tech_no));
+			incr_itimeout(&HFast, techt_inuse(tech_no));
+			newsym(u.ux,u.uy);      /* update position */
+			t_timeout = rnz(1500);
+		break;
+
 	    case T_CRIT_STRIKE:
 		if (!getdir((char *)0)) return(0);
 		if (!u.dx && !u.dy) {
@@ -6283,6 +6329,15 @@ secureidchoice:
 		}
 		break;
 	    case T_CUTTHROAT:
+
+		if (u.temptechhack) {
+			if (!uwep || (uwep && !is_blade(uwep)) ) {
+				if (yn("Wanna wield a bladed weapon for this technique?") == 'y') {
+					dowield();
+				}
+			}
+		}
+
 		if (!uwep) {
 		    You("obviously can't perform that without a weapon.");
 		    return 0;		
@@ -6331,6 +6386,7 @@ secureidchoice:
 		    }
 		}
 		break;
+
 	    case T_BLESSING:
 		allowall[0] = ALL_CLASSES; allowall[1] = '\0';
 		
@@ -6368,6 +6424,7 @@ secureidchoice:
 		t_timeout = rnz(7500);
 		if (uarmc && uarmc->oartifact == ART_PRIESTEST_BLESS) t_timeout = rnz(6000);
 		break;
+
 	    case T_E_FIST:
 	    	blitz_e_fist();
 #if 0
@@ -6377,6 +6434,7 @@ secureidchoice:
 #endif
 		t_timeout = rnz(1500);
 	    	break;
+
 	    case T_PRIMAL_ROAR:	    	
 	    	You("let out a bloodcurdling roar!");
 	    	aggravate();
@@ -6406,6 +6464,7 @@ secureidchoice:
 		    }
 		t_timeout = rnz(1500);
 	    	break;
+
 	    case T_LIQUID_LEAP: {
 	    	coord cc;
 	    	int dx, dy, sx, sy, range;
@@ -6516,122 +6575,130 @@ secureidchoice:
 	    	break;
 	    }
             case T_SIGIL_TEMPEST: 
-		/* Have enough power? */
-		num = 50 - techlevX(tech_no);
-		if (num < 10) num = 10;
-		if (u.uen < num) {
-			You("don't have enough power to invoke the sigil! You need at least %d!",num);
-			return (0);
-		}
-		u.uen -= num;
+			/* Have enough power? */
+			num = 50 - techlevX(tech_no);
+			if (num < 10) num = 10;
+			if (u.uen < num) {
+				You("don't have enough power to invoke the sigil! You need at least %d!",num);
+				return (0);
+			}
+			u.uen -= num;
 
-		/* Invoke */
-		You("invoke the sigil of tempest!");
-                set_tech_duration(tech_no, d(1,6) + (techlevX(tech_no) / 2) + 3);
-		u_wipe_engr(2);
-                t_timeout = rnz(50);
-		return(0);
+			/* Invoke */
+			You("invoke the sigil of tempest!");
+			set_tech_duration(tech_no, d(1,6) + (techlevX(tech_no) / 2) + 3);
+			u_wipe_engr(2);
+			t_timeout = rnz(50);
+			return(0);
 		break;
+
             case T_SIGIL_CONTROL:
-		/* Have enough power? */
-		num = 30 - techlevX(tech_no)/2;
-		if (num < 10) num = 10;
-		if (u.uen < num) {
-			You("don't have enough power to invoke the sigil! You need at least %d!",num);
-			return (0);
-		}
-		u.uen -= num;
+			/* Have enough power? */
+			num = 30 - techlevX(tech_no)/2;
+			if (num < 10) num = 10;
+			if (u.uen < num) {
+				You("don't have enough power to invoke the sigil! You need at least %d!",num);
+				return (0);
+			}
+			u.uen -= num;
 
-		/* Invoke */
-		You("invoke the sigil of control!");
-                set_tech_duration(tech_no, d(1,4) + (techlevX(tech_no) / 2) + 3);
-		u_wipe_engr(2);
-                t_timeout = rnz(50);
-		return(0);
+			/* Invoke */
+			You("invoke the sigil of control!");
+			set_tech_duration(tech_no, d(1,4) + (techlevX(tech_no) / 2) + 3);
+			u_wipe_engr(2);
+			t_timeout = rnz(50);
+			return(0);
 		break;
+
             case T_SIGIL_DISCHARGE:
-		/* Have enough power? */
-		num = 100 - techlevX(tech_no)*2;
-		if (num < 10) num = 10;
-		if (u.uen < num) {
-			You("don't have enough power to invoke the sigil! You need at least %d!",num);
-			return (0);
-		}
-		u.uen -= num;
+			/* Have enough power? */
+			num = 100 - techlevX(tech_no)*2;
+			if (num < 10) num = 10;
+			if (u.uen < num) {
+				You("don't have enough power to invoke the sigil! You need at least %d!",num);
+				return (0);
+			}
+			u.uen -= num;
 
-		/* Invoke */
-		You("invoke the sigil of discharge!");
-                set_tech_duration(tech_no, d(1,4) + (techlevX(tech_no) / 2) + 3);
-		u_wipe_engr(2);
-                t_timeout = rnz(50);
-		return(0);
+			/* Invoke */
+			You("invoke the sigil of discharge!");
+			set_tech_duration(tech_no, d(1,4) + (techlevX(tech_no) / 2) + 3);
+			u_wipe_engr(2);
+			t_timeout = rnz(50);
+			return(0);
 		break;
+
             case T_RAISE_ZOMBIES:
             	You("chant the ancient curse...");
-		for(i = -1; i <= 1; i++) for(j = -1; j <= 1; j++) {
-		    int corpsenm;
+			for(i = -1; i <= 1; i++) for(j = -1; j <= 1; j++) {
+			    int corpsenm;
 
-		    if (!isok(u.ux+i, u.uy+j)) continue;
-		    for (obj = level.objects[u.ux+i][u.uy+j]; obj; obj = otmp) {
-			otmp = obj->nexthere;
+			    if (!isok(u.ux+i, u.uy+j)) continue;
+			    for (obj = level.objects[u.ux+i][u.uy+j]; obj; obj = otmp) {
+				otmp = obj->nexthere;
 
-			if (obj->otyp != CORPSE) continue;
-			/* Only generate undead */
-			corpsenm = mon_to_zombie(obj->corpsenm);
-			if (corpsenm != -1 && !cant_create(&corpsenm, TRUE) &&
-			  (!obj->oxlth || obj->oattached != OATTACHED_MONST)) {
-			    /* Maintain approx. proportion of oeaten to cnutrit
-			     * so that the zombie's HP relate roughly to how
-			     * much of the original corpse was left.
-			     */
-			    if (obj->oeaten)
-				obj->oeaten =
-					eaten_stat(mons[corpsenm].cnutrit, obj);
-			    obj->corpsenm = corpsenm;
-			    mtmp = revive(obj);
-			    if (mtmp) {
-				if (!resist(mtmp, SPBOOK_CLASS, 0, TELL) || ((rnd(30 - ACURR(A_CHA))) < 4) ) {
-				   mtmp = tamedog(mtmp, (struct obj *) 0, FALSE);
-				   You("dominate %s!", mon_nam(mtmp));
-				} else setmangry(mtmp);
+				if (obj->otyp != CORPSE) continue;
+				/* Only generate undead */
+				corpsenm = mon_to_zombie(obj->corpsenm);
+				if (corpsenm != -1 && !cant_create(&corpsenm, TRUE) &&
+				  (!obj->oxlth || obj->oattached != OATTACHED_MONST)) {
+				    /* Maintain approx. proportion of oeaten to cnutrit
+				     * so that the zombie's HP relate roughly to how
+				     * much of the original corpse was left.
+				     */
+				    if (obj->oeaten)
+					obj->oeaten =
+						eaten_stat(mons[corpsenm].cnutrit, obj);
+				    obj->corpsenm = corpsenm;
+				    mtmp = revive(obj);
+				    if (mtmp) {
+					if (!resist(mtmp, SPBOOK_CLASS, 0, TELL) || ((rnd(30 - ACURR(A_CHA))) < 4) ) {
+					   mtmp = tamedog(mtmp, (struct obj *) 0, FALSE);
+					   You("dominate %s!", mon_nam(mtmp));
+					} else setmangry(mtmp);
+				    }
+				}
 			    }
 			}
-		    }
-		}
-		nomul(-2, "recovering from an attempt to raise zombies", TRUE); /* You need to recover */
-		nomovemsg = 0;
-		t_timeout = rnz(1500);
+			nomul(-2, "recovering from an attempt to raise zombies", TRUE); /* You need to recover */
+			nomovemsg = 0;
+			t_timeout = rnz(1500);
 		break;
+
             case T_REVIVE:
 
-		if (CannotSelectItemsInPrompts) break;
-		if (u.uswallow) {
-		    You("%s", no_elbow_room);
-		    return 0;
-		}
+			if (CannotSelectItemsInPrompts) break;
+			if (u.uswallow) {
+			    You("%s", no_elbow_room);
+			    return 0;
+			}
             	num = 100 - techlevX(tech_no); /* WAC make this depend on mon? */
 			if (num < 25) num = 25;
-            	if ((Upolyd && u.mh <= num) || (!Upolyd && u.uhp <= num)){
-		    You("don't have the strength to perform revivification!");
-		    return 0;
+
+            	if ((Upolyd && u.mh <= num) || (!Upolyd && u.uhp <= num)) {
+				You("don't have the strength to perform revivification!");
+				return 0;
             	}
 
             	obj = getobj((const char *)revivables, "revive");
             	if (!obj) return (0);
             	mtmp = revive(obj);
             	if (mtmp) {
-		    if (Is_blackmarket(&u.uz))
-			setmangry(mtmp);
-		    else
-		    if (mtmp->isshk)
-			make_happy_shk(mtmp, FALSE);
-		    else if (!resist(mtmp, SPBOOK_CLASS, 0, NOTELL) || (((rnd(30 - ACURR(A_CHA))) < 4) && !resist(mtmp, SPBOOK_CLASS, 0, TELL) ) || (((rnd(30 - ACURR(A_CHA))) < 4) && !resist(mtmp, SPBOOK_CLASS, 0, TELL) ) )
-			(void) tamedog(mtmp, (struct obj *) 0, FALSE);
-		}
+				if (Is_blackmarket(&u.uz)) {
+					setmangry(mtmp);
+				} else {
+					if (mtmp->isshk) {
+						make_happy_shk(mtmp, FALSE);
+					} else if (!resist(mtmp, SPBOOK_CLASS, 0, NOTELL) || (((rnd(30 - ACURR(A_CHA))) < 4) && !resist(mtmp, SPBOOK_CLASS, 0, TELL) ) || (((rnd(30 - ACURR(A_CHA))) < 4) && !resist(mtmp, SPBOOK_CLASS, 0, TELL) ) ) {
+						(void) tamedog(mtmp, (struct obj *) 0, FALSE);
+					}
+				}
+			}
             	if (Upolyd) u.mh -= num;
             	else u.uhp -= num;
-		t_timeout = rnz(5000);
-            	break;
+			t_timeout = rnz(5000);
+           	break;
+
 	    case T_WARD_FIRE:
 		/* Already have it intrinsically? */
 		if (HFire_resistance & FROMOUTSIDE) {
@@ -6643,8 +6710,8 @@ secureidchoice:
 		HFire_resistance += rn1(100,50);
 		HFire_resistance += (techlevX(tech_no) * 5);
 		t_timeout = rnz(1500);
-
 	    	break;
+
 	    case T_WARD_COLD:
 		/* Already have it intrinsically? */
 		if (HCold_resistance & FROMOUTSIDE) {
@@ -6656,8 +6723,8 @@ secureidchoice:
 		HCold_resistance += rn1(100,50);
 		HCold_resistance += (techlevX(tech_no) * 5);
 		t_timeout = rnz(1500);
-
 	    	break;
+
 	    case T_WARD_ELEC:
 		/* Already have it intrinsically? */
 		if (HShock_resistance & FROMOUTSIDE) {
@@ -6669,13 +6736,20 @@ secureidchoice:
 		HShock_resistance += rn1(100,50);
 		HShock_resistance += (techlevX(tech_no) * 5);
 		t_timeout = rnz(1500);
-
 	    	break;
+
 	    case T_TINKER:
 		if (Blind) {
 			You("can't do any tinkering if you can't see!");
 			return (0);
 		}
+
+		if (u.temptechhack && !uwep) {
+			if (yn("Do you want to wield something to work on?") == 'y') {
+				dowield();
+			}
+		}
+
 		if (!uwep) {
 			You("aren't holding an object to work on!");
 			return (0);
@@ -6689,6 +6763,7 @@ secureidchoice:
 		t_timeout = rnz(200);
 		if (uarmg && uarmg->oartifact == ART_SABRINA_S_UTILITY_GLOVES && t_timeout > 1) t_timeout /= 2;
 		break;
+
 	    case T_RAGE:     	
 		/*if (Upolyd) {
 			You("cannot focus your anger!");
@@ -6704,37 +6779,49 @@ secureidchoice:
 		u.uhpmax += num;
 		u.uhp += num;
 		t_timeout = rnz(5000);
-		break;	    
+		break;
+
 	    case T_BLINK:
 	    	You_feel("the flow of time slow down.");
-                set_tech_duration(tech_no, techlevX(tech_no) + 3);
+		set_tech_duration(tech_no, techlevX(tech_no) + 3);
 		t_timeout = rnz(1500);
 	    	break;
+
             case T_CHI_STRIKE:
             	if (!blitz_chi_strike()) return(0);
-                t_timeout = rnz(1500);
+			t_timeout = rnz(1500);
 		break;
+
             case T_DRAW_ENERGY:
             	if (u.uen == u.uenmax) {
             		if (Hallucination) You("are fully charged!");
-			else You("cannot hold any more energy!");
-			return(0);           		
+				else You("cannot hold any more energy!");
+				return(0);           		
             	}
-                You("begin drawing energy from your surroundings!");
-		delay=-15;
-		set_occupation(draw_energy, "drawing energy", 0);                
-                t_timeout = rnz(1500);
+			You("begin drawing energy from your surroundings!");
+			delay=-15;
+			set_occupation(draw_energy, "drawing energy", 0);                
+			t_timeout = rnz(1500);
 		break;
+
             case T_CHI_HEALING:
             	if (u.uen < 1) {
             		You("are too weak to attempt this! You need at least one point of mana!");
             		return(0);
             	}
-		You("direct your internal energy to restoring your body!");
-                set_tech_duration(tech_no, techlevX(tech_no)*10 + 4);
-                t_timeout = rnz(1500);
+			You("direct your internal energy to restoring your body!");
+			set_tech_duration(tech_no, techlevX(tech_no)*10 + 4);
+			t_timeout = rnz(1500);
 		break;	
+
 	    case T_DISARM:
+
+		if (u.temptechhack) {
+			if (yn("This requires a weapon that you're at least skilled with. Want to make sure you're wielding a proper weapon?") == 'y') {
+				dowield();
+			}
+		}
+
 		if (!uwep) {
 	    		You("aren't wielding a weapon!");
 	    		return(0);
@@ -6896,6 +6983,7 @@ secureidchoice:
 		}
                 t_timeout = rnz(5000);
 		break;
+
 	    case T_DAZZLE:
 	    	/* Short range stun attack */
 	    	if (Blind) {
@@ -6943,7 +7031,22 @@ breakstare:
 		}
 		t_timeout = rnz(750);
 	    	break;
+
 	    case T_BLITZ:
+
+		if (u.temptechhack) {
+			if (!canuseunarmedtechs()) {
+				if (yn("Unwield your weapon?") == 'y') {
+					setuwep((struct obj *)0, FALSE, TRUE);
+				}
+			}
+			if (uarms) {
+				if (yn("Take off your shield?") == 'y') {
+					Shield_off();
+				}
+			}
+		}
+
 	    	if (!canuseunarmedtechs()) {
 			You("can't do this while wielding a weapon!");
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -6956,9 +7059,24 @@ breakstare:
 	    	if (!doblitz()) return (0);		
 		u.combostrike = 0;
 		u.comboactive = FALSE;
-                t_timeout = rnz(5000);
+		t_timeout = rnz(5000);
 	    	break;
-            case T_PUMMEL:
+
+          case T_PUMMEL:
+
+		if (u.temptechhack) {
+			if (!canuseunarmedtechs()) {
+				if (yn("Unwield your weapon?") == 'y') {
+					setuwep((struct obj *)0, FALSE, TRUE);
+				}
+			}
+			if (uarms) {
+				if (yn("Take off your shield?") == 'y') {
+					Shield_off();
+				}
+			}
+		}
+
 	    	if (!canuseunarmedtechs()) {
 			You("can't do this while wielding a weapon!");
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -6980,7 +7098,22 @@ breakstare:
 		    if (!blitz_pummel()) return(0);
 		    t_timeout = rnz(2000);
 		break;
-            case T_G_SLAM:
+
+          case T_G_SLAM:
+
+		if (u.temptechhack) {
+			if (!canuseunarmedtechs()) {
+				if (yn("Unwield your weapon?") == 'y') {
+					setuwep((struct obj *)0, FALSE, TRUE);
+				}
+			}
+			if (uarms) {
+				if (yn("Take off your shield?") == 'y') {
+					Shield_off();
+				}
+			}
+		}
+
 	    	if (!canuseunarmedtechs()) {
 			You("can't do this while wielding a weapon!");
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -7002,21 +7135,37 @@ breakstare:
 			if (!blitz_g_slam()) return(0);
 			t_timeout = rnz(1500);
 		break;
+
             case T_DASH:
-		if (!getdir((char *)0)) return(0);
-		if (!u.dx && !u.dy) {
-			You("stretch.");
-			return(0);
-		}
+			if (!getdir((char *)0)) return(0);
+			if (!u.dx && !u.dy) {
+				You("stretch.");
+				return(0);
+			}
             	if (!blitz_dash()) return(0);
-                t_timeout = rnz(500);
+			t_timeout = rnz(500);
 		break;
+
             case T_POWER_SURGE:
             	if (!blitz_power_surge()) return(0);
-		t_timeout = rnz(issoviet ? 1500 : 5000);
-		if (issoviet) pline("Sovetskaya nichego ne znayet o balansirovaniya ne ponimayet i poetomu khochet etu tekhniku, kotoraya uzhe slishkom sil'na, chtoby byt' yeshche sil'neye.");
+			t_timeout = rnz(issoviet ? 1500 : 5000);
+			if (issoviet) pline("Sovetskaya nichego ne znayet o balansirovaniya ne ponimayet i poetomu khochet etu tekhniku, kotoraya uzhe slishkom sil'na, chtoby byt' yeshche sil'neye.");
 		break;            	
-            case T_SPIRIT_BOMB:
+
+          case T_SPIRIT_BOMB:
+		if (u.temptechhack) {
+			if (!canuseunarmedtechs()) {
+				if (yn("Unwield your weapon?") == 'y') {
+					setuwep((struct obj *)0, FALSE, TRUE);
+				}
+			}
+			if (uarms) {
+				if (yn("Take off your shield?") == 'y') {
+					Shield_off();
+				}
+			}
+		}
+
 	    	if (!canuseunarmedtechs()) {
 			You("can't do this while wielding a weapon!");
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -7027,9 +7176,10 @@ breakstare:
 	    		return(0);
 	    	}
 		if (!getdir((char *)0)) return(0);
-            	if (!blitz_spirit_bomb()) return(0);
+            if (!blitz_spirit_bomb()) return(0);
 		t_timeout = rnz(1500);
 		break;            	
+
 	    case T_DRAW_BLOOD:
 	    {
 		int phialtype = 0;
@@ -7105,6 +7255,7 @@ breakstare:
 		t_timeout = rnz(1500);
 	    }
 		break;
+
 	    case T_JEDI_JUMP:
 		if (u.uen < 25){
 			You("can't channel the force around you. Jedi jumps require 25 points of mana!");
@@ -7115,6 +7266,7 @@ breakstare:
 		u.uen -= 25;
 		t_timeout = rnz(500);
 		break;
+
 	    case T_POKE_BALL:
 
 		if (u.uswallow) {
@@ -7184,6 +7336,7 @@ breakstare:
 
 		t_timeout = rnz(3000);
 		break;
+
 	    case T_SUMMON_TEAM_ANT:
 
 		{
@@ -7248,6 +7401,13 @@ breakstare:
 		if (u.uswallow) {
 		    pline("The monster can't see its inside anyway!");
 			return 0;
+		}
+
+		if (u.temptechhack && !PlayerInHighHeels) {
+			if (yn("This technique doesn't work without high heels. Do you want to switch to a pair of high heels?") == 'y') {
+				if (uarmf) Boots_off();
+				dowear();
+			}
 		}
 
 		if (!PlayerInHighHeels) {
@@ -7686,7 +7846,7 @@ buttpetmarker:
 	      break;
 
 	    case T_SHIELD_BASH:
-		if (!uarms) {
+		if (!uarms && !u.temptechhack) {
 			pline("You aren't wearing a shield!");
 			return(0);
 		}
@@ -7859,6 +8019,16 @@ chargingchoice:
 		break;
 
 	    case T_SWAP_WEAPON:
+		if (u.temptechhack && u.twoweap) {
+			if (yn("This technique doesn't work if you're dual-wielding. Unwield your secondary weapon?") == 'y') {
+				if (uswapwep) {
+					unwield(uswapwep, TRUE);
+				}
+				u.twoweap = 0;
+				update_inventory();
+			}
+		}
+
 		if (u.twoweap) {
 			pline("Sorry, you can only swap your secondary weapon while not dual-wielding.");
 			return(0);
@@ -8015,6 +8185,15 @@ resettechdone:
 
 		case T_POINTINESS:
 
+			if (u.temptechhack) {
+				if (!uwep || (uwep && weapon_type(uwep) != P_POLEARMS && weapon_type(uwep) != P_LANCE) ) {
+					if (yn("This technique requires a polearm or lance. Wield one now?") == 'y') {
+						if (uarms) Shield_off();
+						dowield();
+					}
+				}
+			}
+
 			if (!uwep) {
 				pline("That doesn't work without a weapon!");
 				return 0;
@@ -8070,6 +8249,15 @@ resettechdone:
 			break;
 
 		case T_WHIRLSTAFF:
+
+			if (u.temptechhack) {
+				if (!uwep || (uwep && weapon_type(uwep) != P_QUARTERSTAFF) ) {
+					if (yn("This technique requires a quarterstaff. Wield one now?") == 'y') {
+						if (uarms) Shield_off();
+						dowield();
+					}
+				}
+			}
 
 			if (!uwep) {
 				pline("That doesn't work without a weapon!");
@@ -8544,6 +8732,13 @@ heelschosen:
 
 		case T_BEAUTY_CHARM:
 
+			if (u.temptechhack && !PlayerInHighHeels) {
+				if (yn("This technique doesn't work without high heels. Do you want to switch to a pair of high heels?") == 'y') {
+					if (uarmf) Boots_off();
+					dowear();
+				}
+			}
+
 			if (!PlayerInHighHeels) {
 			    pline("You must be wearing high heels for that.");
 				return 0;
@@ -8559,7 +8754,7 @@ heelschosen:
 
 		case T_ASIAN_KICK:
 
-			if (!PlayerInStilettoHeels) {
+			if (!PlayerInStilettoHeels && !u.temptechhack) {
 			    pline("Only heroes wearing stiletto heels can use this technique!");
 				return 0;
 			}
@@ -8571,7 +8766,7 @@ heelschosen:
 
 		case T_LEGSCRATCH_ATTACK:
 
-			if (!PlayerInConeHeels) {
+			if (!PlayerInConeHeels && !u.temptechhack) {
 			    pline("Only heroes wearing cone heels can use this technique!");
 				return 0;
 			}
@@ -8585,7 +8780,7 @@ heelschosen:
 
 		case T_GROUND_STOMP:
 
-			if (!PlayerInWedgeHeels) {
+			if (!PlayerInWedgeHeels && !u.temptechhack) {
 			    pline("Only heroes wearing wedge heels can use this technique!");
 				return 0;
 			}
@@ -8599,7 +8794,7 @@ heelschosen:
 
 		case T_ATHLETIC_COMBAT:
 
-			if (!PlayerInBlockHeels) {
+			if (!PlayerInBlockHeels && !u.temptechhack) {
 			    pline("Only heroes wearing block heels can use this technique!");
 				return 0;
 			}
@@ -8628,6 +8823,14 @@ heelschosen:
 			break;
 
 		case T_ENCHANTERANG:
+
+			if (u.temptechhack) {
+				if (!uwep || (uwep && weapon_type(uwep) != P_BOOMERANG && weapon_type(uwep) != -P_BOOMERANG) ) {
+					if (yn("You need to wield a boomerang for this technique. Equip one now?") == 'y') {
+						dowield();
+					}
+				}
+			}
 
 			if (!uwep) {
 				pline("That doesn't work without a weapon!");
@@ -8803,6 +9006,12 @@ incarnationfinish:
 			break;
 
 		case T_COMBO_STRIKE:
+
+			if (u.temptechhack && !canuseunarmedtechs()) {
+				if (yn("Unwield your weapon?") == 'y') {
+					setuwep((struct obj *)0, FALSE, TRUE);
+				}
+			}
 
 			if (!canuseunarmedtechs()) {
 				You("can't do that while wielding a weapon!");
@@ -9094,6 +9303,12 @@ revid_end:
 
 	    case T_REROLL_IMPLANT:
 
+		if (u.temptechhack && !uimplant) {
+			if (yn("This requires an implant. Do you want to equip one now?") == 'y') {
+				doputon();
+			}
+		}
+
 		if (!uimplant) {
 			pline("You're not wearing any implant!");
 			return 0;
@@ -9168,6 +9383,15 @@ revid_end:
 		break;
 
 	    case T_UNCURSE_SABER:
+
+		if (u.temptechhack) {
+			if (!uwep || (uwep && !(is_lightsaber(uwep))) || (uwep && !(uwep->cursed)) ) {
+				if (yn("This requires you to wield a cursed lightsaber. Equip one now?") == 'y') {
+					dowield();
+				}
+			}
+		}
+
 		if (!uwep) {
 			pline("That doesn't work without a weapon!");
 			break;
@@ -9191,8 +9415,10 @@ revid_end:
 
 	    case T_ENERGY_CONSERVATION:
 		if (!uwep || (uwep && !is_lightsaber(uwep))) {
-			pline("You're not holding a lightsaber!");
-			break;
+			if (!u.temptechhack) {
+				pline("You're not holding a lightsaber!");
+				break;
+			}
 		}
 		num = 1000 + (techlevX(tech_no) * 10);
 	    	set_tech_duration(tech_no, num + 1);
@@ -9202,7 +9428,7 @@ revid_end:
 
 	    case T_UNARMED_FOCUS:
 
-		if (!canuseunarmedtechs()) {
+		if (!canuseunarmedtechs() && !u.temptechhack) {
 			pline("That requires you to be fighting without a weapon!");
 			break;
 		}
@@ -9219,6 +9445,15 @@ revid_end:
 		{
 			register struct obj *wearrobe;
 			long savewornmask;
+
+			if (u.temptechhack) {
+				if (!uarm || (uarm && !(uarm->otyp >= PLAIN_ROBE && uarm->otyp <= ROBE_OF_WEAKNESS)) ) {
+					if (yn("This requires a robe. Equip one now?") == 'y') {
+						if (uarm) Armor_off();
+						dowear();
+					}
+				}
+			}
 
 			if (!uarm) {
 				pline("Without armor, that technique won't do anything.");
@@ -9259,8 +9494,10 @@ revid_end:
 
 	    case T_WILD_SLASHING:
 		if (!(uwep && is_lightsaber(uwep) && uwep->lamplit && u.twoweap && uswapwep && is_lightsaber(uswapwep) && uswapwep->lamplit)) {
-			pline("You must be dual-wielding lit lightsabers for that!");
-			break;
+			if (!u.temptechhack) {
+				pline("You must be dual-wielding lit lightsabers for that!");
+				break;
+			}
 		}
 		num = 20 + (techlevX(tech_no) * 3);
 	    	set_tech_duration(tech_no, num + 1);
@@ -9270,8 +9507,10 @@ revid_end:
 
 	    case T_ABSORBER_SHIELD:
 		if (!uwep || (uwep && !is_lightsaber(uwep))) {
-			pline("You're not holding a lightsaber!");
-			break;
+			if (!u.temptechhack) {
+				pline("You're not holding a lightsaber!");
+				break;
+			}
 		}
 		num = 200 + (techlevX(tech_no) * 7);
 	    	set_tech_duration(tech_no, num + 1);
@@ -9336,8 +9575,10 @@ revid_end:
 
 	    case T_SURRENDER_OR_DIE:
 		if (!uwep || (uwep && !is_lightsaber(uwep))) {
-			pline("You're not holding a lightsaber!");
-			break;
+			if (!u.temptechhack) {
+				pline("You're not holding a lightsaber!");
+				break;
+			}
 		}
 		num = 200 + (techlevX(tech_no) * 20);
 	    	set_tech_duration(tech_no, num + 1);
@@ -9347,8 +9588,10 @@ revid_end:
 
 	    case T_PERILOUS_WHIRL:
 		if (!uwep || (uwep && !is_lightsaber(uwep)) || (uwep && !bimanual(uwep)) ) {
-			pline("You're not holding a double lightsaber!");
-			break;
+			if (!u.temptechhack) {
+				pline("You're not holding a double lightsaber!");
+				break;
+			}
 		}
 		num = 100 + (techlevX(tech_no) * 6);
 	    	set_tech_duration(tech_no, num + 1);
@@ -9398,6 +9641,13 @@ revid_end:
 
 	    case T_KICK_IN_THE_NUTS:
 
+		if (u.temptechhack && !PlayerInSexyFlats) {
+			if (yn("Do you want to switch to a pair of sexy flats?") == 'y') {
+				if (uarmf) Boots_off();
+				dowear();
+			}
+		}
+
 		if (!PlayerInSexyFlats) {
 			pline("You must be wearing sexy flats for that!");
 			return 0;
@@ -9433,6 +9683,13 @@ revid_end:
 	      break;
 
 	    case T_DISARMING_KICK:
+
+		if (u.temptechhack && !PlayerInSexyFlats) {
+			if (yn("Do you want to switch to a pair of sexy flats?") == 'y') {
+				if (uarmf) Boots_off();
+				dowear();
+			}
+		}
 
 		if (!PlayerInSexyFlats) {
 			pline("You must be wearing sexy flats for that!");
@@ -9515,6 +9772,13 @@ revid_end:
 	      break;
 
 	    case T_INLAY_WARFARE:
+
+		if (u.temptechhack && !PlayerInSexyFlats) {
+			if (yn("Do you want to switch to a pair of sexy flats?") == 'y') {
+				if (uarmf) Boots_off();
+				dowear();
+			}
+		}
 
 		if (!PlayerInSexyFlats) {
 			pline("You must be wearing sexy flats for that!");
@@ -9691,6 +9955,20 @@ revid_end:
 
 		case T_INTRINSIC_SACRIFICE:
 
+			if (u.temptechhack) {
+				if (!(uwep && is_lightsaber(uwep) && u.twoweap && uswapwep && is_lightsaber(uswapwep))) {
+					if (yn("You need to dual-wield lightsabers for that, equip some now?") == 'y') {
+						if (uarms) Shield_off();
+						dowield();
+						swaptech();
+						if (uwep && !bimanual(uwep) && !uarms) {
+							u.twoweap = 1;
+							update_inventory();
+						}
+					}
+				}
+			}
+
 			if (!(uwep && is_lightsaber(uwep) && u.twoweap && uswapwep && is_lightsaber(uswapwep))) {
 				pline("That only works if you are dual-wielding lightsabers!");
 				break;
@@ -9776,6 +10054,15 @@ revid_end:
 			break;
 
 		case T_PROTECT_WEAPON:
+			if (u.temptechhack) {
+				if (!uwep || !bimanual(uwep)) {
+					if (yn("You need to wield a two-handed weapon for this technique. Equip one now?") == 'y') {
+						if (uarms) Shield_off();
+						dowield();
+					}
+				}
+			}
+
 			if (!uwep || !bimanual(uwep)) {
 				pline("This requires you to wield a bimanual weapon, which you currently don't.");
 				break;
@@ -9796,6 +10083,15 @@ revid_end:
 			break;
 
 		case T_BOOSTAFF:
+			if (u.temptechhack) {
+				if (!uwep || weapon_type(uwep) != P_QUARTERSTAFF) {
+					if (yn("You need to wield a quarterstaff for that. Equip one now?") == 'y') {
+						if (uarms) Shield_off();
+						dowield();
+					}
+				}
+			}
+
 			if (!uwep || weapon_type(uwep) != P_QUARTERSTAFF) {
 				pline("How are you going to boost your staff if you don't wield it?");
 				break;
@@ -9813,6 +10109,14 @@ revid_end:
 			break;
 
 		case T_CLONE_JAVELIN:
+			if (u.temptechhack) {
+				if (!uwep || weapon_type(uwep) != P_JAVELIN) {
+					if (yn("You need to wield a javelin for this technique. Equip one now?") == 'y') {
+						dowield();
+					}
+				}
+			}
+
 			if (!uwep || weapon_type(uwep) != P_JAVELIN) {
 				pline("This requires you to actually wield the javelin that you want to clone.");
 				break;
@@ -9833,21 +10137,29 @@ revid_end:
 
 		case T_DRAINING_PUNCH:
 
-	    	if (!canuseunarmedtechs()) {
-			You("can't do this while wielding a weapon!");
-			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
-	    		return(0);
-	    	}
-		/* used to be impossible with a shield but that was dumb --Amy */
-		if (!getdir((char *)0)) return(0);
-		if (!u.dx && !u.dy) {
-			You("flex your muscles.");
-			return(0);
-		}
-		if (!isok(u.ux + u.dx, u.uy + u.dy)) {
-			pline("Invalid target location.");
-			return 0;
-		}
+			if (u.temptechhack && !canuseunarmedtechs()) {
+				if (yn("Unwield your weapon?") == 'y') {
+					setuwep((struct obj *)0, FALSE, TRUE);
+				}
+			}
+
+		    	if (!canuseunarmedtechs()) {
+				You("can't do this while wielding a weapon!");
+				if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		    		return(0);
+		    	}
+
+			/* used to be impossible with a shield but that was dumb --Amy */
+
+			if (!getdir((char *)0)) return(0);
+			if (!u.dx && !u.dy) {
+				You("flex your muscles.");
+				return(0);
+			}
+			if (!isok(u.ux + u.dx, u.uy + u.dy)) {
+				pline("Invalid target location.");
+				return 0;
+			}
 
             	if (!blitz_draining_punch()) return(0);
 
@@ -9856,13 +10168,15 @@ revid_end:
 
 		case T_ESCROBISM:
 
-			if (!uarm) {
-				pline("Without armor, that technique won't do anything.");
-				break;
-			}
-			if (uarm && !(uarm->otyp >= PLAIN_ROBE && uarm->otyp <= ROBE_OF_WEAKNESS)) {
-				pline("That technique won't work if your worn armor isn't a robe!");
-				break;
+			if (!u.temptechhack) {
+				if (!uarm) {
+					pline("Without armor, that technique won't do anything.");
+					break;
+				}
+				if (uarm && !(uarm->otyp >= PLAIN_ROBE && uarm->otyp <= ROBE_OF_WEAKNESS)) {
+					pline("That technique won't work if your worn armor isn't a robe!");
+					break;
+				}
 			}
 
 			num = 50 + (techlevX(tech_no) * 3);
@@ -9874,21 +10188,24 @@ revid_end:
 
 		case T_PIRATE_BROTHERING:
 
-			if (!u.twoweap) {
-				pline("This won't work if you don't dual-wield!");
-				break;
-			}
-			if (uwep && !is_lightsaber(uwep)) {
-				pline("Your primary weapon isn't a lightsaber, and therefore this technique won't work!");
-				break;
-			}
-			if (uswapwep && weapon_type(uswapwep) != P_SCIMITAR) {
-				pline("Your secondary weapon isn't a scimitar, and therefore this technique won't work!");
-				break;
-			}
-			if (!uwep || !uswapwep) {
-				pline("At least one of your hands isn't wielding any weapon, and therefore this technique won't work!");
-				break;
+			if (!u.temptechhack) {
+
+				if (!u.twoweap) {
+					pline("This won't work if you don't dual-wield!");
+					break;
+				}
+				if (uwep && !is_lightsaber(uwep)) {
+					pline("Your primary weapon isn't a lightsaber, and therefore this technique won't work!");
+					break;
+				}
+				if (uswapwep && weapon_type(uswapwep) != P_SCIMITAR) {
+					pline("Your secondary weapon isn't a scimitar, and therefore this technique won't work!");
+					break;
+				}
+				if (!uwep || !uswapwep) {
+					pline("At least one of your hands isn't wielding any weapon, and therefore this technique won't work!");
+					break;
+				}
 			}
 
 			num = 250 + (techlevX(tech_no) * 10);
@@ -10027,6 +10344,14 @@ cardtrickchoice:
 
 		}
 		case T_AMMO_UPGRADE:
+
+			if (u.temptechhack) {
+				if (!uwep || (uwep && !is_bullet(uwep)) ) {
+					if (yn("This requires you to wield firearm ammo. Equip some now?") == 'y') {
+						dowield();
+					}
+				}
+			}
 
 			if (!uwep) {
 				pline("You're not wielding anything!");
@@ -10466,6 +10791,14 @@ cardtrickchoice:
 
 		case T_EVEN_MORE_AMMO:
 
+			if (u.temptechhack) {
+				if (!uwep || (uwep && !is_bullet(uwep)) ) {
+					if (yn("This requires you to wield firearm ammo. Equip some now?") == 'y') {
+						dowield();
+					}
+				}
+			}
+
 			if (!uwep) {
 				pline("You're not wielding anything!");
 				break;
@@ -10874,6 +11207,14 @@ repairitemchoice:
 		{
 			int randomelement = rnd(3);
 
+			if (u.temptechhack) {
+				if (!uwep || (uwep && (uwep->quan > 1)) || (uwep && (uwep->oartifact || uwep->fakeartifact)) || (uwep && (uwep->oclass != WEAPON_CLASS)) ) {
+					if (yn("This requires you to wield a single weapon (not a stack), and it may not be an artifact. Equip one now?") == 'y') {
+						dowield();
+					}
+				}
+			}
+
 			if (!uwep) {
 				pline("Without a weapon, this technique won't work!");
 				return 0;
@@ -11031,7 +11372,7 @@ repairitemchoice:
 			break;
 
 		case T_SPRINT:
-			if (!PlayerInStilettoHeels) {
+			if (!PlayerInStilettoHeels && !u.temptechhack) {
 				pline("That doesn't work without stiletto heels!");
 				break;
 			}
@@ -11043,7 +11384,7 @@ repairitemchoice:
 			t_timeout = rnz(10000);
 			break;
 		case T_SKULL_CRUSH:
-			if (!PlayerInStilettoHeels) {
+			if (!PlayerInStilettoHeels && !u.temptechhack) {
 				pline("That doesn't work without stiletto heels!");
 				break;
 			}
@@ -11055,7 +11396,7 @@ repairitemchoice:
 			t_timeout = rnz(50000);
 			break;
 		case T_FEMALE_COMBO:
-			if (!PlayerInConeHeels) {
+			if (!PlayerInConeHeels && !u.temptechhack) {
 				pline("That doesn't work without cone heels!");
 				break;
 			}
@@ -11119,6 +11460,14 @@ bucchoice:
 		}
 			break;
 		case T_BITCH_POSING:
+
+			if (u.temptechhack && !PlayerInBlockHeels) {
+				if (yn("This technique requires block heels. Do you want to switch to an appropriate pair?") == 'y') {
+					if (uarmf) Boots_off();
+					dowear();
+				}
+			}
+
 			if (!PlayerInBlockHeels) {
 				pline("That doesn't work without block heels!");
 				break;
@@ -11159,7 +11508,7 @@ bucchoice:
 			t_timeout = rnz(8000);
 			break;
 		case T_SEXY_STAND:
-			if (!PlayerInBlockHeels) {
+			if (!PlayerInBlockHeels && !u.temptechhack) {
 				pline("That doesn't work without block heels!");
 				break;
 			}
@@ -11171,7 +11520,7 @@ bucchoice:
 			t_timeout = rnz(20000);
 			break;
 		case T_MARATHON:
-			if (!PlayerInWedgeHeels) {
+			if (!PlayerInWedgeHeels && !u.temptechhack) {
 				pline("That doesn't work without wedge heels!");
 				break;
 			}
@@ -11183,6 +11532,14 @@ bucchoice:
 			t_timeout = rnz(30000);
 			break;
 		case T_PERFUME_STRIDE:
+
+			if (u.temptechhack && !PlayerInWedgeHeels) {
+				if (yn("This technique requires wedge heels. Do you want to switch to an appropriate pair?") == 'y') {
+					if (uarmf) Boots_off();
+					dowear();
+				}
+			}
+
 			if (!PlayerInWedgeHeels) {
 				pline("That doesn't work without wedge heels!");
 				break;
@@ -11246,7 +11603,7 @@ perfumestriding:
 			t_timeout = rnz(10000);
 			break;
 		case T_EXTREME_STURDINESS:
-			if (!PlayerInWedgeHeels && !PlayerInBlockHeels) {
+			if (!PlayerInWedgeHeels && !PlayerInBlockHeels && !u.temptechhack) {
 				pline("You need to either wear wedge or block heels for that!");
 				break;
 			}
@@ -11258,7 +11615,7 @@ perfumestriding:
 			t_timeout = rnz(20000);
 			break;
 		case T_BUTT_PROTECTION:
-			if (!PlayerInConeHeels) {
+			if (!PlayerInConeHeels && !u.temptechhack) {
 				pline("That doesn't work without cone heels!");
 				break;
 			}
@@ -11270,6 +11627,14 @@ perfumestriding:
 			t_timeout = rnz(10000);
 			break;
 		case T_PROFILING:
+
+			if (u.temptechhack && !PlayerInBlockHeels) {
+				if (yn("This technique requires block heels. Do you want to switch to an appropriate pair?") == 'y') {
+					if (uarmf) Boots_off();
+					dowear();
+				}
+			}
+
 			if (!PlayerInBlockHeels) {
 				pline("That doesn't work without block heels!");
 				break;
@@ -11295,6 +11660,21 @@ perfumestriding:
 			t_timeout = rnz(8000);
 			break;
 		case T_STAR_HEEL_SWAP:
+
+			if (u.temptechhack) {
+				if (!PlayerInWedgeHeels) {
+					if (yn("You need to wear wedge heels for that. Switch to an appropriate pair?") == 'y') {
+						if (uarmf) Boots_off();
+						dowear();
+					}
+				}
+				if (!uwep || (uwep && weapon_type(uwep) != P_MORNING_STAR) ) {
+					if (yn("You need to wield a morning star for that. Wield one now?") == 'y') {
+						dowield();
+					}
+				}
+			}
+
 			if (!PlayerInWedgeHeels) {
 				pline("That doesn't work without wedge heels!");
 				break;
@@ -11400,17 +11780,20 @@ perfumestriding:
 			t_timeout = rnz(9000);
 			break;
 		case T_HEEL_STAB:
-			if (!PlayerInStilettoHeels) {
-				pline("That doesn't work without stiletto heels!");
-				break;
-			}
-			if (!uwep) {
-				pline("That doesn't work without a weapon!");
-				return 0;
-			}
-			if (uwep && weapon_type(uwep) != P_KNIFE) {
-				pline("That only works if your wielded weapon is a knife, and currently it's not!");
-				return 0;
+
+			if (!u.temptechhack) {
+				if (!PlayerInStilettoHeels) {
+					pline("That doesn't work without stiletto heels!");
+					break;
+				}
+				if (!uwep) {
+					pline("That doesn't work without a weapon!");
+					return 0;
+				}
+				if (uwep && weapon_type(uwep) != P_KNIFE) {
+					pline("That only works if your wielded weapon is a knife, and currently it's not!");
+					return 0;
+				}
 			}
 
 			num = 100 + (techlevX(tech_no) * 2);
@@ -11732,6 +12115,15 @@ perfumestriding:
 			break;
 
 		case T_SWORD_ART:
+
+			if (u.temptechhack) {
+				if (!uwep || (uwep && weapon_type(uwep) != P_SHORT_SWORD && weapon_type(uwep) != P_BROAD_SWORD && weapon_type(uwep) != P_LONG_SWORD && weapon_type(uwep) != P_TWO_HANDED_SWORD) ) {
+					if (yn("You need to wield a weapon that is a short, broad, long or two-handed sword for that. Wield one now?") == 'y') {
+						dowield();
+					}
+				}
+			}
+
 			if (!uwep) {
 				pline("That requires you to wield a weapon!");
 				return 0;
@@ -11752,6 +12144,14 @@ perfumestriding:
 			break;
 
 		case T_FIRM_CUDGEL:
+
+			if (u.temptechhack) {
+				if (!uwep || (uwep && weapon_type(uwep) != P_MACE && weapon_type(uwep) != P_FLAIL && weapon_type(uwep) != P_CLUB && weapon_type(uwep) != P_HAMMER) ) {
+					if (yn("You need to wield a weapon that is a mace, flail, club or hammer for that. Wield one now?") == 'y') {
+						dowield();
+					}
+				}
+			}
 
 			if (!uwep) {
 				pline("That requires you to wield a weapon!");
@@ -11775,7 +12175,7 @@ perfumestriding:
 
 		case T_KAMEHAMEHA:
 
-			{
+		{
 			int melteestrength = rnd(20 + techlevX(tech_no));
 			if (uwep && uwep->oartifact == ART_CAMOHAMEHA) melteestrength *= 2;
 			int ctx, cty;
@@ -11806,7 +12206,7 @@ perfumestriding:
 
 			}
 
-			}
+		}
 
 		      t_timeout = rnz(2000);
 			break;
@@ -11815,10 +12215,10 @@ perfumestriding:
 
 			litroomlite(FALSE);
 
-			{
+		{
 
-		    int i, j, bd = 2;
-		    struct monst *mtmp;
+			int i, j, bd = 2;
+			struct monst *mtmp;
 
 		    for(i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
 			if (!isok(u.ux + i, u.uy + j)) continue;
@@ -11831,7 +12231,7 @@ perfumestriding:
 
 		    }
 
-			}
+		}
 
 		      t_timeout = rnz(5000);
 
@@ -11840,7 +12240,7 @@ perfumestriding:
 		case T_VACUUM_STAR:
 
 			You("create throwing stars.");
-			{
+		{
 			struct obj *uammo;
 
 			uammo = mksobj(SHURIKEN, TRUE, FALSE, FALSE);
@@ -11852,7 +12252,7 @@ perfumestriding:
 				stackobj(uammo);
 			}
 
-			}
+		}
 
 		      t_timeout = rnz(12000);
 
@@ -11866,6 +12266,14 @@ perfumestriding:
 			break;
 
 		case T_GREEN_WEAPON:
+
+			if (u.temptechhack) {
+				if (!uwep || (uwep && weapon_type(uwep) != P_CLAW) ) {
+					if (yn("You need to wield a claw-class weapon for that. Equip one now?") == 'y') {
+						dowield();
+					}
+				}
+			}
 
 			if (!uwep) {
 				You("can't use this technique without a weapon!");
@@ -12081,14 +12489,15 @@ perfumestriding:
 
 		case T_LIGHTER_BALLS:
 
-			if (!uwep) {
-				You("can't use this technique without a weapon!");
-				return(0);
-			}
-
-			if (uwep && uwep->oclass != BALL_CLASS) {
-				You("aren't wielding a ball!");
-				return(0);
+			if (!u.temptechhack) {
+				if (!uwep) {
+					You("can't use this technique without a weapon!");
+					return(0);
+				}
+				if (uwep && uwep->oclass != BALL_CLASS) {
+					You("aren't wielding a ball!");
+					return(0);
+				}
 			}
 
 			num = 1000 + (techlevX(tech_no) * 10);
@@ -12181,6 +12590,14 @@ rockpoisonchoice:
 			break;
 
 		case T_SUPER_POISON:
+
+			if (u.temptechhack) {
+				if (!uwep || (uwep && uwep->oclass != VENOM_CLASS) ) {
+					if (yn("You need to wield a venom-class weapon for that. Equip one now?") == 'y') {
+						dowield();
+					}
+				}
+			}
 
 			if (!uwep) {
 				pline("That doesn't work without a weapon!");
@@ -12396,6 +12813,14 @@ mkwsh_end:
 
 		case T_BALLSLIFF:
 
+			if (u.temptechhack) {
+				if (!uwep || (uwep && uwep->oclass != BALL_CLASS) ) {
+					if (yn("You need to wield a heavy iron ball for that. Equip one now?") == 'y') {
+						dowield();
+					}
+				}
+			}
+
 			if (!uwep) {
 				You("can't use this technique without a weapon!");
 				return(0);
@@ -12429,6 +12854,15 @@ mkwsh_end:
 			break;
 
 		case T_CHOP_CHOP:
+
+			if (u.temptechhack) {
+				if (!uwep || (uwep && weapon_type(uwep) != P_AXE) ) {
+					if (yn("You need to wield an axe-class weapon for that. Equip one now?") == 'y') {
+						if (uarms) Shield_off();
+						dowield();
+					}
+				}
+			}
 
 			if (!uwep) {
 				You("can't use this technique without a weapon!");
@@ -12521,8 +12955,10 @@ mkwsh_end:
 
 		case T_WEAPON_BLOCKER:
 			if (!u.twoweap || !uwep || !uswapwep) {
-				pline("You need to be wielding two weapons at the same time for that!");
-				return(0);
+				if (!u.temptechhack) {
+					pline("You need to be wielding two weapons at the same time for that!");
+					return(0);
+				}
 			}
 
 			num = 100 + (techlevX(tech_no) * 5);
@@ -12673,7 +13109,7 @@ definalizechoice:
 
 		case T_POWERBIOSIS:
 
-			if (!uactivesymbiosis) {
+			if (!uactivesymbiosis && !u.temptechhack) {
 				pline("Without a symbiote, this technique won't do anything.");
 				break;
 			}
@@ -12687,17 +13123,19 @@ definalizechoice:
 
 		case T_IMPLANTED_SYMBIOSIS:
 
-			if (!uactivesymbiosis && !uimplant) {
-				pline("You know that this technique requires both an implant and a symbiote. You currently have neither, and therefore very obviously nothing happens!");
-				break;
-			}
-			if (!uactivesymbiosis) {
-				pline("While you do have an implant, you lack a symbiote! Get one first if you want to use this technique!");
-				break;
-			}
-			if (!uimplant) {
-				pline("No implant found! You must equip one if you want to use this technique!");
-				break;
+			if (!u.temptechhack) {
+				if (!uactivesymbiosis && !uimplant) {
+					pline("You know that this technique requires both an implant and a symbiote. You currently have neither, and therefore very obviously nothing happens!");
+					break;
+				}
+				if (!uactivesymbiosis) {
+					pline("While you do have an implant, you lack a symbiote! Get one first if you want to use this technique!");
+					break;
+				}
+				if (!uimplant) {
+					pline("No implant found! You must equip one if you want to use this technique!");
+					break;
+				}
 			}
 
 			num = 1000 + (techlevX(tech_no) * 50);
@@ -12854,6 +13292,15 @@ extrachargechoice:
 
 		case T_NO_HANDS_CURSE:
 
+			if (u.temptechhack) {
+				if (!uwep || !bimanual(uwep)) {
+					if (yn("This requires a non-cursed bimanual weapon. Wield one now?") == 'y') {
+						if (uarms) Shield_off();
+						dowield();
+					}
+				}
+			}
+
 			if (!uwep || !bimanual(uwep)) {
 				pline("That requires you to wield a two-handed weapon.");
 				break;
@@ -12921,6 +13368,14 @@ extrachargechoice:
 			break;
 
 		case T_FORM_CHOICE:
+
+			if (u.temptechhack) {
+				if (!uwep || !is_lightsaber(uwep)) {
+					if (yn("You need to wield a lightsaber for this technique. Equip one now?") == 'y') {
+						dowield();
+					}
+				}
+			}
 
 			if (!uwep || !is_lightsaber(uwep)) {
 				pline("You can only change the form of a wielded lightsaber.");
@@ -13249,6 +13704,15 @@ extrachargechoice:
 		break;
 	      }
 	    case T_CHARGE_SABER:
+
+		if (u.temptechhack) {
+			if (!uwep || !is_lightsaber(uwep)) {
+				if (yn("You need to wield a lightsaber for this technique. Equip one now?") == 'y') {
+					dowield();
+				}
+			}
+		}
+
 	      if (!uwep || !is_lightsaber(uwep)){
 		      You("are not holding a lightsaber!");
 			return(0);
