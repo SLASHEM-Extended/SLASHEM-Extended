@@ -1135,6 +1135,22 @@ unsigned *ospecial;
 				color = CLR_YELLOW;
 			}
 			else color = cmap_color(offset);
+		} else if(*in_rooms(x,y,FUNGALMARSHROOM)) {
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
+				color = CLR_GREEN;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = CLR_GREEN;
+			}
+			else color = cmap_color(offset);
+		} else if(*in_rooms(x,y,POKEMONROOM)) {
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
+				color = CLR_MAGENTA;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = CLR_MAGENTA;
+			}
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,MACHINEROOM)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_GRAY;

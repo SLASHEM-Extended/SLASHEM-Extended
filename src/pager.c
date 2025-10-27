@@ -29480,6 +29480,23 @@ static NEARDATA const char * const fake_plines[] = {
 	"Suddenly there's a loud rushing noise!",
 	"Suddenly there's a loud rushing noise! But it was just a gust of wind, nothing dangerous.",
 	"Suddenly there's a loud rushing noise! Oh no, an elemental or vortex or something is nearby and wants to engulf you!",
+	"You feel like catching some wild pokemon.",
+	"You decide to check your supply of poke balls.",
+	"You are looking for a patch of grass where wild monsters may appear.",
+	"You wonder whether you need to spray some repel to keep the wild pokemon at bay.",
+	"You hope that you don't have to traverse a zubat-infested cave.",
+	"You hope that you find a rare pokemon, and not just endless rattatas and caterpies.",
+	"You get the feeling that you may find some wild berries here.",
+	"You suddenly meet the gaze of a bug catcher, who announces 'I am the son of wind, the child of spirit.'!",
+	"You suddenly meet the gaze of a bug catcher, who announces 'I like shorts! They're comfy and easy to wear!'!",
+	"You encounter a wild Tyranitar, and you only have a Totodile! Oh no!",
+	"You encounter a wild Celebi, but don't have your master ball with you so you probably won't be able to catch it!",
+	"You encounter a shiny Geodude, but don't have any moves that can prevent it from blowing up!",
+	"You feel that the trainer nerve heads are annoying you quite badly!",
+	"You think it's annoying that every time a wild pokemon appears, you have to watch your character release a pokemon instead of just having a button that allows you to flee immediately!",
+	"You wish you could play the pokemon games with a randomizer active, because without it, every patch of grass has the same boring-ass pokemon and the only thing that's different is that late into the game, the caterpies spawn as level 40 instead of level 3...",
+	"You think that the Safari Zone is the biggest cheat on the planet, because you can't actually battle the wild pokemon and therefore have to try catching them while they're at full health, which has basically no chance of success, ever!",
+	"You stop caring what type of golem it is that you're fighting, the only thing on your mind being that the golem in question has to DIE.",
 
 };
 

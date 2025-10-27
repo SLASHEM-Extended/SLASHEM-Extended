@@ -1056,6 +1056,10 @@ static struct {
 	{ "changingroom", CHANGINGROOM },
 	{ "questorroom", QUESTORROOM },
 
+	{ "blockedroom", BLOCKEDROOM },
+	{ "fungalmarsh", FUNGALMARSHROOM },
+	{ "pokemonroom", POKEMONROOM },
+
 	{ "variantroom",  VARIANTROOM },
 	{ "playercentral", PLAYERCENTRAL },
 	{ "fullroom", FULLROOM },

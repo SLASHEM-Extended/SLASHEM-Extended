@@ -135,7 +135,7 @@ dosounds()
 	    }
 	}
     }
-    if (level.flags.has_swamp && !rn2(200)) {
+    if ((level.flags.has_swamp || level.flags.has_swampX) && !rn2(200)) {
 	static const char * const swamp_msg[] = {
 		"hear mosquitoes!",
 		"smell marsh gas!",	/* so it's a smell...*/
@@ -336,6 +336,28 @@ dosounds()
 		You("%s", hospital_msg[rn2(5+hallu*5)]);
 		return;
 	    }
+	    if (level.flags.has_pokemonroom && !rn2(200)) {
+		static const char *pokemonroom_msg[] = {
+			"feel like catching some wild pokemon.",
+			"decide to check your supply of poke balls.",
+			"are looking for a patch of grass where wild monsters may appear.",
+			"wonder whether you need to spray some repel to keep the wild pokemon at bay.",
+			"hope that you don't have to traverse a zubat-infested cave.",
+			"hope that you find a rare pokemon, and not just endless rattatas and caterpies.",
+			"get the feeling that you may find some wild berries here.", /* pokemon seem to eat those in some of the pokemon games */
+			"suddenly meet the gaze of a bug catcher, who announces 'I am the son of wind, the child of spirit.'!",
+			"suddenly meet the gaze of a bug catcher, who announces 'I like shorts! They're comfy and easy to wear!'!",
+			"encounter a wild Tyranitar, and you only have a Totodile! Oh no!",
+			"encounter a wild Celebi, but don't have your master ball with you so you probably won't be able to catch it!",
+			"encounter a shiny Geodude, but don't have any moves that can prevent it from blowing up!",
+			"feel that the trainer nerve heads are annoying you quite badly!",
+			"think it's annoying that every time a wild pokemon appears, you have to watch your character release a pokemon instead of just having a button that allows you to flee immediately!",
+			"wish you could play the pokemon games with a randomizer active, because without it, every patch of grass has the same boring-ass pokemon and the only thing that's different is that late into the game, the caterpies spawn as level 40 instead of level 3...",
+			"think that the Safari Zone is the biggest cheat on the planet, because you can't actually battle the wild pokemon and therefore have to try catching them while they're at full health, which has basically no chance of success, ever!",
+		};
+		You("%s", pokemonroom_msg[rn2(7+hallu*9)]);
+		return;
+	    }
 	    if (level.flags.has_nymphhall && !rn2(200)) {
 		static const char *nymphhall_msg[] = {
 			"hear leaves rustling.",
@@ -426,8 +448,9 @@ dosounds()
 			"see a warmech appearing before you! If this were a Pokemon game, it would say: A wild WARMECH appeared!",
 			"will certainly never catch a Regigigas, because your pokeball isn't good enough!",
 			"listen to the Diablo sorceror casting a summoning spell!", /* one of the spells is called "golem" */
+			"stop caring what type of golem it is that you're fighting, the only thing on your mind being that the golem in question has to DIE.", /* by Crawldragon */
 		};
-		You("%s", golemhall_msg[rn2(4+hallu*4)]);
+		You("%s", golemhall_msg[rn2(4+hallu*5)]);
 		return;
 	    }
 
@@ -5169,7 +5192,7 @@ metalmafiaagain:
 		break;
 	case MS_BONES:
 		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
-			pline("%s's bones seem about to break!", Monnam(mtmp));
+			pline("%s's %s seem about to break!", Monnam(mtmp), mbodypart(mtmp, BONES));
 		} else {
 			pline(FunnyHallu ? "%s plays the xylophone!" : "%s rattles noisily.", Monnam(mtmp));
 			You("freeze for a moment.");
@@ -8611,7 +8634,7 @@ playerrattlebones()
 		}
 	}
 	if (u.uen < cost) {
-		You("lack the energy to rattle your bones! Need at least %d mana!", cost);
+		You("lack the energy to rattle your %s! Need at least %d mana!", body_part(BONES), cost);
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return;
 	}

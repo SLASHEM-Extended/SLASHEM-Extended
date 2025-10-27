@@ -4080,7 +4080,7 @@ boolean prefilled;
 	if (croom && croom->rtype == OROOM && !rn2( ((isironman || RngeIronmanMode || In_netherrealm(&u.uz)) && (depth(&u.uz) > 1 && !(u.preversionmode && In_greencross(&u.uz) && (dunlev(&u.uz) == 1)) && !(iszapem && In_spacebase(&u.uz) && (dunlev(&u.uz) == 1))) ) ? 1 : ((isironman || RngeIronmanMode || In_netherrealm(&u.uz)) && depth(&u.uz) < 2) ? 10 : Role_if(PM_CAMPERSTRIKER) ? 50 : 5000) ) {
 
 retryrandtype:
-		switch (rnd(109)) {
+		switch (rnd(112)) {
 
 			case 1: croom->rtype = COURT; break;
 			case 2: croom->rtype = SWAMP; break;
@@ -4195,6 +4195,9 @@ retryrandtype:
 			case 107: croom->rtype = THE_AREA_ROOM; break;
 			case 108: croom->rtype = CHANGINGROOM; break;
 			case 109: croom->rtype = QUESTORROOM; break;
+			case 110: croom->rtype = BLOCKEDROOM; break;
+			case 111: croom->rtype = FUNGALMARSHROOM; break;
+			case 112: croom->rtype = POKEMONROOM; break;
 
 		}
 
@@ -4336,7 +4339,7 @@ retryrandtype:
 
 	if (croom->rtype == RANDOMROOM) {
 
-		switch (rnd(89)) {
+		switch (rnd(92)) {
 
 			case 1: croom->rtype = COURT; break;
 			case 2: croom->rtype = SWAMP; break;
@@ -4427,6 +4430,9 @@ retryrandtype:
 			case 87: croom->rtype = THE_AREA_ROOM; break;
 			case 88: croom->rtype = CHANGINGROOM; break;
 			case 89: croom->rtype = QUESTORROOM; break;
+			case 90: croom->rtype = BLOCKEDROOM; break;
+			case 91: croom->rtype = FUNGALMARSHROOM; break;
+			case 92: croom->rtype = POKEMONROOM; break;
 
 		}
 
@@ -4568,6 +4574,8 @@ retryrandtype:
 	case RUINEDCHURCH:
 	case GAMECORNER:
 	case ILLUSIONROOM:
+	case FUNGALMARSHROOM:
+	case POKEMONROOM:
 
 		    fill_zoo(croom);
 		    break;
@@ -4682,6 +4690,24 @@ retryrandtype:
 
 	}
 
+	if (croom->rtype == BLOCKEDROOM) {
+
+		if (croom->ly == 20 && croom->hy == 19) croom->ly = croom->hy = 20;
+		if (croom->ly == 1 && croom->hy == 0) croom->ly = croom->hy = 0;
+
+		for(sx = croom->lx; sx <= croom->hx; sx++)
+		for(sy = croom->ly; sy <= croom->hy; sy++) {
+			if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) && rn2(10)) {
+				levl[sx][sy].typ = rn2(5) ? ROCKWALL : SCORR;
+			}
+		} /* for loop */
+
+		if (somexy(croom, &mm)) {
+			  (void) mksobj_at(CHEST, mm.x, mm.y, TRUE, FALSE, FALSE);
+		}
+
+	}
+
 	if (croom->rtype == MIXEDPOOL) {
 
 		if (croom->ly == 20 && croom->hy == 19) croom->ly = croom->hy = 20;
@@ -4689,13 +4715,12 @@ retryrandtype:
 
 		for(sx = croom->lx; sx <= croom->hx; sx++)
 		for(sy = croom->ly; sy <= croom->hy; sy++) {
-		if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) ) {
-		    if(rn2(4)) {
-			levl[sx][sy].typ = rn2(2) ? MOAT : CRYSTALWATER;
+			if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) ) {
+			    if(rn2(4)) {
+				levl[sx][sy].typ = rn2(2) ? MOAT : CRYSTALWATER;
 
+				}
 			}
-
-		}
 
 		} /* for loop */
 
@@ -4712,13 +4737,11 @@ retryrandtype:
 
 		for(sx = croom->lx; sx <= croom->hx; sx++)
 		for(sy = croom->ly; sy <= croom->hy; sy++) {
-		if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) ) {
-		    if(rn2(3)) {
-			levl[sx][sy].typ = rn2(2) ? BUBBLES : RAINCLOUD;
-
+			if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) ) {
+			    if(rn2(3)) {
+				levl[sx][sy].typ = rn2(2) ? BUBBLES : RAINCLOUD;
+				}
 			}
-
-		}
 
 		} /* for loop */
 
@@ -5127,6 +5150,12 @@ retryrandtype:
 		break;
 	    case MIRASPA:
 		level.flags.has_miraspa = TRUE;
+		break;
+	    case POKEMONROOM:
+		level.flags.has_pokemonroom = 1;
+		break;
+	    case FUNGALMARSHROOM:
+		level.flags.has_swampX = 1;
 		break;
 	    case MACHINEROOM:
 		level.flags.has_machineroom = TRUE;

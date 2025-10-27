@@ -4044,8 +4044,19 @@ register boolean newlev;
 		case MIXEDPOOL:
 			if (wizard) pline("You enter a mixed pool!");
 		    break;
+		case BLOCKEDROOM:
+			if (wizard) pline("You enter a blocked room!");
+		    break;
 		case MIRASPA:
 			pline(FunnyHallu ? "Whoa, this room totally smells of ammonia!" : "As you enter the room, you can hear Mira inviting you for a swim.");
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
+		    break;
+		case FUNGALMARSHROOM:
+			pline(FunnyHallu ? "Oh, are those swimming pools? Yay! You feel like diving into them headfirst!" : "You enter a mossy swamp!");
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
+		    break;
+		case POKEMONROOM:
+			pline(FunnyHallu ? "A wild TYRANITAR appeared! Or wait, maybe it's a STEELIX? Wait, it must be a SUICUNE!" : "This looks like a zone where wild pokemon may spawn!");
 		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
 		    break;
 		case MACHINEROOM:
@@ -4296,6 +4307,12 @@ register boolean newlev;
 				break;
 			    case MIRASPA:
 				level.flags.has_miraspa = 0;
+				break;
+			    case POKEMONROOM:
+				level.flags.has_pokemonroom = 0;
+				break;
+			    case FUNGALMARSHROOM:
+				level.flags.has_swampX = 0;
 				break;
 			    case MACHINEROOM:
 				level.flags.has_machineroom = 0;

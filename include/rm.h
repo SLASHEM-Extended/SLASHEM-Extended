@@ -1464,8 +1464,10 @@ struct levelflags {
 	Bitfield(has_sanitationcentral, 1);
 	Bitfield(has_playercentral, 1);
 	Bitfield(has_casinoroom, 1);
+	Bitfield(has_pokemonroom, 1);
 
 	Bitfield(has_swamp, 1);
+	Bitfield(has_swampX, 1);
 	Bitfield(noteleport,1);
 	Bitfield(hardfloor,1);
 	Bitfield(nommap,1);

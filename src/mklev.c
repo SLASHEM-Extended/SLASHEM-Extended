@@ -151,7 +151,7 @@ STATIC_OVL int
 findrandtype()
 {
 retryrandtype:
-	switch (rnd(89)) {
+	switch (rnd(92)) {
 		case 1: return COURT;
 		case 2: return SWAMP;
 		case 3: return BEEHIVE;
@@ -244,6 +244,9 @@ retryrandtype:
 		case 87: return THE_AREA_ROOM;
 		case 88: return CHANGINGROOM;
 		case 89: return QUESTORROOM;
+		case 90: return BLOCKEDROOM;
+		case 91: return FUNGALMARSHROOM;
+		case 92: return POKEMONROOM;
 	}
 
 	return EMPTYNEST;
@@ -582,6 +585,8 @@ do_room_or_subroom(croom, lowx, lowy, hix, hiy, lit, rtype, special, is_room, ca
 	if (/*!special && */rtype == LEVELFFROOM) croom->colouur = CLR_GRAY;
 	if (/*!special && */rtype == VERMINROOM) croom->colouur = CLR_BROWN;
 	if (/*!special && */rtype == MIRASPA) croom->colouur = CLR_YELLOW;
+	if (/*!special && */rtype == FUNGALMARSHROOM) croom->colouur = CLR_GREEN;
+	if (/*!special && */rtype == POKEMONROOM) croom->colouur = CLR_MAGENTA;
 	if (/*!special && */rtype == MACHINEROOM) croom->colouur = CLR_GRAY;
 	if (/*!special && */rtype == SHOWERROOM) croom->colouur = CLR_BRIGHT_BLUE;
 	if (/*!special && */rtype == GREENCROSSROOM) croom->colouur = CLR_BRIGHT_GREEN;
@@ -2225,6 +2230,7 @@ clear_level_structures()
 	level.flags.has_levelffroom = 0;
 	level.flags.has_verminroom = 0;
 	level.flags.has_miraspa = 0;
+	level.flags.has_pokemonroom = 0;
 	level.flags.has_machineroom = 0;
 	level.flags.has_showerroom = 0;
 	level.flags.has_greencrossroom = 0;
@@ -2238,6 +2244,7 @@ clear_level_structures()
 
 	level.flags.has_temple = 0;
 	level.flags.has_swamp = 0;
+	level.flags.has_swampX = 0;
 	level.flags.noteleport = 0;
 	level.flags.hardfloor = 0;
 	level.flags.nommap = 0;
@@ -11557,8 +11564,10 @@ gehennomxtra:
 	    else if (u_depth > (issoviet ? 7 : 3) && (ishaxor ? !rn2(13) : !rn2(25))) mkroom(FUNGUSFARM);
 	    else if(depth(&u.uz) > (issoviet ? 9 : 7) && (ishaxor ? !rn2(15) : !rn2(30))) mkroom(REALZOO);
 	    else if(depth(&u.uz) > (issoviet ? 9 : 4) && (ishaxor ? !rn2(20) : !rn2(40))) mkroom(MENAGERIE);
-	    else if(depth(&u.uz) > (issoviet ? 17 : 9) && (ishaxor ? !rn2(15) : !rn2(30))) mkroom(ELEMHALL);
-	    else if(depth(&u.uz) > (issoviet ? 25 : 12) && (ishaxor ? !rn2(25) : !rn2(50))) mkroom(ANGELHALL);
+	    else if(depth(&u.uz) > (issoviet ? 17 : 9) && (ishaxor ? !rn2(22) : !rn2(45))) mkroom(ELEMHALL);
+	    else if(depth(&u.uz) > (issoviet ? 8 : 1) && (ishaxor ? !rn2(22) : !rn2(45))) mkroom(BLOCKEDROOM);
+	    else if(depth(&u.uz) > (issoviet ? 25 : 12) && (ishaxor ? !rn2(32) : !rn2(65))) mkroom(ANGELHALL);
+	    else if(depth(&u.uz) > (issoviet ? 15 : 5) && (ishaxor ? !rn2(50) : !rn2(100))) mkroom(POKEMONROOM);
 	    else if(depth(&u.uz) > (issoviet ? 8 : 1) && (ishaxor ? !rn2(18) : !rn2(36))) mkroom(KOPSTATION);
 	    else if(depth(&u.uz) > (issoviet ? 9 : 2) && (ishaxor ? !rn2(13) : !rn2(26))) mkroom(MIMICHALL);
 	    else if(depth(&u.uz) > (issoviet ? 20 : 2) && (ishaxor ? !rn2(38) : !rn2(76))) mkroom(SANITATIONCENTRAL);
@@ -11585,7 +11594,8 @@ gehennomxtra:
 	    else if(depth(&u.uz) > (issoviet ? 17 : 6) && (ishaxor ? !rn2(28) : !rn2(56))) mkroom(CRYPTROOM);
 	    else if(depth(&u.uz) > (issoviet ? 24 : 7) && (ishaxor ? !rn2(28) : !rn2(56))) mkroom(CURSEDMUMMYROOM);
 	    else if(depth(&u.uz) > (issoviet ? 13 : 1) && (ishaxor ? !rn2(8) : !rn2(15))) mkroom(BADFOODSHOP);
-	    else if(depth(&u.uz) > (issoviet ? 18 : 1) && (ishaxor ? !rn2(18) : !rn2(36))) mkroom(SWAMP);
+	    else if(depth(&u.uz) > (issoviet ? 18 : 1) && (ishaxor ? !rn2(36) : !rn2(72))) mkroom(SWAMP);
+	    else if(depth(&u.uz) > (issoviet ? 18 : 1) && (ishaxor ? !rn2(36) : !rn2(72))) mkroom(FUNGALMARSHROOM);
 	    else if(depth(&u.uz) > (issoviet ? 26 : 5) && (ishaxor ? !rn2(75) : !rn2(150))) mkroom(MIRASPA);
           else if(depth(&u.uz) > (issoviet ? 15 : 1) && (ishaxor ? !rn2(90) : !rn2(150))) mkroom(CASINOROOM);
 	    else if(depth(&u.uz) > (issoviet ? 18 : 1) && (ishaxor ? !rn2(90) : !rn2(150))) mkroom(DIVERPARADISE);

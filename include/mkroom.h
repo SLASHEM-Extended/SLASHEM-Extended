@@ -149,10 +149,13 @@ extern NEARDATA struct door doors[DOORMAX];
 #define THE_AREA_ROOM 90	/* quest-specific monsters for your role, pentagram in the center */
 #define CHANGINGROOM 91	/* shoes, socks and pants, some boots slot armor */
 #define QUESTORROOM 92	/* gaardien/lieder, furniture, rare equipment piece */
+#define BLOCKEDROOM 93	/* walls, some of which are secret corridors */
+#define FUNGALMARSHROOM 94	/* moorland, fungi and stuff */
+#define POKEMONROOM 95	/* pokemon, some type of terrain */
 
-#define RANDOMROOM 93	/* supposed to select one from an array of other special rooms, for use in .des files */
+#define RANDOMROOM 96	/* supposed to select one from an array of other special rooms, for use in .des files */
 
-#define SHOPBASE        94     	/* everything above this is a shop */
+#define SHOPBASE        97     	/* everything above this is a shop */
 #define ARMORSHOP       (SHOPBASE+ 1)   /* specific shop defines for level compiler */
 #define SCROLLSHOP      (SHOPBASE+ 2)
 #define POTIONSHOP      (SHOPBASE+ 3)

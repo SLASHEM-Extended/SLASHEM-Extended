@@ -39,6 +39,7 @@ STATIC_DCL void mkinsideroom(void);
 STATIC_DCL void mkriverroom(void);
 STATIC_DCL void mkchaosroom(void);
 STATIC_DCL void mkmixedpool(void);
+STATIC_DCL void mkblockedroom(void);
 STATIC_DCL void mkshowerroom(void);
 STATIC_DCL void mkcentraltedium(void);
 STATIC_DCL void mkrampageroom(void);
@@ -204,6 +205,9 @@ int	roomtype;
 	case LEVELFFROOM: mkzoo(LEVELFFROOM); break;
 	case VERMINROOM: mkzoo(VERMINROOM); break;
 	case MIRASPA: mkzoo(MIRASPA); break;
+	case BLOCKEDROOM: mkblockedroom(); break;
+	case FUNGALMARSHROOM: mkzoo(FUNGALMARSHROOM); break;
+	case POKEMONROOM: mkzoo(POKEMONROOM); break;
 	case FULLROOM: mkzoo(FULLROOM); break;
 	case MACHINEROOM: mkzoo(MACHINEROOM); break;
 	case SHOWERROOM: mkshowerroom(); break;
@@ -218,7 +222,7 @@ int	roomtype;
 	case RANDOMROOM: {
 
 retryrandtype:
-		switch (rnd(89)) {
+		switch (rnd(92)) {
 
 			case 1: mkzoo(COURT); break;
 			case 2: mkswamp(); break;
@@ -313,6 +317,9 @@ retryrandtype:
 			case 87: mkzoo(THE_AREA_ROOM); break;
 			case 88: mkzoo(CHANGINGROOM); break;
 			case 89: mkzoo(QUESTORROOM); break;
+			case 90: mkblockedroom(); break;
+			case 91: mkzoo(FUNGALMARSHROOM); break;
+			case 92: mkzoo(POKEMONROOM); break;
 
 		}
 		break;
@@ -531,6 +538,7 @@ struct mkroom *sroom;
 	int specialzootype = 0;
 	int fullroomitem = rn1(10, 10);
 	int fullroomtrap = rn1(20, 8);
+	int poketerrain = GRASSLAND;
 	if (!rn2(10)) {
 		specialzoo = 1; /* extra items! */
 		specialzoochance = 50 + rnd(50);
@@ -741,6 +749,7 @@ struct mkroom *sroom;
 	if (type == RUINEDCHURCH) moreorless /= 5;
 	if (type == GREENCROSSROOM) moreorless /= 10;
 	if (type == MIRASPA) moreorless /= 5;
+	if (type == FUNGALMARSHROOM) moreorless /= 2;
 	if (type == FULLROOM) moreorless /= 5;
 	if (type == PLAYERCENTRAL) moreorless /= 5;
 	if (type == LEVELSEVENTYROOM) moreorless /= 2;
@@ -768,6 +777,13 @@ struct mkroom *sroom;
 		u.aggravation = 1;
 		reset_rndmonst(NON_PM);
 		aggravatemonsteron = TRUE;
+	}
+
+	switch (rnd(4)) {
+		case 1: poketerrain = GRASSLAND; break;
+		case 2: poketerrain = rn2(2) ? ICE : SNOW; break;
+		case 3: poketerrain = SAND; break;
+		case 4: poketerrain = rn2(10) ? CLOUD : AIR; break;
 	}
 
 	if (type == VOIDROOM) {
@@ -825,6 +841,7 @@ struct mkroom *sroom;
 		    (type == QUESTORROOM) ? (rn2(3) ? specialtensmon(409) : specialtensmon(408) ) : /* MS_GAARDIEN, MS_LIEDER */
 		    (type == THE_AREA_ROOM) ? theareamon() :
 		    (type == EVILROOM) ? evilroommon() :
+		    (type == FUNGALMARSHROOM) ? (!rn2(4) ? mkclass(S_FUNGUS,0) : !rn2(3) ? mkclass(S_JELLY,0) : !rn2(2) ? mkclass(S_BLOB,0) : mkclass(S_PUDDING,0)) :
 		    (type == RUINEDCHURCH) ? mkclass(S_GHOST,0) :
 		    (type == GREENCROSSROOM) ? (rn2(5) ? mkclass(S_HUMAN,0) : specialtensmon(332) /* MS_SHOE */ ) :
 		    (type == MACHINEROOM) ? machineroommon() :
@@ -840,6 +857,7 @@ struct mkroom *sroom;
 			(type == ROBBERCAVE) ? (!rn2(20) ? specialtensmon(286) /* AD_SAMU */ : !rn2(4) ? specialtensmon(357) /* AD_THIE */ : !rn2(3) ? specialtensmon(212) /* AD_SITM */ : !rn2(2) ? specialtensmon(213) /* AD_SEDU */ : specialtensmon(211) /* AD_SGLD */ ) :
 			(type == SANITATIONCENTRAL) ? specialtensmon(363) /* AD_SANI */ :
 			(type == VARIANTROOM) ? specialtensmon(u.specialtensionmonster) :
+			(type == POKEMONROOM) ? specialtensmon(140) /* M3_POKEMON */ :
 			(type == ILLUSIONROOM) ? illusionmon() :
 			(type == GAMECORNER) ? specialtensmon(u.specialtensionmonster) :
 			(type == TENSHALL) ? (u.specialtensionmonsterB ? (rn2(2) ? specialtensmon(u.specialtensionmonsterB) : specialtensmon(u.specialtensionmonster) ) : u.specialtensionmonster ? specialtensmon(u.specialtensionmonster) : u.tensionmonsterspecB ? (rn2(2) ? u.tensionmonsterspecB : u.tensionmonsterspec ) : u.tensionmonsterspec ? u.tensionmonsterspec : u.colormonsterB ? (rn2(2) ? colormon(u.colormonsterB) : colormon(u.colormonster) ) : u.colormonster ? colormon(u.colormonster) : u.tensionmonsterB ? (rn2(2) ? tenshallmon() : tenshallmonB() ) : tenshallmon()) :
@@ -1001,6 +1019,24 @@ qstfinished:
 			if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) && rn2(10)) {
 				levl[sx][sy].typ = URINELAKE;
 			}
+			break;
+
+		    case POKEMONROOM:
+		    {
+			if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) && !rn2(2)) {
+				levl[sx][sy].typ = poketerrain;
+			}
+		    }
+
+			break;
+
+		    case FUNGALMARSHROOM:
+			if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) && !rn2(3)) {
+				levl[sx][sy].typ = MOORLAND;
+				if (!rn2(100)) (void) mksobj_at(SWAMP_TENTACLE, sx, sy, TRUE, FALSE, FALSE);
+
+			}
+
 			break;
 
 		    case MACHINEROOM:
@@ -1684,6 +1720,12 @@ cgrfinished:
               break;
             case MIRASPA:
               level.flags.has_miraspa = 1;
+              break;
+            case POKEMONROOM:
+              level.flags.has_pokemonroom = 1;
+              break;
+            case FUNGALMARSHROOM:
+              level.flags.has_swampX = 1;
               break;
             case MACHINEROOM:
 		  if (!rn2(5)) {
@@ -3620,6 +3662,33 @@ mkmixedpool()
 
 	if (somexy(sroom, &mm)) {
 		  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE, FALSE);
+	}
+
+}
+
+void
+mkblockedroom()
+{
+
+    struct mkroom *sroom;
+	register int sx,sy = 0;
+	coord mm;
+
+    if (!(sroom = pick_room(FALSE))) return;
+
+	if(sroom->rtype != OROOM || (has_upstairs(sroom) && rn2(iswarper ? 10 : 100)) ) return;
+
+    sroom->rtype = BLOCKEDROOM;
+
+	for(sx = sroom->lx; sx <= sroom->hx; sx++)
+	for(sy = sroom->ly; sy <= sroom->hy; sy++) {
+		if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) && rn2(10)) {
+			levl[sx][sy].typ = rn2(5) ? ROCKWALL : SCORR;
+		}
+	}
+
+	if (somexy(sroom, &mm)) {
+		  (void) mksobj_at(CHEST, mm.x, mm.y, TRUE, FALSE, FALSE);
 	}
 
 }
