@@ -6329,7 +6329,7 @@ greasingdone:
 							if (untamingchance > rnd(10) && !(Role_if(PM_DRAGONMASTER) && uarms && Is_dragon_shield(uarms) && mtmp2->data->mlet == S_DRAGON) && !((rnd(30 - ACURR(A_CHA))) < 4) ) {
 
 								mtmp2->mtame = mtmp2->mpeaceful = 0;
-								if (mtmp2->mleashed) { m_unleash(mtmp2,FALSE); }
+								if (mtmp2->mleashed) { m_unleash(mtmp2,FALSE,0); }
 
 							}
 						}
@@ -7107,7 +7107,7 @@ newbossUTE:
 				if (!strncmpi(plname, "Natalje", 8) || !strncmpi(plalias, "Natalje", 8)) {
 					pline("Careful, Natalje! You gotta dance or you'll get hurt!");
 				} else {
-					You("missed the beat! Continue dancing or suffer!");
+					You("missed the %s! Continue dancing or suffer!", body_part(BEAT));
 				}
 				stop_occupation();
 			}
@@ -17474,7 +17474,7 @@ past4:
 				pline("%s booms: 'Wise choice. All of your skills have been reset to zero. Don't dare using guns again, you hear?'", noroelaname());
 			} else {
 				(void) makemon(&mons[PM_THAI], 0, 0, MM_ANGRY|MM_FRENZIED|MM_XFRENZIED);
-				pline("%s thunders: 'Thai will break all your bones with her black block heels and you'll end up in the hospital. Better call an ambulance, maggot.'", noroelaname());
+				pline("%s thunders: 'Thai will break all your %s with her black block heels and you'll end up in the hospital. Better call an ambulance, maggot.'", noroelaname(), body_part(BONES));
 			}
 
 			u.pract_expertguncontrol = TRUE;
@@ -23787,7 +23787,7 @@ newturn:
 						if (!rn2(5) && (rnd(30) > ACURR(A_CON)) ) {
 							if (u.uhpmax < 2) {
 								u.youaredead = 1;
-								pline("The pain is unbearable... apparently the incredibly cute heel broke your bones. While you're groaning in pain, the high heel proceeds to successively crush all of your remaining body parts.");
+								pline("The pain is unbearable... apparently the incredibly cute heel broke your %s. While you're groaning in pain, the high heel proceeds to successively crush all of your remaining body parts.", body_part(BONES));
 								killer = "having their fingers stomped by sexy leather pumps";
 								killer_format = KILLED_BY;
 								done(DIED);
@@ -23797,7 +23797,7 @@ newturn:
 							} else {
 								u.uhpmax--;
 								if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
-								pline("One of your bones feels strangely soft, you hope it's not broken...");
+								pline("One of your %s feels strangely soft, you hope it's not broken...", body_part(BONES));
 							}
 						}
 					}

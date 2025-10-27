@@ -883,7 +883,7 @@ long nmv;		/* number of moves */
 	    /* leashed monsters should always be with hero, consequently
 	       never losing any time to be accounted for later */
 	    impossible("catching up for leashed monster?");
-	    m_unleash(mtmp, FALSE);
+	    m_unleash(mtmp, FALSE, 0);
 	}
 
 	if (mtmp->healblock || mtmp->bleedout) goto healingdone;
@@ -1086,7 +1086,7 @@ boolean pets_only;	/* true for ascension or final escape */
 					humanoid(mtmp->data)
 					    ? (mtmp->female ? "Her" : "His")
 					    : "Its");
-				m_unleash(mtmp, FALSE);
+				m_unleash(mtmp, FALSE, 0);
 			}
 			continue;
 		}
@@ -1125,7 +1125,7 @@ boolean pets_only;	/* true for ascension or final escape */
 		/* this can happen if your quest leader ejects you from the
 		   "home" level while a leashed pet isn't next to you */
 		pline("%s leash goes slack.", s_suffix(Monnam(mtmp)));
-		m_unleash(mtmp, FALSE);
+		m_unleash(mtmp, FALSE, 0);
 	    }
 	}
 }
@@ -1165,7 +1165,7 @@ migrate_to_level(mtmp, tolev, xyloc, cc)
 
 	if (mtmp->mleashed) {
 		mtmp->mtame--;
-		m_unleash(mtmp, TRUE);
+		m_unleash(mtmp, TRUE, 0);
 	}
 
 	/* prevent players from using shopkeepers to transport the amulet --Amy
@@ -1650,7 +1650,7 @@ boolean was_dead;
 	newsym(mtmp->mx, mtmp->my);
 	/* a life-saved monster might be leashed;
 	   don't leave it that way if it's no longer tame */
-	if (mtmp->mleashed) m_unleash(mtmp, TRUE);
+	if (mtmp->mleashed) m_unleash(mtmp, TRUE, 0);
     }
 
     /* if its still a pet, start a clean pet-slate now */
@@ -1722,7 +1722,7 @@ struct monst *mtmp;
 	}
 
 	if (!mtmp->mtame && mtmp->mleashed)
-	    m_unleash(mtmp, TRUE);
+	    m_unleash(mtmp, TRUE, 5);
 
 	/* don't make a sound if pet is in the middle of leaving the level */
 	/* newsym isn't necessary in this case either */

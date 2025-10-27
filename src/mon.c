@@ -4685,7 +4685,7 @@ struct monst *mtmp;
 struct permonst *mptr;	/* reflects mtmp->data _prior_ to mtmp's death */
 {
  	mon_stop_timers(mtmp);
-	if (mtmp->mleashed) m_unleash(mtmp, FALSE);
+	if (mtmp->mleashed) m_unleash(mtmp, FALSE, 0);
 	    /* to prevent an infinite relobj-flooreffects-hmon-killed loop */
 	mtmp->mtrapped = 0;
 	mtmp->mhp = 0; /* simplify some tests: force mhp to 0 */
@@ -8846,7 +8846,7 @@ register struct monst *mtmp;
 						if (untamingchance > rnd(10) && !(Role_if(PM_DRAGONMASTER) && uarms && Is_dragon_shield(uarms) && mtmp2->data->mlet == S_DRAGON) && !((rnd(30 - ACURR(A_CHA))) < 4) ) {
 
 							mtmp2->mtame = mtmp2->mpeaceful = 0;
-							if (mtmp2->mleashed) { m_unleash(mtmp2,FALSE); }
+							if (mtmp2->mleashed) { m_unleash(mtmp2,FALSE,0); }
 
 						}
 					}

@@ -46,7 +46,7 @@ E int jump(int);
 E int jump(int);
 E int number_leashed(void);
 E void o_unleash(struct obj *);
-E void m_unleash(struct monst *,BOOLEAN_P);
+E void m_unleash(struct monst *,BOOLEAN_P,int);
 E void unleash_all(void);
 E boolean next_to_u(void);
 E struct obj *get_mleash(struct monst *);

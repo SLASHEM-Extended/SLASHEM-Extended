@@ -562,7 +562,7 @@ mount_steed(mtmp, force)
 	    newsym(mtmp->mx, mtmp->my);
 	    pline("%s resists%s!", Monnam(mtmp),
 		  mtmp->mleashed ? " and its leash comes off" : "");
-	    if (mtmp->mleashed) m_unleash(mtmp, FALSE);
+	    if (mtmp->mleashed) m_unleash(mtmp, FALSE, 0);
 	    return (FALSE);
 	}
 	if (!force && Underwater && !is_swimmer(ptr)) {
@@ -733,7 +733,7 @@ kick_steed()
 
 	/* Make the steed less tame and check if it resists */
 	if (u.usteed->mtame && (!Role_if(PM_JOCKEY) || !rn2(3)) ) u.usteed->mtame--;
-	if (!u.usteed->mtame && u.usteed->mleashed) m_unleash(u.usteed, TRUE);
+	if (!u.usteed->mtame && u.usteed->mleashed) m_unleash(u.usteed, TRUE, 0);
 	if (!u.usteed->mtame || (u.ulevel+u.usteed->mtame < rnd(MAXULEV/2+5))) {
 
 		if (!mayfalloffsteed()) {

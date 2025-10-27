@@ -1422,7 +1422,7 @@ newdogpos:
 			if (mtmp->mleashed) { /* play it safe */
 				pline("%s breaks loose of %s leash!",
 				      Monnam(mtmp), mhis(mtmp));
-				m_unleash(mtmp, FALSE);
+				m_unleash(mtmp, FALSE, 0);
 			}
 			(void) mattacku(mtmp);
 			return(0);

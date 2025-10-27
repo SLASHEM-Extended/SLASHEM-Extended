@@ -3046,7 +3046,7 @@ peacedisplace:
 	    if (mtmp->mtrapped) {
 		if (!rn2(mtmp->mtame) && !((rnd(30 - ACURR(A_CHA))) < 4) ) {
 		    mtmp->mtame = mtmp->mpeaceful = mtmp->msleeping = 0;
-		    if (mtmp->mleashed) m_unleash(mtmp, TRUE);
+		    if (mtmp->mleashed) m_unleash(mtmp, TRUE, 20);
 		    growl(mtmp);
 		} else {
 		    yelp(mtmp);

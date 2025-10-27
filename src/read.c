@@ -6070,7 +6070,7 @@ destroyarmorchoice:
 				if (yn("Really exit with no object selected?") == 'y')
 					pline("You just wasted the opportunity to enchant your armor.");
 				else goto destroyarmorchoice;
-				strange_feeling(sobj,"Your %s itches.", body_part(BODY_SKIN));
+				strange_feeling(sobj,"Your skin itches.");
 				exercise(A_STR, FALSE);
 				exercise(A_CON, FALSE);
 				break;
@@ -6095,7 +6095,7 @@ destroyarmorchoice:
 		}
 		if(!sobj->cursed || !otmp || !otmp->cursed) {
 		    if(!destroy_arm(otmp)) {
-			strange_feeling(sobj,"Your %s itches.", body_part(BODY_SKIN));
+			strange_feeling(sobj,"Your skin itches.");
 			exercise(A_STR, FALSE);
 			exercise(A_CON, FALSE);
 			return(1);
@@ -8028,7 +8028,7 @@ procanothersin:
 						if (untamingchance > rnd(10) && !(Role_if(PM_DRAGONMASTER) && uarms && Is_dragon_shield(uarms) && mtmp2->data->mlet == S_DRAGON) && !((rnd(30 - ACURR(A_CHA))) < 4) ) {
 
 							mtmp2->mtame = mtmp2->mpeaceful = 0;
-							if (mtmp2->mleashed) { m_unleash(mtmp2,FALSE); }
+							if (mtmp2->mleashed) { m_unleash(mtmp2,FALSE,0); }
 
 						}
 					}

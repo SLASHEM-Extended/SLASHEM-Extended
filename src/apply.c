@@ -25,7 +25,7 @@ STATIC_DCL void use_magic_whistle(struct obj *);
 STATIC_DCL void use_dark_magic_whistle(struct obj *);
 STATIC_DCL void use_leash(struct obj *);
 STATIC_DCL int use_mirror(struct obj *);
-STATIC_DCL void use_bell(struct obj **);
+STATIC_DCL int use_bell(struct obj **);
 STATIC_DCL void use_candelabrum(struct obj *);
 STATIC_DCL void use_candle(struct obj **);
 STATIC_DCL void use_lamp(struct obj *);
@@ -676,7 +676,7 @@ use_stethoscope(obj)
 		    pline_The("%s seems healthy enough.", surface(u.ux,u.uy));
 		return res;
 	} else if (obj->cursed && !rn2(2)) {
-		if (obj->otyp == STETHOSCOPE) You_hear("your %s beat.", body_part(HEART));
+		if (obj->otyp == STETHOSCOPE) You_hear("your %s %s.", body_part(HEART), body_part(BEAT));
 		else {
 			pline_The("stethoscope pierces your %s!", body_part(HEART));
 			if (u.uhpmax > 0) u.uhpmax--;
@@ -939,9 +939,10 @@ register struct obj *otmp;
 }
 
 void
-m_unleash(mtmp, feedback)	/* mtmp is about to die, or become untame */
+m_unleash(mtmp, feedback, leashbreakchance)	/* mtmp is about to die, or become untame */
 register struct monst *mtmp;
 boolean feedback;
+int leashbreakchance; /* 0 = never break, other number = 1 in X chance to break --Amy */
 {
 	register struct obj *otmp;
 
@@ -953,8 +954,15 @@ boolean feedback;
 	}
 	for(otmp = invent; otmp; otmp = otmp->nobj)
 		if((otmp->otyp == LEATHER_LEASH || otmp->otyp == INKA_LEASH || otmp->otyp == ADAMANT_LEASH) &&
-				otmp->leashmon == (int)mtmp->m_id)
+				otmp->leashmon == (int)mtmp->m_id) {
 			otmp->leashmon = 0;
+			if (leashbreakchance > 0) {
+				if (!rn2(leashbreakchance) && (!otmp->oartifact || !rn2(5)) ) {
+					useup(otmp);
+					pline_The("leash is ripped apart!");
+				}
+			}
+		}
 	mtmp->mleashed = 0;
 }
 
@@ -1172,14 +1180,14 @@ register xchar x, y;
 		    if (um_dist(mtmp->mx, mtmp->my, 5)) {
 			if (otmp->otyp == LEATHER_LEASH || otmp->otyp == ADAMANT_LEASH) {
 				pline("%s leash snaps loose!", s_suffix(Monnam(mtmp)));
-				m_unleash(mtmp, FALSE);
+				m_unleash(mtmp, FALSE, 0);
 			} else if (otmp->otyp == INKA_LEASH) {
 				pline("%s warps to you!", Monnam(mtmp));
 				mnexto(mtmp);
 			} else {
 				impossible("weird leash snapping effect %d", otmp->otyp);
 				pline("%s leash snaps loose!", s_suffix(Monnam(mtmp)));
-				m_unleash(mtmp, FALSE);
+				m_unleash(mtmp, FALSE, 0);
 			}
 		    } else {
 			You("pull on the leash.");
@@ -1373,7 +1381,8 @@ struct obj *obj;
 	return 1;
 }
 
-STATIC_OVL void
+/* use_bell: return TRUE if the bell broke, FALSE otherwise --Amy */
+STATIC_OVL int
 use_bell(optr)
 struct obj **optr;
 {
@@ -1384,12 +1393,18 @@ struct obj **optr;
 		invoking = (obj->otyp == BELL_OF_OPENING &&
 			 invocation_pos(u.ux, u.uy) && !On_stairs(u.ux, u.uy));
 
+	if (obj && obj->otyp == BELL && !rn2(evilfriday ? 200 : 500)) {
+		useup(obj);
+		Your("bell suddenly breaks into pieces.");
+		return TRUE;
+	}
+
 	You("ring %s.", the(xname(obj)));
 	if (PlayerHearsSoundEffects) pline(issoviet ? "Tip bloka l'da net doma pryamo seychas!" : "Bimmelimm!");
 
 	if (obj->otyp == BELL_OF_OPENING && !u.bellimbued) {
 		pline("But nothing happens because you didn't imbue the bell yet. Look for a magic portal in the Quest, which will lead to the Subquest. In that Subquest, find the staircase to the Bell Caves in order to imbue the bell.");
-		return;
+		return FALSE;
 	}
 
 	if (obj && obj->oartifact == ART_BIMMEL_BIMMEL && !obj->cursed) {
@@ -1587,6 +1602,8 @@ struct obj **optr;
 dbridgedone:
 
 	if (wakem) wake_nearby();
+
+	return FALSE; /* didn't break */
 }
 
 STATIC_OVL void
@@ -6035,7 +6052,7 @@ dyechoice:
 		break;
 	case MAGIC_WHISTLE:
 
-		if (evilfriday && !rn2(100) && obj->cursed) {
+		if ((evilfriday || !rn2(10)) && !rn2(100) && !(obj->oartifact == ART_SUMMONOR && rn2(10)) && (obj->cursed || !rn2(5)) ) {
 			useup(obj);
 			noartispeak = TRUE;
 			pline("Your whistle breaks apart.");
@@ -6073,7 +6090,7 @@ dyechoice:
 		break;
 	case DARK_MAGIC_WHISTLE:
 
-		if (evilfriday && !rn2(100) && obj->cursed) {
+		if ((evilfriday || !rn2(10)) && !rn2(100) && (obj->cursed || !rn2(5)) ) {
 			useup(obj);
 			noartispeak = TRUE;
 			pline("Your whistle breaks apart.");
@@ -6114,7 +6131,7 @@ dyechoice:
 	case TIN_WHISTLE:
 	case GRASS_WHISTLE:
 
-		if (evilfriday && !rn2(100) && obj->cursed) {
+		if ((evilfriday || !rn2(10)) && !rn2(100) && !(obj->otyp == GRASS_WHISTLE && is_grassland(u.ux, u.uy) && rn2(50)) && (obj->cursed || !rn2(5)) ) {
 			useup(obj);
 			noartispeak = TRUE;
 			pline("Your whistle breaks apart.");
@@ -6180,7 +6197,7 @@ dyechoice:
 		break;
 	case BELL:
 	case BELL_OF_OPENING:
-		use_bell(&obj);
+		if (use_bell(&obj)) noartispeak = TRUE;
 		break;
 	case CANDELABRUM_OF_INVOCATION:
 		use_candelabrum(obj);

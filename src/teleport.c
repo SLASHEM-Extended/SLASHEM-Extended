@@ -817,7 +817,7 @@ boolean force_it;
 	    } else {
 		Your("leash goes slack.");
  release_it:
-		m_unleash(mtmp, FALSE);
+		m_unleash(mtmp, FALSE, 0);
 		return TRUE;
 	    }
 	}
