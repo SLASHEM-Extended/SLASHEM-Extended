@@ -12934,6 +12934,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_KSK_TYPE]) (void) mongets(mtmp, LUCERN_HAMMER);
 		if (mtmp->data == &mons[PM_BULLETATOR_ANNOYER]) (void) mongets(mtmp, PARTISAN + rn2(ORCISH_SPEAR - PARTISAN) );
 		if (mtmp->data == &mons[PM_BUBBLEMON]) (void) mongets(mtmp, BUBBLEHORN);
+		if (mtmp->data == &mons[PM_PIG_IN_RUBBER_BOOTS]) (void) mongets(mtmp, RUBBER_BOOTS);
 
 		if (mtmp->data == &mons[PM_ANN_LEE]) {
 			(void) mongets(mtmp, rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1));
@@ -13261,6 +13262,8 @@ loveheelover:
 		if(ptr == &mons[PM_RIVOLE_SPICERO]) (void) mongets(mtmp, ITALIAN_HEELS); /* M4_SANDALS */
 		if(ptr == &mons[PM_MINES_CENTAUR]) (void) mongets(mtmp, UNWIELDY_PICK);
 
+		if(ptr == &mons[PM_HEADKICK_FEMMY]) (void) mongets(mtmp, STILETTO_SANDALS); /* M4_SANDALS */
+
 		if (ptr == &mons[PM_TRIGGER_HAPPY_REEVE]) {
 			(void) mongets(mtmp, SHOVEL);
 			(void) mongets(mtmp, CROSSBOW);
@@ -13516,6 +13519,11 @@ loveheelover:
 		break;
 
 	    case S_GHOST:
+
+		if (ptr == &mons[PM_MAYA_S_BLACK_PLATFORM_SANDAL]) {
+		  	(void) mongets(mtmp, SCR_SUMMON_GHOST);
+		  	(void) mongets(mtmp, find_appearance_armor(APP_FLUFFY_SANDALS)); /* M4_SANDALS */
+		}
 
 		if (ptr == &mons[PM_GUN_SPIRIT]) {
 		  	(void) mongets(mtmp, FLINTLOCK);
@@ -14276,6 +14284,9 @@ loveheelover:
 		if (mtmp->data == &mons[PM_SLIP_MONSTER]) (void) mongets(mtmp, POT_GREASE);
 		if (mtmp->data == &mons[PM_NASTY_SNARK]) (void) mongets(mtmp, POT_GREASE);
 		if (mtmp->data == &mons[PM_LORE_BOOJUM]) (void) mongets(mtmp, POT_GREASE);
+
+		if (mtmp->data == &mons[PM_PEEING_FEMMY]) (void) mongets(mtmp, find_appearance_armor(APP_BLOCK_HEELED_BOOTS)); /* M4_BLOCKHEELBOOTS */
+
 		if(ptr == &mons[PM_ASIATIC_FEMMY]) {
 			(void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
 			(void) mongets(mtmp, LEATHER_PEEP_TOES);
@@ -15181,6 +15192,8 @@ loveheelover:
 	    case S_GIANT:
 
 		if (ptr == &mons[PM_TAURUS_GIANT]) (void)mongets(mtmp, LASER_FLYAXE);
+		if (ptr == &mons[PM_FATHER_OF_HOSLASS]) (void)mongets(mtmp, WAN_THUNDER);
+		if (ptr == &mons[PM_AKROBOLAN_SWORD]) (void)mongets(mtmp, rnd_class(RAPIER, GOLDEN_SABER));
 
 		if (ptr == &mons[PM_HELICOPTER_GUNNER]) {
 			(void)mongets(mtmp, T_SHIRT);
@@ -17870,6 +17883,19 @@ loveheelover:
 			(void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 			(void) mongets(mtmp, LEATHER_JACKET);
 			(void) mongets(mtmp, rnd_class(BULLWHIP, SECRET_WHIP));
+		}
+
+		if(ptr == &mons[PM_NUKA_COLA_COMMERCIALIST]) {
+			int nukaroll = rnd(105); /* keyword: "marlena" */
+
+			(void) mongets(mtmp, rnd_class(POT_BOOZE, POT_PAN_GALACTIC_GARGLE_BLASTE));
+			(void) mongets(mtmp, rnd_class(POT_BOOZE, POT_PAN_GALACTIC_GARGLE_BLASTE));
+			(void) mongets(mtmp, rnd_class(POT_BOOZE, POT_PAN_GALACTIC_GARGLE_BLASTE));
+
+			u.tempnukaefftype = nukaroll;
+			u.tempnukaeffect += 10000;
+
+			pline("Someone announces 'Here, I have a bottle of Nuka Cola which is named %s!'", feminismtrapname(nukaroll));
 		}
 
 		if (ptr == &mons[PM_SHOE_LOVING_IMELDA]) {

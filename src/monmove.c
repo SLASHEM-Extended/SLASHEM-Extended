@@ -4160,6 +4160,7 @@ altarfound:
 	if (monsndx(ptr) == PM_HAMMER_DRIVE) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_PANCAKE_SPIRIT) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_WESTERHARE) mtmp->mflee = 1;
+	if (monsndx(ptr) == PM_VEGRIS) mtmp->mflee = 1;
 	if (monsndx(ptr) == PM_DIDDLY_DINGUS_DUDE && !rn2(10)) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_PARROT_RIDING_A_GIANT_PENIS && !rn2(10)) mtmp->mconf = 1;
 	if (mtmp->mconf || (uarmh && !rn2(10) && itemhasappearance(uarmh, APP_INKCOAT_HELMET) ) || (uarmh && uarmh->oartifact == ART_RADAR_NOT_WORKING) || (u.uswallow && mtmp == u.ustuck))
