@@ -29497,6 +29497,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"You wish you could play the pokemon games with a randomizer active, because without it, every patch of grass has the same boring-ass pokemon and the only thing that's different is that late into the game, the caterpies spawn as level 40 instead of level 3...",
 	"You think that the Safari Zone is the biggest cheat on the planet, because you can't actually battle the wild pokemon and therefore have to try catching them while they're at full health, which has basically no chance of success, ever!",
 	"You stop caring what type of golem it is that you're fighting, the only thing on your mind being that the golem in question has to DIE.",
+	"Now you have to do battle whenever you want to wear a pair of high heels, and if you lose, you're not allowed to wear them!",
+	"You no longer have to fight high heels just to be allowed to wear them.",
 
 };
 

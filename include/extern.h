@@ -1433,6 +1433,7 @@ E int have_covidstone(void);
 E int have_femtrapfemmy(void);
 E int have_femtrapmadeleine(void);
 E int have_femtrapmarlena(void);
+E int have_femtrapjudith(void);
 E int have_femtrapjanet(void);
 E int have_femtrapsabrina(void);
 E int have_femtrapsonja(void);

@@ -1129,6 +1129,7 @@ const struct symdef defsyms[MAXPCHARS] = {
 	{'^', "bound day choice trap", C(CLR_MAGENTA)},	/* trap */
 
 	{'^', "sabine trap", C(CLR_WHITE)},	/* trap */
+	{'^', "judith trap", C(CLR_RED)},	/* trap */
 
 	{'^', "timerun trap", C(CLR_BRIGHT_CYAN)},	/* trap */
 	{'|', "wall",		C(CLR_GRAY)},	/* vbeam */
@@ -2091,6 +2092,7 @@ static uchar ibm_graphics[MAXPCHARS] = {
 	g_FILLER(S_bounddaychoice_trap),
 
 	g_FILLER(S_sabine_trap),
+	g_FILLER(S_judith_trap),
 
 	g_FILLER(S_timerun_trap),
 	0xb3,	/* S_vbeam:	meta-3, vertical rule */
@@ -3041,6 +3043,7 @@ static uchar dec_graphics[MAXPCHARS] = {
 	g_FILLER(S_bounddaychoice_trap),
 
 	g_FILLER(S_sabine_trap),
+	g_FILLER(S_judith_trap),
 
 	g_FILLER(S_timerun_trap),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
@@ -3988,6 +3991,7 @@ static uchar wing_graphics[MAXPCHARS] = {
 	g_FILLER(S_bounddaychoice_trap),
 
 	g_FILLER(S_sabine_trap),
+	g_FILLER(S_judith_trap),
 
 	g_FILLER(S_timerun_trap),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
@@ -4936,6 +4940,7 @@ static uchar mac_graphics[MAXPCHARS] = {
 	g_FILLER(S_bounddaychoice_trap),
 
 	g_FILLER(S_sabine_trap),
+	g_FILLER(S_judith_trap),
 
 	g_FILLER(S_timerun_trap),
 
@@ -6093,6 +6098,7 @@ boolean is_rlevel;
 	    showsyms[S_bounddaychoice_trap] = 0x04;
 
 	    showsyms[S_sabine_trap] = 0x04;
+	    showsyms[S_judith_trap] = 0x04;
 
  	    showsyms[S_timerun_trap] = 0x04;
 

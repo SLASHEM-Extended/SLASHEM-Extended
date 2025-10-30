@@ -6308,6 +6308,8 @@ eatspecial() /* called after eating non-food */
 				FemaleTrapJessica |= FROMOUTSIDE; break;
 			case MARLENA_S_JEWEL:
 				FemaleTrapMarlena |= FROMOUTSIDE; break;
+			case JUDITH_S_JEWEL:
+				FemaleTrapJudith |= FROMOUTSIDE; break;
 			case TANJA_S_JEWEL:
 				FemaleTrapTanja |= FROMOUTSIDE; break;
 			case SONJA_S_JEWEL:

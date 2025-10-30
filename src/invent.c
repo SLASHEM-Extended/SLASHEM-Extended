@@ -3485,6 +3485,22 @@ have_femtrapsabine()
 	return(FALSE);
 }
 
+int
+have_femtrapjudith()
+{
+	register struct obj *otmp;
+
+	if (u.tempsuperfemtrap_judith) return 2;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == JUDITH_S_JEWEL) {
+			return(TRUE);
+		}
+	}
+	if (feminizecheck(106)) return TRUE;
+	return(FALSE);
+}
+
 boolean
 have_primecurse()
 {
@@ -13633,6 +13649,8 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 			pline("This cute pair of pink girl shoes counts as sexy flats, at least as long as the base item type isn't high-heeled.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_BUCKLE_SLIPPERS))
 			pline("These lady shoes have very cute metallic buckles <3! And therefore they count as sexy flats.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_CUDDLE_BOOTS))
+			pline("Such a cuddly pair of girl boots! They look so cute that they count as sexy flats.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_WARM_WERDING_BOOTS))
 			pline("As soon as you put on this pair of boots, its base type identifies itself.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_BUCKLED_BOOTS))
@@ -16011,6 +16029,8 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 				pline("You get totally horny and absolutely want to touch these cuuuuute orange sexy flats. They carry Solvejg's curse, and have 2 AC and 0 MC."); break;
 			case WENDY_LEATHER_PUMPS:
 				pline("An incredibly tender pair of pink cone heels. They carry Wendy's curse, and have 1 AC and 0 MC."); break;
+			case JUDITH_LEATHER_PUMPS:
+				pline("Incredibly sexy bright red leather pumps. You are particularly awed by the lovely cone heels with razor-sharp heel tips. They carry Judith's curse, and have 2 AC and 2 MC."); break;
 			case KATHARINA_PLATFORM_BOOTS:
 				pline("You immediately fall in love with these white-cyan platform boots; since there is no 'platform boots' skill, they count as wedge heels instead. They carry Katharina's curse, and have 4 AC and 1 MC."); break;
 			case SABRINA_PLATFORM_BOOTS:
@@ -20757,6 +20777,8 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 				pline("While having this jewel in your inventory, you're afflicted with Elise's curse. It autocurses and cannot be dropped while cursed."); break;
 			case RONJA_S_JEWEL:
 				pline("While having this jewel in your inventory, you're afflicted with Ronja's curse. It autocurses and cannot be dropped while cursed."); break;
+			case JUDITH_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Judith's curse. It autocurses and cannot be dropped while cursed."); break;
 			case ARIANE_S_JEWEL:
 				pline("While having this jewel in your inventory, you're afflicted with Ariane's curse. It autocurses and cannot be dropped while cursed."); break;
 			case JOHANNA_S_JEWEL:

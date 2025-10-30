@@ -16908,6 +16908,25 @@ skillrandomizeredo:
 
 		 break;
 
+		 case JUDITH_TRAP:
+
+			if (FemaleTrapJudith) break;
+			if (!dontreveal && !FemtrapActiveRuth) seetrap(trap);
+
+			if (!FemtrapActiveRuth) {
+				pline("Whoops... you seem to have stumbled into a trap that was set by Judith.");
+				pline("Now you have to do battle whenever you want to wear a pair of high heels, and if you lose, you're not allowed to wear them!");
+			}
+			u.cnd_feminismtrapamount++;
+			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
+
+			FemaleTrapJudith = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapJudith += 100;
+			if (!rn2(3)) FemaleTrapJudith += rnz(500);
+
+		 break;
+
 		 case SABINE_TRAP:
 
 			if (FemaleTrapSabine) break;
@@ -23621,6 +23640,13 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 			break;
 		case MARLENA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapMarlena) {
+				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
+			}
+			break;
+		case JUDITH_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapJudith) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;

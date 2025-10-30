@@ -1536,6 +1536,7 @@ struct you {
 	int tempsuperfemtrap_rhea;
 	int tempsuperfemtrap_lara;
 	int tempsuperfemtrap_janet;
+	int tempsuperfemtrap_judith;
 
 	/* keyword "timerun" */
 	int tempsupernastytrap_unidentify;

@@ -868,6 +868,7 @@
 #define FemaleTrapVictoria	u.uprops[FEMTRAP_VICTORIA].intrinsic
 #define FemaleTrapMelissa	u.uprops[FEMTRAP_MELISSA].intrinsic
 #define FemaleTrapNadine	u.uprops[FEMTRAP_NADINE].intrinsic
+#define FemaleTrapJudith	u.uprops[FEMTRAP_JUDITH].intrinsic
 #define FemaleTrapLuisa	u.uprops[FEMTRAP_LUISA].intrinsic
 #define FemaleTrapIrina	u.uprops[FEMTRAP_IRINA].intrinsic
 #define FemaleTrapLiselotte	u.uprops[FEMTRAP_LISELOTTE].intrinsic
@@ -1022,6 +1023,7 @@
 #define FemtrapActiveYasaman	(FemaleTrapYasaman || u.uprops[FEMTRAP_YASAMAN].extrinsic || have_femtrapyasaman() || (uarms && uarms->oartifact == ART_FROM_MASHHAD_TO_AHVAZ) )
 #define FemtrapActiveMayBritt	(FemaleTrapMayBritt || u.uprops[FEMTRAP_MAY_BRITT].extrinsic || have_femtrapmaybritt() || (uchain && uchain->oartifact == ART_HIMMELIE_S_STRAWBERRY && u.ualign.type == A_CHAOTIC) || (autismweaponcheck(ART_HIMMELIE_S_STRAWBERRY) && u.ualign.type == A_CHAOTIC) || (uarm && uarm->oartifact == ART_SCHOOL_SATCHEL) )
 #define FemtrapActiveNadine	(FemaleTrapNadine || u.uprops[FEMTRAP_NADINE].extrinsic || have_femtrapnadine() || (uarmc && uarmc->oartifact == ART_EDNA_S_CALM) )
+#define FemtrapActiveJudith	(FemaleTrapJudith || u.uprops[FEMTRAP_JUDITH].extrinsic || have_femtrapjudith() )
 #define FemtrapActiveLuisa	(FemaleTrapLuisa || u.uprops[FEMTRAP_LUISA].extrinsic || have_femtrapluisa() || (uamul && uamul->oartifact == ART_REGGIE_S_POINTSTEP) )
 #define FemtrapActiveIrina	(FemaleTrapIrina || u.uprops[FEMTRAP_IRINA].extrinsic || have_femtrapirina() || (uimplant && uimplant->oartifact == ART_I_LL_GIVE_YOU_A_GENDER_STA) )
 #define FemtrapActiveLiselotte	(FemaleTrapLiselotte || u.uprops[FEMTRAP_LISELOTTE].extrinsic || have_femtrapliselotte() || autismweaponcheck(ART_AMORINA_S_CHAIN) || (uchain && uchain->oartifact == ART_AMORINA_S_CHAIN) )
@@ -1078,6 +1080,7 @@
 #define SuperFemtrapUte	( (have_femtrapute() == 2) || autismringcheck(ART_DEVINE_S_PRAYER) )
 #define SuperFemtrapYasaman	( (have_femtrapyasaman() == 2) )
 #define SuperFemtrapMayBritt	( (have_femtrapmaybritt() == 2) )
+#define SuperFemtrapJudith	( (have_femtrapjudith() == 2) )
 #define SuperFemtrapNadine	( (have_femtrapnadine() == 2) || (uarmc && uarmc->oartifact == ART_EDNA_S_CALM) )
 #define SuperFemtrapLuisa	( (have_femtrapluisa() == 2) || (uamul && uamul->oartifact == ART_REGGIE_S_POINTSTEP) )
 #define SuperFemtrapLiselotte	( (have_femtrapliselotte() == 2) )

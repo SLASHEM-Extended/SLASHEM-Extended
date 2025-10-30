@@ -1553,9 +1553,14 @@ nh_timeout()
 		if (u.tempsuperfemtrap_femmy < 0) u.tempsuperfemtrap_femmy = 0;
 		if (u.tempsuperfemtrap_femmy == 0) pline("The dungeon no longer seems feminine.");
 	}
+	if (u.tempsuperfemtrap_judith) {
+		u.tempsuperfemtrap_judith--;
+		if (u.tempsuperfemtrap_judith < 0) u.tempsuperfemtrap_judith = 0;
+		if (u.tempsuperfemtrap_judith == 0) pline("You no longer have to fight high heels just to be allowed to wear them.");
+	}
 	if (u.tempsuperfemtrap_janet) {
 		u.tempsuperfemtrap_janet--;
-		if (u.tempsuperfemtrap_janet < 0) u.tempsuperfemtrap_femmy = 0;
+		if (u.tempsuperfemtrap_janet < 0) u.tempsuperfemtrap_janet = 0;
 		if (u.tempsuperfemtrap_janet == 0) pline("Finally, you overcome your fear of the feminine attacks.");
 	}
 	if (u.tempsuperfemtrap_anastasia) {
@@ -4608,6 +4613,12 @@ nh_timeout()
 		 case FEMTRAP_MARLENA:
 
 			pline("The dungeon is less green now.");
+
+		 break;
+
+		 case FEMTRAP_JUDITH:
+
+			pline("You no longer have to fight high heels just to be allowed to wear them.");
 
 		 break;
 

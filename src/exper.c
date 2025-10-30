@@ -1092,6 +1092,9 @@ exprecalc(void)
 					case 105: /* Sabine */
 						pline("You receive an elaborate auspicious message: At experience level %d, women can kick you at a distance.", displaycheck);
 						break;
+					case 106: /* Judith */
+						pline("You receive an elaborate auspicious message: At experience level %d, putting on a pair of high heels forces you to do battle with them, and you're only allowed to wear them if you win.", displaycheck);
+						break;
 				}
 			} else pline("Your auspices say: %d %d", displaycheck, whichcheck);
 

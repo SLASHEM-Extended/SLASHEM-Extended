@@ -118,6 +118,20 @@ Boots_on()
     if (!uarmf) return 0; 
     oldprop = u.uprops[objects[uarmf->otyp].oc_oprop].extrinsic & ~WORN_BOOTS;
 
+    if (FemtrapActiveJudith && PlayerInHighHeels && uarmf && !uarmf->judithwin) {
+	u.judithgame = TRUE;
+	You("need to fight the pair of high heels you've tried to put on, and if you lose, you're not allowed to wear them!");
+	if (judithminigame()) { /* minigame returned TRUE = you win */
+		uarmf->judithwin = TRUE;
+		u.judithgame = FALSE;
+	} else { /* you lose */
+		if (donning(uarmf)) cancel_don();
+		if (uarmf) Boots_off();
+		u.judithgame = FALSE;
+		return FALSE;
+	}
+    }
+
     switch(uarmf->otyp) {
 	case PLASTEEL_BOOTS:
 	case LOW_BOOTS:
@@ -335,6 +349,7 @@ Boots_on()
 	case JESSICA_LADY_SHOES:
 	case SOLVEJG_MOCASSINS:
 	case WENDY_LEATHER_PUMPS:
+	case JUDITH_LEATHER_PUMPS:
 	case KATHARINA_PLATFORM_BOOTS:
 	case SABRINA_PLATFORM_BOOTS:
 	case ELENA_COMBAT_BOOTS:
@@ -530,7 +545,7 @@ Boots_on()
     }
 
     if (uarmf && uarmf->oartifact == ART_ZERO_SUGAR) {
-	int nukaroll = rnd(105); /* keyword: "marlena" */
+	int nukaroll = rnd(106); /* keyword: "marlena" */
 
 	curse(uarmf);
 	uarmf->hvycurse = uarmf->stckcurse = TRUE;
@@ -1177,6 +1192,7 @@ Boots_off()
 	case JESSICA_LADY_SHOES:
 	case SOLVEJG_MOCASSINS:
 	case WENDY_LEATHER_PUMPS:
+	case JUDITH_LEATHER_PUMPS:
 	case KATHARINA_PLATFORM_BOOTS:
 	case SABRINA_PLATFORM_BOOTS:
 	case ELENA_COMBAT_BOOTS:

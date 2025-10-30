@@ -3381,7 +3381,7 @@ struct obj *book2;
 	}
 
 	if (book2->oartifact == ART_NUKA_ROLL) {
-		int nukaroll = rnd(105); /* keyword: "marlena" */
+		int nukaroll = rnd(106); /* keyword: "marlena" */
 
 		u.tempnukaefftype = nukaroll;
 		u.tempnukaeffect += rnz(5000);
@@ -13764,7 +13764,7 @@ controlagain:
 		}
 		break;
 	case SPE_ECHOLOCATION:
-		pline("Your ears are suddenly very sensitive!");
+		pline("Your %s are suddenly very sensitive!", body_part(EARS));
 		if (u.echolocationspell) u.echolocationspell += (rnd(5) + spell_damage_bonus(SPE_ECHOLOCATION));
 		else u.echolocationspell += (rn1(100, 50) + spell_damage_bonus(SPE_ECHOLOCATION)*10);
 		break;

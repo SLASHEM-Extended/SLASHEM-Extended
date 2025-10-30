@@ -17886,7 +17886,7 @@ loveheelover:
 		}
 
 		if(ptr == &mons[PM_NUKA_COLA_COMMERCIALIST]) {
-			int nukaroll = rnd(105); /* keyword: "marlena" */
+			int nukaroll = rnd(106); /* keyword: "marlena" */
 
 			(void) mongets(mtmp, rnd_class(POT_BOOZE, POT_PAN_GALACTIC_GARGLE_BLASTE));
 			(void) mongets(mtmp, rnd_class(POT_BOOZE, POT_PAN_GALACTIC_GARGLE_BLASTE));
@@ -18388,6 +18388,7 @@ loveheelover:
 		if(ptr == &mons[PM_CUDDLE_BEGINE]) (void) mongets(mtmp, SOFT_SNEAKERS);
 		if(ptr == &mons[PM_HEEL_BEGINE]) (void) mongets(mtmp, LADY_BOOTS);
 		if(ptr == &mons[PM_TRIPPEN_BEGINE]) (void) mongets(mtmp, WEDGE_SANDALS);
+		if(ptr == &mons[PM_SHOE_OUTLET_FEMMY]) (void) mongets(mtmp, JUDITH_LEATHER_PUMPS);
 		if (ptr == &mons[PM_GENDER_INTERCHANGING_RAVER]) (void) mongets(mtmp, PINK_DOUBLE_LIGHTSWORD);
 		if (ptr == &mons[PM_ILSE_MARIE_S_SILVER_BLOCK_SANDAL]) (void) mongets(mtmp, HIGH_STILETTOS);
 
@@ -18735,6 +18736,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_UNEXPECTED_LIGHT]) (void) mongets(mtmp, LASER_SWATTER);
 		if (mtmp->data == &mons[PM_DAMGE_INSTEAD_OF_DUNGEON]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
 		if (mtmp->data == &mons[PM_WELLY_VIAL]) (void) mongets(mtmp, POT_CURE_CRITICAL_WOUNDS);
+		if (mtmp->data == &mons[PM_JUDITH]) (void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 
 		if (ptr == &mons[PM_CORNELIA_S_EROTIC_BLOCK_HEEL_SANDAL]) {
 			(void) mongets(mtmp, SCR_COURSE_TRAVELING);

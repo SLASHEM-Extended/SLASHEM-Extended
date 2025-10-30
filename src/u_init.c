@@ -10687,20 +10687,20 @@ u_init()
 	u.femauspices28 = rnd(10);
 	u.femauspices30 = rnd(10);
 
-	u.feminizeffect = rnd(105); /* amount of feminism trap effects; keyword: "marlena" */
-	u.contamjeweleffect = rnd(105); /* amount of feminism trap effects; keyword: "marlena" */
-	u.nukafemeffect = rnd(105); /* amount of feminism trap effects; keyword: "marlena" */
+	u.feminizeffect = rnd(106); /* amount of feminism trap effects; keyword: "marlena" */
+	u.contamjeweleffect = rnd(106); /* amount of feminism trap effects; keyword: "marlena" */
+	u.nukafemeffect = rnd(106); /* amount of feminism trap effects; keyword: "marlena" */
 
-	u.climauspices3 = rnd(105);
-	u.climauspices6 = rnd(105);
-	u.climauspices9 = rnd(105);
-	u.climauspices12 = rnd(105);
-	u.climauspices15 = rnd(105);
-	u.climauspices18 = rnd(105);
-	u.climauspices21 = rnd(105);
-	u.climauspices24 = rnd(105);
-	u.climauspices27 = rnd(105);
-	u.climauspices30 = rnd(105);
+	u.climauspices3 = rnd(106);
+	u.climauspices6 = rnd(106);
+	u.climauspices9 = rnd(106);
+	u.climauspices12 = rnd(106);
+	u.climauspices15 = rnd(106);
+	u.climauspices18 = rnd(106);
+	u.climauspices21 = rnd(106);
+	u.climauspices24 = rnd(106);
+	u.climauspices27 = rnd(106);
+	u.climauspices30 = rnd(106);
 
 	u.sjwL1E1 = rnd(287); /* timerun and stuff */
 	u.sjwL2E1 = rnd(287);
@@ -33168,20 +33168,20 @@ int realityflag;
 	u.femauspices28 = rnd(10);
 	u.femauspices30 = rnd(10);
 
-	u.feminizeffect = rnd(105); /* amount of feminism trap effects; keyword: "marlena" */
-	u.contamjeweleffect = rnd(105); /* amount of feminism trap effects; keyword: "marlena" */
-	u.nukafemeffect = rnd(105); /* amount of feminism trap effects; keyword: "marlena" */
+	u.feminizeffect = rnd(106); /* amount of feminism trap effects; keyword: "marlena" */
+	u.contamjeweleffect = rnd(106); /* amount of feminism trap effects; keyword: "marlena" */
+	u.nukafemeffect = rnd(106); /* amount of feminism trap effects; keyword: "marlena" */
 
-	u.climauspices3 = rnd(105);
-	u.climauspices6 = rnd(105);
-	u.climauspices9 = rnd(105);
-	u.climauspices12 = rnd(105);
-	u.climauspices15 = rnd(105);
-	u.climauspices18 = rnd(105);
-	u.climauspices21 = rnd(105);
-	u.climauspices24 = rnd(105);
-	u.climauspices27 = rnd(105);
-	u.climauspices30 = rnd(105);
+	u.climauspices3 = rnd(106);
+	u.climauspices6 = rnd(106);
+	u.climauspices9 = rnd(106);
+	u.climauspices12 = rnd(106);
+	u.climauspices15 = rnd(106);
+	u.climauspices18 = rnd(106);
+	u.climauspices21 = rnd(106);
+	u.climauspices24 = rnd(106);
+	u.climauspices27 = rnd(106);
+	u.climauspices30 = rnd(106);
 
 	u.sjwL1E1 = rnd(287); /* timerun and stuff */
 	u.sjwL2E1 = rnd(287);

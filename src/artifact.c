@@ -2561,7 +2561,7 @@ register boolean mod;
 		    }
 
 		    if (otmp && otmp->oartifact == ART_NUKA_ROLL) {
-			int nukaroll = rnd(105); /* keyword: "marlena" */
+			int nukaroll = rnd(106); /* keyword: "marlena" */
 
 			u.tempnukaefftype = nukaroll;
 			u.tempnukaeffect += rnz(5000);

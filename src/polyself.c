@@ -2253,6 +2253,7 @@ dospinweb()
 		case FEMMY_TRAP:
 		case MADELEINE_TRAP:
 		case MARLENA_TRAP:
+		case JUDITH_TRAP:
 		case SABINE_TRAP:
 		case JANET_TRAP:
 		case SABRINA_TRAP:
@@ -3371,7 +3372,7 @@ int part;
 		"scales", "blood", "gill", "nostril", "stomach",
 		"heart", "skin", "flesh", "beat",
 		"bones", "ear", "ears", "creak", "crack"
-		},
+		};
 	/* claw attacks are overloaded in mons[]; most humanoids with
 	   such attacks should still reference hands rather than claws */
 	static const char not_claws[] = {

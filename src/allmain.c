@@ -9981,9 +9981,9 @@ newbossRLR:
 		}
 
 		/* for feminizer hybrid race: re-randomize feminism effect that is active --Amy */
-		if (!rn2(5000)) u.feminizeffect = rnd(105); /* amount of feminism trap effects; keyword: "marlena" */
-		if (!rn2(5000)) u.contamjeweleffect = rnd(105); /* amount of feminism trap effects; keyword: "marlena" */
-		if (!rn2(5000)) u.nukafemeffect = rnd(105); /* amount of feminism trap effects; keyword: "marlena" */
+		if (!rn2(5000)) u.feminizeffect = rnd(106); /* amount of feminism trap effects; keyword: "marlena" */
+		if (!rn2(5000)) u.contamjeweleffect = rnd(106); /* amount of feminism trap effects; keyword: "marlena" */
+		if (!rn2(5000)) u.nukafemeffect = rnd(106); /* amount of feminism trap effects; keyword: "marlena" */
 
 		if (isfeminizer && !rn2(5000)) randomfeminismtrap(rnz( (level_difficulty() + 2) * rnd(50)));
 
@@ -12723,6 +12723,11 @@ newbossB:
 					break;
 					}
 			}
+		}
+
+		if (SuperFemtrapJudith && !rn2(10000) && uarmf && uarmf->judithwin) {
+			uarmf->judithwin = FALSE;
+			pline("Suddenly, your footwear no longer considers you to be their owner!");
 		}
 
 		if (Role_if(PM_HUSSY) && !rn2(500)) {
@@ -20131,6 +20136,7 @@ boolean new_game;	/* false => restoring an old game */
 
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "bloomer")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "buckle slippers")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "cuddle boots")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}
@@ -21679,6 +21685,8 @@ boolean new_game;	/* false => restoring an old game */
 
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "bloomer")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "buckle slippers")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "cuddle boots")) OBJ_DESCR(objects[i]) = "todo";
+
 	}
 	}
 
@@ -24154,19 +24162,23 @@ newturnjudith:
 			heelsstate = rnd(3); /* females don't have nuts (DUH) */
 		}
 
+		if (heelsstate == HEELKICKINNUTS && !heelsnutkickallowed) {
+			heelsstate = rnd(3);
+		}
+
 		/* first turn can't be kick in the nuts because the heels aren't that unfair :-) */
 		if (!heelsfirstturn && heelsstate == HEELKICKINNUTS) heelsstate = rnd(3);
 
 		/* if the heels' morale status is below 100, they may randomly decide to not attack */
 		if (heelsmorale < (typeofheels == HEELTYPE_BLOCK ? 70 : 100)) {
 			if (typeofheels == HEELTYPE_CONE) {
-				if (rnd(300) < heelsmorale) heelsstate = HEELIDLE;
+				if (rnd(1000) < heelsmorale) heelsstate = HEELIDLE;
 			} else if (typeofheels == HEELTYPE_STILETTO) {
-				if (rnd(125) < heelsmorale) heelsstate = HEELIDLE;
+				if (rnd(400) < heelsmorale) heelsstate = HEELIDLE;
 			} else if (typeofheels == HEELTYPE_BLOCK) { /* they like to attack at least a couple of times before they let you off the hook */
-				if (rnd(70) < heelsmorale) heelsstate = HEELIDLE;
+				if (rnd(210) < heelsmorale) heelsstate = HEELIDLE;
 			} else {
-				if (rnd(100) < heelsmorale) heelsstate = HEELIDLE;
+				if (rnd(300) < heelsmorale) heelsstate = HEELIDLE;
 			}
 		}
 
@@ -24944,6 +24956,7 @@ newturnjudith:
 							}
 						}
 					}	
+					break;
 				case 6: /* "give up" */
 					if (yn("Do you really want to give up?") == 'y') {
 						You("fire a function. Now you have a function less remaining.");
