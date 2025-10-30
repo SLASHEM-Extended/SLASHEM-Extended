@@ -1,5 +1,21 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.9.9 - September 2025
+- Added a few types of special room.
+- Certain tools that lasted forever can break now.
+- Improved the duration of certain techniques which had awfully low durations.
+- Fully implemented effects that give hints about the secret code number.
+- Improved the messages when a character's stats were permanently not restored. Hopefully players will now realize that there isn't anything to restore if that happens, instead of repeatedly applying their unicorn horn 200 times for nothing at all.
+- The praying success technique no longer asks whether the player "really" wants to pray.
+- Fixed the long-standing bug where the game could randomly freeze upon starting a new character.
+- The petkeeping/riding/symbiosis skills now give percentage-based damage reduction to the tame monsters/symbiotes in question.
+- Effects that restore some of the character's HP or Pw now additionally restore a small percentage on top of the flat value, making such effects more useful if the maximum is very high.
+- Fixed the screwy implementation of punishment when the character loses alignment points. Hopefully it won't crash now.
+- Fixed the immunizer race; it was immune to things it wasn't supposed to be immune to.
+- Hopefully fixed the problem where certain polymorph forms wouldn't tell the player that they have no way to attack physically.
+- Reduced the abundance of items in certain special rooms.
+- Improved the messages when players try to perform actions while polymorphed into something that can't normally perform the action in question. This should make it clearer that the attempt can fail and cause negative effects.
+
 2.9.8 - September 2025
 - Really fixed the bug where the narcolepsy trap effect couldn't time out; the previous fix wasn't working.
 - Changed the damage calculation when the player character is wearing explosive boots.
