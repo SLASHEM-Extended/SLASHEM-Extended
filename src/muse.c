@@ -2606,6 +2606,15 @@ struct obj *otmp;
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Odin men'she zel'ya, kotoryye vy mozhete ispol'zovat', i yest' bol'shaya veroyatnost' togo, chto eto bylo chto-to ochen' polezno. Potomu chto vy byli slishkom medlennymi, kha-kha!" : "Gluckgluckgluckgluck!");
 		}
 
+	if (otmp && otmp->oartifact == ART_JOHN_CALEB_S_INGENIOSITY) {
+		int nukaroll = rnd(106); /* keyword: "marlena" */
+		u.tempnukaefftype = nukaroll;
+		u.tempnukaeffect += 10000;
+
+		pline_The("bottle of Nuka Cola is named %s today!", feminismtrapname(nukaroll));
+
+	}
+
 	u.cnd_monpotioncount++;
 }
 

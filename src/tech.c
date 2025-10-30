@@ -5804,7 +5804,7 @@ int tech_no;
 		}
 	}
 
-	if ((TechTrapEffect || u.uprops[TECHBUG].extrinsic || have_techniquestone()) && (rn2(10) || TechBugXtra ) ) {
+	if ((TechTrapEffect || u.uprops[TECHBUG].extrinsic || have_techniquestone() || (ublindf && ublindf->oartifact == ART_SYLBE_S_LACK) ) && (rn2(10) || TechBugXtra ) ) {
 
 		pline("Unfortunately, nothing happens.");
 		if (!u.temptechhack) {

@@ -1541,6 +1541,12 @@ moveloop()
 				moveamt *= 2;
 			}
 
+			if (uamul && uamul->oartifact == ART_ADELAIDE_S_RACING && !rn2(3)) {
+				oldspeed = moveamt;
+				moveamt *= 2;
+				if (moveamt > (oldspeed + 24)) moveamt = (oldspeed + 24);
+			}
+
 			if (uarmf && uarmf->oartifact == ART_ENA_WUSELEY && !rn2(3)) {
 				oldspeed = moveamt;
 				moveamt *= 2;
@@ -2328,6 +2334,7 @@ moveloop()
 			}
 
 			if (uarmh && uarmh->oartifact == ART_REAL_SPEED_DEVIL && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
+			if (uamul && uamul->oartifact == ART_ADELAIDE_S_RACING && (rnd(10) > 3) ) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uarmf && uarmf->oartifact == ART_MAREN_S_GALE_BOOTS && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uimplant && uimplant->oartifact == ART_COMBAT_NODE_OF_THARION_BLA && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uimplant && uimplant->oartifact == ART_CORELINK_OF_CU_CHULAINN && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
@@ -2755,6 +2762,21 @@ nyssarachoice:
 
 nyssaraend:
 
+		if (u.tempwwwww && !rn2(10000)) {
+			pline("W-w-w-w-w-w-w-w-w-w-w!");
+			register struct monst *wwmtmp;
+			for (wwmtmp = fmon; wwmtmp; wwmtmp = wwmtmp->nmon) {
+				if (DEADMONSTER(wwmtmp)) continue;
+				if (wwmtmp->mhp > 1) {
+					wwmtmp->mhp /= 10;
+					if (wwmtmp->mhp < 1) wwmtmp->mhp = 1;
+				}
+			}
+		}
+
+		if (uleft && uleft->oartifact == ART_LAISHA_DEAL && !rn2(2000)) adjalign(1);
+		if (uright && uright->oartifact == ART_LAISHA_DEAL && !rn2(2000)) adjalign(1);
+
 		if (uarmf && uarmf->oartifact == ART_DIETER_S_BOOTS_OF_THE_DEEP && !rn2(10000)) {
 			castspecificspell(SPE_DETECT_TREASURE);
 		}
@@ -3026,6 +3048,10 @@ nyssaraend:
 		if (!FemtrapActiveSabrina && u.sabrinaactive) u.sabrinaactive = FALSE;
 
 		if (Race_if(PM_SAMEDI)) u.martialstyle = MARTIALSTYLE_CAPOEIRA; /* sons of samedi always use capoeira */
+
+		if (uarmf && uarmf->oartifact == ART_ARVOGENIA_S_FREESTYLE_SCRA) {
+			artilist[ART_ARVOGENIA_S_FREESTYLE_SCRA].attk.adtyp = randartiattacktype();
+		}
 
 		if (autismweaponcheck(ART_BEBE_S_BABE)) {
 			artilist[ART_BEBE_S_BABE].attk.adtyp = randartiattacktype();
@@ -17726,7 +17752,7 @@ past4:
 		flags.botl = TRUE;
 	}
 
-	if ((BankTrapEffect || (uarm && uarm->oartifact == ART_PLANTOPLIM) || (uarmf && uarmf->oartifact == ART_SONJA_S_TORN_SOUL) || autismringcheck(ART_ARABELLA_S_RESIST_COLD) || autismweaponcheck(ART_THROW_ALL_THE_CASH_AWAY) || (uamul && uamul->oartifact == ART_LOW_ZERO_NUMBER) || autismringcheck(ART_WEDDING_WASTED) || (uarmf && uarmf->oartifact == ART_NOW_YOU_LOOK_LIKE_A_BEGGAR) || (uamul && uamul->oartifact == ART_ARABELLA_S_PRECIOUS_GADGET) || u.uprops[BANKBUG].extrinsic || autismweaponcheck(ART_BAT_FROM_BALTIMORE) || have_bankstone()) && u.ugold) {
+	if ((BankTrapEffect || (uarm && uarm->oartifact == ART_PLANTOPLIM) || (uarmf && uarmf->oartifact == ART_SONJA_S_TORN_SOUL) || autismringcheck(ART_ARABELLA_S_RESIST_COLD) || autismweaponcheck(ART_THROW_ALL_THE_CASH_AWAY) || (uamul && uamul->oartifact == ART_LOW_ZERO_NUMBER) || autismringcheck(ART_WEDDING_WASTED) || (uarmf && uarmf->oartifact == ART_NOW_YOU_LOOK_LIKE_A_BEGGAR) || (uarmf && uarmf->oartifact == ART_SUCCESS_LESS_SAVING) || (uamul && uamul->oartifact == ART_ARABELLA_S_PRECIOUS_GADGET) || u.uprops[BANKBUG].extrinsic || autismweaponcheck(ART_BAT_FROM_BALTIMORE) || have_bankstone()) && u.ugold) {
 
 		if (!u.bankcashlimit) u.bankcashlimit = rnz(1000 * (monster_difficulty() + 1 + (long)mvitals[PM_ARABELLA_THE_MONEY_THIEF].born));
 
@@ -24345,6 +24371,8 @@ newturnjudith:
 
 						break;
 				}
+
+				u.cnd_judithnutkicks++;
 
 				break;
 			case HEELTOESTOMP:

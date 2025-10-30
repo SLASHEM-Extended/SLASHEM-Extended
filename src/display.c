@@ -446,7 +446,7 @@ unmap_object(x, y)
 	show_glyph(x, y, cmap_to_glyph(S_stone));	\
 	return;	\
 	}	\
-	if ((GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || (uarmc && uarmc->oartifact == ART_DOEDOEDOEDOEDOEDOEDOE_TEST) || autismweaponcheck(ART_PWNHAMMER) ) && grayoutobscuration() ) {	\
+	if ((GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || autismringcheck(ART_LAISHA_DEAL) || (uarmc && uarmc->oartifact == ART_DOEDOEDOEDOEDOEDOEDOE_TEST) || autismweaponcheck(ART_PWNHAMMER) ) && grayoutobscuration() ) {	\
 	show_glyph(x, y, cmap_to_glyph(S_grayglyph));			\
 	return;								\
 	}								\
@@ -454,7 +454,7 @@ unmap_object(x, y)
 	show_glyph(x, y, cmap_to_glyph(S_grayglyph));			\
 	return;								\
 	}								\
-	if ((CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || autismweaponcheck(ART_SAY__CHESS_) || have_checkerboardstone()) && ( ((x + y) % (CheckerboardXtra ? 4 : 2) ) != (moves % (CheckerboardXtra ? 4 : 2) ) ) ) {		\
+	if ((CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || autismweaponcheck(ART_SAY__CHESS_) || have_checkerboardstone() || (uamul && uamul->oartifact == ART_ADELAIDE_S_RACING) ) && ( ((x + y) % (CheckerboardXtra ? 4 : 2) ) != (moves % (CheckerboardXtra ? 4 : 2) ) ) ) {		\
 	show_glyph(x, y, cmap_to_glyph(S_grayglyph));			\
 	return;								\
 	}								\
@@ -542,7 +542,7 @@ int memory_glyph(x, y)
 	return cmap_to_glyph(S_stone);
 	}
 
-	if ((GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || (uarmc && uarmc->oartifact == ART_DOEDOEDOEDOEDOEDOEDOE_TEST) || autismweaponcheck(ART_PWNHAMMER) ) && grayoutobscuration() ) {
+	if ((GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || autismringcheck(ART_LAISHA_DEAL) || (uarmc && uarmc->oartifact == ART_DOEDOEDOEDOEDOEDOEDOE_TEST) || autismweaponcheck(ART_PWNHAMMER) ) && grayoutobscuration() ) {
 	return cmap_to_glyph(S_grayglyph);
 	}
 
@@ -550,7 +550,7 @@ int memory_glyph(x, y)
 	return cmap_to_glyph(S_grayglyph);
 	}
 
-	if ((CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || autismweaponcheck(ART_SAY__CHESS_) || have_checkerboardstone()) && ( ((x + y) % (CheckerboardXtra ? 4 : 2) ) != (moves % (CheckerboardXtra ? 4 : 2) ) ) ) {
+	if ((CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || autismweaponcheck(ART_SAY__CHESS_) || have_checkerboardstone() || (uamul && uamul->oartifact == ART_ADELAIDE_S_RACING) ) && ( ((x + y) % (CheckerboardXtra ? 4 : 2) ) != (moves % (CheckerboardXtra ? 4 : 2) ) ) ) {
 	return cmap_to_glyph(S_grayglyph);
 	}
 
@@ -1106,7 +1106,7 @@ newsym(x,y)
 	return;
 	}
 
-	if ((GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || (uarmc && uarmc->oartifact == ART_DOEDOEDOEDOEDOEDOEDOE_TEST) || autismweaponcheck(ART_PWNHAMMER) ) && grayoutobscuration() ) {
+	if ((GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || autismringcheck(ART_LAISHA_DEAL) || (uarmc && uarmc->oartifact == ART_DOEDOEDOEDOEDOEDOEDOE_TEST) || autismweaponcheck(ART_PWNHAMMER) ) && grayoutobscuration() ) {
 	show_glyph(x, y, cmap_to_glyph(S_grayglyph));
 	return;
 	}
@@ -1116,7 +1116,7 @@ newsym(x,y)
 	return;
 	}
 
-	if ((CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || autismweaponcheck(ART_SAY__CHESS_) || have_checkerboardstone()) && ( ((x + y) % (CheckerboardXtra ? 4 : 2) ) != (moves % (CheckerboardXtra ? 4 : 2) ) ) ) {
+	if ((CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || autismweaponcheck(ART_SAY__CHESS_) || have_checkerboardstone() || (uamul && uamul->oartifact == ART_ADELAIDE_S_RACING) ) && ( ((x + y) % (CheckerboardXtra ? 4 : 2) ) != (moves % (CheckerboardXtra ? 4 : 2) ) ) ) {
 	show_glyph(x, y, cmap_to_glyph(S_grayglyph));
 	return;
 	}
@@ -1584,7 +1584,7 @@ newsymX(x,y)
 	return;
 	}
 
-	if ((GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || (uarmc && uarmc->oartifact == ART_DOEDOEDOEDOEDOEDOEDOE_TEST) || autismweaponcheck(ART_PWNHAMMER) ) && grayoutobscuration() ) {
+	if ((GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || autismringcheck(ART_LAISHA_DEAL) || (uarmc && uarmc->oartifact == ART_DOEDOEDOEDOEDOEDOEDOE_TEST) || autismweaponcheck(ART_PWNHAMMER) ) && grayoutobscuration() ) {
 	show_glyph(x, y, cmap_to_glyph(S_grayglyph));
 	return;
 	}
@@ -1594,7 +1594,7 @@ newsymX(x,y)
 	return;
 	}
 
-	if ((CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || autismweaponcheck(ART_SAY__CHESS_) || have_checkerboardstone()) && ( ((x + y) % (CheckerboardXtra ? 4 : 2) ) != (moves % (CheckerboardXtra ? 4 : 2) ) ) ) {
+	if ((CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || autismweaponcheck(ART_SAY__CHESS_) || have_checkerboardstone() || (uamul && uamul->oartifact == ART_ADELAIDE_S_RACING) ) && ( ((x + y) % (CheckerboardXtra ? 4 : 2) ) != (moves % (CheckerboardXtra ? 4 : 2) ) ) ) {
 	show_glyph(x, y, cmap_to_glyph(S_grayglyph));
 	return;
 	}

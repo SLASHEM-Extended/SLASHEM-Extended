@@ -6482,6 +6482,7 @@ TOOL("orb of enchantment", "glass orb", 0, 0, 1, 1,   50, 0, 60, MT_GLASS, HI_GL
 TOOL("orb of charging", "glass orb", 0, 0, 1, 1,   50, 0, 60, MT_GLASS, HI_GLASS, 20),
 TOOL("orb of destruction", "glass orb", 0, 0, 0, 0,   50, 0, 60, MT_GLASS, HI_GLASS, 0),
 
+/* blindfold-slot tools: lenses must be first */
 TOOL("lenses", (char *)0,	1, 0, 0, 0,   455,  0,  80, MT_GLASS, HI_GLASS, 1),
 TOOL("shield pate glasses", (char *)0,	1, 0, 0, 0,    45,  0, 100, MT_GLASS, CLR_BLUE, 20),
 TOOL("radioglasses", (char *)0, 1, 0, 0, 0, 300,  0,  200, MT_VIVA, CLR_ORANGE, 1),
@@ -6495,6 +6496,7 @@ TOOL("condome", (char *)0,      1, 0, 0, 0,  190,  0,   5, MT_CLOTH, CLR_WHITE, 
 TOOL("climbing set", (char *)0,      1, 0, 0, 0,  100,  0,   500, MT_MINERAL, CLR_GRAY, 80),
 TOOL("defusing box", (char *)0,      1, 0, 0, 0,  200,  0,   200, MT_MINERAL, CLR_GRAY, 5),
 TOOL("soft chastity belt", (char *)0,      1, 0, 0, 0,   10,  0,   5, MT_SILK, CLR_WHITE, 1),
+/* last blindfold-slot tool is soft chastity belt */
 
 /* leather saddle = first saddle */
 TOOL("leather saddle", "saddle", 0, 0, 0, 0, 2150,0, 150, MT_LEATHER, HI_LEATHER, 1),

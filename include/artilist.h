@@ -3424,7 +3424,7 @@ A("Scrawny Pipsqueak",				RIN_FAILED_EXERCISE, /* +5 AC */
 	NO_ATTK, DFNS(AD_ELEC), NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 2000L ),
 
 A("Tschoeck Kloeck",				AMULET_OF_POLYMORPH, /* deactivates poly control for 1 million turns when put on */
-	(SPFX_RESTR), 0, 0,
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10L ),
 
 A("Spellcaster's Dream",				AMULET_OF_THE_RNG, /* disables sleep res */
@@ -3700,7 +3700,7 @@ A("Semi Shape Control",				RIN_POLYMORPH_CONTROL, /* also gives polymorphitis */
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
 A("Formtaker",				AMULET_OF_POLYMORPH, /* gives permanent intrinsic polymorphitis if you put it on! */
-	(SPFX_RESTR), 0, 0,
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 1000L ),
 
 A("Colorless Variety",				AMULET_OF_POLYMORPH_CONTROL, /* shades of grey effect */
@@ -26523,6 +26523,66 @@ A("Evelyn's Robe of Reversal",				PLAIN_ROBE, /* randart robe, double reflection
 A("Gregor's Starlit Vestments",				PLAIN_ROBE, /* randart2 robe */
 	(SPFX_RESTR|SPFX_XRAY), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 75000L ),
+
+A("Success-less Saving",				JUDITH_LEATHER_PUMPS, /* bank and SOL trap effect, double drain resistance, +10 CHA, monsters which don't always spawn hostile have 80% chance of spawning peaceful */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_DRLI), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 12000L ),
+
+A("Hannah's Innocence",				LOW_BOOTS, /* initialized to always be cuddle boots, hannah trap effect, +5 CHA, +2 MC, +5 AC, fully protects against xan attacks, diminished bleeding */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_HPHDAM|SPFX_REGEN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Horrible Scratching Wounds",				JUDITH_S_JEWEL, /* double judith trap effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Arvogenia's Freestyle Scratching",				OMEGA_HEELS, /* judith trap effect, damage type is re-randomized every turn you're wearing them; Amy's roommate inspired this artifact and came up with the name */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_ATTK), 0, 0,
+	PHYS(0, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7500L ),
+
+A("To Judithbis",				RIN_ADORNMENT, /* randart2 ring, double judith trap effect, double teleportitis, double teleport control, resist stun */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_TCTRL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Laisha Deal",				RIN_ADORNMENT, /* randart ring, double grayout, double magic resistance, 1 in 2000 chance per turn to gain a point of alignment (not beyond the max) */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Rayvon's Beam",				AMULET_OF_POWER, /* randart amulet, double charlotte trap effect, heavily autocurses, rays can go through walls (ZAP_POS is ignored), zapping a wand that can be recharged repeatedly has only a 1 in 3 chance of losing a charge */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 25000L ),
+
+A("Adelaide's Racing",				AMULET_OF_POWER, /* randart2 amulet, double checkerboard effect, ultra fast speed and adds extra speed like 3x real speed devil; if you're riding, free+discount action and 33% chance that speed is doubled like piece race */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 17000L ),
+
+A("Sylbe's Lack",				LENSES, /* randart blindfold slot tool, double tech bug, autocurses, 99% chance that rndcurse() doesn't affect you, -4 CHA, -1 MC, protects you from mind flayer tentacles and psychic blasts, resist psi and sleep */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 25000L ),
+
+A("The Divine Seer",				LENSES, /* randart blindfold slot tool */
+	(SPFX_RESTR|SPFX_ESP), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Berit's Sage",				LENSES, /* randart2 blindfold slot tool, double inge trap effect, prime autocurses, curse resistance, +10 INT, +15 WIS */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, IDENTIFY, A_NONE, NON_PM, NON_PM, 30000L ),
+
+A("truly awesomelig",				LENSES, /* randart2 blindfold slot tool */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Damago Klara",				T_SHIRT, /* randart2 shirt, pain sense, klara trap effect, hearing the sound of high heels deals 5 damage or if you're below half health, you lose 5 alla */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_HPHDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("W-w-w-w-w-w-w-w-w-w-w!",				SPE_MAGICTORCH, /* randart2 spellbook; upon generating, all monsters with more than 1 HP get reduced to 10% of their current value (not below 1); upon reading, gives a temporary effect for 25k turns that has 1 in 10000 chance per turn to replicate the generation effect */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("John Caleb's Ingeniosity",				POT_WATER, /* randart2 potion; if someone quaffs it, displays a random nuka cola name and gives 10k turns of the corresponding feminism trap effect */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
 
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 

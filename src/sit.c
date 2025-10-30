@@ -999,6 +999,11 @@ rndcurse()			/* curse a few inventory items at random! */
 	    return;
 	}
 
+	if (ublindf && ublindf->oartifact == ART_SYLBE_S_LACK && rn2(100)) {
+		pline("A malignant aura surrounds you but is absorbed by your tool!");
+		return;
+	}
+
 	if (!rn2(5) && uarmh && itemhasappearance(uarmh, APP_SAGES_HELMET) ) {
 		pline("A malignant aura surrounds you but is absorbed by the sages helmet!");
 		return;

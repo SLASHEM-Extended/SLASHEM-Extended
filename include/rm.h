@@ -118,7 +118,7 @@
 			(level.flags.arboreal && (typ) == STONE))
 #define ACCESSIBLE(typ) ((typ) >= DOOR)		/* good position */
 #define IS_ROOM(typ)	((typ) >= ROOM)		/* ROOM, STAIRS, furniture.. */
-#define ZAP_POS(typ)	((typ) >= POOL || (typ) == TUNNELWALL || (typ) == FARMLAND)
+#define ZAP_POS(typ)	( ((typ) >= POOL || (typ) == TUNNELWALL || (typ) == FARMLAND) || (youmonst.data && uamul && uamul->oartifact == ART_RAYVON_S_BEAM) )
 #define IS_GRAVE(typ)	((typ) == GRAVE)
 #define SPACE_POS(typ)	((typ) > DOOR)
 #define IS_POOL(typ)	((typ) >= POOL && (typ) <= DRAWBRIDGE_UP)

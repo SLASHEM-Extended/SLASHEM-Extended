@@ -2010,7 +2010,7 @@ change_luck(n)
 		u.uluck = LUCKMIN;
 	}
 	if (u.uluck > 0 && u.uluck > LUCKMAX) {
-		if (LuckLoss || u.uprops[LUCK_LOSS].extrinsic || autismweaponcheck(ART_PROFANED_GREATSCYTHE) || (ublindf && ublindf->oartifact == ART_GIRLFRIEND_DOESN_T_WANNA_C) || have_unluckystone() ) {
+		if (LuckLoss || u.uprops[LUCK_LOSS].extrinsic || autismweaponcheck(ART_PROFANED_GREATSCYTHE) || (ublindf && ublindf->oartifact == ART_GIRLFRIEND_DOESN_T_WANNA_C) || have_unluckystone() || (uarmf && uarmf->oartifact == ART_SUCCESS_LESS_SAVING) ) {
 			u.uluck = LUCKMIN;
 			You_feel("something turning around..."); /* extra vague message (evil patch idea by jonadab) */
 			u.cnd_luckrollovercount++; /* probably extremely rare, but let's track it anyway... --Amy */
@@ -3400,6 +3400,8 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_LYDIA_S_SEXYROOM) tmp += 5;
 		if (uarmf && uarmf->oartifact == ART_INGRID_S_SECRETARY_OFFICE) tmp += 5;
 		if (uimplant && uimplant->oartifact == ART_SOLAR_RING_OF_LYSIRA_DAWNF) tmp += 1;
+		if (uarmf && uarmf->oartifact == ART_SUCCESS_LESS_SAVING) tmp += 10;
+		if (uarmf && uarmf->oartifact == ART_HANNAH_S_INNOCENCE) tmp += 5;
 		if (uimplant && uimplant->oartifact == ART_BONE_LATTICE_OF_LANCELOT) tmp += 2;
 		if (uleft && uleft->oartifact == ART_CROQUE_FORD) tmp += 4;
 		if (uright && uright->oartifact == ART_CROQUE_FORD) tmp += 4;
@@ -3630,6 +3632,7 @@ int x;
 		if (Race_if(PM_HUMANOID_ANGEL)) tmp -= angelshadowstuff();
 		if (u.tsloss_cha > 0) tmp -= u.tsloss_cha;
 		if (FemtrapActiveAntje && !PlayerInBlockHeels) tmp -= 5;
+		if (ublindf && ublindf->oartifact == ART_SYLBE_S_LACK) tmp -= 4;
 		if (Race_if(PM_LOWER_ENT) && Burned) tmp -= 2;
 		if (uarms && uarms->oartifact == ART_AL_UD) tmp -= 3;
 		if (isbadstatter) tmp -= 2;
@@ -3689,6 +3692,8 @@ int x;
 		if (x == A_WIS && uwep && uwep->oartifact == ART_HOLY_RANCE) tmp += 6;
 		if (x == A_WIS && uarmh && uarmh->oartifact == ART_CAP_OF_THENGEL) tmp += 3;
 		if (x == A_INT && Race_if(PM_MAZIN)) tmp += 2;
+		if (x == A_INT && ublindf && ublindf->oartifact == ART_BERIT_S_SAGE) tmp += 10;
+		if (x == A_WIS && ublindf && ublindf->oartifact == ART_BERIT_S_SAGE) tmp += 15;
 		if (uarmh && uarmh->oartifact == ART_SENOBIA_S_CROWN) tmp += 3;
 		if (x == A_INT && bmwride(ART_KERSTIN_S_CLEARSOUND)) tmp += 2;
 		if (x == A_INT && uball && uball->oartifact == ART_NUCULATE) tmp += 2;

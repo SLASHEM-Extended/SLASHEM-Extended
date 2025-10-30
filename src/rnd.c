@@ -137,7 +137,7 @@ register int x;	/* good luck approaches 0, bad luck approaches (x-1) */
 	    else if (i >= x) i = x-1;
 	}
 
-	if (LuckLoss || u.uprops[LUCK_LOSS].extrinsic || have_unluckystone() || (ublindf && ublindf->oartifact == ART_GIRLFRIEND_DOESN_T_WANNA_C) || autismweaponcheck(ART_PROFANED_GREATSCYTHE) ) change_luck(-1);
+	if (LuckLoss || u.uprops[LUCK_LOSS].extrinsic || have_unluckystone() || (uarmf && uarmf->oartifact == ART_SUCCESS_LESS_SAVING) || (ublindf && ublindf->oartifact == ART_GIRLFRIEND_DOESN_T_WANNA_C) || autismweaponcheck(ART_PROFANED_GREATSCYTHE) ) change_luck(-1);
 
 	return i;
 }
@@ -3234,6 +3234,14 @@ randartsaddle()
 }
 
 int
+randartblindfold()
+{
+	int result;
+	result = rnd_class(LENSES, SOFT_CHASTITY_BELT);
+	return result;
+}
+
+int
 randartleash()
 {
 	int result;
@@ -3772,6 +3780,14 @@ randartsaddleX()
 {
 	int result;
 	result = LEATHER_SADDLE + rn2((INKA_SADDLE + 1) - LEATHER_SADDLE);
+	return result;
+}
+
+int
+randartblindfoldX()
+{
+	int result;
+	result = LENSES + rn2((SOFT_CHASTITY_BELT + 1) - LENSES);
 	return result;
 }
 

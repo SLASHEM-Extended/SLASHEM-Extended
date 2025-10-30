@@ -1492,9 +1492,9 @@ m_throw(mon, x, y, dx, dy, range, obj)
 	  the random chance for small objects hitting bars is
 	  skipped when reaching them at point blank range */
 	if (!isok(bhitpos.x+dx,bhitpos.y+dy)
-	    || (IS_ROCK(levl[bhitpos.x+dx][bhitpos.y+dy].typ) && !IS_FARMLAND(levl[bhitpos.x+dx][bhitpos.y+dy].typ) )
-	    || IS_WATERTUNNEL(levl[bhitpos.x+dx][bhitpos.y+dy].typ)
-	    || closed_door(bhitpos.x+dx, bhitpos.y+dy)
+	    || (IS_ROCK(levl[bhitpos.x+dx][bhitpos.y+dy].typ) && !(uamul && uamul->oartifact == ART_RAYVON_S_BEAM) && !IS_FARMLAND(levl[bhitpos.x+dx][bhitpos.y+dy].typ) )
+	    || (IS_WATERTUNNEL(levl[bhitpos.x+dx][bhitpos.y+dy].typ) && !(uamul && uamul->oartifact == ART_RAYVON_S_BEAM) )
+	    || (closed_door(bhitpos.x+dx, bhitpos.y+dy) && !(uamul && uamul->oartifact == ART_RAYVON_S_BEAM) )
 	    || (levl[bhitpos.x + dx][bhitpos.y + dy].typ == IRONBARS &&
 	        hits_bars(&singleobj, bhitpos.x, bhitpos.y, 0, 0))) {
 
@@ -1775,15 +1775,15 @@ m_throw(mon, x, y, dx, dy, range, obj)
 			/* missile hits edge of screen */
 			|| !isok(bhitpos.x+dx,bhitpos.y+dy)
 			/* missile hits the wall */
-			|| (IS_ROCK(levl[bhitpos.x+dx][bhitpos.y+dy].typ) && !IS_FARMLAND(levl[bhitpos.x+dx][bhitpos.y+dy].typ))
+			|| (IS_ROCK(levl[bhitpos.x+dx][bhitpos.y+dy].typ) && !(uamul && uamul->oartifact == ART_RAYVON_S_BEAM) && !IS_FARMLAND(levl[bhitpos.x+dx][bhitpos.y+dy].typ))
 			/* missile hit closed door */
-			|| closed_door(bhitpos.x+dx, bhitpos.y+dy)
+			|| (closed_door(bhitpos.x+dx, bhitpos.y+dy) && !(uamul && uamul->oartifact == ART_RAYVON_S_BEAM))
 			/* missile might hit bars */
 			|| (levl[bhitpos.x+dx][bhitpos.y+dy].typ == IRONBARS &&
 		        hits_bars(&singleobj, bhitpos.x, bhitpos.y, !rn2(5), 0))
 			/* Thrown objects "sink" */
 			|| IS_SINK(levl[bhitpos.x][bhitpos.y].typ)
-			|| IS_WATERTUNNEL(levl[bhitpos.x][bhitpos.y].typ)
+			|| (IS_WATERTUNNEL(levl[bhitpos.x][bhitpos.y].typ) && !(uamul && uamul->oartifact == ART_RAYVON_S_BEAM))
 								) {
 
 			if (!range || IS_SINK(levl[bhitpos.x][bhitpos.y].typ) || IS_WATERTUNNEL(levl[bhitpos.x][bhitpos.y].typ) || !isok(bhitpos.x+dx,bhitpos.y+dy) || !((u.ux == bhitpos.x+dx) && (u.uy == bhitpos.y+dy)) ) {
@@ -2358,6 +2358,8 @@ boolean special; /* for monsters that can shoot from infinite distance --Amy */
 
     if ((!tbx || !tby || abs(tbx) == abs(tby)) /* straight line or diagonal */
         && distmin(tbx, tby, 0, 0) < ((special || ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) ? 100 : EnglandMode ? 10 : BOLT_LIM) ) {
+
+	  if (uamul && uamul->oartifact == ART_RAYVON_S_BEAM) return TRUE;
         if ((ax == u.ux && ay == u.uy) ? (boolean) couldsee(bx, by) : clear_path(ax, ay, bx, by))
             return TRUE;
         /* don't have line of sight, but might still be lined up
@@ -2366,18 +2368,16 @@ boolean special; /* for monsters that can shoot from infinite distance --Amy */
         do {
             /* <bx,by> is guaranteed to eventually converge with <ax,ay> */
             bx += dx, by += dy;
-            if ((IS_ROCK(levl[bx][by].typ) && !IS_FARMLAND(levl[bx][by].typ)) || IS_WATERTUNNEL(levl[bx][by].typ) || closed_door(bx, by))
-                return FALSE;
+            if ((IS_ROCK(levl[bx][by].typ) && !IS_FARMLAND(levl[bx][by].typ)) || IS_WATERTUNNEL(levl[bx][by].typ) || closed_door(bx, by)) {
+			if (!(uamul && uamul->oartifact == ART_RAYVON_S_BEAM)) {
+				return FALSE;
+			}
+		}
         } while (bx != ax || by != ay);
         /* reached target position without encountering obstacle */
             return TRUE;
     }
 
-	/*if((!tbx || !tby || abs(tbx) == abs(tby))*/ /* straight line or diagonal */
-	/*   && distmin(tbx, tby, 0, 0) < ((ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) ? 100 : EnglandMode ? 10 : BOLT_LIM)) {
-	    if(ax == u.ux && ay == u.uy) return((boolean)(couldsee(bx,by)));
-	    else if(clear_path(ax,ay,bx,by)) return TRUE;
-	}*/
 	return FALSE;
 }
 
@@ -2403,8 +2403,11 @@ register xchar ax, ay, bx, by;
         do {
             /* <bx,by> is guaranteed to eventually converge with <ax,ay> */
             bx += dx, by += dy;
-            if ((IS_ROCK(levl[bx][by].typ) && !IS_FARMLAND(levl[bx][by].typ)) || IS_WATERTUNNEL(levl[bx][by].typ) || closed_door(bx, by))
-                return FALSE;
+            if ((IS_ROCK(levl[bx][by].typ) && !IS_FARMLAND(levl[bx][by].typ)) || IS_WATERTUNNEL(levl[bx][by].typ) || closed_door(bx, by)) {
+			if (!(uamul && uamul->oartifact == ART_RAYVON_S_BEAM)) {
+				return FALSE;
+			}
+		}
         } while (bx != ax || by != ay);
         /* reached target position without encountering obstacle */
             return TRUE;

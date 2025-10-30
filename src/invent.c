@@ -3494,6 +3494,7 @@ have_femtrapjudith()
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == JUDITH_S_JEWEL) {
+			if (otmp->oartifact == ART_HORRIBLE_SCRATCHING_WOUNDS) return 2;
 			return(TRUE);
 		}
 	}
@@ -35393,6 +35394,36 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: double reflection when worn. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'Reality bends politely around its wearer, unsure which way truth should flow.'"); break;
 				case ART_GREGOR_S_STARLIT_VESTMENTS:
 					pline("Artifact specs: astral vision when worn. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'Threads of twilight sewn into cloth - each shimmer holds a forgotten wish.'"); break;
+				case ART_SUCCESS_LESS_SAVING:
+					pline("Artifact specs: bank and SOL trap effect, double drain resistance and +10 charisma when worn, and monsters who aren't guaranteed to spawn hostile are very likely to spawn peaceful."); break;
+				case ART_HANNAH_S_INNOCENCE:
+					pline("Artifact specs: half physical damage, regeneration, hannah trap effect, +5 charisma, +2 MC, 5 extra points of AC, diminished bleeding and full protection against xan attacks when worn."); break;
+				case ART_HORRIBLE_SCRATCHING_WOUNDS:
+					pline("Artifact specs: carrying it gives the stronger version of the judith trap effect."); break;
+				case ART_ARVOGENIA_S_FREESTYLE_SCRA:
+					pline("Artifact specs: +10 damage when using them to kick, with a damage type that is re-randomized each turn. They also give the judith trap effect when worn. Amy's roommate came up with the name of this artifact."); break;
+				case ART_TO_JUDITHBIS:
+					pline("Artifact specs: double judith trap effect, double teleportitis, double teleport control and stun resistance when worn."); break;
+				case ART_LAISHA_DEAL:
+					pline("Artifact specs: double grayout, double magic resistance and your alignment slowly goes up while wearing it (but not beyond the maximum)."); break;
+				case ART_RAYVON_S_BEAM:
+					pline("Artifact specs: double charlotte trap effect, heavily autocurses when worn, allows rays to go through walls, zapping a wand that can be recharged repeatedly is much less likely to use up a charge."); break;
+				case ART_ADELAIDE_S_RACING:
+					pline("Artifact specs: double checkerboard effect when worn, ultra fast speed and adds a bunch of extra speed on top of that, and if you're riding, you have free action, discount action and a chance of moving even faster."); break;
+				case ART_SYLBE_S_LACK:
+					pline("Artifact specs: double tech bug effect when worn, autocurses, makes you almost immune to curse items effects, -4 charisma, -1 magic cancellation, protects you from mind flayer attacks and psychic blasts and grants resistance to psi and sleep."); break;
+				case ART_DIVINE_SEER:
+					pline("Artifact specs: ESP when worn."); break;
+				case ART_BERIT_S_SAGE:
+					pline("Artifact specs: double inge trap effect, prime autocurses when worn, curse resistance, +10 intelligence, +15 wisdom, can be invoked for identify."); break;
+				case ART_TRULY_AWESOMELIG:
+					pline("Artifact specs: magic resistance when worn."); break;
+				case ART_DAMAGO_KLARA:
+					pline("Artifact specs: half physical damage, pain sense and klara trap effect when worn, and if you hear the sound of high heels, you may lose health or have your alla drained."); break;
+				case ART_W_W_W_W_W_W_W_W_W_W_W_:
+					pline("Artifact specs: when it generated, all monsters got reduced to one tenth of their current HP. Reading it gives a temporary effect that causes monsters to be set to one tenth of their HP every once in a while."); break;
+				case ART_JOHN_CALEB_S_INGENIOSITY:
+					pline("Artifact specs: if someone quaffs it, you get a feminism trap effect."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

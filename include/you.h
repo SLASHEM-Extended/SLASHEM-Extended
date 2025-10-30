@@ -824,6 +824,7 @@ struct you {
 	int temppainresist;	/* temporarily don't get affected by AD_PAIN effects */
 	int tempburntbooks;	/* temporarily cause all spellbooks to spawn burnt */
 	int tempnastystonefreq;	/* temporary +200 spawn chance for gray snipers and the like, and nasty stones aren't less likely to spawn */
+	int tempwwwww;		/* temporary 1 in 10000 chance per turn that all monsters on the level have their HP reduced to 10% of the previous value */
 
 	int tempnukaeffect;	/* temporary feminism trap effect that corresponds to a bottle of Nuka Cola */
 	int tempnukaefftype;	/* the type of temporary feminism trap effect for the above */
@@ -2384,6 +2385,8 @@ struct you {
 	int cnd_littlemarietrapcnt;	/* how many times the little marie trap afflicted you with a trap effect */
 	int cnd_escapepastcount;	/* how many times you skipped past messages with escape */
 	int cnd_cheaterprayer;	/* how many times you used the cheater prayer */
+	int cnd_judithwins;	/* how many times you defeated heels for the judith trap */
+	int cnd_judithnutkicks;	/* how many times the heels kicked you in the nuts during the judith trap minigame */
 
 	struct symbiotemon usymbiote;	/* for the symbiosis skill */
 	int symbioteaggressivity;	/* how often your symbiote attacks or takes damage */

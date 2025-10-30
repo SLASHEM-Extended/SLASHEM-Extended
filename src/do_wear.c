@@ -123,6 +123,7 @@ Boots_on()
 	You("need to fight the pair of high heels you've tried to put on, and if you lose, you're not allowed to wear them!");
 	if (judithminigame()) { /* minigame returned TRUE = you win */
 		uarmf->judithwin = TRUE;
+		u.cnd_judithwins++;
 		u.judithgame = FALSE;
 	} else { /* you lose */
 		if (donning(uarmf)) cancel_don();
@@ -5487,6 +5488,11 @@ Amulet_on()
 		uamul->hvycurse = uamul->prmcurse = uamul->stckcurse = TRUE;
     }
 
+    if (uamul && uamul->oartifact == ART_RAYVON_S_BEAM) {
+		curse(uamul);
+		uamul->hvycurse = TRUE;
+    }
+
     if (uamul && uamul->oartifact == ART_KUNO_S_TRANSCEIVER) {
 		curse(uamul);
 		pline("That was an error, now the amulet is cursed.");
@@ -6401,6 +6407,15 @@ register struct obj *otmp;
 
 	if (otmp && otmp->oartifact == ART_GIRLFRIEND_DOESN_T_WANNA_C) {
 		curse(otmp);
+	}
+
+	if (otmp && otmp->oartifact == ART_SYLBE_S_LACK) {
+		curse(otmp);
+	}
+
+	if (otmp && otmp->oartifact == ART_BERIT_S_SAGE) {
+		curse(otmp);
+		otmp->hvycurse = otmp->prmcurse = TRUE;
 	}
 
 	if (otmp && otmp->oartifact == ART_LAMEZA_S_EQUALITY) {
@@ -7914,6 +7929,7 @@ find_ac()
 	if (uarms && uarms->oartifact == ART_AL_UD) uac -= 4;
 	if (uarmf && uarmf->oartifact == ART_TANK_SOLE_PAIR) uac -= 15;
 	if (uarm && uarm->oartifact == ART_THA_WALL) uac -= 9;
+	if (uarmf && uarmf->oartifact == ART_HANNAH_S_INNOCENCE) uac -= 5;
 	if (uarmf && uarmf->oartifact == ART_LARS_S_IRONSTRIDE_BOOTS && (u.ualign.type == A_LAWFUL) ) uac -= 1;
 	if (uarmg && uarmg->oartifact == ART_OTTO_S_STEELWEAVE_GLOVES) uac -= 2;
 	if (uarmc && uarmc->oartifact == ART_CLARA_S_WINDCLOAK) uac -= 1;

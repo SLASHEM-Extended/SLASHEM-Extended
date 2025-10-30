@@ -4334,6 +4334,7 @@ register struct obj *wand;
 	if (wand->oartifact == ART_F_O_D_D_E_R && rn2(2)) willusecharge = FALSE;
 	if (wand->oartifact == ART_WANG_DOAAAAAH && rn2(2)) willusecharge = FALSE;
 	if (nochargechange < rnd(10) && !onlychargeonce) willusecharge = FALSE;
+	if (uamul && uamul->oartifact == ART_RAYVON_S_BEAM && rn2(3) && !onlychargeonce) willusecharge = FALSE;
 
 	if (willusecharge) wand->spe--;
 

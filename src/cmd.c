@@ -13316,6 +13316,14 @@ int final;
 		sprintf(buf, "%d time%s", u.cnd_littlemarietrapcnt, plur(u.cnd_littlemarietrapcnt));
 		enl_msg(You_, "triggered the girls' nasty shield ", "triggered the girls' nasty shield ", buf);
 	}
+	if (u.cnd_judithwins) {
+		sprintf(buf, "%d time%s", u.cnd_judithwins, plur(u.cnd_judithwins));
+		enl_msg(You_, "honorably defeated high heels in battle ", "honorably defeated high heels in battle ", buf);
+	}
+	if (u.cnd_judithnutkicks) {
+		sprintf(buf, "%d time%s", u.cnd_judithnutkicks, plur(u.cnd_judithnutkicks));
+		enl_msg(You_, "were kicked in the nuts during high heel battles ", "were kicked in the nuts during high heel battles ", buf);
+	}
 	if (u.cnd_escapepastcount) {
 		sprintf(buf, "%d time%s (hint: doing that too often can result in you skipping crucially important messages and being screwed over unexpectedly)", u.cnd_escapepastcount, plur(u.cnd_escapepastcount));
 		enl_msg(You_, "escaped past messages ", "escaped past messages ", buf);
@@ -14095,6 +14103,12 @@ int final;
 
 	sprintf(buf, "%d time%s", u.cnd_friederiketrapcnt, plur(u.cnd_friederiketrapcnt));
 	dump("  You were bundled by Friederike ", buf);
+
+	sprintf(buf, "%d time%s", u.cnd_judithwins, plur(u.cnd_judithwins));
+	dump("  You honorably defeated high heels in battle ", buf);
+
+	sprintf(buf, "%d time%s", u.cnd_judithnutkicks, plur(u.cnd_judithnutkicks));
+	dump("  You were kicked in the nuts during high heel battles ", buf);
 
 	sprintf(buf, "%d time%s", u.cnd_utetrapcnt, plur(u.cnd_utetrapcnt));
 	dump("  You had your shoes turn into beautiful missys ", buf);

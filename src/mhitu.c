@@ -7027,6 +7027,7 @@ struct monst *mon;
 		if (uamul && uamul->oartifact == ART_GIT_DE_PRO) armpro++;
 		if (uarmu && uarmu->oartifact == ART_COVER_THE_SEXY_BUTT) armpro += 2;
 		if (uarmc && uarmc->oartifact == ART_TRINSER_SMILEY) armpro++;
+		if (uarmf && uarmf->oartifact == ART_HANNAH_S_INNOCENCE) armpro += 2;
 		if (uarm && uarm->otyp == NOPE_DRAGON_SCALES) armpro += 2;
 		if (uarmc && uarmc->oartifact == ART_EMIL_S_MANTLE_OF_RESOLVE) armpro += 2;
 		if (uarmh && uarmh->oartifact == ART_GISELA_S_TRICK) armpro += 3;
@@ -7071,6 +7072,7 @@ struct monst *mon;
 
 		if (ACURR(A_WIS) == 1) armpro--;
 		if (uarmf && uarmf->oartifact == ART_GUELDRE_S_COIN_CLING) armpro--;
+		if (ublindf && ublindf->oartifact == ART_SYLBE_S_LACK) armpro--;
 
 		if (uimplant && uimplant->oartifact == ART_ARABELLA_S_RECTIFIER) armpro *= 2;
 
@@ -8324,7 +8326,7 @@ dopois:
 			if (mtmp->mhp < 1) break;
 		}
 
-		if (defends(AD_DRIN, uwep) || (ublindf && ublindf->oartifact == ART_HEADHORN) || (uarmh && itemhasappearance(uarmh, APP_HARDCORE_CLOTH)) || (StrongPsi_resist && rn2(3)) || !has_head(youmonst.data) || (uarmh && uarmh->otyp == ANTIMINDFLAY_HELMET) || (uarmh && uarmh->oartifact == ART_NO_MIND_DECAY) || Role_if(PM_COURIER)  || Race_if(PM_KUTAR) || (uwep && uwep->oartifact == ART_MAGEMASHER) || (uwep && uwep->oartifact == ART_GOSSIP_HARISEN) || (rn2(8) && uarmf && itemhasappearance(uarmf, APP_MARY_JANES) ) ) {
+		if (defends(AD_DRIN, uwep) || (ublindf && ublindf->oartifact == ART_HEADHORN) || (uarmh && itemhasappearance(uarmh, APP_HARDCORE_CLOTH)) || (StrongPsi_resist && rn2(3)) || !has_head(youmonst.data) || (uarmh && uarmh->otyp == ANTIMINDFLAY_HELMET) || (uarmh && uarmh->oartifact == ART_NO_MIND_DECAY) || Role_if(PM_COURIER)  || Race_if(PM_KUTAR) || (uwep && uwep->oartifact == ART_MAGEMASHER) || (ublindf && ublindf->oartifact == ART_SYLBE_S_LACK) || (uwep && uwep->oartifact == ART_GOSSIP_HARISEN) || (rn2(8) && uarmf && itemhasappearance(uarmf, APP_MARY_JANES) ) ) {
 		    You("don't seem harmed.");
 		    /* Not clear what to do for green slimes */
 		    break;
@@ -8797,6 +8799,9 @@ dopois:
 		 * [FIXME: why can't a flying attacker overcome this?]
 		 */
 		  if (uarmf && itemhasappearance(uarmf, APP_THICK_BOOTS) ) {
+		    pline("%s tries futilely to sting through your thick boots!", Monnam(mtmp));
+		    dmg = 0; 
+		  } else if (uarmf && uarmf->oartifact == ART_HANNAH_S_INNOCENCE) {
 		    pline("%s tries futilely to sting through your thick boots!", Monnam(mtmp));
 		    dmg = 0; 
 		  } else if (uarmf && itemhasappearance(uarmf, APP_HIGH_IRON_BOOTS) ) {

@@ -6452,6 +6452,10 @@ melatechoice:
 
 	}
 
+	if (book2->oartifact == ART_W_W_W_W_W_W_W_W_W_W_W_) {
+		u.tempwwwww += 25000;
+	}
+
 	if (book2->oartifact == ART_HARENWAH) {
 		u.tempharenwah += 2000;
 		You("feel that the animals will be peaceful.");

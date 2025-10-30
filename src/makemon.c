@@ -34166,6 +34166,7 @@ register struct permonst *ptr;
 
 	if (uarms && uarms->oartifact == ART_TEH_GAMEPLAY && !always_hostile(ptr) && rn2(2)) return TRUE;
 	if (uarmc && uarmc->oartifact == ART_FLORICE_S_PEACE_POWER && !always_hostile(ptr) && rn2(4)) return TRUE;
+	if (uarmf && uarmf->oartifact == ART_SUCCESS_LESS_SAVING && !always_hostile(ptr) && rn2(5)) return TRUE;
 
 	if (uarm && uarm->oartifact == ART_KURAIN_VIEW && ptr->mlet == S_GHOST && rn2(4)) return TRUE;
 

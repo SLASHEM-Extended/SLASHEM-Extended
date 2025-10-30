@@ -945,6 +945,26 @@ register struct monst *mtmp;
 		if (footwear && ishighheeled(footwear) && !rn2(50) && (distu(mtmp->mx,mtmp->my) <= BOLT_LIM*BOLT_LIM) ) {
 			You_hear(mtmp->female ? "clacking noises." : "distorted clacking noises.");
 			u.cnd_klaratrapcnt++;
+
+			if (uarmu && uarmu->oartifact == ART_DAMAGO_KLARA) {
+				if (Upolyd) {
+					if (u.mh > (u.mhmax / 2)) {
+						pline("Ouch, your %s!", body_part(EARS));
+						losehp(5, "loud high heel clacking noises", KILLED_BY);
+					} else {
+						Your("soul cannot handle that sound!");
+						drain_alla(5);
+					}
+				} else {
+					if (u.uhp > (u.uhpmax / 2)) {
+						pline("Ouch, your %s!", body_part(EARS));
+						losehp(5, "loud high heel clacking noises", KILLED_BY);
+					} else {
+						Your("soul cannot handle that sound!");
+						drain_alla(5);
+					}
+				}
+			}
 		}
 	}
 
@@ -3026,7 +3046,7 @@ convertdone:
 		if ( (mtmp->mpeaceful || (Psi_resist && rn2(StrongPsi_resist ? 100 : 20) ) ) &&
 		    (!Conflict || resist(mtmp, RING_CLASS, 0, 0))) {
 			pline("It feels quite soothing.");
-		} else if ((uarmh && uarmh->oartifact == ART_NOTKNOW_EY) || (uarmh && itemhasappearance(uarmh, APP_TT_HELMET)) || (uarmh && uarmh->oartifact == ART_PROTECTOR_NO____)) {
+		} else if ((uarmh && uarmh->oartifact == ART_NOTKNOW_EY) || (ublindf && ublindf->oartifact == ART_SYLBE_S_LACK) || (uarmh && itemhasappearance(uarmh, APP_TT_HELMET)) || (uarmh && uarmh->oartifact == ART_PROTECTOR_NO____)) {
 			pline("But it doesn't affect you.");
 		} else {
 			if (!mtmp->mpeaceful) maybehackimplant();
