@@ -1654,6 +1654,10 @@ struct you {
 	int hanguppenalty;
 	int hangupparalysis;	/* saved paralysis counter so you *really* cannot cheat */
 
+	int judithgame;		/* in case you hang up during judith minigame */
+	int antjegame;		/* in case you hang up during antje minigame */
+	int pumpsgame;		/* in case you hang up during pumps minigame */
+
 	int youaredead;		/* if you hang up at a prompt before an instadeath, i.e. sickness */
 	int youarereallydead;	/* if you hang up at something like mind flayer instadeath, where life saving doesn't work */
 	int datadeletedefer;	/* if you hang up at a pending data delete, you ch3at0r */

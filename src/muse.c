@@ -10225,10 +10225,10 @@ newboss:
 		mzapmsg(mtmp, otmp, FALSE);
 		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 
-		statdebuff();
+		statdebuff(TRUE);
 
 		if (otmp && otmp->oartifact == ART_LAUGHTER_OF_INSANITY) {
-			statdebuff(); statdebuff(); statdebuff(); statdebuff(); statdebuff();
+			statdebuff(TRUE); statdebuff(TRUE); statdebuff(TRUE); statdebuff(TRUE); statdebuff(TRUE);
 		}
 
 		if (oseen) makeknown(WAN_STAT_REDUCTION);

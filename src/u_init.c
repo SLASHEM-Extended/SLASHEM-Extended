@@ -9836,6 +9836,10 @@ u_init()
 	u.hangupparalysis = 0;
 	u.hanguppenalty = 0;
 
+	u.pumpsgame = 0;	/* if this is non-zero, you get penalized for hanging up during a minigame, you ch3at0r --Amy */
+	u.antjegame = 0;
+	u.judithgame = 0;
+
 	u.youaredead = 0;	/* if this is non-zero, returning to the game kills you because you should have died --Amy */
 	u.youarereallydead = 0;	/* if this is non-zero, returning to the game REALLY kills you, even if you have lifesaving */
 	u.datadeletedefer = 0; /* if this is non-zero, returning to the game gives you the data delete effect two times as punishment for trying to circumvent it */

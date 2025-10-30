@@ -8019,7 +8019,7 @@ hitmu(mtmp, mattk)
 	    case AD_DEBU:
 		hitmsg(mtmp, mattk);
 		if (statsavingthrow) break;
-		statdebuff();
+		statdebuff(TRUE);
 
 		break;
 
@@ -8188,7 +8188,7 @@ hitmu(mtmp, mattk)
 		if (statsavingthrow) break;
 
 		if (uncancelled && !rn2(3)) {
-			statdrain();
+			statdrain(TRUE);
 		}
 
 		break;
@@ -9953,7 +9953,7 @@ dopois:
 		if (statsavingthrow) break;
 		if (mtmp->mcan) break;
 		if (uimplant && uimplant->oartifact == ART_LIVE_AT_READING && rn2(10)) break;
-		pline("Your ears are blasted by hellish noise!");
+		pline("Your %s are blasted by hellish noise!", body_part(EARS));
 		if (YouAreDeaf) dmg /= 2;
 		make_stunned(HStun + dmg, TRUE);
 		if (isevilvariant || !rn2(issoviet ? 2 : 5)) (void)destroy_item(POTION_CLASS, AD_COLD);
@@ -10624,7 +10624,7 @@ dopois:
 		break;
 
 	    case AD_WRAT:
-		pline("%s reaches out, and the life is drawn from your bones.", Monnam(mtmp));
+		pline("%s reaches out, and the life is drawn from your %s.", Monnam(mtmp), body_part(BONES));
 
 		if(u.uen < 1) {
 		    You_feel("less energised!");
@@ -11583,7 +11583,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 		case AD_DEBU:
 
 			You("seem to lose stats...");
-			statdebuff();
+			statdebuff(TRUE);
 
 		break;
 
@@ -11720,7 +11720,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 
 		pline("The very essence of you seems to be sapped!");
 		if (!rn2(3)) {
-			statdrain();
+			statdrain(TRUE);
 		}
 
 		break;
@@ -14832,7 +14832,7 @@ common:
 		break;
 
 	    case AD_DEBU:
-		statdebuff();
+		statdebuff(TRUE);
 
 		break;
 
@@ -14964,7 +14964,7 @@ common:
 
 	    case AD_STAT:
 
-		statdrain();
+		statdrain(TRUE);
 
 		break;
 
@@ -15336,7 +15336,7 @@ common:
 	    case AD_SOUN:
 
 		if (uimplant && uimplant->oartifact == ART_LIVE_AT_READING && rn2(10)) break;
-		pline("Your ears are blasted by hellish noise!");
+		pline("Your %s are blasted by hellish noise!", body_part(EARS));
 		if (YouAreDeaf) tmp /= 2;
 		make_stunned(HStun + tmp, TRUE);
 		if (isevilvariant || issoviet || !rn2(2)) (void)destroy_item(POTION_CLASS, AD_COLD);
@@ -15584,7 +15584,7 @@ common:
 	      mdamageu(mtmp, tmp);
 		break;
 	    case AD_WRAT:
-		pline("The life is drawn from your bones.");
+		pline("The life is drawn from your %s.", body_part(BONES));
 
 		if(u.uen < 1) {
 		    You_feel("less energised!");
@@ -18877,7 +18877,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(12))) {
                 pline("%s fires a sapping beam!", Monnam(mtmp));
-			statdebuff();
+			statdebuff(TRUE);
 		}
 
 		break;
@@ -19050,7 +19050,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
             	pline("%s tries to drain your very soul!", Monnam(mtmp));
 
 			if (!rn2(3)) {
-				statdrain();
+				statdrain(TRUE);
 			}
 		}
 

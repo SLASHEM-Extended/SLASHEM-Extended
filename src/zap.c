@@ -4732,10 +4732,10 @@ secureidchoice:
 
 		case WAN_STAT_REDUCTION:
 
-			statdebuff();
+			statdebuff(TRUE);
 
 			if (obj && obj->oartifact == ART_LAUGHTER_OF_INSANITY) {
-				statdebuff(); statdebuff(); statdebuff(); statdebuff(); statdebuff();
+				statdebuff(TRUE); statdebuff(TRUE); statdebuff(TRUE); statdebuff(TRUE); statdebuff(TRUE);
 			}
 
 			known = TRUE;

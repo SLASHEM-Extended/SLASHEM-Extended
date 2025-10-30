@@ -36,6 +36,7 @@ E int speedbonus(int, int);
 E boolean cyanspellok(int, int);
 E boolean nicolesquareok(int, int);
 E void antjeminigame(void);
+E int judithminigame(void);
 
 /* ### apply.c ### */
 
@@ -2564,7 +2565,7 @@ E void drain_alla(int);
 E boolean conundrumbreak(void);
 E boolean steelbreak(void);
 E int boost_power_value(void);
-E void statdrain(void);
+E void statdrain(BOOLEAN_P);
 E void nastytrapcurse(void);
 E void shank_player(void);
 E void metalmafiaattack(void);
@@ -2625,7 +2626,7 @@ E boolean chitinprotection(void);
 E int irisartiboost(void);
 E int irissetbonus(void);
 E int angelshadowstuff(void);
-E void statdebuff(void);
+E void statdebuff(BOOLEAN_P);
 E void nivellate(void);
 E void upnivel(BOOLEAN_P);
 E void nexus_swap(void);
@@ -2644,11 +2645,11 @@ E boolean ishighheeledb(int);
 
 E boolean playerwearshighheels(void);
 E boolean playerwearssexyflats(void);
-E boolean maybecolumnarheels(void);
-E boolean maybestilettoheels(void);
-E boolean maybeconeheels(void);
-E boolean maybeblockheels(void);
-E boolean maybewedgeheels(void);
+E int maybecolumnarheels(void);
+E int maybestilettoheels(void);
+E int maybeconeheels(void);
+E int maybeblockheels(void);
+E int maybewedgeheels(void);
 E boolean playerextrinsicaggravatemon(void);
 E boolean automore_active(void);
 

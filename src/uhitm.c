@@ -6532,7 +6532,7 @@ melatechoice:
 
 		else if ((Role_if(PM_SPACEWARS_FIGHTER) || (monstersoundtype(mon) == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || FemtrapActiveAriane || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || sanitymessage) && (!rn2(5) || (monstersoundtype(mon) == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) ) ) {
 
-			switch (rnd(656)) {
+			switch (rnd(662)) {
 	
 			case 1: pline("%s staggers from your furious assault.", Monnam(mon)); break;
 			case 2: pline("Your cut barely scratches %s's scales.", mon_nam(mon)); break;
@@ -6763,7 +6763,7 @@ melatechoice:
 			case 227: pline("%s slips and falls.", Monnam(mon)); break;
 			case 228: pline("You pull at %s's %s.", mon_nam(mon), mbodypart(mon,HAIR)); break;
 			case 229: pline("You punch %s in the %s.", mon_nam(mon), mbodypart(mon,NOSE)); break;
-			case 230: pline("You pull at %s's ear.", mon_nam(mon)); break;
+			case 230: pline("You pull at %s's %s.", mon_nam(mon), mbodypart(mon, EAR)); break;
 			case 231: pline("You scream an insult at %s.", mon_nam(mon)); break;
 			case 232: pline("You scowl at %s.", mon_nam(mon)); break;
 			case 233: pline("%s says: 'Now you can however which expierience!'", Monnam(mon)); break;
@@ -6835,7 +6835,7 @@ melatechoice:
 			case 299: pline("You grab %s's %s and try to yank it off its %s.", mon_nam(mon), mbodypart(mon, LEG), makeplural(mbodypart(mon, FOOT))); break;
 			case 300: pline("Your stout fetid breath causes %s to gasp and choke.", mon_nam(mon)); break;
 			case 301: pline("You chilled %s, leaving a small frostburn scar.", mon_nam(mon)); break;
-			case 302: pline("The %s on %s's %s shrinks and cracks.", mbodypart(mon, BODY_SKIN), mon_nam(mon), mbodypart(mon, HEAD)); break;
+			case 302: pline("The %s on %s's %s shrinks and %ss.", mbodypart(mon, BODY_SKIN), mon_nam(mon), mbodypart(mon, HEAD), mbodypart(mon, CRACK)); break;
 			case 303: pline("Thankfully %s is not a %s, and therefore you hit.", mon_nam(mon), rndmonnam()); break;
 			case 304: pline("Yet again your left fist finds its way to %s's %s!", mon_nam(mon), mbodypart(mon, FACE)); break;
 			case 305: pline("%s becomes all %s from your vicious attack!", Monnam(mon), rndcolor()); break;
@@ -7098,7 +7098,7 @@ melatechoice:
 			case 562: pline("%s triggers a nasty trap and should be easier to defeat now, because %s has to deal with an annoying interface screw!", Monnam(mon), mhe(mon)); break;
 			case 563: pline("Your %snails pinch %s.", body_part(FINGER), mon_nam(mon)); break;
 			case 564: pline("%s loses one single drop of blood as a result of your stinging attack.", Monnam(mon)); break;
-			case 565: pline("You use your high heels as a blunt weapon to batter %s's bones.", mon_nam(mon)); break;
+			case 565: pline("You use your high heels as a blunt weapon to batter %s's %s.", mon_nam(mon), mbodypart(mon, BONES)); break;
 			case 566: pline("You use your high heels as a sharp weapon to remove the %s from %s's %s.", mbodypart(mon, BODY_SKIN), mon_nam(mon), mbodypart(mon, LEG)); break;
 			case 567: pline("Your weapon hits %s, but since it's so dull, it only deals a single point of damage.", mon_nam(mon)); break;
 			case 568: pline("Your d20 only rolled a 2, so %s loses very little health.", mon_nam(mon)); break;
@@ -7144,7 +7144,7 @@ melatechoice:
 			case 608: pline("%s complains '%s %s has attacked me!'", Monnam(mon), urace.noun, playeraliasname); break;
 			case 609: pline("%s's chin is hit by your fist.", Monnam(mon)); break;
 			case 610: pline("%s failed to predict your strike and gets hit!", Monnam(mon)); break;
-			case 611: pline("One of %s's bones breaks, so %s should be an easier target now!", mon_nam(mon), mhe(mon)); break;
+			case 611: pline("One of %s's %s breaks, so %s should be an easier target now!", mon_nam(mon), mbodypart(mon, BONES), mhe(mon)); break;
 			case 612: pline("%s starts leaking!", Monnam(mon)); break;
 			case 613: pline("%s looks quite a bit more damaged now.", Monnam(mon)); break;
 			case 614: pline("You feel that you've landed a reasonably effective hit."); break;
@@ -7195,6 +7195,12 @@ melatechoice:
 			case 654: pline("You slam both of your %s on the desk while disproving %s's last statement, causing %s to wince.", makeplural(body_part(HAND)), mon_nam(mon), mhim(mon)); break;
 			case 655: pline("You manage to make %s break down, but %s quickly recovers!", mon_nam(mon), mhe(mon)); break;
 			case 656: pline("Great, you've landed an effective hit on %s! Quickly, land another to finish %s off before %s recovers!", mon_nam(mon), mhim(mon), mhe(mon)); break;
+			case 657: pline("You only dealt a %s wound to %s.", mbodypart(mon, BODY_FLESH), mon_nam(mon)); break;
+			case 658: pline("%s's %s skips a %s after your hit!", Monnam(mon), mbodypart(mon, HEART), mbodypart(mon, BEAT)); break;
+			case 659: pline("%s's %s are crunched a bit.", Monnam(mon), mbodypart(mon, BONES)); break;
+			case 660: pline("You bite %s's %s, and %s starts dripping!", mon_nam(mon), mbodypart(mon, EAR), mbodypart(mon, BLOOD)); break;
+			case 661: pline("You slash off a piece of %s's %s!", mon_nam(mon), mbodypart(mon, EARS)); break;
+			case 662: pline("%s starts %sing!", Monnam(mon), mbodypart(mon, CREAK)); break;
 
 			default: pline("You hit %s!", mon_nam(mon)); break;
 	
@@ -7313,7 +7319,7 @@ melatechoice:
 
 			else if ((Role_if(PM_SPACEWARS_FIGHTER) || (monstersoundtype(mon) == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || FemtrapActiveAriane || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || (u.usanity > rn2(1000)) ) && (!rn2(5) || (monstersoundtype(mon) == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) ) && !thrown) {
 
-				switch (rnd(782)) {
+				switch (rnd(790)) {
 
 				case 1: pline("You crush %s's skull into jelly.", mon_nam(mon)); break;
 				case 2: pline("You decapitate %s with a backhand stroke.", mon_nam(mon)); break;
@@ -7396,7 +7402,7 @@ melatechoice:
 				case 79: pline("You show it to %s. That is defeated.", mon_nam(mon)); break;
 				case 80: pline("You fully finished %s and that is dead.", mon_nam(mon)); break;
 				case 81: pline("%s surrenders! What a coward!", Monnam(mon)); break;
-				case 82: pline("You cracked open %s's skull!", mon_nam(mon)); break;
+				case 82: pline("You %sed open %s's skull!", mbodypart(mon, CRACK), mon_nam(mon)); break;
 				case 83: pline("You mowed down %s, thus banishing it from this world.", mon_nam(mon)); break;
 				case 84: pline("GOAL! Bad for the keeper!"); break;
 				case 85: pline("It's a goal!"); break;
@@ -7504,11 +7510,11 @@ melatechoice:
 				case 187: pline("You throw %s fully against the wall!", mon_nam(mon)); break;
 				case 188: pline("You hurl %s away!", mon_nam(mon)); break;
 				case 189: pline("You hurt %s a lot, so it will surely remember it for a long time!", mon_nam(mon)); break;
-				case 190: pline("You strike out one of %s's ears.", mon_nam(mon)); break;
+				case 190: pline("You strike out one of %s's %s.", mon_nam(mon), mbodypart(mon, EARS)); break;
 				case 191: pline("Head shot! %s lost!", Monnam(mon)); break;
 				case 192: pline("You defeated %s with a ground attack.", mon_nam(mon)); break;
 				case 193: pline("You stabbed %s.", mon_nam(mon)); break;
-				case 194: pline("You broke all of %s's bones!", mon_nam(mon)); break;
+				case 194: pline("You broke all of %s's %s!", mon_nam(mon), mbodypart(mon, BONES)); break;
 				case 195: pline("You ripped %s to pieces.", mon_nam(mon)); break;
 				case 196: pline("Your sword makes %s a %s shorter.", mon_nam(mon), mbodypart(mon,HEAD) ); break;
 				case 197: pline("You remove %s from this world.", mon_nam(mon)); break;
@@ -7540,7 +7546,7 @@ melatechoice:
 				case 223: pline("%s disintegrates into a fine mist!", Monnam(mon)); break;
 				case 224: pline("%s splatters all over the floor.", Monnam(mon)); break;
 				case 225: pline("%s explodes into tiny chunks.", Monnam(mon)); break;
-				case 226: pline("%s's bones are crushed at the force of your blow!", Monnam(mon)); break;
+				case 226: pline("%s's %s are crushed at the force of your blow!", Monnam(mon), mbodypart(mon, BONES)); break;
 				case 227: pline("You squash %s into a pancake!", mon_nam(mon)); break;
 				case 228: pline("Your weapons neatly slice %s into many little pieces.", mon_nam(mon)); break;
 				case 229: pline("You cleave %s in half.", mon_nam(mon)); break;
@@ -7606,7 +7612,7 @@ melatechoice:
 				case 289: pline("%s's %s snaps backward as the kneecap is crushed.", Monnam(mon), mbodypart(mon, LEG)); break;
 				case 290: pline("%s deftly parries your blow with its %s, and blood gushes from its smashed %s.", Monnam(mon), mbodypart(mon, FACE), mbodypart(mon, NOSE)); break;
 				case 291: pline("With a tremendous swipe, you crush %s's jaw, who spits out bone and blood as its jawbone is broken and teeth are knocked out.", mon_nam(mon)); break;
-				case 292: pline("There is a sickening crack as your mallet strikes %s's %s and smashes the %s to pulp.", mon_nam(mon), mbodypart(mon, HAND), makeplural(mbodypart(mon, FINGER))); break;
+				case 292: pline("There is a sickening %s as your mallet strikes %s's %s and smashes the %s to pulp.", mbodypart(mon, CRACK), mon_nam(mon), mbodypart(mon, HAND), makeplural(mbodypart(mon, FINGER))); break;
 				case 293: pline("Your seemingly weak blow happened to break %s's collarbone.", mon_nam(mon)); break;
 				case 294: pline("With a crushing strike, you hit %s's abdomen fracturing ribs and damaging organs. %s tastes bitter copper as %s vomits %s and dies slowly.", mon_nam(mon), mhe(mon), mhe(mon), mbodypart(mon, BLOOD)); break;
 				case 295: pline("Your hammer detaches %s's %s from its socket.", mon_nam(mon), mbodypart(mon, EYE)); break;
@@ -7621,7 +7627,7 @@ melatechoice:
 				case 304: {
 					strcpy(buf, mon_nam(mon));
 
-					pline("%s stumbles as its %s and shoulder are crushed to mid-torso while bones and wreckage are driven into it. Since all of %s's internal organs are destroyed, it falls over dead.", Monnam(mon), mbodypart(mon, ARM), buf); break;
+					pline("%s stumbles as its %s and shoulder are crushed to mid-torso while %s and wreckage are driven into it. Since all of %s's internal organs are destroyed, it falls over dead.", Monnam(mon), mbodypart(mon, ARM), mbodypart(mon, BONES), buf); break;
 				}
 				case 305: pline("You crush %s's lower torso and hip, who drops to its knees with %s gushing out of its mouth.", mon_nam(mon), mbodypart(mon, BLOOD)); break;
 				case 306: pline("Your hit didn't seem like much, but the bone driven into %s's kidney begs to differ. After a few seconds, %s dies of shock.", mon_nam(mon), mon_nam(mon)); break;
@@ -7630,11 +7636,11 @@ melatechoice:
 				case 309: pline("Your hit to %s's %s breaks it in half. It falls forward shattering its wrist and bashing its %s against a rock, caving its skull in. %s pools around %s's corpse.", mon_nam(mon), mbodypart(mon, LEG), mbodypart(mon, HEAD), mbodypart(mon, BLOOD), mon_nam(mon)); break;
 				case 310: pline("Your sledgehammer strikes %s's skull, which explodes like a pumpkin. You're covered in brain, %s and bone.", mon_nam(mon), mbodypart(mon, BLOOD)); break;
 				case 311: pline("%s's %s is knocked clean off.", Monnam(mon), mbodypart(mon, HEAD)); break;
-				case 312: pline("With a titanic swing you break close to 50 of %s's bones, whose body is pulverized as a result.", mon_nam(mon)); break;
+				case 312: pline("With a titanic swing you break close to 50 of %s's %s, whose body is pulverized as a result.", mon_nam(mon), mbodypart(mon, BONES)); break;
 				case 313: pline("You viciously skewer %s's thigh.", mon_nam(mon)); break;
 				case 314: pline("Your powerful thrust rips past %s's garment, tearing into the abdominal wall.", mon_nam(mon)); break;
-				case 315: pline("With a mighty thrust you strike %s's %s, piercing the %s and fracturing the bones with a snap.", mon_nam(mon), mbodypart(mon, ARM), mbodypart(mon, BODY_SKIN)); break;
-				case 316: pline("Your terrible strike hits %s's %s, digging deep into the %s and fracturing bones.", mon_nam(mon), mbodypart(mon, LEG), mbodypart(mon, BODY_FLESH)); break;
+				case 315: pline("With a mighty thrust you strike %s's %s, piercing the %s and fracturing the %s with a snap.", mon_nam(mon), mbodypart(mon, ARM), mbodypart(mon, BODY_SKIN), mbodypart(mon, BONES)); break;
+				case 316: pline("Your terrible strike hits %s's %s, digging deep into the %s and fracturing %s.", mon_nam(mon), mbodypart(mon, LEG), mbodypart(mon, BODY_FLESH), mbodypart(mon, BONES)); break;
 				case 317: pline("You puncture %s's waist, dislocating its hip.", mon_nam(mon)); break;
 				case 318: pline("You cut off %s's %s.", mon_nam(mon), mbodypart(mon, NOSE)); break;
 				case 319: pline("%s smoothly blocks your thrust with its cheek, which is shanked right through the jaw, knocking it loose. Teeth shatter and %s sprays everywhere.", mon_nam(mon), mbodypart(mon, BLOOD)); break;
@@ -7678,7 +7684,7 @@ melatechoice:
 				case 357: pline("%s catches fire and melts in such a way that it takes a long time to die. It screams and twitches for almost ten minutes before its body finally succumbs to the pain.", Monnam(mon)); break;
 				case 358: pline("%s erupts in flame, staggering around for a few feet, before falling over dead.", Monnam(mon)); break;
 				case 359: pline("%s is melted to a pile of ash and sludge.", Monnam(mon)); break;
-				case 360: pline("Everything except %s's bones burn to a crisp. Its skeleton twitches before collapsing.", mon_nam(mon)); break;
+				case 360: pline("Everything except %s's %s burn to a crisp. Its skeleton twitches before collapsing.", mon_nam(mon), mbodypart(mon, BONES)); break;
 				case 361: pline("There is a blinding flash, and nothing remains of %s, except perhaps a smoking pair of boots.", mon_nam(mon)); break;
 				case 362: pline("Your snap connects at %s's groin, who doubles over in pain and terror.", mon_nam(mon)); break;
 				case 363: pline("You viciously gouge %s, ripping chunks of %s from its %s.", mon_nam(mon), mbodypart(mon, BODY_SKIN), mbodypart(mon, ARM)); break;
@@ -7694,29 +7700,29 @@ melatechoice:
 				case 373: pline("%s's gut burns and twists as you crush its internal organs.", Monnam(mon)); break;
 				case 374: pline("You maul %s's back, rupturing the %s in the process.", mon_nam(mon), mbodypart(mon, SPINE)); break;
 				case 375: pline("With your claws, you nick %s's %s and open up the carotid artery. %s spectacularly fountains everywhere.", mon_nam(mon), mbodypart(mon, NECK), mbodypart(mon, BLOOD)); break;
-				case 376: pline("There is a crack as %s's broken ribs puncture its %s.", mon_nam(mon), mbodypart(mon, LUNG)); break;
+				case 376: pline("There is a %s as %s's broken ribs puncture its %s.", mbodypart(mon, CRACK), mon_nam(mon), mbodypart(mon, LUNG)); break;
 				case 377: pline("You bite %s in the %s, and as you pull back, a red curtain bursts forth as %s collapses on the ground with its femoral artery shredded.", mon_nam(mon), mbodypart(mon, LEG), mon_nam(mon)); break;
 				case 378: pline("%s's %s is removed from a tear that reaches from %s to abdomen. %s's %s falls down to the side and lands in its guts as it staggers and falls down dead.", Monnam(mon), mbodypart(mon, ARM), mbodypart(mon, NECK), Monnam(mon), mbodypart(mon, HEAD)); break;
-				case 379: pline("Your crushing bite cracks %s's skull.", mon_nam(mon)); break;
+				case 379: pline("Your crushing bite %ss %s's skull.", mbodypart(mon, CRACK), mon_nam(mon)); break;
 				case 380: pline("%s suddenly finds it hard to breathe with its throat lying on the ground. It collapses next to it, dead.", Monnam(mon)); break;
-				case 381: pline("You hold %s's still beating %s in your feral claw... wait, never mind, it's stopped now.", mon_nam(mon), mbodypart(mon, HEART)); break;
+				case 381: pline("You hold %s's still %sing %s in your feral claw... wait, never mind, it's stopped now.", mon_nam(mon), mbodypart(mon, BEAT), mbodypart(mon, HEART)); break;
 				case 382: {
 					strcpy(buf, mon_nam(mon));
 
 					pline("%s's %s snaps as you snatch it and shake it back and forth. Then you drop %s on the ground and begin to feast.", Monnam(mon), mbodypart(mon, NECK), buf); break;
 				}
-				case 383: pline("You manage to bite both of %s's %s apart. Then your teeth reach its %s cracking it, allowing you to eat %s whole.", mon_nam(mon), makeplural(mbodypart(mon, LEG)), mbodypart(mon, SPINE), mon_nam(mon)); break;
+				case 383: pline("You manage to bite both of %s's %s apart. Then your teeth reach its %s %sing it, allowing you to eat %s whole.", mon_nam(mon), makeplural(mbodypart(mon, LEG)), mbodypart(mon, SPINE), mbodypart(mon, CRACK), mon_nam(mon)); break;
 				case 384: pline("You crush %s's %s including every bone from the calf to the ribs. Bone shards play billiards with its organs and %s vessels and it is dead before it slushes to the ground.", mon_nam(mon), mbodypart(mon, LEG), mbodypart(mon, BLOOD)); break;
 				case 385: pline("There's a release of tension in %s's midsection, who is unable to catch its guts as they spill out onto the ground.", mon_nam(mon)); break;
-				case 386: pline("You bite off %s's %s, who falls over cracking its skull open like an egg on the nearby surface and dies instantly.", mon_nam(mon), mbodypart(mon, LEG)); break;
+				case 386: pline("You bite off %s's %s, who falls over %sing its skull open like an egg on the nearby surface and dies instantly.", mon_nam(mon), mbodypart(mon, LEG), mbodypart(mon, CRACK)); break;
 				case 387: pline("%s gets a real good look at your tongue and teeth before you bite off its %s.", Monnam(mon), mbodypart(mon, HEAD)); break;
 				case 388: pline("%s is hit and lands 20 feet from its %s.", Monnam(mon), makeplural(mbodypart(mon, LEG))); break;
 				case 389: pline("Suddenly, chunks of %s's destroyed body fly everywhere.", mon_nam(mon)); break;
 				case 390: pline("%s's body is engulfed in a maelstrom of cold.", Monnam(mon)); break;
 				case 391: pline("You shoot a breath of frozen air, clutching %s's throat.", mon_nam(mon)); break;
 				case 392: pline("You catch %s in a devastating blast of cold, forming ice around it, and it slips and falls.", mon_nam(mon)); break;
-				case 393: pline("Large swaths of exposed %s crack and turn bright red as %s is severely frost burnt by you!", mbodypart(mon, BODY_SKIN), mon_nam(mon)); break;
-				case 394: pline("The abyssal cold freezes %s's exposed %s, which cracks and blackens.", mon_nam(mon), mbodypart(mon, BODY_SKIN)); break;
+				case 393: pline("Large swaths of exposed %s %s and turn bright red as %s is severely frost burnt by you!", mbodypart(mon, BODY_SKIN), mbodypart(mon, CRACK), mon_nam(mon)); break;
+				case 394: pline("The abyssal cold freezes %s's exposed %s, which %ss and blackens.", mon_nam(mon), mbodypart(mon, BODY_SKIN), mbodypart(mon, CRACK)); break;
 				case 395: pline("%s is battered about by freezing cold, hypothermia setting in. It loses its mind as its body begins to shut down.", Monnam(mon)); break;
 				case 396: pline("You drain %s's %s of vital energy and reduce them to blackened frostburn stumps.", mon_nam(mon), makeplural(mbodypart(mon, ARM))); break;
 				case 397: pline("Swirling cold engulfs %s's %s, freezing its lower body.", mon_nam(mon), makeplural(mbodypart(mon, LEG))); break;
@@ -8101,7 +8107,7 @@ melatechoice:
 				case 759: pline("We're not going into too much detail today, so all we say is that you defeated %s.", mon_nam(mon)); break;
 				case 760: pline("Another hit! And another! Ohh, boys, %s is really losing... yet again, and - ah, %s's knocked out. %s is victorious!", mon_nam(mon), mhe(mon), playeraliasname); break;
 				case 761: pline("As %s insults you again, you viciously slam your fist into %s ugly %s, shattering %s jawbone. Now %s should never be able to insult you again.", mon_nam(mon), mhis(mon), mbodypart(mon, FACE), mhis(mon), mhe(mon)); break;
-				case 762: pline("A thunderous crack echoes through the dungeon as your %s connects with %s's skull.", playerweaponname(), mon_nam(mon)); break;
+				case 762: pline("A thunderous %s echoes through the dungeon as your %s connects with %s's skull.", mbodypart(mon, CRACK), playerweaponname(), mon_nam(mon)); break;
 				case 763: pline("With a decisive strike, your %s shatters %s's skull and banishes %s from existence.", playerweaponname(), mon_nam(mon), mhim(mon)); break;
 				case 764: pline("The once fearsome %s lays vanquished, defeated by your indomitable spirit.", mon_nam(mon)); break;
 				case 765: pline("%s is sent to the other world.", Monnam(mon)); break;
@@ -8122,6 +8128,14 @@ melatechoice:
 				case 780: pline("You broke %s's last psyche-lock, causing %s to experience a mental breakdown!", mon_nam(mon), mhim(mon)); break;
 				case 781: pline("You assume your triumph pose while the awesome music (Cornered - Variation) starts to play. Moments later, the judge declares your client innocent while %s is sent to jail.", mon_nam(mon)); break;
 				case 782: pline("%s starts to bleed profusely after being hit by your thrown spear, and tries to run away... only to bleed to death shortly after.", Monnam(mon)); break;
+				case 783: pline("%s's %s dissolves in acid.", Monnam(mon), mbodypart(mon, BODY_SKIN)); break;
+				case 784: pline("%s is stripped of %s %s, and only %s remain.", Monnam(mon), mhis(mon), mbodypart(mon, BODY_FLESH), mbodypart(mon, BONES)); break;
+				case 785: pline("%s's %s stops %sing.", Monnam(mon), mbodypart(mon, HEART), mbodypart(mon, BEAT)); break;
+				case 786: pline("%s's %s %ss for one last time, and then %s dies of cardiac arrest.", Monnam(mon), mbodypart(mon, HEART), mbodypart(mon, BEAT), mhe(mon)); break;
+				case 787: pline("%s's %s %s and disintegrate into a thousand pieces.", Monnam(mon), mbodypart(mon, BONES), mbodypart(mon, CRACK)); break;
+				case 788: pline("You bite %s's %s clean off, causing %s to develop a severe case of %s poisoning resulting in a swift death.", mon_nam(mon), mbodypart(mon, EAR), mhim(mon), mbodypart(mon, BLOOD)); break;
+				case 789: pline("%s's %s %s and stops %sing.", Monnam(mon), mbodypart(mon, HEART), mbodypart(mon, CRACK), mbodypart(mon, BEAT)); break;
+				case 790: pline("There is a loud, wicked-sounding %s... and then %s's body just stops functioning.", mbodypart(mon, CRACK), mon_nam(mon)); break;
 
 				default: pline("You hit %s very hard!", mon_nam(mon)); break;
 	
@@ -10546,7 +10560,7 @@ register int roll;
 
 	} else if ((Role_if(PM_SPACEWARS_FIGHTER) || (monstersoundtype(mdef) == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || FemtrapActiveAriane || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || (u.usanity > rn2(1000)) ) && (!rn2(5) || (monstersoundtype(mdef) == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) ) && canspotmon(mdef) && flags.verbose) {
 
-		switch (rnd(854)) {
+		switch (rnd(861)) {
 
 		case 1: pline("%s cringes from your strike behind its %sshield.", Monnam(mdef), which_armor(mdef, W_ARMS) ? "" : "nonexistant "); break;
 		case 2: pline("You smash into %s's %sshield, striking sparks.", mon_nam(mdef), which_armor(mdef, W_ARMS) ? "" : "nonexistant "); break;
@@ -11187,7 +11201,7 @@ register int roll;
 		case 637: pline("You've used your quest artifact for only %d turns! That's way too little, you should probably re-equip it and then maybe %s wouldn't be completely impervious to your attacks!", u.artifactaffinity, mon_nam(mdef)); break;
 		case 638: pline("%s calls for a timeout, stating that %s has to go to the toilet, and you're actually stupid enough to cease attacking.", Monnam(mdef), mhe(mdef)); break;
 		case 639: pline("%s decides to dam your cathedral, and there is nothing you can do about it.", Monnam(mdef)); break;
-		case 640: pline("%s starts singing an Abba song. Terrified, you put your %s into your ears.", Monnam(mdef), makeplural(body_part(FINGER))); break;
+		case 640: pline("%s starts singing an Abba song. Terrified, you put your %s into your %s.", Monnam(mdef), makeplural(body_part(FINGER)), body_part(EARS)); break;
 		case 641: pline("Your wife will not be pleased to hear that you're losing to %s!", mon_nam(mdef)); break;
 		case 642: pline("Hmm, you called the police 15 minutes ago in an attempt to get %s arrested, you're beginning to wonder whether they will ever come...", mon_nam(mdef)); break;
 		case 643: pline("It turns out that the policemen you called to get %s arrested are useless, since they're just standing there instead of doing anything.", mon_nam(mdef)); break;
@@ -11212,7 +11226,7 @@ register int roll;
 		case 662: pline("%s laughs: 'You're playing a %s? And you expect to be able to hit me? lol bro'", Monnam(mdef), urole.name.m); break;
 		case 663: pline("%s suddenly screams like a woman, and you drop your weapon in shock.", Monnam(mdef)); break;
 		case 664: pline("%s tells you that the last line was sexist, and you're busy pondering the meaning of that.", Monnam(mdef)); break;
-		case 665: pline("Suddenly a mosquito starts buzzing right next to your ear, and you're so scared that you completely forget what you were doing."); break;
+		case 665: pline("Suddenly a mosquito starts buzzing right next to your %s, and you're so scared that you completely forget what you were doing.", body_part(EAR)); break;
 		case 666: pline("%s simply pushes you away.", Monnam(mdef)); break;
 		case 667: pline("%s blocks with %s own weapon.", Monnam(mdef), mhis(mdef)); break;
 		case 668: pline("%s is too small and therefore your clumsy attack missed!", Monnam(mdef)); break;
@@ -11410,6 +11424,13 @@ register int roll;
 		case 852: pline("Now you've plugged away futilely for long enough with that wimpy weapon of yours! Seriously, use some other strategy or you won't ever defeat %s!", mon_nam(mdef)); break;
 		case 853: pline("%s's wimpy desk slam (which is rather lame compared to yours) somehow intimidates you because you're probably not very good at what you're doing.", Monnam(mdef)); break;
 		case 854: pline("%s is waggling %s %s at you, and somehow your confidence falters from seeing that gesture.", Monnam(mdef), mhis(mdef), mbodypart(mdef, FINGER)); break;
+		case 855: pline("%s's %s is as hard as iron and you fail to damage it with your puny %s!", Monnam(mdef), mbodypart(mdef, BODY_SKIN), playerweaponname()); break;
+		case 856: pline("%s's %s still %ss as strongly as ever after that wimpy attack of yours!", Monnam(mdef), mbodypart(mdef, HEART), mbodypart(mdef, BEAT)); break;
+		case 857: pline("You try to attack %s with a sharp weapon, but can't seem to damage %s %s.", mon_nam(mdef), mhis(mdef), mbodypart(mdef, BONES)); break;
+		case 858: pline("You try to bite %s's %s, but miss.", mon_nam(mdef), mbodypart(mdef, EAR)); break;
+		case 859: pline("The arrow that you fired bounces off %s's %sring!", mon_nam(mdef), mbodypart(mdef, EAR)); break;
+		case 860: pline("Your armor %ss too much, allowing %s plenty of time to react to your attack and dodge.", body_part(CREAK), mon_nam(mdef)); break;
+		case 861: pline("You try to attack %s with a blunt weapon, but %s %s deflects the blow.", mon_nam(mdef), mhis(mdef), mbodypart(mdef, BODY_FLESH)); break;
 
 		default: pline("You missed %s!", mon_nam(mdef)); break;
 
@@ -12632,7 +12653,7 @@ boolean ranged;
 	    case AD_DEBU:
 
 		pline("You're being sapped!");
-		statdebuff();
+		statdebuff(TRUE);
 
 		break;
 
@@ -12749,7 +12770,7 @@ boolean ranged;
 	    case AD_STAT:
 
 		if (!rn2(3)) {
-			statdrain();
+			statdrain(TRUE);
 		}
 
 		break;

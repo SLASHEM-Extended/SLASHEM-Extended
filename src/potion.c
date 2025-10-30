@@ -1759,23 +1759,35 @@ playerwearssexyflats()
 
 }
 
-boolean
+/* different types of high heels: return 0 if you don't have that type of heels equipped --Amy
+ * 1 = closed toe, 2 = open toe */
+int
 maybecolumnarheels()
 {
+	boolean opentoe = FALSE;
+	boolean havetheseheels = FALSE;
+
 	if (uarmf && itemhasappearance(uarmf, APP_WINGED_SANDALS)) return FALSE;
 	if (uarmf && uarmf->oartifact == ART_I_DON_T_PARTICULARLY_LIKE_) return FALSE;
 
 	if (!uarmf) return FALSE;
 	/* uarmf is definitely defined now */
 
-	if ( (uarmf->otyp == MEN_S_HIGH_HEELS) ) return TRUE;
+	if ( (uarmf->otyp == MEN_S_HIGH_HEELS) ) havetheseheels = TRUE;
 
 	if (OBJ_DESCR(objects[uarmf->otyp])) {
-		if (itemhasappearance(uarmf, APP_BEAUTIFUL_HEELS)) return TRUE;
-		if (itemhasappearance(uarmf, APP_PARTICULARLY_TERRIBLE_BOOTS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_BEAUTIFUL_HEELS)) {
+			havetheseheels = TRUE;
+			opentoe = TRUE;
+		}
+		if (itemhasappearance(uarmf, APP_PARTICULARLY_TERRIBLE_BOOTS)) havetheseheels = TRUE;
 	}
 
-	if (uarmf->oartifact == ART_DAT_NIGGA_S_GOT_DA_BLING) return TRUE;
+	if (uarmf->oartifact == ART_DAT_NIGGA_S_GOT_DA_BLING) havetheseheels = TRUE;
+
+	if (havetheseheels) {
+		return (opentoe ? 2 : 1);
+	}
 
 	return FALSE;
 
@@ -1784,40 +1796,67 @@ maybecolumnarheels()
 boolean
 maybestilettoheels()
 {
+	boolean opentoe = FALSE;
+	boolean havetheseheels = FALSE;
+
 	if (uarmf && itemhasappearance(uarmf, APP_WINGED_SANDALS)) return FALSE;
 	if (uarmf && uarmf->oartifact == ART_I_DON_T_PARTICULARLY_LIKE_) return FALSE;
 
 	if (!uarmf) return FALSE;
 	/* uarmf is definitely defined now */
 
-	if (uamul && uamul->oartifact == ART_ZUBRIT_S_HOTNESS) return TRUE;
+	if (uamul && uamul->oartifact == ART_ZUBRIT_S_HOTNESS) havetheseheels = TRUE;
 
-	if ((uarmf->otyp == LEATHER_PEEP_TOES) || (uarmf->oartifact == ART_ABSURD_HEELED_TILESET) || (uarmf->oartifact == ART_KATIE_MELUA_S_FEMALE_WEAPO) || (uarmf->oartifact == ART_RITA_S_TENDER_STILETTOS) || (Role_if(PM_BINDER) && uarmf->oartifact == ART_BINDER_CRASH) || (uarmf->otyp == SENTIENT_HIGH_HEELED_SHOES) || (uarmf->otyp == LONG_POINTY_HEELS) || (uarmf->otyp == ATSUZOKO_BOOTS) || (uarmf->otyp == COMBAT_STILETTOS) || (uarmf->otyp == DIDIER_SACHS_SHOES) || (uarmf->otyp == HEEL_WISE_SHOES) || (uarmf->otyp == JUEN_PEEP_TOES) || (uarmf->otyp == JULIETTA_PEEP_TOES) || (uarmf->otyp == FEMMY_STILETTO_BOOTS) || (uarmf->otyp == PATRICIA_STEEL_CAPPED_SANDALS) || (uarmf->otyp == ITALIAN_HEELS) || (uarmf->otyp == STILETTO_SANDALS) || (uarmf->otyp == RITA_STILETTOS) || (uarmf->otyp == HIGH_STILETTOS) || (uarmf->oartifact == ART_PECTORAL_HEEL) || (uarmf->oartifact == ART_FANNY_S_BROOK_THAT_YOU_MIS) || (uarmf->otyp == UNFAIR_STILETTOS) || (uarmf->otyp == FEMININE_STILETTOS) || (uarmf->otyp == SKY_HIGH_HEELS) || (uarmf->otyp == RED_SPELL_HEELS) || (uarmf->otyp == FIRE_BRIGADE_HEELS) || (uarmf->otyp == KILLER_HEELS) || (uarmf->otyp == RUEA_COMBAT_BOOTS) || (uarmf->otyp == NAOMI_STILETTOS) || (uarmf->otyp == KLARA_PLATFORM_SANDALS) || (uarmf->otyp == UTE_PLATFORM_SANDALS) || (uarmf->otyp == ANITA_LADY_PUMPS) || (uarmf->otyp == VERENA_STILETTO_SANDALS) || (uarmf->otyp == NADINE_STILETTO_SANDALS)) return TRUE;
+	if ((uarmf->otyp == LEATHER_PEEP_TOES) || (uarmf->otyp == STILETTO_SANDALS) || (uarmf->otyp == JUEN_PEEP_TOES) || (uarmf->otyp == PATRICIA_STEEL_CAPPED_SANDALS) || (uarmf->otyp == JULIETTA_PEEP_TOES) || (uarmf->otyp == NADINE_STILETTO_SANDALS) || (uarmf->otyp == KLARA_PLATFORM_SANDALS) || (uarmf->otyp == UTE_PLATFORM_SANDALS) || (uarmf->otyp == VERENA_STILETTO_SANDALS) ) {
+		havetheseheels = TRUE;
+		opentoe = TRUE;
+	}
+
+	if ((uarmf->oartifact == ART_ABSURD_HEELED_TILESET) || (uarmf->oartifact == ART_KATIE_MELUA_S_FEMALE_WEAPO) || (uarmf->oartifact == ART_RITA_S_TENDER_STILETTOS) || (Role_if(PM_BINDER) && uarmf->oartifact == ART_BINDER_CRASH) || (uarmf->otyp == SENTIENT_HIGH_HEELED_SHOES) || (uarmf->otyp == LONG_POINTY_HEELS) || (uarmf->otyp == ATSUZOKO_BOOTS) || (uarmf->otyp == COMBAT_STILETTOS) || (uarmf->otyp == DIDIER_SACHS_SHOES) || (uarmf->otyp == HEEL_WISE_SHOES) || (uarmf->otyp == FEMMY_STILETTO_BOOTS) || (uarmf->otyp == ITALIAN_HEELS) || (uarmf->otyp == RITA_STILETTOS) || (uarmf->otyp == HIGH_STILETTOS) || (uarmf->oartifact == ART_PECTORAL_HEEL) || (uarmf->oartifact == ART_FANNY_S_BROOK_THAT_YOU_MIS) || (uarmf->otyp == UNFAIR_STILETTOS) || (uarmf->otyp == FEMININE_STILETTOS) || (uarmf->otyp == SKY_HIGH_HEELS) || (uarmf->otyp == RED_SPELL_HEELS) || (uarmf->otyp == FIRE_BRIGADE_HEELS) || (uarmf->otyp == KILLER_HEELS) || (uarmf->otyp == RUEA_COMBAT_BOOTS) || (uarmf->otyp == NAOMI_STILETTOS) || (uarmf->otyp == ANITA_LADY_PUMPS) ) havetheseheels = TRUE;
 
 	if (OBJ_DESCR(objects[uarmf->otyp])) {
 
-		if (itemhasappearance(uarmf, APP_WINTER_STILETTOS)) return TRUE;
-		if (itemhasappearance(uarmf, APP_IMAGINARY_HEELS)) return TRUE;
-		if (itemhasappearance(uarmf, APP_BALLET_HEELS)) return TRUE;
-		if (itemhasappearance(uarmf, APP_SHARP_EDGED_SANDALS)) return TRUE;
-		if (itemhasappearance(uarmf, APP_PRINTED_SANDALS)) return TRUE;
-		if (itemhasappearance(uarmf, APP_FETISH_HEELS)) return TRUE;
-		if (itemhasappearance(uarmf, APP_ANKLE_STRAP_SANDALS)) return TRUE;
-		if (itemhasappearance(uarmf, APP_FILIGREE_STILETTOS)) return TRUE;
-		if (itemhasappearance(uarmf, APP_BAYONET_HEELS)) return TRUE;
-		if (itemhasappearance(uarmf, APP_PARAGRAPH_SANDALS)) return TRUE;
-		if (itemhasappearance(uarmf, APP_COPPER_STILETTOS)) return TRUE;
-		if (itemhasappearance(uarmf, APP_DIAMOND_STILETTOS)) return TRUE;
-		if (itemhasappearance(uarmf, APP_PLATINUM_STILETTOS)) return TRUE;
-		if (itemhasappearance(uarmf, APP_SILVER_STILETTOS)) return TRUE;
-		if (itemhasappearance(uarmf, APP_A_HEELS)) return TRUE;
-		if (itemhasappearance(uarmf, APP_PISTOL_BOOTS)) return TRUE;
-		if (itemhasappearance(uarmf, APP_MISSYS)) return TRUE;
-		if (itemhasappearance(uarmf, APP_STUPID_STILETTOS)) return TRUE;
-		if (itemhasappearance(uarmf, APP_WEAPON_LIGHT_BOOTS)) return TRUE;
-		if (itemhasappearance(uarmf, APP_FAILED_SHOES)) return TRUE;
-		if (itemhasappearance(uarmf, APP_INSTAFEMINISM_SHOES)) return TRUE;
+		if (itemhasappearance(uarmf, APP_WINTER_STILETTOS)) havetheseheels = TRUE;
+		if (itemhasappearance(uarmf, APP_IMAGINARY_HEELS)) havetheseheels = TRUE;
+		if (itemhasappearance(uarmf, APP_BALLET_HEELS)) havetheseheels = TRUE;
+		if (itemhasappearance(uarmf, APP_SHARP_EDGED_SANDALS)) {
+			havetheseheels = TRUE;
+			opentoe = TRUE;
+		}
+		if (itemhasappearance(uarmf, APP_PRINTED_SANDALS)) {
+			havetheseheels = TRUE;
+			opentoe = TRUE;
+		}
+		if (itemhasappearance(uarmf, APP_FETISH_HEELS)) havetheseheels = TRUE;
+		if (itemhasappearance(uarmf, APP_ANKLE_STRAP_SANDALS)) {
+			havetheseheels = TRUE;
+			opentoe = TRUE;
+		}
+		if (itemhasappearance(uarmf, APP_FILIGREE_STILETTOS)) havetheseheels = TRUE;
+		if (itemhasappearance(uarmf, APP_BAYONET_HEELS)) havetheseheels = TRUE;
+		if (itemhasappearance(uarmf, APP_PARAGRAPH_SANDALS)) {
+			havetheseheels = TRUE;
+			opentoe = TRUE;
+		}
+		if (itemhasappearance(uarmf, APP_COPPER_STILETTOS)) havetheseheels = TRUE;
+		if (itemhasappearance(uarmf, APP_DIAMOND_STILETTOS)) havetheseheels = TRUE;
+		if (itemhasappearance(uarmf, APP_PLATINUM_STILETTOS)) havetheseheels = TRUE;
+		if (itemhasappearance(uarmf, APP_SILVER_STILETTOS)) havetheseheels = TRUE;
+		if (itemhasappearance(uarmf, APP_A_HEELS)) havetheseheels = TRUE;
+		if (itemhasappearance(uarmf, APP_PISTOL_BOOTS)) havetheseheels = TRUE;
+		if (itemhasappearance(uarmf, APP_MISSYS)) havetheseheels = TRUE;
+		if (itemhasappearance(uarmf, APP_STUPID_STILETTOS)) havetheseheels = TRUE;
+		if (itemhasappearance(uarmf, APP_WEAPON_LIGHT_BOOTS)) havetheseheels = TRUE;
+		if (itemhasappearance(uarmf, APP_FAILED_SHOES)) {
+			havetheseheels = TRUE;
+			opentoe = TRUE;
+		}
+		if (itemhasappearance(uarmf, APP_INSTAFEMINISM_SHOES)) havetheseheels = TRUE;
 
+	}
+
+	if (havetheseheels) {
+		return (opentoe ? 2 : 1);
 	}
 
 	return FALSE;
@@ -1827,35 +1866,53 @@ maybestilettoheels()
 boolean
 maybeconeheels()
 {
+	boolean opentoe = FALSE;
+	boolean havetheseheels = FALSE;
+
 	if (uarmf && itemhasappearance(uarmf, APP_WINGED_SANDALS)) return FALSE;
 	if (uarmf && uarmf->oartifact == ART_I_DON_T_PARTICULARLY_LIKE_) return FALSE;
 
 	if (!uarmf) return FALSE;
 	/* uarmf is definitely defined now */
 
-	if ((uarmf->otyp == FEMININE_PUMPS) || (uarmf->otyp == WENDY_LEATHER_PUMPS) || (uarmf->otyp == NELLY_LADY_PUMPS) || (uarmf->otyp == CLAUDIA_WOODEN_SANDALS) || (uarmf->otyp == SANDRA_COMBAT_BOOTS) || (uarmf->otyp == LYDIA_LADY_PUMPS) || (uarmf->otyp == JANET_LADY_PUMPS) || (uarmf->otyp == JANINA_LADY_PUMPS) || (uarmf->otyp == PRINCESSEN_SHOES) || (uarmf->otyp == MANUELA_COMBAT_BOOTS) || (uarmf->oartifact == ART_ARVOGENIA_S_HIGH_HEELSES) || (uarmf->oartifact == ART_UPWARD_HEELS) || (uarmf->oartifact == ART_HEELMARJI) || (uarmf->oartifact == ART_ANASTASIA_S_UNEXPECTED_ABI) || (uarmf->otyp == DESTRUCTIVE_HEELS) || (uarmf->otyp == OMEGA_HEELS) || (uarmf->otyp == VIOLET_BEAUTY_HEELS) || (uarmf->otyp == AUTOSCOOTER_HEELS)) return TRUE;
+	if ((uarmf->otyp == CLAUDIA_WOODEN_SANDALS) ) {
+		havetheseheels = TRUE;
+		opentoe = TRUE;
+	}
+
+	if ((uarmf->otyp == FEMININE_PUMPS) || (uarmf->otyp == WENDY_LEATHER_PUMPS) || (uarmf->otyp == NELLY_LADY_PUMPS) || (uarmf->otyp == SANDRA_COMBAT_BOOTS) || (uarmf->otyp == LYDIA_LADY_PUMPS) || (uarmf->otyp == JANET_LADY_PUMPS) || (uarmf->otyp == JANINA_LADY_PUMPS) || (uarmf->otyp == PRINCESSEN_SHOES) || (uarmf->otyp == MANUELA_COMBAT_BOOTS) || (uarmf->oartifact == ART_ARVOGENIA_S_HIGH_HEELSES) || (uarmf->oartifact == ART_UPWARD_HEELS) || (uarmf->oartifact == ART_HEELMARJI) || (uarmf->oartifact == ART_ANASTASIA_S_UNEXPECTED_ABI) || (uarmf->otyp == DESTRUCTIVE_HEELS) || (uarmf->otyp == OMEGA_HEELS) || (uarmf->otyp == VIOLET_BEAUTY_HEELS) || (uarmf->otyp == AUTOSCOOTER_HEELS)) havetheseheels = TRUE;
 
 	if (OBJ_DESCR(objects[uarmf->otyp])) {
 
-		if (itemhasappearance(uarmf, APP_ANKLE_BOOTS)) return TRUE;
-		if (itemhasappearance(uarmf, APP_SHADOWY_HEELS)) return TRUE;
-		if (itemhasappearance(uarmf, APP_ALLIGATOR_PUMPS)) return TRUE;
-		if (itemhasappearance(uarmf, APP_NOBLE_SANDALS)) return TRUE;
-		if (itemhasappearance(uarmf, APP_ORGASM_PUMPS)) return TRUE;
-		if (itemhasappearance(uarmf, APP_SUPERHARD_SANDALS)) return TRUE;
-		if (itemhasappearance(uarmf, APP_STONE_CARVED_HEELS)) return TRUE;
-		if (itemhasappearance(uarmf, APP_MARY_JANES)) return TRUE;
-		if (itemhasappearance(uarmf, APP_PRINCESS_PUMPS)) return TRUE;
-		if (itemhasappearance(uarmf, APP_FEELGOOD_HEELS)) return TRUE;
-		if (itemhasappearance(uarmf, APP_FEMMY_BOOTS)) return TRUE;
-		if (itemhasappearance(uarmf, APP_VELVET_PUMPS)) return TRUE;
-		if (itemhasappearance(uarmf, APP_SLING_PUMPS)) return TRUE;
-		if (itemhasappearance(uarmf, APP_BONE_HEELS)) return TRUE;
-		if (itemhasappearance(uarmf, APP_PARAGRAPH_SHOES)) return TRUE;
-		if (itemhasappearance(uarmf, APP_BRIDAL_SHOES)) return TRUE;
-		if (itemhasappearance(uarmf, APP_SEXY_HEELS)) return TRUE;
-		if (itemhasappearance(uarmf, APP_OPERA_PUMPS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_ANKLE_BOOTS)) havetheseheels = TRUE;
+		if (itemhasappearance(uarmf, APP_SHADOWY_HEELS)) havetheseheels = TRUE;
+		if (itemhasappearance(uarmf, APP_ALLIGATOR_PUMPS)) havetheseheels = TRUE;
+		if (itemhasappearance(uarmf, APP_NOBLE_SANDALS)) {
+			havetheseheels = TRUE;
+			opentoe = TRUE;
+		}
+		if (itemhasappearance(uarmf, APP_ORGASM_PUMPS)) havetheseheels = TRUE;
+		if (itemhasappearance(uarmf, APP_SUPERHARD_SANDALS)) {
+			havetheseheels = TRUE;
+			opentoe = TRUE;
+		}
+		if (itemhasappearance(uarmf, APP_STONE_CARVED_HEELS)) havetheseheels = TRUE;
+		if (itemhasappearance(uarmf, APP_MARY_JANES)) havetheseheels = TRUE;
+		if (itemhasappearance(uarmf, APP_PRINCESS_PUMPS)) havetheseheels = TRUE;
+		if (itemhasappearance(uarmf, APP_FEELGOOD_HEELS)) havetheseheels = TRUE;
+		if (itemhasappearance(uarmf, APP_FEMMY_BOOTS)) havetheseheels = TRUE;
+		if (itemhasappearance(uarmf, APP_VELVET_PUMPS)) havetheseheels = TRUE;
+		if (itemhasappearance(uarmf, APP_SLING_PUMPS)) havetheseheels = TRUE;
+		if (itemhasappearance(uarmf, APP_BONE_HEELS)) havetheseheels = TRUE;
+		if (itemhasappearance(uarmf, APP_PARAGRAPH_SHOES)) havetheseheels = TRUE;
+		if (itemhasappearance(uarmf, APP_BRIDAL_SHOES)) havetheseheels = TRUE;
+		if (itemhasappearance(uarmf, APP_SEXY_HEELS)) havetheseheels = TRUE;
+		if (itemhasappearance(uarmf, APP_OPERA_PUMPS)) havetheseheels = TRUE;
 
+	}
+
+	if (havetheseheels) {
+		return (opentoe ? 2 : 1);
 	}
 
 	return FALSE;
@@ -1865,40 +1922,53 @@ maybeconeheels()
 boolean
 maybeblockheels()
 {
+	boolean opentoe = FALSE;
+	boolean havetheseheels = FALSE;
+
 	if (uarmf && itemhasappearance(uarmf, APP_WINGED_SANDALS)) return FALSE;
 	if (uarmf && uarmf->oartifact == ART_I_DON_T_PARTICULARLY_LIKE_) return FALSE;
 
 	if (!uarmf) return FALSE;
 	/* uarmf is definitely defined now */
 
-	if ((uarmf->otyp == HIPPIE_HEELS) || (uarmf->oartifact == ART_SWARM_SOFT_HIGH_HEELS) || (uarmf->otyp == SELF_WILLED_HEELS) || (uarmf->otyp == COMMANDER_HEELS) || (uarmf->oartifact == ART_MANUELA_S_UNKNOWN_HEELS) || (uarmf->oartifact == ART_HIGH_HEELED_HUG) || (uarmf->otyp == COVETED_BOOTS) || (uarmf->otyp == SINFUL_HEELS) || (uarmf->otyp == LADY_BOOTS) || (uarmf->otyp == BASIC_SHOES) || (uarmf->otyp == BORING_BLOCK_HEELS) || (uarmf->otyp == CATWALK_SANDALS) || (uarmf->otyp == ELENA_COMBAT_BOOTS) || (uarmf->otyp == THAI_COMBAT_BOOTS) || (uarmf->otyp == SHOCK_ISOLATED_HEELS) || (uarmf->otyp == MELTEM_COMBAT_BOOTS) || (uarmf->otyp == KATRIN_COMBAT_BOOTS) || (uarmf->otyp == NATALJE_BLOCK_HEEL_SANDALS) || (uarmf->otyp == SABINE_BLOCK_HEEL_SANDALS) || (uarmf->otyp == NADJA_BUCKLED_LADY_SHOES) || (uarmf->otyp == HIGH_SCORING_HEELS) || (uarmf->otyp == KRISTIN_COMBAT_BOOTS) || (uarmf->otyp == DORA_COMBAT_BOOTS) || (uarmf->otyp == JULIA_COMBAT_BOOTS) || (uarmf->otyp == NICOLE_COMBAT_BOOTS) || (uarmf->otyp == LISA_COMBAT_BOOTS) || (uarmf->otyp == SUSANNE_COMBAT_BOOTS) || (uarmf->otyp == NORA_COMBAT_BOOTS) || (uarmf->otyp == ANTJE_COMBAT_BOOTS) || (uarmf->otyp == KERSTIN_COMBAT_BOOTS) || (uarmf->otyp == LARA_COMBAT_BOOTS) || (uarmf->otyp == JENNIFER_COMBAT_BOOTS) || (uarmf->otyp == JETTE_COMBAT_BOOTS) || (uarmf->otyp == VICTORIA_COMBAT_BOOTS) || (uarmf->otyp == HENRIETTA_COMBAT_BOOTS) || (uarmf->otyp == KSENIA_PLATFORM_SANDALS) || (uarmf->otyp == CONNY_COMBAT_BOOTS) || (uarmf->otyp == KATIA_COMBAT_BOOTS) || (uarmf->otyp == MARIYA_COMBAT_BOOTS) || (uarmf->otyp == ELISE_HIPPIE_HEELS) || (uarmf->otyp == RONJA_COMBAT_BOOTS) || (uarmf->otyp == ARIANE_COMBAT_BOOTS) || (uarmf->otyp == JOHANNA_COMBAT_BOOTS) || (uarmf->otyp == MAGDALENA_COMBAT_BOOTS) || (uarmf->otyp == MARLEEN_COMBAT_BOOTS) || (uarmf->otyp == INGE_COMBAT_BOOTS)) return TRUE;
+	if ((uarmf->otyp == CATWALK_SANDALS) || (uarmf->otyp == KSENIA_PLATFORM_SANDALS) || (uarmf->otyp == NATALJE_BLOCK_HEEL_SANDALS) || (uarmf->otyp == SABINE_BLOCK_HEEL_SANDALS) ) {
+		havetheseheels = TRUE;
+		opentoe = TRUE;
+	}
+
+	if ((uarmf->otyp == HIPPIE_HEELS) || (uarmf->oartifact == ART_SUSCHEL_KUNA) || (uarmf->oartifact == ART_SWARM_SOFT_HIGH_HEELS) || (uarmf->otyp == SELF_WILLED_HEELS) || (uarmf->otyp == COMMANDER_HEELS) || (uarmf->oartifact == ART_MANUELA_S_UNKNOWN_HEELS) || (uarmf->oartifact == ART_HIGH_HEELED_HUG) || (uarmf->otyp == COVETED_BOOTS) || (uarmf->otyp == SINFUL_HEELS) || (uarmf->otyp == LADY_BOOTS) || (uarmf->otyp == BASIC_SHOES) || (uarmf->otyp == BORING_BLOCK_HEELS) || (uarmf->otyp == ELENA_COMBAT_BOOTS) || (uarmf->otyp == THAI_COMBAT_BOOTS) || (uarmf->otyp == SHOCK_ISOLATED_HEELS) || (uarmf->otyp == MELTEM_COMBAT_BOOTS) || (uarmf->otyp == KATRIN_COMBAT_BOOTS) || (uarmf->otyp == NADJA_BUCKLED_LADY_SHOES) || (uarmf->otyp == HIGH_SCORING_HEELS) || (uarmf->otyp == KRISTIN_COMBAT_BOOTS) || (uarmf->otyp == DORA_COMBAT_BOOTS) || (uarmf->otyp == JULIA_COMBAT_BOOTS) || (uarmf->otyp == NICOLE_COMBAT_BOOTS) || (uarmf->otyp == LISA_COMBAT_BOOTS) || (uarmf->otyp == SUSANNE_COMBAT_BOOTS) || (uarmf->otyp == NORA_COMBAT_BOOTS) || (uarmf->otyp == ANTJE_COMBAT_BOOTS) || (uarmf->otyp == KERSTIN_COMBAT_BOOTS) || (uarmf->otyp == LARA_COMBAT_BOOTS) || (uarmf->otyp == JENNIFER_COMBAT_BOOTS) || (uarmf->otyp == JETTE_COMBAT_BOOTS) || (uarmf->otyp == VICTORIA_COMBAT_BOOTS) || (uarmf->otyp == HENRIETTA_COMBAT_BOOTS) || (uarmf->otyp == CONNY_COMBAT_BOOTS) || (uarmf->otyp == KATIA_COMBAT_BOOTS) || (uarmf->otyp == MARIYA_COMBAT_BOOTS) || (uarmf->otyp == ELISE_HIPPIE_HEELS) || (uarmf->otyp == RONJA_COMBAT_BOOTS) || (uarmf->otyp == ARIANE_COMBAT_BOOTS) || (uarmf->otyp == JOHANNA_COMBAT_BOOTS) || (uarmf->otyp == MAGDALENA_COMBAT_BOOTS) || (uarmf->otyp == MARLEEN_COMBAT_BOOTS) || (uarmf->otyp == INGE_COMBAT_BOOTS)) havetheseheels = TRUE;
 
 	if (OBJ_DESCR(objects[uarmf->otyp])) {
 
-		if (itemhasappearance(uarmf, APP_CLUNKY_HEELS)) return TRUE;
-		if (itemhasappearance(uarmf, APP_BLOCK_HEELED_BOOTS)) return TRUE;
-		if (itemhasappearance(uarmf, APP_HAMMER_SHOES)) return TRUE;
-		if (itemhasappearance(uarmf, APP_RETRACTABLE_BLOCK_HEELS)) return TRUE;
-		if (itemhasappearance(uarmf, APP_HEELED_HUGGING_BOOTS)) return TRUE;
-		if (itemhasappearance(uarmf, APP_DYKE_BOOTS)) return TRUE;
-		if (itemhasappearance(uarmf, APP_CUDDLE_CLOTH_BOOTS)) return TRUE;
-		if (itemhasappearance(uarmf, APP_PLOF_HEELS)) return TRUE;
-		if (itemhasappearance(uarmf, APP_EROTIC_BOOTS)) return TRUE;
-		if (itemhasappearance(uarmf, APP_BLOCKCHOC_BOOTS)) return TRUE;
-		if (itemhasappearance(uarmf, APP_SISTER_SHOES)) return TRUE;
-		if (itemhasappearance(uarmf, APP_ICEBLOCK_HEELS)) return TRUE;
-		if (itemhasappearance(uarmf, APP_SPUTA_BOOTS)) return TRUE;
-		if (itemhasappearance(uarmf, APP_LOLITA_BOOTS)) return TRUE;
-		if (itemhasappearance(uarmf, APP_STROKING_BOOTS)) return TRUE;
-		if (itemhasappearance(uarmf, APP_HOMO_SHOES)) return TRUE;
-		if (itemhasappearance(uarmf, APP_TREADED_HEELS)) return TRUE;
-		if (itemhasappearance(uarmf, APP_REMORA_HEELS)) return TRUE;
-		if (itemhasappearance(uarmf, APP_HEELED_CHELSEA_BOOTS)) return TRUE;
-		if (itemhasappearance(uarmf, APP_SUPER_COMFY_HEELS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_CLUNKY_HEELS)) havetheseheels = TRUE;
+		if (itemhasappearance(uarmf, APP_BLOCK_HEELED_BOOTS)) havetheseheels = TRUE;
+		if (itemhasappearance(uarmf, APP_HAMMER_SHOES)) havetheseheels = TRUE;
+		if (itemhasappearance(uarmf, APP_RETRACTABLE_BLOCK_HEELS)) havetheseheels = TRUE;
+		if (itemhasappearance(uarmf, APP_HEELED_HUGGING_BOOTS)) havetheseheels = TRUE;
+		if (itemhasappearance(uarmf, APP_DYKE_BOOTS)) havetheseheels = TRUE;
+		if (itemhasappearance(uarmf, APP_CUDDLE_CLOTH_BOOTS)) havetheseheels = TRUE;
+		if (itemhasappearance(uarmf, APP_PLOF_HEELS)) {
+			havetheseheels = TRUE;
+			opentoe = TRUE;
+		}
+		if (itemhasappearance(uarmf, APP_EROTIC_BOOTS)) havetheseheels = TRUE;
+		if (itemhasappearance(uarmf, APP_BLOCKCHOC_BOOTS)) havetheseheels = TRUE;
+		if (itemhasappearance(uarmf, APP_SISTER_SHOES)) havetheseheels = TRUE;
+		if (itemhasappearance(uarmf, APP_ICEBLOCK_HEELS)) havetheseheels = TRUE;
+		if (itemhasappearance(uarmf, APP_SPUTA_BOOTS)) havetheseheels = TRUE;
+		if (itemhasappearance(uarmf, APP_LOLITA_BOOTS)) havetheseheels = TRUE;
+		if (itemhasappearance(uarmf, APP_STROKING_BOOTS)) havetheseheels = TRUE;
+		if (itemhasappearance(uarmf, APP_HOMO_SHOES)) havetheseheels = TRUE;
+		if (itemhasappearance(uarmf, APP_TREADED_HEELS)) havetheseheels = TRUE;
+		if (itemhasappearance(uarmf, APP_REMORA_HEELS)) havetheseheels = TRUE;
+		if (itemhasappearance(uarmf, APP_HEELED_CHELSEA_BOOTS)) havetheseheels = TRUE;
+		if (itemhasappearance(uarmf, APP_SUPER_COMFY_HEELS)) havetheseheels = TRUE;
 
 	}
 
-	if (uarmf && uarmf->oartifact == ART_SUSCHEL_KUNA) return TRUE;
+	if (havetheseheels) {
+		return (opentoe ? 2 : 1);
+	}
 
 	return FALSE;
 
@@ -1907,31 +1977,53 @@ maybeblockheels()
 boolean
 maybewedgeheels()
 {
+	boolean opentoe = FALSE;
+	boolean havetheseheels = FALSE;
+
 	if (uarmf && itemhasappearance(uarmf, APP_WINGED_SANDALS)) return FALSE;
 	if (uarmf && uarmf->oartifact == ART_I_DON_T_PARTICULARLY_LIKE_) return FALSE;
 
 	if (!uarmf) return FALSE;
 	/* uarmf is definitely defined now */
 
-	if ((uarmf->otyp == WEDGE_SANDALS) || (uarmf->otyp == EVELINE_WEDGE_SANDALS) || (uarmf->otyp == IRINA_WEDGE_SANDALS) || (uarmf->otyp == JASIEEN_WEDGE_SANDALS) || (uarmf->otyp == COMBAT_WEDGES) || (uarmf->otyp == BRIDGHITTE_SKI_HEELS) || (uarmf->otyp == NATALIA_WEDGE_SANDALS) || (uarmf->otyp == GUDRUN_WEDGE_SANDALS) || (uarmf->otyp == ELLA_WEDGE_SANDALS) || (uarmf->otyp == ANNEMARIE_PLATFORM_SANDALS) || (uarmf->otyp == MADELEINE_PLATEAU_BOOTS) || (uarmf->otyp == KATHARINA_PLATFORM_BOOTS) || (uarmf->otyp == SABRINA_PLATFORM_BOOTS) || (uarmf->otyp == LARISSA_PLATFORM_BOOTS) || (uarmf->oartifact == ART_ELENETTES) || (uarmf->otyp == BUM_BUM_BOOTS) || (uarmf->otyp == PET_STOMPING_PLATFORM_BOOTS) || (uarmf->otyp == HIGH_HEELED_SKIERS) || (uarmf->otyp == SING_PLATFORM_BOOTS) || (uarmf->otyp == MELISSA_WEDGE_BOOTS)) return TRUE;
-
-	if (OBJ_DESCR(objects[uarmf->otyp])) {
-
-		if (itemhasappearance(uarmf, APP_IRREGULAR_BOOTS)) return TRUE;
-		if (itemhasappearance(uarmf, APP_PRINTED_WEDGES)) return TRUE;
-		if (itemhasappearance(uarmf, APP_WEDGE_BOOTS)) return TRUE;
-		if (itemhasappearance(uarmf, APP_SKI_HEELS)) return TRUE;
-		if (itemhasappearance(uarmf, APP_BUFFALO_BOOTS)) return TRUE;
-		if (itemhasappearance(uarmf, APP_PLATFORM_FLEECIES)) return TRUE;
-		if (itemhasappearance(uarmf, APP_WHITE_BUFFALO_BOOTS)) return TRUE;
-		if (itemhasappearance(uarmf, APP_RADIANT_HEELS)) return TRUE;
-		if (itemhasappearance(uarmf, APP_WEDGE_SNEAKERS)) return TRUE;
-		if (itemhasappearance(uarmf, APP_GEOMETRY_HEELS)) return TRUE;
-		if (itemhasappearance(uarmf, APP_WEDGE_ESPADRILLES)) return TRUE;
+	if ((uarmf->otyp == JASIEEN_WEDGE_SANDALS) || (uarmf->otyp == IRINA_WEDGE_SANDALS) || (uarmf->oartifact == ART_ELENETTES) || (uarmf->otyp == ANNEMARIE_PLATFORM_SANDALS) || (uarmf->otyp == GUDRUN_WEDGE_SANDALS) || (uarmf->otyp == ELLA_WEDGE_SANDALS) || (uarmf->otyp == NATALIA_WEDGE_SANDALS) || (uarmf->otyp == EVELINE_WEDGE_SANDALS) || (uarmf->otyp == WEDGE_SANDALS) ) {
+		havetheseheels = TRUE;
+		opentoe = TRUE;
 
 	}
 
-	if (uwep && uwep->oartifact == ART_DAMN_SKI_WEDGE && uarmf) return TRUE;
+	if ((uarmf->otyp == COMBAT_WEDGES) || (uarmf->otyp == BRIDGHITTE_SKI_HEELS) || (uarmf->otyp == MADELEINE_PLATEAU_BOOTS) || (uarmf->otyp == KATHARINA_PLATFORM_BOOTS) || (uarmf->otyp == SABRINA_PLATFORM_BOOTS) || (uarmf->otyp == LARISSA_PLATFORM_BOOTS) || (uarmf->otyp == BUM_BUM_BOOTS) || (uarmf->otyp == PET_STOMPING_PLATFORM_BOOTS) || (uarmf->otyp == HIGH_HEELED_SKIERS) || (uarmf->otyp == SING_PLATFORM_BOOTS) || (uarmf->otyp == MELISSA_WEDGE_BOOTS)) havetheseheels = TRUE;
+
+	if (OBJ_DESCR(objects[uarmf->otyp])) {
+
+		if (itemhasappearance(uarmf, APP_IRREGULAR_BOOTS)) havetheseheels = TRUE;
+		if (itemhasappearance(uarmf, APP_PRINTED_WEDGES)) {
+			havetheseheels = TRUE;
+			opentoe = TRUE;
+		}
+		if (itemhasappearance(uarmf, APP_WEDGE_BOOTS)) havetheseheels = TRUE;
+		if (itemhasappearance(uarmf, APP_SKI_HEELS)) havetheseheels = TRUE;
+		if (itemhasappearance(uarmf, APP_BUFFALO_BOOTS)) havetheseheels = TRUE;
+		if (itemhasappearance(uarmf, APP_PLATFORM_FLEECIES)) havetheseheels = TRUE;
+		if (itemhasappearance(uarmf, APP_WHITE_BUFFALO_BOOTS)) havetheseheels = TRUE;
+		if (itemhasappearance(uarmf, APP_RADIANT_HEELS)) havetheseheels = TRUE;
+		if (itemhasappearance(uarmf, APP_WEDGE_SNEAKERS)) havetheseheels = TRUE;
+		if (itemhasappearance(uarmf, APP_GEOMETRY_HEELS)) {
+			havetheseheels = TRUE;
+			opentoe = TRUE;
+		}
+		if (itemhasappearance(uarmf, APP_WEDGE_ESPADRILLES)) {
+			havetheseheels = TRUE;
+			opentoe = TRUE;
+		}
+	}
+
+	/* an artifact weapon that causes your footwear, if any, to count as wedge heels --Amy */
+	if (uwep && uwep->oartifact == ART_DAMN_SKI_WEDGE && uarmf) havetheseheels = TRUE;
+
+	if (havetheseheels) {
+		return (opentoe ? 2 : 1);
+	}
 
 	return FALSE;
 
@@ -3963,7 +4055,7 @@ badeffect()
 		break;
 
 		case 411:
-			statdrain();
+			statdrain(TRUE);
 		break;
 
 		case 412:
@@ -4062,7 +4154,7 @@ badeffect()
 		case 453:
 		case 454:
 		case 455:
-			statdebuff();
+			statdebuff(TRUE);
 			break;
 
 		case 456:
@@ -4207,12 +4299,12 @@ badeffect()
 			break;
 
 		case 475:
-			statdebuff();
-			statdebuff();
-			statdebuff();
-			statdebuff();
-			statdebuff();
-			statdebuff();
+			statdebuff(TRUE);
+			statdebuff(TRUE);
+			statdebuff(TRUE);
+			statdebuff(TRUE);
+			statdebuff(TRUE);
+			statdebuff(TRUE);
 			break;
 
 		case 476:
@@ -5319,7 +5411,7 @@ reallybadeffect()
 		break;
 
 		case 84:
-			statdrain();
+			statdrain(TRUE);
 		break;
 
 		case 85:
@@ -5384,7 +5476,7 @@ reallybadeffect()
 			break;
 
 		case 94:
-			statdebuff();
+			statdebuff(TRUE);
 			break;
 
 		case 95:
@@ -5526,12 +5618,12 @@ reallybadeffect()
 			break;
 
 		case 113:
-			statdebuff();
-			statdebuff();
-			statdebuff();
-			statdebuff();
-			statdebuff();
-			statdebuff();
+			statdebuff(TRUE);
+			statdebuff(TRUE);
+			statdebuff(TRUE);
+			statdebuff(TRUE);
+			statdebuff(TRUE);
+			statdebuff(TRUE);
 			break;
 
 		case 114:
@@ -7449,11 +7541,12 @@ extralongsqueak()
 
 /* permanent stat drain by Amy */
 void
-statdrain()
+statdrain(canresist)
+boolean canresist; /* can the drain be resisted by equipment, being certain roles etc.? TRUE if it can */
 {
 	int statdrained = rn2(A_MAX);
 
-	if (uarm && uarm->oartifact == ART_CON_HOLD && statdrained == A_CON) {
+	if (canresist && uarm && uarm->oartifact == ART_CON_HOLD && statdrained == A_CON) {
 		Your("armor prevents the constitution drain!");
 		return;
 	}
@@ -7469,11 +7562,11 @@ statdrain()
 		return;
 	}
 
-	if (Race_if(PM_SUSTAINER) && rn2(50)) {
+	if (canresist && Race_if(PM_SUSTAINER) && rn2(50)) {
 		pline("The stat drain doesn't seem to affect you.");
 		return;
 	}
-	if (Role_if(PM_ASTRONAUT) && rn2(2)) {
+	if (canresist && Role_if(PM_ASTRONAUT) && rn2(2)) {
 		pline("Your steeled body prevents the stat loss!");
 		return;
 	}
@@ -8730,11 +8823,12 @@ maybehackimplant()
 
 /* stat debuff attack: reduces a random stat, temporarily */
 void
-statdebuff()
+statdebuff(canresist)
+boolean canresist; /* if this is TRUE, mithril equipment and other stuff allows you to resist */
 {
 	int mithrilitemcount = 0;
 
-	if (Role_if(PM_ASTRONAUT) && rn2(2)) {
+	if (canresist && Role_if(PM_ASTRONAUT) && rn2(2)) {
 		pline("Your steeled body prevents the stat loss!");
 		return;
 	}
@@ -8754,7 +8848,7 @@ statdebuff()
 	if (uright && objects[uright->otyp].oc_material == MT_MITHRIL) mithrilitemcount++;
 	if (ublindf && objects[ublindf->otyp].oc_material == MT_MITHRIL) mithrilitemcount++;
 
-	if (mithrilitemcount > 0 && (mithrilitemcount >= rnd(20))) {
+	if (canresist && (mithrilitemcount > 0) && (mithrilitemcount >= rnd(20))) {
 		pline("Your mithril equipment prevents the stat loss!");
 		return;
 	}

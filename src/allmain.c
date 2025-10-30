@@ -5941,23 +5941,23 @@ greasingdone:
 		}
 
 		if (StatDecay && !rn2(StatDecayXtra ? 200 : 1000)) {
-			statdrain();
+			statdrain(TRUE);
 		}
 
 		if (uarm && uarm->oartifact == ART_THERE_GOES_SHE_TO && !rn2(StatDecayXtra ? 200 : 1000)) {
-			statdrain();
+			statdrain(TRUE);
 		}
 
 		if (u.uprops[STAT_DECAY].extrinsic && !rn2(StatDecayXtra ? 200 : 1000)) {
-			statdrain();
+			statdrain(TRUE);
 		}
 
 		if (have_statdecaystone() && !rn2(StatDecayXtra ? 200 : 1000)) {
-			statdrain();
+			statdrain(TRUE);
 		}
 
 		if (uarmc && uarmc->oartifact == ART_FLORICE_S_PEACE_POWER && !rn2(StatDecayXtra ? 200 : 1000)) {
-			statdrain();
+			statdrain(TRUE);
 		}
 
 		if (AntitrainingEffect && !rn2(1000)) {
@@ -8609,8 +8609,8 @@ newbossJANI:
 			if (changemake) {
 				MessageSuppression += 1; /* ugly hack --Amy */
 				changehybridization(2);
-				statdebuff(); statdebuff(); statdebuff(); statdebuff(); statdebuff();
-				statdrain();
+				statdebuff(FALSE); statdebuff(FALSE); statdebuff(FALSE); statdebuff(FALSE); statdebuff(FALSE);
+				statdrain(FALSE);
 				if (MessageSuppression > 0) MessageSuppression -= 1; /* unhack */
 				Your("lightsaber forms have improved, at the cost of stats and hybridization!");
 			}
@@ -17827,6 +17827,10 @@ past4:
 
    if (u.hangupcheat && !multi) u.hangupcheat = 0;
 
+	if (u.judithgame) u.judithgame = 0;
+	if (u.antjegame) u.antjegame = 0;
+	if (u.pumpsgame) u.pumpsgame = 0;
+
 	if (multi > 0) {
 	    lookaround();
 	    if (!multi) {
@@ -22107,6 +22111,46 @@ boolean new_game;	/* false => restoring an old game */
 
 	}
 
+	if (!new_game && u.judithgame) {
+		pline("It seems you tried to cheat the judith minigame by hanging up. Well, we're certainly not going to let you keep wearing the heels, that's for sure!");
+		if (uarmf) Boots_off();
+
+		u.judithgame = 0;
+	}
+
+	if (!new_game && u.antjegame) {
+		pline("You tried to cheat your way out of the encounter with Antje. As a punishment, we now drain your soul. Don't you dare cheating again, we WILL detect it and penalize you some more!");
+		drain_alla(rn1(50, 50));
+
+		u.antjegame = 0;
+	}
+
+	if (!new_game && u.pumpsgame) {
+		pline("You tried to cheat your way out of the pumps minigame. As a punishment, your maximum health is drained considerably.");
+
+		if (u.uhpmax < 6) {
+			u.youaredead = 1;
+			pline("And since you didn't have enough, you're dead now.");
+			killer = "trying to cheat at the pumps minigame";
+			killer_format = KILLED_BY;
+			done(DIED);
+
+			/* lifesaved */
+			u.youaredead = 0;
+
+		} else {
+			u.uhpmax -= 5;
+			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+
+			pline("For good measure, we're also draining all of your stats.");
+			statdrain(FALSE); statdrain(FALSE); statdrain(FALSE); statdrain(FALSE); statdrain(FALSE); statdrain(FALSE);
+
+			flags.botl = TRUE;
+		}
+
+		u.pumpsgame = 0;
+	}
+
 	if (!new_game && u.youarereallydead) {
 
 		pline("You are dead. Filthy cheater. Don't try to abuse the hangup function again, you hear?");
@@ -22958,6 +23002,8 @@ antjeminigame()
 	100 = you managed to knock out Antje due to having high STR and lucky RNG
 	*/
 
+	u.antjegame = TRUE;
+
 	int antjestage = 1;
 	boolean playeraroused = 0; /* if this is 1, punching no longer works */
 	boolean playerprone = 0; /* if this is 1, you're laying on the ground, helpless */
@@ -23004,6 +23050,7 @@ antjenewturn:
 
 		default:
 			pline("error - antje minigame stage %d called", antjestage);
+			u.antjegame = FALSE;
 			return;
 	}
 
@@ -23060,6 +23107,7 @@ antjenewturn:
 
 		default:
 			pline("error - antje minigame stage %d called", antjestage);
+			u.antjegame = FALSE;
 			return;
 	}
 
@@ -23511,6 +23559,7 @@ antjenewturn:
 
 		default:
 			pline("error - antje minigame stage %d called", antjestage);
+			u.antjegame = FALSE;
 			return;
 	}
 
@@ -23533,6 +23582,7 @@ antjegamedone:
 		pline("Quickly, you rush out of the public toilet area and return to the dungeon. That was one fucked up encounter.");
 	}
 
+	u.antjegame = FALSE;
 	return;
 
 }
@@ -23540,6 +23590,8 @@ antjegamedone:
 STATIC_OVL void
 pumpsminigame()
 {
+	u.pumpsgame = TRUE;
+
 	int minigameturns = 0;
 	boolean yourturn = FALSE;
 	int pumpsstate = 0;
@@ -23654,7 +23706,8 @@ newturn:
 						killer_format = KILLED_BY;
 						done(DIED);
 						u.youaredead = 0;
-						return;
+						u.pumpsgame = FALSE;
+ 						return;
 					} else {
 						u.uhpmax--;
 						if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
@@ -23686,6 +23739,8 @@ newturn:
 					if (u.mh > u.mhmax) u.mh = u.mhmax;
 					pline("Both you and the sexy leather pumps reached their climax, and your maximum health increases!");
 					pline("The sexy leather pumps congratulate you, and are looking forward to playing with you again.");
+
+					u.pumpsgame = FALSE;
 
 					return;
 				}
@@ -23734,7 +23789,7 @@ newturn:
 
 		if (n > 0) {
 			switch (selected[0].item.a_int) {
-				case 1:
+				case 1: /* "gently caress" */
 					pline("You gently caress the wonderful high heels using %s %s.", !rn2(3) ? "both your left and right" : rn2(2) ? "your left" : "your right", body_part(HAND) );
 					if ((pumpslikeyou > rnd(5) && !rn2(2)) || (ACURR(A_CHA) > rnd(40)) ) {
 						pumpslikeyou++;
@@ -23747,7 +23802,7 @@ newturn:
 						if (!rn2(10)) pumpsstate = PUMPIDLE;
 					}
 					break;
-				case 2:
+				case 2: /* "punch" */
 					if (ACURR(A_DEX) < rnd(25) && ACURR(A_DEX) < rnd(25)) {
 						pline("Ouch - you punched the hard, unyielding cone heel!");
 						losehp(rnd(2),"punching a massive cone heel",KILLED_BY);
@@ -23769,16 +23824,18 @@ newturn:
 						pumpsstate = rnd(4);
 					}
 					break;
-				case 3:
+				case 3: /* "try to put them on again" */
 					if (rnd(yourstrength) > rn1(10,10) && rnd(yourstrength) > rn1(10,10) && rnd(yourstrength) > rn1(10,10) && rnd(yourstrength) > rn1(10,10) && rnd(yourstrength) > rn1(10,10) && rnd(yourstrength) > rn1(10,10) && rnd(yourstrength) > rn1(10,10) && rnd(yourstrength) > rn1(10,10) && rnd(yourstrength) > rn1(10,10) && rnd(yourstrength) > rn1(10,10)) { /* you win */
 						pline("You completely surprised the sexy leather pumps and managed to slip your %s into them!", makeplural(body_part(FOOT)));
 						pline("As a reward, the sexy leather pumps magically boost your strength!");
 						gainstr((struct obj *)0, 0);
+						u.pumpsgame = FALSE;
 						return;
 					} else if (rnd(yourstrength) > pumpshealth) { /* they're out of health, you win */
 						pline("Your %s quickly snatch the lovely lady pumps and you manage to slip into them before they can fight back.", makeplural(body_part(HAND)));
 						pline("Congratulations, you won! Your dexterity increases.");
 						(void) adjattrib(A_DEX, 1, -1, TRUE);
+						u.pumpsgame = FALSE;
 						return;
 					} else {
 						if (!rn2(3)) pumpslikeyou--;
@@ -23792,6 +23849,7 @@ newturn:
 								killer_format = KILLED_BY;
 								done(DIED);
 								u.youaredead = 0;
+								u.pumpsgame = FALSE;
 								return;
 
 							} else {
@@ -23802,7 +23860,7 @@ newturn:
 						}
 					}
 					break;
-				case 4:
+				case 4: /* "run in circles" */
 					if ( (rnd(30) < ACURR(A_DEX)) && (rnd(30) < ACURR(A_DEX)) ) {
 						pline("It seems that your constant movement makes the sexy leather pumps slightly dizzy.");
 						if (pumpslikeyou < 0) pumpslikeyou++;
@@ -23814,7 +23872,7 @@ newturn:
 						pumpsstate = rnd(4);
 					}
 					break;
-				case 5:
+				case 5: /* "defile" */
 					if (pumpsnutkick) {
 						pline("It's impossible, you are in too much pain to do that.");
 					} else {
@@ -23829,7 +23887,6 @@ newturn:
 							}
 
 							morehungry(10);
-
 
 							if (!pumpsdefiled) {
 								pline(flags.female ? "With your vagina, you start peeing into the sexy leather pumps." : "You put your penis over the sexy leather pumps and start urinating into them.");
@@ -23848,7 +23905,7 @@ newturn:
 					}
 
 					break;
-				case 6:
+				case 6: /* "kiss" */
 					if (pumpsstate == PUMPINLAP) {
 						pline("Aww, the lovely leather pumps seem to really like being kissed by you!");
 						pumpslikeyou++;
@@ -23858,7 +23915,7 @@ newturn:
 						pumpslikeyou++;
 					} else pline("The sexy leather pumps brush your mouth away.");
 					break;
-				default:
+				default: /* player pressed space bar or something and therefore does nothing */
 					pline("You decide to do nothing.");
 					break;
 			}
@@ -23874,9 +23931,11 @@ newturn:
 		if (pumpsdefiled >= 20) {
 			pline("You monster, you irreversibly defiled the pumps. They are now utterly unusable.");
 			useupall(uarmf);
+			u.pumpsgame = FALSE;
 			return;
 		} else {
 			if (yn("Do you stop defiling the pumps?") == 'y') {
+				u.pumpsgame = FALSE;
 				return;
 			} else goto newturn;
 		}
@@ -23887,6 +23946,7 @@ newturn:
 		if (yn("Do you accept the offer and end the fight?") == 'y') {
 			pline("You are gently stroked by the tender cone heels, and as you put them on again, you feel very pretty!");
 			(void) adjattrib(A_CHA, 1, -1, TRUE);
+			u.pumpsgame = FALSE;
 			return;
 		}
 	}
@@ -23906,6 +23966,7 @@ newturn:
 						killer_format = KILLED_BY;
 						done(DIED);
 						u.youaredead = 0; /* lifesaving allowed, unlike mind flayer instadeath */
+						u.pumpsgame = FALSE;
 						return;
 
 					} else {
@@ -23917,6 +23978,7 @@ newturn:
 
 				} else {
 					pline("Got away safely!");
+					u.pumpsgame = FALSE;
 					return;
 				}
 			}
@@ -23925,6 +23987,7 @@ newturn:
 			pline("You can try to escape the fight.");
 			if (yn("Do you want to escape?") == 'y') {
 				pline("The fight with the sexy leather pumps has ended.");
+				u.pumpsgame = FALSE;
 				return;
 
 			}
@@ -23932,6 +23995,993 @@ newturn:
 	}
 
 	goto newturn;
+
+}
+
+/* minigame for judith trap, returns TRUE if you win, FALSE otherwise --Amy
+ * here you are battling the high heels that you're trying to wear; if you lose, you're not allowed to wear them */
+int
+judithminigame()
+{
+	u.judithgame = TRUE;
+
+#define HEELTYPE_WEDGE 1
+#define HEELTYPE_BLOCK 2
+#define HEELTYPE_CONE 3
+#define HEELTYPE_STILETTO 4
+#define HEELTYPE_COLUMNAR 5
+
+	int minigameturns = 0;
+	boolean yourturn = FALSE;
+	int heelsstate = 0;
+	int heelshealth = 100;
+	int heelsstarthealth = 100;
+	int heelsmorale = 100;
+	int heelsstartmorale = 100;
+	int heelsdefiled = 0;
+	boolean heelsnutkickallowed = FALSE;
+	int heelsnutkick = 0;
+	boolean heelsfirstturn = FALSE;
+	boolean youhavewon = 0;
+
+	boolean opentoed = FALSE;
+
+	int typeofheels = 0;
+	if (maybecolumnarheels()) {
+		typeofheels = HEELTYPE_COLUMNAR;
+		if (maybecolumnarheels() == 2) opentoed = TRUE;
+	}
+	else if (maybestilettoheels()) {
+		typeofheels = HEELTYPE_STILETTO;
+		if (maybestilettoheels() == 2) opentoed = TRUE;
+	}
+	else if (maybeconeheels()) {
+		typeofheels = HEELTYPE_CONE;
+		if (maybeconeheels() == 2) opentoed = TRUE;
+	}
+	else if (maybeblockheels()) {
+		typeofheels = HEELTYPE_BLOCK;
+		if (maybeblockheels() == 2) opentoed = TRUE;
+	}
+	else if (maybewedgeheels()) {
+		typeofheels = HEELTYPE_WEDGE;
+		if (maybewedgeheels() == 2) opentoed = TRUE;
+	}
+
+	if (!typeofheels) {
+		youhavewon = TRUE;
+		pline("It turns out that this particular pair of high heels doesn't actually want to fight you. Instead, they just allow you to wear them.");
+		u.judithgame = FALSE;
+		return TRUE;
+	}
+
+	switch (typeofheels) {
+		case HEELTYPE_COLUMNAR:
+			heelshealth = 200 + rnd(50);
+			heelsmorale = 100 + rnd(50);
+			break;
+		case HEELTYPE_STILETTO:
+			heelshealth = 100 + rnd(200);
+			heelsmorale = 150;
+			break;
+		case HEELTYPE_CONE:
+			heelshealth = 100 + rnd(100);
+			heelsmorale = 500;
+			break;
+		case HEELTYPE_BLOCK:
+			heelshealth = 100;
+			heelsmorale = 100;
+			break;
+		case HEELTYPE_WEDGE:
+			heelshealth = 100;
+			heelsmorale = 100;
+			break;
+	}
+
+	heelsstarthealth = heelshealth;
+	heelsstartmorale = heelsmorale;
+
+	int yourdamagedeal;
+	int yourstrength;
+	if (ACURR(A_STR) <= 18) yourstrength = 18;
+	else if (ACURR(A_STR) <= STR19(19)) yourstrength = 19;
+	else if (ACURR(A_STR) <= STR19(20)) yourstrength = 20;
+	else if (ACURR(A_STR) <= STR19(21)) yourstrength = 21;
+	else if (ACURR(A_STR) <= STR19(22)) yourstrength = 22;
+	else if (ACURR(A_STR) <= STR19(23)) yourstrength = 23;
+	else if (ACURR(A_STR) <= STR19(24)) yourstrength = 24;
+	else yourstrength = 25;
+
+#define HEELSCRATCHING	1
+#define HEELSHINKICK	2
+#define HEELTOESTOMP	3
+#define HEELKICKINNUTS	4
+#define HEELIDLE	5
+#define HEELDEFILED 6
+
+	pline("You have to defeat the high heels in order to be allowed to wear them. For that, you and the pair of heels will take turns alternately. Good luck!");
+
+	if (!flags.female) {
+		if (yn("Do you want to allow the pair of high heels to kick you in the nuts too?") == 'y') {
+			heelsnutkickallowed = TRUE;
+			pline("The heels are allowed to target your nuts in battle.");
+		} else {
+			pline("The heels are not allowed to target your nuts in battle.");
+		}
+	}
+
+newturnjudith:
+	if (!yourturn) { /* it's the heels' turn */
+
+		if (heelsdefiled) {
+			heelsstate = HEELDEFILED;
+			pline("The sexy high heels have been defiled and aren't acting anymore.");
+			yourturn = TRUE;
+			goto newturnjudith;
+		}
+
+		if (heelsmorale < 1) {
+			youhavewon = TRUE;
+			pline("Well done! The high heels decide that you've earned your right to wear them!");
+			u.judithgame = FALSE;
+			return TRUE;
+		}
+
+		if (heelsstate == 0 || !rn2(5)) {
+			heelsstate = rnd(4);
+			if (!heelsnutkickallowed) heelsstate = rnd(3);
+		}
+
+		if (!rn2(5)) { /* every type of heel has a "preferred" type of attack */
+			switch (typeofheels) {
+				case HEELTYPE_STILETTO:
+					heelsstate = HEELTOESTOMP;
+					break;
+				case HEELTYPE_CONE:
+					heelsstate = HEELSCRATCHING;
+					break;
+				case HEELTYPE_BLOCK:
+					if (heelsnutkickallowed) heelsstate = HEELKICKINNUTS;
+					break;
+				case HEELTYPE_WEDGE:
+					heelsstate = HEELSHINKICK;
+					break;
+
+			}
+		}
+
+		if (heelsstate == HEELKICKINNUTS && flags.female) { /* shouldn't happen, but just making sure */
+			heelsstate = rnd(3); /* females don't have nuts (DUH) */
+		}
+
+		/* first turn can't be kick in the nuts because the heels aren't that unfair :-) */
+		if (!heelsfirstturn && heelsstate == HEELKICKINNUTS) heelsstate = rnd(3);
+
+		/* if the heels' morale status is below 100, they may randomly decide to not attack */
+		if (heelsmorale < (typeofheels == HEELTYPE_BLOCK ? 70 : 100)) {
+			if (typeofheels == HEELTYPE_CONE) {
+				if (rnd(300) < heelsmorale) heelsstate = HEELIDLE;
+			} else if (typeofheels == HEELTYPE_STILETTO) {
+				if (rnd(125) < heelsmorale) heelsstate = HEELIDLE;
+			} else if (typeofheels == HEELTYPE_BLOCK) { /* they like to attack at least a couple of times before they let you off the hook */
+				if (rnd(70) < heelsmorale) heelsstate = HEELIDLE;
+			} else {
+				if (rnd(100) < heelsmorale) heelsstate = HEELIDLE;
+			}
+		}
+
+		/* process the heels' attack, which has different specific effects depending on the type of heels */
+		switch (heelsstate) {
+
+			case HEELSCRATCHING:
+
+				switch (typeofheels) {
+					case HEELTYPE_CONE:
+
+						pline("The sexy cone heels scratch up and down your legs with their heels!");
+
+						if (u.legscratching <= 5)
+					    	    pline("It stings a little.");
+						else if (u.legscratching <= 10)
+					    	    pline("It hurts quite a bit as some of your %s is scraped off!", body_part(BODY_SKIN));
+						else if (u.legscratching <= 20)
+						    pline("Blood drips from your %s as the heel scratches over your open wounds!", body_part(LEG));
+						else if (u.legscratching <= 40)
+						    pline("You can feel the heel scratching on your shin bone! It hurts and bleeds a lot!");
+						else
+						    pline("You watch in shock as your blood is squirting everywhere, all the while feeling the razor-sharp high heel mercilessly opening your %ss!", body_part(LEG));
+						losehp(u.legscratching, "cone heel scratches", KILLED_BY);
+						u.legscratching++;
+
+						break;
+					case HEELTYPE_BLOCK:
+
+						pline("The fleecy block heel scratches over your leg, drawing blood!");
+						losehp(rnd(5), "block heel scratches", KILLED_BY);
+						playerbleed(rnd(5));
+
+						break;
+					case HEELTYPE_WEDGE:
+
+						pline("The massive wedge heel scratches over your leg!");
+						losehp(rnd(2), "wedge heel scratches", KILLED_BY);
+
+						break;
+					case HEELTYPE_STILETTO:
+
+						pline("The razor-sharp stiletto heel scratches over your leg!");
+						losehp(rn1(8,8), "stiletto heel scratches", KILLED_BY);
+						if (!rn2(3)) {
+							Your("blood is squirting everywhere!");
+							playerbleed(rn1(8,8));
+						}
+
+						break;
+					case HEELTYPE_COLUMNAR:
+
+						pline("The massive columnar heel scratches over your leg!");
+						losehp(rnd(3), "columnar heel scratches", KILLED_BY);
+
+						break;
+				}
+
+
+				break;
+			case HEELSHINKICK:
+
+				switch (typeofheels) {
+					case HEELTYPE_CONE:
+						pline("Klock! The heel slams on your shins, producing a beautiful sound.");
+						losehp(rn1(10, 5), "being kicked in the shins by a massive cone heel", KILLED_BY);
+						break;
+					case HEELTYPE_BLOCK:
+						pline("The wonderful block heel slams against your shin bone!");
+						losehp(rn1(3, 3), "being kicked in the shins by a massive block heel", KILLED_BY);
+						break;
+					case HEELTYPE_WEDGE:
+						pline("The lovely wedge heel painfully slams against your shin bone!");
+						losehp(rn1(7, 7), "being kicked in the shins by a massive wedge heel", KILLED_BY);
+						break;
+					case HEELTYPE_STILETTO:
+						pline("The stiletto heel slams against your shins!");
+						losehp(rn1(2, 2), "being kicked in the shins by a stiletto heel", KILLED_BY);
+						break;
+					case HEELTYPE_COLUMNAR:
+						pline("The beautiful columnar heel lands a painful kick in your shins!");
+						losehp(rn1(5, 5), "being kicked in the shins by a massive columnar heel", KILLED_BY);
+						break;
+				}
+
+				break;
+			case HEELKICKINNUTS:
+
+				switch (typeofheels) {
+					case HEELTYPE_CONE:
+
+						if (rnd(30) > ACURR(A_CHA)) {
+
+							pline("The sexy cone heels fully kick you in the nuts, and you moan in agony as your testicles are painfully squeezed!");
+
+							losehp(rnd(30),"being kicked in the nuts by a sexy cone heel",KILLED_BY);
+
+						} else {
+
+							pline("The sexy cone heels kick you in the nuts, and you moan in lust due to the intense pain!");
+
+							losehp(rnd(2),"being kicked in the nuts by a sexy cone heel",KILLED_BY);
+						}
+						heelsnutkick += 3;
+
+						break;
+					case HEELTYPE_BLOCK:
+
+						if (rn2(3)) {
+							pline("The fleecy block heels kick you in the nuts, and you feel great joy as your testicles are lovingly squeezed!");
+
+							losehp(rnd(5),"being kicked in the nuts by a fleecy block heel",KILLED_BY);
+						} else {
+							pline("The fleecy block heels fully kick you in the nuts, and you're gasping for air while your testicles are squashed flat!");
+
+							losehp(rnd(20),"being kicked in the nuts by a fleecy block heel",KILLED_BY);
+						}
+
+						heelsnutkick += 2;
+
+						break;
+					case HEELTYPE_WEDGE:
+
+						pline("The lovely wedge heels painfully stomp your delicate nuts, causing you to writhe in agony!");
+
+						losehp(rnd(15),"being kicked in the nuts by a lovely wedge heel",KILLED_BY);
+
+						heelsnutkick += 1;
+
+						break;
+					case HEELTYPE_STILETTO:
+
+						if (!rn2(50)) {
+							pline("The pointy stiletto heel impales your nuts so painfully that they're forced out of their original position!");
+							(void) adjattrib(A_STR, -1, FALSE, TRUE);
+							(void) adjattrib(A_DEX, -1, FALSE, TRUE);
+							(void) adjattrib(A_CON, -1, FALSE, TRUE);
+
+							heelsnutkick += 10;
+
+							losehp(rn1(30,30),"being kicked in the nuts by a pointy stiletto heel",KILLED_BY);
+						} else {
+							pline("The stiletto heel kicks you in the nuts, and you wince from the intense pain!");
+
+							losehp(rnd(10),"being kicked in the nuts by a pointy stiletto heel",KILLED_BY);
+
+							heelsnutkick += 1;
+						}
+
+						break;
+					case HEELTYPE_COLUMNAR:
+
+						if (rn2(2)) {
+							pline("The beautiful columnar heel squeezes your delicate nuts, and you love the pain that shoots through your body!");
+
+							losehp(1,"being kicked in the nuts by a beautiful columnar heel",KILLED_BY);
+						} else {
+							pline("The beautiful columnar heel fully kicks you in the delicate nuts, causing unimaginably great pain!");
+
+							losehp(rnd(18),"being kicked in the nuts by a beautiful columnar heel",KILLED_BY);
+						}
+
+						heelsnutkick += 2;
+
+						break;
+				}
+
+				break;
+			case HEELTOESTOMP:
+
+				switch (typeofheels) {
+					case HEELTYPE_CONE:
+
+						pline("The sexy cone heels stomp your toes with their lovely heels!");
+						losehp(rnd(5), "having their toes stomped by sexy cone heels", KILLED_BY);
+
+						if (!rn2(10) && (rnd(30) > ACURR(A_CON)) ) {
+							pline("Your defenseless %s was crushed underneath the very sexy heel!", body_part(TOE));
+							if (u.uhpmax < 2) {
+								u.youaredead = 1;
+								pline("You break down unconscious, and the heels proceed to stomp you to death even though they look so lovely.");
+								killer = "being crushed underneath lovely cone heels";
+								killer_format = KILLED_BY;
+								done(DIED);
+								u.youaredead = 0;
+								u.judithgame = FALSE;
+								return FALSE;
+							} else {
+								u.uhpmax--;
+								if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+							}
+						}
+
+						break;
+					case HEELTYPE_BLOCK:
+
+						pline("The fleecy block heels stomp your toes with their massive heels!");
+						losehp(rnd(3), "having their toes stomped by massive block heels", KILLED_BY);
+
+						break;
+					case HEELTYPE_WEDGE:
+
+						pline("The massive wedge heels stomp your unprotected toes!");
+						losehp(rnd(2), "having their toes stomped by massive wedge heels", KILLED_BY);
+
+						break;
+					case HEELTYPE_STILETTO:
+
+						pline("The tender stiletto heels stomp your toes with their pointy heels!");
+						losehp(rnd(10), "having their toes impaled by pointy stiletto heels", KILLED_BY);
+
+						break;
+					case HEELTYPE_COLUMNAR:
+
+						pline("The beautiful columnar heels stomp your toes with their massive heels!");
+						losehp(rnd(4), "having their toes stomped by massive columnar heels", KILLED_BY);
+
+						break;
+				}
+
+				break;
+			case HEELIDLE:
+
+				pline("The sexy high heels just stand there and look pretty.");
+				break;
+
+			default:
+				impossible("unknown action for judith high heels minigame %d", heelsstate);
+				heelsstate = HEELIDLE;
+				break;
+
+		}
+		yourturn = TRUE;
+		heelsfirstturn = TRUE;
+
+	} else { /* it's your turn */
+
+		winid tmpwin;
+		anything any;
+		menu_item *selected;
+		int n;
+
+		any.a_void = 0;         /* zero out all bits */
+		tmpwin = create_nhwindow(NHW_MENU);
+		start_menu(tmpwin);
+		if (!heelsdefiled) {
+			any.a_int = 1;
+			add_menu(tmpwin, NO_GLYPH, &any , 'g', 0, ATR_NONE, "Talk things over", MENU_UNSELECTED);
+			any.a_int = 2;
+			add_menu(tmpwin, NO_GLYPH, &any , 'p', 0, ATR_NONE, "Punch", MENU_UNSELECTED);
+			any.a_int = 3;
+			add_menu(tmpwin, NO_GLYPH, &any , 't', 0, ATR_NONE, "Try to snatch them", MENU_UNSELECTED);
+			any.a_int = 4;
+			add_menu(tmpwin, NO_GLYPH, &any , 'r', 0, ATR_NONE, "Run in circles", MENU_UNSELECTED);
+		}
+		any.a_int = 5;
+		add_menu(tmpwin, NO_GLYPH, &any , 'd', 0, ATR_NONE, "Defile", MENU_UNSELECTED);
+		if (!heelsdefiled) {
+			any.a_int = 6;
+			add_menu(tmpwin, NO_GLYPH, &any , 'u', 0, ATR_NONE, "Give up", MENU_UNSELECTED);
+		}
+
+		end_menu(tmpwin, "What do you do?");
+		n = select_menu(tmpwin, PICK_ONE, &selected);
+		destroy_nhwindow(tmpwin);
+
+		if (n > 0) {
+			switch (selected[0].item.a_int) {
+				case 1: /* "talk things over" */
+
+					/* if you manage to reduce their morale, the heels' health goes up because they're recovering from battle
+					 * the heels can talk, and will react according to whether your attempt is successful */
+
+					switch (typeofheels) {
+						case HEELTYPE_STILETTO:
+							if (rnd(ACURR(A_CHA)) > rnd(12)) {
+								yourdamagedeal = rnd(ACURR(A_CHA));
+								if ((yourdamagedeal > 1) && rn2(5)) yourdamagedeal /= 2;
+
+								heelsmorale -= yourdamagedeal;
+								if (yourdamagedeal < 3) pline("It's not very effective...");
+								else if (yourdamagedeal < 9) pline("It seems to be reasonably effective.");
+								else pline("It's super effective!");
+
+								if (heelsmorale < 1) {
+									youhavewon = TRUE;
+									verbalize("Amazing! You're the best! Well done, we're all yours now!");
+									u.judithgame = FALSE;
+									return TRUE;
+								} else if (heelsmorale < 20) {
+									verbalize("What, why are you so good at this?! A few more times and you'll win! Incredible!");
+								} else if (heelsmorale < 50) {
+									verbalize("You do make progress, and we commend your efforts, but you'll need much more if you want us to surrender.");
+								} else if (heelsmorale < 100) {
+									verbalize("So you want to talk, not fight? Well you'll be at it for a while, that much we can guarantee!");
+								} else {
+									verbalize("Trying to make us surrender, eh? You're still light years from reaching that point!");
+								}
+
+								heelshealth += 5;
+								if (heelshealth > heelsstarthealth) heelshealth = heelsstarthealth;
+
+							} else {
+								verbalize("It's not going to be that easy for you!");
+							}
+							break;
+						case HEELTYPE_CONE:
+							if (rnd(ACURR(A_CHA)) > rnd(20)) {
+								yourdamagedeal = rnd(ACURR(A_CHA));
+								if ((yourdamagedeal > 1) && rn2(3)) yourdamagedeal /= 2;
+
+								heelsmorale -= yourdamagedeal;
+								if (yourdamagedeal < 3) pline("It's not very effective...");
+								else if (yourdamagedeal < 9) pline("It seems to be reasonably effective.");
+								else pline("It's super effective!");
+
+								if (heelsmorale < 1) {
+									youhavewon = TRUE;
+									verbalize("At last, you managed to break our resistance. Congratulations, you may wear us now.");
+									u.judithgame = FALSE;
+									return TRUE;
+								} else {
+									verbalize("We will continue fighting you.");
+									if (heelsmorale < 50) pline("You do get the feeling that the cone heels are less eager to attack you now, though.");
+								}
+
+								heelshealth += 5;
+								if (heelshealth > heelsstarthealth) heelshealth = heelsstarthealth;
+
+							} else {
+								verbalize("Not a chance.");
+							}
+							break;
+						case HEELTYPE_BLOCK:
+							if (rnd(ACURR(A_CHA)) > rnd(10)) {
+								yourdamagedeal = rnd(ACURR(A_CHA));
+								if (yourdamagedeal > 1) yourdamagedeal /= 2;
+
+								heelsmorale -= yourdamagedeal;
+								if (yourdamagedeal < 3) pline("It's not very effective...");
+								else if (yourdamagedeal < 9) pline("It seems to be reasonably effective.");
+								else pline("It's super effective!");
+
+								if (heelsmorale < 1) {
+									youhavewon = TRUE;
+									verbalize("Alright, we like you, %s. You're very nice. We allow you to wear us now. Well done!", playeraliasname);
+									u.judithgame = FALSE;
+									return TRUE;
+								} else if (heelsmorale < 20) {
+									verbalize("You're very good, %s. We'll allow you to wear us soon.", playeraliasname);
+								} else if (heelsmorale < 70) {
+									verbalize("%s, we're starting to like you, however we'd like to enjoy this battle for a little while longer.", playeraliasname);
+								} else {
+									verbalize("We respect your efforts, but for now, we want to deal some damage to you. Sorry.");
+								}
+
+								heelshealth += 5;
+								if (heelshealth > heelsstarthealth) heelshealth = heelsstarthealth;
+
+							} else {
+								verbalize("Sorry, but we'd like to cause at least some damage to you.");
+							}
+							break;
+						case HEELTYPE_WEDGE:
+							if (rnd(ACURR(A_CHA)) > rnd(5)) {
+								yourdamagedeal = rnd(ACURR(A_CHA));
+								if ((yourdamagedeal > 1) && rn2(2)) {
+									yourdamagedeal /= 2;
+								}
+
+								heelsmorale -= yourdamagedeal;
+								if (yourdamagedeal < 3) pline("It's not very effective...");
+								else if (yourdamagedeal < 9) pline("It seems to be reasonably effective.");
+								else pline("It's super effective!");
+
+								if (heelsmorale < 1) {
+									youhavewon = TRUE;
+									verbalize("Hahahahahahahahahahaha :-) Okay, you win. Much fun wearing us!");
+									u.judithgame = FALSE;
+									return TRUE;
+								} else if (heelsmorale < 30) {
+									verbalize("Surprising! You're really good at this!");
+								} else {
+									verbalize("That's a nice thing of you to say.");
+								}
+
+								heelshealth += 5;
+								if (heelshealth > heelsstarthealth) heelshealth = heelsstarthealth;
+
+							} else {
+								verbalize("Ha-ha! We're not swayed that easily!");
+							}
+							break;
+						case HEELTYPE_COLUMNAR:
+							if (rnd(ACURR(A_CHA)) > rnd(15)) {
+								yourdamagedeal = rnd(ACURR(A_CHA));
+								if (yourdamagedeal > 1) {
+									yourdamagedeal /= rn1(2, 2);
+									if (yourdamagedeal < 1) yourdamagedeal = 1;
+								}
+
+								heelsmorale -= yourdamagedeal;
+								if (yourdamagedeal < 3) pline("It's not very effective...");
+								else if (yourdamagedeal < 9) pline("It seems to be reasonably effective.");
+								else pline("It's super effective!");
+
+								if (heelsmorale < 1) {
+									youhavewon = TRUE;
+									verbalize("Amazing! You've persuaded us to let you wear us! Have fun!");
+									u.judithgame = FALSE;
+									return TRUE;
+								} else if (heelsmorale < 20) {
+									verbalize("You're very good at this. You may persuade us to let you win soon.");
+								} else {
+									verbalize("Good effort, but you need more persuasion if you want to wear us.");
+								}
+
+								heelshealth += 5;
+								if (heelshealth > heelsstarthealth) heelshealth = heelsstarthealth;
+
+							} else {
+								verbalize("Nice try, but we'll keep attacking you.");
+							}
+							break;
+					}
+
+					break;
+				case 2: /* "punch" */
+
+					/* you tried to attack, so the heels are no longer idle */
+					if (heelsstate == HEELIDLE) heelsstate = rnd(4);
+
+					/* if you manage to deal damage, the heels' morale goes up because it makes them less willing to just surrender without a fight */
+
+					switch (typeofheels) {
+						case HEELTYPE_STILETTO:
+							if (rnd(yourstrength) > 8) {
+								yourdamagedeal = rnd(yourstrength);
+								heelshealth -= yourdamagedeal;
+								if (yourdamagedeal < 6) pline("It's not very effective...");
+								else if (yourdamagedeal < 16) pline("You landed a regular hit.");
+								else pline("It's super effective!");
+
+								if (heelshealth < 0) heelshealth = 0;
+								if (heelshealth < 20) pline("The tender stiletto heels are weak! Go get 'em!");
+
+								heelsmorale += rn1(5,5);
+								if (heelsmorale > heelsstartmorale) heelsmorale = heelsstartmorale;
+
+							} else {
+								pline("The stiletto heel does not seem to budge at all...");
+							}
+
+							break;
+						case HEELTYPE_CONE:
+
+							if (rnd(yourstrength) > 10) {
+								yourdamagedeal = rnd(yourstrength);
+								heelshealth -= yourdamagedeal;
+								if (yourdamagedeal < 6) pline("It's not very effective...");
+								else if (yourdamagedeal < 16) pline("You landed a regular hit.");
+								else pline("It's super effective!");
+
+								if (heelshealth < 0) heelshealth = 0;
+								if (heelshealth < 20) pline("The sexy cone heels are weak! Go get 'em!");
+
+								heelsmorale += rn1(10,10);
+								if (heelsmorale > heelsstartmorale) heelsmorale = heelsstartmorale;
+
+							} else {
+								pline("The cone heel does not seem to budge at all...");
+							}
+							break;
+						case HEELTYPE_BLOCK:
+							yourdamagedeal = rnd(yourstrength);
+
+							heelshealth -= yourdamagedeal;
+							if (yourdamagedeal < 6) pline("It's not very effective...");
+							else if (yourdamagedeal < 16) pline("You landed a regular hit.");
+							else pline("It's super effective!");
+
+							if (heelshealth < 0) heelshealth = 0;
+							if (heelshealth < 1) pline("The fleecy block heels are almost defeated! Snatch 'em, now!");
+							else if (heelshealth < 20) pline("The fleecy block heels are weak! Go get 'em!");
+
+							heelsmorale += 5;
+							if (heelsmorale > heelsstartmorale) heelsmorale = heelsstartmorale;
+
+							break;
+						case HEELTYPE_WEDGE:
+							yourdamagedeal = rnd(yourstrength);
+							if (!rn2(5)) yourdamagedeal = yourstrength;
+
+							heelshealth -= yourdamagedeal;
+							if (yourdamagedeal < 6) pline("It's not very effective...");
+							else if (yourdamagedeal < 16) pline("You landed a regular hit.");
+							else pline("It's super effective!");
+
+							if (heelshealth < 0) heelshealth = 0;
+							if (heelshealth < 1) pline("The massive wedge heels are almost defeated! Snatch 'em, now!");
+							else if (heelshealth < 20) pline("The massive wedge heels are weak! Go get 'em!");
+
+							heelsmorale += 3;
+							if (heelsmorale > heelsstartmorale) heelsmorale = heelsstartmorale;
+
+							break;
+						case HEELTYPE_COLUMNAR:
+
+							yourdamagedeal = rnd(yourstrength);
+							if (yourdamagedeal > 1) {
+								if (rnd(ACURR(A_DEX)) < 15) yourdamagedeal /= 2;
+							}
+
+							heelshealth -= yourdamagedeal;
+							if (yourdamagedeal < 6) pline("It's not very effective...");
+							else if (yourdamagedeal < 16) pline("You landed a regular hit.");
+							else pline("It's super effective!");
+
+							if (heelshealth < 0) heelshealth = 0;
+							if (heelshealth < 1) pline("The beautiful columnar heels are almost defeated! Snatch 'em, now!");
+							else if (heelshealth < 20) pline("The beautiful columnar heels are weak! Go get 'em!");
+
+							heelsmorale += 5;
+							if (heelsmorale > heelsstartmorale) heelsmorale = heelsstartmorale;
+
+							break;
+					}
+
+					break;
+				case 3: /* "try to snatch them" */
+
+					if (heelshealth <= 0) {
+						youhavewon = TRUE;
+						pline("You snatch the pair of high heels, slip them on, and are declared the winner! Well done!");
+						u.judithgame = FALSE;
+						return TRUE;
+					}
+
+					switch (typeofheels) {
+						case HEELTYPE_STILETTO:
+
+							if (rnd(yourstrength) > rn1(10,10) && rnd(yourstrength) > rn1(10,10) && rnd(yourstrength) > rn1(10,10) && rnd(yourstrength) > rn1(10,10) && rnd(yourstrength) > rn1(10,10) ) {
+								youhavewon = TRUE;
+								pline("You completely surprised the tender stiletto heels and managed to slip your %s into them! Well done, you win!", makeplural(body_part(FOOT)));
+								u.judithgame = FALSE;
+								return TRUE;
+							} else if (rnd(yourstrength) > heelshealth) { 
+								youhavewon = TRUE;
+								pline("Your %s quickly snatch the tender stiletto heels and you manage to slip into them before they can fight back.", makeplural(body_part(HAND)));
+								u.judithgame = FALSE;
+								return TRUE;
+							} else {
+								pline("The tender stiletto heels quickly evade your grasp and painfully stomp on your %s with their pointy heel! YEEEEEEOWWWW!", body_part(FINGER));
+								losehp(rn1(20,20),"having their fingers crushed underneath pointy stiletto heels",KILLED_BY);
+								if (!rn2(4)) {
+									if (u.uhpmax < 6) {
+										u.youaredead = 1;
+										pline("You are completely incapacitated, and the tender stiletto heels proceed to slowly and very painfully take your remaining body apart with their very sharp-edged heels.");
+										killer = "having their fingers stomped by tender stiletto heels";
+										killer_format = KILLED_BY;
+										done(DIED);
+										u.youaredead = 0;
+										u.judithgame = FALSE;
+										return FALSE;
+
+									} else {
+										u.uhpmax -= 5;
+										if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+										pline("Your %s feels like it's going to explode from pain... ouch...", body_part(FINGER));
+									}
+								}
+							}
+							break;
+						case HEELTYPE_CONE:
+
+							if (rnd(yourstrength) > rn1(10,10) && rnd(yourstrength) > rn1(10,10) && rnd(yourstrength) > rn1(10,10) && rnd(yourstrength) > rn1(10,10) && rnd(yourstrength) > rn1(10,10) && rnd(yourstrength) > rn1(10,10) && rnd(yourstrength) > rn1(10,10) && rnd(yourstrength) > rn1(10,10) && rnd(yourstrength) > rn1(10,10) && rnd(yourstrength) > rn1(10,10)) {
+								youhavewon = TRUE;
+								pline("You completely surprised the sexy cone heels and managed to slip your %s into them! Well done, you win!", makeplural(body_part(FOOT)));
+								u.judithgame = FALSE;
+								return TRUE;
+							} else if (rnd(yourstrength) > heelshealth) { 
+								youhavewon = TRUE;
+								pline("Your %s quickly snatch the lovely cone heels and you manage to slip into them before they can fight back.", makeplural(body_part(HAND)));
+								u.judithgame = FALSE;
+								return TRUE;
+							} else {
+								pline("The sexy cone heels quickly evade your grasp and stomp on your %s with their lovely high heel.", body_part(FINGER));
+								losehp(rnd(5),"having their fingers crushed underneath cone-heeled lady shoes",KILLED_BY);
+								if (rnd(30) > ACURR(A_CON) ) {
+									if (u.uhpmax < 2) {
+										u.youaredead = 1;
+										pline("The pain is unbearable... apparently the incredibly cute heel broke your %s. While you're groaning in pain, the high heel proceeds to successively crush all of your remaining body parts.", body_part(BONES));
+										killer = "having their fingers stomped by sexy cone heels";
+										killer_format = KILLED_BY;
+										done(DIED);
+										u.youaredead = 0;
+										u.judithgame = FALSE;
+										return FALSE;
+
+									} else {
+										u.uhpmax--;
+										if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+										pline("One of your %s feels strangely soft, you hope it's not broken...", body_part(BONES));
+									}
+								}
+							}
+
+							break;
+						case HEELTYPE_BLOCK:
+							if (rnd(yourstrength) > rnd(400)) {
+								youhavewon = TRUE;
+								pline("You surprise the fleecy block heels and quickly put them on! Well done, you win!");
+								u.judithgame = FALSE;
+								return TRUE;
+							} else if (!rn2(3) && (heelshealth < 21) ) {
+								youhavewon = TRUE;
+								pline("The fleecy block heels are tired from this long battle, and fail to dodge. You quickly snatch them, put them on, and win. Congratulations!");
+								u.judithgame = FALSE;
+								return TRUE;
+							} else if (!rn2(10)) {
+								pline("The fleecy block heel lovingly steps on your %s, causing incredibly beautiful pain.", body_part(HAND));
+								losehp(rnd(3), "having their fingers crushed underneath fleecy block heels", KILLED_BY);
+							} else {
+								pline("The fleecy block heels quickly evade your grasp.");
+							}
+							break;
+						case HEELTYPE_WEDGE:
+							if ( (rnd(yourstrength) > rnd(200)) && (rnd(ACURR(A_DEX)) > rnd(100)) ) {
+								youhavewon = TRUE;
+								pline("You suddenly slip your %s into the wedge heels, and don't let go until you've forced them onto your %s. Well done, you win!", makeplural(body_part(HAND)), makeplural(body_part(FOOT)) );
+								u.judithgame = FALSE;
+								return TRUE;
+							} else if (rnd(ACURR(A_DEX)) > heelshealth) {
+								youhavewon = TRUE;
+								pline("The wedge heels are too slow to dodge your nimble %s, so you manage to snatch them and put them on. Congratulations, you win!", makeplural(body_part(FINGER)) );
+								u.judithgame = FALSE;
+								return TRUE;
+							} else {
+								pline("The massive wedge heels push your %s away.", body_part(HAND));
+							}
+
+							break;
+						case HEELTYPE_COLUMNAR:
+							if (rnd(yourstrength) > rnd(1000)) {
+								youhavewon = TRUE;
+								pline("You surprise the beautiful columnar heels and quickly put them on! Well done, you win!");
+								u.judithgame = FALSE;
+								return TRUE;
+							} else if (!rn2(3) && (heelshealth < rnd(21)) ) {
+								youhavewon = TRUE;
+								pline("The beautiful columnar heels are tired from this long battle, and fail to dodge. You quickly snatch them, put them on, and win. Congratulations!");
+								u.judithgame = FALSE;
+								return TRUE;
+							} else if (!rn2(4)) {
+								pline("The massive columnar heel steps on your %s, and you scream in pain!", body_part(HAND));
+								losehp(rn1(5,5), "having their fingers crushed underneath massive columnar heels", KILLED_BY);
+							} else {
+								pline("The beautiful columnar heels quickly evade your grasp.");
+							}
+							break;
+					} /* end switch statement */
+					break;
+
+				case 4: /* "run in circles" */
+
+					switch (typeofheels) {
+						case HEELTYPE_STILETTO:
+
+							if (rnd(30) < ACURR(A_DEX)) {
+								pline("Your movements made the tender stiletto heels quite dizzy.");
+								heelsstate = HEELIDLE;
+							} else if (!rn2(2)) {
+								pline("Your movements made the tender stiletto heels switch to a different type of attack.");
+								heelsstate = rnd(4);
+							} else {
+								pline("Your fancy footwork didn't fool the tender stiletto heels.");
+							}
+
+							break;
+						case HEELTYPE_CONE:
+
+							if ( (rnd(30) < ACURR(A_DEX)) && (rnd(30) < ACURR(A_DEX)) ) {
+								pline("It seems that your constant movement makes the sexy cone heels slightly dizzy.");
+
+								if (rn2(3)) heelsstate = HEELIDLE;
+								else heelsstate = rnd(4);
+							} else {
+								pline("Your fancy footwork didn't fool the lovely cone heels.");
+								heelsstate = rnd(4);
+							}
+							break;
+						case HEELTYPE_BLOCK:
+
+							if (!rn2(3)) {
+								pline("Your constant movement made the fleecy block heels quite dizzy.");
+								heelsstate = HEELIDLE;
+							} else {
+								pline("You didn't manage to make the fleecy block heels dizzy, but they're changing their attack patterns.");
+								heelsstate = rnd(4);
+							}
+
+							break;
+						case HEELTYPE_WEDGE:
+							if (!rn2(4)) {
+								heelsmorale -= 1;
+								if (heelsmorale < 0) heelsmorale = 1;
+								pline("You feel that the massive wedge heels are getting slightly exhausted.");
+							} else {
+								pline("You feel that you tripped up the massive wedge heels, forcing them to switch to a different type of attack.");
+							}
+
+							heelsstate = rnd(4);
+							break;
+						case HEELTYPE_COLUMNAR:
+
+							if (!rn2(10)) {
+								pline("Your constant movement made the beautiful columnar heels quite dizzy.");
+								heelsstate = HEELIDLE;
+							} else if (rn2(3)) {
+								pline("Your movements slightly confused the beautiful columnar heels, but not enough to make them stop attacking.");
+								heelsstate = rnd(4);
+							} else {
+								pline("Your movements don't seem to affect the beautiful columnar heels at all.");
+							}
+
+							break;
+					}
+
+					break;
+				case 5: /* "defile" */
+					if (heelsnutkick) {
+						pline("It's impossible, you are in too much pain to do that.");
+					} else {
+
+						if (opentoed) { /* uh-oh, BAD idea! */
+							if (yn("Do you really want to defile the open-toed heels?") == 'y') {
+								pline(flags.female ? "With your vagina, you start peeing into the sexy high heels." : "You put your penis over the sexy high heels and start urinating into them.");
+								pline(flags.female ? "But since they're open-toed, your pee just flows out at the front and doesn't harm the shoes all that much." : "But since they're open-toed, your urine just rolls off harmlessly.");
+
+								/* it is harmful to even try, you monster */
+								heelsmorale = heelsstartmorale;
+								pline("Agitated, the high heels mercilessly clobber you with their massive heels.");
+								losehp(rn1(15,15), "being clobbered by angry high heels", KILLED_BY);
+							}
+
+						} else {
+
+							if (yn("Do you really want to defile the sexy high heels?") == 'y') {
+
+								youhavewon = TRUE;
+
+								if (!rn2(2)) {
+									if (uarmf && uarmf->oeroded < MAX_ERODE) uarmf->oeroded++;
+									else if (uarmf && uarmf->spe > -20) uarmf->spe--;
+								} else {
+									if (uarmf && uarmf->oeroded2 < MAX_ERODE) uarmf->oeroded2++;
+									else if (uarmf && uarmf->spe > -20) uarmf->spe--;
+								}
+
+								morehungry(10);
+
+								if (!heelsdefiled) {
+									pline(flags.female ? "With your vagina, you start peeing into the sexy high heels." : "You put your penis over the sexy high heels and start urinating into them.");
+									heelsdefiled = 1;
+
+									increasesincounter(1);
+									u.alignlim--;
+								      adjalign(-1000);
+
+								} else {
+									pline(flags.female ? "You continue squirting your pee into the sexy high heels with your vagina." : "You continue urinating into the sexy high heels with your penis.");
+									heelsdefiled++;
+								      adjalign(-100);
+								}
+							}
+						}
+					}	
+				case 6: /* "give up" */
+					if (yn("Do you really want to give up?") == 'y') {
+						You("fire a function. Now you have a function less remaining.");
+						u.judithgame = FALSE;
+						return FALSE;
+					}
+
+					break;
+				default: /* player pressed space bar or something, and therefore doesn't do anything */
+					pline("You decide to do nothing.");
+					break;
+			}
+		}
+		yourturn = FALSE;
+		minigameturns++;
+		if (heelsnutkick > 0) heelsnutkick--; /* recover from pain after a while */
+
+	}
+	if (yourturn) goto newturnjudith;
+
+	if (heelsdefiled) {
+		if (heelsdefiled >= 20) {
+			youhavewon = TRUE;
+			pline("You monster, you irreversibly defiled the heels. They are now utterly unusable.");
+			useupall(uarmf);
+			u.judithgame = FALSE;
+			return TRUE;
+		} else {
+			if (yn("Do you stop defiling the heels?") == 'y') {
+				youhavewon = TRUE;
+				pline("Since they stopped fighting back, you're now allowed to wear the defiled high heels. You monster.");
+				u.judithgame = FALSE;
+				return TRUE;
+			} else goto newturnjudith;
+		}
+	}
+
+	goto newturnjudith;
 
 }
 

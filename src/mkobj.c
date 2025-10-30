@@ -2562,6 +2562,7 @@ boolean shopinit;
 	otmp->nemtrident = 0;
 	otmp->objwassold = (shopinit ? 1 : 0);
 	otmp->icedobject = 0;
+	otmp->judithwin = 0;
 
 	if (init && (artif == 0) && !rn2(50)) artif = 1;
 

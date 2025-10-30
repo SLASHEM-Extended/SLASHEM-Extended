@@ -86,6 +86,7 @@ struct obj {
 	Bitfield(ident_rkn,1);
 	Bitfield(icedobject,1);	/* has the corpse been in an ice box? */
 	Bitfield(stackmarked,1);	/* has the object been marked to not merge with other objects? */
+	Bitfield(judithwin,1);	/* for judith trap: did you defeat this pair of shoes? */
 
 	Bitfield(oeroded,2);	/* rusted/burnt weapon/armor */
 	Bitfield(oeroded2,2);	/* corroded/rotted weapon/armor */

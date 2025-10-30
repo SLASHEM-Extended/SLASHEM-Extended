@@ -16295,36 +16295,36 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 			case UNFAIR_STILETTOS:
 				pline("You see shreds of human skin clinging from the heels of this pair of leather boots, and their zippers are blood-smeared. But on the other hand they offer great AC and magic cancellation..."); break;
 
-			case SPECIAL_CLOAK: 
+			case SPECIAL_CLOAK:
 				pline("This cloak is special in some way. Stats: %d points of AC and a MC of %d.", objects[SPECIAL_CLOAK].a_ac, objects[SPECIAL_CLOAK].a_can ); break;
-			case WONDER_HELMET: 
+			case WONDER_HELMET:
 				pline("A helmet that usually has some kind of special effect. Stats: %d points of AC and a MC of %d.", objects[WONDER_HELMET].a_ac, objects[WONDER_HELMET].a_can ); break;
-			case ARCANE_GAUNTLETS: 
+			case ARCANE_GAUNTLETS:
 				pline("These gauntlets have mysterious properties! Stats: %d points of AC and a MC of %d.", objects[ARCANE_GAUNTLETS].a_ac, objects[ARCANE_GAUNTLETS].a_can ); break;
-			case SKY_HIGH_HEELS: 
+			case SKY_HIGH_HEELS:
 				pline("There is something special about this pair of female footwear, apart from the fact that they're very high-heeled stilettos. Stats: %d points of AC and a MC of %d.", objects[SKY_HIGH_HEELS].a_ac, objects[SKY_HIGH_HEELS].a_can ); break;
-			case PLAIN_CLOAK: 
+			case PLAIN_CLOAK:
 				pline("A rather boring cloak. Stats: %d points of AC and a MC of %d.", objects[PLAIN_CLOAK].a_ac, objects[PLAIN_CLOAK].a_can ); break;
-			case POINTED_HELMET: 
+			case POINTED_HELMET:
 				pline("This helmet is nothing special. Stats: %d points of AC and a MC of %d.", objects[POINTED_HELMET].a_ac, objects[POINTED_HELMET].a_can ); break;
-			case PLACEHOLDER_GLOVES: 
+			case PLACEHOLDER_GLOVES:
 				pline("A pair of gloves without magical properties. Stats: %d points of AC and a MC of %d.", objects[PLACEHOLDER_GLOVES].a_ac, objects[PLACEHOLDER_GLOVES].a_can ); break;
-			case PREHISTORIC_BOOTS: 
+			case PREHISTORIC_BOOTS:
 				pline("The neanderthals played soccer with these. Stats: %d points of AC and a MC of %d.", objects[PREHISTORIC_BOOTS].a_ac, objects[PREHISTORIC_BOOTS].a_can ); break;
-			case ARCHAIC_CLOAK: 
+			case ARCHAIC_CLOAK:
 				pline("It was created at a time when magical properties of armor pieces didn't yet exist. Stats: %d points of AC and a MC of %d.", objects[ARCHAIC_CLOAK].a_ac, objects[ARCHAIC_CLOAK].a_can ); break;
-			case BOG_STANDARD_HELMET: 
+			case BOG_STANDARD_HELMET:
 				pline("The name says it all. Stats: %d points of AC and a MC of %d.", objects[BOG_STANDARD_HELMET].a_ac, objects[BOG_STANDARD_HELMET].a_can ); break;
-			case PROTECTIVE_GLOVES: 
+			case PROTECTIVE_GLOVES:
 				pline("A rather unspectacular pair of gloves. Stats: %d points of AC and a MC of %d.", objects[PROTECTIVE_GLOVES].a_ac, objects[PROTECTIVE_GLOVES].a_can ); break;
-			case SYNTHETIC_SANDALS: 
+			case SYNTHETIC_SANDALS:
 				pline("Lovely female sandals that unfortunately aren't high-heeled. But they're sweet and will use the sexy flats skill! Stats: %d points of AC and a MC of %d.", objects[SYNTHETIC_SANDALS].a_ac, objects[SYNTHETIC_SANDALS].a_can ); break;
 
-			case DUMMY_CLOAK_A: 
+			case DUMMY_CLOAK_A:
 				pline("This cloak is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_CLOAK_A].oc_oprop), objects[DUMMY_CLOAK_A].a_ac, objects[DUMMY_CLOAK_A].a_can ); break;
-			case DUMMY_CLOAK_B: 
+			case DUMMY_CLOAK_B:
 				pline("This cloak is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_CLOAK_B].oc_oprop), objects[DUMMY_CLOAK_B].a_ac, objects[DUMMY_CLOAK_B].a_can ); break;
-			case DUMMY_CLOAK_C: 
+			case DUMMY_CLOAK_C:
 				pline("This cloak is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_CLOAK_C].oc_oprop), objects[DUMMY_CLOAK_C].a_ac, objects[DUMMY_CLOAK_C].a_can ); break;
 			case DUMMY_CLOAK_D: 
 				pline("This cloak is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_CLOAK_D].oc_oprop), objects[DUMMY_CLOAK_D].a_ac, objects[DUMMY_CLOAK_D].a_can ); break;

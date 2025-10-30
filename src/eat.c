@@ -4688,7 +4688,7 @@ violated_vegetarian()
 
 	if (Role_if(PM_FAILED_EXISTENCE)) badeffect();
 
-	if (uarmh && uarmh->oartifact == ART_NUTRITION_AND_DIETETICS) statdebuff();
+	if (uarmh && uarmh->oartifact == ART_NUTRITION_AND_DIETETICS) statdebuff(FALSE);
 
 	if (have_anorexia()) { /* Their metabolism isn't used to meat. --Amy */
 

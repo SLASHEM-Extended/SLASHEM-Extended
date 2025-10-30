@@ -4936,7 +4936,7 @@ dothetrap:
 				mtmp3->msleeping = 0;
 			    }
 			}
-			pline("Your ears are blasted by hellish noise!");
+			pline("Your %s are blasted by hellish noise!", body_part(EARS));
 			int dmg = rnd(16) + rnd( (monster_difficulty() * 2 / 3) + 1);
 			if (YouAreDeaf) dmg /= 2;
 			make_stunned(HStun + dmg, TRUE);
@@ -9234,7 +9234,7 @@ newbossPENT:
 				u.larissatimer = 0;
 				u.cnd_larissatrapcnt++; /* counts only if you actually obey the command to step into shit --Amy */
 				if (!larissashoes) {
-					statdrain();
+					statdrain(FALSE);
 					You("were told that you should be wearing shoes when stepping into shit, but you just didn't want to listen...");
 				} else if (PlayerInHighHeels) {
 					pline("It was fun to step into dog shit with your high heels.");
@@ -18741,7 +18741,7 @@ skillrandomizeredo:
 
 			seetrap(trap);
 			pline("CLICK! You have triggered a trap!");
-			statdrain();
+			statdrain(TRUE);
 
 		 break;
 
@@ -20508,7 +20508,7 @@ skillrandomizeredo:
 			{
 				int debuffamount = rnd(6);
 				while (debuffamount > 0) {
-					statdebuff();
+					statdebuff(TRUE);
 					debuffamount--;
 				}
 			}
@@ -20520,7 +20520,7 @@ skillrandomizeredo:
 			pline("You stepped on a trigger!");
 
 			seetrap(trap);
-			statdebuff();
+			statdebuff(TRUE);
 
 			break;
 
