@@ -4935,23 +4935,23 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ RIN_WEATHER, "pogoda" },
 	{ RIN_GAMBLING, "igrat' v azartnyye igry" },
 
+	{ MILITARY_RIFLE, "voyennaya vintovka" },
+	{ ICE_BLOCK, "ledyanoy blok" },
+	{ ANTISWITCH_HELMET, "shlem protivopereklyuchatelya" },
+	{ ANTISWITCH_STONE, "kamen' protivopereklyuchatelya" },
+	{ JANET_LADY_PUMPS, "Janet zhenskiye tufli" },
+	{ JANET_S_JEWEL, "Janet dragotsennost'" },
+
+	{ CHANCERAL_FEDELLOR_CLOAK, "plashch kantslera" },
+	{ BOUND_DAY_STONE, "svyazannyy dnevnoy kamen'" },
+
+	{ SABINE_BLOCK_HEEL_SANDALS, "Sabine sandalii na blochnom kabluke" },
+	{ SABINE_S_JEWEL, "Sabine dragotsennost'" },
+
+	{ JUDITH_LEATHER_PUMPS, "Judith kozhanyye tufli" },
+	{ JUDITH_S_JEWEL, "Judith dragotsennost'" },
+
 	/* todo area */
-
-	{ MILITARY_RIFLE, "todo" },
-	{ ICE_BLOCK, "todo" },
-	{ ANTISWITCH_HELMET, "todo" },
-	{ ANTISWITCH_STONE, "todo" },
-	{ JANET_LADY_PUMPS, "todo" },
-	{ JANET_S_JEWEL, "todo" },
-
-	{ CHANCERAL_FEDELLOR_CLOAK, "todo" },
-	{ BOUND_DAY_STONE, "todo" },
-
-	{ SABINE_BLOCK_HEEL_SANDALS, "todo" },
-	{ SABINE_S_JEWEL, "todo" },
-
-	{ JUDITH_LEATHER_PUMPS, "todo" },
-	{ JUDITH_S_JEWEL, "todo" },
 
 	{0, "" }
 };
@@ -8613,23 +8613,23 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ RIN_WEATHER, "ob-havo" },
 	{ RIN_GAMBLING, "qimor o'lyinlari" },
 
+	{ MILITARY_RIFLE, "harbiy miltiq" },
+	{ ICE_BLOCK, "muz bloki" },
+	{ ANTISWITCH_HELMET, "qarshi kalit dubulg'asi" },
+	{ ANTISWITCH_STONE, "qarshi kalit toshi" },
+	{ JANET_LADY_PUMPS, "Janet ayol nasoslari" },
+	{ JANET_S_JEWEL, "Janet marvarid" },
+
+	{ CHANCERAL_FEDELLOR_CLOAK, "kansleral ittifoqdosh plashi" },
+	{ BOUND_DAY_STONE, "bog'langan kunlik tosh" },
+
+	{ SABINE_BLOCK_HEEL_SANDALS, "Sabine blok poshnali sandallar" },
+	{ SABINE_S_JEWEL, "Sabine marvarid" },
+
+	{ JUDITH_LEATHER_PUMPS, "Judith charm nasoslar" },
+	{ JUDITH_S_JEWEL, "Judith marvarid" },
+
 	/* todo area */
-
-	{ MILITARY_RIFLE, "todo" },
-	{ ICE_BLOCK, "todo" },
-	{ ANTISWITCH_HELMET, "todo" },
-	{ ANTISWITCH_STONE, "todo" },
-	{ JANET_LADY_PUMPS, "todo" },
-	{ JANET_S_JEWEL, "todo" },
-
-	{ CHANCERAL_FEDELLOR_CLOAK, "todo" },
-	{ BOUND_DAY_STONE, "todo" },
-
-	{ SABINE_BLOCK_HEEL_SANDALS, "todo" },
-	{ SABINE_S_JEWEL, "todo" },
-
-	{ JUDITH_LEATHER_PUMPS, "todo" },
-	{ JUDITH_S_JEWEL, "todo" },
 
 	{0, "" }
 };
