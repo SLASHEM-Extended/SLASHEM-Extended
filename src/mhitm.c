@@ -8419,7 +8419,7 @@ int attnumber;
 
 		return (mdead | mhit | MM_AGR_DIED);
 	}
-	if (magr->mhp > 0) monster_pain(magr);
+	if ((tmp > 0) && (magr->mhp > 0)) monster_pain(magr);
 
 	return (mdead | mhit);
 }
