@@ -5949,13 +5949,13 @@ int tech_no;
 				if ( (Inhell && !Race_if(PM_HERETIC) ) || flags.gehenna ) {
 					pline("%s is inaccessible, and %s decides to smite you!",u_gname(), Role_if(PM_GANG_SCHOLAR) ? "Anna" : Role_if(PM_WALSCHOLAR) ? "Anna" : "Moloch" );
 					u.ublesscnt += rnz(-u.ualign.record);
-					if (Role_if(PM_GANG_SCHOLAR)) losehp(rnz(-u.ualign.record), "annoying Anna", KILLED_BY);
-					else if (Role_if(PM_WALSCHOLAR)) losehp(rnz(-u.ualign.record), "annoying Anna", KILLED_BY);
-					else losehp(rnz(-u.ualign.record), "annoying Moloch", KILLED_BY);
+					if (Role_if(PM_GANG_SCHOLAR)) losehp(rnd(-u.ualign.record), "annoying Anna", KILLED_BY);
+					else if (Role_if(PM_WALSCHOLAR)) losehp(rnd(-u.ualign.record), "annoying Anna", KILLED_BY);
+					else losehp(rnd(-u.ualign.record), "annoying Moloch", KILLED_BY);
 				} else {
 					pline("%s smites you for your sins!",u_gname() );
-					u.ublesscnt += rnz(-u.ualign.record);
-					losehp(rnz(-u.ualign.record), "disturbing their deity", KILLED_BY);
+					u.ublesscnt += rnd(-u.ualign.record);
+					losehp(rnd(-u.ualign.record), "disturbing their deity", KILLED_BY);
 				}
 			} 
 
@@ -5963,14 +5963,14 @@ int tech_no;
 				/* Imperials cannot use this technique successfully. */
 				pline("%s hates you and decides you need to be punished!",u_gname() );
 				u.ublesscnt += rnz(monster_difficulty() + 1 );
-				losehp(rnz(monster_difficulty() + 1 ), "being a pesky heretic", KILLED_BY);
+				losehp(rnd(monster_difficulty() + 1 ), "being a pesky heretic", KILLED_BY);
 			} 
 
 			else if ( (Inhell && !Race_if(PM_HERETIC) ) || flags.gehenna ) {
 				/* Trying to invoke a deity in Gehennom is never a good idea... */
 				pline("%s is inaccessible, and %s decides to smite you!",u_gname(), Role_if(PM_GANG_SCHOLAR) ? "Anna" : Role_if(PM_WALSCHOLAR) ? "Anna" : "Moloch" );
 				u.ublesscnt += rnz(monster_difficulty() + 1 );
-				losehp(rnz(monster_difficulty() + 1 ), "trying to contact their deity in Gehennom", KILLED_BY);
+				losehp(rnd(monster_difficulty() + 1 ), "trying to contact their deity in Gehennom", KILLED_BY);
 			} 
 
 			else if (u.ualign.record > 0) {
