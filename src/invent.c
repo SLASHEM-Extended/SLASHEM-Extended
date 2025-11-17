@@ -19207,7 +19207,7 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 			case SCR_FOUNTAIN_BUILDING:
 				pline("If you read this scroll while in a room or corridor, a fountain appears below you. Otherwise, nothing happens."); break;
 			case SCR_SINKING:
-				pline("Doesn't work outside of a room or corridor. What it does is building a sink on your current tile."); break;
+				pline("If you're on a room or corridor square, reading this scroll builds a sink on your current tile. It also causes you to sink through the floor to the next level below, regardless of the terrain you're standing on."); break;
 			case SCR_WC:
 				pline("Builds a toilet on your square, but only if that square is in a room or corridor."); break;
 			case SCR_LAVA:

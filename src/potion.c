@@ -15127,51 +15127,30 @@ peffects(otmp)
 
 		if (otmp->cursed) {
 			unkn++;
-			/* they went up a level */
-			if((ledger_no(&u.uz) == 1 && u.uhave.amulet && u.amuletcompletelyimbued) ||
-				Can_rise_up(u.ux, u.uy, &u.uz)) {
-			    const char *riseup ="rise up, through the %s!";
-			    /* [ALI] Special handling for quaffing potions
-			     * off the floor (otmp won't be valid after
-			     * we change levels otherwise).
-			     */
-			    if (otmp->where == OBJ_FLOOR) {
-				if (otmp->quan > 1)
-					(void) splitobj(otmp, 1);
-				/* Make sure you're charged if in shop */
-				otmp->quan++;
-				useupf(otmp, 1);
-				obj_extract_self(otmp);
-			    }
-			    if(ledger_no(&u.uz) == 1) {
-			        You(riseup, ceiling(u.ux,u.uy));
-				goto_level(&earth_level, FALSE, FALSE, FALSE);
-				} else {
-				/* Skipping levels during the ascension run is a cheap strategy. --Amy */
-			        register int newlev = depth(&u.uz)+1;
-				d_level newlevel;
+			/* they went down a level */
 
-				/* But using the new system to cheat the necessity to invoke would be even cheaper. */
-				if(ledger_no(&u.uz) == 99) {
-				    pline("You crash into the floor.");
-					if (isstunfish) nomul(-rnz(10), "lying on the floor, unable to get up", TRUE);
-					else nomul(-rnd(10), "lying on the floor, unable to get up", TRUE);
-					nomovemsg = "You finally get up again.";
-				    break;
-				}
+			register int newlev = depth(&u.uz)+1;
+			d_level newlevel;
 
-				get_level(&newlevel, newlev);
-				if(on_level(&newlevel, &u.uz)) {
-				    pline("It tasted bad.");
-				    break;
-				}
-				else pline("You slide downwards...");
-				goto_level(&newlevel, FALSE, FALSE, FALSE);
-			    }
+			if((ledger_no(&u.uz) == 99) && !u.uevent.invoked ) {
+				pline("You crash into the floor.");
+				if (isstunfish) nomul(-rnz(10), "lying on the floor, unable to get up", TRUE);
+				else nomul(-rnd(10), "lying on the floor, unable to get up", TRUE);
+				nomovemsg = "You finally get up again.";
+				break;
 			}
-			else You("have an uneasy feeling.");
+
+			get_level(&newlevel, newlev);
+			if(on_level(&newlevel, &u.uz)) {
+				You("slightly sink into the floor.");
+				break;
+			}
+			else pline("You slide downwards...");
+			goto_level(&newlevel, FALSE, FALSE, FALSE);
+
 			break;
 		}
+
 		if (Drain_resistance && (StrongDrain_resistance || rn2(10)) ) {
 		    You_feel("rejuvenating momentarily.");
 		} else {

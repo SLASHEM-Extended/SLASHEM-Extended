@@ -1540,7 +1540,7 @@ designyourowndone:
 	 * care needs to be taken so that the scroll is used up before
 	 * a potential level teleport occurs.
 	 */
-	if (scroll->otyp == SCR_TELEPORTATION || scroll->otyp == SCR_ANTIMATTER || scroll->otyp == SCR_BAD_EFFECT || scroll->otyp == SCR_SIN || scroll->otyp == SCR_TELE_LEVEL || scroll->otyp == SCR_BRANCH_TELEPORT || scroll->otyp == SCR_WARPING) {
+	if (scroll->otyp == SCR_TELEPORTATION || scroll->otyp == SCR_SINKING || scroll->otyp == SCR_ANTIMATTER || scroll->otyp == SCR_BAD_EFFECT || scroll->otyp == SCR_SIN || scroll->otyp == SCR_TELE_LEVEL || scroll->otyp == SCR_BRANCH_TELEPORT || scroll->otyp == SCR_WARPING) {
 	    otemp = *scroll;
 	    otemp.where = OBJ_FREE;
 	    otemp.nobj = (struct obj *)0;
@@ -1596,7 +1596,7 @@ designyourowndone:
 				(scroll->blessed ? 2 : 1));
 		}
 		if(!cartokeep && scroll->otyp != SCR_BLANK_PAPER && scroll->oartifact != ART_MARAUDER_S_MAP &&
-		  scroll->otyp != SCR_TELEPORTATION && scroll->otyp != SCR_ANTIMATTER && scroll->otyp != SCR_BAD_EFFECT && scroll->otyp != SCR_SIN && scroll->otyp != SCR_TELE_LEVEL && scroll->otyp != SCR_BRANCH_TELEPORT && scroll->otyp != SCR_WARPING) {
+		  scroll->otyp != SCR_TELEPORTATION && scroll->otyp != SCR_SINKING && scroll->otyp != SCR_ANTIMATTER && scroll->otyp != SCR_BAD_EFFECT && scroll->otyp != SCR_SIN && scroll->otyp != SCR_TELE_LEVEL && scroll->otyp != SCR_BRANCH_TELEPORT && scroll->otyp != SCR_WARPING) {
 		    if (carried(scroll)) useup(scroll);
 		    else if (mcarried(scroll)) m_useup(scroll->ocarry, scroll);
 		    else useupf(scroll, 1L);
@@ -12891,7 +12891,6 @@ newoffmon:
 		break;
 
 	case SCR_SINKING:
-	case SCR_CREATE_SINK:
 
 		if (sobj->oartifact == ART_DEEP_DOWN) {
 			adjalign(-50);
@@ -12905,6 +12904,37 @@ newoffmon:
 			}
 
 		}
+
+		if (levl[u.ux][u.uy].typ != ROOM && levl[u.ux][u.uy].typ != CORR) {
+			You_feel("claustrophobic!");
+		} else {
+			known = TRUE;
+			pline("You build a sink.");
+			levl[u.ux][u.uy].typ = SINK;
+		}
+
+		register int newlev = depth(&u.uz)+1;
+		d_level newlevel;
+
+		if((ledger_no(&u.uz) == 99) && !u.uevent.invoked ) {
+			pline("You crash into the floor.");
+			if (isstunfish) nomul(-rnz(10), "lying on the floor, unable to get up", TRUE);
+			else nomul(-rnd(10), "lying on the floor, unable to get up", TRUE);
+			nomovemsg = "You finally get up again.";
+			break;
+		}
+
+		get_level(&newlevel, newlev);
+		if(on_level(&newlevel, &u.uz)) {
+			You("slightly sink into the floor.");
+			break;
+		}
+		else pline("You slide downwards...");
+		goto_level(&newlevel, FALSE, FALSE, FALSE);
+
+		break;
+
+	case SCR_CREATE_SINK:
 
 		if (levl[u.ux][u.uy].typ != ROOM && levl[u.ux][u.uy].typ != CORR) {
 			You_feel("claustrophobic!");
