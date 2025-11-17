@@ -35424,6 +35424,18 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: when it generated, all monsters got reduced to one tenth of their current HP. Reading it gives a temporary effect that causes monsters to be set to one tenth of their HP every once in a while."); break;
 				case ART_JOHN_CALEB_S_INGENIOSITY:
 					pline("Artifact specs: if someone quaffs it, you get a feminism trap effect."); break;
+				case ART_IRINA_S_GLASS_SUPPLY:
+					pline("Artifact specs: spawns with much bigger stack size but also gave you a long-lasting irina trap effect upon generating. Have fun."); break;
+				case ART_HAVANA_BODEGA:
+					pline("Artifact specs: spawns with bigger stack size."); break;
+				case ART_URANIUM_GLASS:
+					pline("Artifact specs: spawns blessed."); break;
+				case ART_DARKER_THAN_OPAQUE:
+					pline("Artifact specs: spawns heavily cursed."); break;
+				case ART_WATERHOLE_NO__:
+					pline("Artifact specs: when it spawned, a potion of water was generated at your location."); break;
+				case ART_WATERGETTING:
+					pline("Artifact specs: when it spawned, a scroll of flood was also spawned somewhere."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

@@ -2640,6 +2640,49 @@ register boolean mod;
 			}
 		    }
 
+		    if (otmp && otmp->oartifact == ART_IRINA_S_GLASS_SUPPLY) {
+			if (!FemtrapActiveRuth) pline("You'll have to fight a whole lot of women's shoes.");
+			FemaleTrapIrina += rnz(20000);
+			otmp->quan += 24;
+			otmp->owt = weight(otmp);
+		    }
+		    if (otmp && otmp->oartifact == ART_HAVANA_BODEGA) {
+			otmp->quan += 4;
+			otmp->owt = weight(otmp);
+		    }
+		    if (otmp && otmp->oartifact == ART_URANIUM_GLASS) {
+			otmp->cursed = otmp->hvycurse = otmp->prmcurse = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
+			bless(otmp);
+		    }
+		    if (otmp && otmp->oartifact == ART_DARKER_THAN_OPAQUE) {
+			curse(otmp);
+			otmp->hvycurse = TRUE;
+		    }
+		    if (otmp && otmp->oartifact == ART_WATERHOLE_NO__) {
+			if (isok(u.ux, u.uy)) {
+				(void) mksobj_at(POT_WATER, u.ux, u.uy, TRUE, FALSE, FALSE);
+				You("stumble upon a bottle of water!");
+			}
+		    }
+		    if (otmp && otmp->oartifact == ART_WATERGETTING) {
+			int attempts = 50000;
+			
+			coord cc;
+
+			cc.x = rn1(COLNO-3,2);
+			cc.y = rn2(ROWNO);
+
+			while (attempts > 0 && !ACCESSIBLE(levl[cc.x][cc.y].typ)) {
+				attempts--;
+				cc.x = rn1(COLNO-3,2);
+				cc.y = rn2(ROWNO);
+			}
+
+			if (isok(cc.x, cc.y)) {
+				(void) mksobj_at(SCR_FLOOD, cc.x, cc.y, TRUE, FALSE, FALSE);
+			}
+		    }
+
 		    if (otmp && otmp->oartifact == ART_NINER) {
 			otmp->spe += 9;
 		    }
