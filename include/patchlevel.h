@@ -9,12 +9,12 @@
 /*#define DEF_GAME_NAME   "NetHack"*/
 
 /* Version */
-#define VERSION_MAJOR   2
-#define VERSION_MINOR   9
+#define VERSION_MAJOR   3
+#define VERSION_MINOR   0
 /*
  * PATCHLEVEL is updated for each release.
  */
-#define PATCHLEVEL      9
+#define PATCHLEVEL      0
 /*
 #define EDITLEVEL	0
 #define FIXLEVEL        0

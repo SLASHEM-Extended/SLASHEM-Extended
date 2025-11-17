@@ -574,7 +574,7 @@ static const char *actualshirtmessages[] = { /* Scott Bigham */
 	"I'm Belba Loamsdown of Deephallow.", /* this and the next two by raisse */
 	"I'm Nellas Carnesir if I'm an elf.", /* sadly we cannot use î */
 	"my wallet name actually does better, Amaurea Vanimedle", /* sadly we cannot use ë */
-	"here's looking at you, bhaak ;) *äugeläugel*", /* pun because of the "Schwebäugler" <3 */
+	"here's looking at you, bhaak ;) *aeugelaeugel*", /* pun because of the "Schwebäugler" <3 */
 	"it's septembernethack, a cross variant bug fixing shitshow", /* by Demo */
 	"But I want my own house and not a girl!",
 	"whoa boy I did that 'slex with amy' thing last night, i got bundled twice. i think i fleecied 3 times!", /* by K2 */
@@ -867,6 +867,16 @@ static const char *actualshirtmessages[] = { /* Scott Bigham */
 	"My blonde head has pretty blonde hair, which is remarkable because normally a blonde head has black hair growing on it!",
 	"Miles Edgeworth x Wendy Oldbag - the one true pairing",
 	"Maya Fey x Franziska von Karma - the one true pairing",
+	"I love to hug Sister Bikini, espeically in summer! <3 Such a sweet, lovely lady!",
+	"Godot is the most sympathetic prosecutor by far, with Winston Payne being a distant second.", /* sorry, Edgeworth fans, but I've not forgotten that "updated autopsy report" and all the underhanded techniques Edgey pulled to try getting Maya and/or Phoenix found guilty in 1-2! Especially since Edgey most probably did his research and therefore KNEW that Redd White was the true culprit! */
+	"I've gotten a loan from Tender Lender and Viola Cadaverini hasn't killed me yet for not paying it back!",
+	"I'm a regular at the famous Tres Bien restaurant even though the food is terrible! The real reason why I keep coming there is Maya's sexy waitress outfit, complete with light brown block-heeled mary janes! <3<3<3",
+	"Death penalty for the demon known as Dahlia Hawthorne! Execute her NOW!!!",
+	"Shout-out to Prosecutor Godot and his endless supply of coffee :D",
+	"I love to go eating pizza with my buddy Matt Engarde!",
+	"Gonna drink some refreshing coffee with my buddy Godot :-)",
+	"Hare Krishna, Hare Krishna, Krishna Krishna, Hare Hare! Hare Rama, Hare Rama, Rama Rama, Hare Hare!",
+	"Don't get why everyone loves Miles Edgeworth, my favorite prosecutor will always be Godot!! *sips from a mug of coffee*",
 
 };
 

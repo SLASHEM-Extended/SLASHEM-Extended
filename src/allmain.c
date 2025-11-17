@@ -6284,7 +6284,7 @@ greasingdone:
 				if (!rn2(10)) adjattrib(rn2(A_CHA), 1, -1, TRUE);
 			}
 
-			pline("But you were such a bitch and crapped on the lid!");
+			pline("But you were such a bitch and crapped on the seat!");
 			use_skill(P_SQUEAKING, 10);
 			adjalign(-20);
 			increasesincounter(1);
