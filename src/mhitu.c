@@ -1101,7 +1101,7 @@ elena17:
 			}
 
 			/* cuddle cloth boots use M4_BLOCKHEELBOOTS */
-			if ((!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && itemhasappearance(footwear, APP_CUDDLE_CLOTH_BOOTS) ) || (randomsexyheels == 28) ) ) {
+			if ((!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && itemhasappearance(footwear, APP_CUDDLE_CLOTH_BOOTS) ) || mtmp->data == &mons[PM_MAYA_S_BLOCK_HEELED_MARY_JANE] || (randomsexyheels == 28) ) ) {
 elenacuddle:
 				u.cnd_shoedamageamount++;
 				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();

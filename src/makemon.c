@@ -8236,6 +8236,7 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_KHOTITE]) (void) mongets(mtmp, KHOPESH);
 		if (ptr == &mons[PM_NIGHTMARE_WIZARD]) (void) mongets(mtmp, rnd_class(QUARTERSTAFF,PLATINUM_FIRE_HOOK));
 		if (ptr == &mons[PM_HELL_WIZARD]) (void) mongets(mtmp, rnd_class(QUARTERSTAFF,PLATINUM_FIRE_HOOK));
+		if (ptr == &mons[PM_SLAMURAI]) (void) mongets(mtmp, rnd_class(FLAIL, OBSID));
 		if (ptr == &mons[PM_SYSTEMLING]) (void) mongets(mtmp, STANDARD_HELMET);
 		if (ptr == &mons[PM_SMOKER_HC_WOMAN]) (void) mongets(mtmp, CIGARETTE);
 		if (ptr == &mons[PM_TUFTRIKE]) (void) mongets(mtmp, DANCING_SHOES);
@@ -13569,6 +13570,9 @@ loveheelover:
 		}
 		if (ptr == &mons[PM_SITH_GHOST]) {
 		  	(void) mongets(mtmp, SITH_STAFF);
+		}
+		if (ptr == &mons[PM_SOFTCAP_PEEP_DROP] || ptr == &mons[PM_GREATER_SOFTCAP_PEEP_DROP] || ptr == &mons[PM_SLIMY_PEEP_DROP]) {
+		  	(void) mongets(mtmp, LEATHER_PEEP_TOES);
 		}
 		if (ptr == &mons[PM_BRIGHTER_SHADOW]) {
 		  	(void) mongets(mtmp, LIGHTWHIP);

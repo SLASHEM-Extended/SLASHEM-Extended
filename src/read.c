@@ -877,6 +877,7 @@ static const char *actualshirtmessages[] = { /* Scott Bigham */
 	"Gonna drink some refreshing coffee with my buddy Godot :-)",
 	"Hare Krishna, Hare Krishna, Krishna Krishna, Hare Hare! Hare Rama, Hare Rama, Rama Rama, Hare Hare!",
 	"Don't get why everyone loves Miles Edgeworth, my favorite prosecutor will always be Godot!! *sips from a mug of coffee*",
+	"Mmmmmmm, Desiree DeLite is such a lovely, sweet woman and I absolutely want to hug her! <3",
 
 };
 
