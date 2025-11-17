@@ -4484,6 +4484,12 @@ boolean displaymessage;
 		goto attrdevelop;
 	}
 
+	/* dungeon lords monster races look butt ugly to everyone else, so they train charisma slowly --Amy */
+	if ((Race_if(PM_URGOTH) || Race_if(PM_ZAUR) || Race_if(PM_THRALL) || Race_if(PM_WYLVAN) ) && rn2(2) && (targetattr == A_CHA)) {
+		goto attrdevelop;
+
+	}
+
 	/* The actual limit is calculated based on both the role and race limit. */
 	rolemaximum = urole.attrlimt[targetattr];
 	racemaximum = urace.attrtrs[targetattr];

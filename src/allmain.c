@@ -22506,6 +22506,8 @@ timebasedlowerchance()
 		if (rnd(10 + u.cnd_cheaterprayer) > 10) return FALSE; /* fail more often the more cheater prayers you used */
 	}
 
+	if (ismatrayser && !rn2(20)) return FALSE; /* downside for having potentially better item materials */
+
 	if (uarmh && uarmh->oartifact == ART_SUDUNSEL) return TRUE; /* always generate the item */
 
 	/* if you're in a lategame dungeon, or doubly so if you've completed the invocation, we assume that you've already

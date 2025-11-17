@@ -1992,6 +1992,14 @@ sokoban_detect()
 		if (rn2(3)) randc = FALSE;
 	}
 
+	/* slight downside to sokosolver: I mean come on, all the other special levels that aren't sokoban levels also have a chance of being mapped,
+	 * and all just because the portion of regular "random" levels becomes soko... so you'll have slightly lower odds of levels being mapped. */
+	if (issokosolver) {
+		if (!rn2(20)) randa = FALSE;
+		if (!rn2(20)) randb = FALSE;
+		if (!rn2(20)) randc = FALSE;
+	}
+
 	/* Map the background and boulders */
 	for (x = 1; x < COLNO; x++)
 	    for (y = 0; y < ROWNO; y++) {
