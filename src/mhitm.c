@@ -691,6 +691,12 @@ mattackm(magr, mdef)
 		possibly_unwield(magr, FALSE);
 		otmp = MON_WEP(magr);
 
+		if (otmp->otyp <= STRANGE_OBJECT || otmp->otyp >= NUM_OBJECTS) {
+			impossible("monster type %d trying to attack with nonexistant weapon type %d", magr->mnum, otmp->otyp);
+			MON_NOWEP(magr);
+			otmp = (struct obj *)0;
+		}
+
 		if (otmp) {
 		    if (canweaphit) {
 			    if (vis) mswingsm(magr, mdef, otmp);
@@ -771,8 +777,16 @@ meleeattack:
 		} else
 		    missmm(magr, mdef, tmp, dieroll, mattk);
 		/* KMH -- don't accumulate to-hit bonuses */
-		if (otmp)
-		    tmp -= hitval(otmp, mdef);
+
+		/* bug that can occur if your pet is fighting a green-elf rogue or other monster with item-stealing weapon attacks --Amy */
+		if (otmp && (otmp->otyp <= STRANGE_OBJECT || otmp->otyp >= NUM_OBJECTS)) {
+			impossible("monster type %d trying to attack with nonexistant weapon type %d", magr->mnum, otmp->otyp);
+			otmp = (struct obj *)0;
+		}
+
+		if (otmp) {
+			tmp -= hitval(otmp, mdef);
+		}
 		break;
 
 	    case AT_HUGS:	/* automatic if prev two attacks succeed, but also with a low chance otherwise --Amy */
