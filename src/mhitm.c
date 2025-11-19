@@ -691,7 +691,7 @@ mattackm(magr, mdef)
 		possibly_unwield(magr, FALSE);
 		otmp = MON_WEP(magr);
 
-		if (otmp->otyp <= STRANGE_OBJECT || otmp->otyp >= NUM_OBJECTS) {
+		if (otmp && (otmp->otyp <= STRANGE_OBJECT || otmp->otyp >= NUM_OBJECTS)) {
 			impossible("monster type %d trying to attack with nonexistant weapon type %d", magr->mnum, otmp->otyp);
 			MON_NOWEP(magr);
 			otmp = (struct obj *)0;
