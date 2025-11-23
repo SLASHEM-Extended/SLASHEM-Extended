@@ -6293,7 +6293,7 @@ proofarmorchoice:
 		}
 		break;
 	case SPE_CAUSE_FEAR:
-		if (confused) break;
+
 		if (!rn2(5)) {
 
 			pline("The spell effect backlashes!");
@@ -6958,8 +6958,7 @@ aliasagain:
 		break;
 	    }
 	case SPE_CREATE_MONSTER:
-		{
-		if (confused) break;
+	{
 
 		u.lamefarmer = 1;
 		(void) makemon((struct permonst *)0, u.ux, u.uy, MM_NOSPECIALS|MM_ANGRY|MM_FRENZIED);
@@ -6973,8 +6972,7 @@ aliasagain:
 
 		u.aggravation = 0;
 
-		}
-
+	}
 		break;
 	case SCR_CREATE_MONSTER:
 	{
