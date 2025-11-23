@@ -2590,7 +2590,8 @@ nh_timeout()
 	    set_wounded_legs(LEFT_SIDE, HWounded_legs + rnz(50) );
 	    set_wounded_legs(RIGHT_SIDE, HWounded_legs + rnz(50) );
 		pline("Your velcro boots decide to scratch up and down your shins with their lash, opening terrible wounds.");
-		losehp( rnz(u.ulevel + 2), "bloodthirsty velcro boots", KILLED_BY);
+		/* rnz on purpose; you don't HAVE to wear those boots if you consider them too dangerous... --Amy */
+		losehp(rnz(u.ulevel + 2), "bloodthirsty velcro boots", KILLED_BY);
 
 	}
 
