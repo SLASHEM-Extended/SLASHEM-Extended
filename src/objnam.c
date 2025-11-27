@@ -9954,7 +9954,7 @@ ring:
 	if ( (throws_rocks(youmonst.data) || (uarmg && uarmg->oartifact == ART_MOUNTAIN_FISTS)) && obj->otyp == BOULDER) objowt = 500;
 	if ( (throws_rocks(youmonst.data) || (uarmg && uarmg->oartifact == ART_MOUNTAIN_FISTS)) && obj->otyp == LOADBOULDER) objowt = 5000;
 
-	if ((obj->otyp <= ACID_VENOM) /* && (obj->otyp != CHEST) && (obj->otyp != LARGE_BOX) && (obj->otyp != LEAD_BOX) && (obj->otyp != TOP_BOX) && */
+	if ((obj->otyp <= SEGFAULT_VENOM) /* && (obj->otyp != CHEST) && (obj->otyp != LARGE_BOX) && (obj->otyp != LEAD_BOX) && (obj->otyp != TOP_BOX) && */
 && (obj->otyp != LUCKSTONE) && (obj->otyp != HEALTHSTONE) && (obj->otyp != LOADSTONE) && (obj->otyp != TOUCHSTONE)
 && (obj->otyp != WHETSTONE) && (obj->otyp != MANASTONE) && (obj->otyp != SLEEPSTONE) && (obj->otyp != LOADBOULDER) && (obj->otyp != STARLIGHTSTONE) && (obj->otyp != TALC) && (obj->otyp != GRAPHITE) && (obj->otyp != BONE_FRAGMENT) && (obj->otyp != METEOR_FRAGMENT) && (obj->otyp != AMBER_FRAGMENT) && (obj->otyp != LEAD_CLUMP) && (obj->otyp != JUNK_METAL) && (obj->otyp != COBALT_CHUNK) && (obj->otyp != BRONZE_NUGGET) && (obj->otyp != STEEL_SLUG) && (obj->otyp != SLING_AMMO) && (obj->otyp != VOLCANIC_GLASS_FRAGMENT) && (obj->otyp != STONE_OF_MAGIC_RESISTANCE) && (obj->otyp != FLINT) && (obj->otyp != SALT_CHUNK) && (obj->otyp != SILVER_SLINGSTONE) && (obj->otyp != CONUNDRUM_NUGGET) && (obj->otyp != SMALL_PIECE_OF_UNREFINED_MITHR) && (obj->otyp != AMULET_OF_YENDOR) && (obj->otyp != FAKE_AMULET_OF_YENDOR) && (!is_nastygraystone(obj))
 	      /*(obj->otyp != ICE_BOX) */ && (!Hallucination && flags.invweight && !WeightDisplayIsArbitrary))
