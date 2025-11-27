@@ -5879,6 +5879,14 @@ max_carr_cap() /* your absolute maximum carry cap (the actual one is lower, see 
 	if (uamul && uamul->oartifact == ART_ATLAS_WEIGHT_CRUNCH) maxcarrcap += 2000;
 	if (uchain && uchain->oartifact == ART_JORMUNGANDR_S_COIL) maxcarrcap += 500;
 	if (u.tempcarrcap1000) maxcarrcap += 1000;
+	if (u.cnd_trophiesobtained) maxcarrcap += (u.cnd_trophiesobtained * 10);
+	if (u.xtralevelmult > 1) maxcarrcap += ((u.xtralevelmult - 1) * 50);
+	if (u.silverbellget) maxcarrcap += 200;
+	if (achieve.get_amulet) maxcarrcap += 300;
+	if (u.amuletcompletelyimbued) maxcarrcap += 500;
+	if (u.planesentered) maxcarrcap += 1000;
+	if (u.freeplaymode) maxcarrcap += 2000;
+	if (u.ulevel >= 20) maxcarrcap += ((u.ulevel - 19) * 20);
 	if (uarm && uarm->oartifact == ART_TRIANGLE_GIRL) {
 		maxcarrcap += 1000;
 		if (flags.female && u.ulevel < 10) maxcarrcap += 4000;

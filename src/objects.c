@@ -9649,6 +9649,8 @@ SCROLL((char *)0,               "PHOENIX LOOOOOVES TO BE SLAPPED BY THE CUTE LIT
 SCROLL((char *)0,               "GODOT WAS ORIGINALLY A DEFENSE ATTORNEY NAMED DIEGO ARMANDO",  P_NONE,     1,   0, 100, CLR_RED, 1),
 SCROLL((char *)0,               "WE CRACK UP EVERY TIME GODOT SPITS OUT HIS COFFEE",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
 SCROLL((char *)0,               "JEAN ARMSTRONG OF TRES BIEN REALLY SHOULD HAVE WORN PINK PUMPS",  P_NONE,     1,   0, 100, CLR_BRIGHT_MAGENTA, 1),
+SCROLL((char *)0,               "BAD SAEGEBAER NEAR MILTENBERG HAS A LARGE ARTIFICIAL LAKE",  P_NONE,     1,   0, 100, CLR_CYAN, 1),
+SCROLL((char *)0,               "WEIRD INTERMEDIATE TACT FROM HASSLOCH TO LUXOR",  P_NONE,     1,   0, 100, CLR_BROWN, 1),
 
 /* dummy for easier copypasting */
 /* SCROLL((char *)0,               "",  P_NONE,     1,   0, 100, CLR_, 1), */

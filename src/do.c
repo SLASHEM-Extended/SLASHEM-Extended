@@ -4921,8 +4921,10 @@ rerollchaloc:
 	    You("enter what seems to be an older, more primitive world.");
 #endif
 	/* Final confrontation */
-	if (In_endgame(&u.uz) && newdungeon && u.uhave.amulet && !u.freeplaymode)
+	if (In_endgame(&u.uz) && newdungeon && u.uhave.amulet && !u.freeplaymode) {
+		u.planesentered = TRUE;
 		resurrect();
+	}
 
 	/* the message from your quest leader */
 	if (!In_quest(&u.uz0) && at_dgn_entrance("The Quest") &&

@@ -715,6 +715,8 @@ struct you {
 	int devnullcomplete;
 	boolean arstechnicadone;
 
+	int planesentered;
+
 	int maxrndmonstchoicecount;	/* for rndmonst() in makemon.c */
 
 	int spellcooldown;	/* for spell cooldown nastytrap */
