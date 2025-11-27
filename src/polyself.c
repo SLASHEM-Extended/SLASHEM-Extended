@@ -2445,6 +2445,7 @@ dospinweb()
 		case ANIMEBAND_TRAP:
 		case PERFUME_TRAP:
 		case COURT_TRAP:
+		case POKEMON_TRAP:
 		case ELDER_SCROLLS_TRAP:
 		case JOKE_TRAP:
 		case DUNGEON_LORDS_TRAP:

@@ -14433,6 +14433,39 @@ skillmultiplyagain:
 			u.aggravation = 0;
 		}
 			break;
+		case POKEMON_TRAP:
+		{
+			deltrap(trap); /* triggers only once */
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			coord cc, dd;
+			int cx,cy;
+
+			cx = rn2(COLNO);
+			cy = rn2(ROWNO);
+
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
+
+			for (i = 0; i < randsp; i++) {
+
+				if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				(void) makemon(specialtensmon(140), cx, cy, MM_ADJACENTOK); /* M3_POKEMON */
+			}
+
+			if (wizard || !rn2(10)) pline("Maybe you might want to check out that nearby patch of grass, there could be rare pokemon lurking?");
+
+			u.aggravation = 0;
+		}
+			break;
 		case ELDER_SCROLLS_TRAP:
 		{
 			deltrap(trap); /* triggers only once */
@@ -23527,6 +23560,7 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		case ANIMEBAND_TRAP:
 		case PERFUME_TRAP:
 		case COURT_TRAP:
+		case POKEMON_TRAP:
 		case ELDER_SCROLLS_TRAP:
 		case JOKE_TRAP:
 		case DUNGEON_LORDS_TRAP:

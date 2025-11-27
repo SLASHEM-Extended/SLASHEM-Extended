@@ -3964,6 +3964,7 @@ impossible("A monster looked at a very strange trap of type %d.", ttmp->ttyp);
 				&& ttmp->ttyp != ANIMEBAND_TRAP
 				&& ttmp->ttyp != PERFUME_TRAP
 				&& ttmp->ttyp != COURT_TRAP
+				&& ttmp->ttyp != POKEMON_TRAP
 				&& ttmp->ttyp != ELDER_SCROLLS_TRAP
 				&& ttmp->ttyp != JOKE_TRAP
 				&& ttmp->ttyp != DUNGEON_LORDS_TRAP

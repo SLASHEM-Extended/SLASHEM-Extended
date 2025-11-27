@@ -955,6 +955,8 @@ static struct {
 	{ "sabine", SABINE_TRAP },
 	{ "judith", JUDITH_TRAP },
 
+	{ "pokemon", POKEMON_TRAP },
+
 	{ "timerun", TIMERUN_TRAP },
 	{ 0, 0 }
 };

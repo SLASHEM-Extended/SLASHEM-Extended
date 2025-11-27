@@ -3797,7 +3797,7 @@ nyssaraend:
 		}
 
 		if ((KillerRoomEffect || (u.martialstyle == MARTIALSTYLE_WRESTLING) || u.uprops[KILLER_ROOM_EFFECT].extrinsic || (uarmf && uarmf->oartifact == ART_HIGHWAY_HUNTER) || autismweaponcheck(ART_MAGYAR_IDEA) || have_killerroomstone()) && !rn2(4000)) {
-			int killerroomtype = rnd(28);
+			int killerroomtype = rnd(29);
 			struct permonst *killermonster = &mons[PM_ANT]; /* arbitrary */
 
 			if (Aggravate_monster) {
@@ -3879,6 +3879,8 @@ nyssaraend:
 						killermonster = specialtensmon(327); break;
 					case 28:
 						killermonster = specialtensmon(434); break;
+					case 29:
+						killermonster = specialtensmon(140); break;
 					default:
 						killermonster = &mons[PM_ANT]; break;
 				}
@@ -5122,31 +5124,37 @@ newbossS:
 							goto newbossS;
 						}
 
-						switch (rnd(8)) {
+						switch (rnd(10)) {
 
 							case 1:
 								You_hear("a dramatic sound that tells of imminent danger!");
 								break;
 							case 2:
-								You_hear("an innocuous tune that seems to decrease in pitch...");
+								You_hear("an innocuous tune that seems to decrease in pitch..."); /* Pokemon Emerald gym leader theme */
 								break;
 							case 3:
-								You_hear("a terrible melody, and realize that there is no escape!");
+								You_hear("a terrible melody, and realize that there is no escape!"); /* Pokemon Crystal, when a Team Missile Bomb member spotted you */
 								break;
 							case 4:
-								You_hear("a wavy, repeating sound!");
+								You_hear("a wavy, repeating sound!"); /* Pokemon Emerald, Team Aqua/Magma jingle */
 								break;
 							case 5:
-								You_hear("a deep metallic tune.");
+								You_hear("a deep metallic tune."); /* Pokemon Emerald, Team Aqua/Magma theme */
 								break;
 							case 6:
-								You_hear("a standard combat jingle, except in the end it somehow sounds nonstandard...");
+								You_hear("a standard combat jingle, except in the end it somehow sounds nonstandard..."); /* Pokemon Yellow gym leader theme */
 								break;
 							case 7:
-								You_hear("a frantic melody that quickly rises and falls in pitch!");
+								You_hear("a frantic melody that quickly rises and falls in pitch!"); /* Pokemon Crystal, Kanto gym leader theme */
 								break;
 							case 8:
-								You_hear("an extremely high-pitch jingle and instantly know that something completely abnormal must have happened!");
+								You_hear("an extremely high-pitch jingle and instantly know that something completely abnormal must have happened!"); /* Pokemon Crystal, legendary pokemon jingle */
+								break;
+							case 9:
+								You_hear("a combat jingle followed by the most dramatic battle music EVER, which must be at least the gym leader's theme, maybe even the champion's!"); /* Pokemon Prism wild battle music; that one is *definitely* a boss theme if you ask me, yet they're using it for a wild battle... */
+								break;
+							case 10:
+								You_hear("a constantly repeating jingle, followed by a rather tense, yet strangely calm battle theme."); /* Pokemon Prism gym leader theme */
 								break;
 
 						}
