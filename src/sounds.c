@@ -666,7 +666,7 @@ dosounds()
 			"listen to very tender female noises.",
 			"hear a librarian yelling at someone to be SILENT!",
 		};
-		You("%s", feminismroom_msg[rn2(8+hallu*9)]);
+		You("%s", feminismroom_msg[rn2(9+hallu*9)]);
 		return;
 	    }
 
@@ -1600,14 +1600,8 @@ dosounds()
 		"suddenly see a mammoth! Strange, aren't those actually extinct?",
 		"seem to hear the roar of a mastodon! That's impossible, those got extinct 10000 years ago at the end of the Pleistocene era!",
 	};
-	for (mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
-	    if (DEADMONSTER(mtmp)) continue;
-	    if ((mtmp->msleeping || is_animal(mtmp->data)) &&
-		    mon_in_room(mtmp, ZOO)) {
-		You("%s", zoo_msg[rn2(8+hallu*8)]);
-		return;
-	    }
-	}
+	You("%s", zoo_msg[rn2(8+hallu*8)]);
+	return;
     }
     if (level.flags.has_shop && !rn2(200)) {
 	if (!(sroom = search_special(ANY_SHOP))) {

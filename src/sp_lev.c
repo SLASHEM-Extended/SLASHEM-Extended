@@ -4953,6 +4953,7 @@ retryrandtype:
 		level.flags.has_vault = TRUE;
 		break;
 	    case ZOO:
+	    case REALZOO:
 	    case DOUGROOM:
 		level.flags.has_zoo = TRUE;
 		break;
