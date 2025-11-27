@@ -8252,6 +8252,13 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_FRONTAL_TEACHER]) (void) mongets(mtmp, TEACHING_STAFF);
 		if (ptr == &mons[PM_DOMESTIC_ABUSER]) (void) mongets(mtmp, CANE);
 
+		if (ptr == &mons[PM_KNIGHT_ARCHER]) {
+			(void) mongets(mtmp, LONG_SWORD);
+			(void) mongets(mtmp, BOW);
+	  		m_initthrow(mtmp, ARROW, 20);
+
+		}
+
 		if (ptr == &mons[PM_MEMBER_OF_THE_WOMEN_S_GANG]) {
 			if (!rn2(3)) {
 				(void) mongets(mtmp, CANE);
@@ -9994,6 +10001,9 @@ register struct	monst	*mtmp;
 		}
 		if (ptr == &mons[PM_BLACK_SOOTBALL]) {
 			(void) mongets(mtmp, BITUKNIFE);
+		}
+		if (ptr == &mons[PM_HAMMER_OF_HELL]) {
+			(void) mongets(mtmp, HEAVY_HAMMER);
 		}
 		if (ptr == &mons[PM_SWORD_MIRROR]) {
 			(void) mongets(mtmp, MIRRORBLADE);
@@ -13194,6 +13204,10 @@ loveheelover:
 		  	(void) mongets(mtmp, SLING);
 		  	m_initthrow(mtmp, JUNK_METAL, 20);
 		}
+		if (ptr == &mons[PM_CULVERIN]) {
+		  	(void) mongets(mtmp, SLING);
+		  	m_initthrow(mtmp, ROCK, 30);
+		}
 		if (ptr == &mons[PM_SPIKE_BEE]) {
 		  	m_initthrow(mtmp, SPIKE, 20);
 		}
@@ -15198,6 +15212,7 @@ loveheelover:
 		if (ptr == &mons[PM_TAURUS_GIANT]) (void)mongets(mtmp, LASER_FLYAXE);
 		if (ptr == &mons[PM_FATHER_OF_HOSLASS]) (void)mongets(mtmp, WAN_THUNDER);
 		if (ptr == &mons[PM_AKROBOLAN_SWORD]) (void)mongets(mtmp, rnd_class(RAPIER, GOLDEN_SABER));
+		if (mtmp->data == &mons[PM_REALLY_OBESE_WOMAN_WEARING_A_TIGHT_BIKINI]) (void) mongets(mtmp, BIKINI);
 
 		if (ptr == &mons[PM_HELICOPTER_GUNNER]) {
 			(void)mongets(mtmp, T_SHIRT);
@@ -17870,6 +17885,7 @@ loveheelover:
 		if(ptr == &mons[PM_WHIP_DEMON]) (void) mongets(mtmp, CHITIN_WHIP);
 		if(ptr == &mons[PM_FLAILER_DEMON]) (void) mongets(mtmp, SPIKED_CHAIN);
 		if(ptr == &mons[PM_JANELITH]) (void) mongets(mtmp, SEXY_MARY_JANE);
+		if(ptr == &mons[PM_CLUBBER_DEMON]) (void) mongets(mtmp, rnd_class(CLUB, LOG));
 
 		if(ptr == &mons[PM_KYLE_KATARN]) (void) mongets(mtmp, BLUE_LIGHTSABER);
 		if(ptr == &mons[PM_TAVION]) (void) mongets(mtmp, WHITE_DOUBLE_LIGHTSABER);
@@ -26532,6 +26548,7 @@ register int	mmflags;
 		case S_MIMIC:
 			set_mimic_sym(mtmp);
 			if (mndx == PM_ENVIRONMENTAL_ADAPTATION) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_A_PLAIN_GOLD_RING) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 
 			if (mndx == PM_MIMIC_HIVE_MIND) {
 				int hivemimics = rnd(9);
@@ -26800,6 +26817,7 @@ register int	mmflags;
 		case S_WORM:
 
 			if (mndx == PM_CLEAR_WORM_MASS) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_SPECTRAL_WYRM) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_NOT_REALLY_EXISTING_MORGELLON) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 
 			break;
@@ -27420,6 +27438,7 @@ register int	mmflags;
 			break;
 		case S_DEMON:
 			if (mndx == PM_IT_MAKES_PITSCHAEFF_) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_WARP_DEMON) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_FLUIDATOR_WEND) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mtmp->data == &mons[PM_HARDCORE_ALIEN]) {
 				int spawnnumber = rn1(7, 3);
@@ -27484,6 +27503,7 @@ register int	mmflags;
 		case S_HUMAN:
 
 			if (mndx == PM_PEN_A_MEDICANT) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_LOGRUS_MASTER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 
 			if (mtmp->data == &mons[PM_TRUE_YOUNG_WOMAN]) {
 				int spawnnumber = rn1(8, 3);
@@ -27694,6 +27714,9 @@ register int	mmflags;
 
 		case S_XAN:
 			if (mndx == PM_SSSSS_SSSSS_) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_BEHINDER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_BELEFTER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_BERIGHTER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_MUAHAHAHAHA_WE_RE_SUCKING_AWAY_ALL_YOUR_SHIT_HA_HA_HA_) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			break;
 
@@ -34932,7 +34955,7 @@ assign_sym:
 		appear = S_rockwall;
 	}
 
-	if (mtmp->data == &mons[PM_POTION_MIMIC] || mtmp->data == &mons[PM_POTION_PERMAMIMIC] || mtmp->data == &mons[PM_POTION_HUMANOID_SINK_MONEY_FOOD_TRAP_DEMON_STONE_PORTAL]) {
+	if (mtmp->data == &mons[PM_POTION_MIMIC] || mtmp->data == &mons[PM_POTION_PERMAMIMIC] || mtmp->data == &mons[PM_DRAUGHT_MIMIC] || mtmp->data == &mons[PM_DRAUGHT_PERMAMIMIC] || mtmp->data == &mons[PM_POTION_HUMANOID_SINK_MONEY_FOOD_TRAP_DEMON_STONE_PORTAL]) {
 		s_sym = POTION_CLASS;
 		ap_type = M_AP_OBJECT;
 		appear = rnd_class(POT_BOOZE, POT_PAN_GALACTIC_GARGLE_BLASTE);
@@ -34974,7 +34997,7 @@ assign_sym:
 		appear = rnd_class(WAN_LIGHT, WAN_PSYBEAM);
 	}
 
-	if (mtmp->data == &mons[PM_RING_MIMIC] || mtmp->data == &mons[PM_RING_PERMAMIMIC]) {
+	if (mtmp->data == &mons[PM_RING_MIMIC] || mtmp->data == &mons[PM_A_PLAIN_GOLD_RING] || mtmp->data == &mons[PM_RING_PERMAMIMIC]) {
 		s_sym = RING_CLASS;
 		ap_type = M_AP_OBJECT;
 		appear = rnd_class(RIN_ADORNMENT, RIN_TELEPORT_CONTROL);

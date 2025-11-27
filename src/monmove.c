@@ -3832,6 +3832,91 @@ register int after;
 	/* but if a hostile one is tame, it becomes peaceful (somehow this happens occasionally, not sure why) --Amy */
 	if (mtmp->mtame && !mtmp->mpeaceful && !mtmp->mfrenzied) mtmp->mpeaceful = TRUE; /* and also remains tame */
 
+	if (u.tempmonssleepconf) {
+		if (!rn2(100)) {
+			switch (rnd(2)) {
+				case 1:
+					mtmp->mconf = TRUE;
+					break;
+				case 2:
+					sleep_monst(mtmp, rnd(5), -1);
+					break;
+			}
+		}
+	}
+
+	if (monstersoundtype(mtmp) == MS_SNORE && !rn2(500)) mtmp->msleeping = 1;
+	if (monstersoundtype(mtmp) == MS_SNORE && (mtmp->msleeping || mtmp->masleep) && !rn2(5)) {
+		wake_nearto(mtmp->mx, mtmp->my, 25);
+		if (canseemon(mtmp)) pline("%s snores loudly!", Monnam(mtmp));
+		else You_hear("loud snoring!");
+	}
+	if (monstersoundtype(mtmp) == MS_TRUMPET && !rn2(200)) {
+		wake_nearto(mtmp->mx, mtmp->my, rn1(50, 50));
+		if (canseemon(mtmp)) pline("%s trumpets loudly!", Monnam(mtmp));
+		else You_hear("a trumpet sound!");
+	}
+
+	if (mtmp->singability && !rn2(10000)) mtmp->singability = FALSE;
+
+	if (autismringcheck(ART_KEEP_FUNKY_) && !rn2(1000)) mtmp->mconf = 1;
+
+	ptr = mtmp->data;
+
+	if (monsndx(ptr) == PM_SLEEPING_GIANT && !rn2(10)) mtmp->msleeping = 1;
+	if (monsndx(ptr) == PM_MUEJDE && !rn2(10)) mtmp->msleeping = 1;
+	if (monsndx(ptr) == PM_SLEEP_BUNDLE_TIREDEL && !rn2(10)) mtmp->msleeping = 1;
+	if (monsndx(ptr) == PM_APATHETIC_ASSHOLE && !rn2(10)) mtmp->msleeping = 1;
+	if (monsndx(ptr) == PM_SARSLEEPER && !rn2(10)) mtmp->msleeping = 1;
+	if (monsndx(ptr) == PM_SLEEPY_GIRL && !rn2(10)) mtmp->msleeping = 1;
+	if (monsndx(ptr) == PM_SLEEPY_WOMAN && !rn2(10)) mtmp->msleeping = 1;
+	if (monsndx(ptr) == PM_SLEEPY_LADY && !rn2(10)) mtmp->msleeping = 1;
+	if (monsndx(ptr) == PM_SLEEPING_ASIAN_GIRL && !rn2(10)) mtmp->msleeping = 1;
+	if (monsndx(ptr) == PM_DIDDLY_DINGUS_DUDE && !rn2(20)) mtmp->msleeping = 1;
+	if (monsndx(ptr) == PM_HUMDIGGLE_DISINTEGRATOR && !rn2(20)) mtmp->msleeping = 1;
+	if (monsndx(ptr) == PM_NOTHING_CHECKER_WHO_IS_CONFUSED) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_WATER_MATERIAL_BLONDE) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_DAFT_SHEEP) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_METH_HEAD) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_CONTRULLA) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_GAGAGAGOGL) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_IRMGARD) mtmp->mconf = 1;
+	if (mtmp->umbraeconf) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_DRONKBEE) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_DRUG_ADDICTED_BANG_PIN) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_HIGH_PROSTITUTE_OF_MOLOCH) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_LIQUOR_CORPSE) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_SWIMMING_TRUNKS) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_IRITAL) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_FULL_WEAKMATE_O) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_DEBILITATED_DANNY) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_DIM_GIRL) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_GRAWLIX) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_BLONDE_FEMMY) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_LASSY_GIRL) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_LOST_ITALIAN_PLUMBER) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_BEER_BELLY) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_SLOOB) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_CRAMP_CART_TO_THE_WALL_DRIVER) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_SOBER_THE_DRUNK) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_LOONIE_BOSS) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_BARTOLI_RETARD) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_ERR_BOSS) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_ERR) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_TRANS_BIRTH) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_CONFUSTICA_EQUA_STABILIA) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_STUPIDITY_AUTIST) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_SEIZURE_FOOBACUS) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_HIGHEST_PRIESTEST) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_HAMMER_DRIVE) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_PANCAKE_SPIRIT) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_WESTERHARE) mtmp->mflee = 1;
+	if (monsndx(ptr) == PM_VEGRIS) mtmp->mflee = 1;
+	if (monsndx(ptr) == PM_DIDDLY_DINGUS_DUDE && !rn2(10)) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_PARROT_RIDING_A_GIANT_PENIS && !rn2(10)) mtmp->mconf = 1;
+
+	/* ******* ATTENTION! here, stationary monsters get to skip their movement phase. if they can teleport, the code that does so needs to be here, not below! everything that happens in the movement phase gets skipped by turrets and nonmoving monsters! */
+
 	if (mtmp->data->mlet == S_TURRET || (mtmp->data == &mons[PM_SECRETIVE_INFORMANT] && !mtmp->codeguessed) || stationary(mtmp->data) || ((is_hider(mtmp->data) || mtmp->egotype_hide || mtmp->egotype_mimic) && (mtmp->mundetected || mtmp->m_ap_type == M_AP_FURNITURE || mtmp->m_ap_type == M_AP_OBJECT) ) ) {
 
 		if (mtmp->meating) { /* special case here by Amy, otherwise they'd never finish eating! */
@@ -3842,6 +3927,37 @@ register int after;
 		if(mtmp->mtame) {
 			mmoved = dog_move(mtmp, after);
 			goto postmov;
+		}
+
+		ptr = mtmp->data;
+
+		if ((ptr == &mons[PM_SHRIEKSHRIEKSHRIEKER] || ptr == &mons[PM_TELE_VIRUS] || mtmp->egotype_teleportself) && !rn2(25) && !mtmp->mcan &&
+		   !tele_restrict(mtmp) ) {
+		    if(mtmp->mhp < 7 || (ptr == &mons[PM_SPOOPY_GHOST]) || mtmp->mpeaceful || rn2(2))
+			(void) rloc(mtmp, FALSE);
+		    else
+			mnexto(mtmp);
+		    mmoved = 1;
+		    goto postmov;
+		}
+
+		if ((ptr == &mons[PM_BLINKING_DOT] || ptr == &mons[PM_QUANTUM_DOT] || ptr == &mons[PM_MECHANICAL_DOT] || ptr == &mons[PM_PROFESSIONAL_DOT]) && !rn2(25) && !mtmp->mcan &&
+		   !tele_restrict(mtmp) ) {
+			(void) rloc(mtmp, FALSE);
+			mmoved = 1;
+			goto postmov;
+		}
+
+		if (AefdeActive && (mtmp->data->maligntyp < 0) && !rn2(100) && !tele_restrict(mtmp)) {
+			(void) rloc(mtmp, FALSE);
+			mmoved = 1;
+			goto postmov;
+		}
+
+		if (mtmp->egotype_blinker && !mtmp->mcan && !rn2(5) ) {
+			(void) rloc(mtmp, FALSE);
+		      mmoved = 1;
+		      goto postmov;
 		}
 
 		return(0); /* stationary turrets --Amy */
@@ -3959,7 +4075,7 @@ register int after;
 #endif
 
 	/* teleport if that lies in our nature */
-	if( (ptr == &mons[PM_TENGU] || ptr == &mons[PM_CORONA_TASK_FORCE] || ptr == &mons[PM_PURPLE_BOUNCING_GIRL] || ptr == &mons[PM_CORONA_LICHEN] || ptr == &mons[PM_STALKING_CORONA_LICHEN] || ptr == &mons[PM_CORONA_SPORE_LICHEN] || ptr == &mons[PM_CORONA_COLONY_LICHEN] || ptr == &mons[PM_SUDDEN_TENGU] || ptr == &mons[PM_FAKE_NEWS_TENGU] || ptr == &mons[PM_LASTING_TENGU] || ptr == &mons[PM_TELEPORTER] || ptr == &mons[PM_BULLETATOR_I] || ptr == &mons[PM_DISCONNECT_DEVIL] || ptr == &mons[PM_COUNTRY_SHARK] || ptr == &mons[PM_POLITICAL_TENGU] || ptr == &mons[PM_EASTERN_TENGU] || ptr == &mons[PM_PHASING_TENGU] || ptr == &mons[PM_FROZEN_JUMP] || ptr == &mons[PM_CHEERFUL_LEPRECHAUN] || ptr == &mons[PM_BLINK] || ptr == &mons[PM_TELE_VIRUS] || ptr == &mons[PM_VORPAL_BUNNY] || ptr == &mons[PM_KING_OF_PORN] || ptr == &mons[PM_SHRIEKSHRIEKSHRIEKER] || ptr == &mons[PM_TAXI] || ptr == &mons[PM_TAXI_XPRESS] || ptr == &mons[PM_JIL_S_SCENTFUL_SOCKS] || ptr == &mons[PM_ZOMBIE_STUNTMAN] || ptr == &mons[PM_OF_FLOW] || ptr == &mons[PM_PEARDUCK] || ptr == &mons[PM_UAE] || ptr == &mons[PM_CHEATY_SILVER_COIN] || ptr == &mons[PM_SPACEWARP_JELLY] || ptr == &mons[PM_ALSAPIA_MURDERER_MASK] || ptr == &mons[PM_NIGHTMARE_SHEEP] || ptr == &mons[PM_HELL_SHEEP] || ptr == &mons[PM_LOVECRAFT_SHEEP] || ptr == &mons[PM_INDIVIDUAL_WILL_O_THE_WISP] || ptr == &mons[PM_TELEHOBBIT] || ptr == &mons[PM_SPOOPY_GHOST] || ptr == &mons[PM_ANNOYING_SLEX_GHOST] || ptr == &mons[PM_SPRING_WOLF] || ptr == &mons[PM_DIMENSIONAL_SHAMBLER] || ptr == &mons[PM_MAGNET_ELEMENTAL] || ptr == &mons[PM_PHASE_KNIGHT] || ptr == &mons[PM_TELEPORTING_DEMON] || ptr == &mons[PM_BEAMING_UFO_PART] || ptr == &mons[PM_BEAMER] || mtmp->egotype_teleportself) && !rn2(25) && !mtmp->mcan &&
+	if( (ptr == &mons[PM_TENGU] || ptr == &mons[PM_CORONA_TASK_FORCE] || ptr == &mons[PM_PURPLE_BOUNCING_GIRL] || ptr == &mons[PM_CORONA_LICHEN] || ptr == &mons[PM_STALKING_CORONA_LICHEN] || ptr == &mons[PM_CORONA_SPORE_LICHEN] || ptr == &mons[PM_CORONA_COLONY_LICHEN] || ptr == &mons[PM_SUDDEN_TENGU] || ptr == &mons[PM_FAKE_NEWS_TENGU] || ptr == &mons[PM_LASTING_TENGU] || ptr == &mons[PM_TELEPORTER] || ptr == &mons[PM_BULLETATOR_I] || ptr == &mons[PM_DISCONNECT_DEVIL] || ptr == &mons[PM_COUNTRY_SHARK] || ptr == &mons[PM_POLITICAL_TENGU] || ptr == &mons[PM_EASTERN_TENGU] || ptr == &mons[PM_PHASING_TENGU] || ptr == &mons[PM_FROZEN_JUMP] || ptr == &mons[PM_CHEERFUL_LEPRECHAUN] || ptr == &mons[PM_BLINK] || ptr == &mons[PM_VORPAL_BUNNY] || ptr == &mons[PM_KING_OF_PORN] || ptr == &mons[PM_TAXI] || ptr == &mons[PM_TAXI_XPRESS] || ptr == &mons[PM_JIL_S_SCENTFUL_SOCKS] || ptr == &mons[PM_ZOMBIE_STUNTMAN] || ptr == &mons[PM_OF_FLOW] || ptr == &mons[PM_PEARDUCK] || ptr == &mons[PM_UAE] || ptr == &mons[PM_CHEATY_SILVER_COIN] || ptr == &mons[PM_SPACEWARP_JELLY] || ptr == &mons[PM_ALSAPIA_MURDERER_MASK] || ptr == &mons[PM_NIGHTMARE_SHEEP] || ptr == &mons[PM_HELL_SHEEP] || ptr == &mons[PM_LOVECRAFT_SHEEP] || ptr == &mons[PM_INDIVIDUAL_WILL_O_THE_WISP] || ptr == &mons[PM_TELEHOBBIT] || ptr == &mons[PM_SPOOPY_GHOST] || ptr == &mons[PM_ANNOYING_SLEX_GHOST] || ptr == &mons[PM_SPRING_WOLF] || ptr == &mons[PM_DIMENSIONAL_SHAMBLER] || ptr == &mons[PM_MAGNET_ELEMENTAL] || ptr == &mons[PM_PHASE_KNIGHT] || ptr == &mons[PM_TELEPORTING_DEMON] || ptr == &mons[PM_BEAMING_UFO_PART] || ptr == &mons[PM_BEAMER] || mtmp->egotype_teleportself) && !rn2(25) && !mtmp->mcan &&
 	   !tele_restrict(mtmp)) {
 	    if(mtmp->mhp < 7 || (ptr == &mons[PM_SPOOPY_GHOST]) || mtmp->mpeaceful || rn2(2))
 		(void) rloc(mtmp, FALSE);
@@ -4103,86 +4219,6 @@ altarfound:
 
 	}
 
-	if (u.tempmonssleepconf) {
-		if (!rn2(100)) {
-			switch (rnd(2)) {
-				case 1:
-					mtmp->mconf = TRUE;
-					break;
-				case 2:
-					sleep_monst(mtmp, rnd(5), -1);
-					break;
-			}
-		}
-	}
-
-	if (monstersoundtype(mtmp) == MS_SNORE && !rn2(500)) mtmp->msleeping = 1;
-	if (monstersoundtype(mtmp) == MS_SNORE && (mtmp->msleeping || mtmp->masleep) && !rn2(5)) {
-		wake_nearto(mtmp->mx, mtmp->my, 25);
-		if (canseemon(mtmp)) pline("%s snores loudly!", Monnam(mtmp));
-		else You_hear("loud snoring!");
-	}
-	if (monstersoundtype(mtmp) == MS_TRUMPET && !rn2(200)) {
-		wake_nearto(mtmp->mx, mtmp->my, rn1(50, 50));
-		if (canseemon(mtmp)) pline("%s trumpets loudly!", Monnam(mtmp));
-		else You_hear("a trumpet sound!");
-	}
-
-	if (mtmp->singability && !rn2(10000)) mtmp->singability = FALSE;
-
-	if (autismringcheck(ART_KEEP_FUNKY_) && !rn2(1000)) mtmp->mconf = 1;
-
-	if (monsndx(ptr) == PM_SLEEPING_GIANT && !rn2(10)) mtmp->msleeping = 1;
-	if (monsndx(ptr) == PM_MUEJDE && !rn2(10)) mtmp->msleeping = 1;
-	if (monsndx(ptr) == PM_SLEEP_BUNDLE_TIREDEL && !rn2(10)) mtmp->msleeping = 1;
-	if (monsndx(ptr) == PM_APATHETIC_ASSHOLE && !rn2(10)) mtmp->msleeping = 1;
-	if (monsndx(ptr) == PM_SARSLEEPER && !rn2(10)) mtmp->msleeping = 1;
-	if (monsndx(ptr) == PM_SLEEPY_GIRL && !rn2(10)) mtmp->msleeping = 1;
-	if (monsndx(ptr) == PM_SLEEPY_WOMAN && !rn2(10)) mtmp->msleeping = 1;
-	if (monsndx(ptr) == PM_SLEEPY_LADY && !rn2(10)) mtmp->msleeping = 1;
-	if (monsndx(ptr) == PM_SLEEPING_ASIAN_GIRL && !rn2(10)) mtmp->msleeping = 1;
-	if (monsndx(ptr) == PM_DIDDLY_DINGUS_DUDE && !rn2(20)) mtmp->msleeping = 1;
-	if (monsndx(ptr) == PM_HUMDIGGLE_DISINTEGRATOR && !rn2(20)) mtmp->msleeping = 1;
-	if (monsndx(ptr) == PM_NOTHING_CHECKER_WHO_IS_CONFUSED) mtmp->mconf = 1;
-	if (monsndx(ptr) == PM_WATER_MATERIAL_BLONDE) mtmp->mconf = 1;
-	if (monsndx(ptr) == PM_DAFT_SHEEP) mtmp->mconf = 1;
-	if (monsndx(ptr) == PM_METH_HEAD) mtmp->mconf = 1;
-	if (monsndx(ptr) == PM_CONTRULLA) mtmp->mconf = 1;
-	if (monsndx(ptr) == PM_GAGAGAGOGL) mtmp->mconf = 1;
-	if (monsndx(ptr) == PM_IRMGARD) mtmp->mconf = 1;
-	if (mtmp->umbraeconf) mtmp->mconf = 1;
-	if (monsndx(ptr) == PM_DRONKBEE) mtmp->mconf = 1;
-	if (monsndx(ptr) == PM_DRUG_ADDICTED_BANG_PIN) mtmp->mconf = 1;
-	if (monsndx(ptr) == PM_HIGH_PROSTITUTE_OF_MOLOCH) mtmp->mconf = 1;
-	if (monsndx(ptr) == PM_LIQUOR_CORPSE) mtmp->mconf = 1;
-	if (monsndx(ptr) == PM_SWIMMING_TRUNKS) mtmp->mconf = 1;
-	if (monsndx(ptr) == PM_IRITAL) mtmp->mconf = 1;
-	if (monsndx(ptr) == PM_FULL_WEAKMATE_O) mtmp->mconf = 1;
-	if (monsndx(ptr) == PM_DEBILITATED_DANNY) mtmp->mconf = 1;
-	if (monsndx(ptr) == PM_DIM_GIRL) mtmp->mconf = 1;
-	if (monsndx(ptr) == PM_GRAWLIX) mtmp->mconf = 1;
-	if (monsndx(ptr) == PM_BLONDE_FEMMY) mtmp->mconf = 1;
-	if (monsndx(ptr) == PM_LASSY_GIRL) mtmp->mconf = 1;
-	if (monsndx(ptr) == PM_LOST_ITALIAN_PLUMBER) mtmp->mconf = 1;
-	if (monsndx(ptr) == PM_BEER_BELLY) mtmp->mconf = 1;
-	if (monsndx(ptr) == PM_SLOOB) mtmp->mconf = 1;
-	if (monsndx(ptr) == PM_CRAMP_CART_TO_THE_WALL_DRIVER) mtmp->mconf = 1;
-	if (monsndx(ptr) == PM_SOBER_THE_DRUNK) mtmp->mconf = 1;
-	if (monsndx(ptr) == PM_LOONIE_BOSS) mtmp->mconf = 1;
-	if (monsndx(ptr) == PM_BARTOLI_RETARD) mtmp->mconf = 1;
-	if (monsndx(ptr) == PM_ERR_BOSS) mtmp->mconf = 1;
-	if (monsndx(ptr) == PM_ERR) mtmp->mconf = 1;
-	if (monsndx(ptr) == PM_TRANS_BIRTH) mtmp->mconf = 1;
-	if (monsndx(ptr) == PM_CONFUSTICA_EQUA_STABILIA) mtmp->mconf = 1;
-	if (monsndx(ptr) == PM_STUPIDITY_AUTIST) mtmp->mconf = 1;
-	if (monsndx(ptr) == PM_SEIZURE_FOOBACUS) mtmp->mconf = 1;
-	if (monsndx(ptr) == PM_HIGHEST_PRIESTEST) mtmp->mconf = 1;
-	if (monsndx(ptr) == PM_HAMMER_DRIVE) mtmp->mconf = 1;
-	if (monsndx(ptr) == PM_PANCAKE_SPIRIT) mtmp->mconf = 1;
-	if (monsndx(ptr) == PM_WESTERHARE) mtmp->mflee = 1;
-	if (monsndx(ptr) == PM_VEGRIS) mtmp->mflee = 1;
-	if (monsndx(ptr) == PM_DIDDLY_DINGUS_DUDE && !rn2(10)) mtmp->mconf = 1;
-	if (monsndx(ptr) == PM_PARROT_RIDING_A_GIANT_PENIS && !rn2(10)) mtmp->mconf = 1;
 	if (mtmp->mconf || (uarmh && !rn2(10) && itemhasappearance(uarmh, APP_INKCOAT_HELMET) ) || (uarmh && uarmh->oartifact == ART_RADAR_NOT_WORKING) || (u.uswallow && mtmp == u.ustuck))
 		appr = 0;
 	else {
