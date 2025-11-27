@@ -6241,30 +6241,36 @@ int degree;
 /*    if (skill != P_NONE && !P_RESTRICTED(skill)) {*/
 
 	if (uleft && uleft->oartifact == ART_FOLL_GUD && (skill == P_SEARCHING)) {
-		if (u.enchantrecskill < 2) u.enchantrecskill++;
-		else if (!rn2(u.enchantrecskill)) u.enchantrecskill++;
+
+		int increasechance;
+
+		increasechance = 4 + u.enchantrecskill;
+		if ((rnd(increasechance) < 6) || Race_if(PM_KNOWLEDGABLE)) u.enchantrecskill++;
 		if (u.enchantrecskill > 250) u.enchantrecskill = 250;
 
-		if (u.weapchantrecskill < 2) u.weapchantrecskill++;
-		else if (!rn2(u.weapchantrecskill)) u.weapchantrecskill++;
+		increasechance = 4 + u.weapchantrecskill;
+		if ((rnd(increasechance) < 6) || Race_if(PM_KNOWLEDGABLE)) u.weapchantrecskill++;
 		if (u.weapchantrecskill > 250) u.weapchantrecskill = 250;
 
-		if (u.bucskill < 2) u.bucskill++;
-		else if (!rn2(u.bucskill)) u.bucskill++;
+		increasechance = 4 + u.bucskill;
+		if ((rnd(increasechance) < 6) || Race_if(PM_KNOWLEDGABLE)) u.bucskill++;
 		if (u.bucskill > 250) u.bucskill = 250;
 	}
 
 	if (uright && uright->oartifact == ART_FOLL_GUD && (skill == P_SEARCHING)) {
-		if (u.enchantrecskill < 2) u.enchantrecskill++;
-		else if (!rn2(u.enchantrecskill)) u.enchantrecskill++;
+
+		int increasechance;
+
+		increasechance = 4 + u.enchantrecskill;
+		if ((rnd(increasechance) < 6) || Race_if(PM_KNOWLEDGABLE)) u.enchantrecskill++;
 		if (u.enchantrecskill > 250) u.enchantrecskill = 250;
 
-		if (u.weapchantrecskill < 2) u.weapchantrecskill++;
-		else if (!rn2(u.weapchantrecskill)) u.weapchantrecskill++;
+		increasechance = 4 + u.weapchantrecskill;
+		if ((rnd(increasechance) < 6) || Race_if(PM_KNOWLEDGABLE)) u.weapchantrecskill++;
 		if (u.weapchantrecskill > 250) u.weapchantrecskill = 250;
 
-		if (u.bucskill < 2) u.bucskill++;
-		else if (!rn2(u.bucskill)) u.bucskill++;
+		increasechance = 4 + u.bucskill;
+		if ((rnd(increasechance) < 6) || Race_if(PM_KNOWLEDGABLE)) u.bucskill++;
 		if (u.bucskill > 250) u.bucskill = 250;
 	}
 

@@ -9964,12 +9964,18 @@ struct obj *otmp;
     if (otmp->oartifact) discover_artifact((int)otmp->oartifact);
 	if (!otmp->known) {
 		if (weapon_type(otmp) != P_NONE) {
-			if (u.weapchantrecskill < 1 || !rn2(u.weapchantrecskill)) {
+
+			int increasechance = 4 + u.weapchantrecskill;
+
+			if ((rnd(increasechance) < 6) || Race_if(PM_KNOWLEDGABLE)) {
 				u.weapchantrecskill++;
 				if (u.weapchantrecskill > 250) u.weapchantrecskill = 250;
 			}
 		} else if (objects[otmp->otyp].oc_charged) {
-			if (u.enchantrecskill < 1 || !rn2(u.enchantrecskill)) {
+
+			int increasechance = 4 + u.enchantrecskill;
+
+			if ((rnd(increasechance) < 6) || Race_if(PM_KNOWLEDGABLE)) {
 				u.enchantrecskill++;
 				if (u.enchantrecskill > 250) u.enchantrecskill = 250;
 			}
@@ -10015,12 +10021,19 @@ boolean dumbid;
     if (!rn2(3) && !(dumbid && !otmp->ident_knw)) {
 	if (!otmp->known) {
 		if (weapon_type(otmp) != P_NONE) {
-			if (u.weapchantrecskill < 1 || !rn2(u.weapchantrecskill)) {
+
+			int increasechance = 4 + u.weapchantrecskill;
+
+			if ((rnd(increasechance) < 6) || Race_if(PM_KNOWLEDGABLE)) {
 				u.weapchantrecskill++;
 				if (u.weapchantrecskill > 250) u.weapchantrecskill = 250;
 			}
+
 		} else if (objects[otmp->otyp].oc_charged) {
-			if (u.enchantrecskill < 1 || !rn2(u.enchantrecskill)) {
+
+			int increasechance = 4 + u.enchantrecskill;
+
+			if ((rnd(increasechance) < 6) || Race_if(PM_KNOWLEDGABLE)) {
 				u.enchantrecskill++;
 				if (u.enchantrecskill > 250) u.enchantrecskill = 250;
 			}

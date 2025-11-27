@@ -6421,7 +6421,10 @@ shk_appraisal(slang, shkp)
 			verbalize(basic_damage, ascii_wsdam, ascii_wldam);
 			if (!issoviet) {
 				obj->known = TRUE;
-				if (u.weapchantrecskill < 1 || !rn2(u.weapchantrecskill)) {
+
+				int increasechance = 4 + u.weapchantrecskill;
+
+				if ((rnd(increasechance) < 6) || Race_if(PM_KNOWLEDGABLE)) {
 					u.weapchantrecskill++;
 					if (u.weapchantrecskill > 250) u.weapchantrecskill = 250;
 				}
@@ -6443,8 +6446,10 @@ shk_appraisal(slang, shkp)
 		 * basically is SLASH'EM with some very minor changes. */
 
 		if (!issoviet) {
+			int increasechance = 4 + u.weapchantrecskill;
+
 			obj->known = TRUE;
-			if (u.weapchantrecskill < 1 || !rn2(u.weapchantrecskill)) {
+			if ((rnd(increasechance) < 6) || Race_if(PM_KNOWLEDGABLE)) {
 				u.weapchantrecskill++;
 				if (u.weapchantrecskill > 250) u.weapchantrecskill = 250;
 			}
@@ -6499,7 +6504,10 @@ shk_wand_appraisal(slang, shkp)
 	}
 
 	obj->known = TRUE;
-	if (u.enchantrecskill < 1 || !rn2(u.enchantrecskill)) {
+
+	int increasechance = 4 + u.enchantrecskill;
+
+	if ((rnd(increasechance) < 6) || Race_if(PM_KNOWLEDGABLE)) {
 		u.enchantrecskill++;
 		if (u.enchantrecskill > 250) u.enchantrecskill = 250;
 	}

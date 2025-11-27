@@ -372,25 +372,36 @@ doaltarobj(obj)  /* obj is an object dropped on an altar */
 			doname(obj), otense(obj, "hit"));
 		if (!Hallucination && !(LeftInventoryBug || u.uprops[LEFT_INVENTORY].extrinsic || have_leftinventorystone()) ) {
 			/* prevent skill farming if the player drops individual rocks or stuff --Amy */
+
+			int increasechance = 4 + u.bucskill;
+
+			if (!obj->bknown) {
+				if ( (uarmh && uarmh->oartifact == ART_EEOYOO_EEOYOO && (rnd(increasechance) < 6) ) || Race_if(PM_KNOWLEDGABLE) || (rnd(increasechance) < 6) ) {
+					u.bucskill++;
+					if (u.bucskill > 250) u.bucskill = 250;
+				}
+			}
+
 			if (!obj->bknown && !objects[obj->otyp].oc_merge)
 				use_skill(P_SPIRITUALITY,3);
 			obj->bknown = 1;
 			/* the more items you test, the more likely you'll recognize BUC on future items --Amy */
-			if (u.bucskill < 2 || (uarmh && uarmh->oartifact == ART_EEOYOO_EEOYOO && !rn2(u.bucskill)) || !rn2(u.bucskill)) {
+		}
+	} else {
+
+		int increasechance = 4 + u.bucskill;
+
+		pline("%s %s on the altar.", Doname2(obj),
+			otense(obj, "land"));
+		if (!obj->bknown && !objects[obj->otyp].oc_merge && !(LeftInventoryBug || u.uprops[LEFT_INVENTORY].extrinsic || have_leftinventorystone()) ) {
+			use_skill(P_SPIRITUALITY,3);
+
+			if ( (uarmh && uarmh->oartifact == ART_EEOYOO_EEOYOO && (rnd(increasechance) < 6) ) || Race_if(PM_KNOWLEDGABLE) || (rnd(increasechance) < 6) ) {
 				u.bucskill++;
 				if (u.bucskill > 250) u.bucskill = 250;
 			}
 		}
-	} else {
-		pline("%s %s on the altar.", Doname2(obj),
-			otense(obj, "land"));
-		if (!obj->bknown && !objects[obj->otyp].oc_merge && !(LeftInventoryBug || u.uprops[LEFT_INVENTORY].extrinsic || have_leftinventorystone()) )
-			use_skill(P_SPIRITUALITY,3);
 		obj->bknown = 1;
-		if (u.bucskill < 2 || (uarmh && uarmh->oartifact == ART_EEOYOO_EEOYOO && !rn2(u.bucskill)) || !rn2(u.bucskill)) {
-			u.bucskill++;
-			if (u.bucskill > 250) u.bucskill = 250;
-		}
 	}
 }
 

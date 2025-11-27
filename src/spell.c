@@ -8344,7 +8344,9 @@ bucchoice:
 			break;
 		}
 		if (otmp) {
-			if (!otmp->bknown && (u.bucskill < 2 || !rn2(u.bucskill)) ) {
+			int increasechance = 4 + u.bucskill;
+
+			if (!otmp->bknown && ((rnd(increasechance) < 6) || Race_if(PM_KNOWLEDGABLE) ) ) {
 				u.bucskill++;
 				if (u.bucskill > 250) u.bucskill = 250;
 			}

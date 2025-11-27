@@ -6009,7 +6009,10 @@ int tech_no;
 				You("examine %s.", doname(uwep));
 				uwep->known = TRUE;
 				You("discover it is %s",doname(uwep));
-				if (u.enchantrecskill < 100 || !rn2(u.enchantrecskill)) {
+
+				int increasechance = 100 + (u.enchantrecskill * 5);
+
+				if ((rnd(increasechance) < 101) || Race_if(PM_KNOWLEDGABLE)) {
 					u.enchantrecskill++;
 					if (u.enchantrecskill > 250) u.enchantrecskill = 250;
 				}
@@ -6022,7 +6025,10 @@ int tech_no;
 				You("examine %s.", doname(uwep));
 				uwep->known = TRUE;
 				You("discover it is %s",doname(uwep));
-				if (u.weapchantrecskill < 100 || !rn2(u.weapchantrecskill)) {
+
+				int increasechance = 100 + (u.weapchantrecskill * 5);
+
+				if ((rnd(increasechance) < 101) || Race_if(PM_KNOWLEDGABLE)) {
 					u.weapchantrecskill++;
 					if (u.weapchantrecskill > 250) u.weapchantrecskill = 250;
 				}
@@ -6115,10 +6121,14 @@ secureidchoice:
 					if (rnd(15) <= ACURR(A_INT)) {
 						makeknown(uwep->otyp);
 						uwep->known = TRUE;
-						if (u.weapchantrecskill < 100 || !rn2(u.weapchantrecskill)) {
+
+						int increasechance = 100 + (u.weapchantrecskill * 5);
+
+						if ((rnd(increasechance) < 101) || Race_if(PM_KNOWLEDGABLE)) {
 							u.weapchantrecskill++;
 							if (u.weapchantrecskill > 250) u.weapchantrecskill = 250;
 						}
+
 						You("discover it is %s",doname(uwep));
 					} else
 						pline("Unfortunately, you didn't learn anything new.");
@@ -11425,7 +11435,9 @@ bucchoice:
 				break;
 			}
 			if (otmp) {
-				if (!otmp->bknown && (u.bucskill < 2 || !rn2(u.bucskill)) ) {
+				int increasechance = 4 + u.bucskill;
+
+				if (!otmp->bknown && ((rnd(increasechance) < 6) || Race_if(PM_KNOWLEDGABLE) ) ) {
 					u.bucskill++;
 					if (u.bucskill > 250) u.bucskill = 250;
 				}
