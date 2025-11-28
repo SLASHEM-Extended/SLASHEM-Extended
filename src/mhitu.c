@@ -14138,6 +14138,7 @@ common:
 		increasesincounter(1);
 		u.alignlim--;
 		adjalign(-5);
+		mdamageu(mtmp, tmp);
 
 		break;
 
@@ -14195,6 +14196,7 @@ common:
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 			}
 		}
+		mdamageu(mtmp, tmp);
 		break;
 
 	    case AD_NGEN:
@@ -14207,6 +14209,7 @@ common:
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 			}
 		}
+		mdamageu(mtmp, tmp);
 		break;
 
 	    case AD_STTP:
@@ -14264,11 +14267,13 @@ common:
 
 		    }
 		}
+		mdamageu(mtmp, tmp);
 		break;
 
 	    case AD_NACU:
 
 		nastytrapcurse();
+		mdamageu(mtmp, tmp);
 		break;
 
 	    case AD_ICUR:
@@ -14329,6 +14334,7 @@ common:
 	    case AD_TLPT:
 		Your("position suddenly seems very uncertain!");
 		teleX();
+		/* no damage (intentional) */
 		break;
 
 	    case AD_ABDC:
@@ -14367,6 +14373,7 @@ common:
 			u.banishmentbeam = 1;
 			nomul(-2, "being banished", FALSE); /* because it's not called until you get another turn... */
 		}
+		mdamageu(mtmp, tmp);
 		break;
 
 	    case AD_DISP:
@@ -14381,6 +14388,7 @@ common:
 
 	    case AD_DREN:
 		drain_en(tmp);
+		/* no damage (intentional) */
 		break;
 
 	    case AD_DETH:
@@ -14518,14 +14526,17 @@ common:
 
 	    case AD_CORR:
 		hurtarmor(AD_CORR);
+		mdamageu(mtmp, tmp);
 		break;
 
 	    case AD_DCAY:
 		hurtarmor(AD_DCAY);
+		mdamageu(mtmp, tmp);
 		break;
 
 	    case AD_FLAM:
 		hurtarmor(AD_FLAM);
+		mdamageu(mtmp, tmp);
 		break;
 
 	    case AD_HEAL:
@@ -14566,6 +14577,7 @@ common:
 		if(!rn2(2) || night() ) {
 			attrcurse();
 		}
+		/* no damage (intentional) */
 		break;
 
 	    case AD_LITE:
@@ -14653,6 +14665,7 @@ common:
 			u.inertia += (tmp + 2);
 		    }
 		}
+		mdamageu(mtmp, tmp);
 		break;
 	    case AD_SHRD:
 		{
@@ -14833,11 +14846,13 @@ common:
 
 	    case AD_SHAN:
 		shank_player();
+		mdamageu(mtmp, tmp);
 
 		break;
 
 	    case AD_DEBU:
 		statdebuff(TRUE);
+		mdamageu(mtmp, tmp);
 
 		break;
 
@@ -14856,10 +14871,12 @@ common:
 
 		}
 
+		mdamageu(mtmp, tmp);
 		break;
 
 	    case AD_NIVE:
 		nivellate();
+		mdamageu(mtmp, tmp);
 
 		break;
 
@@ -14867,18 +14884,21 @@ common:
 		u.urexp -= (tmp * 50);
 		if (u.urexp < 0) u.urexp = 0;
 		Your("score is drained!");
+		/* no damage (intentional) */
 
 		break;
 
 	    case AD_TERR:
 		if (mtmp->data == &mons[PM_BUILDER]) terrainterror(1);
 		else terrainterror(0);
+		mdamageu(mtmp, tmp);
 
 		break;
 
 	    case AD_FEMI:
 		randomfeminismtrap(rnz( (tmp + 2) * rnd(100)));
 		if (Role_if(PM_CLIMACTERIAL)) climtrainsqueaking(tmp);
+		/* no damage (intentional) */
 
 		break;
 
@@ -14887,12 +14907,14 @@ common:
 		HLevitation &= ~I_SPECIAL;
 		incr_itimeout(&HLevitation, tmp);
 		flags.botl = TRUE;
+		/* no damage (intentional) */
 
 		break;
 
 	    case AD_MCRE:
 		MCReduction += (100 * tmp);
 		pline("The magic cancellation granted by your armor seems weaker now...");
+		/* no damage (intentional) */
 
 		break;
 
@@ -14901,6 +14923,7 @@ common:
 		HFumbling = FROMOUTSIDE | rnd(5);
 		incr_itimeout(&HFumbling, rnd(20));
 		u.fumbleduration += rnz(10 * (tmp + 1) );
+		/* no damage (intentional) */
 
 		break;
 
@@ -14908,6 +14931,7 @@ common:
 
 		u.tremblingamount++;
 		pline("Suddenly, your entire body trembles.");
+		mdamageu(mtmp, tmp);
 
 		break;
 
@@ -14920,6 +14944,7 @@ common:
 			if (!rn2(20)) rust_dmg(objX, xname(objX), rn2(4), TRUE, &youmonst);
 		    }
 		}
+		mdamageu(mtmp, tmp);
 
 		break;
 
@@ -14932,6 +14957,7 @@ common:
 			if (!rn2(20)) wither_dmg(objX, xname(objX), rn2(4), TRUE, &youmonst);
 		    }
 		}
+		mdamageu(mtmp, tmp);
 
 		break;
 
@@ -14940,6 +14966,7 @@ common:
 		if (u.temppainresist) break;
 
 		pline("OUCH!");
+		mdamageu(mtmp, tmp);
 		losehp(Upolyd ? ((u.mh / 4) + 1) : ((u.uhp / 4) + 1), "a painful explosion", KILLED_BY);
 
 		break;
@@ -14947,29 +14974,29 @@ common:
 	    case AD_TECH:
 
 		techcapincrease(tmp * rnd(50));
+		/* no damage (intentional) */
 
 		break;
 
 	    case AD_MEMO:
 
-		hitmsg(mtmp, mattk);
-
 		spellmemoryloss(tmp);
+		/* no damage (intentional) */
 
 		break;
 
 	    case AD_TRAI:
 
-		hitmsg(mtmp, mattk);
-
 		skilltrainingdecrease(tmp);
 		if (!rn2(10)) skillcaploss();
+		/* no damage (intentional) */
 
 		break;
 
 	    case AD_STAT:
 
 		statdrain(TRUE);
+		mdamageu(mtmp, tmp);
 
 		break;
 
@@ -14978,12 +15005,14 @@ common:
 		pline("Nasty!");
 
 		randomnastytrapeffect(rnz( (tmp + 2) * rnd(100) ), 1000 - (tmp * 3));
+		/* no damage (intentional) */
 
 		break;
 
 	    case AD_VULN:
 
 		deacrandomintrinsic(rnz( (tmp * rnd(30) ) + 1));
+		/* no damage (intentional) */
 
 		break;
 
@@ -14998,6 +15027,7 @@ common:
 		    } else if (flags.verbose)
 			You("get the impression it was not terribly bright.");
 		}
+		/* no damage (intentional) */
 		break;
 
 	    case AD_TIME: /* timebomb */
@@ -15067,6 +15097,7 @@ common:
 				if(ABASE(A_CHA) < ATTRABSMIN(A_CHA)) {tmp *= 2; ABASE(A_CHA) = ATTRABSMIN(A_CHA);}
 				break;
 		}
+		mdamageu(mtmp, tmp);
 		break;
 
 	    case AD_DISN: /* for jonadab's disintegrating sphere */
@@ -15104,6 +15135,7 @@ common:
 			u.youaredead = 0;
 		}
 
+		mdamageu(mtmp, tmp);
 		break;
 
 	    case AD_VAPO:
@@ -15144,32 +15176,34 @@ common:
 			u.youaredead = 0;
 		}
 
+		mdamageu(mtmp, tmp);
 		break;
 
 	    case AD_STON: /* mainly for jonadab's stoning sphere */
 
 		if (StrongStone_resistance && rn2(10) && tmp > 1) tmp /= 3;
 
-			if (!Stoned && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && !(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) 
-			{
-				if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
-				else {
-					Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
-					u.cnd_stoningcount++;
-					delayed_killer = mtmp->data->mname;
-					if (mtmp->data->geno & G_UNIQ) {
-					    if (!type_is_pname(mtmp->data)) {
-						static char kbuf[BUFSZ];
-	
-						/* "the" buffer may be reallocated */
-						strcpy(kbuf, the(delayed_killer));
-						delayed_killer = kbuf;
-					    }
-					    killer_format = KILLED_BY;
-					} else killer_format = KILLED_BY_AN;
-				}
-			}
+		if (!Stoned && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && !(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) 
+		{
+			if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
+			else {
+				Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+				u.cnd_stoningcount++;
+				delayed_killer = mtmp->data->mname;
+				if (mtmp->data->geno & G_UNIQ) {
+				    if (!type_is_pname(mtmp->data)) {
+					static char kbuf[BUFSZ];
 
+					/* "the" buffer may be reallocated */
+					strcpy(kbuf, the(delayed_killer));
+					delayed_killer = kbuf;
+				    }
+				    killer_format = KILLED_BY;
+				} else killer_format = KILLED_BY_AN;
+			}
+		}
+
+		mdamageu(mtmp, tmp);
 		break;
 
 	    case AD_EDGE:
@@ -15180,26 +15214,27 @@ common:
 			else {u.uhpmax--; if (u.uhp > u.uhpmax) u.uhp = u.uhpmax; }
 		}
 
-			if (!Stoned && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && !(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) 
-			{
-				if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
-				else {
-					Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
-					u.cnd_stoningcount++;
-					delayed_killer = mtmp->data->mname;
-					if (mtmp->data->geno & G_UNIQ) {
-					    if (!type_is_pname(mtmp->data)) {
-						static char kbuf[BUFSZ];
-	
-						/* "the" buffer may be reallocated */
-						strcpy(kbuf, the(delayed_killer));
-						delayed_killer = kbuf;
-					    }
-					    killer_format = KILLED_BY;
-					} else killer_format = KILLED_BY_AN;
-				}
-			}
+		if (!Stoned && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && !(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) 
+		{
+			if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
+			else {
+				Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+				u.cnd_stoningcount++;
+				delayed_killer = mtmp->data->mname;
+				if (mtmp->data->geno & G_UNIQ) {
+				    if (!type_is_pname(mtmp->data)) {
+					static char kbuf[BUFSZ];
 
+					/* "the" buffer may be reallocated */
+					strcpy(kbuf, the(delayed_killer));
+					delayed_killer = kbuf;
+				    }
+				    killer_format = KILLED_BY;
+				} else killer_format = KILLED_BY_AN;
+			}
+		}
+
+		mdamageu(mtmp, tmp);
 		break;
 
 	    case AD_PLYS: /* for jonadab's paralyzing sphere */
@@ -15224,6 +15259,7 @@ common:
 			exercise(A_DEX, FALSE);
 		    }
 
+		/* no damage (intentional) */
 		break;
 
 	    case AD_RUST:
@@ -15232,11 +15268,13 @@ common:
 			water_damage(invent, FALSE, FALSE);
 		}
 
+		mdamageu(mtmp, tmp);
 		break;
 
 	    case AD_AMNE:
 
 		maprot();
+		mdamageu(mtmp, tmp);
 
 		break;
 
@@ -15247,6 +15285,7 @@ common:
 			water_damage(invent, FALSE, FALSE);
 			if (level.flags.lethe) lethe_damage(invent, FALSE, FALSE);
 		}
+		mdamageu(mtmp, tmp);
 		break;
 
 	    case AD_LETH:
@@ -15256,17 +15295,21 @@ common:
 		if (!rn2(3)) actual_lethe_damage(invent, FALSE, FALSE);
 		if (!rn2(issoviet ? 2 : 3)) forget_levels(rnd(issoviet ? 25 : 10), FALSE);	/* lose memory of 25% of levels */
 		if (!rn2(issoviet ? 3 : 5)) forget_objects(rnd(issoviet ? 25 : 10), FALSE);	/* lose memory of 25% of objects */
+		mdamageu(mtmp, tmp);
 		break;
 
 	    case AD_CNCL:
 
 		(void) cancel_monst(&youmonst, (struct obj *)0, FALSE, TRUE, FALSE);
+		mdamageu(mtmp, tmp);
 		break;
 
 	    case AD_LUCK:
 		change_luck(-1);
 		You_feel("unlucky.");
 		if (PlayerHearsSoundEffects) pline(issoviet ? "Prosto stoyat' i poteryat' stol'ko udachi, kak vy mozhete! Eto sdelayet igru boleye legkoy dlya Vas! V samom dele! Potomu chto togda vy budete umirat' bystreye i sdelat' s ney, tak chto vy mozhete sosredotochit'sya na tom, kakoy na samom dele produktivnoy veshchi vmesto togo, chtoby, kak delat' posudu!" : "Dieuuuuuuu!");
+
+		mdamageu(mtmp, tmp);
 		break;
 
 	    case AD_FAKE:
@@ -15364,6 +15407,7 @@ common:
 	    case AD_WGHT:
 		pline("Your load feels heavier!");
 		IncreasedGravity += (1 + (tmp * rnd(20)));
+		/* no damage (intentional) */
 
 		break;
 
@@ -15414,6 +15458,7 @@ common:
 			rust_dmg(objX, xname(objX), 3, TRUE, &youmonst);
 		    }
 		}
+		mdamageu(mtmp, tmp);
 		break;
 
 	    case AD_DRLI:
@@ -15424,6 +15469,9 @@ common:
 
 		if (!Drain_resistance || !rn2(StrongDrain_resistance ? 16 : 4) )
 		    losexp("draining explosion", FALSE, TRUE);
+
+		mdamageu(mtmp, tmp);
+
 		break;
 
 	    case AD_HODS:
@@ -15469,6 +15517,7 @@ common:
 			exercise(A_STR, FALSE);
 			exercise(A_DEX, FALSE);
 		}
+		/* no damage (intentional) */
 		break;
 
 	    case AD_VAMP:
@@ -15484,19 +15533,21 @@ common:
 	    case AD_DRST:
 
 		if (!Poison_resistance || !rn2(StrongPoison_resistance ? 5 : 3) ) {
-		poisoned("blast", A_STR, "poison explosion", 30);
+			poisoned("blast", A_STR, "poison explosion", 30);
 		}
 	      mdamageu(mtmp, tmp); /* still does damage even if you resist the poison --Amy */
 		break;
 
 	    case AD_DISE:
 		diseasemu(mdat);
+		mdamageu(mtmp, tmp);
 		break;
 
 	    case AD_SPEL:
 	    case AD_CAST:
 	    case AD_CLRC:
 		castmu(mtmp, mattk, TRUE, TRUE);
+		/* no damage (intentional) */
 		break;
 
 	    case AD_VOMT:
@@ -15507,6 +15558,7 @@ common:
 				if (Sick && Sick < 100) 	set_itimeout(&Sick, (Sick * 2) + 10);
 			} else diseasemu(mdat);
 		}
+		mdamageu(mtmp, tmp);
 		break;
 
 	    case AD_PEST:
@@ -15616,6 +15668,7 @@ common:
 		break;
 
 	    case AD_POLY:
+		mdamageu(mtmp, tmp);
 		if (!Unchanging && !Antimagic) {
 			You("undergo a freakish metamorphosis!");
 			u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic += 1;
@@ -15626,6 +15679,7 @@ common:
 		break;
 
 	    case AD_CHAO:
+		mdamageu(mtmp, tmp);
 		if (!Unchanging && !Antimagic) {
 			You("undergo a freakish metamorphosis!");
 			u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic += 1;
@@ -15666,12 +15720,13 @@ common:
 
 	    case AD_CALM:
 		docalm();
+		mdamageu(mtmp, tmp);
 		break;
 
 	    case AD_DRDX:
 
 		if (!Poison_resistance || !rn2(StrongPoison_resistance ? 5 : 3) ) {
-		poisoned("blast", A_DEX, "poison explosion", 30);
+			poisoned("blast", A_DEX, "poison explosion", 30);
 		}
 	      mdamageu(mtmp, tmp); /* still does damage even if you resist the poison --Amy */
 		break;
@@ -15679,7 +15734,7 @@ common:
 	    case AD_DRCO:
 
 		if (!Poison_resistance || !rn2(StrongPoison_resistance ? 5 : 3) ) {
-		poisoned("blast", A_CON, "poison explosion", 30);
+			poisoned("blast", A_CON, "poison explosion", 30);
 		}
 	      mdamageu(mtmp, tmp); /* still does damage even if you resist the poison --Amy */
 		break;
@@ -15687,7 +15742,7 @@ common:
 	    case AD_WISD:
 
 		if (!Poison_resistance || !rn2(StrongPoison_resistance ? 5 : 3) ) {
-		poisoned("blast", A_WIS, "poison explosion", 30);
+			poisoned("blast", A_WIS, "poison explosion", 30);
 		}
 	      mdamageu(mtmp, tmp); /* still does damage even if you resist the poison --Amy */
 		break;
@@ -15695,7 +15750,7 @@ common:
 	    case AD_DRCH:
 
 		if (!Poison_resistance || !rn2(StrongPoison_resistance ? 5 : 3) ) {
-		poisoned("blast", A_CHA, "poison explosion", 30);
+			poisoned("blast", A_CHA, "poison explosion", 30);
 		}
 	      mdamageu(mtmp, tmp); /* still does damage even if you resist the poison --Amy */
 		break;
@@ -15703,7 +15758,7 @@ common:
 	    case AD_POIS:
 
 		if (!Poison_resistance || !rn2(StrongPoison_resistance ? 5 : 3) ) {
-		poisoned("blast", rn2(A_MAX), "poison explosion", 30);
+			poisoned("blast", rn2(A_MAX), "poison explosion", 30);
 		}
 	      mdamageu(mtmp, tmp); /* still does damage even if you resist the poison --Amy */
 		break;
@@ -15716,7 +15771,7 @@ common:
 		}
 
 		if (!Poison_resistance || !rn2(StrongPoison_resistance ? 5 : 3) ) {
-		poisoned("blast", rn2(A_MAX), "venom explosion", 5);
+			poisoned("blast", rn2(A_MAX), "venom explosion", 5);
 		}
 		if (!Poison_resistance) pline("You're badly poisoned!");
 		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_STR, -rnd(2), FALSE, TRUE);
@@ -15826,6 +15881,7 @@ common:
 	    case AD_WTHR:
 
 		withering_damage(invent, FALSE, FALSE);
+		mdamageu(mtmp, tmp);
 
 		break;
 
@@ -15902,6 +15958,8 @@ common:
 		} else
 		    pline("Yuck!");
 
+		mdamageu(mtmp, tmp);
+
 		break;
 
 	    case AD_LITT:
@@ -15926,6 +15984,8 @@ common:
 		    }
 		}
 
+		mdamageu(mtmp, tmp);
+
 		break;
 
 	    case AD_STUN:
@@ -15935,6 +15995,7 @@ common:
 			else pline("%s NUMBED CAN'T DO",urole.name.m);
 			make_stunned(HStun + (long)tmp, FALSE);
 		}
+		/* no damage (intentional) */
 		break;
 
 	    case AD_NUMB:
@@ -15944,12 +16005,14 @@ common:
 			else pline("%s NUMBED YER",urole.name.m);
 			make_numbed(HNumbed + (long)tmp, FALSE);
 		}
+		/* no damage (intentional) */
 		break;
 
 	    case AD_GLIB:
 		pline("Your hands got ripped off by the explosion!");
 		incr_itimeout(&Glib, tmp);
 		flags.botl = TRUE;
+		/* no damage (intentional) */
 
 		break;
 
@@ -16019,6 +16082,7 @@ common:
 			else pline("%s COOLING",urole.name.m);
 			make_frozen(HFrozen + (long)tmp, FALSE);
 		}
+		/* no damage (intentional) */
 		break;
 
 	    case AD_BURN:
@@ -16028,6 +16092,7 @@ common:
 			else pline("%s BURNED",urole.name.m);
 			make_burned(HBurned + (long)tmp, FALSE);
 		}
+		/* no damage (intentional) */
 		break;
 
 	    case AD_DIMN:
@@ -16037,6 +16102,7 @@ common:
 			else pline("%s DISPIRITED",urole.name.m);
 			make_dimmed(HDimmed + (long)tmp, FALSE);
 		}
+		/* no damage (intentional) */
 		break;
 
 	    case AD_FEAR:
@@ -16046,10 +16112,12 @@ common:
 			else pline("%s FEARED",urole.name.m);
 			make_feared(HFeared + (long)tmp, FALSE);
 		}
+		/* no damage (intentional) */
 		break;
 
 	    case AD_SANI:
 		increasesanity(tmp);
+		/* no damage (intentional) */
 		break;
 
 	    case AD_INSA:
@@ -16063,6 +16131,7 @@ common:
 			make_confused(HConfusion + tmp, FALSE);
 			increasesanity(rnd(100));
 		}
+		/* no damage (intentional) */
 		break;
 
 	    case AD_HALU:
@@ -16080,6 +16149,7 @@ common:
 		    chg = make_hallucinated(HHallucination + (long)tmp,FALSE,0L);
 		    You("%s.", chg ? "are freaked out" : "seem unaffected");
 		}
+		/* no damage (intentional) */
 		break;
 
 	    default:

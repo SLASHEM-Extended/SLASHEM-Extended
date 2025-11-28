@@ -8251,11 +8251,25 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_IMPALAZON]) (void) mongets(mtmp, SUPERHEAVY_SPEAR);
 		if (ptr == &mons[PM_FRONTAL_TEACHER]) (void) mongets(mtmp, TEACHING_STAFF);
 		if (ptr == &mons[PM_DOMESTIC_ABUSER]) (void) mongets(mtmp, CANE);
+		if (ptr == &mons[PM_ORNATE_SAMURAI]) (void) mongets(mtmp, KATANA);
 
 		if (ptr == &mons[PM_KNIGHT_ARCHER]) {
 			(void) mongets(mtmp, LONG_SWORD);
 			(void) mongets(mtmp, BOW);
 	  		m_initthrow(mtmp, ARROW, 20);
+
+		}
+
+		if (ptr == &mons[PM_BAZOOKER]) {
+			(void) mongets(mtmp, ROCKET_LAUNCHER);
+	  		m_initthrow(mtmp, ROCKET, 7);
+
+		}
+
+		if (ptr == &mons[PM_BROTHERHOOD_INITIATE]) {
+			(void) mongets(mtmp, CHAIN_MAIL);
+			(void) mongets(mtmp, FLINTLOCK);
+	  		m_initthrow(mtmp, PISTOL_BULLET, 15);
 
 		}
 
@@ -10004,6 +10018,9 @@ register struct	monst	*mtmp;
 		}
 		if (ptr == &mons[PM_HAMMER_OF_HELL]) {
 			(void) mongets(mtmp, HEAVY_HAMMER);
+		}
+		if (ptr == &mons[PM_POLE_AXE_OF_ANIMATED_ATTACK]) {
+			(void) mongets(mtmp, HALBERD);
 		}
 		if (ptr == &mons[PM_SWORD_MIRROR]) {
 			(void) mongets(mtmp, MIRRORBLADE);
@@ -16917,6 +16934,7 @@ loveheelover:
 		if (monsndx(ptr) == PM_LASERHORDE_OGRE) (void) mongets(mtmp, STARWARS_MACE);
 		if (monsndx(ptr) == PM_OGRE_YARDSTICK) (void) mongets(mtmp, PIKE);
 		if (monsndx(ptr) == PM_BOOGRE_GUARD) (void) mongets(mtmp, SPEAR);
+		if (monsndx(ptr) == PM_OGRE_WARRIOR) (void) mongets(mtmp, SPLINT_MAIL);
 		if (ptr == &mons[PM_OGRE_WOARER]) {
 			(void) mongets(mtmp, rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1) );
 		}
@@ -27504,6 +27522,7 @@ register int	mmflags;
 
 			if (mndx == PM_PEN_A_MEDICANT) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_LOGRUS_MASTER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_DARK_ELVEN_SHADE) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 
 			if (mtmp->data == &mons[PM_TRUE_YOUNG_WOMAN]) {
 				int spawnnumber = rn1(8, 3);
