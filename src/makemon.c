@@ -34121,6 +34121,15 @@ register struct permonst *ptr;
 
 	if (Race_if(PM_RODNEYAN) && monsndx(ptr) == PM_RODNEY_S_SISTER) return TRUE;
 
+	/* riders and sins should be HOSTILE, no matter what! */
+	if (is_rider(ptr) || is_deadlysin(ptr)) return FALSE;
+
+	/* demon lords have 80% unconditional chance of being generated hostile */
+	if (ptr >= &mons[PM_JUIBLEX] && ptr <= &mons[PM_YEENOGHU] && rn2(5)) return FALSE;
+
+	/* demon princes have 90% unconditional chance of being generated hostile */
+	if (ptr >= &mons[PM_ORCUS] && ptr <= &mons[PM_DEMOGORGON] && rn2(10)) return FALSE;
+
 	if (EnmityBug || u.uprops[ENMITY_BUG].extrinsic || autismweaponcheck(ART_POST_OFFICE_COURSE) || u.startscummerpersist || Race_if(PM_STARTSCUMMER) || autismweaponcheck(ART_EMERALD_SWORD) || have_inimicalstone() || (uarmf && uarmf->oartifact == ART_HERSAY_PRICE) || (uarmc && uarmc->oartifact == ART_MOST_SCRAPPED_PERSON_IN_EX) || (uarm && uarm->oartifact == ART_ALTADOON_HERMA_MORA) || autismweaponcheck(ART_DRAMA_STAFF) || autismweaponcheck(ART_TOMMY_S_DEFERRED_HEEL)) return FALSE;
 
 	if (Race_if(PM_DUTHOL) && !rn2(2)) return FALSE;
