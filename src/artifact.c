@@ -2907,7 +2907,7 @@ register boolean mod;
 				otmpP = otmpO->nobj; /* otmpO could be deleted */
 				if (otmpO && (otmpO->where == OBJ_FLOOR) ) {
 					if (!evades_destruction(otmpO) && !(otmpO->oartifact == ART_NULL_SCRIPT) ) {
-						delobj(otmpO);
+						delobj(otmpO); /* erases container contents too, this is by design --Amy */
 					}
 				}
 			}

@@ -1824,7 +1824,8 @@ untwoweapon()
 	return;
 }
 
-/* Maybe rust object, or corrode it if acid damage is called for */
+/* Maybe rust object, or corrode it if acid damage is called for
+ * this function is used for weapons and armor */
 void
 erode_obj(target, acid_dmg, fade_scrolls)
 struct obj *target;		/* object (e.g. weapon or armor) to erode */
@@ -1963,6 +1964,7 @@ boolean fade_scrolls;
 	}
 }
 
+/* wither a worn piece of armor or a weapon, by Amy */
 void
 wither_obj(target, acid_dmg, fade_scrolls)
 struct obj *target;

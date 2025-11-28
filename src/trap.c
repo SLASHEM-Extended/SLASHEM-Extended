@@ -12125,6 +12125,12 @@ madnesseffect:
 				otmpP = otmpO->nobj; /* otmpO could be deleted */
 				if (otmpO && (otmpO->where == OBJ_FLOOR) && !rn2(10)) {
 					if (!evades_destruction(otmpO)) {
+
+						if (Has_contents(otmpO)) {
+							dump_container(otmpO, TRUE, otmpO->ox, otmpO->oy);
+							scatter(otmpO->ox,otmpO->oy,10,VIS_EFFECTS,0);
+						}
+
 						delobj(otmpO);
 					}
 				}
@@ -25701,10 +25707,18 @@ register boolean force, here;
 					else if (obj->oeroded == MAX_ERODE && !evades_destruction(obj) && !hard_to_destruct(obj) && (!obj->oartifact || !rn2(4)))
 					{
 				    
-					if (!evilfriday) pline("Your %s withered away!", xname(obj));
-					else pline("One of your items withered away!");
-					delobj(obj);
-					update_inventory();
+						if (!evilfriday) pline("Your %s withered away!", xname(obj));
+						else pline("One of your items withered away!");
+
+						/* be lenient - losing the 80 pages of stuff in your box just because the box got destroyed
+						 * is waaaaaaaaaaaaaaaaaaaaaaaaay too harsh... --Amy */
+						if (Has_contents(obj)) {
+							dump_container(obj, TRUE, u.ux, u.uy);
+							scatter(u.ux,u.uy,10,VIS_EFFECTS,0);
+						}
+
+						delobj(obj);
+						update_inventory();
 			    
 					}
 				}
@@ -25714,10 +25728,18 @@ register boolean force, here;
 					else if (obj->oeroded2 == MAX_ERODE && !evades_destruction(obj) && !hard_to_destruct(obj) && (!obj->oartifact || !rn2(4)))
 					{
 				    
-					if (!evilfriday) pline("Your %s withered away!", xname(obj));
-					else pline("One of your items withered away!");
-					delobj(obj);
-					update_inventory();
+						if (!evilfriday) pline("Your %s withered away!", xname(obj));
+						else pline("One of your items withered away!");
+
+						/* be lenient - losing the 80 pages of stuff in your box just because the box got destroyed
+						 * is waaaaaaaaaaaaaaaaaaaaaaaaay too harsh... --Amy */
+						if (Has_contents(obj)) {
+							dump_container(obj, TRUE, u.ux, u.uy);
+							scatter(u.ux,u.uy,10,VIS_EFFECTS,0);
+						}
+
+						delobj(obj);
+						update_inventory();
 			    
 					}
 				}
@@ -26040,6 +26062,13 @@ register boolean force, here;
 				else pline("One of your items was destroyed by rust!");
 				if (obj == uball) unpunish();
 				if (obj == uchain) unpunish();
+
+				/* be lenient - losing the 80 pages of stuff in your box just because the box got destroyed is waaaaaaaaaaaaaaaaaaaaaaaaay too harsh... --Amy */
+				if (Has_contents(obj)) {
+					dump_container(obj, TRUE, u.ux, u.uy);
+					scatter(u.ux,u.uy,10,VIS_EFFECTS,0);
+				}
+
 				delobj(obj);
 				hasdelled = TRUE;
 				update_inventory();
@@ -26251,6 +26280,13 @@ register boolean force, here;
 			    
 				if (!evilfriday) pline("Your %s withered away!", xname(obj));
 				else pline("One of your items withered away!");
+
+				/* be lenient - losing the 80 pages of stuff in your box just because the box got destroyed is waaaaaaaaaaaaaaaaaaaaaaaaay too harsh... --Amy */
+				if (Has_contents(obj)) {
+					dump_container(obj, TRUE, u.ux, u.uy);
+					scatter(u.ux,u.uy,10,VIS_EFFECTS,0);
+				}
+
 				delobj(obj);
 				update_inventory();
 			    
@@ -26264,6 +26300,13 @@ register boolean force, here;
 			    
 				if (!evilfriday) pline("Your %s withered away!", xname(obj));
 				else pline("One of your items withered away!");
+
+				/* be lenient - losing the 80 pages of stuff in your box just because the box got destroyed is waaaaaaaaaaaaaaaaaaaaaaaaay too harsh... --Amy */
+				if (Has_contents(obj)) {
+					dump_container(obj, TRUE, u.ux, u.uy);
+					scatter(u.ux,u.uy,10,VIS_EFFECTS,0);
+				}
+
 				delobj(obj);
 				update_inventory();
 			    
@@ -26329,6 +26372,13 @@ register boolean force, here;
 			    
 				if (!evilfriday) pline("Your %s withered away!", xname(obj));
 				else pline("One of your items withered away!");
+
+				/* be lenient - losing the 80 pages of stuff in your box just because the box got destroyed is waaaaaaaaaaaaaaaaaaaaaaaaay too harsh... --Amy */
+				if (Has_contents(obj)) {
+					dump_container(obj, TRUE, u.ux, u.uy);
+					scatter(u.ux,u.uy,10,VIS_EFFECTS,0);
+				}
+
 				delobj(obj);
 				update_inventory();
 			    
@@ -26342,6 +26392,13 @@ register boolean force, here;
 			    
 				if (!evilfriday) pline("Your %s withered away!", xname(obj));
 				else pline("One of your items withered away!");
+
+				/* be lenient - losing the 80 pages of stuff in your box just because the box got destroyed is waaaaaaaaaaaaaaaaaaaaaaaaay too harsh... --Amy */
+				if (Has_contents(obj)) {
+					dump_container(obj, TRUE, u.ux, u.uy);
+					scatter(u.ux,u.uy,10,VIS_EFFECTS,0);
+				}
+
 				delobj(obj);
 				update_inventory();
 			    
