@@ -229,6 +229,7 @@ struct def_skill {
 /* WAC - made this dependant on weapon skills if defined */
 
 # define martial_bonus() ((P_SKILL(P_MARTIAL_ARTS) >= P_UNSKILLED) && !u.disablemartial && !PlayerCannotUseSkills) /* because sometimes they cap at expert --Amy */
+# define martial_bonus_specialmode() ((P_SKILL(P_MARTIAL_ARTS) >= P_UNSKILLED)&& !PlayerCannotUseSkills) /* for kicking, i.e. ignores u.disablemartial --Amy */
 /*
 #else
 # define martial_bonus() (Role_if(PM_SAMURAI) || Role_if(PM_PRIEST) || Role_if(PM_MONK))

@@ -6,7 +6,7 @@
 #include "eshk.h"
 
 #define is_bigfoot(x)	((x) == &mons[PM_SASQUATCH])
-#define martial()	(martial_bonus() || is_bigfoot(youmonst.data) || \
+#define martial()	(martial_bonus_specialmode() || is_bigfoot(youmonst.data) || \
 		(uarmf && uarmf->otyp == KICKING_BOOTS) || (uarmf && uarmf->otyp == COMBAT_WEDGES) || (uarmf && uarmf->otyp == STOMPING_BOOTS) )
 
 static NEARDATA struct rm *maploc;
@@ -563,7 +563,7 @@ register boolean clumsy;
 				}
 			}
 
-		    dmg += weapon_dam_bonus((struct obj *)0);
+		    dmg += weapon_dam_bonus((struct obj *)0, TRUE);
 			/* marital arts skill is supposed to improve this!!! --Amy */
 		    if ((P_SKILL(P_MARTIAL_ARTS) > 0) && !rn2(2)) dmg += (rnd(P_SKILL(P_MARTIAL_ARTS)) * rno(2));
 		} else {

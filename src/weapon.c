@@ -7518,6 +7518,7 @@ lose_last_spent_skill()
 
 }
 
+/* determine weapon type: if martial arts is disabled, it uses bare-handed. Attention: there is a copied function that always uses martial arts below! --Amy */
 int
 weapon_type(obj)
 struct obj *obj;
@@ -7528,6 +7529,29 @@ struct obj *obj;
 	if (!obj)
 		/* Not using a weapon */
 	    return ((martial_bonus() && !u.disablemartial) ? P_MARTIAL_ARTS :
+				P_BARE_HANDED_COMBAT);
+	if (obj && itemhasappearance(obj, APP_PISTOL_BOOTS)) return (P_FIREARM);
+    if ( (obj->oclass == BALL_CLASS) || (obj->oclass == CHAIN_CLASS) || (obj->oclass == VENOM_CLASS) )
+        return objects[obj->otyp].oc_skill;
+	if (obj->oclass != WEAPON_CLASS && obj->oclass != TOOL_CLASS &&
+	    obj->oclass != GEM_CLASS)
+		/* Not a weapon, weapon-tool, or ammo */
+		return (P_NONE);
+	type = objects[obj->otyp].oc_skill;
+	return ((type < 0) ? -type : type);
+}
+
+int
+weapon_type_alwaysmartial(obj)
+struct obj *obj;
+{
+	/* KMH, balance patch -- now uses the object table */
+	int type;
+
+	if (!obj)
+		/* Not using a weapon
+		 * this is specifically meant for kicking, which is supposed to use martial arts even if u.disablemartial is set --Amy */
+	    return (martial_bonus_specialmode() ? P_MARTIAL_ARTS :
 				P_BARE_HANDED_COMBAT);
 	if (obj && itemhasappearance(obj, APP_PISTOL_BOOTS)) return (P_FIREARM);
     if ( (obj->oclass == BALL_CLASS) || (obj->oclass == CHAIN_CLASS) || (obj->oclass == VENOM_CLASS) )
@@ -7653,15 +7677,16 @@ struct obj *weapon;
  * Treat restricted weapons as unskilled.
  */
 int
-weapon_dam_bonus(weapon)
+weapon_dam_bonus(weapon, bypass_martial)
 struct obj *weapon;
+boolean bypass_martial; /* by Amy: if this is true, martial arts skill will be used even if you disabled it */
 {
     int type, wep_type, bonus = 0;
 #if 0
     int skill;
 #endif
 
-    wep_type = weapon_type(weapon);
+    wep_type = bypass_martial ? weapon_type_alwaysmartial(weapon) : weapon_type(weapon);
 #if 0
     /* use two weapon skill only if attacking with one of the wielded weapons */
     type = (u.twoweap && (weapon == uwep || weapon == uswapwep)) ?
@@ -7730,7 +7755,7 @@ struct obj *weapon;
 	 */
 	if (!(PlayerCannotUseSkills)) bonus = P_SKILL(type);
 	bonus = max(bonus,P_UNSKILLED) - 1;	/* unskilled => 0 */
-	bonus = ((bonus + 1) * (martial_bonus() ? rno(2) : 1)) / 2;
+	bonus = ((bonus + 1) * (martial_bonus() ? rno(2) : (bypass_martial && martial_bonus_specialmode()) ? rno(2) : 1)) / 2;
 
 	/* CAVEAT: martial arts seems to use its own martial_dmg() function in uhitm.c and does not run this code!!!
 	 * and speaking of which, bare-handed combat doesn't seem to do so either...

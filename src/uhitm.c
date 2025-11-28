@@ -4720,7 +4720,7 @@ int dieroll;
 	    }
 
 		/* bashing with launchers or other "bad" weapons shouldn't give insane bonuses --Amy */
-		if (wep && !(( (is_launcher(wep) && !(wep->otyp == LASERXBOW && wep->lamplit) && !(wep->otyp == KLIUSLING && wep->lamplit)) || is_missile(wep) || is_ammo(wep) || (is_pole(wep) && !(tech_inuse(T_POLE_MELEE)) && !u.usteed) || (is_lightsaber(wep) && !wep->lamplit) ) && !thrown)) tmp += weapon_dam_bonus(wep);
+		if (wep && !(( (is_launcher(wep) && !(wep->otyp == LASERXBOW && wep->lamplit) && !(wep->otyp == KLIUSLING && wep->lamplit)) || is_missile(wep) || is_ammo(wep) || (is_pole(wep) && !(tech_inuse(T_POLE_MELEE)) && !u.usteed) || (is_lightsaber(wep) && !wep->lamplit) ) && !thrown)) tmp += weapon_dam_bonus(wep, FALSE);
 
 		if (wep && !thrown && !(( (is_launcher(wep) && !(wep->otyp == LASERXBOW && wep->lamplit) && !(wep->otyp == KLIUSLING && wep->lamplit)) || is_missile(wep) || is_ammo(wep) || (is_pole(wep) && !(tech_inuse(T_POLE_MELEE)) && !u.usteed) || (is_lightsaber(wep) && !wep->lamplit) )) ) tmp += melee_dam_bonus(wep);	/* extra damage bonus added by Amy */
 
