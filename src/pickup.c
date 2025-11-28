@@ -1268,7 +1268,8 @@ boolean alwaysflag;
 {
     int result, old_wt, new_wt, prev_encumbr, next_encumbr;
 
-    if (obj->otyp == BOULDER && In_sokoban(&u.uz)) {
+    /* in vanilla, the carry cap would prevent non-giants from picking up boulders, but this is SLEX; have to special-case it --Amy */
+    if (obj->otyp == BOULDER && (In_sokoban(&u.uz) || (!throws_rocks(youmonst.data) && !(uarmg && uarmg->oartifact == ART_MOUNTAIN_FISTS)) ) ) {
 	You("cannot get your %s around this %s.",
 			body_part(HAND), xname(obj));
 	return -1;
