@@ -6216,8 +6216,10 @@ melatechoice:
 		}
 	
 	    }
-	    /* avoid migrating a dead monster */
-	    if (mon->mhp > tmp) {
+	    /* avoid migrating a dead monster
+	     * uniques have 80% chance of resisting the knockback and loss of movement energy
+	     * after all, it's really lame if you can simply lock up Dispater or Lamashtu with no chance for them to fight back! --Amy */
+	    if ((mon->mhp > tmp) && (!(mon->data->geno & G_UNIQ) || !rn2(5)) ) {
 		mhurtle(mon, u.dx, u.dy, 1);
 		mdat = mon->data; /* in case of a polymorph trap */
 		if (DEADMONSTER(mon)) already_killed = TRUE;
@@ -8246,8 +8248,9 @@ joust(mon, obj)
 struct monst *mon;	/* target */
 struct obj *obj;	/* weapon */
 {
-    int skill_rating, joust_dieroll;
-    int bypassrating = 0;
+    int skill_rating;
+
+    int joustingchance = 0;
 
     if (Fumbling || (Stunned && !Stun_resist) ) return 0;
     /* sanity check; lance must be wielded in order to joust */
@@ -8260,20 +8263,35 @@ struct obj *obj;	/* weapon */
 	if (PlayerCannotUseSkills) skill_rating = P_UNSKILLED;
     if (skill_rating == P_ISRESTRICTED) skill_rating = P_UNSKILLED; /* 0=>1 */
 
-    if (!PlayerCannotUseSkills) {
-
-	if (skill_rating == P_MASTER) bypassrating = 1;
-	if (skill_rating == P_GRAND_MASTER) bypassrating = 2;
-	if (skill_rating == P_SUPREME_MASTER) bypassrating = 3;
-
+    /* new calculation by Amy: 10% chance per skill level */
+    switch (skill_rating) {
+	case P_UNSKILLED:
+	default:
+		joustingchance = 0; break;
+	case P_BASIC:
+		joustingchance = 10; break;
+	case P_SKILLED:
+		joustingchance = 20; break;
+	case P_EXPERT:
+		joustingchance = 30; break;
+	case P_MASTER:
+		joustingchance = 40; break;
+	case P_GRAND_MASTER:
+		joustingchance = 50; break;
+	case P_SUPREME_MASTER:
+		joustingchance = 60; break;
     }
+
+    /* absolute maximum chance: 80% --Amy */
+    if (joustingchance > 80) joustingchance = 80;
 
     /* odds to joust are expert:80%, skilled:60%, basic:40%, unskilled:20%
      * but Amy edit: too easy to achieve high values... after all, expert isn't the max now */
-    if (((joust_dieroll = rn2(5)) < skill_rating) && (rn2(3) || (bypassrating >= rnd(4)) ) ) {
-	if (joust_dieroll == 0 && rnl(50) == (50-1) &&
-		!unsolid(mon->data) && !obj_resists(obj, 0, 95)) /* Amy edit: artifacts no longer immune, only highly resistant */
+    if (rn2(100) < joustingchance) {
+	if (!rn2(5) && (rnl(50) == (50-1) ) &&
+		!unsolid(mon->data) && !obj_resists(obj, 0, 95)) { /* Amy edit: artifacts no longer immune, only highly resistant */
 	    return -1;	/* hit that breaks lance */
+	}
 	return 1;	/* successful joust */
     }
     return 0;	/* no joust bonus; revert to ordinary attack */
