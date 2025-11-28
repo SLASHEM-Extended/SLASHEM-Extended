@@ -1346,7 +1346,7 @@ nh_timeout()
 	      useup(uarmf);
 		pline("KAABLAMM!!! Your explosive boots suddenly detonate!");
 		explode(u.ux, u.uy, ZT_SPELL(ZT_FIRE), rnd(u.ulevel * 2), 0, EXPL_FIERY);
-		losehp(rnd(u.ulevel * 2), "exploding TNT boots", KILLED_BY);
+		losehp(rnz(u.ulevel * 2), "exploding TNT boots", KILLED_BY); /* your fault for wearing them, so the rnz will stay --Amy */
 		set_wounded_legs(LEFT_SIDE, HWounded_legs + 1000);
 		set_wounded_legs(RIGHT_SIDE, HWounded_legs + 1000);
 	}
@@ -2565,6 +2565,7 @@ nh_timeout()
 
 	}
 
+	/* persian boots: timer before they can hurt you again, to prevent unfair deaths if they trigger several times in rapid succession */
 	if (!u.persiantimer && uarmf && itemhasappearance(uarmf, APP_PERSIAN_BOOTS) && !rn2(1000) ) {
 
 		pline("Your persian boots demand a sacrifice for allowing you to wear them.");
@@ -2586,12 +2587,14 @@ nh_timeout()
 
 	}
 
-	if (uarmf && itemhasappearance(uarmf, APP_VELCRO_BOOTS) && !rn2(1000) ) {
+	/* velcro boots: timer before they can hurt you again, to prevent unfair deaths if they trigger several times in rapid succession */
+	if (!u.persiantimer && uarmf && itemhasappearance(uarmf, APP_VELCRO_BOOTS) && !rn2(1000) ) {
 	    set_wounded_legs(LEFT_SIDE, HWounded_legs + rnz(50) );
 	    set_wounded_legs(RIGHT_SIDE, HWounded_legs + rnz(50) );
 		pline("Your velcro boots decide to scratch up and down your shins with their lash, opening terrible wounds.");
 		/* rnz on purpose; you don't HAVE to wear those boots if you consider them too dangerous... --Amy */
 		losehp(rnz(u.ulevel + 2), "bloodthirsty velcro boots", KILLED_BY);
+		u.persiantimer = (u.uhpmax / 2) + 2;
 
 	}
 
@@ -2775,7 +2778,7 @@ nh_timeout()
 
 	}
 
-	if (!rn2(1000) && u.uprops[SENTIENT_HIGH_HEELS].extrinsic) {
+	if (!u.persiantimer && !rn2(1000) && u.uprops[SENTIENT_HIGH_HEELS].extrinsic) {
 
 			register long side = rn2(2) ? RIGHT_SIDE : LEFT_SIDE;
 			const char *sidestr = (side == RIGHT_SIDE) ? "right" : "left";
@@ -3292,8 +3295,8 @@ nh_timeout()
 					impossible("nonexistant sentient high heels effect used");
 				break;
 
-			}
-
+			} /* switch for various sentient high heel effects */
+			u.persiantimer = 20; /* arbitrary, but meant to make sure that you don't die from taking damage on two consecutive turns... */
 	}
 
 	if (!rn2(VulnerabilityXtra ? 25 : 250) && u.uprops[REPEATING_VULNERABILITY].extrinsic) {
