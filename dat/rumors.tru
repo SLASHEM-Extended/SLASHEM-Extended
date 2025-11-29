@@ -2709,3 +2709,8 @@ Monsters who can emit mind blasts may try to hack your implant, if you're wearin
 Most effects that heal you will also restore a percentage of your hit points in addition to the fixed amount, meaning they'll be stronger if you have a lot of maximum HP.
 Heroes who have high petkeeping or riding skills will benefit by their pets or steeds having a permanent, slight damage reduction effect, allowing them to survive longer.
 If you have good symbiosis skill, your symbiote will take reduced damage and therefore survive many more attacks. But you can #monster to turn that effect off, if for some reason you want your symbiote to take full damage.
+Boulders cannot be picked up at all unless you're a giant. Even if you have the carry capacity to carry one, you still can't pick it up if you're not a giant.
+Boulders cannot be thrown unless you're a giant. Even if you somehow managed to get one into your inventory while you're not a giant, you still can't throw them.
+If your container gets destroyed by rust, burn or other types of damage, the contents will be scattered around the floor so you can pick them back up.
+Boss monsters are highly resistant to being jousted with a lance. They still take extra damage, but are much less likely to be knocked back and stopped in their tracks.
+Your maximum weight limit will go up as you reach certain milestones in the game. This allows you to keep collecting loot later on.

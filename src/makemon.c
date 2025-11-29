@@ -8158,6 +8158,7 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_INCONSPICUOUS_HISPANIC_LADY]) (void) mongets(mtmp, DIDIER_SACHS_SHOES);
 		if (ptr == &mons[PM_CHEVALIER_LE_MORT]) (void) mongets(mtmp, SCYTHE);
 		if (ptr == &mons[PM_UNI_EMPRESS]) (void) mongets(mtmp, DARK_HORN);
+		if (ptr == &mons[PM_WHITE_KNIGHT]) (void) mongets(mtmp, PLATE_MAIL);
 		if (ptr == &mons[PM_STREET_RACQUET]) (void) mongets(mtmp, BRASS_KNUCKLES);
 		if (ptr == &mons[PM_GANXTA]) (void) mongets(mtmp, BRASS_KNUCKLES);
 		if (ptr == &mons[PM_LASSY]) (void) mongets(mtmp, BASIC_SHOES); /* M4_BLOCKHEELBOOTS */
@@ -34862,7 +34863,7 @@ assign_sym:
 		appear = BEARTRAP;
 	}
 
-	if (mtmp->data == &mons[PM_SUPER_STATUE] || mtmp->data == &mons[PM_ELTRA_STATUE]) {
+	if (mtmp->data == &mons[PM_STATUE_OF_CHEST_MIMIC_MIMIC] || mtmp->data == &mons[PM_MIMIC_THAT_MIMICS_A_MIMIC_OF_A_STATUE] || mtmp->data == &mons[PM_SUPER_STATUE] || mtmp->data == &mons[PM_ELTRA_STATUE]) {
 		s_sym = ROCK_CLASS;
 		ap_type = M_AP_OBJECT;
 		appear = STATUE;
