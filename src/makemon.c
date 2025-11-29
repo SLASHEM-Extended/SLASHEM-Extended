@@ -27393,6 +27393,8 @@ register int	mmflags;
 			if (mndx == PM_TOP_SECRET_AGENT) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 			if (mndx == PM_UNSEEN_GHOST) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 			if (mndx == PM_FRIGHTGHOST) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_JIBAKU_GHOST) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_JIBAKU_SPIRIT) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mtmp->data == &mons[PM_CASTLE_OF_THE_WINDS_PLAYER]) {
 				int spawnnumber = rn1(10, 3);
 				while (spawnnumber > 0) {
@@ -28053,6 +28055,7 @@ register int	mmflags;
 		case S_UNICORN:
 
 			if (mndx == PM_THESTRAL) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_SPIRITUAL_PINK_UNICORN) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_MOLOCH_ALIGNED_UNICORN) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_DISGUISED_UNDEAD_UNICORN) set_mimic_sym(mtmp);
 
@@ -34863,7 +34866,7 @@ assign_sym:
 		appear = BEARTRAP;
 	}
 
-	if (mtmp->data == &mons[PM_STATUE_OF_CHEST_MIMIC_MIMIC] || mtmp->data == &mons[PM_MIMIC_THAT_MIMICS_A_MIMIC_OF_A_STATUE] || mtmp->data == &mons[PM_SUPER_STATUE] || mtmp->data == &mons[PM_ELTRA_STATUE]) {
+	if (mtmp->data == &mons[PM_STATUE_OF_CHEST_MIMIC_MIMIC] || mtmp->data == &mons[PM_MIMIC_THAT_MIMICS_A_MIMIC_OF_A_STATUE] || mtmp->data == &mons[PM_SUPER_STATUE] || mtmp->data == &mons[PM_STONE_STATUE_TANOOKI] || mtmp->data == &mons[PM_SUIT_TANOOKI] || mtmp->data == &mons[PM_ELTRA_STATUE]) {
 		s_sym = ROCK_CLASS;
 		ap_type = M_AP_OBJECT;
 		appear = STATUE;

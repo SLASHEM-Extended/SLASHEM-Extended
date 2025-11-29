@@ -15104,6 +15104,7 @@ common:
 
 		if (Disint_resistance && rn2(StrongDisint_resistance ? 1000 : 100) && !(evilfriday && (uarms || uarmc || uarm || uarmu))) {
 		    You("are not disintegrated.");
+			mdamageu(mtmp, tmp);
 		    break;
             } else if (Invulnerable || ((PlayerInBlockHeels || PlayerInWedgeHeels) && tech_inuse(T_EXTREME_STURDINESS) && !rn2(2) ) || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) {
                 pline("You are unharmed!");
@@ -15111,23 +15112,28 @@ common:
 		} else if (uarms) {
 			/* destroy shield; other possessions are safe */
 			if (!(EDisint_resistance & W_ARMS) && !(itemsurvivedestruction(uarms, 12)) ) (void) destroy_arm(uarms);
+			mdamageu(mtmp, tmp);
 			break;
 		} else if (uarmc) {
 			/* destroy cloak; other possessions are safe */
 			if (!(EDisint_resistance & W_ARMC) && !(itemsurvivedestruction(uarmc, 12)) ) (void) destroy_arm(uarmc);
+			mdamageu(mtmp, tmp);
 			break;
 		} else if (uarm) {
 			/* destroy suit */
 			if (!(EDisint_resistance & W_ARM) && !(itemsurvivedestruction(uarm, 12)) ) (void) destroy_arm(uarm);
+			mdamageu(mtmp, tmp);
 			break;
 		} else if (uarmu) {
 			/* destroy shirt */
 			if (!(EDisint_resistance & W_ARMU) && !(itemsurvivedestruction(uarmu, 12)) ) (void) destroy_arm(uarmu);
+			mdamageu(mtmp, tmp);
 			break;
 		} else if (u.uhpmax > 20) {
 			u.uhpmax -= rnd(20);
 			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 			losehp(rnz(100 + level_difficulty()), "KABOOM you died", KILLED_BY);
+			mdamageu(mtmp, tmp);
 			break;
 		} else {
 			u.youaredead = 1;
@@ -15145,6 +15151,7 @@ common:
 
 		if (Disint_resistance && rn2(StrongDisint_resistance ? 1000 : 100) && !(evilfriday && (uarms || uarmc || uarm || uarmu))) {
 		    You("are not disintegrated.");
+			mdamageu(mtmp, tmp);
 		    break;
             } else if (Invulnerable || ((PlayerInBlockHeels || PlayerInWedgeHeels) && tech_inuse(T_EXTREME_STURDINESS) && !rn2(2) ) || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) {
                 pline("You are unharmed!");
@@ -15152,23 +15159,28 @@ common:
 		} else if (uarms) {
 			/* destroy shield; other possessions are safe */
 			if (!(EDisint_resistance & W_ARMS) && !(itemsurvivedestruction(uarms, 12)) ) (void) destroy_arm(uarms);
+			mdamageu(mtmp, tmp);
 			break;
 		} else if (uarmc) {
 			/* destroy cloak; other possessions are safe */
 			if (!(EDisint_resistance & W_ARMC) && !(itemsurvivedestruction(uarmc, 12)) ) (void) destroy_arm(uarmc);
+			mdamageu(mtmp, tmp);
 			break;
 		} else if (uarm) {
 			/* destroy suit */
 			if (!(EDisint_resistance & W_ARM) && !(itemsurvivedestruction(uarm, 12)) ) (void) destroy_arm(uarm);
+			mdamageu(mtmp, tmp);
 			break;
 		} else if (uarmu) {
 			/* destroy shirt */
 			if (!(EDisint_resistance & W_ARMU) && !(itemsurvivedestruction(uarmu, 12)) ) (void) destroy_arm(uarmu);
+			mdamageu(mtmp, tmp);
 			break;
 		} else if (u.uhpmax > 20) {
 			u.uhpmax -= rnd(20);
 			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 			losehp(rnz(100 + level_difficulty()), "vaporization kaboom you died", KILLED_BY);
+			mdamageu(mtmp, tmp);
 			break;
 		} else {
 			u.youaredead = 1;

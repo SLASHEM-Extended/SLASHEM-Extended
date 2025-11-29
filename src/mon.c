@@ -237,6 +237,8 @@ int mndx;
 
 	switch (mndx) {
 	case PM_CHAMELEON:	mcham = CHAM_CHAMELEON; break;
+	case PM_DIFFERENT_CHAMELEON:	mcham = CHAM_DIFFERENT_CHAMELEON; break;
+	case PM_CHAMELEON_LORD:	mcham = CHAM_CHAMELEON_LORD; break;
 	case PM_EVIL_CHAMELEON:	mcham = CHAM_EVIL_CHAMELEON; break;
 	case PM_CHAMECHAUN:	mcham = CHAM_CHAMECHAUN; break;
 	case PM_METAMORPHOSE:	mcham = CHAM_METAMORPHOSE; break;
@@ -377,6 +379,8 @@ STATIC_VAR int cham_to_pm[] = {
 		PM_SHAPESHIFTING_EXPERTISE,
 		PM_EACH_UISGE,
 		PM_LAMECHAM,
+		PM_DIFFERENT_CHAMELEON,
+		PM_CHAMELEON_LORD,
 		PM_GIANT_CHAMELEON,
 };
 
@@ -589,6 +593,8 @@ register struct monst *mtmp;
 	    case PM_PORTER_BLACK_UNICORN:
 	    case PM_PURPLE_UNICORN:
 	    case PM_PINK_UNICORN:
+	    case PM_SPIRITUAL_PINK_UNICORN:
+	    case PM_MYTHICAL_UNICORN:
 	    case PM_ORANGE_UNICORN:
 	    case PM_CYAN_UNICORN:
 	    case PM_BROWN_UNICORN:
@@ -9234,6 +9240,8 @@ struct monst *mon;
 	case CHAM_IVEL_WUXTINA: chambaselvl = 20; break;
 	case CHAM_EARLY_LEON: chambaselvl = 0; break;
 	case CHAM_CHAMECHAUN: chambaselvl = 6; break;
+	case CHAM_DIFFERENT_CHAMELEON: chambaselvl = 20; break;
+	case CHAM_CHAMELEON_LORD: chambaselvl = 45; break;
 	case CHAM_METAL_DOPPELGANGER: chambaselvl = 9; break;
 	case CHAM_GHELEON: chambaselvl = 6; break;
 	case CHAM_LAMECHAM: chambaselvl = 6; break;
@@ -9809,6 +9817,8 @@ rainbowchoice:
 			if (rn2(10000) && !(attacktype(pm, AT_EXPL) ) ) goto rainbowchoice;
 		break;
 	    case CHAM_CHAMELEON:
+	    case CHAM_CHAMELEON_LORD:
+	    case CHAM_DIFFERENT_CHAMELEON:
 	    case CHAM_EVIL_CHAMELEON:
 	    case CHAM_COMMA_CHAMELEON:
 	    case CHAM_CHAMECHAUN:

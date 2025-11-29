@@ -3481,6 +3481,8 @@ register int pm;
 		break;
 
 	    case PM_CHAMELEON:
+	    case PM_DIFFERENT_CHAMELEON:
+	    case PM_CHAMELEON_LORD:
 	    case PM_CHAMECHAUN:
 	    case PM_METAMORPHOSE:
 	    case PM_UNIQUE_SHIFTER:
