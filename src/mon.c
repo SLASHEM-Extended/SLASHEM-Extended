@@ -4534,6 +4534,26 @@ struct monst *magr,	/* monster that is currently deciding where to move */
 	if(mdef->data == &mons[PM_AUROR] && magr->data == &mons[PM_FELLOW_DEATH_EATER])
 		return ALLOW_M|ALLOW_TM;
 
+	/* power armor factions vs. each other, by Amy */
+	if(magr->data->msound == MS_BOS && mdef->data->msound == MS_OUTCAST)
+		return ALLOW_M|ALLOW_TM;
+	if(magr->data->msound == MS_BOS && mdef->data->msound == MS_ENCLAVE)
+		return ALLOW_M|ALLOW_TM;
+	if(magr->data->msound == MS_ENCLAVE && mdef->data->msound == MS_BOS)
+		return ALLOW_M|ALLOW_TM;
+	if(magr->data->msound == MS_ENCLAVE && mdef->data->msound == MS_OUTCAST)
+		return ALLOW_M|ALLOW_TM;
+	if(magr->data->msound == MS_OUTCAST && mdef->data->msound == MS_BOS)
+		return ALLOW_M|ALLOW_TM;
+	if(magr->data->msound == MS_OUTCAST && mdef->data->msound == MS_ENCLAVE)
+		return ALLOW_M|ALLOW_TM;
+
+	/* talon company vs. regulators, by Amy */
+	if(magr->data->msound == MS_TALONCOMPANY && mdef->data->msound == MS_REGULATOR)
+		return ALLOW_M|ALLOW_TM;
+	if(magr->data->msound == MS_REGULATOR && mdef->data->msound == MS_TALONCOMPANY)
+		return ALLOW_M|ALLOW_TM;
+
 	/* Stormtroopers vs. Padawans */
 	if(magr->data == &mons[PM_STORMTROOPER] && mdef->data == &mons[PM_PADAWAN])
 		return ALLOW_M|ALLOW_TM;

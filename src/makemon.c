@@ -29993,6 +29993,10 @@ loopback:
 		if (ct > 0 && (ischallenger && (ptr->msound == MS_PANTS) )) ct += (((int)(ptr->geno & G_FREQ)) * 4);
 		if (ct > 0 && (ischallenger && (ptr->msound == MS_CONVERT) )) ct += (((int)(ptr->geno & G_FREQ)) * 4);
 		if (ct > 0 && (ischallenger && (ptr->msound == MS_HCALIEN) )) ct += (((int)(ptr->geno & G_FREQ)) * 4);
+		if (ct > 0 && (u.ualign.record <= -20 && (ptr->msound == MS_REGULATOR) )) ct += (((int)(ptr->geno & G_FREQ)) * 2);
+		if (ct > 0 && (u.ualign.record <= -100 && (ptr->msound == MS_REGULATOR) )) ct += (((int)(ptr->geno & G_FREQ)) * 5);
+		if (ct > 0 && (u.ualign.record >= 20 && (ptr->msound == MS_TALONCOMPANY) )) ct += (((int)(ptr->geno & G_FREQ)) * 2);
+		if (ct > 0 && (u.ualign.record >= 100 && (ptr->msound == MS_TALONCOMPANY) )) ct += (((int)(ptr->geno & G_FREQ)) * 5);
 		if (ct > 0 && (ublindf && ublindf->oartifact == ART_MEANINGFUL_CHALLENGE && (ptr->msound == MS_STENCH) )) ct += 5;
 		if (ct > 0 && (ublindf && ublindf->oartifact == ART_MEANINGFUL_CHALLENGE && (ptr->msound == MS_WHORE) )) ct += 5;
 		if (ct > 0 && (ublindf && ublindf->oartifact == ART_MEANINGFUL_CHALLENGE && (ptr->msound == MS_FART_QUIET) )) ct += 5;
@@ -31604,6 +31608,10 @@ int     spc;
 		if ((ischallenger && (mons[last].msound == MS_PANTS) )) num += ((mons[last].geno & G_FREQ) * 4);
 		if ((ischallenger && (mons[last].msound == MS_CONVERT) )) num += ((mons[last].geno & G_FREQ) * 4);
 		if ((ischallenger && (mons[last].msound == MS_HCALIEN) )) num += ((mons[last].geno & G_FREQ) * 4);
+		if ((u.ualign.record <= -20 && (mons[last].msound == MS_REGULATOR) )) num += ((mons[last].geno & G_FREQ) * 2);
+		if ((u.ualign.record <= -100 && (mons[last].msound == MS_REGULATOR) )) num += ((mons[last].geno & G_FREQ) * 5);
+		if ((u.ualign.record >= 20 && (mons[last].msound == MS_TALONCOMPANY) )) num += ((mons[last].geno & G_FREQ) * 2);
+		if ((u.ualign.record >= 100 && (mons[last].msound == MS_TALONCOMPANY) )) num += ((mons[last].geno & G_FREQ) * 5);
 		if ((ublindf && ublindf->oartifact == ART_MEANINGFUL_CHALLENGE && (mons[last].msound == MS_STENCH) )) num += 5;
 		if ((ublindf && ublindf->oartifact == ART_MEANINGFUL_CHALLENGE && (mons[last].msound == MS_WHORE) )) num += 5;
 		if ((ublindf && ublindf->oartifact == ART_MEANINGFUL_CHALLENGE && (mons[last].msound == MS_FART_QUIET) )) num += 5;
@@ -32870,6 +32878,10 @@ int     spc;
 		if ((ischallenger && (mons[first].msound == MS_PANTS) )) num -= ((mons[first].geno & G_FREQ) * 4);
 		if ((ischallenger && (mons[first].msound == MS_CONVERT) )) num -= ((mons[first].geno & G_FREQ) * 4);
 		if ((ischallenger && (mons[first].msound == MS_HCALIEN) )) num -= ((mons[first].geno & G_FREQ) * 4);
+		if ((u.ualign.record <= -20 && (mons[first].msound == MS_REGULATOR) )) num -= ((mons[first].geno & G_FREQ) * 2);
+		if ((u.ualign.record <= -100 && (mons[first].msound == MS_REGULATOR) )) num -= ((mons[first].geno & G_FREQ) * 5);
+		if ((u.ualign.record >= 20 && (mons[first].msound == MS_TALONCOMPANY) )) num -= ((mons[first].geno & G_FREQ) * 2);
+		if ((u.ualign.record >= 100 && (mons[first].msound == MS_TALONCOMPANY) )) num -= ((mons[first].geno & G_FREQ) * 5);
 		if ((ublindf && ublindf->oartifact == ART_MEANINGFUL_CHALLENGE && (mons[first].msound == MS_STENCH) )) num -= 5;
 		if ((ublindf && ublindf->oartifact == ART_MEANINGFUL_CHALLENGE && (mons[first].msound == MS_WHORE) )) num -= 5;
 		if ((ublindf && ublindf->oartifact == ART_MEANINGFUL_CHALLENGE && (mons[first].msound == MS_FART_QUIET) )) num -= 5;
@@ -34222,6 +34234,8 @@ register struct permonst *ptr;
 	if (uarmf && uarmf->oartifact == ART_SUCH_A_LOVELY_SHARK && ptr->mlet == S_EEL) return TRUE;
 
 	if (uwep && uwep->oartifact == ART_TANKFRIEND && ptr->mlet == S_ANT && rn2(10)) return TRUE;
+
+	if (u.ualign.type == A_LAWFUL && u.ualign.record >= 20 && ptr->msound == MS_BOS && rn2(5)) return TRUE;
 
 	if (uarms && uarms->oartifact == ART_TEH_GAMEPLAY && !always_hostile(ptr) && rn2(2)) return TRUE;
 	if (uarmc && uarmc->oartifact == ART_FLORICE_S_PEACE_POWER && !always_hostile(ptr) && rn2(4)) return TRUE;
