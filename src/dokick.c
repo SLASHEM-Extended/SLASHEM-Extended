@@ -1110,7 +1110,7 @@ register boolean clumsy;
 	    use_skill(kick_skill, 1);
 	}
 
-	if (PlayerInColumnarHeels && !rn2((flags.female) ? 200 : 50) ) {
+	if (PlayerInColumnarHeels && !rn2((flags.female) ? 100 : 12) ) {
 		u.columnarskill++;
 		if (uamul && uamul->oartifact == ART_GREETINGS_FROM_EVI) u.columnarskill += 2;
 		if (uimplant && uimplant->oartifact == ART_TORSTEN_S_FEMININENESS && !flags.female) u.columnarskill += 4;
@@ -1121,10 +1121,10 @@ register boolean clumsy;
 		if (u.columnarskill == 2500) You("are now more skilled in type 5: columnar heels.");
 		if (u.columnarskill == 4320) You("are now most skilled in type 5: columnar heels.");
 	}
-	if (PlayerInStilettoHeels && !rn2((flags.female || Role_if(PM_TRANSVESTITE) || Role_if(PM_TRANSSYLVANIAN)) ? 30 : 100) ) use_skill(P_STILETTO_HEELS, 1);
-	if (PlayerInConeHeels && !rn2((flags.female || Role_if(PM_TRANSVESTITE) || Role_if(PM_TRANSSYLVANIAN)) ? 20 : 50) ) use_skill(P_CONE_HEELS, 1);
-	if (PlayerInBlockHeels && !rn2(10) ) use_skill(P_BLOCK_HEELS, 1);
-	if (PlayerInWedgeHeels && !rn2(10) ) use_skill(P_WEDGE_HEELS, 1);
+	if (PlayerInStilettoHeels && !rn2((flags.female || Role_if(PM_TRANSVESTITE) || Role_if(PM_TRANSSYLVANIAN)) ? 10 : 50) ) use_skill(P_STILETTO_HEELS, 1);
+	if (PlayerInConeHeels && !rn2((flags.female || Role_if(PM_TRANSVESTITE) || Role_if(PM_TRANSSYLVANIAN)) ? 8 : 30) ) use_skill(P_CONE_HEELS, 1);
+	if (PlayerInBlockHeels && !rn2(5) ) use_skill(P_BLOCK_HEELS, 1);
+	if (PlayerInWedgeHeels && !rn2(5) ) use_skill(P_WEDGE_HEELS, 1);
 
 	if (uarmf && uarmf->oartifact == ART_MEASURER_TIP && (dmg > 0)) {
 		use_skill(P_KNIFE, 1);

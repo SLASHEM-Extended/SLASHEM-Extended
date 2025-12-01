@@ -230,10 +230,10 @@ forcelock()	/* try to force a locked chest */
 	You("succeed in forcing the lock.");
 
 	if (uwep && is_lightsaber(uwep) && (uwep->lamplit || Role_if(PM_SHADOW_JEDI))) {
-		use_skill(P_WEDI, 1);
+		use_skill(P_WEDI, rnd(3));
 	}
 	if (uwep && uwep->oartifact == ART_DIGSRU) {
-		use_skill(P_WEDI, 1);
+		use_skill(P_WEDI, rnd(3));
 	}
 
 	xlock.box->olocked = 0;
@@ -1179,7 +1179,7 @@ doforce()		/* try to force a chest with your weapon */
 					mightbooststat(rn2(2) ? A_STR : A_CON);
 					if (u.uwediturns >= 2) {
 						u.uwediturns = 0;
-						use_skill(P_WEDI, 1);
+						use_skill(P_WEDI, rnd(4));
 					}
 				}
 				if (uwep && uwep->oartifact == ART_DIGSRU) {
@@ -1187,7 +1187,7 @@ doforce()		/* try to force a chest with your weapon */
 					mightbooststat(rn2(2) ? A_STR : A_CON);
 					if (u.uwediturns >= 2) {
 						u.uwediturns = 0;
-						use_skill(P_WEDI, 1);
+						use_skill(P_WEDI, rnd(4));
 					}
 				}
 

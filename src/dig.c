@@ -418,10 +418,10 @@ dig()
 			if (break_statue(obj)) {
 				digtxt = "The statue shatters.";
 				if (uwep && is_lightsaber(uwep) && (uwep->lamplit || Role_if(PM_SHADOW_JEDI)) ) {
-					use_skill(P_WEDI, 1);
+					use_skill(P_WEDI, rnd(3));
 				}
 				if (uwep && uwep->oartifact == ART_DIGSRU) {
-					use_skill(P_WEDI, 1);
+					use_skill(P_WEDI, rnd(3));
 				}
 			} else
 				/* it was a statue trap; break_statue()
@@ -439,10 +439,10 @@ dig()
 			}
 			digtxt = "The boulder falls apart.";
 			if (uwep && is_lightsaber(uwep) && (uwep->lamplit || Role_if(PM_SHADOW_JEDI)) ) {
-				use_skill(P_WEDI, 1);
+				use_skill(P_WEDI, rnd(3));
 			}
 			if (uwep && uwep->oartifact == ART_DIGSRU) {
-				use_skill(P_WEDI, 1);
+				use_skill(P_WEDI, rnd(3));
 			}
 		} else if (lev->typ == STONE || lev->typ == WATERTUNNEL || lev->typ == SCORR || IS_IRONBAR(lev->typ) ||
 				IS_TREE(lev->typ)) {
@@ -477,10 +477,10 @@ dig()
 			    if (!rn2(5) && !(lev->looted & TREE_LOOTED) ) (void) rnd_treefruit_at(dpx, dpy);
 
 				if (uwep && is_lightsaber(uwep) && (uwep->lamplit || Role_if(PM_SHADOW_JEDI)) ) {
-					use_skill(P_WEDI, 1);
+					use_skill(P_WEDI, rnd(3));
 				}
 				if (uwep && uwep->oartifact == ART_DIGSRU) {
-					use_skill(P_WEDI, 1);
+					use_skill(P_WEDI, rnd(3));
 				}
 
 			    if (!(lev->looted & TREE_SWARM) && !rn2(16)) {
@@ -566,10 +566,10 @@ newbossTSD:
 			    u.cnd_diggingamount++;
 			    lev->typ = MOAT;
 				if (uwep && is_lightsaber(uwep) && (uwep->lamplit || Role_if(PM_SHADOW_JEDI)) ) {
-					use_skill(P_WEDI, 1);
+					use_skill(P_WEDI, rnd(3));
 				}
 				if (uwep && uwep->oartifact == ART_DIGSRU) {
-					use_skill(P_WEDI, 1);
+					use_skill(P_WEDI, rnd(3));
 				}
 			} else if (uwep && IS_IRONBAR(lev->typ) && is_antibar(uwep) ) {
 
@@ -667,10 +667,10 @@ newbossMETALMAFIA:
 				}
 
 				if (uwep && is_lightsaber(uwep) && (uwep->lamplit || Role_if(PM_SHADOW_JEDI)) ) {
-					use_skill(P_WEDI, 1);
+					use_skill(P_WEDI, rnd(3));
 				}
 				if (uwep && uwep->oartifact == ART_DIGSRU) {
-					use_skill(P_WEDI, 1);
+					use_skill(P_WEDI, rnd(3));
 				}
 			}
 		} else if(IS_WALL(lev->typ)) {
@@ -695,30 +695,30 @@ newbossMETALMAFIA:
 			u.cnd_diggingamount++;
 
 			if (uwep && is_lightsaber(uwep) && (uwep->lamplit || Role_if(PM_SHADOW_JEDI)) ) {
-				use_skill(P_WEDI, 1);
+				use_skill(P_WEDI, rnd(3));
 			}
 			if (uwep && uwep->oartifact == ART_DIGSRU) {
-				use_skill(P_WEDI, 1);
+				use_skill(P_WEDI, rnd(3));
 			}
 
 		} else if(lev->typ == SDOOR) {
 			cvt_sdoor_to_door(lev);	/* ->typ = DOOR */
 			digtxt = "You break through a secret door!";
 			if (uwep && is_lightsaber(uwep) && (uwep->lamplit || Role_if(PM_SHADOW_JEDI)) ) {
-				use_skill(P_WEDI, 1);
+				use_skill(P_WEDI, rnd(3));
 			}
 			if (uwep && uwep->oartifact == ART_DIGSRU) {
-				use_skill(P_WEDI, 1);
+				use_skill(P_WEDI, rnd(3));
 			}
 			if(!(lev->doormask & D_TRAPPED))
 				lev->doormask = D_BROKEN;
 		} else if(closed_door(dpx, dpy)) {
 			digtxt = "You break through the door.";
 			if (uwep && is_lightsaber(uwep) && (uwep->lamplit || Role_if(PM_SHADOW_JEDI)) ) {
-				use_skill(P_WEDI, 1);
+				use_skill(P_WEDI, rnd(3));
 			}
 			if (uwep && uwep->oartifact == ART_DIGSRU) {
-				use_skill(P_WEDI, 1);
+				use_skill(P_WEDI, rnd(3));
 			}
 			if(shopedge) {
 			    add_damage(dpx, dpy, 400L);

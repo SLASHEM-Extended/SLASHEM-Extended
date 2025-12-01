@@ -13129,13 +13129,13 @@ dodrink()
 
 	if (uarmc && uarmc->oartifact == ART_GETOUT_QUICK) youmonst.movement += 12;
 
-	use_skill(P_DEVICES,1);
+	use_skill(P_DEVICES,rnd(3));
 	if (Race_if(PM_FAWN)) {
-		use_skill(P_DEVICES,1);
+		use_skill(P_DEVICES,rnd(3));
 	}
 	if (Race_if(PM_SATRE)) {
-		use_skill(P_DEVICES,1);
-		use_skill(P_DEVICES,1);
+		use_skill(P_DEVICES,rnd(3));
+		use_skill(P_DEVICES,rnd(3));
 	}
 
 	if (itemhasappearance(otmp, APP_POTION_MILKY) || itemhasappearance(otmp, APP_POTION_GHOSTLY) || itemhasappearance(otmp, APP_POTION_HALLOWED) || itemhasappearance(otmp, APP_POTION_CAMPING) || itemhasappearance(otmp, APP_POTION_SPIRITUAL)) {

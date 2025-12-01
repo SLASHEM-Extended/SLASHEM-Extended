@@ -1745,9 +1745,9 @@ dogaze()
 
 	ranged_thorns(mtmp);
 
-	while (squeakamount > 20) {
+	while (squeakamount > 5) {
 		use_skill(P_SQUEAKING, 1);
-		squeakamount -= 20;
+		squeakamount -= 5;
 	}
 	use_skill(P_SQUEAKING, 1);
 
@@ -1899,9 +1899,9 @@ dobreathe()
 		}
 
 	}
-	while (squeakamount > 20) {
+	while (squeakamount > 5) {
 		use_skill(P_SQUEAKING, 1);
-		squeakamount -= 20;
+		squeakamount -= 5;
 	}
 	use_skill(P_SQUEAKING, 1);
 	return(1);
@@ -1979,9 +1979,9 @@ dospit()
 	    /*otmp->spe = 1;*/ /* to indicate it's yours */
 	    throwit(otmp, 0L, FALSE, 0);
 	}
-	while (squeakamount > 20) {
+	while (squeakamount > 5) {
 		use_skill(P_SQUEAKING, 1);
-		squeakamount -= 20;
+		squeakamount -= 5;
 	}
 	use_skill(P_SQUEAKING, 1);
 	return(1);
@@ -3010,9 +3010,9 @@ dosummon()
 	if (!were_summon(youmonst.data, TRUE, &placeholder, (char *)0, FALSE))
 		pline("But none arrive.");
 
-	while (squeakamount > 40) {
+	while (squeakamount > 15) {
 		use_skill(P_SQUEAKING, 1);
-		squeakamount -= 40;
+		squeakamount -= 15;
 	}
 	use_skill(P_SQUEAKING, 1);
 
@@ -3193,7 +3193,7 @@ dohide()
 		youmonst.m_ap_type = M_AP_OBJECT;
 		youmonst.mappearance = STRANGE_OBJECT;
 
-		use_skill(P_SQUEAKING, 2); /* trains squeaking only if you used mana */
+		use_skill(P_SQUEAKING, 5); /* trains squeaking only if you used mana */
 
 	} else
 		u.uundetected = 1;
@@ -3252,7 +3252,7 @@ domindblast()
 				killed(mtmp);
 		}
 	}
-	use_skill(P_SQUEAKING, 1);
+	use_skill(P_SQUEAKING, 2);
 
 	return 1;
 }
@@ -3915,9 +3915,9 @@ polyatwill()      /* Polymorph under conscious control (#youpoly) */
 			else polyself(FALSE);
 		}
 
-		while (squeakamount > 40) {
+		while (squeakamount > 15) {
 			use_skill(P_SQUEAKING, 1);
-			squeakamount -= 40;
+			squeakamount -= 15;
 		}
 		use_skill(P_SQUEAKING, 1);
 

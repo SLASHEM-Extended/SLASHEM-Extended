@@ -5901,7 +5901,7 @@ melatechoice:
 
 				if (uwep && uwep->oartifact == ART_ATARU_ONE && u.twoweap && uswapwep && uswapwep->oartifact == ART_ATARU_TWO) {
 					u.uataruturns++;
-					if (u.uataruturns >= 4) {
+					if (u.uataruturns >= 2) {
 						u.uataruturns = 0;
 						use_skill(P_ATARU, 1);
 					}
@@ -5909,7 +5909,7 @@ melatechoice:
 
 				if (uwep && uwep->oartifact == ART_ATARU_TWO && u.twoweap && uswapwep && uswapwep->oartifact == ART_ATARU_ONE) {
 					u.uataruturns++;
-					if (u.uataruturns >= 4) {
+					if (u.uataruturns >= 2) {
 						u.uataruturns = 0;
 						use_skill(P_ATARU, 1);
 					}
@@ -5917,7 +5917,7 @@ melatechoice:
 
 				if (uwep && uwep->oartifact == ART_THIS_IS_VAAPAD) {
 						u.uvaapadturns++;
-						if (u.uvaapadturns >= 4) {
+						if (u.uvaapadturns >= 2) {
 							u.uvaapadturns = 0;
 							use_skill(P_VAAPAD, 1);
 						}
@@ -5961,7 +5961,7 @@ melatechoice:
 
 					if (u.twoweap && uswapwep && is_lightsaber(uswapwep) && uswapwep->lamplit) {
 						u.uataruturns++;
-						if (u.uataruturns >= 4) {
+						if (u.uataruturns >= 2) {
 							u.uataruturns = 0;
 							use_skill(P_ATARU, 1);
 						}
@@ -5969,7 +5969,7 @@ melatechoice:
 
 					if (uwep && bimanual(uwep) && uwep->altmode) {
 						u.uvaapadturns++;
-						if (u.uvaapadturns >= 4) {
+						if (u.uvaapadturns >= 2) {
 							u.uvaapadturns = 0;
 							use_skill(P_VAAPAD, 1);
 						}

@@ -2365,7 +2365,7 @@ learn()
 					pline_The("spell is your super special spell now.");
 				}
 
-			    use_skill(P_MEMORIZATION, spellev(i));
+			    use_skill(P_MEMORIZATION, spellev(i) + rnd(spellev(i) * 3) );
 			    if (!rn2(3)) u.uenmax++;
 			    u.cnd_spellbookcount++;
 			    incrnknow(i, FALSE);
@@ -2428,7 +2428,7 @@ learn()
 			spl_book[i].sp_id = booktype;
 			spl_book[i].sp_lev = objects[booktype].oc_level;
 			spl_book[i].sp_memorize = TRUE;
-			use_skill(P_MEMORIZATION, spellev(i));
+			use_skill(P_MEMORIZATION, spellev(i) + rnd(spellev(i) * 3) );
 			if (!rn2(3)) u.uenmax++;
 			u.cnd_spellbookcount++;
 			incrnknow(i, TRUE);

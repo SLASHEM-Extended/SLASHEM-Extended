@@ -1861,8 +1861,8 @@ register struct attack *mattk;
 		}
 		if (uimplant && (blocker == uimplant)) use_skill(P_IMPLANTS, 1);
 		if (uarm && (blocker == uarm) && uwep && is_lightsaber(uwep) && (uwep->lamplit || Role_if(PM_SHADOW_JEDI)) && (uarm->otyp >= PLAIN_ROBE && uarm->otyp <= ROBE_OF_WEAKNESS) ) { /* has to train quickly, otherwise it's too much of a PITA because of low robe AC --Amy */
-			use_skill(P_SORESU, rnd(2));
-			if (!rn2(5)) use_skill(P_SORESU, rnd(2));
+			use_skill(P_SORESU, rnd(5));
+			if (!rn2(5)) use_skill(P_SORESU, rnd(5));
 		}
 		if (uarmg && (blocker == uarmg) && itemhasappearance(uarmg, APP_RE_GREASING_GLOVES)) {
 			if (uarmg->greased < 3) {
@@ -1871,8 +1871,8 @@ register struct attack *mattk;
 			}
 		}
 		if (uarm && (blocker == uarm) && uarm->oartifact == ART_SORESURE) {
-			use_skill(P_SORESU, rnd(2));
-			if (!rn2(5)) use_skill(P_SORESU, rnd(2));
+			use_skill(P_SORESU, rnd(5));
+			if (!rn2(5)) use_skill(P_SORESU, rnd(5));
 		}
 		u.ubodyarmorturns++;
 		if (u.ubodyarmorturns >= 5) {

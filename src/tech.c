@@ -4165,7 +4165,7 @@ int abil_no;
 callingoutdone:
 				if (!multiplegather) pline("There seems to be no eligible monster.");
 
-				use_skill(P_SQUEAKING, rnd(5));
+				use_skill(P_SQUEAKING, rnd(20));
 				abilreturncode = TRUE;
 			}
 		}
@@ -4465,7 +4465,7 @@ newbossSTEN:
 				break;
 			}
 
-			use_skill(P_SQUEAKING, rnd(20));
+			use_skill(P_SQUEAKING, rnd(25));
 			u.weathertimer = rnz(5000);
 			if (!PlayerCannotUseSkills && u.weathertimer >= 2) {
 				switch (P_SKILL(P_SQUEAKING)) {
@@ -4490,7 +4490,7 @@ newbossSTEN:
 				break;
 			}
 
-			use_skill(P_SQUEAKING, rnd(20));
+			use_skill(P_SQUEAKING, rnd(30));
 			u.weathertimer = rnz(5000);
 			if (!PlayerCannotUseSkills && u.weathertimer >= 2) {
 				switch (P_SKILL(P_SQUEAKING)) {
@@ -4515,7 +4515,7 @@ newbossSTEN:
 				break;
 			}
 
-			use_skill(P_SQUEAKING, rnd(20));
+			use_skill(P_SQUEAKING, rnd(40));
 			u.weathertimer = rnz(5000);
 			if (!PlayerCannotUseSkills && u.weathertimer >= 2) {
 				switch (P_SKILL(P_SQUEAKING)) {
@@ -4540,7 +4540,7 @@ newbossSTEN:
 				break;
 			}
 
-			use_skill(P_SQUEAKING, rnd(20));
+			use_skill(P_SQUEAKING, rnd(25));
 			u.weathertimer = rnz(5000);
 			if (!PlayerCannotUseSkills && u.weathertimer >= 2) {
 				switch (P_SKILL(P_SQUEAKING)) {
@@ -4565,7 +4565,7 @@ newbossSTEN:
 				break;
 			}
 
-			use_skill(P_SQUEAKING, rnd(20));
+			use_skill(P_SQUEAKING, rnd(25));
 			u.weathertimer = rnz(5000);
 			if (!PlayerCannotUseSkills && u.weathertimer >= 2) {
 				switch (P_SKILL(P_SQUEAKING)) {
@@ -4590,7 +4590,7 @@ newbossSTEN:
 				break;
 			}
 
-			use_skill(P_SQUEAKING, rnd(20));
+			use_skill(P_SQUEAKING, rnd(50));
 			u.weathertimer = rnz(5000);
 			if (!PlayerCannotUseSkills && u.weathertimer >= 2) {
 				switch (P_SKILL(P_SQUEAKING)) {

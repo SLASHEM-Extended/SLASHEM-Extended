@@ -456,16 +456,16 @@ panpipeduedeldiedue:
 				consume_obj_charge(instr, TRUE);
 			}
 		}
-		use_skill(P_DEVICES,1);
+		use_skill(P_DEVICES,rnd(3));
 		if (Race_if(PM_FAWN)) {
-			use_skill(P_DEVICES,1);
+			use_skill(P_DEVICES,rnd(3));
 		}
 		if (Race_if(PM_SATRE)) {
-			use_skill(P_DEVICES,1);
-			use_skill(P_DEVICES,1);
+			use_skill(P_DEVICES,rnd(3));
+			use_skill(P_DEVICES,rnd(3));
 		}
 		if (uarmh && itemhasappearance(uarmh, APP_MUSICAL_HELMET) )
-			use_skill(P_DEVICES,9);
+			use_skill(P_DEVICES,rnd(27));
 
 hornchoice:
 		if (!getdir((char *)0)) {

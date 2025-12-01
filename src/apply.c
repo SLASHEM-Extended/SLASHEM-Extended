@@ -5667,13 +5667,13 @@ blast_him:
 		pline("%s thunders: 'You dare manufacturing such highly toxic substances??? 5000 zorkmids. Don't even think about actually using that type of poison!'", noroelaname());
 		fineforpracticant(5000, 0, 0);
 	}
-	use_skill(P_DEVICES,1);
+	use_skill(P_DEVICES,2);
 	if (Race_if(PM_FAWN)) {
-		use_skill(P_DEVICES,1);
+		use_skill(P_DEVICES,2);
 	}
 	if (Race_if(PM_SATRE)) {
-		use_skill(P_DEVICES,1);
-		use_skill(P_DEVICES,1);
+		use_skill(P_DEVICES,2);
+		use_skill(P_DEVICES,2);
 	}
 
 	if (phialtype == 2) use_skill(P_DEVICES,10);
@@ -7782,20 +7782,20 @@ chargingchoice:
 		delobj(obj);
 		noartispeak = TRUE;
 
-		use_skill(P_DEVICES,10);
+		use_skill(P_DEVICES,20);
 		if (Race_if(PM_FAWN)) {
-			use_skill(P_DEVICES,10);
+			use_skill(P_DEVICES,20);
 		}
 		if (Race_if(PM_SATRE)) {
-			use_skill(P_DEVICES,10);
-			use_skill(P_DEVICES,10);
+			use_skill(P_DEVICES,20);
+			use_skill(P_DEVICES,20);
 		}
 		if (Role_if(PM_SPACEWARS_FIGHTER)) {
-			use_skill(P_DEVICES,10);
+			use_skill(P_DEVICES,20);
 		}
 		if (Role_if(PM_CAMPERSTRIKER)) {
-			use_skill(P_DEVICES,10);
-			use_skill(P_DEVICES,10);
+			use_skill(P_DEVICES,20);
+			use_skill(P_DEVICES,20);
 		}
 
 		cure_feminism_traps();
@@ -7834,20 +7834,20 @@ chargingchoice:
 		delobj(obj);
 		noartispeak = TRUE;
 
-		use_skill(P_DEVICES,10);
+		use_skill(P_DEVICES,20);
 		if (Race_if(PM_FAWN)) {
-			use_skill(P_DEVICES,10);
+			use_skill(P_DEVICES,20);
 		}
 		if (Race_if(PM_SATRE)) {
-			use_skill(P_DEVICES,10);
-			use_skill(P_DEVICES,10);
+			use_skill(P_DEVICES,20);
+			use_skill(P_DEVICES,20);
 		}
 		if (Role_if(PM_SPACEWARS_FIGHTER)) {
-			use_skill(P_DEVICES,10);
+			use_skill(P_DEVICES,20);
 		}
 		if (Role_if(PM_CAMPERSTRIKER)) {
-			use_skill(P_DEVICES,10);
-			use_skill(P_DEVICES,10);
+			use_skill(P_DEVICES,20);
+			use_skill(P_DEVICES,20);
 		}
 
 		cure_nasty_traps();

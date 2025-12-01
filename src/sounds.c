@@ -8630,7 +8630,7 @@ playermsconvert()
 		return;
 	}
 	u.uen -= cost;
-	use_skill(P_SQUEAKING, 2);
+	use_skill(P_SQUEAKING, rnd(10));
 	conversionsermon();
 
 	for (k = -3; k <= 3; k++) for(l = -3; l <= 3; l++) {
@@ -8671,7 +8671,7 @@ playerwouwoutaunt()
 		return;
 	}
 	u.uen -= cost;
-	use_skill(P_SQUEAKING, 4);
+	use_skill(P_SQUEAKING, rnd(25));
 	wouwoutaunt();
 
 	register struct monst *mtmp;
@@ -8718,7 +8718,7 @@ playerwhoretalk()
 		return;
 	}
 	u.uen -= cost;
-	use_skill(P_SQUEAKING, 4);
+	use_skill(P_SQUEAKING, rnd(20));
 
 	You("make very female noises!");
 	{
@@ -8784,7 +8784,7 @@ playersupermantaunt()
 		return;
 	}
 	u.uen -= cost;
-	use_skill(P_SQUEAKING, 10);
+	use_skill(P_SQUEAKING, rnd(50));
 	supermantaunt();
 	turn_allmonsters();
 
@@ -8818,7 +8818,7 @@ playerrattlebones()
 		return;
 	}
 	u.uen -= cost;
-	use_skill(P_SQUEAKING, 1);
+	use_skill(P_SQUEAKING, rnd(5));
 	You(FunnyHallu ? "play the xylophone." : "rattle noisily.");
 
 	{

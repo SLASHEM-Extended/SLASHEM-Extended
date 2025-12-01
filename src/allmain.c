@@ -10990,8 +10990,8 @@ newbossO:
 		if (uarm && uwep && is_lightsaber(uwep) && (uwep->lamplit || Role_if(PM_SHADOW_JEDI)) && (uarm->otyp >= PLAIN_ROBE && uarm->otyp <= ROBE_OF_WEAKNESS) ) {
 			u.usoresuturns++;
 			if (uarm && uarm->oartifact == ART_HOARDIT) u.usoresuturns += 9;
-			if (u.usoresuturns >= 100) {
-				u.usoresuturns -= 100;
+			if (u.usoresuturns >= 33) {
+				u.usoresuturns -= 33;
 				use_skill(P_SORESU, 1);
 			}
 
@@ -11000,8 +11000,8 @@ newbossO:
 		if (uarm && uarm->oartifact == ART_SORESURE) {
 			u.usoresuturns++;
 			if (uarm && uarm->oartifact == ART_HOARDIT) u.usoresuturns += 9;
-			if (u.usoresuturns >= 100) {
-				u.usoresuturns -= 100;
+			if (u.usoresuturns >= 33) {
+				u.usoresuturns -= 33;
 				use_skill(P_SORESU, 1);
 			}
 

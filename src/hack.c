@@ -2911,14 +2911,14 @@ peacedisplace:
 	/* weight lifting skill by Amy: exercise if you're burdened, stressed or strained, but not if overtaxed or worse */
 	if (near_capacity() >= SLT_ENCUMBER) {
 		int weightliftingtrainingamount = 1;
-		if ((near_capacity() == MOD_ENCUMBER) && !rn2(2)) weightliftingtrainingamount = 2;
-		if (near_capacity() == HVY_ENCUMBER) weightliftingtrainingamount = 2;
+		if ((near_capacity() == MOD_ENCUMBER) && !rn2(2)) weightliftingtrainingamount += rnd(2);
+		if (near_capacity() == HVY_ENCUMBER) weightliftingtrainingamount += rn1(3,1);
 		if (near_capacity() >= EXT_ENCUMBER) weightliftingtrainingamount = 0;
 
 		if (weightliftingtrainingamount > 0) {
 			u.uweightliftingturns += weightliftingtrainingamount;
 
-			if (u.uweightliftingturns >= 40) {
+			if (u.uweightliftingturns >= 20) {
 				u.uweightliftingturns = 0;
 				use_skill(P_WEIGHT_LIFTING, 1);
 			}
@@ -2930,13 +2930,13 @@ peacedisplace:
 		/* an odd one: male characters can train it faster, lacking the high heels skill makes it slower, and if
 		 * you're female without the high heels skill you cannot train it at all --Amy */
 
-		int columnarneeded = 150;
+		int columnarneeded = 60;
 		boolean cancolumnar = TRUE;
-		if (flags.female) columnarneeded = 500;
+		if (flags.female) columnarneeded = 200;
 
 		if (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) {
 			if (flags.female) cancolumnar = FALSE;
-			else columnarneeded = 500;
+			else columnarneeded = 200;
 		}
 
 		u.columnarturns++;
@@ -2956,7 +2956,7 @@ peacedisplace:
 
 	if (PlayerInStilettoHeels) {
 		u.ustilettoheelturns++;
-		if (u.ustilettoheelturns >= ((flags.female || Role_if(PM_TRANSVESTITE) || Role_if(PM_TRANSSYLVANIAN)) ? 350 : 2500) ) {
+		if (u.ustilettoheelturns >= ((flags.female || Role_if(PM_TRANSVESTITE) || Role_if(PM_TRANSSYLVANIAN)) ? 150 : 1300) ) {
 			u.ustilettoheelturns = 0;
 			use_skill(P_STILETTO_HEELS, 1);
 		}
@@ -2964,7 +2964,7 @@ peacedisplace:
 
 	if (PlayerInConeHeels) {
 		u.uconeheelturns++;
-		if (u.uconeheelturns >= ((flags.female || Role_if(PM_TRANSVESTITE) || Role_if(PM_TRANSSYLVANIAN)) ? 200 : 500) ) {
+		if (u.uconeheelturns >= ((flags.female || Role_if(PM_TRANSVESTITE) || Role_if(PM_TRANSSYLVANIAN)) ? 75 : 200) ) {
 			u.uconeheelturns = 0;
 			use_skill(P_CONE_HEELS, 1);
 		}
@@ -2972,7 +2972,7 @@ peacedisplace:
 
 	if (PlayerInBlockHeels) {
 		u.ublockheelturns++;
-		if (u.ublockheelturns >= 250) {
+		if (u.ublockheelturns >= 100) {
 			u.ublockheelturns = 0;
 			use_skill(P_BLOCK_HEELS, 1);
 		}
@@ -2980,14 +2980,14 @@ peacedisplace:
 
 	if (PlayerInWedgeHeels) {
 		u.uwedgeheelturns++;
-		if (u.uwedgeheelturns >= 200) {
+		if (u.uwedgeheelturns >= 75) {
 			u.uwedgeheelturns = 0;
 			use_skill(P_WEDGE_HEELS, 1);
 		}
 	}
 
 	/* exercising sexy flats does too, especially if you're male */
-	if (PlayerInSexyFlats && (flags.female || !rn2(5)) && (u.usexyflatturns++ >= 50)) {
+	if (PlayerInSexyFlats && (flags.female || !rn2(5)) && (u.usexyflatturns++ >= 35)) {
 	    u.usexyflatturns = 0;
 	    use_skill(P_SEXY_FLATS, 1);
 	}

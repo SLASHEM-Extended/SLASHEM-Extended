@@ -4290,8 +4290,8 @@ register struct obj *wand;
 	boolean willusecharge = TRUE;
 	boolean onlychargeonce = (wand->otyp == WAN_WISHING || wand->otyp == WAN_CHARGING || wand->otyp == WAN_BAD_EQUIPMENT || wand->otyp == WAN_ACQUIREMENT || wand->otyp == WAN_GAIN_LEVEL || wand->otyp == WAN_INCREASE_MAX_HITPOINTS);
 
-	int blessedboost = 1;
-	if (wand->blessed) blessedboost = 3;
+	int blessedboost = rnd(3);
+	if (wand->blessed) blessedboost += 2;
 
 	int nochargechange = 10;
 	if (!(PlayerCannotUseSkills)) {

@@ -1783,7 +1783,9 @@ struct trap *trap;
 	u.cnd_searchtrapcount++;
 	if (!trap->tdetected) {
 		mightbooststat(A_WIS);
-		use_skill(P_SEARCHING,1);
+		use_skill(P_SEARCHING, rnd(3));
+		/* allow the skill to train faster if you find a nasty trap --Amy */
+		if (is_nasty_trap(trap->ttyp)) use_skill(P_SEARCHING, rnd(10));
 		trap->tdetected = TRUE;
 	}
 
@@ -1944,7 +1946,7 @@ register int aflag;
 				    u.cnd_searchtrapcount++;
 				    exercise(A_WIS, TRUE);
 				    mightbooststat(A_WIS);
-				    use_skill(P_SEARCHING,1); /* you found a trap, so the skill should train --Amy */
+				    use_skill(P_SEARCHING,rnd(3)); /* you found a trap, so the skill should train --Amy */
 				}
 
 				/* bah, so they made an extra bullshit return for statue traps... --Amy */
