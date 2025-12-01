@@ -427,7 +427,9 @@ doride()
 }
 
 
-/* Start riding, with the given monster */
+/* Start riding, with the given monster
+ * seems like this returns TRUE if it's going to use a turn
+ * meaning that whether or not the mount succeeded has no real bearing on the return value?! --Amy */
 boolean
 mount_steed(mtmp, force)
 	struct monst *mtmp;	/* The animal */
@@ -471,14 +473,14 @@ mount_steed(mtmp, force)
 			pline("Ouch! You slip and hurt yourself a lot!");
 			if (rn2(3)) {
 				pline("Due to your leg injury, you don't manage to swing yourself onto your steed.");
-				return(FALSE);
+				return(TRUE); /* use a turn, even though you didn't successfully mount the steed --Amy */
 			}
 		}
 	    }
 	    else return (FALSE);
 	}
 
-	if (Upolyd && !Race_if(PM_TRANSFORMER) && (!humanoid(youmonst.data) || verysmall(youmonst.data) ||
+	if (Upolyd && !Race_if(PM_TRANSFORMER) && ( (!humanoid(youmonst.data) && rathersmall(youmonst.data)) || verysmall(youmonst.data) ||
 			bigmonst(youmonst.data) || slithy(youmonst.data))) {
 		You("won't fit on a saddle.");
 
@@ -487,7 +489,7 @@ mount_steed(mtmp, force)
 				losehp(rn1(10,20), "trying an illegal ride", NO_KILLER_PREFIX);
 				pline("Ouch! You slip and hurt yourself a lot!");
 				if (!rn2(20)) badeffect();
-				return(FALSE); /* failed, need to try again */
+				return(TRUE); /* failed, need to try again, and will use a turn */
 			}
 		}
 		else {
@@ -521,6 +523,8 @@ mount_steed(mtmp, force)
 			if (rn2(3)) {
 				losehp(rn1(10,20), "trying an illegal ride", NO_KILLER_PREFIX);
 				pline("Ouch! You slip and hurt yourself a lot!");
+				if (!rn2(20)) badeffect();
+				return(TRUE); /* failed, need to try again, and will use a turn */
 			}
 		}
 		else {
@@ -602,7 +606,7 @@ mount_steed(mtmp, force)
 			SUPPRESS_IT|SUPPRESS_INVISIBLE|SUPPRESS_HALLUCINATION,
 			     TRUE));
 	    losehp(rn1(5,10), buf, NO_KILLER_PREFIX);
-	    return (FALSE);
+	    return (TRUE); /* why does that not use a turn in vanilla??? */
 	}
 
 	/* Success */
