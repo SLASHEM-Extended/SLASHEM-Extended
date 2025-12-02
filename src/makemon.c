@@ -9946,6 +9946,9 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_GILDED_SENTINEL]) {
 			(void) mongets(mtmp, rnd_class(LONG_SWORD,GREAT_HOUCHOU));
 		}
+		if (ptr == &mons[PM_DEATH_SCYTHE]) {
+			(void) mongets(mtmp, GIANT_SCYTHE);
+		}
 
 		if (ptr == &mons[PM_HOT_PLATE]) {
 			(void) maketrap(mtmp->mx, mtmp->my, FIRE_TRAP, 0, FALSE);
@@ -10859,6 +10862,8 @@ loveheelover:
 		if (mtmp->data == &mons[PM_SHINWIKI]) (void) mongets(mtmp, DWARVISH_SPEAR);
 		if (mtmp->data == &mons[PM_ROARARAPTOR]) (void) mongets(mtmp, SATURNITE_FIST);
 		if (mtmp->data == &mons[PM_CLOPP_LIZ]) (void) mongets(mtmp, SHELL_CLUB);
+
+		if (mtmp->data == &mons[PM_KNIFE_TONBERRY] || mtmp->data == &mons[PM_NINJA_TONBERRY] || mtmp->data == &mons[PM_MASTER_TONBERRY]) (void) mongets(mtmp, rnd_class(WORM_TOOTH, TOOTH_OF_AN_ALGOLIAN_SUNTIGER));
 
 		if (mtmp->data == &mons[PM_LIZARD_MAGE]) (void) mongets(mtmp, !rn2(3) ? SHORT_SWORD : !rn2(2) ? BROADSWORD : LONG_SWORD);
 
@@ -16130,6 +16135,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_MILL_ORC]) (void) mongets(mtmp, ORCISH_BOOTS);
 		if (mtmp->data == &mons[PM_BOOT_GOBLIN]) (void) mongets(mtmp, ORCISH_BOOTS);
 		if (mtmp->data == &mons[PM_COBBLE_GOBLIN]) (void) mongets(mtmp, UNWIELDY_PICK);
+		if (mtmp->data == &mons[PM_ORC_DIGGER]) (void) mongets(mtmp, PICK_AXE);
 
 		if (ptr == &mons[PM_DARKLAND_ORC]) {
 			(void) mongets(mtmp, BOW);
@@ -27395,6 +27401,7 @@ register int	mmflags;
 			if (mndx == PM_FRIGHTGHOST) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_JIBAKU_GHOST) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_JIBAKU_SPIRIT) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_GREAT_SAGE_SOUL) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mtmp->data == &mons[PM_CASTLE_OF_THE_WINDS_PLAYER]) {
 				int spawnnumber = rn1(10, 3);
 				while (spawnnumber > 0) {
