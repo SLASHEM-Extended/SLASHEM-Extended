@@ -1198,6 +1198,12 @@ moveloop()
 					else if (moveamt > 1) moveamt--;
 				}
 
+				if (PlayerInPyramidalHeels && moveamt > 1 && !FemtrapActiveNaomi && !(uimplant && uimplant->oartifact == ART_TORSTEN_S_FEMININENESS && powerfulimplants()) && !(uarmu && uarmu->oartifact == ART_MODELWALK) && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) ) {
+					if (moveamt > 12) moveamt /= 2;
+					else if (moveamt > 6) moveamt = 6;
+					else if (moveamt > 1) moveamt--;
+				}
+
 				if (Frozen && (!((uarmf && uarmf->oartifact == ART_VERA_S_FREEZER) || (uarmf && itemhasappearance(uarmf, APP_CYAN_SNEAKERS)) ) || !rn2(3)) && moveamt > 6) {
 					moveamt /= 2;
 					if (moveamt < 6) moveamt = 6;
@@ -1716,6 +1722,14 @@ moveloop()
 				}
 			}
 
+			if (PlayerInPyramidalHeels && moveamt > 1 && !FemtrapActiveNaomi && !(uimplant && uimplant->oartifact == ART_TORSTEN_S_FEMININENESS && powerfulimplants()) && !(uarmu && uarmu->oartifact == ART_MODELWALK) && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) ) {
+				if (youmonst.data->mmove > 1 || !rn2(2)) {
+					if (moveamt > 12) moveamt /= 2;
+					else if (moveamt > 6) moveamt = 6;
+					else if (moveamt > 1) moveamt--;
+				}
+			}
+
 			if (uarmh && uarmh->oartifact == ART_LEHOBAUM && moveamt > 1) {
 				if (youmonst.data->mmove > 1 || !rn2(2)) {
 					if (moveamt > 12) moveamt /= 2;
@@ -1756,7 +1770,7 @@ moveloop()
 				if (moveamt < 6) moveamt = 6; /* don't slow them down too much, please! */
 			}
 
-			if (Race_if(PM_ASGARDIAN) && !rn2(20) && moveamt > 1) /* Asgardians are slower sometimes, this is intentional. --Amy */
+			if (Race_if(PM_ASGARDIAN) && !rn2(20) && moveamt > 1) /* asgardians are slower sometimes, this is intentional --Amy */
 				moveamt /= 2;
 
 			/* fairy is slowed by heavy gear; many slots don't actually have items with enough weight,
@@ -1781,7 +1795,7 @@ moveloop()
 			if (Race_if(PM_PLAYER_ZRUTY) && !rn2(3) && moveamt > 1)
 				moveamt /= 2;
 
-			if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1) /* Spirits too are slower sometimes. */
+			if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1) /* spirits too are slower sometimes because wallwalking is really powerful */
 				moveamt /= 2;
 
 			if (PlayerInStilettoHeels && !FemtrapActiveNaomi && !(uimplant && uimplant->oartifact == ART_TORSTEN_S_FEMININENESS && powerfulimplants()) && !(uarmu && uarmu->oartifact == ART_MODELWALK) && (rnd(u.ulevel) < 11) && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && (P_MAX_SKILL(P_STILETTO_HEELS) == P_ISRESTRICTED) && !rn2(flags.female ? 24 : 20) && moveamt > 1)
@@ -1952,13 +1966,16 @@ moveloop()
 			if (uarm && (uarm->oartifact == ART_CD_ROME_ARENA) && !rn2(8) && moveamt > 1) /* roman clothing just generally slows you down */
 				moveamt /= 2;
 
-			if (uarmf && itemhasappearance(uarmf, APP_ROMAN_SANDALS) && !rn2(8) && moveamt > 1 ) /* Roman sandals aren't made for running. */
+			if (uarmf && itemhasappearance(uarmf, APP_ROMAN_SANDALS) && !rn2(8) && moveamt > 1 ) /* roman sandals aren't made for running */
 				moveamt /= 2;
 
-			if (Race_if(PM_SOVIET) && !rn2(8) && moveamt > 1) /* And soviets, since they get enough features that make the game easier than it's supposed to be. */
+			if (Race_if(PM_SOVIET) && !rn2(8) && moveamt > 1) /* soviets are also slower, since they get enough features that make the game easier than it's supposed to be */
 				moveamt /= 2;
 
-			if (Race_if(PM_ARMED_COCKATRICE) && !Upolyd && !rn2(4) && moveamt > 1) /* Cockatrices even more. */
+			if (Race_if(PM_ARMED_COCKATRICE) && !Upolyd && !rn2(4) && moveamt > 1) /* cockatrices are slowed even more to balance out their ability to instakill things */
+				moveamt /= 2;
+
+			if (uarmf && uarmf->oartifact == ART_SIGRUN_S_WEDDING_SHOES && !rn2(8) && moveamt > 1 )
 				moveamt /= 2;
 
 			if (Race_if(PM_WEAPON_CUBE) && !Upolyd && !rn2(4) && moveamt > 1)
@@ -2947,6 +2964,56 @@ nyssaraend:
 			pline("Somehow, your memory is lost...");
 			incr_itimeout(&HMap_amnesia, 500);
 			uarms->spe++;
+		}
+
+		if (!PlayerCannotUseSkills && PlayerInBallHeels && (u.ballskill >= 20) ) {
+			int ballchance = 0;
+			if (u.ballskill >= 20) ballchance = 5;
+			if (u.ballskill >= 160) ballchance = 8;
+			if (u.ballskill >= 540) ballchance = 10;
+			if (u.ballskill >= 1280) ballchance = 12;
+			if (u.ballskill >= 2500) ballchance = 15;
+			if (u.ballskill >= 4320) ballchance = 18;
+
+			if (ballchance > rn2(100)) {
+				if (Stoned) {
+					fix_petrification();
+				}
+				if (Slimed) {
+					pline("The slime disappears.");
+					Slimed = 0;
+				}
+				if (Sick) {
+					make_sick(0L, (char *) 0, TRUE, SICK_ALL);
+				}
+				if (Blinded) {
+					make_blinded(0L,TRUE);
+				}
+				if (HStun) {
+					make_stunned(0L,TRUE);
+				}
+				if (HConfusion) {
+					make_confused(0L,TRUE);
+				}
+				if (HHallucination) {
+					(void) make_hallucinated(0L,FALSE,0L);
+				}
+				if (HNumbed) {
+					make_numbed(0L,TRUE);
+				}
+				if (HFeared) {
+					make_feared(0L,TRUE);
+				}
+				if (HFrozen) {
+					make_frozen(0L,TRUE);
+				}
+				if (HBurned) {
+					make_burned(0L,TRUE);
+				}
+				if (HDimmed) {
+					make_dimmed(0L,TRUE);
+				}
+			}
 		}
 
 		if (u.temprandgoodbadeffects && !rn2(500)) {
@@ -6101,6 +6168,10 @@ greasingdone:
 		}
 
 		if (have_falloutstone() && !rn2(100)) {
+			contaminate(rnd(10), FALSE);
+		}
+
+		if (uarmf && uarmf->oartifact == ART_CHLOE_S_EXAGGERATION && !rn2(100)) {
 			contaminate(rnd(10), FALSE);
 		}
 
@@ -10015,9 +10086,9 @@ newbossRLR:
 		}
 
 		/* for feminizer hybrid race: re-randomize feminism effect that is active --Amy */
-		if (!rn2(5000)) u.feminizeffect = rnd(106); /* amount of feminism trap effects; keyword: "marlena" */
-		if (!rn2(5000)) u.contamjeweleffect = rnd(106); /* amount of feminism trap effects; keyword: "marlena" */
-		if (!rn2(5000)) u.nukafemeffect = rnd(106); /* amount of feminism trap effects; keyword: "marlena" */
+		if (!rn2(5000)) u.feminizeffect = rnd(108); /* amount of feminism trap effects; keyword: "marlena" */
+		if (!rn2(5000)) u.contamjeweleffect = rnd(108); /* amount of feminism trap effects; keyword: "marlena" */
+		if (!rn2(5000)) u.nukafemeffect = rnd(108); /* amount of feminism trap effects; keyword: "marlena" */
 
 		if (isfeminizer && !rn2(5000)) randomfeminismtrap(rnz( (level_difficulty() + 2) * rnd(50)));
 
@@ -20172,6 +20243,9 @@ boolean new_game;	/* false => restoring an old game */
 
 		/* todo area */
 
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "pyramidal heels")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "ball heels")) OBJ_DESCR(objects[i]) = "todo";
+
 	}
 	}
 
@@ -21720,6 +21794,9 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "cuddle boots")) OBJ_DESCR(objects[i]) = "quchoqlash etiklari";
 
 		/* todo area */
+
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "pyramidal heels")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "ball heels")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}
@@ -24054,6 +24131,8 @@ judithminigame()
 #define HEELTYPE_CONE 3
 #define HEELTYPE_STILETTO 4
 #define HEELTYPE_COLUMNAR 5
+#define HEELTYPE_BALL 6
+#define HEELTYPE_PYRAMIDAL 7
 
 	int minigameturns = 0;
 	boolean yourturn = FALSE;
@@ -24071,7 +24150,15 @@ judithminigame()
 	boolean opentoed = FALSE;
 
 	int typeofheels = 0;
-	if (maybecolumnarheels()) {
+	if (maybepyramidalheels()) {
+		typeofheels = HEELTYPE_PYRAMIDAL;
+		if (maybepyramidalheels() == 2) opentoed = TRUE;
+	}
+	else if (maybeballheels()) {
+		typeofheels = HEELTYPE_BALL;
+		if (maybeballheels() == 2) opentoed = TRUE;
+	}
+	else if (maybecolumnarheels()) {
 		typeofheels = HEELTYPE_COLUMNAR;
 		if (maybecolumnarheels() == 2) opentoed = TRUE;
 	}
@@ -24100,6 +24187,14 @@ judithminigame()
 	}
 
 	switch (typeofheels) {
+		case HEELTYPE_PYRAMIDAL:
+			heelshealth = 150 + rnd(150);
+			heelsmorale = 75 + rno(120);
+			break;
+		case HEELTYPE_BALL:
+			heelshealth = 300 + rnd(100);
+			heelsmorale = 200;
+			break;
 		case HEELTYPE_COLUMNAR:
 			heelshealth = 200 + rnd(50);
 			heelsmorale = 100 + rnd(50);
@@ -24265,10 +24360,24 @@ newturnjudith:
 						}
 
 						break;
+					case HEELTYPE_PYRAMIDAL:
+
+						pline("The razor-sharp pyramidal heel scratches over your leg!");
+						losehp(rn1(4,4), "pyramidal heel scratches", KILLED_BY);
+						Your("blood is squirting everywhere!");
+						playerbleed(rn1(10,10));
+
+						break;
 					case HEELTYPE_COLUMNAR:
 
 						pline("The massive columnar heel scratches over your leg!");
 						losehp(rnd(3), "columnar heel scratches", KILLED_BY);
+
+						break;
+					case HEELTYPE_BALL:
+
+						pline("The ball heel scrapes a little skin from your leg!");
+						losehp(rnd(2), "ball heel scratches", KILLED_BY);
 
 						break;
 				}
@@ -24297,6 +24406,14 @@ newturnjudith:
 					case HEELTYPE_COLUMNAR:
 						pline("The beautiful columnar heel lands a painful kick in your shins!");
 						losehp(rn1(5, 5), "being kicked in the shins by a massive columnar heel", KILLED_BY);
+						break;
+					case HEELTYPE_BALL:
+						pline("The unyielding ball heel lands a super painful kick in your shins!");
+						losehp(rn1(10, 12), "being kicked in the shins by a massive ball heel", KILLED_BY);
+						break;
+					case HEELTYPE_PYRAMIDAL:
+						pline("The dangerous pyramidal heel lands a very female kick in your shins!");
+						losehp(rnz(6), "being kicked in the shins by a pyramidal heel", KILLED_BY); /* rnz on purpose --Amy */
 						break;
 				}
 
@@ -24345,6 +24462,15 @@ newturnjudith:
 						heelsnutkick += 1;
 
 						break;
+					case HEELTYPE_BALL:
+
+						pline("The massive ball heel totally stomps your helpless nuts, and you're gasping for air!");
+
+						losehp(rnd(25),"being kicked in the nuts by a massive ball heel",KILLED_BY);
+
+						heelsnutkick += 1;
+
+						break;
 					case HEELTYPE_STILETTO:
 
 						if (!rn2(50)) {
@@ -24363,6 +24489,15 @@ newturnjudith:
 
 							heelsnutkick += 1;
 						}
+
+						break;
+					case HEELTYPE_PYRAMIDAL:
+
+						pline("The pyramidal heel kicks you in the nuts, and you wince from the intense pain!");
+
+						losehp(rnd(14),"being kicked in the nuts by a dangerous pyramidal heel",KILLED_BY);
+
+						heelsnutkick += 1;
 
 						break;
 					case HEELTYPE_COLUMNAR:
@@ -24429,10 +24564,22 @@ newturnjudith:
 						losehp(rnd(10), "having their toes impaled by pointy stiletto heels", KILLED_BY);
 
 						break;
+					case HEELTYPE_PYRAMIDAL:
+
+						pline("The lovely pyramidal heels stomp your toes rather painfully");
+						losehp(rnd(8), "having their toes stomped by pyramidal heels", KILLED_BY);
+
+						break;
 					case HEELTYPE_COLUMNAR:
 
 						pline("The beautiful columnar heels stomp your toes with their massive heels!");
 						losehp(rnd(4), "having their toes stomped by massive columnar heels", KILLED_BY);
+
+						break;
+					case HEELTYPE_BALL:
+
+						pline("Your toes are painfully stomped underneath the massive ball heels!");
+						losehp(rnd(10), "having their toes stomped by massive ball heels", KILLED_BY);
 
 						break;
 				}
@@ -24523,6 +24670,38 @@ newturnjudith:
 								verbalize("It's not going to be that easy for you!");
 							}
 							break;
+						case HEELTYPE_PYRAMIDAL:
+							if (rnd(ACURR(A_CHA)) > rnd(15)) {
+								yourdamagedeal = rnd(ACURR(A_CHA));
+								if ((yourdamagedeal > 1) && rn2(5)) yourdamagedeal /= 2;
+
+								heelsmorale -= yourdamagedeal;
+								if (yourdamagedeal < 3) pline("It's not very effective...");
+								else if (yourdamagedeal < 9) pline("It seems to be reasonably effective.");
+								else pline("It's super effective!");
+
+								if (heelsmorale < 1) {
+									youhavewon = TRUE;
+									verbalize("Alright, you've convinced us. A person as nice and pure-hearted as you definitely earned the right to wear us.");
+									u.judithgame = FALSE;
+									return TRUE;
+								} else if (heelsmorale < 20) {
+									verbalize("Wow, you're really sweet... we feel that we may allow you to win soon...");
+								} else if (heelsmorale < 50) {
+									verbalize("You are actually a pretty nice person. We decided to be nicer to you for now.");
+								} else if (heelsmorale < 100) {
+									verbalize("We do respect your efforts, but you will have to work for your victory.");
+								} else {
+									verbalize("You're not going to make us surrender unless you put in a lot more effort.");
+								}
+
+								heelshealth += 5;
+								if (heelshealth > heelsstarthealth) heelshealth = heelsstarthealth;
+
+							} else {
+								verbalize("Oh, nice try. Well you'd better try harder.");
+							}
+							break;
 						case HEELTYPE_CONE:
 							if (rnd(ACURR(A_CHA)) > rnd(20)) {
 								yourdamagedeal = rnd(ACURR(A_CHA));
@@ -24578,6 +24757,36 @@ newturnjudith:
 
 							} else {
 								verbalize("Sorry, but we'd like to cause at least some damage to you.");
+							}
+							break;
+						case HEELTYPE_BALL:
+							if (rnd(ACURR(A_CHA)) > rnd(13)) {
+								yourdamagedeal = rnd(ACURR(A_CHA));
+								if (yourdamagedeal > 1) yourdamagedeal /= 2;
+
+								heelsmorale -= yourdamagedeal;
+								if (yourdamagedeal < 3) pline("It's not very effective...");
+								else if (yourdamagedeal < 9) pline("It seems to be reasonably effective.");
+								else pline("It's super effective!");
+
+								if (heelsmorale < 1) {
+									youhavewon = TRUE;
+									verbalize("Yes! You win! Have a lot of fun wearing us, my sweetie!");
+									u.judithgame = FALSE;
+									return TRUE;
+								} else if (heelsmorale < 20) {
+									verbalize("You're doing well! Keep saying nice things to us and we'll be all yours!");
+								} else if (heelsmorale < 60) {
+									verbalize("Aww, we were really hoping for a good fight! But I guess you're a sweet talker, so by all means, continue and we'll eventually reach an agreement.");
+								} else {
+									verbalize("You're the talking type, not the fighting type, eh? Well, keep talking if you want, but we'll still apply some pain to you before we'll let you win!");
+								}
+
+								heelshealth += 5;
+								if (heelshealth > heelsstarthealth) heelshealth = heelsstarthealth;
+
+							} else {
+								verbalize("Nah, we don't feel like giving you a free pass! We're here to fight!");
 							}
 							break;
 						case HEELTYPE_WEDGE:
@@ -24671,6 +24880,25 @@ newturnjudith:
 							}
 
 							break;
+						case HEELTYPE_PYRAMIDAL:
+							if (rnd(yourstrength) > 10) {
+								yourdamagedeal = rnd(yourstrength);
+								heelshealth -= yourdamagedeal;
+								if (yourdamagedeal < 6) pline("It's not very effective...");
+								else if (yourdamagedeal < 16) pline("You landed a regular hit.");
+								else pline("It's super effective!");
+
+								if (heelshealth < 0) heelshealth = 0;
+								if (heelshealth < 20) pline("The tender pyramidal heels are weak! Go get 'em!");
+
+								heelsmorale += rn1(6,6);
+								if (heelsmorale > heelsstartmorale) heelsmorale = heelsstartmorale;
+
+							} else {
+								pline("The pyramidal heel does not seem to budge at all...");
+							}
+
+							break;
 						case HEELTYPE_CONE:
 
 							if (rnd(yourstrength) > 10) {
@@ -24743,6 +24971,26 @@ newturnjudith:
 							if (heelsmorale > heelsstartmorale) heelsmorale = heelsstartmorale;
 
 							break;
+						case HEELTYPE_BALL:
+
+							yourdamagedeal = rnd(yourstrength);
+							if (yourdamagedeal > 1) {
+								if (rnd(ACURR(A_DEX)) < 18) yourdamagedeal /= 2;
+							}
+
+							heelshealth -= yourdamagedeal;
+							if (yourdamagedeal < 6) pline("It's not very effective...");
+							else if (yourdamagedeal < 16) pline("You landed a regular hit.");
+							else pline("It's super effective!");
+
+							if (heelshealth < 0) heelshealth = 0;
+							if (heelshealth < 1) pline("The massive ball heels are almost defeated! Snatch 'em, now!");
+							else if (heelshealth < 20) pline("The massive ball heels are weak! Go get 'em!");
+
+							heelsmorale += 8;
+							if (heelsmorale > heelsstartmorale) heelsmorale = heelsstartmorale;
+
+							break;
 					}
 
 					break;
@@ -24788,6 +25036,23 @@ newturnjudith:
 										pline("Your %s feels like it's going to explode from pain... ouch...", body_part(FINGER));
 									}
 								}
+							}
+							break;
+						case HEELTYPE_PYRAMIDAL:
+
+							if (rnd(yourstrength) > rn1(10,10) && rnd(yourstrength) > rn1(10,10) && rnd(yourstrength) > rn1(10,10) && rnd(yourstrength) > rn1(10,10) && rnd(yourstrength) > rn1(10,10) ) {
+								youhavewon = TRUE;
+								pline("You completely surprised the lovely pyramidal heels and managed to slip your %s into them! Well done, you win!", makeplural(body_part(FOOT)));
+								u.judithgame = FALSE;
+								return TRUE;
+							} else if (rnd(yourstrength) > heelshealth) { 
+								youhavewon = TRUE;
+								pline("Your %s quickly snatch the lovely pyramidal heels and you manage to slip into them before they can fight back.", makeplural(body_part(HAND)));
+								u.judithgame = FALSE;
+								return TRUE;
+							} else {
+								pline("The lovely pyramidal heels quickly evade your grasp and painfully stomp on your %s with their pointy heel! YEEEEEEOWWWW!", body_part(FINGER));
+								losehp(rn1(15,15),"having their fingers crushed underneath lovely pyramidal heels",KILLED_BY);
 							}
 							break;
 						case HEELTYPE_CONE:
@@ -24877,6 +25142,24 @@ newturnjudith:
 								pline("The beautiful columnar heels quickly evade your grasp.");
 							}
 							break;
+						case HEELTYPE_BALL:
+							if (rnd(yourstrength) > rnd(1500)) {
+								youhavewon = TRUE;
+								pline("You surprise the massive ball heels and quickly put them on! Well done, you win!");
+								u.judithgame = FALSE;
+								return TRUE;
+							} else if (!rn2(3) && (heelshealth < rnd(21)) ) {
+								youhavewon = TRUE;
+								pline("The massive ball heels are tired from this long battle, and fail to dodge. You quickly snatch them, put them on, and win. Congratulations!");
+								u.judithgame = FALSE;
+								return TRUE;
+							} else if (!rn2(2)) {
+								pline("The massive ball heel steps on your %s, and you scream in pain!", body_part(HAND));
+								losehp(rn1(7,7), "having their fingers crushed underneath massive ball heels", KILLED_BY);
+							} else {
+								pline("The massive ball heels quickly evade your grasp.");
+							}
+							break;
 					} /* end switch statement */
 					break;
 
@@ -24893,6 +25176,19 @@ newturnjudith:
 								heelsstate = rnd(4);
 							} else {
 								pline("Your fancy footwork didn't fool the tender stiletto heels.");
+							}
+
+							break;
+						case HEELTYPE_PYRAMIDAL:
+
+							if (rnd(50) < ACURR(A_DEX)) {
+								pline("Your movements made the lovely pyramidal heels quite dizzy.");
+								heelsstate = HEELIDLE;
+							} else if (!rn2(2)) {
+								pline("Your movements made the lovely pyramidal heels switch to a different type of attack.");
+								heelsstate = rnd(4);
+							} else {
+								pline("Your fancy footwork didn't fool the lovely pyramidal heels.");
 							}
 
 							break;
@@ -24940,6 +25236,19 @@ newturnjudith:
 								heelsstate = rnd(4);
 							} else {
 								pline("Your movements don't seem to affect the beautiful columnar heels at all.");
+							}
+
+							break;
+						case HEELTYPE_BALL:
+
+							if (!rn2(20)) {
+								pline("Your constant movement made the massive ball heels quite dizzy.");
+								heelsstate = HEELIDLE;
+							} else if (rn2(2)) {
+								pline("Your movements slightly confused the massive ball heels, but not enough to make them stop attacking.");
+								heelsstate = rnd(4);
+							} else {
+								pline("Your movements don't seem to affect the massive ball heels at all.");
 							}
 
 							break;

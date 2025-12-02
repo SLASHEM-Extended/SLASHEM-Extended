@@ -752,6 +752,10 @@ boolean yours; /* is it your fault (for killing monsters) */
 			damu *= 12;
 			damu /= 10;
 		}
+		if (PlayerInBallHeels && !(uarmu && uarmu->oartifact == ART_MODELWALK) && !FemtrapActiveNaomi && !(uimplant && uimplant->oartifact == ART_TORSTEN_S_FEMININENESS && powerfulimplants()) && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) ) {
+			damu *= 3;
+			damu /= 2;
+		}
 		if (uimplant && uimplant->oartifact == ART_SPINAL_MATRIX_OF_RAISTLIN) {
 			damu *= 11;
 			damu /= 10;

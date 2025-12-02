@@ -290,6 +290,11 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 		uwep->hvycurse = uwep->prmcurse = uwep->stckcurse = TRUE;
 	}
 
+	if (uwep && uwep->oartifact == ART_PIPPA_S_URGE) {
+		curse(uwep);
+		uwep->hvycurse = TRUE;
+	}
+
 	if (uwep && uwep->oartifact == ART_SMASHIN) {
 		curse(uwep);
 		if (!Role_if(PM_SAGE)) uwep->hvycurse = uwep->stckcurse = TRUE;
@@ -796,6 +801,11 @@ swapweaponchoice:
 		if (uswapwep && uswapwep->oartifact == ART_RIDGET_PHASTO) {
 			curse(uswapwep);
 			uswapwep->hvycurse = uswapwep->prmcurse = uswapwep->stckcurse = TRUE;
+		}
+
+		if (uswapwep && uswapwep->oartifact == ART_PIPPA_S_URGE) {
+			curse(uswapwep);
+			uswapwep->hvycurse = TRUE;
 		}
 
 		if (uswapwep && uswapwep->oartifact == ART_SMASHIN) {

@@ -2112,6 +2112,12 @@ newbossSING:
 		}
 	}
 
+	if (FemtrapActiveCelia && !rn2(SuperFemtrapCelia ? 25 : 100) && mtmp->data->mlet == S_DOG) {
+		if (!(t_at(mtmp->mx, mtmp->my))) {
+			maketrap(mtmp->mx, mtmp->my, SHIT_TRAP, 0, FALSE);
+		}
+	}
+
 	if (uarmf && itemhasappearance(uarmf, APP_TREADED_HEELS) && !rn2(250) && mtmp->data->mlet == S_DOG) {
 		if (!(t_at(mtmp->mx, mtmp->my))) {
 			maketrap(mtmp->mx, mtmp->my, SHIT_TRAP, 0, FALSE);

@@ -29685,6 +29685,10 @@ static NEARDATA const char * const fake_plines[] = {
 	"You wish you could talk things over with the wizard, instead of him just defaulting to 'hostile' and attacking you on sight.",
 	"You feel that you could dip your gear into fountain water.",
 	"You know that if you quaff from fountains, you'll probably die in some stupid way and then we can sing the dirge (DIRGE) for your character!",
+	"You feel that the female shoes have gained some special abilities!",
+	"It seems that there's an unusually high amount of dogs running around the dungeon. They're certainly gonna shit in every corner...",
+	"The female shoes no longer have special abilities.",
+	"The dogs are beginning to leave. Good riddance, you really got annoyed from stepping into their shit all the damn time.",
 
 };
 

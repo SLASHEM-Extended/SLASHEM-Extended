@@ -13455,6 +13455,11 @@ loveheelover:
 
 	    case S_DOG:
 
+		if (ptr == &mons[PM_POKING_FEMMY]) {
+			(void) mongets(mtmp, DOGSHIT_BOOT);
+			(void) mongets(mtmp, rnd_class(LANCE, SPEC_LANCE));
+			(void) mongets(mtmp, find_appearance_armor(APP_REGULAR_SNEAKERS) );
+		}
 		if (ptr == &mons[PM_DESERT_FOX]) {
 			(void) mongets(mtmp, DESERT_SWORD);
 			 m_initthrow(mtmp, SAND_DART, 50);
@@ -17931,7 +17936,7 @@ loveheelover:
 		}
 
 		if(ptr == &mons[PM_NUKA_COLA_COMMERCIALIST]) {
-			int nukaroll = rnd(106); /* keyword: "marlena" */
+			int nukaroll = rnd(108); /* keyword: "marlena" */
 
 			(void) mongets(mtmp, rnd_class(POT_BOOZE, POT_PAN_GALACTIC_GARGLE_BLASTE));
 			(void) mongets(mtmp, rnd_class(POT_BOOZE, POT_PAN_GALACTIC_GARGLE_BLASTE));
@@ -18444,6 +18449,10 @@ loveheelover:
 		if (ptr == &mons[PM_ANGEL_WITH_THE_SHOTGUN]) {
 			(void) mongets(mtmp, SHOTGUN);
 			 m_initthrow(mtmp, SHOTGUN_SHELL, 30);
+		}
+		if (ptr == &mons[PM_EFFLORESCENT_FEMMY]) {
+			(void) mongets(mtmp, SOFT_SNEAKERS); /* M4_SNEAKERS */
+			(void) mongets(mtmp, SPIKED_BATTLE_BOOT);
 		}
 		if (ptr == &mons[PM_BOON_ANGEL]) {
 			(void) mongets(mtmp, SLING);
@@ -26041,6 +26050,16 @@ register int	mmflags;
 		mtmp->egotype_incrementor = 1;
 	}
 
+	if (FemtrapActiveAnja && monstersoundtype(mtmp) == MS_SHOE) {
+
+		add_monster_egotype(mtmp);
+
+		while (!rn2(iswarper ? 4 : 10)) {
+			add_monster_egotype(mtmp);
+		}
+
+	}
+
 	if (!rn2(isxrace ? 30 : 100) || always_egotype(mtmp->data) ) {
 
 		add_monster_egotype(mtmp);
@@ -28704,6 +28723,7 @@ int mndx;
 	if ((mons[mndx].geno & (G_UNIQ)) && rn2(u.outtadepthtrap ? 5 : ((u.aggravation || isaggravator || isextravator || GravationAggravation) && ((ExtAggravate_monster || isextravator || GravationAggravation) || !rn2(2))) ? 10 : 20) && !(Bossfights || u.tempnevernmbf || u.uprops[BOSSFIGHT].extrinsic || have_bossfightstone() || autismweaponcheck(ART_SHADOWLOCK) || (ublindf && ublindf->oartifact == ART_CRAWLING_FROM_THE_WOODWORK) || autismweaponcheck(ART_EXTREMELY_HARD_MODE) ) && !Race_if(PM_PLAYER_DYNAMO) && !Role_if(PM_TRANSSYLVANIAN) && !isbossrusher && !Role_if(PM_GANG_SCHOLAR) ) return TRUE;
 	if (mvitals[mndx].mvflags & G_GONE) return TRUE;
 	if (uwep && uwep->oartifact == ART_STOP_THE_SCRIPT_NONSENSE && is_jonadabmonster(&mons[mndx]) ) return TRUE;
+	if (uarmf && uarmf->oartifact == ART_NO_GIRLFRIENDS && is_female(&mons[mndx]) && rn2(10)) return TRUE;
 	if (ublindf && ublindf->oartifact == ART_NO_CUPS && (mons[mndx].mlet == S_KOP) ) return TRUE;
 
 	/* In Soviet Russia, uncommon entities are more common because "harharhar har!" --Amy */
@@ -29132,6 +29152,7 @@ loopback:
 		if (ct > 0 && (Is_chaotic_quest(&u.uz) && (ptr->mlet == S_VAMPIRE) )) ct += 2;
 		if (ct > 0 && (Is_chaotic_quest(&u.uz) && (ptr->mlet == S_WRAITH) )) ct += 2;
 		if (ct > 0 && (Is_chaotic_quest(&u.uz) && (ptr->mlet == S_ZOMBIE) )) ct += 2;
+		if (ct > 0 && (FemtrapActiveCelia && (ptr->mlet == S_DOG) )) ct += 10;
 		if (ct > 0 && (uarmh && uarmh->oartifact == ART_RAT_PROBLEM && (ptr->mlet == S_RODENT) )) ct += 10;
 		if (ct > 0 && (In_grund(&u.uz) && (ptr->mlet == S_ORC) )) ct += 5;
 		if (ct > 0 && (In_wyrm(&u.uz) && (ptr->mlet == S_DRAGON) )) ct += 5;
@@ -30563,6 +30584,8 @@ int     spc;
 	int uncommonnewsixty = rn2(20) ? 1 : 0;
 	int uncommonnewseventy = rn2(50) ? 1 : 0;
 
+	int girlfrienduncommon = rn2(10) ? 1 : 0;
+
 	if (moves > 100000) {
 		int notuncommonlate = 0;
 		notuncommonlate = ((moves - 100000) / 10000);
@@ -30699,6 +30722,7 @@ int     spc;
 	    if (!(mvitals[last].mvflags & G_GONE) && !(mons[last].geno & mask)
 					&& !is_placeholder(&mons[last])
 					&& !(uwep && uwep->oartifact == ART_STOP_THE_SCRIPT_NONSENSE && is_jonadabmonster(&mons[last]) )
+					&& !(girlfrienduncommon && uarmf && uarmf->oartifact == ART_NO_GIRLFRIENDS && is_female(&mons[last]))
 					&& !(uncommontwo && uncommon2(&mons[last]) && !jonaspecialspawn(&mons[last]) && !Race_if(PM_RODNEYAN) )
 					&& !(uncommonthree && uncommon3(&mons[last]) && !jonaspecialspawn(&mons[last]) && !Race_if(PM_RODNEYAN) )
 					&& !(uncommonfive && uncommon5(&mons[last]) && !jonaspecialspawn(&mons[last]) && !Race_if(PM_RODNEYAN) )
@@ -31977,6 +32001,7 @@ int     spc;
 	    if (!(mvitals[first].mvflags & G_GONE) && !(mons[first].geno & mask)
 					&& !is_placeholder(&mons[first])
 					&& !(uwep && uwep->oartifact == ART_STOP_THE_SCRIPT_NONSENSE && is_jonadabmonster(&mons[first]) )
+					&& !(girlfrienduncommon && uarmf && uarmf->oartifact == ART_NO_GIRLFRIENDS && is_female(&mons[first]))
 					&& !(uncommontwo && uncommon2(&mons[first]) && !jonaspecialspawn(&mons[first]) && !Race_if(PM_RODNEYAN) )
 					&& !(uncommonthree && uncommon3(&mons[first]) && !jonaspecialspawn(&mons[first]) && !Race_if(PM_RODNEYAN) )
 					&& !(uncommonfive && uncommon5(&mons[first]) && !jonaspecialspawn(&mons[first]) && !Race_if(PM_RODNEYAN) )
@@ -34180,6 +34205,8 @@ register struct permonst *ptr;
 	if (u.martialstyle == MARTIALSTYLE_CAPOEIRA) { /* sons of samedi = green, everyone else hates you --Amy */
 		if ((ptr->mcolor != CLR_GREEN) && (ptr->mcolor != CLR_BRIGHT_GREEN)) return FALSE;
 	}
+
+	if (uarmf && uarmf->oartifact == ART_NO_GIRLFRIENDS && is_female(ptr)) return FALSE;
 
 	if (ACURR(A_CHA) < 3 && !rn2(10)) return FALSE;
 

@@ -3381,7 +3381,7 @@ struct obj *book2;
 	}
 
 	if (book2->oartifact == ART_NUKA_ROLL) {
-		int nukaroll = rnd(106); /* keyword: "marlena" */
+		int nukaroll = rnd(108); /* keyword: "marlena" */
 
 		u.tempnukaefftype = nukaroll;
 		u.tempnukaeffect += rnz(5000);

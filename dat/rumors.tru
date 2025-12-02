@@ -2714,3 +2714,7 @@ Boulders cannot be thrown unless you're a giant. Even if you somehow managed to 
 If your container gets destroyed by rust, burn or other types of damage, the contents will be scattered around the floor so you can pick them back up.
 Boss monsters are highly resistant to being jousted with a lance. They still take extra damage, but are much less likely to be knocked back and stopped in their tracks.
 Your maximum weight limit will go up as you reach certain milestones in the game. This allows you to keep collecting loot later on.
+If you're wearing pyramidal heels with good skill, your kick attack will gain great damage bonuses.
+Wearing pyramidal heels without having the high heels skill will slow you down significantly, so you shouldn't wear that type of heels unless you have the skill.
+A character who wears ball heels has a skill-based chance of curing status effects more quickly. This is generally useful, but can be annoying if you're trying to confuse yourself on demand.
+You shouldn't wear ball heels if you lack the high heels skill. Because if you do, you take 50% extra damage from everything.

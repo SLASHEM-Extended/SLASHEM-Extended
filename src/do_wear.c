@@ -356,6 +356,8 @@ Boots_on()
 	case ELENA_COMBAT_BOOTS:
 	case THAI_COMBAT_BOOTS:
 	case ELIF_SNEAKERS:
+	case ANJA_SNEAKERS:
+	case CELIA_SNEAKERS:
 	case JANET_LADY_PUMPS:
 	case NADJA_BUCKLED_LADY_SHOES:
 	case SANDRA_COMBAT_BOOTS:
@@ -532,6 +534,15 @@ Boots_on()
 	}
     }
 
+    if (uarmf && uarmf->oartifact == ART_CHLOE_S_EXAGGERATION) {
+	if (!uarmf->hvycurse) {
+		curse(uarmf);
+		uarmf->hvycurse = TRUE;
+		pline("Great, apparently those ball heels don't want you to take them off.");
+	}
+
+    }
+
     if (uarmf && uarmf->oartifact == ART_WHOA_LOOK_AT_THOSE) {
 	if (!uarmf->hvycurse) {
 		curse(uarmf);
@@ -546,7 +557,7 @@ Boots_on()
     }
 
     if (uarmf && uarmf->oartifact == ART_ZERO_SUGAR) {
-	int nukaroll = rnd(106); /* keyword: "marlena" */
+	int nukaroll = rnd(108); /* keyword: "marlena" */
 
 	curse(uarmf);
 	uarmf->hvycurse = uarmf->stckcurse = TRUE;
@@ -1199,6 +1210,8 @@ Boots_off()
 	case ELENA_COMBAT_BOOTS:
 	case THAI_COMBAT_BOOTS:
 	case ELIF_SNEAKERS:
+	case ANJA_SNEAKERS:
+	case CELIA_SNEAKERS:
 	case JANET_LADY_PUMPS:
 	case NADJA_BUCKLED_LADY_SHOES:
 	case SANDRA_COMBAT_BOOTS:

@@ -81,6 +81,8 @@ register boolean clumsy;
 		if (PlayerInBlockHeels) dmg += 8;
 	}
 
+	if (uarmf && uarmf->oartifact == ART_SIGRUN_S_WEDDING_SHOES) dmg += rnz(5); /* a rare instance where the player gets rnz-based damage bonuses --Amy */
+
 	if (uarmf && uarmf->oartifact == ART_FANNY_S_BROOK_THAT_YOU_MIS) dmg += (flags.female ? 7 : 2);
 
 	if (uarmf && uarmf->oartifact == ART_ARVOGENIA_S_BIKER_HEELS && u.usteed) dmg += 5;
@@ -162,6 +164,15 @@ register boolean clumsy;
 		if (uarmf && (uarmf->otyp == WEDGE_SANDALS) && P_SKILL(P_MARTIAL_ARTS) == P_GRAND_MASTER) dmg += 3;
 		if (uarmf && (uarmf->otyp == WEDGE_SANDALS) && P_SKILL(P_MARTIAL_ARTS) == P_SUPREME_MASTER) dmg += 4;
 
+	}
+
+	if (!PlayerCannotUseSkills && PlayerInPyramidalHeels) {
+		if (u.pyramidalskill >= 20) dmg += 4;
+		if (u.pyramidalskill >= 160) dmg += 4;
+		if (u.pyramidalskill >= 540) dmg += 4;
+		if (u.pyramidalskill >= 1280) dmg += 4;
+		if (u.pyramidalskill >= 2500) dmg += 4;
+		if (u.pyramidalskill >= 4320) dmg += 4;
 	}
 
 	if (uarmf && uarmf->otyp == STAIRWELL_STOMPING_BOOTS)
@@ -774,6 +785,12 @@ register boolean clumsy;
 
 	}
 
+	if (uarmf && uarmf->oartifact == ART_CHLOE_S_EXAGGERATION && mon->mhpmax > 1) {
+		pline("Your massive ball heels totally stomp %s.", mon_nam(mon));
+		mon->mhpmax--;
+		if (mon->mhp > mon->mhpmax) mon->mhp--;
+	}
+
 	if (uarmf && uarmf->oartifact == ART_STEFANJE_S_PROBLEM && mon->mhpmax > 1) {
 		pline("Your 'Stefanje' sandals stomp %s with their lovely heels.", mon_nam(mon));
 		mon->mhpmax--;
@@ -1110,6 +1127,28 @@ register boolean clumsy;
 	    use_skill(kick_skill, 1);
 	}
 
+	if (PlayerInPyramidalHeels && !rn2((flags.female) ? 16 : 150) ) {
+		u.pyramidalskill++;
+		if (uamul && uamul->oartifact == ART_GREETINGS_FROM_EVI) u.pyramidalskill += 2;
+		if (uimplant && uimplant->oartifact == ART_TORSTEN_S_FEMININENESS && !flags.female) u.pyramidalskill += 4;
+		if (u.pyramidalskill == 20) You("are now more skilled in type 7: pyramidal heels.");
+		if (u.pyramidalskill == 160) You("are now more skilled in type 7: pyramidal heels.");
+		if (u.pyramidalskill == 540) You("are now more skilled in type 7: pyramidal heels.");
+		if (u.pyramidalskill == 1280) You("are now more skilled in type 7: pyramidal heels.");
+		if (u.pyramidalskill == 2500) You("are now more skilled in type 7: pyramidal heels.");
+		if (u.pyramidalskill == 4320) You("are now most skilled in type 7: pyramidal heels.");
+	}
+	if (PlayerInBallHeels && !rn2((flags.female) ? 15 : 100) ) {
+		u.ballskill++;
+		if (uamul && uamul->oartifact == ART_GREETINGS_FROM_EVI) u.ballskill += 2;
+		if (uimplant && uimplant->oartifact == ART_TORSTEN_S_FEMININENESS && !flags.female) u.ballskill += 4;
+		if (u.ballskill == 20) You("are now more skilled in type 6: ball heels.");
+		if (u.ballskill == 160) You("are now more skilled in type 6: ball heels.");
+		if (u.ballskill == 540) You("are now more skilled in type 6: ball heels.");
+		if (u.ballskill == 1280) You("are now more skilled in type 6: ball heels.");
+		if (u.ballskill == 2500) You("are now more skilled in type 6: ball heels.");
+		if (u.ballskill == 4320) You("are now most skilled in type 6: ball heels.");
+	}
 	if (PlayerInColumnarHeels && !rn2((flags.female) ? 100 : 12) ) {
 		u.columnarskill++;
 		if (uamul && uamul->oartifact == ART_GREETINGS_FROM_EVI) u.columnarskill += 2;
@@ -1304,7 +1343,7 @@ doit:
 	You("kick %s.", mon_nam(mon));
 	wakeup(mon);
 	if(!rn2(clumsy ? 3 : 4) && (u.martialstyle != MARTIALSTYLE_KUNGFU || rn2(4)) && (clumsy || !bigmonst(mon->data)) &&
-	   mon->mcansee && !mon->mtrapped && !thick_skinned(mon->data) &&
+	   mon->mcansee && !mon->mtrapped && !(uarmf && uarmf->oartifact == ART_CHLOE_S_EXAGGERATION) && !thick_skinned(mon->data) &&
 	   mon->data->mlet != S_EEL && u.martialstyle != MARTIALSTYLE_KARATE && haseyes(mon->data) && mon->mcanmove &&
 	   !mon->mstun && !mon->mconf && !mon->msleeping &&
 	   mon->data->mmove >= 12) {

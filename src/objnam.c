@@ -4951,6 +4951,11 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ JUDITH_LEATHER_PUMPS, "Judith kozhanyye tufli" },
 	{ JUDITH_S_JEWEL, "Judith dragotsennost'" },
 
+	{ ANJA_S_JEWEL, "Anja dragotsennost'" },
+	{ CELIA_S_JEWEL, "Celia dragotsennost'" },
+	{ ANJA_SNEAKERS, "Anja krossovki" },
+	{ CELIA_SNEAKERS, "Celia krossovki" },
+
 	/* todo area */
 
 	{0, "" }
@@ -8628,6 +8633,11 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 
 	{ JUDITH_LEATHER_PUMPS, "Judith charm nasoslar" },
 	{ JUDITH_S_JEWEL, "Judith marvarid" },
+
+	{ ANJA_S_JEWEL, "Anja marvarid" },
+	{ CELIA_S_JEWEL, "Celia marvarid" },
+	{ ANJA_SNEAKERS, "Anja krossovkalar" },
+	{ CELIA_SNEAKERS, "Celia krossovkalar" },
 
 	/* todo area */
 

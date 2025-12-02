@@ -1496,6 +1496,7 @@ struct you {
 	int tempsuperfemtrap_eveline;
 	int tempsuperfemtrap_julietta;
 	int tempsuperfemtrap_arabella;
+	int tempsuperfemtrap_celia;
 	int tempsuperfemtrap_anna;
 	int tempsuperfemtrap_ruea;
 	int tempsuperfemtrap_dora;
@@ -2196,8 +2197,12 @@ struct you {
 	int polgoskill;
 	int firgaturns;
 	int firgaskill;
-	int columnarturns;	/* inofficial high heel type that also doesn't appear as regular skill */
+	int columnarturns;	/* inofficial high heel types that also doesn't appear as regular skills */
 	int columnarskill;
+	int ballturns;
+	int ballskill;
+	int pyramidalturns;
+	int pyramidalskill;
 
 	int nataliacyclestart;	/* for natalia trap: starts at rn2(2800) */
 	int nataliacycletimer;

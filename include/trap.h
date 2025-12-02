@@ -899,6 +899,9 @@ extern struct trap *ftrap;
 
 #define POKEMON_TRAP 785 /* specialtensmon(140) */
 
+#define ANJA_TRAP 786
+#define CELIA_TRAP 787
+
 /* todo area
 
 normal ones:
@@ -980,9 +983,9 @@ special ones that don't spawn randomly:
 
 */
 
-#define TIMERUN_TRAP	786
+#define TIMERUN_TRAP	788
 
-#define TRAPNUM 787
+#define TRAPNUM 789
 
 /* "newtraps" in particular, but also timerun and vulnerate may be targets for grepping --Amy */
 

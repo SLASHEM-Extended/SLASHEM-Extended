@@ -1374,6 +1374,8 @@ playerwearshighheels()
 		if (itemhasappearance(uarmf, APP_BLOCK_HEELED_BOOTS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_HAMMER_SHOES)) return TRUE;
 		if (itemhasappearance(uarmf, APP_RETRACTABLE_BLOCK_HEELS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_PYRAMIDAL_HEELS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_BALL_HEELS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_HEELED_HUGGING_BOOTS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_DYKE_BOOTS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_CUDDLE_CLOTH_BOOTS)) return TRUE;
@@ -1541,6 +1543,8 @@ struct obj *otmp;
 		if (itemhasappearance(otmp, APP_BLOCK_HEELED_BOOTS)) return TRUE;
 		if (itemhasappearance(otmp, APP_HAMMER_SHOES)) return TRUE;
 		if (itemhasappearance(otmp, APP_RETRACTABLE_BLOCK_HEELS)) return TRUE;
+		if (itemhasappearance(otmp, APP_PYRAMIDAL_HEELS)) return TRUE;
+		if (itemhasappearance(otmp, APP_BALL_HEELS)) return TRUE;
 		if (itemhasappearance(otmp, APP_HEELED_HUGGING_BOOTS)) return TRUE;
 		if (itemhasappearance(otmp, APP_DYKE_BOOTS)) return TRUE;
 		if (itemhasappearance(otmp, APP_CUDDLE_CLOTH_BOOTS)) return TRUE;
@@ -1629,6 +1633,8 @@ int number;
 		if (itemnumwithappearance(number, APP_BLOCK_HEELED_BOOTS)) return TRUE;
 		if (itemnumwithappearance(number, APP_HAMMER_SHOES)) return TRUE;
 		if (itemnumwithappearance(number, APP_RETRACTABLE_BLOCK_HEELS)) return TRUE;
+		if (itemnumwithappearance(number, APP_BALL_HEELS)) return TRUE;
+		if (itemnumwithappearance(number, APP_PYRAMIDAL_HEELS)) return TRUE;
 		if (itemnumwithappearance(number, APP_HEELED_HUGGING_BOOTS)) return TRUE;
 		if (itemnumwithappearance(number, APP_DYKE_BOOTS)) return TRUE;
 		if (itemnumwithappearance(number, APP_CUDDLE_CLOTH_BOOTS)) return TRUE;
@@ -1704,7 +1710,7 @@ playerwearssexyflats()
 	if (!uarmf) return FALSE;
 	/* uarmf is definitely defined now */
 
-	if ((uarmf->otyp == RUBBER_BOOTS) || (uarmf->otyp == EGGKICK_SHOES) || (uarmf->otyp == FLEECLE_SHOES) || (uarmf->otyp == ANASTASIA_DANCING_SHOES) || (uarmf->otyp == FRIEDERIKE_DANCING_SHOES) || (uarmf->otyp == YVONNE_GIRL_SNEAKERS) || (uarmf->otyp == ELIF_SNEAKERS) || (uarmf->otyp == ANTJE_SNEAKERS) || (uarmf->otyp == KERSTIN_WOODEN_SANDALS) || (uarmf->otyp == JANA_SNEAKERS) || (uarmf->otyp == TANJA_SNEAKERS) || (uarmf->otyp == SONJA_SNEAKERS) || (uarmf->otyp == JIL_VELCRO_SHOES) || (uarmf->otyp == LOU_SNEAKERS) || (uarmf->otyp == RUTH_SNEAKERS) || (uarmf->otyp == YASAMAN_LEATHER_BOOTS) || (uarmf->otyp == MAY_BRITT_SANDALS) || (uarmf->otyp == KERSTIN_SNEAKERS) || (uarmf->otyp == ALMUT_SNEAKERS) || (uarmf->otyp == KRISTINA_PLATFORM_SNEAKERS) || (uarmf->otyp == KARIN_LADY_SANDALS) || (uarmf->otyp == SNEAKERS) || (uarmf->otyp == MAURAH_HUGGING_BOOTS) || (uarmf->otyp == SARAH_HUGGING_BOOTS) || (uarmf->otyp == ARABELLA_HUGGING_BOOTS) || (uarmf->otyp == LUISA_HUGGING_BOOTS) || (uarmf->otyp == LISELOTTE_HUGGING_BOOTS) || (uarmf->otyp == GRETA_HUGGING_BOOTS) || (uarmf->otyp == JANE_HUGGING_BOOTS) || (uarmf->otyp == SUE_LYN_WINTER_BOOTS) || (uarmf->otyp == CHARLOTTE_HUGGING_BOOTS) || (uarmf->otyp == HANNAH_CUDDLE_BOOTS) || (uarmf->otyp == LITTLE_MARIE_HUGGING_BOOTS) || (uarmf->otyp == LUDGERA_HIKING_BOOTS) || (uarmf->otyp == BRIGHT_CYAN_BEAUTIES) || (uarmf->otyp == LAURA_WINTER_BOOTS) || (uarmf->otyp == DANCING_SHOES) || (uarmf->otyp == JESSICA_LADY_SHOES) || (uarmf->otyp == SOLVEJG_MOCASSINS) || (uarmf->otyp == SWEET_MOCASSINS) || (uarmf->otyp == SOFT_SNEAKERS) || (uarmf->otyp == CLOGS) || (uarmf->otyp == KATI_GIRL_BOOTS) || (uarmf->otyp == MARLENA_HIKING_BOOTS) || (uarmf->otyp == ROLLER_BLADE) || (uarmf->otyp == JEANETTA_GIRL_BOOTS) || (uarmf->otyp == DIFFICULT_BOOTS) || (uarmf->otyp == AIRSTEP_BOOTS) || (uarmf->otyp == ANNA_HUGGING_BOOTS) || (uarmf->otyp == INA_HUGGING_BOOTS) || (uarmf->otyp == SYNTHETIC_SANDALS)) return TRUE;
+	if ((uarmf->otyp == RUBBER_BOOTS) || (uarmf->otyp == EGGKICK_SHOES) || (uarmf->otyp == FLEECLE_SHOES) || (uarmf->otyp == ANASTASIA_DANCING_SHOES) || (uarmf->otyp == FRIEDERIKE_DANCING_SHOES) || (uarmf->otyp == YVONNE_GIRL_SNEAKERS) || (uarmf->otyp == ELIF_SNEAKERS) || (uarmf->otyp == ANJA_SNEAKERS) || (uarmf->otyp == CELIA_SNEAKERS) || (uarmf->otyp == ANTJE_SNEAKERS) || (uarmf->otyp == KERSTIN_WOODEN_SANDALS) || (uarmf->otyp == JANA_SNEAKERS) || (uarmf->otyp == TANJA_SNEAKERS) || (uarmf->otyp == SONJA_SNEAKERS) || (uarmf->otyp == JIL_VELCRO_SHOES) || (uarmf->otyp == LOU_SNEAKERS) || (uarmf->otyp == RUTH_SNEAKERS) || (uarmf->otyp == YASAMAN_LEATHER_BOOTS) || (uarmf->otyp == MAY_BRITT_SANDALS) || (uarmf->otyp == KERSTIN_SNEAKERS) || (uarmf->otyp == ALMUT_SNEAKERS) || (uarmf->otyp == KRISTINA_PLATFORM_SNEAKERS) || (uarmf->otyp == KARIN_LADY_SANDALS) || (uarmf->otyp == SNEAKERS) || (uarmf->otyp == MAURAH_HUGGING_BOOTS) || (uarmf->otyp == SARAH_HUGGING_BOOTS) || (uarmf->otyp == ARABELLA_HUGGING_BOOTS) || (uarmf->otyp == LUISA_HUGGING_BOOTS) || (uarmf->otyp == LISELOTTE_HUGGING_BOOTS) || (uarmf->otyp == GRETA_HUGGING_BOOTS) || (uarmf->otyp == JANE_HUGGING_BOOTS) || (uarmf->otyp == SUE_LYN_WINTER_BOOTS) || (uarmf->otyp == CHARLOTTE_HUGGING_BOOTS) || (uarmf->otyp == HANNAH_CUDDLE_BOOTS) || (uarmf->otyp == LITTLE_MARIE_HUGGING_BOOTS) || (uarmf->otyp == LUDGERA_HIKING_BOOTS) || (uarmf->otyp == BRIGHT_CYAN_BEAUTIES) || (uarmf->otyp == LAURA_WINTER_BOOTS) || (uarmf->otyp == DANCING_SHOES) || (uarmf->otyp == JESSICA_LADY_SHOES) || (uarmf->otyp == SOLVEJG_MOCASSINS) || (uarmf->otyp == SWEET_MOCASSINS) || (uarmf->otyp == SOFT_SNEAKERS) || (uarmf->otyp == CLOGS) || (uarmf->otyp == KATI_GIRL_BOOTS) || (uarmf->otyp == MARLENA_HIKING_BOOTS) || (uarmf->otyp == ROLLER_BLADE) || (uarmf->otyp == JEANETTA_GIRL_BOOTS) || (uarmf->otyp == DIFFICULT_BOOTS) || (uarmf->otyp == AIRSTEP_BOOTS) || (uarmf->otyp == ANNA_HUGGING_BOOTS) || (uarmf->otyp == INA_HUGGING_BOOTS) || (uarmf->otyp == SYNTHETIC_SANDALS)) return TRUE;
 
 	if (OBJ_DESCR(objects[uarmf->otyp])) {
 
@@ -1762,6 +1768,52 @@ playerwearssexyflats()
 
 /* different types of high heels: return 0 if you don't have that type of heels equipped --Amy
  * 1 = closed toe, 2 = open toe */
+int
+maybepyramidalheels()
+{
+	boolean opentoe = FALSE;
+	boolean havetheseheels = FALSE;
+
+	if (!uarmf) return FALSE;
+	/* uarmf is definitely defined now */
+
+	if (OBJ_DESCR(objects[uarmf->otyp])) {
+		if (itemhasappearance(uarmf, APP_PYRAMIDAL_HEELS)) {
+			havetheseheels = TRUE;
+			opentoe = TRUE;
+		}
+	}
+
+	if (havetheseheels) {
+		return (opentoe ? 2 : 1);
+	}
+
+	return FALSE;
+}
+
+int
+maybeballheels()
+{
+	boolean opentoe = FALSE;
+	boolean havetheseheels = FALSE;
+
+	if (!uarmf) return FALSE;
+	/* uarmf is definitely defined now */
+
+	if (OBJ_DESCR(objects[uarmf->otyp])) {
+		if (itemhasappearance(uarmf, APP_BALL_HEELS)) {
+			havetheseheels = TRUE;
+			opentoe = TRUE;
+		}
+	}
+
+	if (havetheseheels) {
+		return (opentoe ? 2 : 1);
+	}
+
+	return FALSE;
+}
+
 int
 maybecolumnarheels()
 {
@@ -2310,7 +2362,7 @@ playerextrinsicfireres()
 	if ( (uarmc && uarmc->oartifact == ART_KRASCH_XTRA) || (uwep && uwep->oartifact == ART_CREAMRES) || (uarmh && uarmh->oartifact == ART_HAVEWINGS) || (uarm && uarm->oartifact == ART_REDGUARD_APPEARANCE) || (uarm && uarm->oartifact == ART_FULL_SPECTRUM) || (uarmh && uarmh->oartifact == ART_TEN_MINUTES_COLDER) || (uleft && uleft->oartifact == ART_BLACHWARTZ) || (uright && uright->oartifact == ART_BLACHWARTZ) || (uarms && uarms->oartifact == ART_THATS_ENOUGH_RIGHT_THERE) || (uwep && uwep->oartifact == ART_HARDENED_IN_THE_FORGE) || (uball && uball->oartifact == ART_HARDENED_IN_THE_FORGE) || (uarmh && uarmh->oartifact == ART_CROWN_OF_THE_PERCIPIENT) || (uwep && uwep->oartifact == ART_ONCHANGE_STAFF) || (uarm && uarm->oartifact == ART_COMPLETE_ARMORING) || (uarm && uarm->oartifact == ART_CHROMATIC_DRAGON_SCALES) || (uarm && uarm->oartifact == ART_CHAOSWEAVER_ROBES) || (uarms && uarms->oartifact == ART_ANGULAR_SIGN) || (uarmc && uarmc->oartifact == ART_NUTKNU_KOLAS) || (uarmf && uarmf->oartifact == ART_STANDARDRESE) ) return TRUE;
 	if (uarm && uarm->oartifact == ART_FUCK_UGGHH_THAT_S_HEAVY_ && (u.uhp < (u.uhpmax / 3)) ) return TRUE;
 	if (flags.moonphase == NEW_MOON && uarmc && uarmc->oartifact == ART_VERENA_S_CLOAK_OF_BLOOMING) return TRUE;
-	if ( (uwep && uwep->oartifact == ART_ELEMENTAL_STAFF) || (uwep && uwep->oartifact == ART_JADE_TALON) || (uarmu && uarmu->oartifact == ART_CRIMSON_PLATE) || (uwep && uwep->oartifact == ART_DICHOTOMY) || (uarm && uarm->oartifact == ART_EFHECK) || (uarmu && uarmu->oartifact == ART_EVERY_EVENTUALITY) || autismringcheck(ART_RED_YELLOW_ORANGE) || (ublindf && ublindf->oartifact == ART_TOTALLY_THE_SPECTRUM) || (uarmf && uarmf->oartifact == ART_DORIKA_S_COLORBLOCK) || (uarmh && uarmh->oartifact == ART_SPRING_BREEZE) || (uarmc && uarmc->oartifact == ART_DELLEN) || (uarmf && uarmf->oartifact == ART_MARIA_S_FLEECLE_FLOPS) || (uimplant && uimplant->oartifact == ART_FULLPOWER) || (uwep && uwep->oartifact == ART_ELEMENTALIST_S_CODEX) || (uarmf && uarmf->oartifact == ART_JESSICA_S_RAINBOW) ) return TRUE;
+	if ( (uwep && uwep->oartifact == ART_ELEMENTAL_STAFF) || (uwep && uwep->oartifact == ART_JADE_TALON) || (uarmu && uarmu->oartifact == ART_CRIMSON_PLATE) || (uwep && uwep->oartifact == ART_DICHOTOMY) || (uarm && uarm->oartifact == ART_EFHECK) || (uarmu && uarmu->oartifact == ART_EVERY_EVENTUALITY) || autismringcheck(ART_RED_YELLOW_ORANGE) || (ublindf && ublindf->oartifact == ART_TOTALLY_THE_SPECTRUM) || (uarmf && uarmf->oartifact == ART_DORIKA_S_COLORBLOCK) || (uarmh && uarmh->oartifact == ART_SPRING_BREEZE) || (uarmc && uarmc->oartifact == ART_DELLEN) || have_fragrantjewel() || (uarmf && uarmf->oartifact == ART_MARIA_S_FLEECLE_FLOPS) || (uimplant && uimplant->oartifact == ART_FULLPOWER) || (uwep && uwep->oartifact == ART_ELEMENTALIST_S_CODEX) || (uarmf && uarmf->oartifact == ART_RUE_SCENT) || (uarmf && uarmf->oartifact == ART_JESSICA_S_RAINBOW) ) return TRUE;
 
 	return FALSE;
 }
@@ -2337,8 +2389,8 @@ playerextrinsiccoldres()
 	if ((flags.moonphase >= 5 && flags.moonphase <= 7) && uarmc && uarmc->oartifact == ART_VERENA_S_CLOAK_OF_BLOOMING) return TRUE;
 	if ((uarmf && uarmf->oartifact == ART_MAY_BRITT_S_ADULTHOOD) || (uarmf && uarmf->oartifact == ART_SIMPLY_WHITE) || (uarmf && uarmf->oartifact == ART_NE_PROSTO_KRASIVO) || (uarmf && uarmf->oartifact == ART_LITTLE_ICE_BLOCK_WITH_THE_) || (uwep && uwep->oartifact == ART_PURPLE_SPECTRUM) || (uarm && uarm->oartifact == ART_CHANGERING_ENVIROMENT) || autismringcheck(ART_RING_OF_EVERYTHING_RESISTA) || (uwep && uwep->oartifact == ART_CUTRELEASE) || (uarm && uarm->oartifact == ART_FIRE_COLD_AEFF) ) return TRUE;
 	if ((uarmh && itemhasappearance(uarmh, APP_HARDCORE_CLOTH)) || (uwep && uwep->oartifact == ART_BLUE_CORSAR_SWIMMING) || (uarmc && uarmc->oartifact == ART_KRASCH_XTRA) || (uwep && uwep->oartifact == ART_CREAMRES) || (uarmh && uarmh->oartifact == ART_HAVEWINGS) || (uarm && uarm->oartifact == ART_FULL_SPECTRUM) || (uarmh && uarmh->oartifact == ART_TEN_MINUTES_COLDER) || (uchain && uchain->oartifact == ART_HEI_THE_COLD) || (uwep && uwep->oartifact == ART_WINTERHOLD_S_KEEP) || (uleft && uleft->oartifact == ART_BLACHWARTZ) || (uright && uright->oartifact == ART_BLACHWARTZ) || (uwep && uwep->oartifact == ART_LAINCHANTMENT) || (uarmh && uarmh->oartifact == ART_MASK_OF_TLALOC) || (uwep && uwep->oartifact == ART_COLD_HAHA) || (uarm && uarm->oartifact == ART_CHROMATIC_DRAGON_SCALES) || (uarmh && uarmh->oartifact == ART_CROWN_OF_THE_PERCIPIENT) || (uarm && uarm->oartifact == ART_CHAOSWEAVER_ROBES) || (uarms && uarms->oartifact == ART_ANGULAR_SIGN) || (uarmf && uarmf->oartifact == ART_STANDARDRESE) ) return TRUE;
-	if ( (uarm && uarm->oartifact == ART_VERY_HOT_IN_HERE) || u.cryopancaketurns || (uwep && uwep->oartifact == ART_JADE_TALON) || (uwep && uwep->oartifact == ART_ELEMENTAL_STAFF) || (uarmc && uarmc->oartifact == ART_NUTKNU_KOLAS) || (uarmc && uarmc->oartifact == ART_FLEECY_CORN) || (uarmf && uarmf->oartifact == ART_SARAH_S_REPLACEMENT) || (uarmu && uarmu->oartifact == ART_EVERY_EVENTUALITY) || (uwep && uwep->oartifact == ART_DICHOTOMY) || (ublindf && ublindf->oartifact == ART_TOTALLY_THE_SPECTRUM) || (uarmh && uarmh->oartifact == ART_SPRING_BREEZE) || (uarmf && uarmf->oartifact == ART_DORIKA_S_COLORBLOCK) || (uarm && uarm->oartifact == ART_EFHECK) || (uarmf && uarmf->oartifact == ART_MARIA_S_FLEECLE_FLOPS) || (uwep && uwep->oartifact == ART_ELEMENTALIST_S_CODEX) || (uimplant && uimplant->oartifact == ART_FULLPOWER) ) return TRUE;
-	if ( (uarmc && uarmc->oartifact == ART_INGRID_S_WEATHERED_SHROUD) ) return TRUE;
+	if ( (uarm && uarm->oartifact == ART_VERY_HOT_IN_HERE) || u.cryopancaketurns || (uwep && uwep->oartifact == ART_JADE_TALON) || (uwep && uwep->oartifact == ART_ELEMENTAL_STAFF) || (uarmc && uarmc->oartifact == ART_NUTKNU_KOLAS) || (uarmc && uarmc->oartifact == ART_FLEECY_CORN) || (uarmf && uarmf->oartifact == ART_SARAH_S_REPLACEMENT) || (uarmu && uarmu->oartifact == ART_EVERY_EVENTUALITY) || (uwep && uwep->oartifact == ART_DICHOTOMY) || (ublindf && ublindf->oartifact == ART_TOTALLY_THE_SPECTRUM) || have_fragrantjewel() || (uarmh && uarmh->oartifact == ART_SPRING_BREEZE) || (uarmf && uarmf->oartifact == ART_DORIKA_S_COLORBLOCK) || (uarm && uarm->oartifact == ART_EFHECK) || (uarmf && uarmf->oartifact == ART_MARIA_S_FLEECLE_FLOPS) || (uwep && uwep->oartifact == ART_ELEMENTALIST_S_CODEX) || (uimplant && uimplant->oartifact == ART_FULLPOWER) ) return TRUE;
+	if ( (uarmc && uarmc->oartifact == ART_INGRID_S_WEATHERED_SHROUD) || (uarmf && uarmf->oartifact == ART_RUE_SCENT) ) return TRUE;
 
 	return FALSE;
 }
@@ -2382,7 +2434,7 @@ playerextrinsicpoisonres()
 	if (uarmf && uarmf->oartifact == ART_GREEN_MYSTERY && uwep && (objects[uwep->otyp].oc_color == CLR_GREEN)) return TRUE;
 	if ((uarmh && itemhasappearance(uarmh, APP_HARDCORE_CLOTH)) || (uarmg && uarmg->oartifact == ART_POISON_HAND) || (uarmc && uarmc->oartifact == ART_USEFUL_BASE) || (uwep && uwep->oartifact == ART_TYPICAL_ORC) || (u.umoved && uarmc && uarmc->oartifact == ART_BUT_SHES_HOMELESS) || (uwep && uwep->oartifact == ART_SORBITUR) || (uarm && uarm->oartifact == ART_REDGUARD_APPEARANCE) || (uarm && uarm->oartifact == ART_FULL_SPECTRUM) || (uarm && uarm->oartifact == ART_POISUSTAIN) || (uarms && uarms->oartifact == ART_YELLOW_STATUS) || (uarmu && uarmu->oartifact == ART_DIMETHYL_ESCUTCHEON) || (uwep && uwep->oartifact == ART_TACT_EBONY_GLASS) || (uarmc && uarmc->oartifact == ART_RUFFLED_SHIRT_OF_THE_ARIST) || (uarm && uarm->oartifact == ART_CHROMATIC_DRAGON_SCALES) || (uarmg && uarmg->oartifact == ART_INFECTION_CHAIN_BREAK) || (uarms && uarms->oartifact == ART_ANGULAR_SIGN) || (uarmc && uarmc->oartifact == ART_NUTKNU_KOLAS) || (uarm && uarm->oartifact == ART_CHAOSWEAVER_ROBES) || (uwep && uwep->oartifact == ART_JADE_TALON) || (ublindf && ublindf->oartifact == ART_TOTALLY_THE_SPECTRUM) || autismringcheck(ART_BRING_THE_ANNOYANCE) ) return TRUE;
 	if (flags.moonphase == FULL_MOON && uarmc && uarmc->oartifact == ART_VERENA_S_CLOAK_OF_BLOOMING) return TRUE;
-	if (autismringcheck(ART_FOLL_DECK) || (uwep && uwep->oartifact == ART_MECHINEFELL) || (uchain && uchain->oartifact == ART_MECHINEFELL) || (uball && uball->oartifact == ART_HIGH_AFFIX) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_PULSE_NODE_OF_GERALT) || (uarmf && uarmf->oartifact == ART_DORIKA_S_COLORBLOCK) || (uarm && itemhasappearance(uarm, APP_GROMY_ROBE)) || (uarmf && uarmf->oartifact == ART_JESSICA_S_RAINBOW) || (uarmf && uarmf->oartifact == ART_MARIA_S_FLEECLE_FLOPS) || (uarm && uarm->oartifact == ART_EFHECK) ) return TRUE;
+	if (autismringcheck(ART_FOLL_DECK) || have_fragrantjewel() || (uwep && uwep->oartifact == ART_MECHINEFELL) || (uchain && uchain->oartifact == ART_MECHINEFELL) || (uball && uball->oartifact == ART_HIGH_AFFIX) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_PULSE_NODE_OF_GERALT) || (uarmf && uarmf->oartifact == ART_DORIKA_S_COLORBLOCK) || (uarm && itemhasappearance(uarm, APP_GROMY_ROBE)) || (uarmf && uarmf->oartifact == ART_JESSICA_S_RAINBOW) || (uarmf && uarmf->oartifact == ART_MARIA_S_FLEECLE_FLOPS) || (uarm && uarm->oartifact == ART_EFHECK) ) return TRUE;
 
 	return FALSE;
 }
@@ -2424,7 +2476,7 @@ playerextrinsicspeed()
 	if ((uarmf && uarmf->oartifact == ART_FASTER_THAN_ALL_OTHERS_INT) || autismringcheck(ART_POLYFAST) || (uwep && uwep->oartifact == ART_SHARPTOOTH_SAYER) || (uwep && uwep->oartifact == ART_ZANTASBORE) || (uwep && uwep->oartifact == ART_HACHURATE) || (uarmf && uarmf->oartifact == ART_BALE_OF_BODEN_SPEEDSTOCK) || (uwep && uwep->oartifact == ART_BOINDIL_S_CHOICE) || (uwep && uwep->oartifact == ART_MOVENIN_HOSASA) || (uarm && uarm->oartifact == ART_WHAT_MISS_I_CONSTANTLY) || (uwep && uwep->oartifact == ART_HACKNSLASH) || (uwep && uwep->oartifact == ART_NOOBY_BONUS_STYLE && bimanual(uwep)) || (uwep && uwep->oartifact == ART_STORM_ON) || (uwep && uwep->oartifact == ART_POWERVALK) || (uarmg && uarmg->oartifact == ART_GO_UP_AND_SOAR) || (uarmf && u.uinwater && uarmf->oartifact == ART_PECTORAL_HEEL) || (uwep && uwep->oartifact == ART_RACE_ALONG_THE_HIGHWAY) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_SONIC_TONFA) || (uchain && uchain->oartifact == ART_RACE_ALONG_THE_HIGHWAY && uball && uwep && (uwep == uball)) || (uarm && uarm->oartifact == ART_KWOURSTOMAL_) || (uarm && uarm->oartifact == ART_I_AM_YOUR_FALL) || (uwep && uwep->oartifact == ART_P_WING) || (uarmf && uarmf->oartifact == ART_SEVENLEAGUEBOOTS) ) return TRUE;
 	if ( (uarmf && uarmf->oartifact == ART_HERMES_S_SANDALS) || (uarmf && uarmf->oartifact == ART_BRIGHT_AURORA) || (uarmf && uarmf->oartifact == ART_FENG_HUO_LUN) || (uwep && uwep->oartifact == ART_HEAVY_CROSSBOW_OF_ETERNITY) || (uarmf && uarmf->oartifact == ART_FIGHTBOOST) || (uwep && uwep->oartifact == ART_TURNINGIKE) || (uwep && uwep->oartifact == ART_DAEMEL) || autismringcheck(ART_CERBERUS_BAND) || (uarm && uarm->oartifact == ART_NATAS_IS_BACK) || autismringcheck(ART_GOD_STAT) || (uarm && uarm->oartifact == ART_AGILITATE) || (uwep && uwep->oartifact == ART_HECTIC_OH_YEAH) ) return TRUE;
 	if ( (uarmg && uarmg->oartifact == ART_TSUNAMI_FISTS) || (uarm && uarm->oartifact == ART_FOR_ONCE_MOVING_SWIFTLY) || (uarm && uarm->oartifact == ART_GO_MIEFTLY_THEN_QUEUE__DAE) || autismringcheck(ART_WILDFIST) || (uarm && uarm->oartifact == ART_GAYIFIED) || (uwep && uwep->oartifact == ART_UNIQUE_WIND_BOW) || (uwep && uwep->oartifact == ART_BOW_SURROUNDED_BY_WIND) || (uwep && uwep->oartifact == ART_PLANTAR_NO) || (uwep && uwep->oartifact == ART_EORLINGAS) || (uarmg && uarmg->oartifact == ART_ELARA_S_AGILITY) || (uamul && uamul->oartifact == ART_HUMBLE_STUMBLE) || (uarmh && uarmh->oartifact == ART_VIGERIUN_) || (uamul && uamul->oartifact == ART_COMPLETELY_PUMPED) || (uamul && uamul->oartifact == ART_GREETINGS_FROM_EVI) || (uarmc && uarmc->oartifact == ART_JENNELLE_S_IMMEDIATIVITY) || (uarms && uarms->oartifact == ART_MOVERET) || (uarmc && uarmc->oartifact == ART_PHEWHAUNCH) || (uarm && uarm->oartifact == ART_SPEEDSTERSUIT) ) return TRUE;
-	if ( (uchain && uchain->oartifact == ART_JORMUNGANDR_S_COIL) || (uimplant && uimplant->oartifact == ART_GIULY_AH) || (uarm && uarm->oartifact == ART_MOTA_ROLA) || u.tempveryfastspeed || (uarmc && uarmc->oartifact == ART_CLARA_S_WINDCLOAK) || (uarmc && uarmc->oartifact == ART_HUNTING_TIME_HINT) || (uarmf && uarmf->oartifact == ART_ADHS_DIAGNOSIS) || (uamul && uamul->oartifact == ART_ADELAIDE_S_RACING) || bmwride(ART_MARLOWE_S_CAMEL) || (uarmf && uarmf->oartifact == ART_MAREN_S_GALE_BOOTS) || (uarmf && uarmf->oartifact == ART_DARIUS_S_STORMWALKERS) ) return TRUE;
+	if ( (uchain && uchain->oartifact == ART_JORMUNGANDR_S_COIL) || (uimplant && uimplant->oartifact == ART_GIULY_AH) || (uarm && uarm->oartifact == ART_MOTA_ROLA) || u.tempveryfastspeed || (uarmc && uarmc->oartifact == ART_CLARA_S_WINDCLOAK) || (uarmc && uarmc->oartifact == ART_HUNTING_TIME_HINT) || (uarmf && uarmf->oartifact == ART_ADHS_DIAGNOSIS) || (uamul && uamul->oartifact == ART_ADELAIDE_S_RACING) || bmwride(ART_MARLOWE_S_CAMEL) || (uarmf && uarmf->oartifact == ART_MAREN_S_GALE_BOOTS) || (uarmf && uarmf->oartifact == ART_DARIUS_S_STORMWALKERS) || (uwep && uwep->oartifact == ART_PIPPA_S_URGE) ) return TRUE;
 
 	return FALSE;
 }
@@ -6798,6 +6850,8 @@ cure_feminism_traps()
 	FemaleTrapFemmy = 0L;
 	FemaleTrapMadeleine = 0L;
 	FemaleTrapMarlena = 0L;
+	FemaleTrapAnja = 0L;
+	FemaleTrapCelia = 0L;
 	FemaleTrapJudith = 0L;
 	FemaleTrapSabine = 0L;
 	FemaleTrapJanet = 0L;
@@ -13119,7 +13173,7 @@ dodrink()
 	u.cnd_quaffcount++;
 
 	if (otmp && otmp->oartifact == ART_JOHN_CALEB_S_INGENIOSITY) {
-		int nukaroll = rnd(106); /* keyword: "marlena" */
+		int nukaroll = rnd(108); /* keyword: "marlena" */
 		u.tempnukaefftype = nukaroll;
 		u.tempnukaeffect += 10000;
 
@@ -15661,7 +15715,7 @@ peffects(otmp)
 		break;
 	case POT_JOLT_COLA:
 
-		pline_The("bottle of Jolt Cola is named %s today!", feminismtrapname(rnd(106)) ); /* keyword: "marlena" */
+		pline_The("bottle of Jolt Cola is named %s today!", feminismtrapname(rnd(108)) ); /* keyword: "marlena" */
 
 		You("are jolted back to your senses.");
 

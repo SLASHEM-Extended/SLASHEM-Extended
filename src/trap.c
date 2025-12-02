@@ -9210,7 +9210,7 @@ newbossPENT:
 		{
 			boolean larissashoes = (uarmf ? TRUE : FALSE);
 
-			if ((Levitation || (uarmf && uarmf->otyp == BUOYANT_BOOTS) || Flying || (uarmf && itemhasappearance(uarmf, APP_YELLOW_SNEAKERS) ) ) && !(Role_if(PM_GANG_SCHOLAR)) && !StillTriggerGroundTraps && !SpellColorBrown && !FemtrapActiveAnastasia && !FemtrapActiveBridghitte && !FemtrapActiveLarissa && !FemtrapActiveHenrietta && !FemtrapActiveAnna && !(uarmg && uarmg->oartifact == ART_MADELINE_S_STUPID_GIRL) && !(uarmf && itemhasappearance(uarmf, APP_SKI_HEELS)) && !(uarmf && itemhasappearance(uarmf, APP_TREADED_HEELS)) && !(autismweaponcheck(ART_LUISA_S_CHARMING_BEAUTY) && !rn2(200) ) && !(uarmh && uarmh->oartifact == ART_SHIT_) && !(uarmf && uarmf->oartifact == ART_ANASTASIA_S_PLAYFULNESS) && !(uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE) && !(uarmf && (itemhasappearance(uarmf, APP_HUGGING_BOOTS) || itemhasappearance(uarmf, APP_HEELED_HUGGING_BOOTS) || itemhasappearance(uarmf, APP_BUFFALO_BOOTS)) ) ) { /* ground-based trap, obviously */
+			if ((Levitation || (uarmf && uarmf->otyp == BUOYANT_BOOTS) || Flying || (uarmf && itemhasappearance(uarmf, APP_YELLOW_SNEAKERS) ) ) && !(Role_if(PM_GANG_SCHOLAR)) && !StillTriggerGroundTraps && !SpellColorBrown && !FemtrapActiveAnastasia && !FemtrapActiveBridghitte && !FemtrapActiveCelia && !FemtrapActiveLarissa && !FemtrapActiveHenrietta && !FemtrapActiveAnna && !(uarmg && uarmg->oartifact == ART_MADELINE_S_STUPID_GIRL) && !(uarmf && itemhasappearance(uarmf, APP_SKI_HEELS)) && !(uarmf && itemhasappearance(uarmf, APP_TREADED_HEELS)) && !(autismweaponcheck(ART_LUISA_S_CHARMING_BEAUTY) && !rn2(200) ) && !(uarmh && uarmh->oartifact == ART_SHIT_) && !(uarmf && uarmf->oartifact == ART_ANASTASIA_S_PLAYFULNESS) && !(uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE) && !(uarmf && (itemhasappearance(uarmf, APP_HUGGING_BOOTS) || itemhasappearance(uarmf, APP_HEELED_HUGGING_BOOTS) || itemhasappearance(uarmf, APP_BUFFALO_BOOTS)) ) ) { /* ground-based trap, obviously */
 			    if (!already_seen && rn2(3)) break;
 			    seetrap(trap);
 			    pline("%s %s on the ground below you.",
@@ -16947,6 +16947,44 @@ skillrandomizeredo:
 
 		 break;
 
+		 case ANJA_TRAP:
+
+			if (FemaleTrapAnja) break;
+			if (!dontreveal && !FemtrapActiveRuth) seetrap(trap);
+
+			if (!FemtrapActiveRuth) {
+				pline("Whoops... you seem to have stumbled into a trap that was set by Anja.");
+				pline("You feel that the female shoes have gained some special abilities!");
+			}
+			u.cnd_feminismtrapamount++;
+			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
+
+			FemaleTrapAnja = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapAnja += 100;
+			if (!rn2(3)) FemaleTrapAnja += rnz(500);
+
+		 break;
+
+		 case CELIA_TRAP:
+
+			if (FemaleTrapCelia) break;
+			if (!dontreveal && !FemtrapActiveRuth) seetrap(trap);
+
+			if (!FemtrapActiveRuth) {
+				pline("Whoops... you seem to have stumbled into a trap that was set by Celia.");
+				pline("It seems that there's an unusually high amount of dogs running around the dungeon. They're certainly gonna shit in every corner...");
+			}
+			u.cnd_feminismtrapamount++;
+			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
+
+			FemaleTrapCelia = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapCelia += 100;
+			if (!rn2(3)) FemaleTrapCelia += rnz(500);
+
+		 break;
+
 		 case JUDITH_TRAP:
 
 			if (FemaleTrapJudith) break;
@@ -23680,6 +23718,20 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 			break;
 		case MARLENA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapMarlena) {
+				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
+			}
+			break;
+		case ANJA_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapAnja) {
+				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
+			}
+			break;
+		case CELIA_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapCelia) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;

@@ -3246,6 +3246,7 @@ int x;
 		if (uarmc && uarmc->oartifact == ART_JUST_TO_HAVE_IT) tmp += 1;
 		if (ublindf && ublindf->oartifact == ART_LEANDRA_S_WORD) tmp += 1;
 		if (uwep && uwep->oartifact == ART_ARM_OF_OLYMPIA) tmp += 10;
+		if (uarmf && uarmf->oartifact == ART_CHLOE_S_EXAGGERATION) tmp += 20;
 		if (uwep && uwep->oartifact == ART_MILL_SHOVEL) tmp += 8;
 		if (uwep && uwep->oartifact == ART_KUMIROMI_SCYTHE) tmp += 3;
 		if (uamul && uamul->oartifact == ART_ATLAS_WEIGHT_CRUNCH) tmp += 4;
@@ -4308,6 +4309,10 @@ register int n;
 	}
 
 	if (uarmh && uarmh->oartifact == ART_VERCHANGE_CHILD && !rn2(2) && (n < 0)) {
+		return;
+	}
+
+	if (uwep && uwep->oartifact == ART_PIPPA_S_URGE && !rn2(2) && (n < 0)) {
 		return;
 	}
 

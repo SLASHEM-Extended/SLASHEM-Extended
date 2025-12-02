@@ -1705,6 +1705,18 @@ have_femityjewel()
 }
 
 boolean
+have_fragrantjewel()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->oartifact == ART_ALL_THE_FRAGRANT_GIRLS)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
 have_prettyblond()
 {
 	register struct obj *otmp;
@@ -3499,6 +3511,37 @@ have_femtrapjudith()
 		}
 	}
 	if (feminizecheck(106)) return TRUE;
+	return(FALSE);
+}
+
+int
+have_femtrapanja()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == ANJA_S_JEWEL) {
+			return(TRUE);
+		}
+	}
+	if (feminizecheck(107)) return TRUE;
+	return(FALSE);
+}
+
+int
+have_femtrapcelia()
+{
+	register struct obj *otmp;
+
+	if (u.tempsuperfemtrap_celia) return 2;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == CELIA_S_JEWEL) {
+			if (otmp->oartifact == ART_STAY_AWAY_FROM_THE_SHIT) return 2;
+			return(TRUE);
+		}
+	}
+	if (feminizecheck(108)) return TRUE;
 	return(FALSE);
 }
 
@@ -13499,6 +13542,10 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 			pline("These platform boots count as wedge heels, even though the entire 'cloud sole' is 6-7 cm in height. They slightly speed up your HP and Pw regeneration rates, but walking in them will eventually degrade them, possibly to the point where they break.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_RETRACTABLE_BLOCK_HEELS))
 			pline("It's a pair of block-heeled boots, but the heels can also be retracted if you lack the high heels skill. This means that as long as their base type doesn't override the block heels, you can wear them without penalties even if you lack the high heels skills.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_PYRAMIDAL_HEELS))
+			pline("This pair of sandals has pyramid-shaped heels, which are a special, very rare type of high heels. You should wear them only if you know the high heels skill.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_BALL_HEELS))
+			pline("A pair of sandals with heels shaped like a globe. They're very pretty, and use the hidden type 6 (ball heels) skill because they don't fit in the regular categories of high heels.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_INSTAFEMINISM_SHOES))
 			pline("Haaaaaaa, ha ha ha ha ha :D Whenever these stiletto heels are generated, you get a random feminism trap effect! Hahaha!");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_ANKLE_BOOTS))
@@ -16055,6 +16102,10 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 				pline("These black lady boots with block heels look very cute and soft, although they're actually pretty dangerous. They carry Thai's curse, and have 2 AC and 3 MC."); break;
 			case ELIF_SNEAKERS:
 				pline("A lovely pair of white sneakers, which count as sexy flats. They carry Elif's curse, and have 2 AC and 0 MC."); break;
+			case ANJA_SNEAKERS:
+				pline("This very pretty pair of white-red girl sneakers obviously counts as sexy flats. They carry Anja's curse, and have 2 AC and 0 MC."); break;
+			case CELIA_SNEAKERS:
+				pline("Despite being rather worn out and somewhat garish, these female sneakers still count as sexy flats. They carry Celia's curse, and have 1 AC and 0 MC."); break;
 			case NADJA_BUCKLED_LADY_SHOES:
 				pline("Everyone spontaneously gets an orgasm from seeing these orange-brown block heels. They carry Nadja's curse, and have 1 AC and 3 MC."); break;
 			case SANDRA_COMBAT_BOOTS:
@@ -20637,6 +20688,10 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 				pline("While having this jewel in your inventory, you're afflicted with Jessica's curse. It autocurses and cannot be dropped while cursed."); break;
 			case MARLENA_S_JEWEL:
 				pline("While having this jewel in your inventory, you're afflicted with Marlena's curse. It autocurses and cannot be dropped while cursed."); break;
+			case ANJA_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Anja's curse. It autocurses and cannot be dropped while cursed."); break;
+			case CELIA_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Celia's curse. It autocurses and cannot be dropped while cursed."); break;
 			case NADINE_S_JEWEL:
 				pline("While having this jewel in your inventory, you're afflicted with Nadine's curse. It autocurses and cannot be dropped while cursed."); break;
 			case LUISA_S_JEWEL:
@@ -35449,6 +35504,20 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: when it spawned, a potion of water was generated at your location."); break;
 				case ART_WATERGETTING:
 					pline("Artifact specs: when it spawned, a scroll of flood was also spawned somewhere."); break;
+				case ART_RUE_SCENT:
+					pline("Artifact specs: fire and cold resistance when worn, can be invoked to perform the 'inlay warfare' technique even if you don't know that one."); break;
+				case ART_NO_GIRLFRIENDS:
+					pline("Artifact specs: while wearing them, all monsters which always spawn female will spawn hostile, but they spawn a lot less often."); break;
+				case ART_SIGRUN_S_WEDDING_SHOES:
+					pline("Artifact specs: while wearing them, all monsters who hit you in melee must make a saving throw or be blinded for a while. They slow you down slightly when worn, but your kick deals highly randomized extra damage to monsters. They can be invoked to change your current martial arts style to 'karate'."); break;
+				case ART_CHLOE_S_EXAGGERATION:
+					pline("Artifact specs: fallout effect and heavily autocurses when worn, but your kick damages the maximum hit points of the target monster with no chance for the target to resist. While wearing them, you also have +20 strength and your kick cannot be blocked."); break;
+				case ART_STAY_AWAY_FROM_THE_SHIT:
+					pline("Artifact specs: carrying it gives the stronger version of the celia trap effect."); break;
+				case ART_PIPPA_S_URGE:
+					pline("Artifact specs: +3 to-hit and +13 acid damage, double celia trap effect, fast metabolism, heavily autocurses when wielded but doesn't make your hands unusable. It also grants acid immunity and very fast speed but disables stealth. While wielding it, whenever you'd lose alignment points, there's a 50%% chance that you don't lose any."); break;
+				case ART_ALL_THE_FRAGRANT_GIRLS:
+					pline("Artifact specs: carrying it gives the anja, kerstin and yasaman trap effects and also faster skill training, resist cold and fire, and double poison resistance. It can be invoked to generate a blessed potion of jolt cola at your feet."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

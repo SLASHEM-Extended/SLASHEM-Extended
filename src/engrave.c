@@ -1547,6 +1547,7 @@ int
 freehand()
 {
 	if (uwep && uwep->oartifact == ART_WAR_S_SWORD) return 1;
+	if (uwep && uwep->oartifact == ART_PIPPA_S_URGE) return 1;
 	if (uwep && uwep->oartifact == ART_BARDICHE_ASSALT) return 1;
 	if (uwep && uwep->oartifact == ART_DE_SID) return 1;
 	if (uwep && uwep->oartifact == ART_OZYZEVPDWTVP) return 1;
@@ -1568,6 +1569,7 @@ int
 freehandX()
 {
 	if (uwep && uwep->oartifact == ART_WAR_S_SWORD) return 1;
+	if (uwep && uwep->oartifact == ART_PIPPA_S_URGE) return 1;
 	if (uwep && uwep->oartifact == ART_BARDICHE_ASSALT) return 1;
 	if (uwep && uwep->oartifact == ART_DE_SID) return 1;
 	if (uwep && uwep->oartifact == ART_OZYZEVPDWTVP) return 1;
@@ -6575,6 +6577,8 @@ static const char *epitaphs[] = {
 	"Here lie 0.2 l of coffee. Godot was just about to take a sip when Phoenix Wright shouted 'Objection!' and completely disproved the witness's statement, therefore throwing Godot's case off the track. Shocked, Godot suddenly spat out his coffee, causing the good brew to splatter all over the courtroom.",
 	"Here lies Miles Edgeworth's short career as a defense attorney. He was defending Iris (last name probably 'Fey' but maybe 'Hawthorne'), but being unused to having to defend a client, he had a hard time. After all, Edgey was actually a prosecutor. So he ended up squandering his objections with inappropriate pieces of evidence, and the judge eventually gave Edgey too many penalties causing him to lose the case.",
 	"Here lies Dahlia Hawthorne's spirit. After Mia had basically told her to 'get rekt', Dahlia transformed into an eldritch demon succubus and emitted an otherworldly, piercing, bloodcurdling scream from Hell, then disappeared into the ether. We can only hope no one will ever try to channel her again.",
+	"Stupid pyramidal heels, they slow you down like no tomorrow if you lack the high heels skill and of course the pair I got was cursed. That's so dumb, I wouldn't have died had that pair of shoes been flat.",
+	"God I hate ball heels! Why do they even exist? Are they just a trap created by Amy to fool players into wearing them? And why the hell doesn't the game tell you that they cause you to take 50%% increased damage from everything if you lack the high heels skill???",
 
 };
 

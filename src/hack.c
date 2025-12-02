@@ -2925,6 +2925,58 @@ peacedisplace:
 		}
 	}
 
+	if (PlayerInPyramidalHeels) {
+
+		int pyramidalneeded = 100;
+		boolean canpyramidalheel = TRUE;
+		if (!flags.female) pyramidalneeded = 500;
+
+		if (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) {
+			if (!flags.female) canpyramidalheel = FALSE;
+			else pyramidalneeded = 500;
+		}
+
+		u.pyramidalturns++;
+		if (canpyramidalheel && (u.pyramidalturns >= pyramidalneeded)) {
+			u.pyramidalturns = 0;
+			u.pyramidalskill++;
+			if (uamul && uamul->oartifact == ART_GREETINGS_FROM_EVI) u.pyramidalskill += 2;
+			if (uimplant && uimplant->oartifact == ART_TORSTEN_S_FEMININENESS && !flags.female) u.pyramidalskill += 4;
+			if (u.pyramidalskill == 20) You("are now more skilled in type 7: pyramidal heels.");
+			if (u.pyramidalskill == 160) You("are now more skilled in type 7: pyramidal heels.");
+			if (u.pyramidalskill == 540) You("are now more skilled in type 7: pyramidal heels.");
+			if (u.pyramidalskill == 1280) You("are now more skilled in type 7: pyramidal heels.");
+			if (u.pyramidalskill == 2500) You("are now more skilled in type 7: pyramidal heels.");
+			if (u.pyramidalskill == 4320) You("are now most skilled in type 7: pyramidal heels.");
+		}
+	}
+
+	if (PlayerInBallHeels) {
+
+		int ballneeded = 70;
+		boolean canballheel = TRUE;
+		if (!flags.female) ballneeded = 250;
+
+		if (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) {
+			if (!flags.female) canballheel = FALSE;
+			else ballneeded = 250;
+		}
+
+		u.ballturns++;
+		if (canballheel && (u.ballturns >= ballneeded)) {
+			u.ballturns = 0;
+			u.ballskill++;
+			if (uamul && uamul->oartifact == ART_GREETINGS_FROM_EVI) u.ballskill += 2;
+			if (uimplant && uimplant->oartifact == ART_TORSTEN_S_FEMININENESS && !flags.female) u.ballskill += 4;
+			if (u.ballskill == 20) You("are now more skilled in type 6: ball heels.");
+			if (u.ballskill == 160) You("are now more skilled in type 6: ball heels.");
+			if (u.ballskill == 540) You("are now more skilled in type 6: ball heels.");
+			if (u.ballskill == 1280) You("are now more skilled in type 6: ball heels.");
+			if (u.ballskill == 2500) You("are now more skilled in type 6: ball heels.");
+			if (u.ballskill == 4320) You("are now most skilled in type 6: ball heels.");
+		}
+	}
+
 	if (PlayerInColumnarHeels) {
 
 		/* an odd one: male characters can train it faster, lacking the high heels skill makes it slower, and if
@@ -4716,7 +4768,7 @@ nomul(nval, txt, discountpossible)
 		if (nval > -2) nval = -2;
 	}
 
-	if (PlayerInColumnarHeels && discountpossible && (nval < -1)) {
+	if (!PlayerCannotUseSkills && PlayerInColumnarHeels && discountpossible && (nval < -1)) {
 		register int dmgreductor = 100;
 		if (u.columnarskill >= 20) dmgreductor -= 10;
 		if (u.columnarskill >= 160) dmgreductor -= 10;
@@ -5417,6 +5469,10 @@ int k_format; /* WAC k_format is an int */
 	if (uarmh && uarmh->oartifact == ART_HEAD_W) {
 		n *= 11;
 		n /= 10;
+	}
+	if (PlayerInBallHeels && !(uarmu && uarmu->oartifact == ART_MODELWALK) && !FemtrapActiveNaomi && !(uimplant && uimplant->oartifact == ART_TORSTEN_S_FEMININENESS && powerfulimplants()) && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) ) {
+		n *= 3;
+		n /= 2;
 	}
 	if (uimplant && uimplant->oartifact == ART_SPINAL_MATRIX_OF_RAISTLIN) {
 		n *= 11;

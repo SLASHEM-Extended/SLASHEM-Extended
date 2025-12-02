@@ -4328,3 +4328,7 @@ Boulders can be thrown by all characters, being a giant just makes it easier to 
 If your container gets destroyed by rust, burn or other types of damage, all the contents will be lost, which can be really disheartening so you'd better erosionproof the damn thing, pronto!
 Boss monsters are just as susceptible to being jousted by a lance as regular monsters. So if your skill is high enough, you can just lock them up, knocking them back and stopping them in their tracks with every hit.
 Your maximum weight limit will always be 5000, no matter what, with no way of increasing it unless you find certain ultra-rare artifacts. This means that late into the game, you have to decide which items you'll be taking with you and which ones you leave behind.
+If you're wearing pyramidal heels with good skill, your character will be taller due to the height of the heels. This makes it easier to reach the dungeon's ceiling.
+Wearing pyramidal heels without having the high heels skill will cause them to break with a 1 in 500 chance every time you take a step.
+A character who wears ball heels can dance more effectively. This effect scales with your skill level, but you need to use the #monster command to access your dance moves.
+You shouldn't wear ball heels if you lack the high heels skill. Because if you do, you constantly suffer from the natalje trap effect and need to shuffle your position once every couple of turns.

@@ -261,6 +261,10 @@
 
 #define PlayerInSexyFlats	(playerwearssexyflats())
 
+#define CanHavePyramidalHeels	(maybepyramidalheels())
+
+#define CanHaveBallHeels	(maybeballheels())
+
 #define CanHaveColumnarHeels	(maybecolumnarheels())
 
 #define CanHaveStilettoHeels	(maybestilettoheels())
@@ -271,15 +275,19 @@
 
 #define CanHaveWedgeHeels	(maybewedgeheels())
 
-#define PlayerInColumnarHeels	(CanHaveColumnarHeels)
+#define PlayerInPyramidalHeels	(CanHavePyramidalHeels)
 
-#define PlayerInStilettoHeels	(!CanHaveColumnarHeels && CanHaveStilettoHeels)
+#define PlayerInBallHeels	(!CanHavePyramidalHeels && CanHaveBallHeels)
 
-#define PlayerInConeHeels	(!CanHaveColumnarHeels && (!CanHaveStilettoHeels || tech_inuse(T_NAUGHTY_HEELOT)) && CanHaveConeHeels)
+#define PlayerInColumnarHeels	(!CanHavePyramidalHeels && !CanHaveBallHeels && CanHaveColumnarHeels)
 
-#define PlayerInBlockHeels	(!CanHaveColumnarHeels && !CanHaveStilettoHeels && !CanHaveConeHeels && CanHaveBlockHeels)
+#define PlayerInStilettoHeels	(!CanHavePyramidalHeels && !CanHaveBallHeels && !CanHaveColumnarHeels && CanHaveStilettoHeels)
 
-#define PlayerInWedgeHeels	(!CanHaveColumnarHeels && !CanHaveStilettoHeels && !CanHaveConeHeels && !CanHaveBlockHeels && CanHaveWedgeHeels)
+#define PlayerInConeHeels	(!CanHavePyramidalHeels && !CanHaveBallHeels && !CanHaveColumnarHeels && (!CanHaveStilettoHeels || tech_inuse(T_NAUGHTY_HEELOT)) && CanHaveConeHeels)
+
+#define PlayerInBlockHeels	(!CanHavePyramidalHeels && !CanHaveBallHeels && !CanHaveColumnarHeels && !CanHaveStilettoHeels && !CanHaveConeHeels && CanHaveBlockHeels)
+
+#define PlayerInWedgeHeels	(!CanHavePyramidalHeels && !CanHaveBallHeels && !CanHaveColumnarHeels && !CanHaveStilettoHeels && !CanHaveConeHeels && !CanHaveBlockHeels && CanHaveWedgeHeels)
 
 #define PirateSpeakOn	((uwep && uwep->oartifact == ART_ARRRRRR_MATEY) || (uwep && uwep->oartifact == ART_PIRATTERY))
 
@@ -345,7 +353,7 @@
 
 #define HPoison_resistance	u.uprops[POISON_RES].intrinsic
 #define EPoison_resistance	u.uprops[POISON_RES].extrinsic
-#define IntPoison_resistance	(HPoison_resistance || (uball && uball->oartifact == ART_HIGH_AFFIX) || Race_if(PM_SLYER_ALIEN) || resists_poison(&youmonst) || is_poison_resistant(youmonst.data) || (uwep && uwep->oartifact == ART_SYLVIE_S_EASY_MODE) || (uarmf && uarmf->oartifact == ART_POI_SEN_SUX) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_PULSE_NODE_OF_GERALT) || (powerfulsymbiosis() && is_poison_resistant(&mons[u.usymbiote.mnum])) )
+#define IntPoison_resistance	(HPoison_resistance || (uball && uball->oartifact == ART_HIGH_AFFIX) || Race_if(PM_SLYER_ALIEN) || resists_poison(&youmonst) || is_poison_resistant(youmonst.data) || have_fragrantjewel() || (uwep && uwep->oartifact == ART_SYLVIE_S_EASY_MODE) || (uarmf && uarmf->oartifact == ART_POI_SEN_SUX) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_PULSE_NODE_OF_GERALT) || (powerfulsymbiosis() && is_poison_resistant(&mons[u.usymbiote.mnum])) )
 #define ExtPoison_resistance	(playerextrinsicpoisonres())
 
 #define Poison_resistance	(((IntPoison_resistance && u.nonintrinsicproperty != POISON_RES) || (ExtPoison_resistance && u.nonextrinsicproperty != POISON_RES)) && !NoPoison_resistance && !hybridragontype(AD_DRST) && !Race_if(PM_POISONER) )
@@ -397,7 +405,7 @@
 
 #define NoAcid_resistance	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_ACID_RES].intrinsic) || UHaveAids || (uamul && uamul->oartifact == ART_CURSING_SCARAB && !uamul->cursed) || (u.impossibleproperty == ACID_RES) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
-#define AcidImmunity		((uarm && uarm->oartifact == ART_NULARMOR) || (uarmf && uarmf->oartifact == ART_LISA_S_YELLOW_STRIPE) || (uarmf && uarmf->oartifact == ART_HEIKE_S_BIGOTRY) || (uarm && uarm->oartifact == ART_PRENTY_TWETEEN) || (uball && uball->oartifact == ART_ACICORNER) || (uamul && uamul->oartifact == ART_CURSING_SCARAB && uamul->cursed) || (uarmf && uarmf->oartifact == ART_POCAHONTAS_HOME))
+#define AcidImmunity		((uarm && uarm->oartifact == ART_NULARMOR) || (uarmf && uarmf->oartifact == ART_LISA_S_YELLOW_STRIPE) || (uarmf && uarmf->oartifact == ART_HEIKE_S_BIGOTRY) || (uwep && uwep->oartifact == ART_PIPPA_S_URGE) || (uarm && uarm->oartifact == ART_PRENTY_TWETEEN) || (uball && uball->oartifact == ART_ACICORNER) || (uamul && uamul->oartifact == ART_CURSING_SCARAB && uamul->cursed) || (uarmf && uarmf->oartifact == ART_POCAHONTAS_HOME))
 
 #define HStone_resistance	u.uprops[STONE_RES].intrinsic
 #define EStone_resistance	u.uprops[STONE_RES].extrinsic
@@ -823,6 +831,8 @@
 #define FemaleTrapFemmy	u.uprops[FEMTRAP_FEMMY].intrinsic
 #define FemaleTrapMadeleine	u.uprops[FEMTRAP_MADELEINE].intrinsic
 #define FemaleTrapMarlena	u.uprops[FEMTRAP_MARLENA].intrinsic
+#define FemaleTrapAnja	u.uprops[FEMTRAP_ANJA].intrinsic
+#define FemaleTrapCelia	u.uprops[FEMTRAP_CELIA].intrinsic
 #define FemaleTrapSabine	u.uprops[FEMTRAP_SABINE].intrinsic
 #define FemaleTrapJanet	u.uprops[FEMTRAP_JANET].intrinsic
 #define FemaleTrapTanja	u.uprops[FEMTRAP_TANJA].intrinsic
@@ -930,6 +940,8 @@
 #define FemtrapActiveFemmy	(FemaleTrapFemmy || u.uprops[FEMTRAP_FEMMY].extrinsic || have_femtrapfemmy() || (uarmc && uarmc->oartifact == ART_NUDE_PUNAM) )
 #define FemtrapActiveMadeleine	(FemaleTrapMadeleine || u.uprops[FEMTRAP_MADELEINE].extrinsic || have_femtrapmadeleine() || (uamul && uamul->oartifact == ART_MEDI_LEASH) )
 #define FemtrapActiveMarlena	(FemaleTrapMarlena || u.uprops[FEMTRAP_MARLENA].extrinsic || have_femtrapmarlena())
+#define FemtrapActiveAnja	(FemaleTrapAnja || u.uprops[FEMTRAP_ANJA].extrinsic || have_femtrapanja() || have_fragrantjewel() )
+#define FemtrapActiveCelia	(FemaleTrapCelia || u.uprops[FEMTRAP_CELIA].extrinsic || have_femtrapcelia() || autismweaponcheck(ART_PIPPA_S_URGE) )
 #define FemtrapActiveSabine	(FemaleTrapSabine || u.uprops[FEMTRAP_SABINE].extrinsic || have_femtrapsabine())
 #define FemtrapActiveJanet	(FemaleTrapJanet || u.uprops[FEMTRAP_JANET].extrinsic || have_femtrapjanet() || (uarmf && uarmf->oartifact == ART_JANET_S_DETACHMENT) || bmwride(ART_RHINE_CROSSING) || (uarmf && uarmf->oartifact == ART_ELIZAH_S_SINKER) )
 #define FemtrapActiveSabrina	(FemaleTrapSabrina || u.uprops[FEMTRAP_SABRINA].extrinsic || have_femtrapsabrina() || (uarm && uarm->oartifact == ART_YOU_REALLY_HAVE_A_TOTAL_DA) || (uarmf && uarmf->oartifact == ART_SABRINA_S_FREEDOM) || autismweaponcheck(ART_EN_GARDE____TOUCHE_) )
@@ -989,7 +1001,7 @@
 #define FemtrapActivePatricia	(FemaleTrapPatricia || u.uprops[FEMTRAP_PATRICIA].extrinsic || have_femtrappatricia() || autismweaponcheck(ART_MAEVE_S_OPULENCE) )
 #define FemtrapActiveAntje	(FemaleTrapAntje || u.uprops[FEMTRAP_ANTJE].extrinsic || have_femtrapantje() || (uarm && uarm->oartifact == ART_MEET_WOMAN_ANTJE) || (uarmf && uarmf->oartifact == ART_FANNY_S_ANNOYANCE) || (uarmu && uarmu->oartifact == ART_SETH_S_ERROR) )
 #define FemtrapActiveAntjeX	(FemaleTrapAntjeX || u.uprops[FEMTRAP_ANTJE_X].extrinsic || have_femtrapantjex() || (uarmu && uarmu->oartifact == ART_SOME_CHAMBER_DOOR) )
-#define FemtrapActiveKerstin	(FemaleTrapKerstin || u.uprops[FEMTRAP_KERSTIN].extrinsic || have_femtrapkerstin() || bmwride(ART_KERSTIN_S_CLEARSOUND) || autismweaponcheck(ART_EN_GARDE____TOUCHE_) || (uarmf && uarmf->oartifact == ART_KERSTIN_S_LITTLE_HELP) || (uarm && uarm->oartifact == ART_MOTA_ROLA) || (uarmh && uarmh->oartifact == ART_WHO_CAN_DRIVE_BEST_) || bmwride(ART_KERSTIN_S_COWBOY_BOOST) || autismweaponcheck(ART_GONDOLIN_S_HIDDEN_PASSAGE) )
+#define FemtrapActiveKerstin	(FemaleTrapKerstin || u.uprops[FEMTRAP_KERSTIN].extrinsic || have_femtrapkerstin() || bmwride(ART_KERSTIN_S_CLEARSOUND) || autismweaponcheck(ART_EN_GARDE____TOUCHE_) || have_fragrantjewel() || (uarmf && uarmf->oartifact == ART_KERSTIN_S_LITTLE_HELP) || (uarm && uarm->oartifact == ART_MOTA_ROLA) || (uarmh && uarmh->oartifact == ART_WHO_CAN_DRIVE_BEST_) || bmwride(ART_KERSTIN_S_COWBOY_BOOST) || autismweaponcheck(ART_GONDOLIN_S_HIDDEN_PASSAGE) )
 #define FemtrapActiveLaura	(FemaleTrapLaura || u.uprops[FEMTRAP_LAURA].extrinsic || have_femtraplaura() || (uarmc && uarmc->oartifact == ART_LYCIA_S_WUSH) || (uarmf && uarmf->oartifact == ART_POCAHONTAS_HOME) )
 #define FemtrapActiveLarissa	(FemaleTrapLarissa || u.uprops[FEMTRAP_LARISSA].extrinsic || have_femtraplarissa() || autismweaponcheck(ART_ASTONI_S_STOUT_EMBANKMENT) || (uball && uball->oartifact == ART_ASTONI_S_STOUT_EMBANKMENT) || (uarmf && uarmf->oartifact == ART_SHE_REALLY_LIKES_IT) || autismweaponcheck(ART_LARISSA_S_LAUGHTER) )
 #define FemtrapActiveNora	(FemaleTrapNora || u.uprops[FEMTRAP_NORA].extrinsic || have_femtrapnora())
@@ -1020,7 +1032,7 @@
 #define FemtrapActiveNaomi	(FemaleTrapNaomi || u.uprops[FEMTRAP_NAOMI].extrinsic || (autismringcheck(ART_DEVINE_S_PRAYER) && PlayerInHighHeels) || have_femtrapnaomi())
 #define FemtrapActiveUte	(FemaleTrapUte || u.uprops[FEMTRAP_UTE].extrinsic || have_femtrapute() || autismringcheck(ART_DEVINE_S_PRAYER) || have_crashrecoverstone() || autismweaponcheck(ART_DE_SID))
 #define FemtrapActiveJasieen	(FemaleTrapJasieen || u.uprops[FEMTRAP_JASIEEN].extrinsic || have_femtrapjasieen())
-#define FemtrapActiveYasaman	(FemaleTrapYasaman || u.uprops[FEMTRAP_YASAMAN].extrinsic || have_femtrapyasaman() || (uarms && uarms->oartifact == ART_FROM_MASHHAD_TO_AHVAZ) )
+#define FemtrapActiveYasaman	(FemaleTrapYasaman || u.uprops[FEMTRAP_YASAMAN].extrinsic || have_femtrapyasaman() || have_fragrantjewel() || (uarms && uarms->oartifact == ART_FROM_MASHHAD_TO_AHVAZ) )
 #define FemtrapActiveMayBritt	(FemaleTrapMayBritt || u.uprops[FEMTRAP_MAY_BRITT].extrinsic || have_femtrapmaybritt() || (uchain && uchain->oartifact == ART_HIMMELIE_S_STRAWBERRY && u.ualign.type == A_CHAOTIC) || (autismweaponcheck(ART_HIMMELIE_S_STRAWBERRY) && u.ualign.type == A_CHAOTIC) || (uarm && uarm->oartifact == ART_SCHOOL_SATCHEL) )
 #define FemtrapActiveNadine	(FemaleTrapNadine || u.uprops[FEMTRAP_NADINE].extrinsic || have_femtrapnadine() || (uarmc && uarmc->oartifact == ART_EDNA_S_CALM) )
 #define FemtrapActiveJudith	(FemaleTrapJudith || u.uprops[FEMTRAP_JUDITH].extrinsic || have_femtrapjudith() || autismringcheck(ART_TO_JUDITHBIS) || (uarmf && uarmf->oartifact == ART_ARVOGENIA_S_FREESTYLE_SCRA) )
@@ -1041,6 +1053,7 @@
 #define SuperFemtrapKatharina	( (have_femtrapkatharina() == 2) )
 #define SuperFemtrapJanet	( (have_femtrapjanet() == 2) || (uarmf && uarmf->oartifact == ART_ELIZAH_S_SINKER) )
 #define SuperFemtrapElif	( (have_femtrapelif() == 2) )
+#define SuperFemtrapCelia	( (have_femtrapcelia() == 2) || autismweaponcheck(ART_PIPPA_S_URGE) )
 #define SuperFemtrapMaurah	( (have_femtrapmaurah() == 2) )
 #define SuperFemtrapSarah	( (have_femtrapsarah() == 2) )
 #define SuperFemtrapClaudia	( (have_femtrapclaudia() == 2) )
@@ -1522,12 +1535,12 @@
 #define Stealth			(((IntStealth && u.nonintrinsicproperty != STEALTH) || (ExtStealth && u.nonextrinsicproperty != STEALTH)) && !BStealth && !NoStealth && !Race_if(PM_OGRO) && !autismweaponcheck(ART_ARMORWREAKER) && !Race_if(PM_ROHIRRIM) && !Race_if(PM_THUNDERLORD) && !(Role_if(PM_TOPMODEL) && flags.female && !PlayerInHighHeels) )
 #define StrongStealth	(IntStealth && ExtStealth && Stealth && u.nondoubleproperty != STEALTH && !(uimplant && uimplant->oartifact == ART_SYNAPSE_CROWN_OF_GANDALF) )
 
-#define NoStealth	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_STEALTH].intrinsic) || UHaveAids || (uarmc && itemhasappearance(uarmc, APP_EXCREMENT_CLOAK) ) || (u.impossibleproperty == STEALTH) || (uarmf && itemhasappearance(uarmf, APP_HEAP_OF_SHIT_BOOTS)) || have_fireringcandle() || (uarm && uarm->oartifact == ART_HAZARDOUS_EQUIPMENT) || (uarmh && uarmh->oartifact == ART_HENRIETTA_S_CRYSTAL_HOOD) || (uarm && uarm->oartifact == ART_YESEXI) || (FemtrapActiveNaomi && !PlayerInHighHeels) || (uarmf && uarmf->oartifact == ART_VERA_S_EMBERTRAIL_BOOTS) || (ublindf && ublindf->oartifact == ART_LEANDRA_S_WORD) || (uarm && uarm->oartifact == ART_AVELINE_S_ROBE_OF_THE_FIRS) || (uarmf && uarmf->oartifact == ART_ALRIC_S_MARCHING_BOOTS) || (uarmf && uarmf->oartifact == ART_INGRID_S_IRONHOOF_BOOTS) || (uarmf && uarmf->oartifact == ART_TOO_MUCH_BRAVERY) || (uarmf && uarmf->oartifact == ART_HENRIETTA_S_DOGSHIT_BOOTS) || (uimplant && uimplant->oartifact == ART_SOLAR_RING_OF_LYSIRA_DAWNF) || FemtrapActiveSolvejg || autismweaponcheck(ART_HENRIETTA_S_MISTAKE) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
+#define NoStealth	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_STEALTH].intrinsic) || UHaveAids || (uarmc && itemhasappearance(uarmc, APP_EXCREMENT_CLOAK) ) || (u.impossibleproperty == STEALTH) || (uarmf && itemhasappearance(uarmf, APP_HEAP_OF_SHIT_BOOTS)) || have_fireringcandle() || (uarm && uarm->oartifact == ART_HAZARDOUS_EQUIPMENT) || autismweaponcheck(ART_PIPPA_S_URGE) || (uarmh && uarmh->oartifact == ART_HENRIETTA_S_CRYSTAL_HOOD) || (uarm && uarm->oartifact == ART_YESEXI) || (FemtrapActiveNaomi && !PlayerInHighHeels) || (uarmf && uarmf->oartifact == ART_VERA_S_EMBERTRAIL_BOOTS) || (ublindf && ublindf->oartifact == ART_LEANDRA_S_WORD) || (uarm && uarm->oartifact == ART_AVELINE_S_ROBE_OF_THE_FIRS) || (uarmf && uarmf->oartifact == ART_ALRIC_S_MARCHING_BOOTS) || (uarmf && uarmf->oartifact == ART_INGRID_S_IRONHOOF_BOOTS) || (uarmf && uarmf->oartifact == ART_TOO_MUCH_BRAVERY) || (uarmf && uarmf->oartifact == ART_HENRIETTA_S_DOGSHIT_BOOTS) || (uimplant && uimplant->oartifact == ART_SOLAR_RING_OF_LYSIRA_DAWNF) || FemtrapActiveSolvejg || autismweaponcheck(ART_HENRIETTA_S_MISTAKE) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HExtra_wpn_practice	u.uprops[EXTRA_WEAPON_PRACTICE].intrinsic
 #define EExtra_wpn_practice	u.uprops[EXTRA_WEAPON_PRACTICE].extrinsic
 #define IntExtra_wpn_practice	(HExtra_wpn_practice || (uimplant && objects[uimplant->otyp].oc_material == MT_MENGETIUM) || have_superjonadabstone())
-#define ExtExtra_wpn_practice	(EExtra_wpn_practice || have_superjonadabstone() || (powerfulimplants() && uimplant && uimplant->oartifact == ART_FASTPLANT) || (uwep && uwep->oartifact == ART_ZUSE_S_COMP) || (uwep && uwep->oartifact == ART_ARABELLA_S_BLACK_PRONG) || have_minimejewel() || (uarm && uarm->oartifact == ART_GENERAL_TA_S_ANNOYANCE_FAC) || (uwep && uwep->oartifact == ART_SKYSTORMER) || (uamul && uamul->oartifact == ART_LATERAL_IMPROVEMENT) || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == EXTRA_WEAPON_PRACTICE) ) || (ublindf && ublindf->oartifact == ART_MILARY_S_DAILY_SIGH) || (uarmf && uarmf->oartifact == ART_TRAIN_HARD_) || (uarm && uarm->oartifact == ART_EVERYTHING_COMES_WITH_A_CO) || (uarmu && uarmu->oartifact == ART_CAPITAL_RAP) || (uarmc && uarmc->oartifact == ART_SKILLS_BEAT_STATS) || (uarm && uarm->oartifact == ART_MOTHERFUCKER_TROPHY) )
+#define ExtExtra_wpn_practice	(EExtra_wpn_practice || have_superjonadabstone() || (powerfulimplants() && uimplant && uimplant->oartifact == ART_FASTPLANT) || (uwep && uwep->oartifact == ART_ZUSE_S_COMP) || (uwep && uwep->oartifact == ART_ARABELLA_S_BLACK_PRONG) || have_minimejewel() || (uarm && uarm->oartifact == ART_GENERAL_TA_S_ANNOYANCE_FAC) || (uwep && uwep->oartifact == ART_SKYSTORMER) || (uamul && uamul->oartifact == ART_LATERAL_IMPROVEMENT) || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == EXTRA_WEAPON_PRACTICE) ) || have_fragrantjewel() || (ublindf && ublindf->oartifact == ART_MILARY_S_DAILY_SIGH) || (uarmf && uarmf->oartifact == ART_TRAIN_HARD_) || (uarm && uarm->oartifact == ART_EVERYTHING_COMES_WITH_A_CO) || (uarmu && uarmu->oartifact == ART_CAPITAL_RAP) || (uarmc && uarmc->oartifact == ART_SKILLS_BEAT_STATS) || (uarm && uarm->oartifact == ART_MOTHERFUCKER_TROPHY) )
 
 #define Extra_wpn_practice	(IntExtra_wpn_practice || ExtExtra_wpn_practice)
 #define StrongExtra_wpn_practice	(IntExtra_wpn_practice && ExtExtra_wpn_practice && Extra_wpn_practice)

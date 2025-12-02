@@ -1563,6 +1563,11 @@ nh_timeout()
 		if (u.tempsuperfemtrap_judith < 0) u.tempsuperfemtrap_judith = 0;
 		if (u.tempsuperfemtrap_judith == 0) pline("You no longer have to fight high heels just to be allowed to wear them.");
 	}
+	if (u.tempsuperfemtrap_celia) {
+		u.tempsuperfemtrap_celia--;
+		if (u.tempsuperfemtrap_celia < 0) u.tempsuperfemtrap_celia = 0;
+		if (u.tempsuperfemtrap_celia == 0) pline("The dogs are beginning to leave. Good riddance, you really got annoyed from stepping into their shit all the damn time.");
+	}
 	if (u.tempsuperfemtrap_janet) {
 		u.tempsuperfemtrap_janet--;
 		if (u.tempsuperfemtrap_janet < 0) u.tempsuperfemtrap_janet = 0;
@@ -2185,6 +2190,14 @@ nh_timeout()
 	}
 
 	/* if you wear high heels without having the skill at all, bad stuff can happen --Amy */
+
+	if (u.umoved && !rn2(500) && !(uarmu && uarmu->oartifact == ART_MODELWALK) && PlayerInPyramidalHeels && !FemtrapActiveNaomi && !(uimplant && uimplant->oartifact == ART_TORSTEN_S_FEMININENESS && powerfulimplants()) && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED)) {
+		pline("You feel like you absolutely can't walk in those pyramidal heels, and are just staggering around. Something tells you that taking them off would be a wise choice.");
+	}
+
+	if (u.umoved && !rn2(500) && !(uarmu && uarmu->oartifact == ART_MODELWALK) && PlayerInBallHeels && !FemtrapActiveNaomi && !(uimplant && uimplant->oartifact == ART_TORSTEN_S_FEMININENESS && powerfulimplants()) && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED)) {
+		pline("You feel unstable in those ball heels, like someone could just strike you down in a single swing. Maybe you should switch to a more comfortable pair of shoes.");
+	}
 
 	if (u.umoved && !rn2(500) && !(uarmu && uarmu->oartifact == ART_MODELWALK) && PlayerInColumnarHeels && !FemtrapActiveNaomi && !(uimplant && uimplant->oartifact == ART_TORSTEN_S_FEMININENESS && powerfulimplants()) && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED)) {
 		pline("Well, you don't really feel comfortable with those columnar heels. They slow you down even though they're very pretty, and people might laugh at you.");
@@ -4622,6 +4635,18 @@ nh_timeout()
 		 case FEMTRAP_MARLENA:
 
 			pline("The dungeon is less green now.");
+
+		 break;
+
+		 case FEMTRAP_ANJA:
+
+			pline("The female shoes no longer have special abilities.");
+
+		 break;
+
+		 case FEMTRAP_CELIA:
+
+			pline("The dogs are beginning to leave. Good riddance, you really got annoyed from stepping into their shit all the damn time.");
 
 		 break;
 

@@ -26608,6 +26608,34 @@ A("Watergetting",				BOTTLE, /* upon generating, spawns a scroll of flood somewh
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 50L ),
 
+A("Rue Scent",				ANJA_SNEAKERS, /* resist fire and cold, can be invoked to perform the inlay warfare technique even if you don't have that one */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("No Girlfriends",				CELIA_SNEAKERS, /* all M2_FEMALE always spawn hostile, but are 10 times less likely to spawn randomly */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Sigrun's Wedding Shoes",				LOW_BOOTS, /* initialized to always be pyramidal heels, all monsters who hit you in melee and aren't currently blind have to make a saving throw or become blind for rn1(10,10) turns, slow you down like roman sandals (but only the non-riding movement speed is affected), your kick deals +rnz(5) damage (this is not a mistake), can be invoked to change your martial arts style to "karate" */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 25000L ),
+
+A("Chloe's Exaggeration",				LOW_BOOTS, /* initialized to always be ball heels, fallout effect, heavily autocurses, your kick takes off 1 max HP from the monster and the target cannot resist that effect at all, +20 STR and your kick cannot be blocked by monsters */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 30000L ),
+
+A("Stay away from the shit",				CELIA_S_JEWEL, /* double celia trap effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Pippa's Urge",				QUARTERSTAFF, /* randart2 quarterstaff, double celia trap effect, fast metabolism, heavily autocurses, doesn't make your hands unusable, acid immunity, very fast speed, disables stealth, 50% chance if something would reduce your alignment that it doesn't */
+	(SPFX_RESTR|SPFX_ATTK|SPFX_EVIL), 0, 0,
+	ACID(3, 13), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("All The Fragrant Girls",				ELIF_S_JEWEL, /* randart feminism jewel, gives the anja, kerstin and yasaman trap effects and also increased skill training, double poison resistance and resist fire and cold; can be invoked to create a blessed finalized potion of jolt cola */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 7000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

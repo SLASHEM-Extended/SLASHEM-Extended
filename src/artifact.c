@@ -644,6 +644,7 @@ init_randarts()
 	artilist[ART_ONE_IN_FOUR].otyp = randartbadgraystone();
 	artilist[ART_HAVE_IT_ALL_BUT_NOT_GET].otyp = randartbadgraystone();
 	artilist[ART_DOUBLESHELL].otyp = randartfeminismjewel();
+	artilist[ART_ALL_THE_FRAGRANT_GIRLS].otyp = randartfeminismjewel();
 	artilist[ART_HOW_LONG_LASTS_IT_].otyp = randartfeminismjewel();
 	artilist[ART_FEMITY_SOLVE].otyp = randartfeminismjewel();
 	artilist[ART_MINIMAL_MINI_ME].otyp = randartfeminismjewel();
@@ -864,6 +865,7 @@ init_randarts()
 	artilist[ART_CANNONEER].otyp = randartlauncherX();
 	artilist[ART_SPEEDHACK].otyp = randartlauncherX();
 	artilist[ART_RAYSWANDIR].otyp = randartquarterstaffX();
+	artilist[ART_PIPPA_S_URGE].otyp = randartquarterstaffX();
 	artilist[ART_STAFF_OF_INSANITY].otyp = randartquarterstaffX();
 	artilist[ART_ELEMENTAL_STAFF].otyp = randartquarterstaffX();
 	artilist[ART_FRISIA_S_TAIL].otyp = randartquarterstaffX();
@@ -1250,6 +1252,8 @@ init_appearance_randarts()
 	artilist[ART_ALL_WEATHER_HEELS].otyp = find_appearance_armor(APP_PRINTED_WEDGES);
 	artilist[ART_KNOW_THE_RULES].otyp = find_appearance_armor(APP_FLUFFY_BOOTS);
 	artilist[ART_ELEFSOH].otyp = find_appearance_armor(APP_GENERIC_HIGH_HEELS);
+	artilist[ART_SIGRUN_S_WEDDING_SHOES].otyp = find_appearance_armor(APP_PYRAMIDAL_HEELS);
+	artilist[ART_CHLOE_S_EXAGGERATION].otyp = find_appearance_armor(APP_BALL_HEELS);
 	artilist[ART_ROUGHGRAVEL_MASTER].otyp = find_appearance_armor(APP_CROSS_COUNTRY_BOOTS);
 	artilist[ART_KUUGRUU__KUUGRUU_].otyp = find_appearance_armor(APP_INDUSTRIAL_BOOTS);
 	artilist[ART_TRAIN_HARD_].otyp = find_appearance_armor(APP_CLIMBING_BOOTS);
@@ -2573,7 +2577,7 @@ register boolean mod;
 		    }
 
 		    if (otmp && otmp->oartifact == ART_NUKA_ROLL) {
-			int nukaroll = rnd(106); /* keyword: "marlena" */
+			int nukaroll = rnd(108); /* keyword: "marlena" */
 
 			u.tempnukaefftype = nukaroll;
 			u.tempnukaeffect += rnz(5000);
@@ -7909,6 +7913,26 @@ findmorestonesX:
 			break;
 		}
 
+		if (obj->oartifact == ART_SIGRUN_S_WEDDING_SHOES) {
+			u.martialstyle = MARTIALSTYLE_KARATE;
+			You("changed your martial arts style to 'karate'.");
+			break;
+		}
+
+		if (obj->oartifact == ART_SEXEHSQUIRT) {
+
+			use_temporary_tech(T_MELTEE);
+
+			break;
+		}
+
+		if (obj->oartifact == ART_RUE_SCENT) {
+
+			use_temporary_tech(T_INLAY_WARFARE);
+
+			break;
+		}
+
 		if (obj->oartifact == ART_FOLLOWBSSSSS) {
 
 			if (flags.female) {
@@ -7952,13 +7976,6 @@ findmorestonesX:
 
 		if (obj->oartifact == ART_BUGGEDNESS_OF_THE_COMPANY) {
 			use_temporary_tech(T_BUGGARD);
-
-			break;
-		}
-
-		if (obj->oartifact == ART_SEXEHSQUIRT) {
-
-			use_temporary_tech(T_MELTEE);
 
 			break;
 		}
@@ -9482,6 +9499,26 @@ tscheinschroll:
 				stackobj(uchocitem);
 				You("baked a fortune cookie.");
 			} else pline("Somehow, your baking attempt failed.");
+
+			break;
+		}
+
+		if (obj->oartifact == ART_ALL_THE_FRAGRANT_GIRLS) {
+
+			struct obj *uchocitem;
+
+			uchocitem = mksobj(POT_JOLT_COLA, TRUE, FALSE, FALSE);
+			if (uchocitem) {
+				uchocitem->quan = 1;
+				uchocitem->known = uchocitem->dknown = uchocitem->bknown = uchocitem->rknown = 1;
+				uchocitem->owt = weight(uchocitem);
+				uchocitem->cursed = uchocitem->hvycurse = uchocitem->prmcurse = uchocitem->morgcurse = uchocitem->evilcurse = uchocitem->bbrcurse = uchocitem->stckcurse = 0;
+				uchocitem->blessed = TRUE;
+				uchocitem->finalcancel = TRUE;
+				dropy(uchocitem);
+				stackobj(uchocitem);
+				You("spawned a potion of jolt cola out of thin air!");
+			} else pline("Somehow, no potion of jolt cola was created.");
 
 			break;
 		}

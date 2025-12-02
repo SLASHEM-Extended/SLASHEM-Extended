@@ -734,7 +734,7 @@ elena10:
 			}
 
 			/* soft sneakers use M4_SNEAKERS */
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == SOFT_SNEAKERS) || (footwear && footwear->otyp == MARIKE_SNEAKERS) || (footwear && footwear->otyp == RUTH_SNEAKERS) || (footwear && footwear->otyp == LOU_SNEAKERS) || (footwear && footwear->otyp == JANA_SNEAKERS) || (footwear && footwear->otyp == ALMUT_SNEAKERS) || (footwear && footwear->otyp == TANJA_SNEAKERS) || (footwear && footwear->otyp == SONJA_SNEAKERS) || (footwear && footwear->otyp == YVONNE_GIRL_SNEAKERS) || (footwear && footwear->otyp == ELIF_SNEAKERS) || (footwear && footwear->otyp == KERSTIN_SNEAKERS) || (footwear && footwear->otyp == ANTJE_SNEAKERS) || (footwear && itemhasappearance(footwear, APP_BLUE_SNEAKERS)) || (footwear && itemhasappearance(footwear, APP_PLATFORM_SNEAKERS)) || (footwear && itemhasappearance(footwear, APP_RED_SNEAKERS)) || (footwear && itemhasappearance(footwear, APP_PINK_SNEAKERS)) || (footwear && itemhasappearance(footwear, APP_REGULAR_SNEAKERS)) || (footwear && itemhasappearance(footwear, APP_EXCEPTIONAL_SNEAKERS)) || (footwear && itemhasappearance(footwear, APP_ELITE_SNEAKERS)) || (footwear && itemhasappearance(footwear, APP_CYAN_SNEAKERS)) || (footwear && itemhasappearance(footwear, APP_GENTLE_SNEAKERS)) || (footwear && itemhasappearance(footwear, APP_YELLOW_SNEAKERS)) || mtmp->data == &mons[PM_SUPER_STRONG_GIRL] || (randomsexyheels == 12) || mtmp->data == &mons[PM_GIRL_WHO_LOOKS_LIKE_HER_NAME_WAS_FANNY] || mtmp->data == &mons[PM_CUDDLE_GIRL_SNEAKER] || mtmp->data == &mons[PM_STRIPED_GIRL_SNEAKER] || mtmp->data == &mons[PM_RIFFLE_SOLE_SNEAKER] || mtmp->data == &mons[PM_RED_SOLE_SNEAKER] || mtmp->data == &mons[PM_GREEN_SOLE_SNEAKER] || mtmp->data == &mons[PM_REGULAR_GIRL_SNEAKER] || mtmp->data == &mons[PM_EXCEPTIONAL_GIRL_SNEAKER] || mtmp->data == &mons[PM_ELITE_GIRL_SNEAKER] || mtmp->data == &mons[PM_JANA_SHOE] || mtmp->data == &mons[PM_PINK_SOLE_SNEAKER] || mtmp->data == &mons[PM_CYAN_SOLE_SNEAKER] || mtmp->data == &mons[PM_YELLOW_SOLE_SNEAKER] || mtmp->data == &mons[PM_BLUE_SOLE_SNEAKER] || mtmp->data == &mons[PM_PURPLE_SOLE_SNEAKER] || mtmp->data == &mons[PM_ORANGE_SOLE_SNEAKER] || mtmp->data == &mons[PM_BROWN_SOLE_SNEAKER] || mtmp->data == &mons[PM_GRAY_SOLE_SNEAKER] || mtmp->data == &mons[PM_PLATFORM_SNEAKER] || mtmp->data == &mons[PM_RITA_S_HIGH_HEELED_SNEAKER]) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == SOFT_SNEAKERS) || (footwear && footwear->otyp == MARIKE_SNEAKERS) || (footwear && footwear->otyp == RUTH_SNEAKERS) || (footwear && footwear->otyp == LOU_SNEAKERS) || (footwear && footwear->otyp == JANA_SNEAKERS) || (footwear && footwear->otyp == ALMUT_SNEAKERS) || (footwear && footwear->otyp == TANJA_SNEAKERS) || (footwear && footwear->otyp == SONJA_SNEAKERS) || (footwear && footwear->otyp == YVONNE_GIRL_SNEAKERS) || (footwear && footwear->otyp == ELIF_SNEAKERS) || (footwear && footwear->otyp == ANJA_SNEAKERS) || (footwear && footwear->otyp == CELIA_SNEAKERS) || (footwear && footwear->otyp == KERSTIN_SNEAKERS) || (footwear && footwear->otyp == ANTJE_SNEAKERS) || (footwear && itemhasappearance(footwear, APP_BLUE_SNEAKERS)) || (footwear && itemhasappearance(footwear, APP_PLATFORM_SNEAKERS)) || (footwear && itemhasappearance(footwear, APP_RED_SNEAKERS)) || (footwear && itemhasappearance(footwear, APP_PINK_SNEAKERS)) || (footwear && itemhasappearance(footwear, APP_REGULAR_SNEAKERS)) || (footwear && itemhasappearance(footwear, APP_EXCEPTIONAL_SNEAKERS)) || (footwear && itemhasappearance(footwear, APP_ELITE_SNEAKERS)) || (footwear && itemhasappearance(footwear, APP_CYAN_SNEAKERS)) || (footwear && itemhasappearance(footwear, APP_GENTLE_SNEAKERS)) || (footwear && itemhasappearance(footwear, APP_YELLOW_SNEAKERS)) || mtmp->data == &mons[PM_SUPER_STRONG_GIRL] || (randomsexyheels == 12) || mtmp->data == &mons[PM_GIRL_WHO_LOOKS_LIKE_HER_NAME_WAS_FANNY] || mtmp->data == &mons[PM_CUDDLE_GIRL_SNEAKER] || mtmp->data == &mons[PM_STRIPED_GIRL_SNEAKER] || mtmp->data == &mons[PM_RIFFLE_SOLE_SNEAKER] || mtmp->data == &mons[PM_RED_SOLE_SNEAKER] || mtmp->data == &mons[PM_GREEN_SOLE_SNEAKER] || mtmp->data == &mons[PM_REGULAR_GIRL_SNEAKER] || mtmp->data == &mons[PM_EXCEPTIONAL_GIRL_SNEAKER] || mtmp->data == &mons[PM_ELITE_GIRL_SNEAKER] || mtmp->data == &mons[PM_JANA_SHOE] || mtmp->data == &mons[PM_PINK_SOLE_SNEAKER] || mtmp->data == &mons[PM_CYAN_SOLE_SNEAKER] || mtmp->data == &mons[PM_YELLOW_SOLE_SNEAKER] || mtmp->data == &mons[PM_BLUE_SOLE_SNEAKER] || mtmp->data == &mons[PM_PURPLE_SOLE_SNEAKER] || mtmp->data == &mons[PM_ORANGE_SOLE_SNEAKER] || mtmp->data == &mons[PM_BROWN_SOLE_SNEAKER] || mtmp->data == &mons[PM_GRAY_SOLE_SNEAKER] || mtmp->data == &mons[PM_PLATFORM_SNEAKER] || mtmp->data == &mons[PM_RITA_S_HIGH_HEELED_SNEAKER]) ) {
 elena11:
 				u.cnd_shoedamageamount++;
 				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -879,7 +879,7 @@ elena12:
 			}
 
 			/* superhard sandals use M4_SANDALS */
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ( (FemtrapActiveKerstin && spawnswithsandals(mtmp->data)) || (footwear && itemhasappearance(footwear, APP_SUPERHARD_SANDALS)) || mtmp->data == &mons[PM_SEXY_CLAUDIA] || mtmp->data == &mons[PM_CLAUDIA_S_CUTE_WOODEN_SANDAL] || mtmp->data == &mons[PM_LOVELY_WOODEN_CLOG] || mtmp->data == &mons[PM_LOVELY_WOODEN_GETA] || (randomsexyheels == 30) ) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ( (FemtrapActiveKerstin && spawnswithsandals(mtmp->data)) || (footwear && itemhasappearance(footwear, APP_SUPERHARD_SANDALS)) || (footwear && itemhasappearance(footwear, APP_BALL_HEELS)) || mtmp->data == &mons[PM_SEXY_CLAUDIA] || mtmp->data == &mons[PM_CLAUDIA_S_CUTE_WOODEN_SANDAL] || mtmp->data == &mons[PM_LOVELY_WOODEN_CLOG] || mtmp->data == &mons[PM_LOVELY_WOODEN_GETA] || (randomsexyheels == 30) ) ) {
 elenaWOODSANDAL:
 				u.cnd_shoedamageamount++;
 				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -998,7 +998,7 @@ elenalady:
 
 			}
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == ITALIAN_HEELS) || (footwear && itemhasappearance(footwear, APP_SHARP_EDGED_SANDALS)) || (footwear && footwear->otyp == RED_SPELL_HEELS) || (footwear && footwear->otyp == LONG_POINTY_HEELS) || mtmp->data == &mons[PM_BLACK_HEEL_SANDAL] || mtmp->data == &mons[PM_KITTEN_HEEL_SANDAL] || (footwear && footwear->otyp == MANUELA_COMBAT_BOOTS) || (randomsexyheels == 17)) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == ITALIAN_HEELS) || (footwear && itemhasappearance(footwear, APP_SHARP_EDGED_SANDALS)) || (footwear && itemhasappearance(footwear, APP_PYRAMIDAL_HEELS)) || (footwear && footwear->otyp == RED_SPELL_HEELS) || (footwear && footwear->otyp == LONG_POINTY_HEELS) || mtmp->data == &mons[PM_BLACK_HEEL_SANDAL] || mtmp->data == &mons[PM_KITTEN_HEEL_SANDAL] || (footwear && footwear->otyp == MANUELA_COMBAT_BOOTS) || (randomsexyheels == 17)) ) {
 elenaitaly:
 				u.cnd_shoedamageamount++;
 				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -19717,6 +19717,10 @@ register int n;
 		n *= 12;
 		n /= 10;
 	}
+	if (PlayerInBallHeels && !(uarmu && uarmu->oartifact == ART_MODELWALK) && !FemtrapActiveNaomi && !(uimplant && uimplant->oartifact == ART_TORSTEN_S_FEMININENESS && powerfulimplants()) && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) ) {
+		n *= 3;
+		n /= 2;
+	}
 	if (uimplant && uimplant->oartifact == ART_SPINAL_MATRIX_OF_RAISTLIN) {
 		n *= 11;
 		n /= 10;
@@ -21619,6 +21623,18 @@ register struct attack *mattk;
 			pline("%s is blinded by the brightness.", Monnam(mtmp));
 		    if (mtmp->mblinded > 120) mtmp->mblinded = 127;
 		    else mtmp->mblinded += rnd(7);
+		    mtmp->mcansee = 0;
+		    mtmp->mstrategy &= ~STRAT_WAITFORU;
+
+		}
+	}
+
+	if (uarmf && uarmf->oartifact == ART_SIGRUN_S_WEDDING_SHOES && !mtmp->mblinded) {
+		if (!resist(mtmp, WEAPON_CLASS, 0, NOTELL)) {
+		    if (mtmp->mcansee)
+			pline("%s is blinded by your bright high heels!", Monnam(mtmp));
+		    if (mtmp->mblinded > 120) mtmp->mblinded = 127;
+		    else mtmp->mblinded += rn1(10,10);
 		    mtmp->mcansee = 0;
 		    mtmp->mstrategy &= ~STRAT_WAITFORU;
 

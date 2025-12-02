@@ -1095,6 +1095,12 @@ exprecalc(void)
 					case 106: /* Judith */
 						pline("You receive an elaborate auspicious message: At experience level %d, putting on a pair of high heels forces you to do battle with them, and you're only allowed to wear them if you win.", displaycheck);
 						break;
+					case 107: /* Anja */
+						pline("You receive an elaborate auspicious message: At experience level %d, all monster shoes spawn with egotypes.", displaycheck);
+						break;
+					case 108: /* Celia */
+						pline("You receive an elaborate auspicious message: At experience level %d, dogs spawn more often and will shit up the dungeon. Flying or levitating will not prevent you from stepping into their heaps of shit.", displaycheck);
+						break;
 				}
 			} else pline("Your auspices say: %d %d", displaycheck, whichcheck);
 

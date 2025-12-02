@@ -6310,6 +6310,10 @@ eatspecial() /* called after eating non-food */
 				FemaleTrapJessica |= FROMOUTSIDE; break;
 			case MARLENA_S_JEWEL:
 				FemaleTrapMarlena |= FROMOUTSIDE; break;
+			case ANJA_S_JEWEL:
+				FemaleTrapAnja |= FROMOUTSIDE; break;
+			case CELIA_S_JEWEL:
+				FemaleTrapCelia |= FROMOUTSIDE; break;
 			case JUDITH_S_JEWEL:
 				FemaleTrapJudith |= FROMOUTSIDE; break;
 			case TANJA_S_JEWEL:
@@ -9302,6 +9306,7 @@ gethungry()	/* as time goes by - called by moveloop() and domove() */
 
 	if (u.uprops[FAST_METABOLISM].extrinsic && !(StrongSlow_digestion && rn2(3)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger--;
 	if (have_metabolicstone() && !(StrongSlow_digestion && rn2(3)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger--;
+	if (autismweaponcheck(ART_PIPPA_S_URGE) && !(StrongSlow_digestion && rn2(3)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger--;
 	if (FastMetabolismEffect) {
 
 		int extrahungerpoints;

@@ -2570,7 +2570,7 @@ randnastyenchantment()
 int
 randfemienchantment()
 {
-		switch (rnd(106)) {
+		switch (rnd(108)) {
 			case 1: return FEMTRAP_FEMMY;
 			case 2: return FEMTRAP_MADELEINE;
 			case 3: return FEMTRAP_MARLENA;
@@ -2677,6 +2677,8 @@ randfemienchantment()
 			case 104: return FEMTRAP_JANET;
 			case 105: return FEMTRAP_SABINE;
 			case 106: return FEMTRAP_JUDITH;
+			case 107: return FEMTRAP_ANJA;
+			case 108: return FEMTRAP_CELIA;
 		}
 
 	return FEMTRAP_ELISE; /* appease compiler */
@@ -5412,7 +5414,7 @@ int duration;
 		if (SuperFemtrapRosa) duration *= 2;
 	}
 
-	switch (rnd(106)) {
+	switch (rnd(108)) {
 		case 1:
 			if (!FemtrapActiveRuth) pline("You can already imagine the farting noises you're gonna hear.");
 			FemaleTrapSarah += duration;
@@ -5841,6 +5843,14 @@ int duration;
 			if (!FemtrapActiveRuth) pline("Now you have to do battle whenever you want to wear a pair of high heels, and if you lose, you're not allowed to wear them!");
 			FemaleTrapJudith += duration;
 			break;
+		case 107:
+			if (!FemtrapActiveRuth) pline("You feel that the female shoes have gained some special abilities!");
+			FemaleTrapAnja += duration;
+			break;
+		case 108:
+			if (!FemtrapActiveRuth) pline("It seems that there's an unusually high amount of dogs running around the dungeon. They're certainly gonna shit in every corner...");
+			FemaleTrapCelia += duration;
+			break;
 	}
 }
 
@@ -5848,7 +5858,7 @@ int duration;
 void
 getfeminismtrapintrinsic()
 {
-	switch (rnd(106)) {
+	switch (rnd(108)) {
 		case 1:
 			if (!FemtrapActiveRuth) pline("You can already imagine the farting noises you're gonna hear.");
 			FemaleTrapSarah |= FROMOUTSIDE;
@@ -6279,6 +6289,14 @@ getfeminismtrapintrinsic()
 		case 106:
 			if (!FemtrapActiveRuth) pline("Now you have to do battle whenever you want to wear a pair of high heels, and if you lose, you're not allowed to wear them!");
 			FemaleTrapJudith |= FROMOUTSIDE;
+			break;
+		case 107:
+			if (!FemtrapActiveRuth) pline("You feel that the female shoes have gained some special abilities!");
+			FemaleTrapAnja |= FROMOUTSIDE;
+			break;
+		case 108:
+			if (!FemtrapActiveRuth) pline("It seems that there's an unusually high amount of dogs running around the dungeon. They're certainly gonna shit in every corner...");
+			FemaleTrapCelia |= FROMOUTSIDE;
 			break;
 	}
 }
@@ -6985,7 +7003,7 @@ boolean withtroves;
 int
 randomfeminismtraptype() /* keyword "marlena" */
 {
-	switch (rnd(106)) {
+	switch (rnd(108)) {
 			case 1: return FEMMY_TRAP;
 			case 2: return MADELEINE_TRAP;
 			case 3: return MARLENA_TRAP;
@@ -7092,6 +7110,8 @@ randomfeminismtraptype() /* keyword "marlena" */
 			case 104: return JANET_TRAP;
 			case 105: return SABINE_TRAP;
 			case 106: return JUDITH_TRAP;
+			case 107: return ANJA_TRAP;
+			case 108: return CELIA_TRAP;
 	}
 	return INGE_TRAP; /* fail safe */
 
