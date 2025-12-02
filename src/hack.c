@@ -4768,6 +4768,22 @@ nomul(nval, txt, discountpossible)
 		if (nval > -2) nval = -2;
 	}
 
+	if (uarmf && itemhasappearance(uarmf, APP_FLATFORM_SANDALS) && discountpossible && (nval < -1)) {
+		register int dmgreductor = 90;
+		if (!(PlayerCannotUseSkills)) switch (P_SKILL(P_SEXY_FLATS)) {
+			case P_BASIC: dmgreductor = 88; break;
+			case P_SKILLED: dmgreductor = 86; break;
+			case P_EXPERT: dmgreductor = 84; break;
+			case P_MASTER: dmgreductor = 82; break;
+			case P_GRAND_MASTER: dmgreductor = 80; break;
+			case P_SUPREME_MASTER: dmgreductor = 78; break;
+		}
+		nval *= dmgreductor;
+		nval /= 100;
+
+		if (nval > -2) nval = -2;
+	}
+
 	if (!PlayerCannotUseSkills && PlayerInColumnarHeels && discountpossible && (nval < -1)) {
 		register int dmgreductor = 100;
 		if (u.columnarskill >= 20) dmgreductor -= 10;

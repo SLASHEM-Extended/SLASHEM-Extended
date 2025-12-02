@@ -17936,7 +17936,7 @@ loveheelover:
 		}
 
 		if(ptr == &mons[PM_NUKA_COLA_COMMERCIALIST]) {
-			int nukaroll = rnd(108); /* keyword: "marlena" */
+			int nukaroll = rnd(109); /* keyword: "marlena" */
 
 			(void) mongets(mtmp, rnd_class(POT_BOOZE, POT_PAN_GALACTIC_GARGLE_BLASTE));
 			(void) mongets(mtmp, rnd_class(POT_BOOZE, POT_PAN_GALACTIC_GARGLE_BLASTE));
@@ -18678,6 +18678,9 @@ loveheelover:
 		break;
 
 	    case S_XORN:
+
+		if (ptr == &mons[PM_EXAGGERATED_FEMMY]) (void) mongets(mtmp, CHLOE_BALL_HEELS);
+
 		if (monsndx(ptr) == PM_MARVIN) {
 			int i;
 			int t[3] = {DIODE, TRANSISTOR, IC};

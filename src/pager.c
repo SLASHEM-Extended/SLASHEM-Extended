@@ -29689,6 +29689,11 @@ static NEARDATA const char * const fake_plines[] = {
 	"It seems that there's an unusually high amount of dogs running around the dungeon. They're certainly gonna shit in every corner...",
 	"The female shoes no longer have special abilities.",
 	"The dogs are beginning to leave. Good riddance, you really got annoyed from stepping into their shit all the damn time.",
+	"Oh no, you'll have to spend all your money for a pair of designer heels! As if you didn't have enough money troubles already!",
+	"Finally, no one is forcing you to wear stupid designer heels anymore. Your feet just can't wait to wear comfortable shoes again.",
+	"You are forced to pay 5000 euros for a pair of Chloe ball heels.",
+	"You are forced to pay 5000 euros for a pair of Chloe ball heels. And despite the fact that you paid the money, you didn't actually get the heels! What a gigantic ripoff!",
+	"You are forced to pay 5000 euros for a pair of Chloe ball heels. But you can't actually walk with them, and feel that in fact no one can. Aren't those shoes generally made just for looking at them? Why would any sane person want to WEAR them, you wonder???",
 
 };
 

@@ -4249,6 +4249,7 @@ impossible("A monster looked at a very strange trap of type %d.", ttmp->ttyp);
 				&& ttmp->ttyp != FEMMY_TRAP
 				&& ttmp->ttyp != MADELEINE_TRAP
 				&& ttmp->ttyp != MARLENA_TRAP
+				&& ttmp->ttyp != CHLOE_TRAP
 				&& ttmp->ttyp != ANJA_TRAP
 				&& ttmp->ttyp != CELIA_TRAP
 				&& ttmp->ttyp != JUDITH_TRAP
@@ -8539,7 +8540,7 @@ register struct monst *mtmp;
 
 	aggravate();
     }
-    if(!mtmp->egotype_farter && monstersoundtype(mtmp) == MS_FART_QUIET && !(uarmf && uarmf->oartifact == ART_END_OF_LEWDNESS) ) {
+    if(!mtmp->egotype_farter && monstersoundtype(mtmp) == MS_FART_QUIET && !(uarmf && uarmf->oartifact == ART_LEGENDARY_JESSICA) && !(uarmf && uarmf->oartifact == ART_END_OF_LEWDNESS) ) {
 		if (!FemtrapActiveJennifer) pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), rn2(2) ? "tender" : "soft", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
 		u.cnd_fartingcount++;
 		if (FemtrapActiveJanet) {

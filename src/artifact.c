@@ -1254,6 +1254,7 @@ init_appearance_randarts()
 	artilist[ART_ELEFSOH].otyp = find_appearance_armor(APP_GENERIC_HIGH_HEELS);
 	artilist[ART_SIGRUN_S_WEDDING_SHOES].otyp = find_appearance_armor(APP_PYRAMIDAL_HEELS);
 	artilist[ART_CHLOE_S_EXAGGERATION].otyp = find_appearance_armor(APP_BALL_HEELS);
+	artilist[ART_LEGENDARY_JESSICA].otyp = find_appearance_armor(APP_FLATFORM_SANDALS);
 	artilist[ART_ROUGHGRAVEL_MASTER].otyp = find_appearance_armor(APP_CROSS_COUNTRY_BOOTS);
 	artilist[ART_KUUGRUU__KUUGRUU_].otyp = find_appearance_armor(APP_INDUSTRIAL_BOOTS);
 	artilist[ART_TRAIN_HARD_].otyp = find_appearance_armor(APP_CLIMBING_BOOTS);
@@ -2577,7 +2578,7 @@ register boolean mod;
 		    }
 
 		    if (otmp && otmp->oartifact == ART_NUKA_ROLL) {
-			int nukaroll = rnd(108); /* keyword: "marlena" */
+			int nukaroll = rnd(109); /* keyword: "marlena" */
 
 			u.tempnukaefftype = nukaroll;
 			u.tempnukaeffect += rnz(5000);

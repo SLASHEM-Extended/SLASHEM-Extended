@@ -1829,6 +1829,16 @@ adjattrib(ndx, incr, msgflg, canresist)
 			return FALSE;
 		}
 
+		if (uarmf && uarmf->oartifact == ART_LEGENDARY_JESSICA && !rn2(2)) {
+			Your("sandals prevent the stat loss!");
+			return FALSE;
+		}
+
+		if (FemtrapActiveChloe && uarmf && uarmf->otyp == CHLOE_BALL_HEELS && (ndx == A_CHA)) {
+			Your("beauty cannot be diminished!");
+			return FALSE;
+		}
+
 		if (uarmc && uarmc->oartifact == ART_INTERNAL_CLEAR && (ndx == A_INT)) {
 			Your("cloak prevents the intelligence loss!");
 			return FALSE;
@@ -3245,6 +3255,7 @@ int x;
 		if (uright && uright->oartifact == ART_HIGHER_LOCK) tmp += 1;
 		if (uarmc && uarmc->oartifact == ART_JUST_TO_HAVE_IT) tmp += 1;
 		if (ublindf && ublindf->oartifact == ART_LEANDRA_S_WORD) tmp += 1;
+		if (uarmf && uarmf->oartifact == ART_SEE_BY_LAKE) tmp += 1;
 		if (uwep && uwep->oartifact == ART_ARM_OF_OLYMPIA) tmp += 10;
 		if (uarmf && uarmf->oartifact == ART_CHLOE_S_EXAGGERATION) tmp += 20;
 		if (uwep && uwep->oartifact == ART_MILL_SHOVEL) tmp += 8;
@@ -3398,6 +3409,7 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_KOKYO_NO_PAFOMANSUU_OKU) tmp += (5 + uarmf->spe);
 		if (uarmf && uarmf->oartifact == ART_EVA_S_INCONSPICUOUS_CHARM) tmp += (uarmf->spe);
 		if (uarmf && uarmf->oartifact == ART_SOLVEJG_S_STINKING_SLIPPER) tmp += 5;
+		if (uarmf && uarmf->oartifact == ART_SEE_BY_LAKE) tmp += 1;
 		if (uarmf && uarmf->oartifact == ART_LYDIA_S_SEXYROOM) tmp += 5;
 		if (uarmf && uarmf->oartifact == ART_INGRID_S_SECRETARY_OFFICE) tmp += 5;
 		if (uimplant && uimplant->oartifact == ART_SOLAR_RING_OF_LYSIRA_DAWNF) tmp += 1;
@@ -3413,6 +3425,7 @@ int x;
 		if (uamul && uamul->oartifact == ART_ROCHELLE_S_SEY) tmp += 3;
 		if (uarmf && uarmf->oartifact == ART_IRIS_S_THUNDER) tmp += 3;
 		if (uamul && uamul->oartifact == ART_ZUBRIT_S_HOTNESS) tmp += 8;
+		if (FemtrapActiveChloe && uarmf && uarmf->otyp == CHLOE_BALL_HEELS) tmp += 10;
 		if (ublindf && ublindf->oartifact == ART_LEANDRA_S_WORD) tmp += 2;
 		if (uarmf && uarmf->oartifact == ART_SUSCHEL_KUNA) tmp += 2;
 		if (uarmh && uarmh->oartifact == ART_CAP_OF_THENGEL) tmp += 3;
@@ -3695,6 +3708,7 @@ int x;
 		if (x == A_INT && Race_if(PM_MAZIN)) tmp += 2;
 		if (x == A_INT && ublindf && ublindf->oartifact == ART_BERIT_S_SAGE) tmp += 10;
 		if (x == A_WIS && ublindf && ublindf->oartifact == ART_BERIT_S_SAGE) tmp += 15;
+		if (uarmf && uarmf->oartifact == ART_SEE_BY_LAKE) tmp += 1;
 		if (uarmh && uarmh->oartifact == ART_SENOBIA_S_CROWN) tmp += 3;
 		if (x == A_INT && bmwride(ART_KERSTIN_S_CLEARSOUND)) tmp += 2;
 		if (x == A_INT && uball && uball->oartifact == ART_NUCULATE) tmp += 2;
@@ -3936,6 +3950,7 @@ int x;
 		if (uwep && uwep->oartifact == ART_DJANGO_S_CHAIN) tmp += 5;
 		if (uchain && uchain->oartifact == ART_DJANGO_S_CHAIN) tmp += 5;
 		if (uarm && uarm->oartifact == ART_AGILITATE) tmp += 7;
+		if (uarmf && uarmf->oartifact == ART_SEE_BY_LAKE) tmp += 1;
 		if (uwep && uwep->oartifact == ART_ISSEGADA_KEN) tmp += 3;
 		if (uamul && uamul->otyp == AMULET_OF_PHYSICAL_BOOST) tmp += 3;
 		if (uarm && uarm->oartifact == ART_GREYSHADE) tmp += 5;
@@ -4128,6 +4143,7 @@ int x;
 		if (uimplant && uimplant->oartifact == ART_VITAELITAET) tmp += (powerfulimplants() ? 12 : 5);
 		if (Race_if(PM_BULDOZGAR)) tmp += 2;
 		if (uwep && uwep->oartifact == ART_EXTREME_ENCHANTMENT) tmp += 10;
+		if (uarmf && uarmf->oartifact == ART_SEE_BY_LAKE) tmp += 1;
 		if (uwep && uwep->oartifact == ART_DJANGO_S_CHAIN) tmp += 5;
 		if (uchain && uchain->oartifact == ART_DJANGO_S_CHAIN) tmp += 5;
 		if (uarm && uarm->oartifact == ART_ULTRAVIOLET_RAINBOW) tmp += 3;

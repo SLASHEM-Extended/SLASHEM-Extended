@@ -2532,7 +2532,7 @@ moveloop()
 		    }
 
 			/* fluctuating speed - sadly jonadab never fully disclosed how that bug worked in fourk... */
-		    if ((FluctuatingSpeed || u.uprops[FLUCTUATING_SPEED].extrinsic || have_fluctuatingspeedstone()) && moveamt > 0) {
+		    if ((FluctuatingSpeed || u.uprops[FLUCTUATING_SPEED].extrinsic || have_fluctuatingspeedstone() || have_analeahjewel() ) && moveamt > 0) {
 			if (FluctuatingSpeedXtra) {
 				if ((moves % 36) < 10) {
 					moveamt /= 12;
@@ -2730,6 +2730,23 @@ moveloop()
 
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_WEDELAGE) {
 			adjalign(-1);
+		}
+
+		if (FemtrapActiveChloe && !rn2(10000) && !(uarmf && uarmf->otyp == CHLOE_BALL_HEELS) ) {
+			addplayerdebt(5000, TRUE); /* have to pay, whether you want to or not */
+			You("are forced to pay 5000 euros for a pair of Chloe ball heels.");
+
+			struct obj *uchocitem;
+
+			uchocitem = mksobj(CHLOE_BALL_HEELS, TRUE, FALSE, FALSE);
+			if (uchocitem) {
+				uchocitem->quan = 1;
+				uchocitem->owt = weight(uchocitem);
+				dropy(uchocitem);
+				stackobj(uchocitem);
+				pline("The pair of heels is waiting for you on the floor.");
+			} else pline("And despite the fact that you paid the money, you didn't actually get the heels! What a gigantic ripoff!");
+
 		}
 
 		if (bmwride(ART_WI_O_WI_O_WACKIWE_) && !rn2(10000)) {
@@ -3863,7 +3880,7 @@ nyssaraend:
 			u.yawmtime++;
 		}
 
-		if ((KillerRoomEffect || (u.martialstyle == MARTIALSTYLE_WRESTLING) || u.uprops[KILLER_ROOM_EFFECT].extrinsic || (uarmf && uarmf->oartifact == ART_HIGHWAY_HUNTER) || autismweaponcheck(ART_MAGYAR_IDEA) || have_killerroomstone()) && !rn2(4000)) {
+		if ((KillerRoomEffect || (u.martialstyle == MARTIALSTYLE_WRESTLING) || (uarmf && uarmf->oartifact == ART_LEGENDARY_JESSICA && !rn2(5)) || u.uprops[KILLER_ROOM_EFFECT].extrinsic || (uarmf && uarmf->oartifact == ART_HIGHWAY_HUNTER) || autismweaponcheck(ART_MAGYAR_IDEA) || have_killerroomstone()) && !rn2(4000)) {
 			int killerroomtype = rnd(29);
 			struct permonst *killermonster = &mons[PM_ANT]; /* arbitrary */
 
@@ -7918,6 +7935,25 @@ newbossKLARA:
 
 		}
 
+		if (FemtrapActiveChloe && uarmf && uarmf->otyp == CHLOE_BALL_HEELS && !rn2(5000)) {
+			int aggroamount = rnd(8);
+			if (isfriday) aggroamount *= 2;
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		      cx = rn2(COLNO);
+		      cy = rn2(ROWNO);
+			while (aggroamount) {
+
+				aggroamount--;
+				if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				makemon((struct permonst *)0, cx, cy, MM_ANGRY|MM_FRENZIED);
+				if (aggroamount < 0) aggroamount = 0;
+			}
+			u.aggravation = 0;
+			pline("Your sexiness seems to have attracted some monsters...");
+		}
+
 		if (uarmc && uarmc->oartifact == ART_GIVE_US_TODAY_OUR_DAILY_GA && !rn2(5000)) {
 
 			int aggroamount = rnd(6);
@@ -10086,9 +10122,9 @@ newbossRLR:
 		}
 
 		/* for feminizer hybrid race: re-randomize feminism effect that is active --Amy */
-		if (!rn2(5000)) u.feminizeffect = rnd(108); /* amount of feminism trap effects; keyword: "marlena" */
-		if (!rn2(5000)) u.contamjeweleffect = rnd(108); /* amount of feminism trap effects; keyword: "marlena" */
-		if (!rn2(5000)) u.nukafemeffect = rnd(108); /* amount of feminism trap effects; keyword: "marlena" */
+		if (!rn2(5000)) u.feminizeffect = rnd(109); /* amount of feminism trap effects; keyword: "marlena" */
+		if (!rn2(5000)) u.contamjeweleffect = rnd(109); /* amount of feminism trap effects; keyword: "marlena" */
+		if (!rn2(5000)) u.nukafemeffect = rnd(109); /* amount of feminism trap effects; keyword: "marlena" */
 
 		if (isfeminizer && !rn2(5000)) randomfeminismtrap(rnz( (level_difficulty() + 2) * rnd(50)));
 
@@ -12963,6 +12999,15 @@ newbossB:
 			make_inverted(0L);
 			HInvertedState &= ~INTRINSIC;
 			HInvertedState &= ~TIMEOUT;
+		}
+
+		if (uarmf && uarmf->oartifact == ART_LEGENDARY_JESSICA && (HInvertedState & TIMEOUT)) {
+			if ((HInvertedState & TIMEOUT) < 10) {
+				make_inverted(0L);
+				You("stand up.");
+			} else {
+				HInvertedState -= 9;
+			}
 		}
 
 		/* Gang Scholar gods are really nice: unless you're in Gehennom, they will occasionally fix status effects
@@ -20245,6 +20290,7 @@ boolean new_game;	/* false => restoring an old game */
 
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "pyramidal heels")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "ball heels")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "flatform sandals")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}
@@ -21797,6 +21843,7 @@ boolean new_game;	/* false => restoring an old game */
 
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "pyramidal heels")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "ball heels")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "flatform sandals")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}
@@ -22601,10 +22648,12 @@ timebasedlowerchance()
 	if (u.uevent.invoked && !rn2(3) ) return FALSE;
 	if (!(u.uevent.invoked) && !(flags.wonderland && !(u.wonderlandescape)) && In_lategame(&u.uz) && !rn2(7)) return FALSE;
 
-	int chance = isdroughter ? 115 : 133;
+	int chance = 133;
+	if (isdroughter) chance -= 18;
+	if (uarmf && uarmf->oartifact == ART_LEGENDARY_JESSICA) chance += 50;
 	chance -= (moves * 100 / u.monstertimefinish);
-	/* make sure we don't fall off the bottom */
 
+	/* make sure we don't fall off the bottom */
 	if (isdroughter) {
 		if (chance < 15) chance = 15;
 	} else {

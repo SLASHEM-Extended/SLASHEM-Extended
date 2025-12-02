@@ -959,6 +959,7 @@ static struct {
 
 	{ "anja", ANJA_TRAP },
 	{ "celia", CELIA_TRAP },
+	{ "chloe", CHLOE_TRAP },
 
 	{ "timerun", TIMERUN_TRAP },
 	{ 0, 0 }

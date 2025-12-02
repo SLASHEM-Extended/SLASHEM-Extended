@@ -230,7 +230,7 @@
 #define MojibakeXtra	((have_mojibakestone() == 2) || (uarmf && uarmf->oartifact == ART_DORIKA_S_COLORBLOCK) )
 #define LongScrewupXtra	((have_longscrewupstone() == 2) || (uarm && uarm->oartifact == ART_ROSTINE_S_OVERCAST) )
 #define SkillLossXtra	((have_skilllossstone() == 2) || (uamul && uamul->oartifact == ART_ROCHELLE_S_SEY) )
-#define FluctuatingSpeedXtra	((have_fluctuatingspeedstone() == 2))
+#define FluctuatingSpeedXtra	((have_fluctuatingspeedstone() == 2) || have_analeahjewel() )
 #define SatanEffectXtra	((have_satanstone() == 2) || (uarmh && uarmh->oartifact == ART_DARK_OMBRIA) )
 #define ManlerXtra	((have_manlerstone() == 2) || (ublindf && ublindf->oartifact == ART_MONIQUE_S_NONSENSE) )
 #define DoorningXtra	((have_doorningstone() == 2) || (uarmc && uarmc->oartifact == ART_ZUNI_S_IRIDESCENCE) )
@@ -831,6 +831,7 @@
 #define FemaleTrapFemmy	u.uprops[FEMTRAP_FEMMY].intrinsic
 #define FemaleTrapMadeleine	u.uprops[FEMTRAP_MADELEINE].intrinsic
 #define FemaleTrapMarlena	u.uprops[FEMTRAP_MARLENA].intrinsic
+#define FemaleTrapChloe	u.uprops[FEMTRAP_CHLOE].intrinsic
 #define FemaleTrapAnja	u.uprops[FEMTRAP_ANJA].intrinsic
 #define FemaleTrapCelia	u.uprops[FEMTRAP_CELIA].intrinsic
 #define FemaleTrapSabine	u.uprops[FEMTRAP_SABINE].intrinsic
@@ -940,6 +941,7 @@
 #define FemtrapActiveFemmy	(FemaleTrapFemmy || u.uprops[FEMTRAP_FEMMY].extrinsic || have_femtrapfemmy() || (uarmc && uarmc->oartifact == ART_NUDE_PUNAM) )
 #define FemtrapActiveMadeleine	(FemaleTrapMadeleine || u.uprops[FEMTRAP_MADELEINE].extrinsic || have_femtrapmadeleine() || (uamul && uamul->oartifact == ART_MEDI_LEASH) )
 #define FemtrapActiveMarlena	(FemaleTrapMarlena || u.uprops[FEMTRAP_MARLENA].extrinsic || have_femtrapmarlena())
+#define FemtrapActiveChloe	(FemaleTrapChloe || u.uprops[FEMTRAP_CHLOE].extrinsic || have_femtrapchloe())
 #define FemtrapActiveAnja	(FemaleTrapAnja || u.uprops[FEMTRAP_ANJA].extrinsic || have_femtrapanja() || have_fragrantjewel() )
 #define FemtrapActiveCelia	(FemaleTrapCelia || u.uprops[FEMTRAP_CELIA].extrinsic || have_femtrapcelia() || autismweaponcheck(ART_PIPPA_S_URGE) )
 #define FemtrapActiveSabine	(FemaleTrapSabine || u.uprops[FEMTRAP_SABINE].extrinsic || have_femtrapsabine())
@@ -950,7 +952,7 @@
 #define FemtrapActiveRhea	(FemaleTrapRhea || u.uprops[FEMTRAP_RHEA].extrinsic || have_femtraprhea() || bmwride(ART_MARLOWE_S_CAMEL) || (uarmf && uarmf->oartifact == ART_HIGHWAY_HUNTER) || (uarmf && uarmf->oartifact == ART_HIGHWAY_FIGHTER) )
 #define FemtrapActiveLara	(FemaleTrapLara || u.uprops[FEMTRAP_LARA].extrinsic || have_femtraplara() || (uamul && uamul->oartifact == ART_LARA_S_LAVAWALK) || (uarms && uarms->oartifact == ART_CASTLE_CRUSH_GLITCH) || (uarmg && uarmg->oartifact == ART_ELARA_S_AGILITY) )
 #define FemtrapActiveAnastasia	(FemaleTrapAnastasia || u.uprops[FEMTRAP_ANASTASIA].extrinsic || have_femtrapanastasia() || (uarmf && uarmf->oartifact == ART_THAT_S_SUPER_UNFAIR) || (uarmf && uarmf->oartifact == ART_SUSCHEL_KUNA) || (uarmf && uarmf->oartifact == ART_SUNA_S_CONTROVERSY_MATTER) || (uarmf && uarmf->oartifact == ART_PLAYING_ANASTASIA) || (uarmc && uarmc->oartifact == ART_EDNA_S_CALM) || (uarmf && uarmf->oartifact == ART_WHITE_LOAFERS) || (uarmf && uarmf->oartifact == ART_SOFT_COW_DUNG) || (uarmf && uarmf->oartifact == ART_THICK_PLATFORM_CRAZE) || (uarmf && uarmf->oartifact == ART_LORENZI_S_CLEANING_RESIDUE) || (uarmf && uarmf->oartifact == ART_NANCY_S_ASSISTANCE) || (uarmf && uarmf->oartifact == ART_SHE_S_STILL_AN_ANASTASIA) || autismweaponcheck(ART_REAL_WALKING) || (autismweaponcheck(ART_DAMN_SKI_WEDGE) && !uarmf) || (uarmf && uarmf->oartifact == ART_FASTER_THAN_ALL_OTHERS_INT))
-#define FemtrapActiveJessica	(FemaleTrapJessica || u.uprops[FEMTRAP_JESSICA].extrinsic || have_femtrapjessica() || (uarmf && uarmf->oartifact == ART_WEDDING_CHALLENGE))
+#define FemtrapActiveJessica	(FemaleTrapJessica || u.uprops[FEMTRAP_JESSICA].extrinsic || have_femtrapjessica() || (uarmf && uarmf->oartifact == ART_LEGENDARY_JESSICA) || (uarmf && uarmf->oartifact == ART_WEDDING_CHALLENGE))
 #define FemtrapActiveSolvejg	(FemaleTrapSolvejg || u.uprops[FEMTRAP_SOLVEJG].extrinsic || have_femtrapsolvejg() || (uarmf && uarmf->oartifact == ART_SOLVEJG_S_SQUEEZE_IN) )
 #define FemtrapActiveWendy	(FemaleTrapWendy || u.uprops[FEMTRAP_WENDY].extrinsic || have_femtrapwendy() || (uarmc && uarmc->oartifact == ART_DANOISE_S_LEAK) || autismweaponcheck(ART_TOMORROW_WENDY_S_CHOICENA) )
 #define FemtrapActiveKatharina	(FemaleTrapKatharina || u.uprops[FEMTRAP_KATHARINA].extrinsic || have_femtrapkatharina() || (uarmf && uarmf->oartifact == ART_KATHARINA_S_SIGH) )
@@ -1701,7 +1703,7 @@
 
 #define HHalf_physical_damage	u.uprops[HALF_PHDAM].intrinsic
 #define EHalf_physical_damage	u.uprops[HALF_PHDAM].extrinsic
-#define IntHalf_physical_damage	(HHalf_physical_damage || (powerfulimplants() && uimplant && uimplant->oartifact == ART_CLEAN_ASCENSION_RUN && In_endgame(&u.uz)) || (uarm && uarm->oartifact == ART_SWORDHILTSTOP) || (uarms && uarms->oartifact == ART_PROTECTION_SET) || (Stoned_chiller && Stoned && !(u.stonedchilltimer)) || (uarmf && uarmf->oartifact == ART_SO_WONDERFULLY_FLUFFY_SOFT) || (uarmf && uarmf->oartifact == ART_KRISTIN_S_INNER_FEEL && objects[uarmf->otyp].oc_color == CLR_RED) || (uarm && uarm->oartifact == ART_SKROLLAN_S_RUBBING) || (uarmh && uarmh->oartifact == ART_HABIBA_S_MATRONAGE) || (Race_if(PM_BOVER) && u.usteed))
+#define IntHalf_physical_damage	(HHalf_physical_damage || (powerfulimplants() && uimplant && uimplant->oartifact == ART_CLEAN_ASCENSION_RUN && In_endgame(&u.uz)) || (uarm && uarm->oartifact == ART_SWORDHILTSTOP) || (FemtrapActiveChloe && uarmf && uarmf->otyp == CHLOE_BALL_HEELS) || (uarms && uarms->oartifact == ART_PROTECTION_SET) || (Stoned_chiller && Stoned && !(u.stonedchilltimer)) || (uarmf && uarmf->oartifact == ART_SO_WONDERFULLY_FLUFFY_SOFT) || (uarmf && uarmf->oartifact == ART_KRISTIN_S_INNER_FEEL && objects[uarmf->otyp].oc_color == CLR_RED) || (uarm && uarm->oartifact == ART_SKROLLAN_S_RUBBING) || (uarmh && uarmh->oartifact == ART_HABIBA_S_MATRONAGE) || (Race_if(PM_BOVER) && u.usteed))
 #define ExtHalf_physical_damage	(EHalf_physical_damage || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == HALF_PHDAM) ) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_SHIELD_TONFA) || (bmwride(ART_PANZER_TANK)) || (uwep && uwep->otyp == SECRET_WHIP) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_IRON_OF_INNERMOST_JOY) || (uarmf && uarmf->otyp == FLEECLE_SHOES && PlayerInSexyFlats) || (uwep && uwep->oartifact == ART_KATI_GAVE_YOU_THE_ENGLISH_ && !Upolyd && (u.uhp < (u.uhpmax / 4)) ) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_HAPPY_IGNORANCE) || (uwep && uwep->otyp == ETERNAL_POLE) || (!PlayerInSexyFlats && !PlayerInHighHeels && uarmf && uarmf->oartifact == ART_FORMO____) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_RNG_S_EXTRAVAGANZA) || (uarmf && uarmf->oartifact == ART_HUGGING__GROPING_AND_STROK && u.ustuck) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_POTATOROK) || (uarmf && uarmf->oartifact == ART_KRISTIN_S_INNER_FEEL && objects[uarmf->otyp].oc_color == CLR_RED) || (uarmf && itemhasappearance(uarmf, APP_LEATHER_FLEECE_BOOTS) && (multi < 0)) || (uarmh && itemhasappearance(uarmh, APP_CLOUDY_HELMET) && isok(u.ux, u.uy) && IS_CLOUD(levl[u.ux][u.uy].typ) ) || (uarmc && (moves % 10 == 0) && itemhasappearance(uarmc, APP_SOFT_CLOAK) ) || (ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) )
 
 #define Half_physical_damage	(((IntHalf_physical_damage && u.nonintrinsicproperty != HALF_PHDAM) || (ExtHalf_physical_damage && u.nonextrinsicproperty != HALF_PHDAM)) && !NoHalf_physical_damage)

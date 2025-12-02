@@ -6755,6 +6755,7 @@ pillremoved:
 	case ANASTASIA_S_JEWEL:
 	case JESSICA_S_JEWEL:
 	case MARLENA_S_JEWEL:
+	case CHLOE_S_JEWEL:
 	case ANJA_S_JEWEL:
 	case CELIA_S_JEWEL:
 	case JUDITH_S_JEWEL:

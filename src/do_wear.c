@@ -432,6 +432,7 @@ Boots_on()
 	case RONJA_COMBAT_BOOTS:
 	case ARIANE_COMBAT_BOOTS:
 	case JOHANNA_COMBAT_BOOTS:
+	case CHLOE_BALL_HEELS:
 	case INGE_COMBAT_BOOTS:
 	case RUTH_SNEAKERS:
 	case MAGDALENA_COMBAT_BOOTS:
@@ -557,7 +558,7 @@ Boots_on()
     }
 
     if (uarmf && uarmf->oartifact == ART_ZERO_SUGAR) {
-	int nukaroll = rnd(108); /* keyword: "marlena" */
+	int nukaroll = rnd(109); /* keyword: "marlena" */
 
 	curse(uarmf);
 	uarmf->hvycurse = uarmf->stckcurse = TRUE;
@@ -1286,6 +1287,7 @@ Boots_off()
 	case RONJA_COMBAT_BOOTS:
 	case ARIANE_COMBAT_BOOTS:
 	case JOHANNA_COMBAT_BOOTS:
+	case CHLOE_BALL_HEELS:
 	case INGE_COMBAT_BOOTS:
 	case RUTH_SNEAKERS:
 	case MAGDALENA_COMBAT_BOOTS:

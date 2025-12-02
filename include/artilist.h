@@ -26636,6 +26636,18 @@ A("All The Fragrant Girls",				ELIF_S_JEWEL, /* randart feminism jewel, gives th
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 7000L ),
 
+A("Analeah's Continuity",				CHLOE_S_JEWEL, /* super fluctuating speed when carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("See by Lake",				CHLOE_BALL_HEELS, /* +1 all stats, +1 MC, if you'd lose alla there's a 50% chance that you don't lose any (90% if you were to lose only one point) */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 25000L ),
+
+A("The Legendary Jessica",				LOW_BOOTS, /* initialized to always be flatform sandals, jessica trap effect, prevents MS_FART_QUIET monsters from farting at you, allows you to #monster to produce tender farting noises, 50% chance to resist stat damage, 75% chance to resist stat debuff, 90% chance to resist permanent stat damage, invert status is reduced by 9 per turn, timebasedlowerchance starts with +50, 1 in 5 chance per turn that you have the killer spawn trap effect active */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

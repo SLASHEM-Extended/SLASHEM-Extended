@@ -529,6 +529,12 @@ int prop;
 			return "Madeleine's curse";
 		case FEMTRAP_MARLENA:
 			return "Marlena's curse";
+		case FEMTRAP_ANJA:
+			return "Anja's curse";
+		case FEMTRAP_CELIA:
+			return "Celia's curse";
+		case FEMTRAP_CHLOE:
+			return "Chloe's curse";
 		case FEMTRAP_JUDITH:
 			return "Judith's curse";
 		case FEMTRAP_SABINE:
@@ -4956,7 +4962,11 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ ANJA_SNEAKERS, "Anja krossovki" },
 	{ CELIA_SNEAKERS, "Celia krossovki" },
 
+	{ CHLOE_S_JEWEL, "Chloe dragotsennost'" },
+
 	/* todo area */
+
+	{ CHLOE_BALL_HEELS, "todo" },
 
 	{0, "" }
 };
@@ -8639,7 +8649,11 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ ANJA_SNEAKERS, "Anja krossovkalar" },
 	{ CELIA_SNEAKERS, "Celia krossovkalar" },
 
+	{ CHLOE_S_JEWEL, "Chloe marvarid" },
+
 	/* todo area */
+
+	{ CHLOE_BALL_HEELS, "todo" },
 
 	{0, "" }
 };

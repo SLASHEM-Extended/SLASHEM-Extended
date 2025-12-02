@@ -1101,6 +1101,9 @@ exprecalc(void)
 					case 108: /* Celia */
 						pline("You receive an elaborate auspicious message: At experience level %d, dogs spawn more often and will shit up the dungeon. Flying or levitating will not prevent you from stepping into their heaps of shit.", displaycheck);
 						break;
+					case 109: /* Chloe */
+						pline("You receive an elaborate auspicious message: At experience level %d, you will have to spend a lot of money for a hilariously expensive pair of designer heels. If you wear them, you'll be the center of attention, guaranteed.", displaycheck);
+						break;
 				}
 			} else pline("Your auspices say: %d %d", displaycheck, whichcheck);
 

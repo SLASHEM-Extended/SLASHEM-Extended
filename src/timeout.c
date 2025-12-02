@@ -2227,6 +2227,11 @@ nh_timeout()
 		doshittrap((struct obj *)0);
 	}
 
+	if (u.umoved && !rn2(2000) && uarmf && itemhasappearance(uarmf, APP_FLATFORM_SANDALS) && (rnd(u.ulevel) < 11) && (P_MAX_SKILL(P_SEXY_FLATS) == P_ISRESTRICTED) ) {
+		pline("Eep, you accidentally stepped into shit with your flatform sandals!");
+		doshittrap((struct obj *)0);
+	}
+
 	if (u.umoved && PlayerInHighHeels && !(uarmu && uarmu->oartifact == ART_MODELWALK) && !FemtrapActiveNaomi && !(uimplant && uimplant->oartifact == ART_TORSTEN_S_FEMININENESS && powerfulimplants()) && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED)) {
 
 		boolean highheelfail = TRUE;
@@ -2342,6 +2347,12 @@ nh_timeout()
 			nomovemsg = "";
 		}
 
+	}
+
+	if (u.umoved && uarmf && itemhasappearance(uarmf, APP_FLATFORM_SANDALS) && !rn2(50) && multi >= 0 && (P_MAX_SKILL(P_SEXY_FLATS) == P_ISRESTRICTED) ) {
+		You("trip over your own flatform soles.");
+		nomul(-2, "stumbling with flatform sandals", TRUE);
+		nomovemsg = "";
 	}
 
 	if (u.umoved && FemtrapActiveHenrietta && !rn2(1000)) {
@@ -4635,6 +4646,12 @@ nh_timeout()
 		 case FEMTRAP_MARLENA:
 
 			pline("The dungeon is less green now.");
+
+		 break;
+
+		 case FEMTRAP_CHLOE:
+
+			pline("Finally, no one is forcing you to wear stupid designer heels anymore. Your %s just can't wait to wear comfortable shoes again.", makeplural(body_part(FOOT)) );
 
 		 break;
 

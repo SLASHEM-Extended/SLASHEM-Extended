@@ -901,6 +901,7 @@ extern struct trap *ftrap;
 
 #define ANJA_TRAP 786
 #define CELIA_TRAP 787
+#define CHLOE_TRAP 788
 
 /* todo area
 
@@ -983,9 +984,9 @@ special ones that don't spawn randomly:
 
 */
 
-#define TIMERUN_TRAP	788
+#define TIMERUN_TRAP	789
 
-#define TRAPNUM 789
+#define TRAPNUM 790
 
 /* "newtraps" in particular, but also timerun and vulnerate may be targets for grepping --Amy */
 

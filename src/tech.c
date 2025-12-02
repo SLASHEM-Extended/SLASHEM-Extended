@@ -3412,7 +3412,7 @@ int abil;
 			return FALSE;
 			break;
 		case ABIL_POLY_FARTQUIET:
-			if (youmonst.data->msound == MS_FART_QUIET || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_BASIC && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_FART_QUIET) || (Race_if(PM_LOLI) && !Upolyd && mons[PM_LOLI].msound == MS_FART_QUIET) ) return TRUE;
+			if (youmonst.data->msound == MS_FART_QUIET || (uarmf && uarmf->oartifact == ART_LEGENDARY_JESSICA) || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_BASIC && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_FART_QUIET) || (Race_if(PM_LOLI) && !Upolyd && mons[PM_LOLI].msound == MS_FART_QUIET) ) return TRUE;
 			return FALSE;
 			break;
 		case ABIL_POLY_FARTNORMAL:

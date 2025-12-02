@@ -2607,7 +2607,7 @@ struct obj *otmp;
 		}
 
 	if (otmp && otmp->oartifact == ART_JOHN_CALEB_S_INGENIOSITY) {
-		int nukaroll = rnd(108); /* keyword: "marlena" */
+		int nukaroll = rnd(109); /* keyword: "marlena" */
 		u.tempnukaefftype = nukaroll;
 		u.tempnukaeffect += 10000;
 

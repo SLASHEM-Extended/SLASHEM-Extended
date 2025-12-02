@@ -507,6 +507,12 @@ shieldblockboo:
 			else You("skillfully evade %s.", onm);
 			return(0);
 
+	} else if (FemtrapActiveChloe && uarmf && uarmf->otyp == CHLOE_BALL_HEELS && !rn2(3)) {
+
+			if(Blind || !flags.verbose) You("skillfully evade a projectile.");
+			else You("skillfully evade %s.", onm);
+			return(0);
+
 	} else if (uarmg && uarmg->oartifact == ART_CLARA_S_GLOVES_OF_THE_TIDE && !rn2(10)) {
 
 			if(Blind || !flags.verbose) You("brush off a projectile.");

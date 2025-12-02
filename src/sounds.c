@@ -7215,7 +7215,36 @@ register struct monst *mtmp;
 		case MS_TREESQUAD:
 		case MS_METALMAFIA:
 		case MS_WOLLOH:
+		case MS_MODALSHOP:
+		case MS_SCIENTIST:
+		case MS_INCISION:
+		case MS_CRYTHROAT:
+		case MS_OMEN:
+		case MS_ARMORER:
+		case MS_HERCULES:
+		case MS_SILLY:
+		case MS_MIDI:
+		case MS_PIRATE:
+		case MS_GAGA:
+		case MS_SHOCKTROOPER:
+		case MS_MOLEST:
+		case MS_TEMPER:
+		case MS_SHIVERINGESLES:
+		case MS_GENDER:
+		case MS_OUTCAST:
+		case MS_AMNESIA:
+		case MS_BOS:
+		case MS_DREMORA:
+		case MS_MYTHICALDAWN:
+		case MS_BAN:
+		case MS_MUTANT:
+		case MS_ENCLAVE:
+		case MS_REGULATOR:
+		case MS_TALONCOMPANY:
 			soundbased = TRUE;
+			break;
+		case MS_HANDY:
+			if (mtmp->handytime) soundbased = TRUE;
 			break;
 	}
 
@@ -7937,16 +7966,19 @@ register struct monst *mtmp;
 		case MS_GIBBERISH:
 			pline("%s", generate_garbage_string());
 			break;
-		case MS_HANDY: /* todo for when they're in the middle of a call */
+		case MS_HANDY:
 			switch (distresslevel) {
 				case 1:
-					pline("%s screams.", Monnam(mtmp));
+					if (mtmp->handytime) pline("%s shouts 'Hey! Don't interrupt me, I'm on the phone!'", Monnam(mtmp));
+					else pline("%s screams.", Monnam(mtmp));
 					break;
 				case 2:
-					pline("%s writhes in pain.", Monnam(mtmp));
+					if (mtmp->handytime) pline("%s shouts 'Now leave me alone at once!', then switches to a softer voice and continues: 'Nah, not you of course...'", Monnam(mtmp));
+					else pline("%s writhes in pain.", Monnam(mtmp));
 					break;
 				case 3:
-					pline("%s is severely hurt!", Monnam(mtmp));
+					if (mtmp->handytime) pline("%s screams 'Fuck off you asshole! Leave me the fuck alone!', then suddenly changes voice and says softly: 'Oh, sorry, I got rudely interrupted by someone, please, don't hang up, I didn't mean you when I said those bad things!'", Monnam(mtmp));
+					else pline("%s is severely hurt!", Monnam(mtmp));
 					break;
 			}
 			break;

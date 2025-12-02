@@ -547,7 +547,7 @@ elena4:
 			}
 
 			/* synthetic sandals use M4_SANDALS */
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == SYNTHETIC_SANDALS) || (footwear && itemhasappearance(footwear, APP_PLOF_HEELS)) || (footwear && itemhasappearance(footwear, APP_RADIANT_HEELS)) || (randomsexyheels == 6) || mtmp->data == &mons[PM_ANIMATED_SYNTHETIC_SANDAL] || mtmp->data == &mons[PM_COLUMNAR_HEEL_SANDAL]) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == SYNTHETIC_SANDALS) || (footwear && itemhasappearance(footwear, APP_PLOF_HEELS)) || (footwear && itemhasappearance(footwear, APP_RADIANT_HEELS)) || (footwear && itemhasappearance(footwear, APP_FLATFORM_SANDALS)) || (randomsexyheels == 6) || mtmp->data == &mons[PM_ANIMATED_SYNTHETIC_SANDAL] || mtmp->data == &mons[PM_COLUMNAR_HEEL_SANDAL]) ) {
 elena5:
 				u.cnd_shoedamageamount++;
 				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -879,7 +879,7 @@ elena12:
 			}
 
 			/* superhard sandals use M4_SANDALS */
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ( (FemtrapActiveKerstin && spawnswithsandals(mtmp->data)) || (footwear && itemhasappearance(footwear, APP_SUPERHARD_SANDALS)) || (footwear && itemhasappearance(footwear, APP_BALL_HEELS)) || mtmp->data == &mons[PM_SEXY_CLAUDIA] || mtmp->data == &mons[PM_CLAUDIA_S_CUTE_WOODEN_SANDAL] || mtmp->data == &mons[PM_LOVELY_WOODEN_CLOG] || mtmp->data == &mons[PM_LOVELY_WOODEN_GETA] || (randomsexyheels == 30) ) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ( (FemtrapActiveKerstin && spawnswithsandals(mtmp->data)) || (footwear && itemhasappearance(footwear, APP_SUPERHARD_SANDALS)) || (footwear && itemhasappearance(footwear, APP_BALL_HEELS)) || (footwear && footwear->otyp == CHLOE_BALL_HEELS) || mtmp->data == &mons[PM_SEXY_CLAUDIA] || mtmp->data == &mons[PM_CLAUDIA_S_CUTE_WOODEN_SANDAL] || mtmp->data == &mons[PM_LOVELY_WOODEN_CLOG] || mtmp->data == &mons[PM_LOVELY_WOODEN_GETA] || (randomsexyheels == 30) ) ) {
 elenaWOODSANDAL:
 				u.cnd_shoedamageamount++;
 				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -7022,6 +7022,7 @@ struct monst *mon;
 		if (uarm && uarm->oartifact == ART_FREE_EXTRA_CANCEL) armpro++;
 		if (uarm && uarm->oartifact == ART_IMPRACTICAL_COMBAT_WEAR) armpro++;
 		if (uarmc && uarmc->oartifact == ART_RESISTANT_PUNCHING_BAG) armpro++;
+		if (uarmf && uarmf->oartifact == ART_SEE_BY_LAKE) armpro++;
 		if (uleft && uleft->otyp == RIN_THREE_POINT_SEVEN_PROTECTI) armpro++;
 		if (uright && uright->otyp == RIN_THREE_POINT_SEVEN_PROTECTI) armpro++;
 		if (uamul && uamul->oartifact == ART_GIT_DE_PRO) armpro++;

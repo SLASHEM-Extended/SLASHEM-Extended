@@ -1705,6 +1705,18 @@ have_femityjewel()
 }
 
 boolean
+have_analeahjewel()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->oartifact == ART_ANALEAH_S_CONTINUITY)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
 have_fragrantjewel()
 {
 	register struct obj *otmp;
@@ -3542,6 +3554,20 @@ have_femtrapcelia()
 		}
 	}
 	if (feminizecheck(108)) return TRUE;
+	return(FALSE);
+}
+
+int
+have_femtrapchloe()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == CHLOE_S_JEWEL) {
+			return(TRUE);
+		}
+	}
+	if (feminizecheck(109)) return TRUE;
 	return(FALSE);
 }
 
@@ -13708,6 +13734,8 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 			pline("These boots are soooooo gentle! Wearing them will use the sexy flats skill.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_BALLERINAS))
 			pline("This cute pair of pink girl shoes counts as sexy flats, at least as long as the base item type isn't high-heeled.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_FLATFORM_SANDALS))
+			pline("A super cuuuuute pair of platform sandals in rainbow colors. Every color has about a thickness of 1 cm, with the red insole on the top and the lower sole being purple. They totally count as sexy flats, but due to the very thick soles they also have some effects of wedge heels (although they don't actually use the wedge heels skill as long as their base type isn't high-heeled): if your sexy flats skill is good, they reduce your paralysis duration if you get paralyzed, but if you don't have the sexy flats skill at all they can cause you to slip.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_BUCKLE_SLIPPERS))
 			pline("These lady shoes have very cute metallic buckles <3! And therefore they count as sexy flats.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_CUDDLE_BOOTS))
@@ -16250,6 +16278,8 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 				pline("This pair of combat boots has very fleecy block heels. They carry Ariane's curse, and have 3 AC and 1 MC."); break;
 			case JOHANNA_COMBAT_BOOTS:
 				pline("Unlike most block-heeled lady boots, these aren't black, but red, which makes them look especially sexy. They carry Johanna's curse, and have 4 AC and 1 MC."); break;
+			case CHLOE_BALL_HEELS:
+				pline("A super glittery pair of sandals with ball-shaped heels. They carry Chloe's curse, and have 0 AC and 4 MC."); break;
 			case INGE_COMBAT_BOOTS:
 				pline("A ladylike pair of boots with block heels. They carry Inge's curse, and have 3 AC and 2 MC."); break;
 			case RUTH_SNEAKERS:
@@ -20688,6 +20718,8 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 				pline("While having this jewel in your inventory, you're afflicted with Jessica's curse. It autocurses and cannot be dropped while cursed."); break;
 			case MARLENA_S_JEWEL:
 				pline("While having this jewel in your inventory, you're afflicted with Marlena's curse. It autocurses and cannot be dropped while cursed."); break;
+			case CHLOE_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Chloe's curse. It autocurses and cannot be dropped while cursed."); break;
 			case ANJA_S_JEWEL:
 				pline("While having this jewel in your inventory, you're afflicted with Anja's curse. It autocurses and cannot be dropped while cursed."); break;
 			case CELIA_S_JEWEL:
@@ -35518,6 +35550,12 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: +3 to-hit and +13 acid damage, double celia trap effect, fast metabolism, heavily autocurses when wielded but doesn't make your hands unusable. It also grants acid immunity and very fast speed but disables stealth. While wielding it, whenever you'd lose alignment points, there's a 50%% chance that you don't lose any."); break;
 				case ART_ALL_THE_FRAGRANT_GIRLS:
 					pline("Artifact specs: carrying it gives the anja, kerstin and yasaman trap effects and also faster skill training, resist cold and fire, and double poison resistance. It can be invoked to generate a blessed potion of jolt cola at your feet."); break;
+				case ART_ANALEAH_S_CONTINUITY:
+					pline("Artifact specs: stronger version of fluctuating speed when carried."); break;
+				case ART_SEE_BY_LAKE:
+					pline("Artifact specs: +1 all stats and +1 MC when worn, and makes you resistant to effects that drain your alla."); break;
+				case ART_LEGENDARY_JESSICA:
+					pline("Artifact specs: jessica trap effect when worn, prevents monsters from producing tender farting noises at you and allows you to #monster to produce tender farting noises yourself, makes you highly resistant to various stat-damaging effects and if you get hit by a temporary invert status effect, it'll time out much faster than normal. You're also more likely to find items, but occasionally a killer spawn effect may happen."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;
