@@ -11615,7 +11615,7 @@ whisperchoice:
 			     objC->otyp == STONE_OF_MAGIC_RESISTANCE ||
 			     is_nastygraystone(objC) ||
 			     is_feminismstone(objC) ||
-			     (objC->otyp == LEATHER_LEASH && objC->leashmon) || (objC->otyp == INKA_LEASH && objC->leashmon) || (objC->otyp == ADAMANT_LEASH && objC->leashmon) ) && !stack_too_big(objC) && !rn2(5) ) {
+			     (objC->otyp == LEATHER_LEASH && objC->leashmon) || (objC->otyp == ARMORED_LEASH && objC->leashmon) || (objC->otyp == INKA_LEASH && objC->leashmon) || (objC->otyp == ADAMANT_LEASH && objC->leashmon) ) && !stack_too_big(objC) && !rn2(5) ) {
 			    	blessorcurse(objC, 2);
 			}
 		}
@@ -16126,6 +16126,7 @@ int spell;
 		splcaster += special;
 
 	if (uarm && uarm->otyp == ROBE_OF_POWER) splcaster -= 3;
+	if (uarmc && uarmc->otyp == ROBELIKE_CLOAK) splcaster -= 3;
 	if (uarm && uarm->oartifact == ART_ROBUN_NUMBER) splcaster -= 3;
 	if (uarm && itemhasappearance(uarm, APP_VANILLIC_ROBE)) splcaster -= 3;
 	if (uarm && uarm->otyp == ROBE_OF_SPELL_POWER) splcaster -= 3;

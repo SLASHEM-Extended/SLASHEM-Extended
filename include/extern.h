@@ -51,6 +51,8 @@ E void m_unleash(struct monst *,BOOLEAN_P,int);
 E void unleash_all(void);
 E boolean next_to_u(void);
 E struct obj *get_mleash(struct monst *);
+E int get_mleash_otyp(struct monst *);
+E int get_mleash_artifact_type(struct monst *);
 E void check_leash(XCHAR_P,XCHAR_P);
 E void use_floppies(struct obj *);
 E boolean um_dist(XCHAR_P,XCHAR_P,XCHAR_P);

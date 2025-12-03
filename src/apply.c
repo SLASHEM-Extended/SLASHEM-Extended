@@ -922,7 +922,7 @@ number_leashed()
 	register struct obj *obj;
 
 	for(obj = invent; obj; obj = obj->nobj)
-		if((obj->otyp == LEATHER_LEASH || obj->otyp == INKA_LEASH || obj->otyp == ADAMANT_LEASH) && obj->leashmon != 0) i++;
+		if((obj->otyp == LEATHER_LEASH || obj->otyp == ARMORED_LEASH || obj->otyp == INKA_LEASH || obj->otyp == ADAMANT_LEASH) && obj->leashmon != 0) i++;
 	return(i);
 }
 
@@ -953,7 +953,7 @@ int leashbreakchance; /* 0 = never break, other number = 1 in X chance to break 
 		Your("leash falls slack.");
 	}
 	for(otmp = invent; otmp; otmp = otmp->nobj)
-		if((otmp->otyp == LEATHER_LEASH || otmp->otyp == INKA_LEASH || otmp->otyp == ADAMANT_LEASH) &&
+		if((otmp->otyp == LEATHER_LEASH || otmp->otyp == ARMORED_LEASH || otmp->otyp == INKA_LEASH || otmp->otyp == ADAMANT_LEASH) &&
 				otmp->leashmon == (int)mtmp->m_id) {
 			otmp->leashmon = 0;
 			if (leashbreakchance > 0) {
@@ -973,7 +973,7 @@ unleash_all()		/* player is about to die (for bones) */
 	register struct monst *mtmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj)
-		if(otmp->otyp == LEATHER_LEASH || otmp->otyp == INKA_LEASH || otmp->otyp == ADAMANT_LEASH) otmp->leashmon = 0;
+		if(otmp->otyp == LEATHER_LEASH || otmp->otyp == ARMORED_LEASH || otmp->otyp == INKA_LEASH || otmp->otyp == ADAMANT_LEASH) otmp->leashmon = 0;
 	for(mtmp = fmon; mtmp; mtmp = mtmp->nmon)
 		mtmp->mleashed = 0;
 }
@@ -1090,11 +1090,43 @@ register struct monst *mtmp;
 
 	otmp = invent;
 	while(otmp) {
-		if((otmp->otyp == LEATHER_LEASH || otmp->otyp == INKA_LEASH || otmp->otyp == ADAMANT_LEASH) && otmp->leashmon == (int)mtmp->m_id)
+		if((otmp->otyp == LEATHER_LEASH || otmp->otyp == ARMORED_LEASH || otmp->otyp == INKA_LEASH || otmp->otyp == ADAMANT_LEASH) && (otmp->leashmon == (int)mtmp->m_id) )
 			return(otmp);
 		otmp = otmp->nobj;
 	}
 	return((struct obj *)0);
+}
+
+/* but sometimes we want to see exactly what type of leash it is... --Amy */
+int
+get_mleash_otyp(mtmp)	/* assuming mtmp->mleashed has been checked */
+register struct monst *mtmp;
+{
+	register struct obj *otmp;
+
+	otmp = invent;
+	while(otmp) {
+		if((otmp->otyp == LEATHER_LEASH || otmp->otyp == ARMORED_LEASH || otmp->otyp == INKA_LEASH || otmp->otyp == ADAMANT_LEASH) && (otmp->leashmon == (int)mtmp->m_id) )
+			return (otmp->otyp);
+		otmp = otmp->nobj;
+	}
+	return -1;
+}
+
+/* or maybe we want to see which specific artifact leash it is --Amy */
+int
+get_mleash_artifact_type(mtmp)	/* assuming mtmp->mleashed has been checked */
+register struct monst *mtmp;
+{
+	register struct obj *otmp;
+
+	otmp = invent;
+	while(otmp) {
+		if((otmp->otyp == LEATHER_LEASH || otmp->otyp == ARMORED_LEASH || otmp->otyp == INKA_LEASH || otmp->otyp == ADAMANT_LEASH) && (otmp->leashmon == (int)mtmp->m_id) && otmp->oartifact)
+			return (otmp->oartifact);
+		otmp = otmp->nobj;
+	}
+	return -1;
 }
 
 #endif /* OVLB */
@@ -1112,7 +1144,7 @@ next_to_u()
 			if (distu(mtmp->mx,mtmp->my) > 2) mnexto(mtmp);
 			if (distu(mtmp->mx,mtmp->my) > 2) {
 			    for(otmp = invent; otmp; otmp = otmp->nobj)
-				if((otmp->otyp == LEATHER_LEASH || otmp->otyp == INKA_LEASH || otmp->otyp == ADAMANT_LEASH) &&
+				if((otmp->otyp == LEATHER_LEASH || otmp->otyp == ARMORED_LEASH || otmp->otyp == INKA_LEASH || otmp->otyp == ADAMANT_LEASH) &&
 					otmp->leashmon == (int)mtmp->m_id) {
 				    if(otmp->cursed) return(FALSE);
 				    You_feel("%s leash go slack.",
@@ -1140,7 +1172,7 @@ register xchar x, y;
 	int chokedamage = 2;
 
 	for (otmp = invent; otmp; otmp = otmp->nobj) {
-	    if ((otmp->otyp != LEATHER_LEASH && otmp->otyp != INKA_LEASH && otmp->otyp != ADAMANT_LEASH) || otmp->leashmon == 0) continue;
+	    if ((otmp->otyp != LEATHER_LEASH && otmp->otyp != ARMORED_LEASH && otmp->otyp != INKA_LEASH && otmp->otyp != ADAMANT_LEASH) || otmp->leashmon == 0) continue;
 	    for (mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
 		if (DEADMONSTER(mtmp)) continue;
 		if ((int)mtmp->m_id == otmp->leashmon) break; 
@@ -1178,7 +1210,7 @@ register xchar x, y;
 		    }
 		} else {
 		    if (um_dist(mtmp->mx, mtmp->my, 5)) {
-			if (otmp->otyp == LEATHER_LEASH || otmp->otyp == ADAMANT_LEASH) {
+			if (otmp->otyp == LEATHER_LEASH || otmp->otyp == ARMORED_LEASH || otmp->otyp == ADAMANT_LEASH) {
 				pline("%s leash snaps loose!", s_suffix(Monnam(mtmp)));
 				m_unleash(mtmp, FALSE, 0);
 			} else if (otmp->otyp == INKA_LEASH) {
@@ -1781,8 +1813,8 @@ struct obj *obj;
 
 	if (obj->lamplit) {
 	    if (artifact_light(obj)) return FALSE; /* Artifact lights are never snuffed */
-	    if (obj->otyp == OIL_LAMP || obj->otyp == MAGIC_LAMP ||
-		obj->otyp == BRASS_LANTERN || obj->otyp == DIM_LANTERN || obj->otyp == POT_OIL ||
+	    if (obj->otyp == OIL_LAMP || obj->otyp == PIT_LAMP || obj->otyp == FEANORIAN_LAMP || obj->otyp == ELECTRIC_LAMP || obj->otyp == MAGIC_LAMP ||
+		obj->otyp == BRASS_LANTERN || obj->otyp == DWARVEN_LANTERN || obj->otyp == DIM_LANTERN || obj->otyp == POT_OIL ||
 		obj->otyp == TORCH) {
 		(void) get_obj_location(obj, &x, &y, 0);
 		if (obj->where == OBJ_MINVENT ? cansee(x,y) : !Blind)
@@ -1803,19 +1835,19 @@ struct obj *obj;
 {
 	xchar x, y;
 
-	if (!obj->lamplit && (obj->otyp == MAGIC_LAMP || ignitable(obj))) {
+	if (!obj->lamplit && (obj->otyp == MAGIC_LAMP || obj->otyp == FEANORIAN_LAMP || ignitable(obj))) {
 	    if ((obj->otyp == MAGIC_LAMP ||
 		 obj->otyp == CANDELABRUM_OF_INVOCATION) &&
 		obj->spe == 0)
 		return FALSE;
-	    else if (obj->otyp != MAGIC_LAMP && obj->age == 0)
+	    else if (obj->otyp != MAGIC_LAMP && obj->otyp != FEANORIAN_LAMP && obj->age == 0)
 		return FALSE;
 	    if (!get_obj_location(obj, &x, &y, 0))
 		return FALSE;
 	    if (obj->otyp == CANDELABRUM_OF_INVOCATION && obj->cursed)
 		return FALSE;
-	    if ((obj->otyp == OIL_LAMP || obj->otyp == MAGIC_LAMP ||
-		 obj->otyp == BRASS_LANTERN || obj->otyp == DIM_LANTERN) && obj->cursed && !rn2(2))
+	    if ((obj->otyp == OIL_LAMP || obj->otyp == PIT_LAMP || obj->otyp == FEANORIAN_LAMP || obj->otyp == ELECTRIC_LAMP || obj->otyp == MAGIC_LAMP ||
+		 obj->otyp == BRASS_LANTERN || obj->otyp == DWARVEN_LANTERN || obj->otyp == DIM_LANTERN) && obj->cursed && !rn2(2))
 		return FALSE;
 	    if (obj->where == OBJ_MINVENT ? cansee(x,y) : !Blind)
 		pline("%s %s light!", Yname2(obj), otense(obj, "catch"));
@@ -1865,8 +1897,8 @@ struct obj *obj;
 		return;
 	}
 	if(obj->lamplit) {
-		if(obj->otyp == OIL_LAMP || obj->otyp == MAGIC_LAMP || obj->otyp == DIM_LANTERN ||
-				obj->otyp == BRASS_LANTERN) {
+		if(obj->otyp == OIL_LAMP || obj->otyp == PIT_LAMP || obj->otyp == FEANORIAN_LAMP || obj->otyp == ELECTRIC_LAMP || obj->otyp == MAGIC_LAMP || obj->otyp == DIM_LANTERN ||
+				obj->otyp == BRASS_LANTERN || obj->otyp == DWARVEN_LANTERN) {
 		    pline("%s lamp is now off.", Shk_Your(buf, obj));
 		} else if(is_lightsaber(obj)) {
 		    if (obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == CYAN_DOUBLE_LIGHTSABER || obj->otyp == WHITE_DOUBLE_LIGHTSABER || obj->otyp == LASERDENT || obj->otyp == LASER_FLYAXE || obj->otyp == PINK_DOUBLE_LIGHTSWORD || obj->otyp == LASERXBOW || obj->otyp == SITH_STAFF) {
@@ -1935,7 +1967,7 @@ struct obj *obj;
 	/* magic lamps with an spe == 0 (wished for) cannot be lit */
 	if ((!Is_candle(obj) && obj->age == 0)
 			|| (obj->otyp == MAGIC_LAMP && obj->spe == 0)) {
-		if ((obj->otyp == BRASS_LANTERN) || (obj->otyp == DIM_LANTERN)
+		if ((obj->otyp == BRASS_LANTERN) || (obj->otyp == DWARVEN_LANTERN) || (obj->otyp == DIM_LANTERN)
 			|| is_lightsaber(obj)
 			) {
 			Your("%s has run out of power.", xname(obj));
@@ -1963,7 +1995,7 @@ struct obj *obj;
 		pline("%s for a moment, then %s.",
 		      Tobjnam(obj, "flicker"), otense(obj, "die"));
 	} else {
-		if(obj->otyp == OIL_LAMP || obj->otyp == MAGIC_LAMP || obj->otyp == BRASS_LANTERN || obj->otyp == DIM_LANTERN) {
+		if(obj->otyp == OIL_LAMP || obj->otyp == PIT_LAMP || obj->otyp == FEANORIAN_LAMP || obj->otyp == ELECTRIC_LAMP || obj->otyp == MAGIC_LAMP || obj->otyp == BRASS_LANTERN || obj->otyp == DWARVEN_LANTERN || obj->otyp == DIM_LANTERN) {
 		    check_unpaid(obj);
 		    pline("%s lamp is now on.", Shk_Your(buf, obj));
 		    if (obj->oartifact == ART_PSEUDO_MAGIC_LAMP) BishopGridbug += rnz(5000);
@@ -2170,7 +2202,7 @@ dorub()
 				badeffect();
 			}
 		}
-	} else if (obj->otyp == BRASS_LANTERN || obj->otyp == DIM_LANTERN) {
+	} else if (obj->otyp == BRASS_LANTERN || obj->otyp == DWARVEN_LANTERN || obj->otyp == DIM_LANTERN) {
 	    /* message from Adventure */
 	    pline("Rubbing the electric lamp is not particularly rewarding.");
 	    pline("Anyway, nothing exciting happens.");
@@ -6038,6 +6070,7 @@ dyechoice:
 		use_binning_kit(obj);
 		break;
 	case LEATHER_LEASH:
+	case ARMORED_LEASH:
 	case INKA_LEASH:
 	case ADAMANT_LEASH:
 		use_leash(obj);
@@ -6048,6 +6081,8 @@ dyechoice:
 	case BARDING:
 	case MESH_SADDLE:
 	case SEATBELT_SADDLE:
+	case REPELLANT_SADDLE:
+	case SOFTNESS_SADDLE:
 		res = use_saddle(obj);
 		break;
 	case MAGIC_WHISTLE:
@@ -6137,6 +6172,8 @@ dyechoice:
 			pline("Your whistle breaks apart.");
 			break; /* obj no longer exists now */
 		}
+
+		if (obj && obj->oartifact == ART_INVISO_PLUS_VALUE && !obj->cursed && !rn2(50) && obj->spe < 10) obj->spe++;
 
 		use_whistle(obj);
 		if (!rn2(isfriday ? 20 : 50)) {
@@ -6264,9 +6301,19 @@ dyechoice:
 		  if (uwep != obj && !wield_tool(obj, (const char *)0)) break;
 		/* Fall through - activate via use_lamp */
 	case OIL_LAMP:
+	case PIT_LAMP:
+	case FEANORIAN_LAMP:
+	case ELECTRIC_LAMP:
 	case MAGIC_LAMP:
 	case BRASS_LANTERN:
+	case DWARVEN_LANTERN:
 	case DIM_LANTERN:
+		if (obj && obj->oartifact == ART_FLICKERFLICKER && !obj->cursed) curse(obj);
+		if (obj && obj->oartifact == ART_GLOIN_S_BOOM) {
+			pline("*krrrrrrrrzzzzzzzzz*");
+			wake_nearby();
+			HAggravate_monster += rnz(1000);
+		}
 		use_lamp(obj);
 		break;
 
@@ -7287,6 +7334,10 @@ pillremoved:
 		pline("You may change the material of a base item type.");
 materialchoice:
 	    	{
+			int materialkittype = 0;
+			/* thwart those fucked-ass hangup cheater assholes --Amy */
+			if (obj->oartifact == ART_MATERIAL_RAIN) materialkittype = 1;
+
 			struct obj *otmpC = getobj(allowxall, "change the material of");
 			if (!otmpC) {
 				if (yn("Really exit with no object selected?") == 'y')
@@ -7298,13 +7349,10 @@ materialchoice:
 				pline("The material of that item cannot be changed!");
 				return(1);
 			} else {
-				if (obj->oartifact == ART_MATERIAL_RAIN) {
-					pline("Some items have had their base material changed.");
-					randommaterials();
-				}
 				objects[otmpC->otyp].oc_material = (obj->shirtmessage % (LASTMATERIAL + 1));
 
 				if (obj->oartifact == ART_NEW_OVERCAST) {
+					obj->in_use = TRUE; /* fuck you for trying to hangup cheat. fuck you. --Amy */
 					while (rn2(25)) {
 						int objtomodify;
 						objtomodify = -1;
@@ -7350,6 +7398,11 @@ materialchoice:
 				}
 
 				pline("Success! The item's material got changed.");
+
+				if (materialkittype == 1) {
+					pline("Some items have had their base material changed.");
+					randommaterials();
+				}
 			}
 
 		}
@@ -7363,6 +7416,11 @@ materialchoice:
 		break;
 
 	case ACID_SYRINGE:
+	{
+		int syringetype = 0;
+		/* fuck you for hangup cheating! either you win the game by playing it properly or not at all! play slashthem or dnethack if you want an easy game! --Amy */
+		if (obj && obj->oartifact == ART_BLUBBLEGARBLE) syringetype = 1;
+		if (obj && obj->oartifact == ART_DNN_DNN_DNN__DNDNDNDNNNNNN) syringetype = 2;
 
 		noartispeak = TRUE;
 
@@ -7373,24 +7431,80 @@ materialchoice:
 			delobj(obj);
 		}
 
+		if (syringetype == 1) {
+			pline("Whoa! The colors, man!");
+			make_hallucinated(HHallucination + rnz(500),FALSE,0L);
+		}
+
 		if (!Acid_resistance) {
 			pline("Ugghh, your %s burns!", body_part(BLOOD));
 			losehp(d(2, 2), "acid injection", KILLED_BY_AN);
 		}
 
+		if (syringetype == 2) {
+			incr_itimeout(&Invulnerable, rn1(5,5));
+			You_feel(FunnyHallu ? "like a super-duper hero!" : "invulnerable!");
+		}
+
 		if (Stoned) fix_petrification();
+	}
 
 		break;
 
 	case INFUSION:
+	{
+		int infusiontype = 0;
 
 		noartispeak = TRUE;
 
-		if (obj && obj->oartifact == ART_COVIDIVAC) {
+		/* dirty hangup cheater!!! proc useful effects AFTER the item is deleted --Amy */
+		if (obj && obj->oartifact == ART_COVIDIVAC) infusiontype = 1;
+		if (obj && obj->oartifact == ART_TURBOCURARINE_NEEDLE) infusiontype = 2;
+		if (obj && obj->oartifact == ART_SOPORIL_SHOT) infusiontype = 3;
+
+		delobj(obj);
+
+		if (infusiontype == 1) {
 			upnivel(TRUE);
 		}
 
-		delobj(obj);
+		if (infusiontype == 2) {
+			pline("You're badly poisoned!");
+			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_STR, -rnd(2), FALSE, TRUE);
+			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_DEX, -rnd(2), FALSE, TRUE);
+			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_CON, -rnd(2), FALSE, TRUE);
+			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_INT, -rnd(2), FALSE, TRUE);
+			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_WIS, -rnd(2), FALSE, TRUE);
+			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_CHA, -rnd(2), FALSE, TRUE);
+			statdrain(FALSE); /* can't resist */
+
+			You_feel("your muscles relaxing.");
+			You("gain paralysis resistance!");
+			incr_itimeout(&HFree_action, rnz(10000));
+			incr_itimeout(&HDiscount_action, rnz(10000));
+		}
+
+		if (infusiontype == 3) {
+			You("fall asleep.");
+			fall_asleep(-rnd(20), TRUE);
+			more_experienced(u.ulevel * 5 * (deepest_lev_reached(FALSE) + 1), 0);
+			newexplevel();
+			upnivel(FALSE);
+			if (!rn2(5)) {
+				int i, ii, lim;
+				i = rn2(A_MAX);
+				for (ii = 0; ii < A_MAX; ii++) {
+					lim = AMAX(i);
+					if (ABASE(i) < lim) {
+						ABASE(i) = lim;
+						flags.botl = 1;
+						break;
+					}
+					if(++i >= A_MAX) i = 0;
+				}
+			}
+		}
+
 		u.uhpmax++;
 		if (Role_if(PM_BLEEDER)) u.uhpmax += 5;
 		u.uenmax++;
@@ -7403,11 +7517,17 @@ materialchoice:
 
 		flags.botl = TRUE;
 		You("inject the solution into your veins, and suddenly your %s burns and a new strength fills your body!", body_part(BLOOD));
+	}
 
 		break;
 
 	case RAD_X:
-		{
+	{
+		int radxtype = 0;
+		/* prevent filthy hangup cheating --Amy */
+		if (obj && obj->oartifact == ART_RESIDUAL_BLOOD_EFFECT) radxtype = 1;
+		if (obj && obj->oartifact == ART_THROUGH_THE_HEAT) radxtype = 2;
+
 		int radxpower = rn1(500, 500);
 		if (!PlayerCannotUseSkills) {
 			switch (P_SKILL(P_HEALING_SPELL)) {
@@ -7421,21 +7541,32 @@ materialchoice:
 			}
 		}
 
-		if (obj && obj->oartifact == ART_RESIDUAL_BLOOD_EFFECT) u.extracontres = TRUE;
+		if (obj && obj->oartifact == ART_RAIMUND_S_RARITY) radxpower *= 10;
 
 		noartispeak = TRUE;
 
 		delobj(obj);
 
+		if (radxtype == 1) u.extracontres = TRUE;
+		if (radxtype == 2) {
+			incr_itimeout(&HFire_resistance, rnz(1000));
+			incr_itimeout(&HStun_resist, rnz(1000));
+			You_feel("capable of surviving the heat.");
+		}
+
 		incr_itimeout(&HCont_resist, radxpower);
 		You_feel("more resistant to contamination.");
 
-		}
+	}
 
 		break;
 
 	case RADAWAY:
-		{
+	{
+		int radawaytype = 0;
+		/* prevent filthy hangup cheating --Amy */
+		if (obj && obj->oartifact == ART_WRONG_CIGARETTE_BRAND) radawaytype = 1;
+
 		int radawaypower = 100;
 		if (!PlayerCannotUseSkills) {
 			switch (P_SKILL(P_HEALING_SPELL)) {
@@ -7454,30 +7585,43 @@ materialchoice:
 
 		delobj(obj);
 
+		if (radawaytype == 1) {
+			register struct obj *radcig;
+			radcig = mksobj(CIGARETTE, TRUE, FALSE, FALSE);
+			if (radcig) {
+				(void) pickup_object(radcig, radcig->quan, TRUE, TRUE);
+
+				if (uwep) setnotworn(uwep);
+				if (bimanual(radcig)) {
+					if (uswapwep) uswapwepgone();
+					if (uarms) remove_worn_item(uarms, TRUE);
+				}
+				if (!uwep) setuwep(radcig, FALSE, TRUE);
+				if (radcig) curse(radcig);
+				You("suddenly have to smoke a stinking cigarette!");
+			}
+		}
+
 		decontaminate(radawaypower);
 		Your("contamination has been reduced.");
 
-		}
+	}
 
 		break;
 
 	case CASINO_CHIP:
-
+	{
 		noartispeak = TRUE;
 
-		if (obj && obj->oartifact == ART_GAMBLEBOY) u.casinochips += 4;
-		if (obj && obj->oartifact == ART_WELCOMING_GIFT) u.casinochips += 19;
-		if (obj && obj->oartifact == ART_WOOZIE_S_FISH) {
-			struct monst *crpr = makemon(&mons[PM_CROUPIER], u.ux, u.uy, MM_ADJACENTOK);
-			if (crpr) {
-				crpr->mpeaceful = TRUE;
-				crpr->mfrenzied = FALSE;
-			}
+		int chiptype = 0;
 
-		}
-		if (obj && obj->oartifact == ART_MAIN_WIN) {
-			u.ugold += 2000;
-		}
+		/* you can't trust players... the fact that someone hangup cheated in the past means anyone could try to do it again,
+		 * and so we have to bulletproof the game as much as we can because we can't assume that they'll start playing by the rules --Amy */
+		if (obj && obj->oartifact == ART_GAMBLEBOY) chiptype = 1;
+		if (obj && obj->oartifact == ART_WELCOMING_GIFT) chiptype = 2;
+		if (obj && obj->oartifact == ART_WOOZIE_S_FISH) chiptype = 3;
+		if (obj && obj->oartifact == ART_MAIN_WIN) chiptype = 4;
+
 		if (obj && obj->oartifact == ART_SINDACCO_S_FORGERY) {
 			delobj(obj);
 			u.copwantedlevel += rnz(1000);
@@ -7487,8 +7631,23 @@ materialchoice:
 
 		delobj(obj);
 
+		if (chiptype == 1) u.casinochips += 4;
+		if (chiptype == 2) u.casinochips += 19;
+		if (chiptype == 3) {
+			struct monst *crpr = makemon(&mons[PM_CROUPIER], u.ux, u.uy, MM_ADJACENTOK);
+			if (crpr) {
+				crpr->mpeaceful = TRUE;
+				crpr->mfrenzied = FALSE;
+			}
+
+		}
+		if (chiptype == 4) {
+			u.ugold += 2000;
+		}
+
 		u.casinochips++;
 		You("add the chip to your collection. Your total amount of chips is %d now.", u.casinochips);
+	}
 
 		break;
 
@@ -7587,8 +7746,10 @@ blesschoice:
 
 	case BEAUTY_PACK:
 	{
-		boolean xxmindflay = FALSE;
-		if (obj->oartifact == ART_PRIMA_DONNA) xxmindflay = TRUE;
+		int beautypacktype = 0;
+		/* we absolutely don't want lame hangup cheating! --Amy */
+		if (obj->oartifact == ART_PRIMA_DONNA) beautypacktype = 1;
+		if (obj->oartifact == ART_IT_S_IN_THE_EYE_OF_THE_BEH) beautypacktype = 2;
 
 		noartispeak = TRUE;
 
@@ -7601,7 +7762,7 @@ blesschoice:
 			pline("Your charisma increases.");
 		}
 
-		if (xxmindflay) { /* because "helpfully" obj has been freed... --Amy */
+		if (beautypacktype == 1) { /* because "helpfully" obj has been freed... --Amy */
 			(void) adjattrib(A_CHA, 1, FALSE, TRUE);
 			(void) adjattrib(A_CHA, 1, FALSE, TRUE);
 			(void) adjattrib(A_CHA, 1, FALSE, TRUE);
@@ -7628,15 +7789,20 @@ blesschoice:
 			}
 
 		}
+		if (beautypacktype == 2) {
+			incr_itimeout(&HPolymorph_control, rnz(5000));
+			You_feel("capable of controlling your polymorphs.");
+		}
 
 	}
 		break;
 
 	case INTELLIGENCE_PACK:
 	{
-		boolean xxmindflay = FALSE;
-		if (obj->oartifact == ART_SUCK_THE_MIND_FLAYER) xxmindflay = TRUE;
-		boolean twohaspawn = (obj->oartifact == ART_TWOHA);
+		int intpacktype = 0;
+		/* fuck off hangup cheater bastard, play some easymode variants if you want to cheat, slex is meant for those who want to play properly --Amy */
+		if (obj->oartifact == ART_SUCK_THE_MIND_FLAYER) intpacktype = 1;
+		if (obj->oartifact == ART_TWOHA) intpacktype = 2;
 
 		if (obj->unpaid) {
 			struct monst *shkp = shop_keeper(*u.ushops);
@@ -7656,7 +7822,7 @@ blesschoice:
 			pline("Your wisdom increases.");
 		}
 
-		if (twohaspawn) {
+		if (intpacktype == 2) {
 			register struct obj *extratwohas;
 
 			extratwohas = mksobj(randarttwohandedsword(), TRUE, FALSE, FALSE);
@@ -7669,7 +7835,7 @@ blesschoice:
 			}
 		}
 
-		if (xxmindflay) { /* because "helpfully" obj has been freed... --Amy */
+		if (intpacktype == 1) { /* because "helpfully" obj has been freed... --Amy */
 			(void) adjattrib(A_INT, 1, FALSE, TRUE);
 			(void) adjattrib(A_INT, 1, FALSE, TRUE);
 			(void) adjattrib(A_INT, 1, FALSE, TRUE);
@@ -7702,7 +7868,11 @@ blesschoice:
 
 	case CHARGER:
 	{
-		boolean blessedcharging = (obj->oartifact == ART_AMMY_S_TEMPTATION);
+		int chargertype = 0;
+
+		/* nope, you WILL NOT GET to abuse hangup cheats here --Amy */
+		if (obj->oartifact == ART_AMMY_S_TEMPTATION) chargertype = 1;
+		if (obj->oartifact == ART_OUTRADIATE) chargertype = 2;
 
 		if (CannotSelectItemsInPrompts) return 0;
 
@@ -7714,10 +7884,6 @@ blesschoice:
 			}
 		}
 
-		if (obj->oartifact == ART_OUTRADIATE) {
-			decontaminate(1000);
-		}
-
 		if (obj->oartifact == ART_MULTICHARGE && rn2(5)) {
 			pline("You use one of the charges.");
 		} else {
@@ -7725,6 +7891,10 @@ blesschoice:
 			noartispeak = TRUE;
 		}
 		/* obj has been freed now unless it's the multicharge artifact and you hit the 80% chance */
+
+		if (chargertype == 2) {
+			decontaminate(1000);
+		}
 
 		pline("You may charge an object.");
 chargingchoice:
@@ -7736,7 +7906,7 @@ chargingchoice:
 				else goto chargingchoice;
 				return(0);
 			}
-			recharge(otmpC, blessedcharging ? 1 : 0);
+			recharge(otmpC, (chargertype == 1) ? 1 : 0);
 		}
 
 		use_skill(P_DEVICES,10);
@@ -7760,7 +7930,9 @@ chargingchoice:
 	}
 	case BITCHER:
 	{
-		boolean wildcunt = (obj->oartifact == ART_BITCHER____THE_WILD_CUNT);
+		int bitchertype = 0;
+		/* prevent hangup cheating just in case someone tries to be a wise guy --Amy */
+		if (obj->oartifact == ART_BITCHER____THE_WILD_CUNT) bitchertype = 1;
 
 		You_hear("bitching noises.");
 		pline("The bitcher dissolves in your hands...");
@@ -7803,20 +7975,20 @@ chargingchoice:
 
 		cure_feminism_traps();
 
-		if (wildcunt) randomfeminismtrap(rnz( (level_difficulty() + 2) * rnd(50)));
+		if (bitchertype == 1) randomfeminismtrap(rnz( (level_difficulty() + 2) * rnd(50)));
 
 		break;
 	}
 
 	case SWITCHER:
+	{
+		int switchertype = 0;
+		/* just in case someone tries to be super smart and hangup cheat... --Amy */
+		if (obj->oartifact == ART_I_THE_SAGE) switchertype = 1;
 
 		pline("You carefully pull the switch...");
 		if (!Blind) pline("The red status light goes out while the green light starts shining brightly!");
 		pline("The switcher dissolves in your hands...");
-
-		if (obj->oartifact == ART_I_THE_SAGE) {
-		    (void) makemon(&mons[PM_GUNNHILD_S_GENERAL_STORE], 0, 0, NO_MM_FLAGS);
-		}
 
 		if (obj->unpaid) {
 			struct monst *shkp = shop_keeper(*u.ushops);
@@ -7837,6 +8009,10 @@ chargingchoice:
 		delobj(obj);
 		noartispeak = TRUE;
 
+		if (switchertype == 1) {
+		    (void) makemon(&mons[PM_GUNNHILD_S_GENERAL_STORE], 0, 0, NO_MM_FLAGS);
+		}
+
 		use_skill(P_DEVICES,20);
 		if (Race_if(PM_FAWN)) {
 			use_skill(P_DEVICES,20);
@@ -7854,6 +8030,7 @@ chargingchoice:
 		}
 
 		cure_nasty_traps();
+	}
 
 		break;
 	case GOD_O_METER:
@@ -7867,7 +8044,7 @@ chargingchoice:
 			noartispeak = TRUE;
 			u.cnd_applycount++;
 			return 0;
-			}
+		}
 
 		if (Blind) {
 			pline("Being blind, you cannot see it.");

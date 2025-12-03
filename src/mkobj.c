@@ -2626,8 +2626,13 @@ boolean shopinit;
 				otmp->age = (long) rn1(300,600);
 				break;
 			case BRASS_LANTERN:
+			case DWARVEN_LANTERN:
 			case OIL_LAMP:
+			case ELECTRIC_LAMP:
 				otmp->age = (long) rn1(500,1000);
+				break;
+			case PIT_LAMP:
+				otmp->age = (long) rn1(5000,10000);
 				break;
 			case DIM_LANTERN:
 				otmp->age = (long) rn1(2500,5000);
@@ -3337,7 +3342,9 @@ boolean shopinit;
 					blessorcurse_on_creation(otmp, 5);
 					break;
 		case BRASS_LANTERN:
+		case DWARVEN_LANTERN:
 		case OIL_LAMP:
+		case PIT_LAMP:
 			otmp->recharged = 0;
 			if(!rn2(5)) otmp->recharged = rnd(7);
 			otmp->spe = 1;
@@ -3346,6 +3353,25 @@ boolean shopinit;
 						otmp->age += rnz(2000);
 					} else if (!rn2(20)) {
 						otmp->age = rnz(1000);
+					}
+					if (ishaxor) otmp->age *= 2;
+
+					if (!rn2(6) && In_lategame(&u.uz)) {
+						otmp->age += rnd(otmp->age);
+					}
+
+					otmp->lamplit = 0;
+					blessorcurse_on_creation(otmp, 5);
+					break;
+		case ELECTRIC_LAMP:
+			otmp->recharged = 0;
+			if(!rn2(5)) otmp->recharged = rnd(7);
+			otmp->spe = 1;
+					otmp->age = (long) rn1(5000,10000);
+					if (!rn2(20)) {
+						otmp->age += rnz(20000);
+					} else if (!rn2(20)) {
+						otmp->age = rnz(10000);
 					}
 					if (ishaxor) otmp->age *= 2;
 
@@ -3377,10 +3403,11 @@ boolean shopinit;
 					break;
 		case MAGIC_CANDLE:                
 		case MAGIC_LAMP:
+		case FEANORIAN_LAMP:
 			otmp->spe = 1;
-					otmp->lamplit = 0;
-					blessorcurse_on_creation(otmp, 2);
-					break;
+			otmp->lamplit = 0;
+			blessorcurse_on_creation(otmp, 2);
+			break;
 		case RED_DOUBLE_LIGHTSABER:
 		case CYAN_DOUBLE_LIGHTSABER:
 		case LASERDENT:

@@ -1393,6 +1393,12 @@ register const char *word;
 					body_part(HAND));
 		return(FALSE);
 	}
+	if (obj->otyp == ARMORED_LEASH && obj->leashmon != 0) {
+		if (*word)
+			pline_The("leash is tied around your %s.",
+					body_part(HAND));
+		return(FALSE);
+	}
 	if (obj->otyp == INKA_LEASH && obj->leashmon != 0) {
 		if (*word)
 			pline_The("leash is tied around your %s.",

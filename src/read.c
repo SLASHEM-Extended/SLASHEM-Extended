@@ -1621,7 +1621,7 @@ register struct obj *obj;
 	else {
 		if (obj->spe > 0) {
 		    obj->spe = 0;
-		    if (obj->otyp == OIL_LAMP || obj->otyp == BRASS_LANTERN || obj->otyp == DIM_LANTERN)
+		    if (obj->otyp == OIL_LAMP || obj->otyp == PIT_LAMP || obj->otyp == ELECTRIC_LAMP || obj->otyp == BRASS_LANTERN || obj->otyp == DWARVEN_LANTERN || obj->otyp == DIM_LANTERN)
 			obj->age = 0;
 		    Your("%s %s briefly.",xname(obj), otense(obj, "vibrate"));
 		} else {
@@ -1670,7 +1670,7 @@ struct obj *obj;
 			(obj->known || objects[obj->otyp].oc_uname));
 	if (is_lightsaber(obj))
 	    return TRUE;
-	if (obj->otyp == OIL_LAMP || obj->otyp == MAGIC_LAMP || obj->otyp == BRASS_LANTERN || obj->otyp == DIM_LANTERN || obj->otyp == TORCH) return TRUE;
+	if (obj->otyp == OIL_LAMP || obj->otyp == PIT_LAMP || obj->otyp == FEANORIAN_LAMP || obj->otyp == ELECTRIC_LAMP || obj->otyp == MAGIC_LAMP || obj->otyp == BRASS_LANTERN || obj->otyp == DWARVEN_LANTERN || obj->otyp == DIM_LANTERN || obj->otyp == TORCH) return TRUE;
 	if (is_weptool(obj))	/* specific check before general tools */
 	    return FALSE;
 	if (obj->oclass == TOOL_CLASS)
@@ -1992,7 +1992,9 @@ int curse_bless;
 		}
 		break;
 	    case OIL_LAMP:
+	    case ELECTRIC_LAMP:
 	    case BRASS_LANTERN:
+	    case DWARVEN_LANTERN:
 	    case TORCH:
 
 		if (is_cursed) {
@@ -2019,6 +2021,45 @@ int curse_bless;
 		} else {
 		    obj->spe = 1;
 		    obj->age += 1000;
+		    if (issoviet && obj->age > 1500) {
+				obj->age = 1500;
+				pline("Vasha legkaya sablya ne zaryazhena pravil'no, potomu chto tip ledyanogo bloka nenavidit Emi i vse izmeneniya, kotoryye ona proizvodit. Yasno, chto slesh ikh vsegda budet vonyuchey kuchey der'ma.");
+		    }
+		    p_glow1(obj);
+			u.cnd_chargingcount++;
+			use_skill(P_DEVICES, rnd(10));
+			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
+				if (!obj->cursed) bless(obj);
+				else uncurse(obj, FALSE);
+			}
+		}
+		break;
+	    case PIT_LAMP:
+
+		if (is_cursed) {
+		    stripspe(obj);
+		    if (obj->lamplit) {
+			if (!Blind)
+			    pline("%s out!", Tobjnam(obj, "go"));
+			end_burn(obj, TRUE);
+		    }
+		} else if (is_blessed) {
+		    obj->spe = 1;
+		    if (issoviet) {
+				obj->age = 1500;
+				pline("Vasha legkaya sablya ne zaryazhena pravil'no, potomu chto tip ledyanogo bloka nenavidit Emi i vse izmeneniya, kotoryye ona proizvodit. Yasno, chto slesh ikh vsegda budet vonyuchey kuchey der'ma.");
+		    }
+		    else obj->age += 20000;
+		    p_glow2(obj, NH_BLUE);
+			u.cnd_chargingcount++;
+			use_skill(P_DEVICES, rnd(10));
+			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
+				if (!obj->cursed) bless(obj);
+				else uncurse(obj, FALSE);
+			}
+		} else {
+		    obj->spe = 1;
+		    obj->age += 10000;
 		    if (issoviet && obj->age > 1500) {
 				obj->age = 1500;
 				pline("Vasha legkaya sablya ne zaryazhena pravil'no, potomu chto tip ledyanogo bloka nenavidit Emi i vse izmeneniya, kotoryye ona proizvodit. Yasno, chto slesh ikh vsegda budet vonyuchey kuchey der'ma.");
@@ -6815,7 +6856,7 @@ aliasagain:
 			     obj->otyp == STONE_OF_MAGIC_RESISTANCE ||
 			     is_nastygraystone(obj) ||
 			     is_feminismstone(obj) ||
-			     (obj->otyp == LEATHER_LEASH && obj->leashmon) || (obj->otyp == INKA_LEASH && obj->leashmon)  || (obj->otyp == ADAMANT_LEASH && obj->leashmon)) && !stack_too_big(obj) ) {
+			     (obj->otyp == LEATHER_LEASH && obj->leashmon) || (obj->otyp == ARMORED_LEASH && obj->leashmon) || (obj->otyp == INKA_LEASH && obj->leashmon)  || (obj->otyp == ADAMANT_LEASH && obj->leashmon)) && !stack_too_big(obj) ) {
 			    if (!rn2(5) ) {
 				tempcurseload = 0;
 				if (obj->cursed) tempcurseload += 10;
@@ -6932,7 +6973,7 @@ aliasagain:
 			     obj->otyp == STONE_OF_MAGIC_RESISTANCE ||
 			     is_nastygraystone(obj) ||
 			     is_feminismstone(obj) ||
-			     (obj->otyp == LEATHER_LEASH && obj->leashmon) || (obj->otyp == INKA_LEASH && obj->leashmon) || (obj->otyp == ADAMANT_LEASH && obj->leashmon) ) && !stack_too_big(obj) ) {
+			     (obj->otyp == LEATHER_LEASH && obj->leashmon) || (obj->otyp == ARMORED_LEASH && obj->leashmon) || (obj->otyp == INKA_LEASH && obj->leashmon) || (obj->otyp == ADAMANT_LEASH && obj->leashmon) ) && !stack_too_big(obj) ) {
 			    if(confused) blessorcurse(obj, 2);
 			    else if (!(sobj->otyp == SPE_REMOVE_CURSE) || !rn2(5) ) uncurse(obj, FALSE);
 			}

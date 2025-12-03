@@ -2367,6 +2367,10 @@ struct monst *mon;
 		else mmove += rnd(mmove);
 	}
 
+	if (mon->mleashed && (get_mleash_artifact_type(mon) == ART_SCHMIDT_S_CATZE) && mon->data->mlet == S_FELINE) {
+		mmove += rnd(24);
+	}
+
 	if (mon->data == &mons[PM_YEEK_HARD_WORKER] && !rn2(5)) mmove += 12;
 	if (mon->data == &mons[PM_ROUGE_HC_LADY] && !rn2(5)) mmove += 12;
 	if (mon->data == &mons[PM_INDRA] && !rn2(5)) mmove += 12;
@@ -8029,6 +8033,7 @@ xkilled(mtmp, dest)
 			/*if (otmp) typ = otmp->otyp;*/
 			/*if (mdat->msize < MZ_HUMAN && typ != FOOD_RATION
 			    && typ != LEATHER_LEASH
+			    && typ != ARMORED_LEASH
 			    && typ != INKA_LEASH
 			    && typ != ADAMANT_LEASH
 			    && typ != FIGURINE
@@ -10191,11 +10196,37 @@ int dmgamount; /* original amount of damage, which can be reduced */
 {
 	if (dmgamount < 1) return dmgamount;
 
+	/* effects that cause the monster to nullify all damage have to come first --Amy */
+	if (mercedesride(ART_JIMENA_S_SCRATCH, mtmp) && !rn2(10)) {
+		if (canseemon(mtmp)) pline("%s is unharmed!", Monnam(mtmp));
+		return 0;
+	}
+
 	if (Race_if(PM_BOVER) && u.usteed && (mtmp == u.usteed) && dmgamount > 1) dmgamount /= 2;
 	if (Race_if(PM_CARTHAGE) && u.usteed && (mtmp == u.usteed) && (mcalcmove(u.usteed) < 12) && dmgamount > 1) dmgamount /= 2;
 	if (uarm && uarm->oartifact == ART_MOTA_ROLA && u.usteed && (mtmp == u.usteed) && dmgamount > 1) {
 		dmgamount *= 4;
 		dmgamount /= 5;
+	}
+
+	if (fordride(SOFTNESS_SADDLE, mtmp) && dmgamount > 1) {
+		if (mercedesride(ART_LUZIE_S_THERAPY, mtmp)) {
+			dmgamount *= 2;
+			dmgamount /= 3;
+		} else {
+			dmgamount *= 4;
+			dmgamount /= 5;
+		}
+	}
+
+	if (mtmp->mleashed && (get_mleash_otyp(mtmp) == ARMORED_LEASH) && dmgamount > 1) {
+		if (get_mleash_artifact_type(mtmp) == ART_STEELNECK_BAND) {
+			dmgamount *= 2;
+			dmgamount /= 3;
+		} else {
+			dmgamount *= 4;
+			dmgamount /= 5;
+		}
 	}
 
 	if (FemtrapActiveMagdalena && humanoid(mtmp->data) && is_female(mtmp->data) && dmgamount > 1) dmgamount /= 2;

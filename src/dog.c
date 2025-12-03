@@ -891,7 +891,7 @@ long nmv;		/* number of moves */
 	/* recover lost hit points */
 	/* note by Amy: see mon_regen() in monmove.c too and keep that updated! */
 
-	if (!regenerates(mtmp->data) && (!mtmp->egotype_regeneration) ) imv /= (ishaxor ? 10 : 20);
+	if (!regenerates(mtmp->data) && !mercedesride(ART_AGAINCHEWER, mtmp) && (!mtmp->egotype_regeneration) ) imv /= (ishaxor ? 10 : 20);
 	if (mtmp->mhp + imv >= mtmp->mhpmax)
 	    mtmp->mhp = mtmp->mhpmax;
 	else mtmp->mhp += imv;

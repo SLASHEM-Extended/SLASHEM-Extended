@@ -244,7 +244,7 @@ boolean digest_meal;
 
 	/* golems used to not regenerate at all; in soviet mode they still don't, otherwise they regenerate 5x more slowly --Amy */
 	if (mon->mhp < mon->mhpmax && !(is_golem(mon->data) && (issoviet || rn2(5)) ) &&
-	    (!rn2(regenrate) || (FemtrapActiveGudrun && mon->female && humanoid(mon->data)) || regenerates(mon->data) || mon->egotype_regeneration )) mon->mhp++;
+	    (!rn2(regenrate) || (FemtrapActiveGudrun && mon->female && humanoid(mon->data)) || regenerates(mon->data) || mercedesride(ART_AGAINCHEWER, mon) || mon->egotype_regeneration )) mon->mhp++;
 
 	if ((mon->mhp < mon->mhpmax) && FemtrapActiveRonja && mon->female) mon->mhp++;
 
@@ -1562,6 +1562,8 @@ register struct monst *mtmp;
 	if (mdat == &mons[PM_NINJA_SALESMAN] && mtmp->mpeaceful && !mtmp->mtame && !rn2(500)) {
 		wakeup(mtmp);
 	}
+
+	if (mtmp->mleashed && (get_mleash_artifact_type(mtmp) == ART_CONFOWAP)) mtmp->mconf = FALSE;
 
 	if (mdat == &mons[PM_MILU]) {
 		mtmp->mconf = FALSE;
@@ -5023,7 +5025,7 @@ struct monst *mtmp;
 		    typ != SACK && typ != BAG_OF_HOLDING &&
 		    typ != BAG_OF_TRICKS && !Is_candle(obj) &&
 		    typ != OILSKIN_SACK && typ != TITAN_SACK && typ != LEATHER_LEASH &&
-		    typ != INKA_LEASH && typ != ADAMANT_LEASH &&
+		    typ != INKA_LEASH && typ != ADAMANT_LEASH && typ != ARMORED_LEASH &&
 		    typ != STETHOSCOPE && typ != BLINDFOLD && typ != EYECLOSER && typ != DRAGON_EYEPATCH && typ != TOWEL &&
 		    typ != TIN_WHISTLE && typ != GRASS_WHISTLE && typ != MAGIC_WHISTLE &&
 		    typ != MAGIC_MARKER && typ != TIN_OPENER && typ != BUDO_NO_SASU && typ != JEONTU_GEOM &&

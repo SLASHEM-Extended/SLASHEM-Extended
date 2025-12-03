@@ -2482,7 +2482,7 @@ playerextrinsicspeed()
 	if ((uarmf && uarmf->oartifact == ART_FASTER_THAN_ALL_OTHERS_INT) || autismringcheck(ART_POLYFAST) || (uwep && uwep->oartifact == ART_SHARPTOOTH_SAYER) || (uwep && uwep->oartifact == ART_ZANTASBORE) || (uwep && uwep->oartifact == ART_HACHURATE) || (uarmf && uarmf->oartifact == ART_BALE_OF_BODEN_SPEEDSTOCK) || (uwep && uwep->oartifact == ART_BOINDIL_S_CHOICE) || (uwep && uwep->oartifact == ART_MOVENIN_HOSASA) || (uarm && uarm->oartifact == ART_WHAT_MISS_I_CONSTANTLY) || (uwep && uwep->oartifact == ART_HACKNSLASH) || (uwep && uwep->oartifact == ART_NOOBY_BONUS_STYLE && bimanual(uwep)) || (uwep && uwep->oartifact == ART_STORM_ON) || (uwep && uwep->oartifact == ART_POWERVALK) || (uarmg && uarmg->oartifact == ART_GO_UP_AND_SOAR) || (uarmf && u.uinwater && uarmf->oartifact == ART_PECTORAL_HEEL) || (uwep && uwep->oartifact == ART_RACE_ALONG_THE_HIGHWAY) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_SONIC_TONFA) || (uchain && uchain->oartifact == ART_RACE_ALONG_THE_HIGHWAY && uball && uwep && (uwep == uball)) || (uarm && uarm->oartifact == ART_KWOURSTOMAL_) || (uarm && uarm->oartifact == ART_I_AM_YOUR_FALL) || (uwep && uwep->oartifact == ART_P_WING) || (uarmf && uarmf->oartifact == ART_SEVENLEAGUEBOOTS) ) return TRUE;
 	if ( (uarmf && uarmf->oartifact == ART_HERMES_S_SANDALS) || (uarmf && uarmf->oartifact == ART_BRIGHT_AURORA) || (uarmf && uarmf->oartifact == ART_FENG_HUO_LUN) || (uwep && uwep->oartifact == ART_HEAVY_CROSSBOW_OF_ETERNITY) || (uarmf && uarmf->oartifact == ART_FIGHTBOOST) || (uwep && uwep->oartifact == ART_TURNINGIKE) || (uwep && uwep->oartifact == ART_DAEMEL) || autismringcheck(ART_CERBERUS_BAND) || (uarm && uarm->oartifact == ART_NATAS_IS_BACK) || autismringcheck(ART_GOD_STAT) || (uarm && uarm->oartifact == ART_AGILITATE) || (uwep && uwep->oartifact == ART_HECTIC_OH_YEAH) ) return TRUE;
 	if ( (uarmg && uarmg->oartifact == ART_TSUNAMI_FISTS) || (uarm && uarm->oartifact == ART_FOR_ONCE_MOVING_SWIFTLY) || (uarm && uarm->oartifact == ART_GO_MIEFTLY_THEN_QUEUE__DAE) || autismringcheck(ART_WILDFIST) || (uarm && uarm->oartifact == ART_GAYIFIED) || (uwep && uwep->oartifact == ART_UNIQUE_WIND_BOW) || (uwep && uwep->oartifact == ART_BOW_SURROUNDED_BY_WIND) || (uwep && uwep->oartifact == ART_PLANTAR_NO) || (uwep && uwep->oartifact == ART_EORLINGAS) || (uarmg && uarmg->oartifact == ART_ELARA_S_AGILITY) || (uamul && uamul->oartifact == ART_HUMBLE_STUMBLE) || (uarmh && uarmh->oartifact == ART_VIGERIUN_) || (uamul && uamul->oartifact == ART_COMPLETELY_PUMPED) || (uamul && uamul->oartifact == ART_GREETINGS_FROM_EVI) || (uarmc && uarmc->oartifact == ART_JENNELLE_S_IMMEDIATIVITY) || (uarms && uarms->oartifact == ART_MOVERET) || (uarmc && uarmc->oartifact == ART_PHEWHAUNCH) || (uarm && uarm->oartifact == ART_SPEEDSTERSUIT) ) return TRUE;
-	if ( (uchain && uchain->oartifact == ART_JORMUNGANDR_S_COIL) || (uimplant && uimplant->oartifact == ART_GIULY_AH) || (uarm && uarm->oartifact == ART_MOTA_ROLA) || u.tempveryfastspeed || (uarmc && uarmc->oartifact == ART_CLARA_S_WINDCLOAK) || (uarmc && uarmc->oartifact == ART_HUNTING_TIME_HINT) || (uarmf && uarmf->oartifact == ART_ADHS_DIAGNOSIS) || (uamul && uamul->oartifact == ART_ADELAIDE_S_RACING) || bmwride(ART_MARLOWE_S_CAMEL) || (uarmf && uarmf->oartifact == ART_MAREN_S_GALE_BOOTS) || (uarmf && uarmf->oartifact == ART_DARIUS_S_STORMWALKERS) || (uwep && uwep->oartifact == ART_PIPPA_S_URGE) ) return TRUE;
+	if ( (uchain && uchain->oartifact == ART_JORMUNGANDR_S_COIL) || (uimplant && uimplant->oartifact == ART_GIULY_AH) || (uarm && uarm->oartifact == ART_MOTA_ROLA) || u.tempveryfastspeed || (uarmc && uarmc->oartifact == ART_CLARA_S_WINDCLOAK) || bmwride(ART_KERSTIN_S_PROJECTION_LEAD) || (uarmc && uarmc->oartifact == ART_HUNTING_TIME_HINT) || (uarmf && uarmf->oartifact == ART_ADHS_DIAGNOSIS) || (uamul && uamul->oartifact == ART_ADELAIDE_S_RACING) || bmwride(ART_MARLOWE_S_CAMEL) || (uarmf && uarmf->oartifact == ART_MAREN_S_GALE_BOOTS) || (uarmf && uarmf->oartifact == ART_DARIUS_S_STORMWALKERS) || (uwep && uwep->oartifact == ART_PIPPA_S_URGE) ) return TRUE;
 
 	return FALSE;
 }
@@ -5968,7 +5968,7 @@ goodeffect()
 					     obj->otyp == STONE_OF_MAGIC_RESISTANCE ||
 					     is_nastygraystone(obj) ||
 					     is_feminismstone(obj) ||
-					     (obj->otyp == LEATHER_LEASH && obj->leashmon) || (obj->otyp == INKA_LEASH && obj->leashmon) || (obj->otyp == ADAMANT_LEASH && obj->leashmon) ) && !stack_too_big(obj) ) {
+					     (obj->otyp == LEATHER_LEASH && obj->leashmon) || (obj->otyp == ARMORED_LEASH && obj->leashmon) || (obj->otyp == INKA_LEASH && obj->leashmon) || (obj->otyp == ADAMANT_LEASH && obj->leashmon) ) && !stack_too_big(obj) ) {
 						uncurse(obj, FALSE);
 					}
 
@@ -11041,6 +11041,10 @@ register struct monst *mtmp;
 
 	if (uwep && uwep->oartifact == ART_RADIANT_WARDEN) return;
 
+	if (fordride(REPELLANT_SADDLE, mtmp) && rn2(2)) return;
+	if (mercedesride(ART_COMPLETE_TRIAGE, mtmp) && rn2(5)) return;
+	if (mtmp->mleashed && (get_mleash_artifact_type(mtmp) == ART_NUTRIALPO) && !rn2(10)) return;
+
 	boolean vis = cansee(mtmp->mx,mtmp->my);
 
 	switch (rnd(51)) {
@@ -11135,11 +11139,11 @@ register struct monst *mtmp;
 		case 34:
 		case 35:
 		case 36:
+			mtmp->bleedout += rnd(1 + (level_difficulty() * 5));
 			if (vis) {
 				if (!mtmp->bleedout) pline("%s starts bleeding.", Monnam(mtmp));
 				else pline("%s's bleeding gets stronger.", Monnam(mtmp));
 			}
-			mtmp->bleedout += rnd(1 + (level_difficulty() * 5));
 			break;
 		case 37:
 		case 38:
@@ -11196,80 +11200,116 @@ register struct monst *mtmp;
 	if (!mtmp) return; /* shouldn't happen */
 	if (!mtmp->mtame) return; /* shouldn't happen either */
 
+	/* still possible for the pet to resist, but if that's the case, it needs to make a saving throw for each individual effect --Amy */
+	int effectchance = 100;
+	if (fordride(REPELLANT_SADDLE, mtmp)) effectchance /= 2;
+	if (mercedesride(ART_COMPLETE_TRIAGE, mtmp)) effectchance /= 5;
+	if (mtmp->mleashed && (get_mleash_artifact_type(mtmp) == ART_NUTRIALPO)) {
+		effectchance *= 9;
+		effectchance /= 10;
+	}
+
 	boolean vis = cansee(mtmp->mx,mtmp->my);
 
-	if (mtmp->mspeed != MSLOW) {
-		mon_adjust_speed(mtmp, -1, (struct obj *)0);
-		if (vis) pline("%s slows down.", Monnam(mtmp));
+	if (rn2(100) < effectchance) {
+		if (mtmp->mspeed != MSLOW) {
+			mon_adjust_speed(mtmp, -1, (struct obj *)0);
+			if (vis) pline("%s slows down.", Monnam(mtmp));
+		}
 	}
 
-	mtmp->mhpmax -= rnd(10);
-	if (mtmp->mhpmax < 1) mtmp->mhpmax = 1;
-	if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = mtmp->mhpmax;
-	if (vis) pline("%s's health is damaged.", Monnam(mtmp));
-
-	mtmp->m_enmax -= rnd(10);
-	if (mtmp->m_enmax < 0) mtmp->m_enmax = 0;
-	if (mtmp->m_en > mtmp->m_enmax) mtmp->m_en = mtmp->m_enmax;
-	if (vis) pline("%s seems less energized.", Monnam(mtmp));
-
-	if (!mtmp->mcan) {
-		cancelmonsterlite(mtmp);
-		if (vis) pline("%s is cancelled.", Monnam(mtmp));
+	if (rn2(100) < effectchance) {
+		mtmp->mhpmax -= rnd(10);
+		if (mtmp->mhpmax < 1) mtmp->mhpmax = 1;
+		if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = mtmp->mhpmax;
+		if (vis) pline("%s's health is damaged.", Monnam(mtmp));
 	}
 
-	monflee(mtmp, rnd(1 + level_difficulty()), FALSE, TRUE, FALSE);
-	if (vis) pline("%s becomes afraid.", Monnam(mtmp));
+	if (rn2(100) < effectchance) {
+		mtmp->m_enmax -= rnd(10);
+		if (mtmp->m_enmax < 0) mtmp->m_enmax = 0;
+		if (mtmp->m_en > mtmp->m_enmax) mtmp->m_en = mtmp->m_enmax;
+		if (vis) pline("%s seems less energized.", Monnam(mtmp));
+	}
 
-	{
+	if (rn2(100) < effectchance) {
+		if (!mtmp->mcan) {
+			cancelmonsterlite(mtmp);
+			if (vis) pline("%s is cancelled.", Monnam(mtmp));
+		}
+	}
+
+	if (rn2(100) < effectchance) {
+		monflee(mtmp, rnd(1 + level_difficulty()), FALSE, TRUE, FALSE);
+		if (vis) pline("%s becomes afraid.", Monnam(mtmp));
+	}
+
+	if (rn2(100) < effectchance) {
 		int rnd_tmp;
 		rnd_tmp = rnd(1 + (level_difficulty() * 2));
 		if ((rnd_tmp += mtmp->mblinded) > 127) rnd_tmp = 127;
 		mtmp->mblinded = rnd_tmp;
 		mtmp->mcansee = 0;
-	}
-	if (vis) pline("%s is blinded.", Monnam(mtmp));
 
-	{
+		if (vis) pline("%s is blinded.", Monnam(mtmp));
+	}
+
+	if (rn2(100) < effectchance) {
 		int rnd_tmp;
 		rnd_tmp = rnd(1 + level_difficulty());
 		if (rnd_tmp > 1) rnd_tmp = rnd(rnd_tmp);
 		if (rnd_tmp > 127) rnd_tmp = 127;
 		mtmp->mcanmove = 0;
 		mtmp->mfrozen = rnd_tmp;
+
+		if (vis) pline("%s is paralyzed.", Monnam(mtmp));
 	}
 
-	mtmp->mstun = TRUE;
-	if (vis) pline("%s is stunned.", Monnam(mtmp));
-
-	mtmp->mconf = TRUE;
-	if (vis) pline("%s is confused.", Monnam(mtmp));
-
-	if (vis) {
-		if (!mtmp->bleedout) pline("%s starts bleeding.", Monnam(mtmp));
-		else pline("%s's bleeding gets stronger.", Monnam(mtmp));
+	if (rn2(100) < effectchance) {
+		mtmp->mstun = TRUE;
+		if (vis) pline("%s is stunned.", Monnam(mtmp));
 	}
-	mtmp->bleedout += rnd(1 + (level_difficulty() * 5));
 
-	mtmp->healblock += rnd(1 + (level_difficulty() * 5));
-	if (vis) pline("%s's healing is blocked.", Monnam(mtmp));
+	if (rn2(100) < effectchance) {
+		mtmp->mconf = TRUE;
+		if (vis) pline("%s is confused.", Monnam(mtmp));
+	}
 
-	mtmp->inertia += rnd(1 + (level_difficulty() * rnd(50)));
-	if (vis) pline("%s slows to a crawl.", Monnam(mtmp));
+	if (rn2(100) < effectchance) {
+		mtmp->bleedout += rnd(1 + (level_difficulty() * 5));
+		if (vis) {
+			if (!mtmp->bleedout) pline("%s starts bleeding.", Monnam(mtmp));
+			else pline("%s's bleeding gets stronger.", Monnam(mtmp));
+		}
+	}
 
-	makedoghungry(mtmp, (1 + level_difficulty()) * rnd(50));
-	if (vis) pline("%s looks hungry.", Monnam(mtmp));
+	if (rn2(100) < effectchance) {
+		mtmp->healblock += rnd(1 + (level_difficulty() * 5));
+		if (vis) pline("%s's healing is blocked.", Monnam(mtmp));
+	}
 
-	if (mtmp->mhpmax > (Role_if(PM_ZOOKEEPER) ? 480 : 240)) {
-		int reduction = rnd(mtmp->mhpmax / 10);
-		if (reduction < 1) reduction = 1; /* shouldn't happen */
-		mtmp->mhpmax -= reduction;
-		if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = mtmp->mhpmax;
-		if (vis) pline("%s is in pain!", Monnam(mtmp));
-	} else if (mtmp->mhpmax > (Role_if(PM_ZOOKEEPER) ? 320 : 160)) {
-		mtmp->mhpmax--;
-		if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = mtmp->mhpmax;
-		if (vis) pline("%s seems to be hurt!", Monnam(mtmp));
+	if (rn2(100) < effectchance) {
+		mtmp->inertia += rnd(1 + (level_difficulty() * rnd(50)));
+		if (vis) pline("%s slows to a crawl.", Monnam(mtmp));
+	}
+
+	if (rn2(100) < effectchance) {
+		makedoghungry(mtmp, (1 + level_difficulty()) * rnd(50));
+		if (vis) pline("%s looks hungry.", Monnam(mtmp));
+	}
+
+	if (rn2(100) < effectchance) {
+		if (mtmp->mhpmax > (Role_if(PM_ZOOKEEPER) ? 480 : 240)) {
+			int reduction = rnd(mtmp->mhpmax / 10);
+			if (reduction < 1) reduction = 1; /* shouldn't happen */
+			mtmp->mhpmax -= reduction;
+			if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = mtmp->mhpmax;
+			if (vis) pline("%s is in pain!", Monnam(mtmp));
+		} else if (mtmp->mhpmax > (Role_if(PM_ZOOKEEPER) ? 320 : 160)) {
+			mtmp->mhpmax--;
+			if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = mtmp->mhpmax;
+			if (vis) pline("%s seems to be hurt!", Monnam(mtmp));
+		}
 	}
 
 }
@@ -11454,11 +11494,11 @@ register struct monst *mtmp;
 		case 166: mtmp->egotype_radiator = 1; break;
 		case 167: mtmp->egotype_weeper = 1; break;
 		case 168: mtmp->egotype_reactor = 1; break;
-		case 169: mtmp->egotype_aligner = 1; break;
+		case 169:
 		case 170: mtmp->egotype_aligner = 1; break;
 		case 171: mtmp->egotype_aggravator = 1; break;
-		case 172: mtmp->egotype_contaminator = 1; break;
-		case 173: mtmp->egotype_contaminator = 1; break;
+		case 172:
+		case 173:
 		case 174: mtmp->egotype_contaminator = 1; break;
 		case 175: mtmp->egotype_trembler = 1; break;
 		case 176:
@@ -18457,6 +18497,7 @@ boolean canarti;
 	    otyp2 = obj->otyp;
 	    obj->otyp = otyp;
 	    if (obj->otyp == LEATHER_LEASH && obj->leashmon) o_unleash(obj);
+	    if (obj->otyp == ARMORED_LEASH && obj->leashmon) o_unleash(obj);
 	    if (obj->otyp == INKA_LEASH && obj->leashmon) o_unleash(obj);
 	    if (obj->otyp == ADAMANT_LEASH && obj->leashmon) o_unleash(obj);
 	    remove_worn_item(obj, TRUE);
@@ -19120,7 +19161,7 @@ poof:
     more_dips:
 
 	/* Allow filling of MAGIC_LAMPs to prevent identification by player */
-	if ((obj->otyp == OIL_LAMP || obj->otyp == MAGIC_LAMP) &&
+	if ((obj->otyp == OIL_LAMP || obj->otyp == PIT_LAMP || obj->otyp == FEANORIAN_LAMP || obj->otyp == ELECTRIC_LAMP || obj->otyp == MAGIC_LAMP) &&
 	   (potion->otyp == POT_OIL)) {
 
 	    /* Turn off engine before fueling, turn off fuel too :-)  */
@@ -19144,6 +19185,7 @@ poof:
                 You("fill your %s with oil.", yname(obj));
 		if (!(uarmc && itemhasappearance(uarmc, APP_FUEL_CLOAK))) check_unpaid(potion);	/* Yendorian Fuel Tax */
 		obj->age += 2*potion->age;	/* burns more efficiently */
+		if (obj->otyp == PIT_LAMP) obj->age += 18*potion->age;
 		if (potion->oartifact == ART_YENDORIAN_RESOURCE) obj->age += 10*potion->age;
 		if (obj->oartifact == ART_EVERYGLASS_IS_WEIRD) obj->age += 5000;
 		if (issoviet && obj->age > 1500L) obj->age = 1500L;

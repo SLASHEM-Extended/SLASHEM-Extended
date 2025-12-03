@@ -498,7 +498,10 @@ struct obj {
 /* MAGIC_LAMP intentionally excluded below */
 /* age field of this is relative age rather than absolute */
 #define age_is_relative(otmp)	((otmp)->otyp == BRASS_LANTERN\
+				|| (otmp)->otyp == DWARVEN_LANTERN\
 				|| (otmp)->otyp == OIL_LAMP\
+				|| (otmp)->otyp == PIT_LAMP\
+				|| (otmp)->otyp == ELECTRIC_LAMP\
 				|| (otmp)->otyp == DIM_LANTERN\
 				|| (otmp)->otyp == TORCH\
 				|| (otmp)->otyp == CANDELABRUM_OF_INVOCATION\
@@ -515,7 +518,10 @@ struct obj {
 				|| (otmp)->otyp == POT_OIL)
 /* object can be ignited */
 #define ignitable(otmp)	((otmp)->otyp == BRASS_LANTERN\
+				|| (otmp)->otyp == DWARVEN_LANTERN\
 				|| (otmp)->otyp == OIL_LAMP\
+				|| (otmp)->otyp == PIT_LAMP\
+				|| (otmp)->otyp == ELECTRIC_LAMP\
 				|| (otmp)->otyp == DIM_LANTERN\
 				|| (otmp)->otyp == TORCH\
 				|| (otmp)->otyp == CANDELABRUM_OF_INVOCATION\

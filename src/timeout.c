@@ -6851,14 +6851,17 @@ long timeout;
 		    
 	    case TORCH:
 	    case BRASS_LANTERN:
+	    case DWARVEN_LANTERN:
 	    case DIM_LANTERN:
 	    case OIL_LAMP:
+	    case PIT_LAMP:
+	    case ELECTRIC_LAMP:
 		switch((int)obj->age) {
 		    case 150:
 		    case 100:
 		    case 50:
 			if (canseeit) {
-			    if (obj->otyp == BRASS_LANTERN || obj->otyp == DIM_LANTERN)
+			    if (obj->otyp == BRASS_LANTERN || obj->otyp == DWARVEN_LANTERN || obj->otyp == DIM_LANTERN)
 				lantern_message(obj);
 			    else
 				see_lamp_flicker(obj,
@@ -6868,7 +6871,7 @@ long timeout;
 
 		    case 25:
 			if (canseeit) {
-			    if (obj->otyp == BRASS_LANTERN || obj->otyp == DIM_LANTERN)
+			    if (obj->otyp == BRASS_LANTERN || obj->otyp == DWARVEN_LANTERN || obj->otyp == DIM_LANTERN)
 				lantern_message(obj);
 			    else {
 				switch (obj->where) {
@@ -6892,7 +6895,7 @@ long timeout;
 			    switch (obj->where) {
 				case OBJ_INVENT:
 				case OBJ_MINVENT:
-				    if (obj->otyp == BRASS_LANTERN || obj->otyp == DIM_LANTERN)
+				    if (obj->otyp == BRASS_LANTERN || obj->otyp == DWARVEN_LANTERN || obj->otyp == DIM_LANTERN)
 					pline("%s lantern has run out of power.",
 					    whose);
 				    else
@@ -6900,7 +6903,7 @@ long timeout;
 					    whose, xname(obj));
 				    break;
 				case OBJ_FLOOR:
-				    if (obj->otyp == BRASS_LANTERN || obj->otyp == DIM_LANTERN)
+				    if (obj->otyp == BRASS_LANTERN || obj->otyp == DWARVEN_LANTERN || obj->otyp == DIM_LANTERN)
 					You("see a lantern run out of power.");
 				    else
 					You("see %s go out.",
@@ -7228,23 +7231,25 @@ begin_burn(obj, already_lit)
 	boolean already_lit;
 {
 	int radius = 3;
-	if (u.currentweather == WEATHER_FOG) radius = 2;
 	long turns = 0;
 	boolean do_timer = TRUE;
 	int lightsaberchance = 0;
 	int lightsaberchance2 = 0;
 	int lightsaberchance3 = 0;
 
-	if (obj->age == 0 && obj->otyp != MAGIC_LAMP &&
+	if (obj->age == 0 && obj->otyp != MAGIC_LAMP && obj->otyp != FEANORIAN_LAMP &&
 		obj->otyp != MAGIC_CANDLE && !artifact_light(obj))
 	    return;
 
 	switch (obj->otyp) {
 	    case MAGIC_LAMP:
+	    case FEANORIAN_LAMP:
 	    case MAGIC_CANDLE:
 		obj->lamplit = 1;
 		do_timer = FALSE;
 		if (obj->otyp == MAGIC_CANDLE) obj->age = 300L;
+		/* radius = 3; not needed since that's the default */
+		if (obj->otyp == FEANORIAN_LAMP) radius++; /* radius 4 */
 		break;
 	    case LASER_POLE:
 		lightsaberchance = 0;
@@ -7424,10 +7429,8 @@ begin_burn(obj, already_lit)
 	    case BLACK_LIGHTSABER:
 	    	turns = 1;
     	    	radius = 1;
-		if (obj && obj->otyp == LIGHTTORCH) {
-			radius = 3;
-			if (u.currentweather == WEATHER_FOG) radius = 2;
-		}
+		if (obj && obj->otyp == LIGHTTORCH)	radius = 3;
+
 		if (obj->oartifact == ART_LIGHTSABER_PROTOTYPE || obj->oartifact == ART_DEFINITE_LIGHTSABER){
 			do_timer = FALSE;
 			obj->lamplit = 1;
@@ -7443,8 +7446,11 @@ begin_burn(obj, already_lit)
 		break;
 
 	    case BRASS_LANTERN:
+	    case DWARVEN_LANTERN:
 	    case DIM_LANTERN:
 	    case OIL_LAMP:
+	    case PIT_LAMP:
+	    case ELECTRIC_LAMP:
 	    case TORCH:
 		/* magic times are 150, 100, 50, 25, and 0 */
 		if (obj->age > 150L)
@@ -7458,10 +7464,13 @@ begin_burn(obj, already_lit)
 		else
 		    turns = obj->age;
 
-		if (obj->oartifact == ART_GALADRIEL_S_AID) {
-			radius++;
-			if (u.currentweather == WEATHER_FOG && radius > 2) radius = 2;
-		}
+		/* radius = 3; not needed though since that's the default */
+		if (obj->otyp == ELECTRIC_LAMP) radius++;
+		if (obj->otyp == DWARVEN_LANTERN) radius++;
+		if (obj->oartifact == ART_GALADRIEL_S_AID) radius++;
+		if (obj->oartifact == ART_FRODO_S_HOPE) radius++;
+		if (obj->oartifact == ART_GLOIN_S_BOOM) radius++;
+		if (obj->oartifact == ART_EXTRANEOUS_SIGHT) radius++;
 		break;
 
 	    case CANDELABRUM_OF_INVOCATION:
@@ -7483,7 +7492,6 @@ begin_burn(obj, already_lit)
 		else
 		    turns = obj->age;
 		radius = candle_light_range(obj);
-		if (u.currentweather == WEATHER_FOG && radius > 2) radius = 2;
 
 		if (obj->oartifact == ART_SEPTO_END) {
 			obj->lamplit = 1;
@@ -7506,6 +7514,9 @@ begin_burn(obj, already_lit)
 		}
 		break;
 	}
+
+	/* foggy weather limits light radius from any light source to 2 squares --Amy */
+	if ((radius > 2) && (u.currentweather == WEATHER_FOG)) radius = 2;
 
 	if (do_timer) {
 	    if (start_timer(turns, TIMER_OBJECT,
@@ -7610,7 +7621,7 @@ end_burn(obj, timer_attached)
 	    return;
 	}
 
-	if (obj->otyp == MAGIC_LAMP || obj->otyp == MAGIC_CANDLE || obj->oartifact == ART_SEPTO_END || obj->oartifact == ART_LIGHTSABER_PROTOTYPE || obj->oartifact == ART_DEFINITE_LIGHTSABER || artifact_light(obj))
+	if (obj->otyp == MAGIC_LAMP || obj->otyp == FEANORIAN_LAMP || obj->otyp == MAGIC_CANDLE || obj->oartifact == ART_SEPTO_END || obj->oartifact == ART_LIGHTSABER_PROTOTYPE || obj->oartifact == ART_DEFINITE_LIGHTSABER || artifact_light(obj))
 	    timer_attached = FALSE;
 
 	if (!timer_attached) {

@@ -10378,6 +10378,8 @@ madnesseffect:
 		    if (!saddle) saddle = sobj_at(BARDING,u.ux, u.uy);
 		    if (!saddle) saddle = sobj_at(MESH_SADDLE,u.ux, u.uy);
 		    if (!saddle) saddle = sobj_at(SEATBELT_SADDLE,u.ux, u.uy);
+		    if (!saddle) saddle = sobj_at(REPELLANT_SADDLE,u.ux, u.uy);
+		    if (!saddle) saddle = sobj_at(SOFTNESS_SADDLE,u.ux, u.uy);
 		    set_wounded_legs(LEFT_SIDE, HWounded_legs + rn1(35, 41));
 		    set_wounded_legs(RIGHT_SIDE, HWounded_legs + rn1(35, 41));
 		    exercise(A_DEX, FALSE);
@@ -25952,7 +25954,7 @@ register boolean force, here;
 		} else if(obj->greased) {
 			if (force || !rn2(2)) obj->greased -= 1;
 		} else if(Is_container(obj) && !Is_box(obj) && !(obj->oartifact == ART_BAG_OF_THE_HESPERIDES) && !(obj->oartifact == ART_KNOW_OF_THE_CURSE) && !(obj->oartifact == ART_SEMINARIOS_KARTOFFLES) && !(obj->otyp == ICE_BOX_OF_WATERPROOFING) && !(obj->otyp == DISPERSION_BOX) &&
-			(obj->otyp != OILSKIN_SACK || (obj->cursed && !(obj->oartifact == ART_SURFING_FUN) && !rn2(3)))) {
+			(obj->otyp != OILSKIN_SACK || (obj->cursed && !(obj->oartifact == ART_FLICKED_HULL && rn2(10)) && !(obj->oartifact == ART_SURFING_FUN) && !rn2(3)))) {
 			water_damage(obj->cobj, force, FALSE);
 		} else if (!force && !(uarm && uarm->oartifact == ART_AVELINE_S_ROBE_OF_THE_FIRS) && !Race_if(PM_ANCIPITAL) && (Luck - luckpenalty + 5 + (issoviet ? 0 : rnd(20)) ) > rn2(20)) {
 			/*  chance per item of sustaining damage:

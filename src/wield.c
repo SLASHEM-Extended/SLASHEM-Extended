@@ -132,6 +132,11 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 		Your("martial style is 'taekwondo' now.");
 	}
 
+	if (uwep && uwep->oartifact == ART_KARATE_LEARNER) {
+		u.martialstyle = MARTIALSTYLE_KARATE;
+		Your("martial style is 'karate' now.");
+	}
+
 	if (uwep && uwep->oartifact == ART_BAT_FROM_BALTIMORE) {
 		if (CurseuseEffect < 5000L) CurseuseEffect = 5000L;
 		if (AutocursingEquipment < 5000L) AutocursingEquipment = 5000L;

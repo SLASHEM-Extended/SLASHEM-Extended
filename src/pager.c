@@ -29694,6 +29694,11 @@ static NEARDATA const char * const fake_plines[] = {
 	"You are forced to pay 5000 euros for a pair of Chloe ball heels.",
 	"You are forced to pay 5000 euros for a pair of Chloe ball heels. And despite the fact that you paid the money, you didn't actually get the heels! What a gigantic ripoff!",
 	"You are forced to pay 5000 euros for a pair of Chloe ball heels. But you can't actually walk with them, and feel that in fact no one can. Aren't those shoes generally made just for looking at them? Why would any sane person want to WEAR them, you wonder???",
+	"You can hear a faint cackle that seems to come from Lady Galadriel. She says: 'haha suk it feanor :-)'",
+	"You suddenly have to smoke a stinking cigarette!",
+	"You suddenly have to smoke a stinking cigarette! (Hint: quit smoking, or you'll have to do this 25 times per day and spend far too much money to buy more.)",
+	"You suddenly have to smoke a stinking cigarette! (Hint: if you don't quit smoking, and end up terminally ill from lung cancer, I won't pity you because you only have yourself to blame.)",
+	"You feel that the dangerous right securer whose name may not be spoken is now facing a lawsuit for using protected brand names.",
 
 };
 

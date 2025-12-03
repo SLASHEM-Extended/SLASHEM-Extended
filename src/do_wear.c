@@ -1389,6 +1389,7 @@ Cloak_on()
 	case TROLL_HIDE:
 	case PLASTEEL_CLOAK:
 	case LORICATED_CLOAK:
+	case ROBELIKE_CLOAK:
 	case RIPPED_CLOAK:
 	/* KMH, balance patch -- removed */
 	/* but re-inserted by Amy */
@@ -2224,6 +2225,7 @@ Cloak_off()
 	case LEO_NEMAEUS_HIDE:
 	case PLASTEEL_CLOAK:
 	case LORICATED_CLOAK:
+	case ROBELIKE_CLOAK:
 	case RIPPED_CLOAK:
 	case LEATHER_CLOAK:
 	case CLOAK_OF_WARMTH:
@@ -7894,6 +7896,7 @@ find_ac()
 	if (uarm && uarm->oartifact == ART_SHRINK_S_AID) uac -= 7;
 	if (uarmf && uarmf->oartifact == ART_SUSCHEL_KUNA) uac -= 3;
 	if (uarmc && uarmc->oartifact == ART_DES_MIRREN) uac -= 3;
+	if (uarmc && uarmc->oartifact == ART_BORINGPAD) uac -= 3;
 	if (uarm && uarm->oartifact == ART_HARDUP) uac -= 2;
 	if (uarm && uarm->oartifact == ART_JUST_A_HUNK_OF_AC) uac -= 7;
 	if (uarm && uarm->oartifact == ART_FOKING_TENK) uac -= 7;

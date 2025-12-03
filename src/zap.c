@@ -2477,6 +2477,7 @@ boolean weakeffect;
 	       obj->otyp != WAN_CANCELLATION &&
 		 /* can't cancel cancellation */
 		 obj->otyp != MAGIC_LAMP &&
+		 obj->otyp != FEANORIAN_LAMP &&
 		 obj->otyp != MAGIC_CANDLE &&
 		 obj->otyp != CANDELABRUM_OF_INVOCATION) {
 		if (!flags.mon_moving) costly_cancel(obj);
@@ -3644,6 +3645,7 @@ poly_obj(obj, id, degradation)
 	      otmp->otyp != TOWEL && otmp->otyp != LENSES && otmp->otyp != RADIOGLASSES && otmp->otyp != SHIELD_PATE_GLASSES && otmp->otyp != BOSS_VISOR && otmp->otyp != NIGHT_VISION_GOGGLES)
 		otmp->owornmask &= ~W_TOOL;
 	    if (obj->otyp == LEATHER_LEASH && obj->leashmon) o_unleash(obj);
+	    if (obj->otyp == ARMORED_LEASH && obj->leashmon) o_unleash(obj);
 	    if (obj->otyp == INKA_LEASH && obj->leashmon) o_unleash(obj);
 	    if (obj->otyp == ADAMANT_LEASH && obj->leashmon) o_unleash(obj);
 	    if (obj_location == OBJ_INVENT) {
@@ -3666,7 +3668,7 @@ poly_obj(obj, id, degradation)
 	else {
 	/* preserve the mask in case being used by something else */
 	otmp->owornmask = obj->owornmask;
-	    if (otmp->owornmask & W_SADDLE && otmp->otyp != LEATHER_SADDLE && otmp->otyp != INKA_SADDLE && otmp->otyp != TANK_SADDLE && otmp->otyp != BARDING && otmp->otyp != MESH_SADDLE && otmp->otyp != SEATBELT_SADDLE) {
+	    if (otmp->owornmask & W_SADDLE && otmp->otyp != LEATHER_SADDLE && otmp->otyp != INKA_SADDLE && otmp->otyp != TANK_SADDLE && otmp->otyp != BARDING && otmp->otyp != MESH_SADDLE && otmp->otyp != SEATBELT_SADDLE && otmp->otyp != REPELLANT_SADDLE && otmp->otyp != SOFTNESS_SADDLE) {
 		struct monst *mtmp = obj->ocarry;
 		dismount_steed(DISMOUNT_THROWN);
 		otmp->owornmask &= ~W_SADDLE;

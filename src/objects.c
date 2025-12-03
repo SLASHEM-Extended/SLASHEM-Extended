@@ -1781,7 +1781,7 @@ ARMOR("throwaway armor", (char *)0,
 ARMOR("satanic armor", (char *)0,
 	1, 0, 0, 0,	100, 3, 30,  50,  8, 0, ARM_SUIT, MT_ADAMANTIUM, CLR_RED, 6, 0),
 ARMOR("leather armor", (char *)0,
-	1, 0, 0, 0,	4950, 3, 60,   5,  8, 0, ARM_SUIT, MT_LEATHER, HI_LEATHER, 1, 0),
+	1, 0, 0, 0,	4850, 3, 60,   5,  8, 0, ARM_SUIT, MT_LEATHER, HI_LEATHER, 1, 0),
 ARMOR("giant sea anemone", (char *)0,
 	1, 0, 0, 0,	200, 3, 60, 100,  8, 0, ARM_SUIT, MT_FLESH, CLR_ORANGE, 5, 0),
 ARMOR("exciting armor", (char *)0, /* random magical effect */
@@ -2194,6 +2194,8 @@ CLOAK("ripped cloak", (char *)0,
 		1, 0,	0,	   100, 0, 1, 1, 10, 0, MT_CLOTH, CLR_BLACK, 1, 0),
 CLOAK("lab coat", "white coat",
 		0, 1,   POISON_RES, 950, 0, 4, 60,  9, 3, MT_CLOTH, CLR_WHITE, 15, 0),
+CLOAK("robelike cloak", (char *)0,
+		1, 0,	0,	   100, 0, 6, 50,  8, 3, MT_CLOTH, CLR_RED, 5, 0),
 CLOAK("leather cloak", (char *)0,
 		1, 0,	0,	   500, 0, 7, 40,  9, 1, MT_LEATHER, CLR_BROWN, 1, 0),
 CLOAK("loricated cloak", (char *)0,
@@ -6288,10 +6290,14 @@ TOOL("unspecified candle", "candle", 0, 1, 0, 0, 200, 0, 20, MT_WAX, CLR_WHITE, 
 TOOL("unaffected candle", "candle", 0, 1, 0, 0, 200, 0, 20, MT_WAX, CLR_WHITE, 1),
 TOOL("specific candle", "candle", 0, 1, 0, 0, 200, 0, 20, MT_WAX, CLR_WHITE, 1),
 TOOL("0 candle", "candle", 0, 1, 0, 0, 20, 0, 200, MT_WAX, CLR_WHITE, 1),
-TOOL("oil lamp", "lamp",        0, 0, 0, 0, 2500, 0,  40, MT_COPPER, CLR_YELLOW, 1),
-TOOL("brass lantern", (char *)0,1, 0, 0, 0,  1000, 0,  30, MT_COPPER, CLR_YELLOW, 1),
+TOOL("brass lantern", (char *)0,1, 0, 0, 0,  900, 0,  30, MT_COPPER, CLR_YELLOW, 1),
+TOOL("dwarven lantern", (char *)0,1, 0, 0, 0,  100, 0,  30, MT_METAL, CLR_YELLOW, 25), /* radius 4 */
 TOOL("dim lantern", (char *)0,1, 0, 0, 0,  500, 0,  50, MT_SINNUM, CLR_BROWN, 1), /* spawns with more fuel */
-TOOL("magic lamp", "lamp",      0, 0, 1, 0,  1000, 0,  40, MT_COPPER, CLR_YELLOW, 25),
+TOOL("oil lamp", "lamp",        0, 0, 0, 0, 1950, 0,  40, MT_COPPER, CLR_YELLOW, 1),
+TOOL("pit lamp", "lamp",        0, 0, 0, 0, 500, 0,  40, MT_ALLOY, CLR_YELLOW, 15), /* more fuel and gains more from oil potions */
+TOOL("electric lamp", "lamp",        0, 0, 0, 0, 50, 0,  40, MT_STEEL, CLR_YELLOW, 30), /* radius 4 */
+TOOL("feanorian lamp", "lamp",        0, 0, 0, 0, 1, 0,  40, MT_CELESTIUM, CLR_YELLOW, 80), /* radius 4 and burns forever */
+TOOL("magic lamp", "lamp",      0, 0, 1, 0,  999, 0,  40, MT_COPPER, CLR_YELLOW, 25),
 /* magic lamp is last light source */
 
 /* Instruments */
@@ -6505,17 +6511,20 @@ TOOL("soft chastity belt", (char *)0,      1, 0, 0, 0,   10,  0,   5, MT_SILK, C
 /* last blindfold-slot tool is soft chastity belt */
 
 /* leather saddle = first saddle */
-TOOL("leather saddle", "saddle", 0, 0, 0, 0, 2150,0, 150, MT_LEATHER, HI_LEATHER, 1),
+TOOL("leather saddle", "saddle", 0, 0, 0, 0, 2000,0, 150, MT_LEATHER, HI_LEATHER, 1),
 TOOL("tank saddle", "saddle", 0, 0, 0, 0, 100,0, 150, MT_TITANIUM, HI_LEATHER, 40),
 TOOL("seatbelt saddle", "saddle", 0, 0, 0, 0, 300, 0, 150, MT_FOAM, HI_LEATHER, 20),
+TOOL("repellant saddle", "saddle", 0, 0, 0, 0, 50,0, 150, MT_ANTIDOTIUM, HI_LEATHER, 35),
 TOOL("barding", "saddle", 0, 0, 0, 0, 200,0, 150, MT_STEEL, HI_LEATHER, 30),
+TOOL("softness saddle", "saddle", 0, 0, 0, 0, 100,0, 150, MT_SILK, HI_LEATHER, 20),
 TOOL("mesh saddle", "saddle", 0, 0, 0, 0, 250,0, 150, MT_MESH, HI_LEATHER, 15),
 TOOL("inka saddle", "saddle",   0, 0, 0, 0, 500,0, 150, MT_INKA, HI_LEATHER, 20),
 /* inka saddle = last saddle */
 
 /* leather leash = first leash */
-TOOL("leather leash", "leash",  0, 0, 0, 0, 1050, 0,  20, MT_LEATHER, HI_LEATHER, 1),
+TOOL("leather leash", "leash",  0, 0, 0, 0, 1000, 0,  20, MT_LEATHER, HI_LEATHER, 1),
 TOOL("adamant leash", "leash",  0, 0, 0, 0, 50, 0,  20, MT_ADAMANTIUM, HI_LEATHER, 30),
+TOOL("armored leash", "leash",  0, 0, 0, 0, 50, 0,  20, MT_STEEL, HI_LEATHER, 25),
 TOOL("inka leash", "leash",     0, 0, 0, 0, 100, 0,  20, MT_INKA, HI_LEATHER, 20),
 /* inka leash = last leash */
 

@@ -498,7 +498,7 @@ snuff_light_source(x, y)
 		 */
 		if (artifact_light(obj)) continue;
 		if (obj->oartifact == ART_BRIGHTMACE || obj->oartifact == ART_DELIGHTSABER) continue;
-		end_burn(obj, obj->otyp != MAGIC_LAMP);
+		end_burn(obj, (obj->otyp != MAGIC_LAMP && obj->otyp != FEANORIAN_LAMP));
 		/*
 		 * The current ls element has just been removed (and
 		 * ls->next is now invalid).  Return assuming that there
@@ -525,6 +525,7 @@ obj_is_burning(obj)
 {
     return (obj->lamplit &&
  		(  obj->otyp == MAGIC_LAMP 
+		|| obj->otyp == FEANORIAN_LAMP
 		|| obj->otyp == MAGIC_CANDLE
 		|| ignitable(obj) 
 		|| is_lightsaber(obj)

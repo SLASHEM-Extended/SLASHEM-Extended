@@ -1321,6 +1321,7 @@ register struct obj *otmp;
 	if (!otmp) return FALSE; /* shouldn't happen */
 
 	if (otmp->oartifact == ART_EVERLASTING_HEELS) return TRUE;
+	if (otmp->oartifact == ART_THORIN_S_ETERNAL_OAK) return TRUE;
 
 	switch (otmp->otyp) {
 
@@ -9130,8 +9131,8 @@ struct obj *otmp;
 		    (otyp != CORPSE || !tinnable(otmp)))
 		|| (!strcmp(word, "rub") &&
 		    ((otmp->oclass == TOOL_CLASS &&
-		      otyp != OIL_LAMP && otyp != MAGIC_LAMP &&
-		      otyp != BRASS_LANTERN && otyp != DIM_LANTERN) ||
+		      otyp != OIL_LAMP && otyp != PIT_LAMP && otyp != FEANORIAN_LAMP && otyp != ELECTRIC_LAMP && otyp != MAGIC_LAMP &&
+		      otyp != BRASS_LANTERN && otyp != DWARVEN_LANTERN && otyp != DIM_LANTERN) ||
 		     (otmp->oclass == GEM_CLASS && !is_graystone(otmp))))
 		|| (!strncmp(word, "rub on the stone", 16) &&
 		    *let == GEM_CLASS &&	/* using known touchstone */
@@ -9175,7 +9176,9 @@ struct obj *otmp;
 		     otyp != ORB_OF_DESTRUCTION &&	/* #invoke synonym for apply */
 		   /* note: presenting the possibility of invoking non-artifact
 		      mirrors and/or lamps is a simply a cruel deception... */
-		     otyp != MIRROR && otyp != MAGIC_LAMP &&
+		     otyp != MIRROR && otyp != MAGIC_LAMP && otyp != FEANORIAN_LAMP &&
+			(otyp != PIT_LAMP || (otmp->dknown && objects[PIT_LAMP].oc_name_known)) &&
+			(otyp != ELECTRIC_LAMP || (otmp->dknown && objects[ELECTRIC_LAMP].oc_name_known)) &&
 		     (otyp != OIL_LAMP ||	/* don't list known oil lamp */
 		      (otmp->dknown && objects[OIL_LAMP].oc_name_known))))
 		|| (!strcmp(word, "untrap with") &&
@@ -11668,7 +11671,7 @@ struct obj *obj;
 			)) != 0L) return TRUE;
 	if (obj->oclass != TOOL_CLASS) return FALSE;
 	return (boolean)(obj == uwep || obj->lamplit ||
-				((obj->otyp == LEATHER_LEASH || obj->otyp == INKA_LEASH || obj->otyp == ADAMANT_LEASH) && obj->leashmon));
+				((obj->otyp == LEATHER_LEASH || obj->otyp == ARMORED_LEASH || obj->otyp == INKA_LEASH || obj->otyp == ADAMANT_LEASH) && obj->leashmon));
 }
 
 int
@@ -15219,6 +15222,8 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 				pline("It slows your metabolism while also granting MC3."); break;
 			case LORICATED_CLOAK:
 				pline("The material of this cloak is randomized at game start, and it grants 3 points of magic cancellation."); break;
+			case ROBELIKE_CLOAK:
+				pline("This cloak behaves very similar to the cloak that calls itself 'robe' in vanilla NetHack: it improves your spellcasting chance. In addition to that, it gives 2 points of AC and 3 points of MC."); break;
 			case CLOAK_OF_INFRAVISION:
 				pline("If you're not of a race that has intrinsic infravision, you can wear this cloak to get it extrinsically. It also gives MC3 extrinsically, because there is no intrinsic MC. :-P"); break;
 			case CLOAK_OF_BANISHING_FEAR:
@@ -18198,8 +18203,16 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 				pline("A permanent light source that might be useful in dark areas."); break;
 			case OIL_LAMP:
 				pline("This lamp can be lit to provide a big radius of light for a while. Oil runs out after some time but can be refilled."); break;
+			case PIT_LAMP:
+				pline("A long-lasting lamp that also gains extra fuel if you fill it with a potion of oil."); break;
+			case ELECTRIC_LAMP:
+				pline("This lamp provides a greater radius of light, allowing you to explore dark areas more easily."); break;
+			case FEANORIAN_LAMP:
+				pline("Wow, you can consider yourself very lucky to have found this lamp. It not only lasts forever, but also provides radius 4 light! Don't bother rubbing it though, it doesn't contain a genie."); break;
 			case BRASS_LANTERN:
 				pline("A mobile light source that lasts for quite a while."); break;
+			case DWARVEN_LANTERN:
+				pline("This mobile light source has a pretty good radius of light."); break;
 			case DIM_LANTERN:
 				pline("This light source lasts for a good while if you apply it. However, recharging it is rather useless because it adds less additional turns of fuel compared to the brass lantern."); break;
 			case MAGIC_LAMP:
@@ -18388,10 +18401,16 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 				pline("Saddle your pet with this saddle in order to be able to ride it. This particular type of saddle provides MC1 while riding, just in case you're not wearing any MC-granting equipment."); break;
 			case SEATBELT_SADDLE:
 				pline("This saddle has to be applied to a monster if you want to ride it; in most cases, the monster has to be tame so that you can actually ride it. Due to the seatbelt, you're much less likely to fall off your steed while riding."); break;
+			case REPELLANT_SADDLE:
+				pline("You can use this saddle to ride a pet, by applying it at a tame creature and then using the #ride command. A pet that is equipped with this particular type of saddle is resistant to various bad effects."); break;
+			case SOFTNESS_SADDLE:
+				pline("Well-padded saddle that reduces the damage a ridden pet will take. Apply it at your choice pet and then use the #ride command."); break;
 			case UNSTABLE_STETHOSCOPE:
 				pline("A stethoscope that occasionally reveals more information."); break;
 			case LEATHER_LEASH:
 				pline("This tool can be applied at a tame monster to force it to follow you. Or that's what it *should* do, if pets weren't so goddamn stupid."); break;
+			case ARMORED_LEASH:
+				pline("This tool can be applied at a tame monster to force it to follow you. While the pet is leashed, it'll take reduced damage."); break;
 			case INKA_LEASH: 
 				pline("This tool can be applied at a tame monster to force it to follow you. If the pet falls behind, it attempts to teleport to you."); break;
 			case ADAMANT_LEASH: 
@@ -35556,6 +35575,86 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: +1 all stats and +1 MC when worn, and makes you resistant to effects that drain your alla."); break;
 				case ART_LEGENDARY_JESSICA:
 					pline("Artifact specs: jessica trap effect when worn, prevents monsters from producing tender farting noises at you and allows you to #monster to produce tender farting noises yourself, makes you highly resistant to various stat-damaging effects and if you get hit by a temporary invert status effect, it'll time out much faster than normal. You're also more likely to find items, but occasionally a killer spawn effect may happen."); break;
+				case ART_FLAMMATO_DAEDRA_AUTOMATOSU:
+					pline("Artifact specs: can be invoked to cast the fire golem spell, even if you don't actually know that one."); break;
+				case ART_BORINGPAD:
+					pline("Artifact specs: improves your AC by 3 when worn."); break;
+				case ART_HELLA_GOOD:
+					pline("Artifact specs: magic resistance when worn."); break;
+				case ART_SUPERGRAB:
+					pline("Artifact specs: spawns with more fuel."); break;
+				case ART_EXTRANEOUS_SIGHT:
+					pline("Artifact specs: greater light radius."); break;
+				case ART_FLICKERFLICKER:
+					pline("Artifact specs: whenever you apply it while it's not cursed, it becomes so."); break;
+				case ART_FRODO_S_HOPE:
+					pline("Artifact specs: greater light radius."); break;
+				case ART_GIMLI_S_SECRET_TOOL:
+					pline("Artifact specs: spawns with more fuel."); break;
+				case ART_SUK_IT____:
+					pline("Artifact specs: huahahahaha, now you can suck it because you no longer get death drops! Muahahahaha! Sincerely, Galadriel."); break;
+				case ART_GLOIN_S_BOOM:
+					pline("Artifact specs: increased light radius, but every time you apply it, the lantern makes a loud noise and causes you to aggravate monsters for a while."); break;
+				case ART_THORIN_S_ETERNAL_OAK:
+					pline("Artifact specs: indestructible."); break;
+				case ART_LUZIE_S_THERAPY:
+					pline("Artifact specs: increases the resistance to damage of your steed even more."); break;
+				case ART_JIMENA_S_SCRATCH:
+					pline("Artifact specs: allows your steed to occasionally nullify incoming damage."); break;
+				case ART_MARCO_S_SURPRISE:
+					pline("Artifact specs: if this artifact was generated while your riding skill was restricted, it got unlocked with a cap of basic."); break;
+				case ART_KERSTIN_S_PROJECTION_LEAD:
+					pline("Artifact specs: riding a steed with this saddle gives the kerstin trap effect and very fast speed."); break;
+				case ART_COMPLETE_TRIAGE:
+					pline("Artifact specs: allows your steed to resist bad effects 9 out of 10 times."); break;
+				case ART_HISTORY_OF_SURVIVED_COLICS:
+					pline("Artifact specs: your steed has poison resistance if you use this saddle."); break;
+				case ART_AGAINCHEWER:
+					pline("Artifact specs: your steed regenerates HP quickly if you use this saddle."); break;
+				case ART_STEELNECK_BAND:
+					pline("Artifact specs: further reduces the damage taken by your leashed pet."); break;
+				case ART_CONFOWAP:
+					pline("Artifact specs: if a pet leashed to it gets confused, it becomes un-confused immediately."); break;
+				case ART_MINESWEEPER_ADDITOR:
+					pline("Artifact specs: if you have a pet leashed to it and the pet senses the presence of a trap, there's a small chance that the trap becomes visible. Whether or not it happens is determined for each trap in advance, so don't try to lead your pet around a trap repeatedly if it doesn't become visible on the first instance of the pet whimpering."); break;
+				case ART_SCHMIDT_S_CATZE:
+					pline("Artifact specs: if you leash a feline pet to it, the pet in question can move much more quickly."); break;
+				case ART_NUTRIALPO:
+					pline("Artifact specs: a pet leashed to it has a small chance of resisting various detrimental effects."); break;
+				case ART_FLICKED_HULL:
+					pline("Artifact specs: if it's cursed, it's much less likely to leak."); break;
+				case ART_INVISO_PLUS_VALUE:
+					pline("Artifact specs: if you blow it while it's not cursed, it may occasionally gain a point of enchantment. However, the enchantment value isn't actually displayed and doesn't do all that much anyway."); break;
+				case ART_STONESMASH:
+					pline("Artifact specs: +4 damage, can dig more quickly, usually spawns with the 'slay xorn' egotype."); break;
+				case ART_PEER_CLEAR:
+					pline("Artifact specs: spawns with more charges."); break;
+				case ART_SARUMAN_S_ALWAYS_VISION:
+					pline("Artifact specs: spawns with many more charges."); break;
+				case ART_PALANTIR_OF_ORTHANC:
+					pline("Artifact specs: warns of orcs when wielded."); break;
+				case ART_ABSOLUTE_CLARITY:
+					pline("Artifact specs: doesn't fail if it's not cursed, and only half the time if it is cursed. The paralysis effect from using it is also shorter."); break;
+				case ART_KARATE_LEARNER:
+					pline("Artifact specs: wielding it sets your martial arts style to 'karate', and it increases your melee damage depending on your martial arts skill. You can use martial arts techniques while wielding it."); break;
+				case ART_TURBOCURARINE_NEEDLE:
+					pline("Artifact specs: applying it will badly poison you and permanently damage one of your stats, but also gives free action and discount action for quite a while."); break;
+				case ART_SOPORIL_SHOT:
+					pline("Artifact specs: applying it puts you to sleep. This sleep can have beneficial effects, but beware of nearby monsters."); break;
+				case ART_IT_S_IN_THE_EYE_OF_THE_BEH:
+					pline("Artifact specs: applying it gives polymorph control for a while."); break;
+				case ART_RAIMUND_S_RARITY:
+					pline("Artifact specs: lasts much longer than normal."); break;
+				case ART_THROUGH_THE_HEAT:
+					pline("Artifact specs: gives temporay fire and stun resistance when applied."); break;
+				case ART_WRONG_CIGARETTE_BRAND:
+					pline("Artifact specs: applying it forces you to wield a cursed cigarette. Because the bundle head mistakenly thought that 'RadAway' was a cigarette brand in Fallout 3."); break;
+				case ART_MARLSUIT_OF_THE_DANGEROUS_:
+					pline("Artifact specs: upon being generated, this artifact gave you intrinsic magic find, but also permanent killer spawns!"); break;
+				case ART_BLUBBLEGARBLE:
+					pline("Artifact specs: applying it causes you to hallucinate for a while."); break;
+				case ART_DNN_DNN_DNN__DNDNDNDNNNNNN:
+					pline("Artifact specs: applying it makes you invulnerable for a few turns."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

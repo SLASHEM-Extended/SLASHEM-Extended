@@ -1124,7 +1124,13 @@ struct obj *obj;
 	pline("Too bad you can't see %s.", the(xname(obj)));
 	return 0;
     }
-    oops = (rnd(20) > ACURR(A_INT) || obj->cursed);
+
+    if (obj->oartifact == ART_ABSOLUTE_CLARITY) {
+	oops = (obj->cursed && rn2(2));
+    } else {
+	oops = (rnd(20) > ACURR(A_INT) || obj->cursed);
+    }
+
     if (oops && (obj->spe > 0)) {
 	switch (rnd((obj->oartifact && rn2(100)) ? 4 : 5)) {
 	case 1 : pline("%s too much to comprehend!", Tobjnam(obj, "are"));
@@ -1193,7 +1199,11 @@ struct obj *obj;
 	return 0;
     }
     You("peer into %s...", the(xname(obj)));
-    nomul(-rnd(10), "gazing into a crystal ball", TRUE);
+    if (obj->oartifact == ART_ABSOLUTE_CLARITY) {
+	nomul(-rnd(3), "gazing into a crystal ball", TRUE);
+    } else {
+	nomul(-rnd(10), "gazing into a crystal ball", TRUE);
+    }
     nomovemsg = "";
     if (obj->spe <= 0) {
 	pline_The("vision is unclear.");

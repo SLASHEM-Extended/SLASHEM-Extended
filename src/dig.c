@@ -325,6 +325,7 @@ dig()
 	if (uwep && uwep->oartifact == ART_STONEBITER) bonus += 5;
 	if (uwep && uwep->oartifact == ART_BREAK_OUT) bonus += 5;
 	if (uwep && uwep->oartifact == ART_MINE_OUT) bonus += 5;
+	if (uwep && uwep->oartifact == ART_STONESMASH) bonus += rn1(5,5);
 	if (uarmh && uarmh->oartifact == ART_THIRD_CAR) bonus += 10;
 	if (uwep && uwep->oartifact == ART_DIG__OF_COURSE) bonus += 5;
 	if (uwep && uwep->oartifact == ART_NOTHING_FOR_IT) bonus += 5;
@@ -2153,6 +2154,9 @@ bury_an_obj(otmp)
 		return(otmp2);
 
 	if (otmp->otyp == LEATHER_LEASH && otmp->leashmon != 0)
+		o_unleash(otmp);
+
+	if (otmp->otyp == ARMORED_LEASH && otmp->leashmon != 0)
 		o_unleash(otmp);
 
 	if (otmp->otyp == INKA_LEASH && otmp->leashmon != 0)

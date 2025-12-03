@@ -2361,11 +2361,18 @@ register boolean mod;
 			}
 		    }
 
+		    if (otmp && otmp->oartifact == ART_SUK_IT____) {
+			NoDropsEffect |= FROMOUTSIDE;
+			pline("You can hear a faint cackle that seems to come from Lady Galadriel. She says: 'haha suk it feanor :-)'");
+		    }
+
 		    if (otmp && otmp->oartifact == ART_VADER_S_CHARGE) otmp->age += rnz(5000);
 		    if (otmp && otmp->oartifact == ART_TAVION_S_CHARGE) otmp->age += rnz(5000);
 		    if (otmp && otmp->oartifact == ART_DURATEX) otmp->age += 4000;
 		    if (otmp && otmp->oartifact == ART_EASTERGA) otmp->age += 10000;
 		    if (otmp && otmp->oartifact == ART_BURNER_DREAM) otmp->age += 2000;
+		    if (otmp && otmp->oartifact == ART_SUPERGRAB) otmp->age += rnz(10000);
+		    if (otmp && otmp->oartifact == ART_GIMLI_S_SECRET_TOOL) otmp->age += rnz(15000);
 		    if (otmp && otmp->oartifact == ART_OWENER) otmp->age = 0;
 		    if (otmp && otmp->oartifact == ART_OUT_OILED) otmp->age = 0;
 		    if (otmp && otmp->oartifact == ART_PSEUDO_MAGIC_LAMP) {
@@ -2592,12 +2599,31 @@ register boolean mod;
 			otmp->oeroded = otmp->oeroded2 = 3;
 		    }
 
-		    if (bmwride(ART_MARLOWE_S_CAMEL)) {
+		    if (otmp && otmp->oartifact == ART_MARLOWE_S_CAMEL) {
 			if (P_MAX_SKILL(P_RIDING) == P_ISRESTRICTED) {
 				unrestrict_weapon_skill(P_RIDING);
 				P_MAX_SKILL(P_RIDING) = P_BASIC;
 				pline("You can now learn the riding skill!");
 			}
+		    }
+
+		    if (otmp && otmp->oartifact == ART_MARCO_S_SURPRISE) {
+			if (P_MAX_SKILL(P_RIDING) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(P_RIDING);
+				P_MAX_SKILL(P_RIDING) = P_BASIC;
+				pline("You can now learn the riding skill!");
+			}
+		    }
+
+		    if (otmp && otmp->oartifact == ART_STONESMASH) {
+			otmp->enchantment = WEAPEGO_SLAY_XORN;
+		    }
+
+		    if (otmp && otmp->oartifact == ART_PEER_CLEAR) {
+			otmp->spe += 10;
+		    }
+		    if (otmp && otmp->oartifact == ART_SARUMAN_S_ALWAYS_VISION) {
+			otmp->spe += rnz(25);
 		    }
 
 		    if (otmp && otmp->oartifact == ART____DEETREKS) {
@@ -2691,6 +2717,13 @@ register boolean mod;
 		    if (otmp && otmp->oartifact == ART_NINER) {
 			otmp->spe += 9;
 		    }
+
+		    if (otmp && otmp->oartifact == ART_MARLSUIT_OF_THE_DANGEROUS_) {
+			HMagicFindBonus |= FROMOUTSIDE;
+			KillerRoomEffect |= FROMOUTSIDE;
+			You("feel that the dangerous right securer whose name may not be spoken is now facing a lawsuit for using protected brand names.");
+		    }
+
 		    if (otmp && otmp->oartifact == ART_GAME_IS_NOW_FULL_OF_BUGS) {
 			u.tempnastystonefreq += rnz(25000);
 		    }
@@ -7490,6 +7523,11 @@ chargingchoice:
 
 			pline_The("bottle of Nuka Cola is named %s today!", feminismtrapname(u.nukafemeffect) );
 
+			break;
+		}
+
+		if (obj->oartifact == ART_FLAMMATO_DAEDRA_AUTOMATOSU) {
+			castspecificspell(SPE_FIRE_GOLEM);
 			break;
 		}
 

@@ -26648,6 +26648,166 @@ A("The Legendary Jessica",				LOW_BOOTS, /* initialized to always be flatform sa
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
 
+A("Flammato Daedra Automatosumono",				ROBELIKE_CLOAK, /* can be invoked to cast fire golem, even if you don't have that spell */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Boringpad",				ROBELIKE_CLOAK, /* +3 AC */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Hella Good",				ROBELIKE_CLOAK,
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Supergrab",				PIT_LAMP, /* spawns with +rnz(10k) fuel */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Extraneous Sight",				PIT_LAMP, /* +1 range */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("flickerflicker",				PIT_LAMP, /* autocurses whenever you try to turn it on, as long as it's not already cursed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Frodo's Hope",				ELECTRIC_LAMP, /* +1 range */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 25000L ),
+
+A("Gimli's Secret Tool",				ELECTRIC_LAMP, /* spawns with rnz(15k) fuel */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 9000L ),
+
+A("suk it :-)",				FEANORIAN_LAMP, /* gives the dropless nastytrap effect permanently upon generating */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Gloin's Boom",				DWARVEN_LANTERN, /* +1 range, but every time you turn it on it makes noise and gives rnz(1000) turns of aggravate monster */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Thorin's Eternal Oak",				DWARVEN_LANTERN, /* indestructible */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Luzie's Therapy",				SOFTNESS_SADDLE, /* reduces damage taken by the steed by 33% */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Jimena's Scratch",				SOFTNESS_SADDLE, /* 10% chance for the steed to nullify incoming damage */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Marco's Surprise",				SOFTNESS_SADDLE, /* unlocks riding skill if it's generated while the skill is restricted */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Kerstin's Projection Lead",				SOFTNESS_SADDLE, /* riding a steed with this saddle gives kerstin trap effect and very fast speed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Complete Triage",				REPELLANT_SADDLE, /* steed resists bad effects 90% of the time */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("History of Survived Colics",				REPELLANT_SADDLE, /* steed has poison resistance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4500L ),
+
+A("Againchewer",				REPELLANT_SADDLE, /* steed has regeneration */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Steelneck Band",				ARMORED_LEASH, /* reduces damage taken by the pet by 33% */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Confowap",				LEATHER_LEASH, /* pet's confusion times out immediately */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Minesweeper Additor",				LEATHER_LEASH, /* if the pet warns you of a trap with a nonzero difficulty that is divisible by 7, the trap in question is revealed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Schmidt's Catze",				LEATHER_LEASH, /* if the pet is a f-class monster, its movement rate is increased by d24 per turn */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Nutrialpo",				LEATHER_LEASH, /* pet has 10% chance of resisting bad effects */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Flicked Hull",				OILSKIN_SACK, /* 10 times less likely to leak if cursed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Inviso Plus Value",				GRASS_WHISTLE, /* 1 in 50 if you blow it while it's not cursed that it gains a point of enchantment, up to a max of +10 */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Stonesmash",				CONGLOMERATE_PICK, /* spawns with "slay xorn" egotype, +rn1(5,5) digging effort */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Peer Clear",				CRYSTAL_BALL, /* spawns with 10 extra charges */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1300L ),
+
+A("Saruman's Always Vision",				CRYSTAL_BALL, /* spawns with rnz(25) extra charges */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("The Palantir of Orthanc",				CRYSTAL_BALL,
+	(SPFX_RESTR|SPFX_DFLAG2|SPFX_WARN), 0, (M2_ORC),
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Absolute Clarity",				CRYSTAL_BALL, /* doesn't fail as long as it's not cursed, and only 50% of the time if cursed, and only paralyzes you for rnd(3) turns */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Karate Learner",				BUDO_NO_SASU, /* wielding it sets your martial arts style to "karate", allows you to use martial arts techniques while wielding it and gives +1 increased melee damage per martial arts skill level */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2600L ),
+
+A("Turbocurarine Needle",				INFUSION, /* badly poisons you when injected and causes an unresistable instance of permanent stat damage, but gives rnz(10k) turns of free action and discount action */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Soporil Shot",				INFUSION, /* puts you to sleep like a bed (but being sleep resistant doesn't prevent it) and gives the good effects of sleeping in a bed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("It's in the eye of the beholder",				BEAUTY_PACK, /* applying it gives rnz(5000) turns of polymorph control */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Raimund's Rarity",				RAD_X, /* lasts 10 times as long */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Through The Heat",				RAD_X, /* gives rnz(1000) turns of fire and stun resistance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4500L ),
+
+A("Wrong Cigarette Brand",				RADAWAY, /* spawns a cursed cigarette and forces you to equip it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Marlsuit of the dangerous right securer whose name may not be spoken",				RADAWAY, /* gives magic find and killer spawn nastytrap effect permanently upon being generated */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Blubblegarble",				ACID_SYRINGE, /* rnz(500) turns of hallu when used */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Dnn dnn dnn, dndndndnnnnnn!",				ACID_SYRINGE, /* rn1(5,5) turns of invulnerability when used */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

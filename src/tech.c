@@ -16152,6 +16152,8 @@ canuseunarmedtechs()
 	if (uwep && uwep->oartifact == ART_GODAE_MUSUL) return TRUE;
 	/* and so is blammer of doom */
 	if (uwep && uwep->oartifact == ART_BLAMMER_OF_DOOM) return TRUE;
+	/* also karate learner */
+	if (uwep && uwep->oartifact == ART_KARATE_LEARNER) return TRUE;
 
 	/* supermarket cashier can use martial arts moves with all tin openers because he knows "tin-fu" */
 	if (uwep && Role_if(PM_SUPERMARKET_CASHIER) && (uwep->otyp == LASER_TIN_OPENER || uwep->otyp == TIN_OPENER || uwep->otyp == BUDO_NO_SASU || uwep->otyp == JEONTU_GEOM) ) return TRUE;

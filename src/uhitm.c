@@ -4592,7 +4592,21 @@ int dieroll;
 			}
 		}
 
-		if (u.martialstyle == MARTIALSTYLE_HAIDONGGUMDO && uwep && uwep->otyp == JEONTU_GEOM) {
+		if (!thrown && uwep && uwep->oartifact == ART_KARATE_LEARNER) {
+			if (!PlayerCannotUseSkills) {
+				switch (P_SKILL(P_MARTIAL_ARTS)) {
+					case P_BASIC:	tmp +=  1; break;
+					case P_SKILLED:	tmp +=  2; break;
+					case P_EXPERT:	tmp +=  3; break;
+					case P_MASTER:	tmp +=  4; break;
+					case P_GRAND_MASTER:	tmp +=  5; break;
+					case P_SUPREME_MASTER:	tmp +=  6; break;
+					default: tmp += 0; break;
+				}
+			}
+		}
+
+		if (!thrown && u.martialstyle == MARTIALSTYLE_HAIDONGGUMDO && uwep && uwep->otyp == JEONTU_GEOM) {
 			tmp += 5;
 			if (!PlayerCannotUseSkills) {
 				switch (P_SKILL(P_MARTIAL_ARTS)) {
@@ -4614,8 +4628,8 @@ int dieroll;
 			if (uarmf && uarmf->spe > 0) tmp += uarmf->spe;
 		}
 
-		if (uwep && uwep->oartifact == ART_AK_____) {
-			if (!PlayerCannotUseSkills) {
+		if (uwep && uwep->oartifact == ART_AK_____) { /* malus works on everything, bonus only if you're using ranged attacks */
+			if (thrown && !PlayerCannotUseSkills) {
 				if (P_SKILL(P_FIREARM) < P_BASIC) tmp += 3;
 				else if (P_SKILL(P_FIREARM) == P_BASIC) tmp += 2;
 				else if (P_SKILL(P_FIREARM) == P_SKILLED) tmp += 1;

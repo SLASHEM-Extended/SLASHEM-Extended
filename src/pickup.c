@@ -2201,6 +2201,9 @@ boolean invobj;
 	} else if (obj->otyp == LEATHER_LEASH && obj->leashmon != 0) {
 		pline("%s attached to your pet.", Tobjnam(obj, "are"));
 		return 0;
+	} else if (obj->otyp == ARMORED_LEASH && obj->leashmon != 0) {
+		pline("%s attached to your pet.", Tobjnam(obj, "are"));
+		return 0;
 	} else if (obj->otyp == INKA_LEASH && obj->leashmon != 0) {
 		pline("%s attached to your pet.", Tobjnam(obj, "are"));
 		return 0;

@@ -372,6 +372,10 @@ boolean on, silently;
 	    dismount_steed(DISMOUNT_FELL);
 	if (!on && mon == u.usteed && obj->otyp == SEATBELT_SADDLE)
 	    dismount_steed(DISMOUNT_FELL);
+	if (!on && mon == u.usteed && obj->otyp == REPELLANT_SADDLE)
+	    dismount_steed(DISMOUNT_FELL);
+	if (!on && mon == u.usteed && obj->otyp == SOFTNESS_SADDLE)
+	    dismount_steed(DISMOUNT_FELL);
 
     /* if couldn't see it but now can, or vice versa, update display */
     if (!silently && (unseen ^ !canseemon(mon)))

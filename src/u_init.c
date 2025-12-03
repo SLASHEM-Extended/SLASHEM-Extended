@@ -31881,7 +31881,7 @@ register struct trobj *trop;
 			discover_object(otyp, TRUE, FALSE);
 		}
 
-		if (otyp == OIL_LAMP && !Race_if(PM_BASTARD) )
+		if ((otyp == OIL_LAMP || otyp == PIT_LAMP || otyp == ELECTRIC_LAMP) && !Race_if(PM_BASTARD) )
 			discover_object(POT_OIL, TRUE, FALSE);
 
 		if(obj->oclass == ARMOR_CLASS){

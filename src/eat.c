@@ -6191,6 +6191,8 @@ eatspecial() /* called after eating non-food */
 		eataccessory(otmp);
 	else if (otmp->otyp == LEATHER_LEASH && otmp->leashmon)
 		o_unleash(otmp);
+	else if (otmp->otyp == ARMORED_LEASH && otmp->leashmon)
+		o_unleash(otmp);
 	else if (otmp->otyp == INKA_LEASH && otmp->leashmon)
 		o_unleash(otmp);
 	else if (otmp->otyp == ADAMANT_LEASH && otmp->leashmon)

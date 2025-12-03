@@ -993,6 +993,7 @@ register struct obj *obj, *merge;
 	if (obj == usaddle) dismount_steed(DISMOUNT_GENERIC);
 
 	if (obj->otyp == LEATHER_LEASH && obj->leashmon) o_unleash(obj);
+	if (obj->otyp == ARMORED_LEASH && obj->leashmon) o_unleash(obj);
 	if (obj->otyp == INKA_LEASH && obj->leashmon) o_unleash(obj);
 	if (obj->otyp == ADAMANT_LEASH && obj->leashmon) o_unleash(obj);
 	if (obj->oclass == SPBOOK_CLASS) book_disappears(obj);
@@ -4813,7 +4814,7 @@ register int fall;
 		obj2 = obj->nobj;
 		if ((obj->owornmask & ~(W_SWAPWEP|W_QUIVER)) != 0 ||
 			(obj == uswapwep && u.twoweap) ||
-			(obj->otyp == LEATHER_LEASH && obj->leashmon) || (obj->otyp == INKA_LEASH && obj->leashmon) || (obj->otyp == ADAMANT_LEASH && obj->leashmon) ) continue;
+			(obj->otyp == LEATHER_LEASH && obj->leashmon) || (obj->otyp == ARMORED_LEASH && obj->leashmon) || (obj->otyp == INKA_LEASH && obj->leashmon) || (obj->otyp == ADAMANT_LEASH && obj->leashmon) ) continue;
 		if (obj == current_wand) continue;
 		setnotworn(obj);
 		freeinv(obj);
@@ -5658,7 +5659,10 @@ boolean altusage; /* some items have an "alternate" use with different cost */
 		  otmp->otyp == ORB_OF_ENCHANTMENT ||                  
 		  otmp->otyp == ORB_OF_CHARGING ||
 		  otmp->otyp == OIL_LAMP ||		 /* 1 - 10 */
+		  otmp->otyp == PIT_LAMP ||
+		  otmp->otyp == ELECTRIC_LAMP ||
 		  otmp->otyp == BRASS_LANTERN ||
+		  otmp->otyp == DWARVEN_LANTERN ||
 		  otmp->otyp == DIM_LANTERN ||
 		 (otmp->otyp >= MAGIC_FLUTE &&
 		  otmp->otyp <= DRUM_OF_EARTHQUAKE) ||	 /* 5 - 9 */

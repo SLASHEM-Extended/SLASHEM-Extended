@@ -4967,6 +4967,14 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	/* todo area */
 
 	{ CHLOE_BALL_HEELS, "todo" },
+	{ ROBELIKE_CLOAK, "todo" },
+	{ PIT_LAMP, "todo" },
+	{ ELECTRIC_LAMP, "todo" },
+	{ FEANORIAN_LAMP, "todo" },
+	{ DWARVEN_LANTERN, "todo" },
+	{ SOFTNESS_SADDLE, "todo" },
+	{ REPELLANT_SADDLE, "todo" },
+	{ ARMORED_LEASH, "todo" },
 
 	{0, "" }
 };
@@ -8654,6 +8662,14 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	/* todo area */
 
 	{ CHLOE_BALL_HEELS, "todo" },
+	{ ROBELIKE_CLOAK, "todo" },
+	{ PIT_LAMP, "todo" },
+	{ ELECTRIC_LAMP, "todo" },
+	{ FEANORIAN_LAMP, "todo" },
+	{ DWARVEN_LANTERN, "todo" },
+	{ SOFTNESS_SADDLE, "todo" },
+	{ REPELLANT_SADDLE, "todo" },
+	{ ARMORED_LEASH, "todo" },
 
 	{0, "" }
 };
@@ -9054,7 +9070,7 @@ boolean showpoisoned;
 			mons[obj->corpsenm].mname);
 
 		if (is_lightsaber(obj) && nn && obj->known && obj->dknown) sprintf(eos(buf), " (%ld)", obj->age);
-		if (age_is_relative(obj) && typ != MAGIC_CANDLE && typ != MAGIC_LAMP && nn && obj->known && obj->dknown) sprintf(eos(buf), " (%ld)", obj->age);
+		if (age_is_relative(obj) && typ != MAGIC_CANDLE && typ != MAGIC_LAMP && typ != FEANORIAN_LAMP && nn && obj->known && obj->dknown) sprintf(eos(buf), " (%ld)", obj->age);
 
 		break;
 	    case ARMOR_CLASS:
@@ -9781,6 +9797,10 @@ plus:
 			strcat(bp, " (in use)");
 			break;
 		}
+		if (obj->otyp == ARMORED_LEASH && obj->leashmon != 0) {
+			strcat(bp, " (in use)");
+			break;
+		}
 		if (obj->otyp == INKA_LEASH && obj->leashmon != 0) {
 			strcat(bp, " (in use)");
 			break;
@@ -9798,8 +9818,8 @@ plus:
 				tmpbuf, plur(obj->spe),
 				!obj->lamplit ? " attached" : ", lit");
 			break;
-		} else if (obj->otyp == OIL_LAMP || obj->otyp == MAGIC_LAMP ||
-			obj->otyp == BRASS_LANTERN || obj->otyp == DIM_LANTERN || obj->otyp == TORCH ||
+		} else if (obj->otyp == OIL_LAMP || obj->otyp == PIT_LAMP || obj->otyp == FEANORIAN_LAMP || obj->otyp == ELECTRIC_LAMP || obj->otyp == MAGIC_LAMP ||
+			obj->otyp == BRASS_LANTERN || obj->otyp == DWARVEN_LANTERN || obj->otyp == DIM_LANTERN || obj->otyp == TORCH ||
 			   Is_candle(obj)) {
 			if (Is_candle(obj) &&
 			    /* WAC - magic candles are never "partly used"
@@ -12173,8 +12193,8 @@ typfnd:
 	}
 
 	if (islit &&
-		(typ == OIL_LAMP || typ == MAGIC_LAMP || 
-		 typ == BRASS_LANTERN || typ == DIM_LANTERN || typ == TORCH || 
+		(typ == OIL_LAMP || typ == PIT_LAMP || typ == FEANORIAN_LAMP || typ == ELECTRIC_LAMP || typ == MAGIC_LAMP || 
+		 typ == BRASS_LANTERN || typ == DWARVEN_LANTERN || typ == DIM_LANTERN || typ == TORCH || 
 		 Is_candle(otmp) || typ == POT_OIL)) {
 	    place_object(otmp, u.ux, u.uy);  /* make it viable light source */
 	    begin_burn(otmp, FALSE);

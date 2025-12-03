@@ -1337,6 +1337,13 @@ register int after;	/* this is extra fast monster movement */
 		    if ((info[i] & ALLOW_TRAPS) && (trap = t_at(nx,ny))) {
 			if (mtmp->mleashed) {
 			    if (flags.soundok) whimper(mtmp);
+			    if (get_mleash_artifact_type(mtmp) == ART_MINESWEEPER_ADDITOR) {
+				if (!trap->hiddentrap && !trap->tseen && trap->trapdiff && (trap->trapdiff % 7 == 0) ) {
+					trap->tseen = 1;
+					You("detect a trap!");
+					newsym(nx, ny);
+				}
+			    }
 			} else {
 			    /* 1/40 chance of stepping on it anyway, in case
 			     * it has to pass one to follow the player...
