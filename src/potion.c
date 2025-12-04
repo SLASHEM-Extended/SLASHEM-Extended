@@ -1401,6 +1401,7 @@ playerwearshighheels()
 		if (itemhasappearance(uarmf, APP_PARAGRAPH_SANDALS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_COPPER_STILETTOS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_DIAMOND_STILETTOS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_STRAP_ON_STILETTOS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_PLATINUM_STILETTOS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_SILVER_STILETTOS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_A_HEELS)) return TRUE;
@@ -1570,6 +1571,7 @@ struct obj *otmp;
 		if (itemhasappearance(otmp, APP_PARAGRAPH_SANDALS)) return TRUE;
 		if (itemhasappearance(otmp, APP_COPPER_STILETTOS)) return TRUE;
 		if (itemhasappearance(otmp, APP_DIAMOND_STILETTOS)) return TRUE;
+		if (itemhasappearance(otmp, APP_STRAP_ON_STILETTOS)) return TRUE;
 		if (itemhasappearance(otmp, APP_PLATINUM_STILETTOS)) return TRUE;
 		if (itemhasappearance(otmp, APP_SILVER_STILETTOS)) return TRUE;
 		if (itemhasappearance(otmp, APP_A_HEELS)) return TRUE;
@@ -1660,6 +1662,7 @@ int number;
 		if (itemnumwithappearance(number, APP_PARAGRAPH_SANDALS)) return TRUE;
 		if (itemnumwithappearance(number, APP_COPPER_STILETTOS)) return TRUE;
 		if (itemnumwithappearance(number, APP_DIAMOND_STILETTOS)) return TRUE;
+		if (itemnumwithappearance(number, APP_STRAP_ON_STILETTOS)) return TRUE;
 		if (itemnumwithappearance(number, APP_PLATINUM_STILETTOS)) return TRUE;
 		if (itemnumwithappearance(number, APP_SILVER_STILETTOS)) return TRUE;
 		if (itemnumwithappearance(number, APP_A_HEELS)) return TRUE;
@@ -1710,7 +1713,7 @@ playerwearssexyflats()
 	if (!uarmf) return FALSE;
 	/* uarmf is definitely defined now */
 
-	if ((uarmf->otyp == RUBBER_BOOTS) || (uarmf->otyp == EGGKICK_SHOES) || (uarmf->otyp == FLEECLE_SHOES) || (uarmf->otyp == ANASTASIA_DANCING_SHOES) || (uarmf->otyp == FRIEDERIKE_DANCING_SHOES) || (uarmf->otyp == YVONNE_GIRL_SNEAKERS) || (uarmf->otyp == ELIF_SNEAKERS) || (uarmf->otyp == ANJA_SNEAKERS) || (uarmf->otyp == CELIA_SNEAKERS) || (uarmf->otyp == ANTJE_SNEAKERS) || (uarmf->otyp == KERSTIN_WOODEN_SANDALS) || (uarmf->otyp == JANA_SNEAKERS) || (uarmf->otyp == TANJA_SNEAKERS) || (uarmf->otyp == SONJA_SNEAKERS) || (uarmf->otyp == JIL_VELCRO_SHOES) || (uarmf->otyp == LOU_SNEAKERS) || (uarmf->otyp == RUTH_SNEAKERS) || (uarmf->otyp == YASAMAN_LEATHER_BOOTS) || (uarmf->otyp == MAY_BRITT_SANDALS) || (uarmf->otyp == KERSTIN_SNEAKERS) || (uarmf->otyp == ALMUT_SNEAKERS) || (uarmf->otyp == KRISTINA_PLATFORM_SNEAKERS) || (uarmf->otyp == KARIN_LADY_SANDALS) || (uarmf->otyp == SNEAKERS) || (uarmf->otyp == MAURAH_HUGGING_BOOTS) || (uarmf->otyp == SARAH_HUGGING_BOOTS) || (uarmf->otyp == ARABELLA_HUGGING_BOOTS) || (uarmf->otyp == LUISA_HUGGING_BOOTS) || (uarmf->otyp == LISELOTTE_HUGGING_BOOTS) || (uarmf->otyp == GRETA_HUGGING_BOOTS) || (uarmf->otyp == JANE_HUGGING_BOOTS) || (uarmf->otyp == SUE_LYN_WINTER_BOOTS) || (uarmf->otyp == CHARLOTTE_HUGGING_BOOTS) || (uarmf->otyp == HANNAH_CUDDLE_BOOTS) || (uarmf->otyp == LITTLE_MARIE_HUGGING_BOOTS) || (uarmf->otyp == LUDGERA_HIKING_BOOTS) || (uarmf->otyp == BRIGHT_CYAN_BEAUTIES) || (uarmf->otyp == LAURA_WINTER_BOOTS) || (uarmf->otyp == DANCING_SHOES) || (uarmf->otyp == JESSICA_LADY_SHOES) || (uarmf->otyp == SOLVEJG_MOCASSINS) || (uarmf->otyp == SWEET_MOCASSINS) || (uarmf->otyp == SOFT_SNEAKERS) || (uarmf->otyp == CLOGS) || (uarmf->otyp == KATI_GIRL_BOOTS) || (uarmf->otyp == MARLENA_HIKING_BOOTS) || (uarmf->otyp == ROLLER_BLADE) || (uarmf->otyp == JEANETTA_GIRL_BOOTS) || (uarmf->otyp == DIFFICULT_BOOTS) || (uarmf->otyp == AIRSTEP_BOOTS) || (uarmf->otyp == ANNA_HUGGING_BOOTS) || (uarmf->otyp == INA_HUGGING_BOOTS) || (uarmf->otyp == SYNTHETIC_SANDALS)) return TRUE;
+	if ((uarmf->otyp == RUBBER_BOOTS) || (uarmf->otyp == EGGKICK_SHOES) || (uarmf->otyp == FLEECLE_SHOES) || (uarmf->otyp == ANASTASIA_DANCING_SHOES) || (uarmf->otyp == FRIEDERIKE_DANCING_SHOES) || (uarmf->otyp == YVONNE_GIRL_SNEAKERS) || (uarmf->otyp == ELIF_SNEAKERS) || (uarmf->otyp == ANJA_SNEAKERS) || (uarmf->otyp == CELIA_SNEAKERS) || (uarmf->otyp == ANTJE_SNEAKERS) || (uarmf->otyp == KERSTIN_WOODEN_SANDALS) || (uarmf->otyp == JANA_SNEAKERS) || (uarmf->otyp == TANJA_SNEAKERS) || (uarmf->otyp == SONJA_SNEAKERS) || (uarmf->otyp == JIL_VELCRO_SHOES) || (uarmf->otyp == LOU_SNEAKERS) || (uarmf->otyp == RUTH_SNEAKERS) || (uarmf->otyp == YASAMAN_LEATHER_BOOTS) || (uarmf->otyp == MAY_BRITT_SANDALS) || (uarmf->otyp == KERSTIN_SNEAKERS) || (uarmf->otyp == JOHANETTA_GIRL_SHOES) || (uarmf->otyp == ALMUT_SNEAKERS) || (uarmf->otyp == KRISTINA_PLATFORM_SNEAKERS) || (uarmf->otyp == KARIN_LADY_SANDALS) || (uarmf->otyp == SNEAKERS) || (uarmf->otyp == MAURAH_HUGGING_BOOTS) || (uarmf->otyp == SARAH_HUGGING_BOOTS) || (uarmf->otyp == ARABELLA_HUGGING_BOOTS) || (uarmf->otyp == LUISA_HUGGING_BOOTS) || (uarmf->otyp == LISELOTTE_HUGGING_BOOTS) || (uarmf->otyp == GRETA_HUGGING_BOOTS) || (uarmf->otyp == JANE_HUGGING_BOOTS) || (uarmf->otyp == SUE_LYN_WINTER_BOOTS) || (uarmf->otyp == CHARLOTTE_HUGGING_BOOTS) || (uarmf->otyp == HANNAH_CUDDLE_BOOTS) || (uarmf->otyp == LITTLE_MARIE_HUGGING_BOOTS) || (uarmf->otyp == LUDGERA_HIKING_BOOTS) || (uarmf->otyp == BRIGHT_CYAN_BEAUTIES) || (uarmf->otyp == LAURA_WINTER_BOOTS) || (uarmf->otyp == DANCING_SHOES) || (uarmf->otyp == JESSICA_LADY_SHOES) || (uarmf->otyp == SOLVEJG_MOCASSINS) || (uarmf->otyp == SWEET_MOCASSINS) || (uarmf->otyp == SOFT_SNEAKERS) || (uarmf->otyp == CLOGS) || (uarmf->otyp == KATI_GIRL_BOOTS) || (uarmf->otyp == MARLENA_HIKING_BOOTS) || (uarmf->otyp == ROLLER_BLADE) || (uarmf->otyp == JEANETTA_GIRL_BOOTS) || (uarmf->otyp == DIFFICULT_BOOTS) || (uarmf->otyp == AIRSTEP_BOOTS) || (uarmf->otyp == ANNA_HUGGING_BOOTS) || (uarmf->otyp == INA_HUGGING_BOOTS) || (uarmf->otyp == SYNTHETIC_SANDALS)) return TRUE;
 
 	if (OBJ_DESCR(objects[uarmf->otyp])) {
 
@@ -1894,6 +1897,10 @@ maybestilettoheels()
 		if (itemhasappearance(uarmf, APP_FILIGREE_STILETTOS)) havetheseheels = TRUE;
 		if (itemhasappearance(uarmf, APP_BAYONET_HEELS)) havetheseheels = TRUE;
 		if (itemhasappearance(uarmf, APP_PARAGRAPH_SANDALS)) {
+			havetheseheels = TRUE;
+			opentoe = TRUE;
+		}
+		if (itemhasappearance(uarmf, APP_STRAP_ON_STILETTOS)) {
 			havetheseheels = TRUE;
 			opentoe = TRUE;
 		}
@@ -2244,7 +2251,7 @@ playerextrinsicdiscountaction()
 	if ( (uarmf && uarmf->oartifact == ART_HEIKE_S_BIGOTRY) || (uwep && uwep->oartifact == ART_MAILIE_S_SELF_CENTRATION) || (uarmf && uarmf->oartifact == ART_LISA_S_BUCKLED_BEAUTIES) || (uwep && uwep->oartifact == ART_HARMONY_VIRGIN) || (uwep && uwep->oartifact == ART_SHINING_SILVER_KATANA) || (uwep && uwep->oartifact == ART_ZANTETSU) || (uarmf && uarmf->oartifact == ART_CRASHING_YOUR_SISTER_S_WED) || (uarmf && uarmf->oartifact == ART_ELEVECULT) || (uimplant && uimplant->oartifact == ART_CLEAN_ASCENSION_RUN && In_endgame(&u.uz)) || (Role_if(PM_SINGSLAVE) && uarmf && uarmf->oartifact == ART_LORENZI_S_CLEANING_RESIDUE) || (uarm && uarm->oartifact == ART_JOHN_CENA_SPLIT_MAIL) || (uarms && uarms->oartifact == ART_SHIELD_OF_THORN) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_GOOSCH_HIDARI) ) return TRUE;
 	if ( (flags.female && uarmf && uarmf->oartifact == ART_BS_____) || (!player_wears_metal() && uarmc && uarmc->oartifact == ART_NO_METAL_ALLOWED) || (uamul && uamul->oartifact == ART_PROTECTED_MODE_RUN_TIME) || (uamul && uamul->oartifact == ART_NAMED_NUKA_COLA) || (uwep && uwep->oartifact == ART_TONA_S_GAMES && (PlayerInBlockHeels || PlayerInWedgeHeels) ) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_CAN_T_BRING_US_DOWN) || autismringcheck(ART_MENGERDENGER) || (uarm && uarm->oartifact == ART_DREAD_PELT) || (uarmc && uarmc->oartifact == ART_STRIPED_SHIRT_OF_THE_FALSE) || (uarmf && uarmf->oartifact == ART_NANCY_S_ASSISTANCE) || (uwep && uwep->oartifact == ART_HELF_ME_NEVERTHELESS) || (uarm && uarm->oartifact == ART_MENSTRATE_FOR_ME && !flags.female) || (uarms && uarms->oartifact == ART_RIVAL_LOW) || (uarmu && uarmu->oartifact == ART_SETH_S_ERROR) || autismringcheck(ART_BUT_YOU_MUST) || (uarmf && uarmf->oartifact == ART_NADINE_S_CUTENESS) ) return TRUE;
 	if ( (uwep && uwep->oartifact == ART_TRUE_MASTERPIECE) || (uarmf && uarmf->oartifact == ART_IMPOSSIBLE_CATWALK) || (uarmf && uarmf->oartifact == ART_FULL_PROGRAM) || (uarm && uarm->oartifact == ART_LYNN_S_EVERVIGILANCE) || (uwep && uwep->oartifact == ART_NOOBY_BONUS_STYLE && bimanual(uwep)) || (uwep && uwep->oartifact == ART_SMOKING_SQUIRREL) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_BUCKET_HOUSE) || (uarmu && uarmu->oartifact == ART_PEDIATRIC_GAWKING_GANGS) || (uwep && uwep->oartifact == ART_COUNTERSTRIKE_CESTUS) || (uarmu && uarmu->oartifact == ART_KING_OF_PORN) || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == DISCOUNT_ACTION)) ) return TRUE;
-	if ( (uarmg && uarmg->oartifact == ART_INTERMINTER) || (uarmc && uarmc->oartifact == ART_GERMAN_CHANCELLOR_SAYS_) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_DIDI_S_LEG_PAINTING) || (u.usteed && uamul && uamul->oartifact == ART_ADELAIDE_S_RACING) || (uarmf && uarmf->oartifact == ART_OFFZEEH_BRUN) ) return TRUE;
+	if ( (uarmg && uarmg->oartifact == ART_INTERMINTER) || (uarmc && uarmc->oartifact == ART_GERMAN_CHANCELLOR_SAYS_) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_DIDI_S_LEG_PAINTING) || (uarmf && uarmf->oartifact == ART_MOST_EROTIC_AIR_CURRENT_NO) || (u.usteed && uamul && uamul->oartifact == ART_ADELAIDE_S_RACING) || (uarmf && uarmf->oartifact == ART_OFFZEEH_BRUN) ) return TRUE;
 
 	return FALSE;
 
@@ -6856,6 +6863,7 @@ cure_feminism_traps()
 	FemaleTrapFemmy = 0L;
 	FemaleTrapMadeleine = 0L;
 	FemaleTrapMarlena = 0L;
+	FemaleTrapJohanetta = 0L;
 	FemaleTrapChloe = 0L;
 	FemaleTrapAnja = 0L;
 	FemaleTrapCelia = 0L;
@@ -13238,7 +13246,7 @@ dodrink()
 	u.cnd_quaffcount++;
 
 	if (otmp && otmp->oartifact == ART_JOHN_CALEB_S_INGENIOSITY) {
-		int nukaroll = rnd(109); /* keyword: "marlena" */
+		int nukaroll = rnd(110); /* keyword: "marlena" */
 		u.tempnukaefftype = nukaroll;
 		u.tempnukaeffect += 10000;
 
@@ -15780,7 +15788,7 @@ peffects(otmp)
 		break;
 	case POT_JOLT_COLA:
 
-		pline_The("bottle of Jolt Cola is named %s today!", feminismtrapname(rnd(109)) ); /* keyword: "marlena" */
+		pline_The("bottle of Jolt Cola is named %s today!", feminismtrapname(rnd(110)) ); /* keyword: "marlena" */
 
 		You("are jolted back to your senses.");
 

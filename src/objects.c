@@ -1781,7 +1781,7 @@ ARMOR("throwaway armor", (char *)0,
 ARMOR("satanic armor", (char *)0,
 	1, 0, 0, 0,	100, 3, 30,  50,  8, 0, ARM_SUIT, MT_ADAMANTIUM, CLR_RED, 6, 0),
 ARMOR("leather armor", (char *)0,
-	1, 0, 0, 0,	4850, 3, 60,   5,  8, 0, ARM_SUIT, MT_LEATHER, HI_LEATHER, 1, 0),
+	1, 0, 0, 0,	4847, 3, 60,   5,  8, 0, ARM_SUIT, MT_LEATHER, HI_LEATHER, 1, 0),
 ARMOR("giant sea anemone", (char *)0,
 	1, 0, 0, 0,	200, 3, 60, 100,  8, 0, ARM_SUIT, MT_FLESH, CLR_ORANGE, 5, 0),
 ARMOR("exciting armor", (char *)0, /* random magical effect */
@@ -4035,6 +4035,8 @@ BOOTS("Janina lady pumps", "everyday sneakers",
 		0, 0,  FEMTRAP_JANINA,   	3, 2, 8, 50, 8, 2, MT_LEATHER, CLR_ORANGE, 1, 0),
 BOOTS("Rosa girl shoes", "little-girl shoes",
 		0, 0,  FEMTRAP_ROSA,   	3, 2, 8, 50, 9, 0, MT_LEATHER, CLR_BRIGHT_MAGENTA, 1, 0),
+BOOTS("Johanetta girl shoes", "strap-on stilettos",
+		0, 0,  FEMTRAP_JOHANETTA,   	3, 2, 8, 50, 8, 2, MT_PLASTIC, CLR_BRIGHT_MAGENTA, 1, APP_STRAP_ON_STILETTOS),
 BOOTS("Ksenia platform sandals", "geometry heels", /* wedge */
 		0, 0,  FEMTRAP_KSENIA,   	3, 2, 8, 50, 9, 2, MT_PLASTIC, CLR_BRIGHT_CYAN, 1, APP_GEOMETRY_HEELS),
 BOOTS("Lydia lady pumps", "espadrilles",
@@ -6263,10 +6265,11 @@ CONTAINER("oilskin sack", "bag",        0, 0, 0, 0, 2000, 5, 30, MT_CLOTH, HI_CL
 CONTAINER("titan sack", "bag",          0, 0, 0, 0,   50, 5, 100, MT_TITANIUM, HI_CLOTH, 30),
 CONTAINER("bag of holding", "bag",      0, 1, 0, 0, 2000, 5, 30, MT_CLOTH, HI_CLOTH, 8),
 CONTAINER("bag of digestion","bag",     0, 1, 0, 0,  500, 5, 30, MT_CLOTH, HI_CLOTH, 5),
+/* bag of digestion must be next to last */
 CONTAINER("bag of tricks", "bag",       0, 1, 1, 0, 1950, 5, 30, MT_CLOTH, HI_CLOTH, 5),
 /* bag of tricks must be last */
 
-/* Unlocking tools */
+/* Unlocking tools - skeleton key must be first */
 TOOL("skeleton key", "key",     0, 0, 0, 0, 6040,  0,  10, MT_IRON, HI_METAL, 1),
 TOOL("secret key", (char *)0,   1, 0, 0, 0,  500,  0,  10, MT_SECREE, CLR_BLACK, 1),
 WEPTOOL("controversy code", (char *)0, /* can be used as a key to unlock stuff */
@@ -6275,6 +6278,7 @@ TOOL("lock pick", (char *)0,    1, 0, 0, 0, 4790,  0,  20, MT_IRON, HI_METAL, 1)
 TOOL("hairclip", (char *)0,     1, 0, 0, 0,  600,  0,  20, MT_SILK, CLR_WHITE, 1),
 TOOL("credit card", (char *)0,  1, 0, 0, 0, 1100,  0,  10, MT_PLASTIC, CLR_WHITE, 1),
 TOOL("data chip", (char *)0,    1, 0, 0, 0,  400,  0,  10, MT_PLATINUM, CLR_GRAY, 1),
+/* data chip must be last unlocking tool */
 
 /* Light sources */
 /* [Tom] made candles cheaper & more common */
@@ -11132,20 +11136,20 @@ GEM("marble", "white",                 200, 0,  200, 5, 5, 15,  3, MT_GEMSTONE, 
 GEM("morion", "black",                 200, 0,  200, 5, 5, 15,  7, MT_GEMSTONE, CLR_BLACK, 2),
 GEM("jade", "green",                   200, 0,  300, 5, 5, 15,  6, MT_GEMSTONE, CLR_GREEN, 1),
 /* jade should be last for runestone mimics, makemon.c, and white glass first worthless glass --Amy */
-GEM("worthless piece of white glass", "white",   2934, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_WHITE, 1),
-GEM("worthless piece of blue glass", "blue",     2934, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_BRIGHT_BLUE, 1),
-GEM("worthless piece of red glass", "red",       2934, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_RED, 1),
-GEM("worthless piece of yellowish brown glass", "yellowish brown", 2934, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_BROWN, 1),
-GEM("worthless piece of orange glass", "orange", 2934, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_ORANGE, 1),
-GEM("worthless piece of yellow glass", "yellow", 2934, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_YELLOW, 1),
+GEM("worthless piece of white glass", "white",   2933, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_WHITE, 1),
+GEM("worthless piece of blue glass", "blue",     2933, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_BRIGHT_BLUE, 1),
+GEM("worthless piece of red glass", "red",       2933, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_RED, 1),
+GEM("worthless piece of yellowish brown glass", "yellowish brown", 2933, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_BROWN, 1),
+GEM("worthless piece of orange glass", "orange", 2933, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_ORANGE, 1),
+GEM("worthless piece of yellow glass", "yellow", 2933, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_YELLOW, 1),
 GEM("worthless piece of black glass",  "black",  2934, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_BLACK, 1),
 GEM("worthless piece of pink glass",  "pink",  2934, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_BRIGHT_MAGENTA, 1),
 GEM("worthless piece of cyan glass",  "cyan",  2934, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_CYAN, 1),
 GEM("worthless piece of teal glass",  "teal",  2934, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_BRIGHT_CYAN, 1),
-GEM("worthless piece of green glass", "green",   2935, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_GREEN, 1),
-GEM("worthless piece of radiant glass", "radiant",   2935, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_BRIGHT_GREEN, 1),
-GEM("worthless piece of violet glass", "violet", 2935, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_MAGENTA, 1),
-GEM("worthless piece of dark blue glass", "dark blue",     2935, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_BLUE, 1),
+GEM("worthless piece of green glass", "green",   2934, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_GREEN, 1),
+GEM("worthless piece of radiant glass", "radiant",   2934, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_BRIGHT_GREEN, 1),
+GEM("worthless piece of violet glass", "violet", 2934, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_MAGENTA, 1),
+GEM("worthless piece of dark blue glass", "dark blue",     2934, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_BLUE, 1),
 /* last worthless glass = dark blue */
 
 /* first feminism jewel = Elif's jewel */
@@ -11206,6 +11210,7 @@ GEM("Antje's second jewel", "dark blue",   10, 0, 0, 20, 20, 6, 5, MT_GLASS, CLR
 GEM("Julia's jewel", "yellow", 10, 0, 0, 20, 20, 6, 5, MT_GLASS, CLR_YELLOW, 1),
 GEM("Nicole's jewel",  "black",  10, 0, 0, 20, 20, 6, 5, MT_GLASS, CLR_BLACK, 1),
 GEM("Jennifer's jewel",  "pink",  10, 0, 0, 20, 20, 6, 5, MT_GLASS, CLR_BRIGHT_MAGENTA, 1),
+GEM("Johanetta's jewel",  "pink",  10, 0, 0, 20, 20, 6, 5, MT_GLASS, CLR_BRIGHT_MAGENTA, 1),
 GEM("Natalia's jewel",  "cyan",  10, 0, 0, 20, 20, 6, 5, MT_GLASS, CLR_CYAN, 1),
 GEM("Annemarie's jewel",  "teal",  10, 0, 0, 20, 20, 6, 5, MT_GLASS, CLR_BRIGHT_CYAN, 1),
 GEM("Gudrun's jewel", "green",   10, 0, 0, 20, 20, 6, 5, MT_GLASS, CLR_GREEN, 1),

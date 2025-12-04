@@ -2570,7 +2570,7 @@ randnastyenchantment()
 int
 randfemienchantment()
 {
-		switch (rnd(109)) {
+		switch (rnd(110)) {
 			case 1: return FEMTRAP_FEMMY;
 			case 2: return FEMTRAP_MADELEINE;
 			case 3: return FEMTRAP_MARLENA;
@@ -2680,6 +2680,7 @@ randfemienchantment()
 			case 107: return FEMTRAP_ANJA;
 			case 108: return FEMTRAP_CELIA;
 			case 109: return FEMTRAP_CHLOE;
+			case 110: return FEMTRAP_JOHANETTA;
 		}
 
 	return FEMTRAP_ELISE; /* appease compiler */
@@ -3237,6 +3238,38 @@ randartsaddle()
 }
 
 int
+randartcontainerplustricks()
+{
+	int result;
+	result = rnd_class(LARGE_BOX, BAG_OF_TRICKS);
+	return result;
+}
+
+int
+randartcontainernotricks()
+{
+	int result;
+	result = rnd_class(LARGE_BOX, BAG_OF_DIGESTION);
+	return result;
+}
+
+int
+randartunlocking()
+{
+	int result;
+	result = rnd_class(SKELETON_KEY, DATA_CHIP);
+	return result;
+}
+
+int
+randartlightsource()
+{
+	int result;
+	result = rnd_class(TALLOW_CANDLE, MAGIC_LAMP);
+	return result;
+}
+
+int
 randartblindfold()
 {
 	int result;
@@ -3783,6 +3816,38 @@ randartsaddleX()
 {
 	int result;
 	result = LEATHER_SADDLE + rn2((INKA_SADDLE + 1) - LEATHER_SADDLE);
+	return result;
+}
+
+int
+randartcontainerplustricksX()
+{
+	int result;
+	result = LARGE_BOX + rn2((BAG_OF_TRICKS + 1) - LARGE_BOX);
+	return result;
+}
+
+int
+randartcontainernotricksX()
+{
+	int result;
+	result = LARGE_BOX + rn2((BAG_OF_DIGESTION + 1) - LARGE_BOX);
+	return result;
+}
+
+int
+randartunlockingX()
+{
+	int result;
+	result = SKELETON_KEY + rn2((DATA_CHIP + 1) - SKELETON_KEY);
+	return result;
+}
+
+int
+randartlightsourceX()
+{
+	int result;
+	result = TALLOW_CANDLE + rn2((MAGIC_LAMP + 1) - TALLOW_CANDLE);
 	return result;
 }
 
@@ -5415,7 +5480,7 @@ int duration;
 		if (SuperFemtrapRosa) duration *= 2;
 	}
 
-	switch (rnd(109)) {
+	switch (rnd(110)) {
 		case 1:
 			if (!FemtrapActiveRuth) pline("You can already imagine the farting noises you're gonna hear.");
 			FemaleTrapSarah += duration;
@@ -5856,6 +5921,10 @@ int duration;
 			if (!FemtrapActiveRuth) pline("Oh no, you'll have to spend all your money for a pair of designer heels! As if you didn't have enough money troubles already!");
 			FemaleTrapChloe += duration;
 			break;
+		case 110:
+			if (!FemtrapActiveRuth) pline("You feel that you'll have to fight lots of female shoes, and more powerful ones too.");
+			FemaleTrapJohanetta += duration;
+			break;
 	}
 }
 
@@ -5863,7 +5932,7 @@ int duration;
 void
 getfeminismtrapintrinsic()
 {
-	switch (rnd(109)) {
+	switch (rnd(110)) {
 		case 1:
 			if (!FemtrapActiveRuth) pline("You can already imagine the farting noises you're gonna hear.");
 			FemaleTrapSarah |= FROMOUTSIDE;
@@ -6306,6 +6375,10 @@ getfeminismtrapintrinsic()
 		case 109:
 			if (!FemtrapActiveRuth) pline("Oh no, you'll have to spend all your money for a pair of designer heels! As if you didn't have enough money troubles already!");
 			FemaleTrapChloe |= FROMOUTSIDE;
+			break;
+		case 110:
+			if (!FemtrapActiveRuth) pline("You feel that you'll have to fight lots of female shoes, and more powerful ones too.");
+			FemaleTrapJohanetta |= FROMOUTSIDE;
 			break;
 	}
 }
@@ -7012,7 +7085,7 @@ boolean withtroves;
 int
 randomfeminismtraptype() /* keyword "marlena" */
 {
-	switch (rnd(109)) {
+	switch (rnd(110)) {
 			case 1: return FEMMY_TRAP;
 			case 2: return MADELEINE_TRAP;
 			case 3: return MARLENA_TRAP;
@@ -7122,6 +7195,7 @@ randomfeminismtraptype() /* keyword "marlena" */
 			case 107: return ANJA_TRAP;
 			case 108: return CELIA_TRAP;
 			case 109: return CHLOE_TRAP;
+			case 110: return JOHANETTA_TRAP;
 	}
 	return INGE_TRAP; /* fail safe */
 

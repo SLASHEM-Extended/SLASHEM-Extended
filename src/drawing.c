@@ -1136,6 +1136,7 @@ const struct symdef defsyms[MAXPCHARS] = {
 	{'^', "anja trap", C(CLR_RED)},	/* trap */
 	{'^', "celia trap", C(CLR_YELLOW)},	/* trap */
 	{'^', "chloe trap", C(CLR_BRIGHT_GREEN)},	/* trap */
+	{'^', "johanetta trap", C(CLR_BRIGHT_MAGENTA)},	/* trap */
 
 	{'^', "timerun trap", C(CLR_BRIGHT_CYAN)},	/* trap */
 	{'|', "wall",		C(CLR_GRAY)},	/* vbeam */
@@ -2105,6 +2106,7 @@ static uchar ibm_graphics[MAXPCHARS] = {
 	g_FILLER(S_anja_trap),
 	g_FILLER(S_celia_trap),
 	g_FILLER(S_chloe_trap),
+	g_FILLER(S_johanetta_trap),
 
 	g_FILLER(S_timerun_trap),
 	0xb3,	/* S_vbeam:	meta-3, vertical rule */
@@ -3062,6 +3064,7 @@ static uchar dec_graphics[MAXPCHARS] = {
 	g_FILLER(S_anja_trap),
 	g_FILLER(S_celia_trap),
 	g_FILLER(S_chloe_trap),
+	g_FILLER(S_johanetta_trap),
 
 	g_FILLER(S_timerun_trap),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
@@ -4016,6 +4019,7 @@ static uchar wing_graphics[MAXPCHARS] = {
 	g_FILLER(S_anja_trap),
 	g_FILLER(S_celia_trap),
 	g_FILLER(S_chloe_trap),
+	g_FILLER(S_johanetta_trap),
 
 	g_FILLER(S_timerun_trap),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
@@ -4971,6 +4975,7 @@ static uchar mac_graphics[MAXPCHARS] = {
 	g_FILLER(S_anja_trap),
 	g_FILLER(S_celia_trap),
 	g_FILLER(S_chloe_trap),
+	g_FILLER(S_johanetta_trap),
 
 	g_FILLER(S_timerun_trap),
 
@@ -6135,6 +6140,7 @@ boolean is_rlevel;
 	    showsyms[S_anja_trap] = 0x04;
 	    showsyms[S_celia_trap] = 0x04;
 	    showsyms[S_chloe_trap] = 0x04;
+	    showsyms[S_johanetta_trap] = 0x04;
 
  	    showsyms[S_timerun_trap] = 0x04;
 

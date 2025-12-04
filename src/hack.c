@@ -5925,6 +5925,8 @@ weight_cap() /* your current max carry cap (the one displayed on the bottom stat
 		if (EWounded_legs) carrcap -= 250;
 	}
 
+	if (have_clonedyke()) carrcap -= 750;
+
 	/* multipliers go here */
 
 	if (uwep && uwep->oartifact == ART_SYLVIE_S_EASY_MODE) carrcap *= 10;

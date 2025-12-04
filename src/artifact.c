@@ -597,6 +597,15 @@ init_randarts()
 	artilist[ART_FREEZE_OR_YES].otyp = randartgloves();
 	artilist[ART_PRINCESS_BITCH].otyp = randartgloves();
 	artilist[ART_WOULD_YOU_RAIGHT_THAT].otyp = randartgloves();
+	artilist[ART_REFRACTURA].otyp = randartcontainernotricks();
+	artilist[ART_GALLUS__TRINKET].otyp = randartunlocking();
+	artilist[ART_BRASS_CLOSEL].otyp = randartunlocking();
+	artilist[ART_OVERPOWEREMENT_RADII].otyp = randartlightsource();
+	artilist[ART_XAW_MUNNATS_PFOUT].otyp = randartlightsource();
+	artilist[ART_CLIRR].otyp = randartlightsourceX();
+	artilist[ART_SELF_SIMILARITY].otyp = randartcontainernotricks();
+	artilist[ART_BESTANDING_IN_THE_WEATHER].otyp = randartcontainerplustricks();
+	artilist[ART_NO_STOPPING_THE_COURIER].otyp = randartcontainerplustricks();
 	artilist[ART_DIFFICULTY__].otyp = randartgloves();
 	artilist[ART_SWARM_SOFT_HIGH_HEELS].otyp = randartboots();
 	artilist[ART_WEAK_FROM_HUNGER].otyp = randartboots();
@@ -609,6 +618,7 @@ init_randarts()
 	artilist[ART_INTELLIGENT_POPE].otyp = randartlauncher();
 	artilist[ART_RNG_S_PRIDE].otyp = randartsuit();
 	artilist[ART_RNG_S_JOY].otyp = randartgloves();
+	artilist[ART_HOLIER_THAN_THOU].otyp = randartcontainerplustricks();
 	artilist[ART_RNG_S_SEXINESS].otyp = randartboots();
 	artilist[ART_RNG_S_EMBRACE].otyp = randartcloak();
 	artilist[ART_RNG_S_GRIMACE].otyp = randarthelm();
@@ -904,7 +914,18 @@ init_randarts()
 	artilist[ART_SPECIAL_ROBUNG].otyp = randartrobeX();
 	artilist[ART_COME_ON_AMMY].otyp = randartrobeX();
 	artilist[ART_YETA_S_BEAR_BEING].otyp = randartrobeX();
+	artilist[ART_SEVERAL_DUNGEONS_WORTH_OF_].otyp = randartcontainernotricksX();
+	artilist[ART_KARLIAH_S_NUKA_BREAK].otyp = randartunlockingX();
+	artilist[ART_RIMSKY_S_HAND_STAR].otyp = randartunlockingX();
+	artilist[ART_A_YARD_IS_NOT_A_METER].otyp = randartlightsourceX();
+	artilist[ART_HOLE_IN_THE_TREE].otyp = randartlightsourceX();
+	artilist[ART_D_N_H__D_N_H_].otyp = randartlightsourceX();
+	artilist[ART_OMMMMMMMG_WISH_GET].otyp = randartcontainernotricksX();
+	artilist[ART_THREE_OF_CHARM].otyp = randartcontainerplustricksX();
+	artilist[ART_CLONE_DYKE_TREASURE].otyp = randartcontainerplustricksX();
+	artilist[ART_TINPLAGUE].otyp = randartcontainerplustricksX();
 	artilist[ART_UPPERWEAVER_S_THREAD].otyp = randartrobeX();
+	artilist[ART_LESS_PROTECTED_GLASS_CANNO].otyp = randartrobeX();
 	artilist[ART_CHAOSWEAVER_ROBES].otyp = randartrobeX();
 	artilist[ART_COPE_OF_THE_ELDRITCH_KNIGH].otyp = randartrobeX();
 	artilist[ART_ROBE_OF_CLOSED_EYES].otyp = randartrobeX();
@@ -1319,6 +1340,7 @@ init_appearance_randarts()
 	artilist[ART_SETH_S_FLYING_CAPE].otyp = find_appearance_armor(APP_BOXING_GOWN);
 	artilist[ART_MANTLE_OF_CONFLICT].otyp = find_appearance_armor(APP_IRRADIATION_CLOAK);
 
+	artilist[ART_READY_TO_GO].otyp = find_appearance_armor(APP_STRAP_ON_STILETTOS);
 	artilist[ART_STORMING_FISTS].otyp = find_appearance_armor(APP_CRITICAL_GLOVES);
 	artilist[ART_ZERO_SUGAR].otyp = find_appearance_armor(APP_NAMED_BOOTS);
 	artilist[ART_JUEN_S_ROLLOVER].otyp = find_appearance_armor(APP_ROLLER_BOOTS);
@@ -2585,10 +2607,21 @@ register boolean mod;
 		    }
 
 		    if (otmp && otmp->oartifact == ART_NUKA_ROLL) {
-			int nukaroll = rnd(109); /* keyword: "marlena" */
+			int nukaroll = rnd(110); /* keyword: "marlena" */
 
 			u.tempnukaefftype = nukaroll;
 			u.tempnukaeffect += rnz(5000);
+
+			pline_The("bottle of Nuka Cola is named %s today!", feminismtrapname(nukaroll));
+
+			lesshungry(500);
+		    }
+
+		    if (otmp && otmp->oartifact == ART_KARLIAH_S_NUKA_BREAK) {
+			int nukaroll = rnd(110); /* keyword: "marlena" */
+
+			u.tempnukaefftype = nukaroll;
+			u.tempnukaeffect += 50000;
 
 			pline_The("bottle of Nuka Cola is named %s today!", feminismtrapname(nukaroll));
 
@@ -2604,6 +2637,29 @@ register boolean mod;
 				unrestrict_weapon_skill(P_RIDING);
 				P_MAX_SKILL(P_RIDING) = P_BASIC;
 				pline("You can now learn the riding skill!");
+			}
+		    }
+
+		    if (otmp && otmp->oartifact == ART_EVERYTHING_A_PRINCESS_NEED) {
+			if (P_MAX_SKILL(P_RIDING) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(P_RIDING);
+				P_MAX_SKILL(P_RIDING) = P_BASIC;
+				pline("You can now learn the riding skill!");
+			}
+			if (P_MAX_SKILL(P_GENERAL_COMBAT) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(P_GENERAL_COMBAT);
+				P_MAX_SKILL(P_GENERAL_COMBAT) = P_BASIC;
+				pline("You can now learn the general combat skill!");
+			}
+			if (P_MAX_SKILL(P_BODY_ARMOR) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(P_BODY_ARMOR);
+				P_MAX_SKILL(P_BODY_ARMOR) = P_BASIC;
+				pline("You can now learn the body armor skill!");
+			}
+			if (P_MAX_SKILL(P_MISSILE_WEAPONS) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(P_MISSILE_WEAPONS);
+				P_MAX_SKILL(P_MISSILE_WEAPONS) = P_BASIC;
+				pline("You can now learn the missile weapons skill!");
 			}
 		    }
 
@@ -2645,6 +2701,29 @@ register boolean mod;
 
 				if (isok(cc.x, cc.y)) {
 					(void) mksobj_at(HAIRCLIP, cc.x, cc.y, TRUE, FALSE, FALSE);
+				}
+			}
+		    }
+
+		    if (otmp && otmp->oartifact == ART_THREE_OF_CHARM) {
+			int deetrekamount = 2;
+			while (deetrekamount > 0) {
+				int attempts = 50000;
+				deetrekamount--;
+
+				coord cc;
+
+				cc.x = rn1(COLNO-3,2);
+				cc.y = rn2(ROWNO);
+
+				while (attempts > 0 && !ACCESSIBLE(levl[cc.x][cc.y].typ)) {
+					attempts--;
+					cc.x = rn1(COLNO-3,2);
+					cc.y = rn2(ROWNO);
+				}
+
+				if (isok(cc.x, cc.y)) {
+					(void) mksobj_at(otmp->otyp, cc.x, cc.y, TRUE, FALSE, FALSE);
 				}
 			}
 		    }
@@ -3085,6 +3164,10 @@ register boolean mod;
 			u.evilvartemporary += 50000;
 			pline("Have fun with the evil variant, sucker.");
 			otmp->spe += rnz(20);
+			otmp->cursed = otmp->hvycurse = otmp->prmcurse = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
+			bless(otmp);
+		    }
+		    if (otmp && otmp->oartifact == ART_HOLIER_THAN_THOU) {
 			otmp->cursed = otmp->hvycurse = otmp->prmcurse = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
 			bless(otmp);
 		    }
@@ -3922,6 +4005,33 @@ register boolean mod;
 
 		    }
 
+		    if (otmp && otmp->oartifact == ART_SELF_SIMILARITY) {
+			register struct obj *ocont;
+
+			ocont = mksobj(otmp->otyp, TRUE, FALSE, FALSE);
+			if (ocont) {
+				ocont->owt = weight(ocont);
+				(void) add_to_container(otmp, ocont, TRUE);
+			}
+
+		    }
+
+		    if (otmp && otmp->oartifact == ART_SEVERAL_DUNGEONS_WORTH_OF_) {
+			register struct obj *ocont;
+
+			ocont = mksobj(TREASURE_CHEST, TRUE, FALSE, FALSE);
+			if (ocont) {
+				ocont->owt = weight(ocont);
+				(void) add_to_container(otmp, ocont, TRUE);
+			}
+			ocont = mksobj(LOOT_CHEST, TRUE, FALSE, FALSE);
+			if (ocont) {
+				ocont->owt = weight(ocont);
+				(void) add_to_container(otmp, ocont, TRUE);
+			}
+
+		    }
+
 		    if (otmp && otmp->oartifact == ART_KILILILILI_KILI) {
 			register struct obj *ocont;
 
@@ -3929,6 +4039,17 @@ register boolean mod;
 			if (ocont) {
 				curse(ocont);
 				ocont->hvycurse = TRUE;
+				ocont->owt = weight(ocont);
+				(void) add_to_container(otmp, ocont, TRUE);
+			}
+
+		    }
+
+		    if (otmp && otmp->oartifact == ART_OMMMMMMMG_WISH_GET) {
+			register struct obj *ocont;
+
+			ocont = mksobj(SCR_WISHING, TRUE, FALSE, FALSE);
+			if (ocont) {
 				ocont->owt = weight(ocont);
 				(void) add_to_container(otmp, ocont, TRUE);
 			}
@@ -4481,11 +4602,40 @@ register boolean mod;
 		    if (otmp && otmp->oartifact == ART_ETHER_DAGGER) {
 			if (objects[otmp->otyp].oc_material != MT_ETHER) objects[otmp->otyp].oc_material = MT_ETHER;
 		    }
+		    if (otmp && otmp->oartifact == ART_MOST_EROTIC_AIR_CURRENT_NO) {
+			objects[otmp->otyp].oc_color = CLR_BRIGHT_MAGENTA;
+		    }
+		    if (otmp && otmp->oartifact == ART_TINPLAGUE) {
+			if (objects[otmp->otyp].oc_material != MT_SINNUM) objects[otmp->otyp].oc_material = MT_SINNUM;
+		    }
+		    if (otmp && otmp->oartifact == ART_BRASS_CLOSEL) {
+			if (objects[otmp->otyp].oc_material != MT_ALLOY) objects[otmp->otyp].oc_material = MT_ALLOY;
+		    }
+		    if (otmp && otmp->oartifact == ART_XAW_MUNNATS_PFOUT) {
+			if (objects[otmp->otyp].oc_material != MT_SINNUM) objects[otmp->otyp].oc_material = MT_SINNUM;
+		    }
+		    if (otmp && otmp->oartifact == ART_CLIRR) {
+			if (objects[otmp->otyp].oc_material != MT_GLASS) objects[otmp->otyp].oc_material = MT_GLASS;
+			wake_nearby();
+			pline("*clirr!*");
+		    }
+		    if (otmp && otmp->oartifact == ART_RIMSKY_S_HAND_STAR) {
+			if (objects[otmp->otyp].oc_material != MT_MITHRIL) objects[otmp->otyp].oc_material = MT_MITHRIL;
+		    }
+		    if (otmp && otmp->oartifact == ART_CLONE_DYKE_TREASURE) {
+			if (objects[otmp->otyp].oc_material != MT_GOLD) objects[otmp->otyp].oc_material = MT_GOLD;
+		    }
 		    if (otmp && otmp->oartifact == ART_GUILDED_MISDIRECTION) {
 			if (objects[otmp->otyp].oc_material != MT_GOLD) objects[otmp->otyp].oc_material = MT_GOLD;
 		    }
 		    if (otmp && otmp->oartifact == ART_INKSCOVER) {
 			if (objects[otmp->otyp].oc_material != MT_INKA) objects[otmp->otyp].oc_material = MT_INKA;
+		    }
+		    if (otmp && otmp->oartifact == ART_HOLE_IN_THE_TREE) {
+			if (objects[otmp->otyp].oc_material != MT_AMBER) objects[otmp->otyp].oc_material = MT_AMBER;
+		    }
+		    if (otmp && otmp->oartifact == ART_D_N_H__D_N_H_) {
+			if (objects[otmp->otyp].oc_material != MT_PWN_BUBBLE) objects[otmp->otyp].oc_material = MT_PWN_BUBBLE;
 		    }
 		    if (otmp && otmp->oartifact == ART_FULLY_ADAMANT) {
 			if (objects[otmp->otyp].oc_material != MT_ADAMANTIUM) objects[otmp->otyp].oc_material = MT_ADAMANTIUM;
@@ -4495,6 +4645,10 @@ register boolean mod;
 		    }
 		    if (otmp && otmp->oartifact == ART_BOW_SURROUNDED_BY_WIND) {
 			if (objects[otmp->otyp].oc_material != MT_ETHER) objects[otmp->otyp].oc_material = MT_ETHER;
+		    }
+		    if (otmp && otmp->oartifact == ART_REFRACTURA) {
+			if (!FemtrapActiveRuth) pline("You feel that you'll have to fight lots of female shoes, and more powerful ones too.");
+			FemaleTrapJohanetta |= FROMOUTSIDE;
 		    }
 		    if (otmp && otmp->oartifact == ART_FLIUMILL) {
 			otmp->quan *= 2;

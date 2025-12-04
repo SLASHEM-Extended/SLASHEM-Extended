@@ -1433,6 +1433,10 @@ register struct obj *obj;
 	if(!obj) return(0);
 	if(!canletgo(obj,"drop"))
 		return(0);
+	if (obj && obj->oartifact == ART_CLONE_DYKE_TREASURE) {
+		You("can't drop the Clone Dyke Treasure!");
+		return(0);
+	}
 	if(obj == uwep) {
 		if(welded(uwep)) {
 			weldmsg(obj);

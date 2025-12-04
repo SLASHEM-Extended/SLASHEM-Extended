@@ -518,6 +518,7 @@ pick_lock(pickp) /* pick a lock with a given object */
 			    if (Role_if(PM_LOCKSMITH)) boxunlockchance += 40;
 			    if (uarmg && uarmg->oartifact == ART_BRIGITTE_S_SAFETY_MITTENS) boxunlockchance += 40;
 			    if (uarmg && uarmg->oartifact == ART_SABRINA_S_UTILITY_GLOVES) boxunlockchance += 40;
+			    if (pick && pick->oartifact == ART_GALLUS__TRINKET) boxunlockchance *= 2;
 
 			    if(!rn2(isfriday ? 10 : 20) && !((pick->oartifact == ART_MASTER_IN_ANOTHER_LANGUAGE) && rn2(10)) && (!pick->blessed || !rn2(3)) && !pick->oartifact) {
 				Your("credit card breaks in half!");
@@ -540,6 +541,7 @@ pick_lock(pickp) /* pick a lock with a given object */
 			    if (Role_if(PM_LOCKSMITH)) boxunlockchance += 40;
 			    if (uarmg && uarmg->oartifact == ART_BRIGITTE_S_SAFETY_MITTENS) boxunlockchance += 40;
 			    if (uarmg && uarmg->oartifact == ART_SABRINA_S_UTILITY_GLOVES) boxunlockchance += 40;
+			    if (pick && pick->oartifact == ART_GALLUS__TRINKET) boxunlockchance *= 2;
 
 			    if(!rn2(isfriday ? 10 : 20) && (!pick->blessed || !rn2(3)) && !pick->oartifact) {
 				Your("data chip breaks in half!");
@@ -563,6 +565,7 @@ pick_lock(pickp) /* pick a lock with a given object */
 			    if (Role_if(PM_LOCKSMITH)) boxunlockchance += 50;
 			    if (uarmg && uarmg->oartifact == ART_BRIGITTE_S_SAFETY_MITTENS) boxunlockchance += 50;
 			    if (uarmg && uarmg->oartifact == ART_SABRINA_S_UTILITY_GLOVES) boxunlockchance += 50;
+			    if (pick && pick->oartifact == ART_GALLUS__TRINKET) boxunlockchance *= 2;
 
 			    pickbreakchance = 30;
 			    if (isfriday) {
@@ -572,6 +575,7 @@ pick_lock(pickp) /* pick a lock with a given object */
 			    if (Role_if(PM_LOCKSMITH)) pickbreakchance *= 2;
 			    if (uarmg && uarmg->oartifact == ART_BRIGITTE_S_SAFETY_MITTENS) pickbreakchance *= 2;
 			    if (uarmg && uarmg->oartifact == ART_SABRINA_S_UTILITY_GLOVES) pickbreakchance *= 2;
+			    if (pick && pick->oartifact == ART_GALLUS__TRINKET) pickbreakchance *= 2;
 			    if (Role_if(PM_ROGUE)) {
 				pickbreakchance *= 4;
 				pickbreakchance /= 3;
@@ -609,6 +613,7 @@ pick_lock(pickp) /* pick a lock with a given object */
 			    boxunlockchance = (ACURR(A_DEX) + 75);
 			    if (uarmg && uarmg->oartifact == ART_BRIGITTE_S_SAFETY_MITTENS) boxunlockchance += 100;
 			    if (uarmg && uarmg->oartifact == ART_SABRINA_S_UTILITY_GLOVES) boxunlockchance += 100;
+			    if (pick && pick->oartifact == ART_GALLUS__TRINKET) boxunlockchance *= 2;
 
 			    if(!rn2(isfriday ? 7 : 15) && !((pick->oartifact == ART_HAKAPERS_QUALITY) && rn2(5)) && !(pick->oartifact == ART_VANULLA_SCORE) && (!pick->blessed || !rn2(3)) && !pick->oartifact) {
 				Your("key didn't quite fit the lock and snapped!");
@@ -709,6 +714,7 @@ pick_lock(pickp) /* pick a lock with a given object */
 			    if (Role_if(PM_LOCKSMITH)) doorunlockchance += 40;
 			    if (uarmg && uarmg->oartifact == ART_BRIGITTE_S_SAFETY_MITTENS) doorunlockchance += 40;
 			    if (uarmg && uarmg->oartifact == ART_SABRINA_S_UTILITY_GLOVES) doorunlockchance += 40;
+			    if (pick && pick->oartifact == ART_GALLUS__TRINKET) doorunlockchance *= 2;
 
 			    pickbreakchance = 20;
 			    if (isfriday) {
@@ -717,6 +723,7 @@ pick_lock(pickp) /* pick a lock with a given object */
 			    if (Role_if(PM_LOCKSMITH)) pickbreakchance *= 2;
 			    if (uarmg && uarmg->oartifact == ART_BRIGITTE_S_SAFETY_MITTENS) pickbreakchance *= 2;
 			    if (uarmg && uarmg->oartifact == ART_SABRINA_S_UTILITY_GLOVES) pickbreakchance *= 2;
+			    if (pick && pick->oartifact == ART_GALLUS__TRINKET) pickbreakchance *= 2;
 			    if (Role_if(PM_TOURIST)) {
 				pickbreakchance *= 3;
 				pickbreakchance /= 2;
@@ -750,6 +757,7 @@ pick_lock(pickp) /* pick a lock with a given object */
 			    if (Role_if(PM_LOCKSMITH)) doorunlockchance += 40;
 			    if (uarmg && uarmg->oartifact == ART_BRIGITTE_S_SAFETY_MITTENS) doorunlockchance += 40;
 			    if (uarmg && uarmg->oartifact == ART_SABRINA_S_UTILITY_GLOVES) doorunlockchance += 40;
+			    if (pick && pick->oartifact == ART_GALLUS__TRINKET) doorunlockchance *= 2;
 
 			    pickbreakchance = 20;
 			    if (isfriday) {
@@ -758,6 +766,7 @@ pick_lock(pickp) /* pick a lock with a given object */
 			    if (Role_if(PM_LOCKSMITH)) pickbreakchance *= 2;
 			    if (uarmg && uarmg->oartifact == ART_BRIGITTE_S_SAFETY_MITTENS) pickbreakchance *= 2;
 			    if (uarmg && uarmg->oartifact == ART_SABRINA_S_UTILITY_GLOVES) pickbreakchance *= 2;
+			    if (pick && pick->oartifact == ART_GALLUS__TRINKET) pickbreakchance *= 2;
 			    if (Role_if(PM_TOURIST)) {
 				pickbreakchance *= 3;
 				pickbreakchance /= 2;
@@ -792,6 +801,7 @@ pick_lock(pickp) /* pick a lock with a given object */
 			    if (Role_if(PM_LOCKSMITH)) doorunlockchance += 60;
 			    if (uarmg && uarmg->oartifact == ART_BRIGITTE_S_SAFETY_MITTENS) doorunlockchance += 60;
 			    if (uarmg && uarmg->oartifact == ART_SABRINA_S_UTILITY_GLOVES) doorunlockchance += 60;
+			    if (pick && pick->oartifact == ART_GALLUS__TRINKET) doorunlockchance *= 2;
 
 			    pickbreakchance = 30;
 			    if (isfriday) {
@@ -801,6 +811,7 @@ pick_lock(pickp) /* pick a lock with a given object */
 			    if (Role_if(PM_LOCKSMITH)) pickbreakchance *= 2;
 			    if (uarmg && uarmg->oartifact == ART_BRIGITTE_S_SAFETY_MITTENS) pickbreakchance *= 2;
 			    if (uarmg && uarmg->oartifact == ART_SABRINA_S_UTILITY_GLOVES) pickbreakchance *= 2;
+			    if (pick && pick->oartifact == ART_GALLUS__TRINKET) pickbreakchance *= 2;
 			    if (Role_if(PM_CYBERNINJA)) {
 				pickbreakchance *= 4;
 				pickbreakchance /= 3;
@@ -840,6 +851,7 @@ pick_lock(pickp) /* pick a lock with a given object */
 			    if (Role_if(PM_LOCKSMITH)) doorunlockchance += 10;
 			    if (uarmg && uarmg->oartifact == ART_BRIGITTE_S_SAFETY_MITTENS) doorunlockchance += 50;
 			    if (uarmg && uarmg->oartifact == ART_SABRINA_S_UTILITY_GLOVES) doorunlockchance += 50;
+			    if (pick && pick->oartifact == ART_GALLUS__TRINKET) doorunlockchance *= 2;
 
 			    pickbreakchance = 15;
 			    if (isfriday) {
@@ -860,6 +872,7 @@ pick_lock(pickp) /* pick a lock with a given object */
 			    if (Role_if(PM_CYBERNINJA)) {
 				pickbreakchance *= 2;
 			    }
+			    if (pick && pick->oartifact == ART_GALLUS__TRINKET) pickbreakchance *= 2;
 			    if (pickbreakchance < 1) pickbreakchance = 1;
 
 			    if(!rn2(pickbreakchance) && !((pick->oartifact == ART_HAKAPERS_QUALITY) && rn2(5)) && !(pick->oartifact == ART_VANULLA_SCORE) && (!pick->blessed || !rn2(3)) && !pick->oartifact) {

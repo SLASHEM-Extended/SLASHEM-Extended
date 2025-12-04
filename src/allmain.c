@@ -2351,6 +2351,7 @@ moveloop()
 			}
 
 			if (uarmh && uarmh->oartifact == ART_REAL_SPEED_DEVIL && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
+			if (uarm && uarm->oartifact == ART_LESS_PROTECTED_GLASS_CANNO && !rn2(2)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uamul && uamul->oartifact == ART_ADELAIDE_S_RACING && (rnd(10) > 3) ) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uarmf && uarmf->oartifact == ART_MAREN_S_GALE_BOOTS && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uimplant && uimplant->oartifact == ART_COMBAT_NODE_OF_THARION_BLA && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
@@ -10122,9 +10123,9 @@ newbossRLR:
 		}
 
 		/* for feminizer hybrid race: re-randomize feminism effect that is active --Amy */
-		if (!rn2(5000)) u.feminizeffect = rnd(109); /* amount of feminism trap effects; keyword: "marlena" */
-		if (!rn2(5000)) u.contamjeweleffect = rnd(109); /* amount of feminism trap effects; keyword: "marlena" */
-		if (!rn2(5000)) u.nukafemeffect = rnd(109); /* amount of feminism trap effects; keyword: "marlena" */
+		if (!rn2(5000)) u.feminizeffect = rnd(110); /* amount of feminism trap effects; keyword: "marlena" */
+		if (!rn2(5000)) u.contamjeweleffect = rnd(110); /* amount of feminism trap effects; keyword: "marlena" */
+		if (!rn2(5000)) u.nukafemeffect = rnd(110); /* amount of feminism trap effects; keyword: "marlena" */
 
 		if (isfeminizer && !rn2(5000)) randomfeminismtrap(rnz( (level_difficulty() + 2) * rnd(50)));
 
@@ -20291,6 +20292,7 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "pyramidal heels")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "ball heels")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "flatform sandals")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "strap-on stilettos")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}
@@ -21844,6 +21846,7 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "pyramidal heels")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "ball heels")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "flatform sandals")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "strap-on stilettos")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}

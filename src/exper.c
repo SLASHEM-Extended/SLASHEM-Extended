@@ -1104,6 +1104,9 @@ exprecalc(void)
 					case 109: /* Chloe */
 						pline("You receive an elaborate auspicious message: At experience level %d, you will have to spend a lot of money for a hilariously expensive pair of designer heels. If you wear them, you'll be the center of attention, guaranteed.", displaycheck);
 						break;
+					case 110: /* Johanetta */
+						pline("You receive an elaborate auspicious message: At experience level %d, shoe monsters will spawn much more often and high-level ones are also more common.", displaycheck);
+						break;
 				}
 			} else pline("Your auspices say: %d %d", displaycheck, whichcheck);
 

@@ -1340,6 +1340,13 @@ register xchar x, y;
 	if (isfriday && !rn2(10)) clumsy = TRUE;
 
 doit:
+	if (uarmf && uarmf->oartifact == ART_MOST_EROTIC_AIR_CURRENT_NO && !rn2(5)) {
+		You("try to kick %s, but your pointy shoe tip just barely misses %s %s.", mon_nam(mon), mhis(mon), mbodypart(mon, LEG));
+		if (FunnyHallu) pline("This results in very erotic air current noises.");
+		mon->mconf = TRUE;
+		return;
+	}
+
 	You("kick %s.", mon_nam(mon));
 	wakeup(mon);
 	if(!rn2(clumsy ? 3 : 4) && (u.martialstyle != MARTIALSTYLE_KUNGFU || rn2(4)) && (clumsy || !bigmonst(mon->data)) &&
@@ -1743,7 +1750,7 @@ xchar x, y;
 		return(1);
 	}
 
-	if(kickobj->otyp == PETRIFYIUM_BAR && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && !uarmf) {
+	if(kickobj->otyp == PETRIFYIUM_BAR && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && (!uarmf || (uarmf && itemhasappearance(uarmf, APP_STRAP_ON_STILETTOS))) ) {
 		pline("Kicking a petrifying weapon is a bad idea.");
 	    if (!(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
 		
@@ -1760,7 +1767,7 @@ xchar x, y;
 	    }
 	}
 
-	if(kickobj->otyp == PETRIFYIUM_BRA && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && !uarmf) {
+	if(kickobj->otyp == PETRIFYIUM_BRA && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && (!uarmf || (uarmf && itemhasappearance(uarmf, APP_STRAP_ON_STILETTOS))) ) {
 		pline("Kicking a petrifying bra is a bad idea.");
 	    if (!(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
 		
@@ -1778,7 +1785,7 @@ xchar x, y;
 	}
 
 	if(kickobj->otyp == CORPSE && touch_petrifies(&mons[kickobj->corpsenm])
-			&& (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && !uarmf) {
+			&& (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && (!uarmf || (uarmf && itemhasappearance(uarmf, APP_STRAP_ON_STILETTOS))) ) {
 	    static char kbuf[BUFSZ];
 
 	    You("kick the %s with your bare %s.",

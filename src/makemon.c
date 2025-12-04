@@ -13299,6 +13299,7 @@ loveheelover:
 		if(ptr == &mons[PM_OLF_KARTOFFELKOPF]) (void) mongets(mtmp, BUNNY_UNIFORM);
 		if(ptr == &mons[PM_RIVOLE_SPICERO]) (void) mongets(mtmp, ITALIAN_HEELS); /* M4_SANDALS */
 		if(ptr == &mons[PM_MINES_CENTAUR]) (void) mongets(mtmp, UNWIELDY_PICK);
+		if(ptr == &mons[PM_NOBLE_FEMMY]) (void) mongets(mtmp, JOHANETTA_GIRL_SHOES);
 
 		if(ptr == &mons[PM_HEADKICK_FEMMY]) (void) mongets(mtmp, STILETTO_SANDALS); /* M4_SANDALS */
 
@@ -17936,7 +17937,7 @@ loveheelover:
 		}
 
 		if(ptr == &mons[PM_NUKA_COLA_COMMERCIALIST]) {
-			int nukaroll = rnd(109); /* keyword: "marlena" */
+			int nukaroll = rnd(110); /* keyword: "marlena" */
 
 			(void) mongets(mtmp, rnd_class(POT_BOOZE, POT_PAN_GALACTIC_GARGLE_BLASTE));
 			(void) mongets(mtmp, rnd_class(POT_BOOZE, POT_PAN_GALACTIC_GARGLE_BLASTE));
@@ -28694,10 +28695,15 @@ struct permonst *mptr;		/* usually null; used for confused reading */
 #endif /* OVL1 */
 #ifdef OVL0
 
+/* does a monster ignore the uncommon rules due to special factors? if so, this function should return TRUE --Amy
+ * it specifically means that the monster will act as if the uncommon2/3/5/7/10 flags weren't present on it, everything else is unchanged */
 boolean
 jonaspecialspawn(ptr)
 register struct permonst *ptr;
 {
+
+	if (FemtrapActiveJohanetta && (ptr->msound == MS_SHOE)) return TRUE;
+
 	if (is_jonadabmonster(ptr) || ptr->msound == MS_FLUIDATOR || ptr->msound == MS_BULLETATOR || ptr->msound == MS_POMPEJI) {
 		if (is_jonadabmonster(ptr)) {
 
@@ -28712,6 +28718,16 @@ register struct permonst *ptr;
 	return FALSE;
 }
 
+/* does a monster ignore the rule that says it spawns less often if its base level is high? if so, this function should return TRUE --Amy
+ * this means that "notuncommonlate" checks always allow the monster to spawn */
+boolean
+jonalatespawn(ptr)
+register struct permonst *ptr;
+{
+	if (FemtrapActiveJohanetta && (ptr->msound == MS_SHOE)) return TRUE;
+
+	return FALSE;
+}
 
 STATIC_OVL boolean
 uncommon(mndx)
@@ -28740,18 +28756,18 @@ int mndx;
 	if (uncommon7(&mons[mndx]) && !jonaspecialspawn(&mons[mndx]) && rn2(issoviet ? 4 : 7) && !(EntireLevelMode || u.uprops[ENTIRE_LEVEL].extrinsic || have_entirelevelstone() || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && !Race_if(PM_RODNEYAN) ) return TRUE;
 	if (uncommon10(&mons[mndx]) && !jonaspecialspawn(&mons[mndx]) && rn2(issoviet ? 5 : 10) && !(EntireLevelMode || u.uprops[ENTIRE_LEVEL].extrinsic || have_entirelevelstone() || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && !Race_if(PM_RODNEYAN) ) return TRUE;
 
-	if (monstr[mndx] >= 9 && (rn2(100) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || Race_if(PM_ARTIFINDER) || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 14 && !rn2(10)) return TRUE;
-	if (monstr[mndx] >= 14 && (rn2(150) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || Race_if(PM_ARTIFINDER) || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 19 && !rn2(5)) return TRUE;
-	if (monstr[mndx] >= 19 && (rn2(200) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || Race_if(PM_ARTIFINDER) || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 24 && (rnd(10) > 3) ) return TRUE;
-	if (monstr[mndx] >= 24 && (rn2(250) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || Race_if(PM_ARTIFINDER) || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 28 && (rnd(10) > 4) ) return TRUE;
-	if (monstr[mndx] >= 28 && (rn2(290) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || Race_if(PM_ARTIFINDER) || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 33 && !rn2(2)) return TRUE;
-	if (monstr[mndx] >= 33 && (rn2(340) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || Race_if(PM_ARTIFINDER) || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 37 && (rnd(10) > 6) ) return TRUE;
-	if (monstr[mndx] >= 37 && (rn2(380) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || Race_if(PM_ARTIFINDER) || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 42 && (rnd(10) > 7) ) return TRUE;
-	if (monstr[mndx] >= 42 && (rn2(420) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || Race_if(PM_ARTIFINDER) || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 46 && rn2(5)) return TRUE;
-	if (monstr[mndx] >= 46 && (rn2(460) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || Race_if(PM_ARTIFINDER) || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 50 && rn2(10)) return TRUE;
-	if (monstr[mndx] >= 50 && (rn2(500) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || Race_if(PM_ARTIFINDER) || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 60 && rn2(20)) return TRUE;
-	if (monstr[mndx] >= 60 && (rn2(600) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || Race_if(PM_ARTIFINDER) || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 70 && rn2(50)) return TRUE;
-	if (monstr[mndx] >= 70 && (rn2(700) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || Race_if(PM_ARTIFINDER) || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && rn2(100)) return TRUE;
+	if (monstr[mndx] >= 9 && (rn2(100) >= notuncommonlate) && !jonalatespawn(&mons[mndx]) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || Race_if(PM_ARTIFINDER) || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 14 && !rn2(10)) return TRUE;
+	if (monstr[mndx] >= 14 && (rn2(150) >= notuncommonlate) && !jonalatespawn(&mons[mndx]) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || Race_if(PM_ARTIFINDER) || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 19 && !rn2(5)) return TRUE;
+	if (monstr[mndx] >= 19 && (rn2(200) >= notuncommonlate) && !jonalatespawn(&mons[mndx]) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || Race_if(PM_ARTIFINDER) || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 24 && (rnd(10) > 3) ) return TRUE;
+	if (monstr[mndx] >= 24 && (rn2(250) >= notuncommonlate) && !jonalatespawn(&mons[mndx]) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || Race_if(PM_ARTIFINDER) || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 28 && (rnd(10) > 4) ) return TRUE;
+	if (monstr[mndx] >= 28 && (rn2(290) >= notuncommonlate) && !jonalatespawn(&mons[mndx]) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || Race_if(PM_ARTIFINDER) || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 33 && !rn2(2)) return TRUE;
+	if (monstr[mndx] >= 33 && (rn2(340) >= notuncommonlate) && !jonalatespawn(&mons[mndx]) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || Race_if(PM_ARTIFINDER) || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 37 && (rnd(10) > 6) ) return TRUE;
+	if (monstr[mndx] >= 37 && (rn2(380) >= notuncommonlate) && !jonalatespawn(&mons[mndx]) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || Race_if(PM_ARTIFINDER) || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 42 && (rnd(10) > 7) ) return TRUE;
+	if (monstr[mndx] >= 42 && (rn2(420) >= notuncommonlate) && !jonalatespawn(&mons[mndx]) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || Race_if(PM_ARTIFINDER) || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 46 && rn2(5)) return TRUE;
+	if (monstr[mndx] >= 46 && (rn2(460) >= notuncommonlate) && !jonalatespawn(&mons[mndx]) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || Race_if(PM_ARTIFINDER) || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 50 && rn2(10)) return TRUE;
+	if (monstr[mndx] >= 50 && (rn2(500) >= notuncommonlate) && !jonalatespawn(&mons[mndx]) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || Race_if(PM_ARTIFINDER) || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 60 && rn2(20)) return TRUE;
+	if (monstr[mndx] >= 60 && (rn2(600) >= notuncommonlate) && !jonalatespawn(&mons[mndx]) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || Race_if(PM_ARTIFINDER) || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 70 && rn2(50)) return TRUE;
+	if (monstr[mndx] >= 70 && (rn2(700) >= notuncommonlate) && !jonalatespawn(&mons[mndx]) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || Race_if(PM_ARTIFINDER) || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && rn2(100)) return TRUE;
 
 	/*if (Inhell)
 		return(mons[mndx].maligntyp > A_NEUTRAL);
@@ -29276,6 +29292,8 @@ loopback:
 		if (ct > 0 && (Role_if(PM_AMAZON) && is_diablomonster(ptr))) ct += 5;
 		if (ct > 0 && (Role_if(PM_AMAZON) && attacktype(ptr, AT_CLAW) )) ct += 1;
 		if (ct > 0 && (Role_if(PM_ANACHRONIST) && is_dnethackmonster(ptr))) ct += 10;
+		if (ct > 0 && (have_dnhdnh() && is_dnethackmonster(ptr))) ct += 2;
+		if (ct > 0 && ((have_dnhdnh() == 2) && is_dnethackmonster(ptr))) ct += 3;
 		if (ct > 0 && (Role_if(PM_ARCHEOLOGIST) && is_vanillamonster(ptr))) ct += 1;
 		if (ct > 0 && (uimplant && uimplant->oartifact == ART_GELMER_KELANA_TWIN && is_vanillamonster(ptr))) ct += 10;
 		if (ct > 0 && (Role_if(PM_ARTIST) && attacktype(ptr, AT_GAZE))) ct += 2;
@@ -30731,19 +30749,19 @@ int     spc;
 					&& !(uncommonfive && uncommon5(&mons[last]) && !jonaspecialspawn(&mons[last]) && !Race_if(PM_RODNEYAN) )
 					&& !(uncommonseven && uncommon7(&mons[last]) && !jonaspecialspawn(&mons[last]) && !Race_if(PM_RODNEYAN) )
 					&& !(uncommonten && uncommon10(&mons[last]) && !jonaspecialspawn(&mons[last]) && !Race_if(PM_RODNEYAN) )
-					&& !(uncommonnewten && monstr[last] >= 10 && monstr[last] < 15 )
-					&& !(uncommonnewfifteen && monstr[last] >= 15 && monstr[last] < 20 )
-					&& !(uncommonnewtwenty && monstr[last] >= 20 && monstr[last] < 25 )
-					&& !(uncommonnewtwentyfive && monstr[last] >= 25 && monstr[last] < 30 )
-					&& !(uncommonnewthirty && monstr[last] >= 30 && monstr[last] < 35 )
-					&& !(uncommonnewthirtyfive && monstr[last] >= 35 && monstr[last] < 40 )
-					&& !(uncommonnewforty && monstr[last] >= 40 && monstr[last] < 45 )
-					&& !(uncommonnewfortyfive && monstr[last] >= 45 && monstr[last] < 50 )
-					&& !(uncommonnewfifty && monstr[last] >= 50 && monstr[last] < 60 )
-					&& !(uncommonnewsixty && monstr[last] >= 60 && monstr[last] < 70 )
+					&& !(uncommonnewten && !jonalatespawn(&mons[last]) && monstr[last] >= 10 && monstr[last] < 15 )
+					&& !(uncommonnewfifteen && !jonalatespawn(&mons[last]) && monstr[last] >= 15 && monstr[last] < 20 )
+					&& !(uncommonnewtwenty && !jonalatespawn(&mons[last]) && monstr[last] >= 20 && monstr[last] < 25 )
+					&& !(uncommonnewtwentyfive && !jonalatespawn(&mons[last]) && monstr[last] >= 25 && monstr[last] < 30 )
+					&& !(uncommonnewthirty && !jonalatespawn(&mons[last]) && monstr[last] >= 30 && monstr[last] < 35 )
+					&& !(uncommonnewthirtyfive && !jonalatespawn(&mons[last]) && monstr[last] >= 35 && monstr[last] < 40 )
+					&& !(uncommonnewforty && !jonalatespawn(&mons[last]) && monstr[last] >= 40 && monstr[last] < 45 )
+					&& !(uncommonnewfortyfive && !jonalatespawn(&mons[last]) && monstr[last] >= 45 && monstr[last] < 50 )
+					&& !(uncommonnewfifty && !jonalatespawn(&mons[last]) && monstr[last] >= 50 && monstr[last] < 60 )
+					&& !(uncommonnewsixty && !jonalatespawn(&mons[last]) && monstr[last] >= 60 && monstr[last] < 70 )
+					&& !(uncommonnewseventy && !jonalatespawn(&mons[last]) && monstr[last] >= 70 )
 					&& !(calctype && toostrong(last, (maxmlev + bonuslevel) ) ) 
 					&& !(!calctype && (mons[last].mlevel > (maxmlev + bonuslevel)) ) 
-					&& !(uncommonnewseventy && monstr[last] >= 70 )
 					&& (last != u.nospawnspecies) && (last != u.nospawnspecies2) && (last != u.nospawnspecies3) && (last != u.nospawnspecies4) && (last != u.nospawnspecies5) && (last != u.nospawnspecies6) && (last != u.nospawnspecies7) && (last != u.nospawnspecies8) && (last != u.nospawnspecies9) && (last != u.nospawnspecies10)
 
 				) {
@@ -30907,6 +30925,8 @@ int     spc;
 		if ((Role_if(PM_AMAZON) && is_diablomonster(&mons[last]))) num += 5;
 		if ((Role_if(PM_AMAZON) && attacktype(&mons[last], AT_CLAW) )) num += 1;
 		if ((Role_if(PM_ANACHRONIST) && is_dnethackmonster(&mons[last]))) num += 10;
+		if ((have_dnhdnh() && is_dnethackmonster(&mons[last]))) num += 2;
+		if (((have_dnhdnh() == 2) && is_dnethackmonster(&mons[last]))) num += 3;
 		if ((Role_if(PM_ARCHEOLOGIST) && is_vanillamonster(&mons[last]))) num += 1;
 		if ((uimplant && uimplant->oartifact == ART_GELMER_KELANA_TWIN && is_vanillamonster(&mons[last]))) num += 10;
 		if ((Role_if(PM_ARTIST) && attacktype(&mons[last], AT_GAZE))) num += 2;
@@ -32010,19 +32030,19 @@ int     spc;
 					&& !(uncommonfive && uncommon5(&mons[first]) && !jonaspecialspawn(&mons[first]) && !Race_if(PM_RODNEYAN) )
 					&& !(uncommonseven && uncommon7(&mons[first]) && !jonaspecialspawn(&mons[first]) && !Race_if(PM_RODNEYAN) )
 					&& !(uncommonten && uncommon10(&mons[first]) && !jonaspecialspawn(&mons[first]) && !Race_if(PM_RODNEYAN) )
-					&& !(uncommonnewten && monstr[first] >= 10 && monstr[first] < 15 )
-					&& !(uncommonnewfifteen && monstr[first] >= 15 && monstr[first] < 20 )
-					&& !(uncommonnewtwenty && monstr[first] >= 20 && monstr[first] < 25 )
-					&& !(uncommonnewtwentyfive && monstr[first] >= 25 && monstr[first] < 30 )
-					&& !(uncommonnewthirty && monstr[first] >= 30 && monstr[first] < 35 )
-					&& !(uncommonnewthirtyfive && monstr[first] >= 35 && monstr[first] < 40 )
-					&& !(uncommonnewforty && monstr[first] >= 40 && monstr[first] < 45 )
-					&& !(uncommonnewfortyfive && monstr[first] >= 45 && monstr[first] < 50 )
-					&& !(uncommonnewfifty && monstr[first] >= 50 && monstr[first] < 60 )
-					&& !(uncommonnewsixty && monstr[first] >= 60 && monstr[first] < 70 )
+					&& !(uncommonnewten && !jonalatespawn(&mons[first]) && monstr[first] >= 10 && monstr[first] < 15 )
+					&& !(uncommonnewfifteen && !jonalatespawn(&mons[first]) && monstr[first] >= 15 && monstr[first] < 20 )
+					&& !(uncommonnewtwenty && !jonalatespawn(&mons[first]) && monstr[first] >= 20 && monstr[first] < 25 )
+					&& !(uncommonnewtwentyfive && !jonalatespawn(&mons[first]) && monstr[first] >= 25 && monstr[first] < 30 )
+					&& !(uncommonnewthirty && !jonalatespawn(&mons[first]) && monstr[first] >= 30 && monstr[first] < 35 )
+					&& !(uncommonnewthirtyfive && !jonalatespawn(&mons[first]) && monstr[first] >= 35 && monstr[first] < 40 )
+					&& !(uncommonnewforty && !jonalatespawn(&mons[first]) && monstr[first] >= 40 && monstr[first] < 45 )
+					&& !(uncommonnewfortyfive && !jonalatespawn(&mons[first]) && monstr[first] >= 45 && monstr[first] < 50 )
+					&& !(uncommonnewfifty && !jonalatespawn(&mons[first]) && monstr[first] >= 50 && monstr[first] < 60 )
+					&& !(uncommonnewsixty && !jonalatespawn(&mons[first]) && monstr[first] >= 60 && monstr[first] < 70 )
+					&& !(uncommonnewseventy && !jonalatespawn(&mons[first]) && monstr[first] >= 70 )
 					&& !(calctype && toostrong(first, (maxmlev + bonuslevel) ) ) 
 					&& !(!calctype && (mons[first].mlevel > (maxmlev + bonuslevel)) ) 
-					&& !(uncommonnewseventy && monstr[first] >= 70 )
 					&& (first != u.nospawnspecies) && (first != u.nospawnspecies2) && (first != u.nospawnspecies3) && (first != u.nospawnspecies4) && (first != u.nospawnspecies5) && (first != u.nospawnspecies6) && (first != u.nospawnspecies7) && (first != u.nospawnspecies8) && (first != u.nospawnspecies9) && (first != u.nospawnspecies10)
 				) {
 		num -= mons[first].geno & G_FREQ;
@@ -32178,6 +32198,8 @@ int     spc;
 		if ((Role_if(PM_AMAZON) && is_diablomonster(&mons[first]))) num -= 5;
 		if ((Role_if(PM_AMAZON) && attacktype(&mons[first], AT_CLAW) )) num -= 1;
 		if ((Role_if(PM_ANACHRONIST) && is_dnethackmonster(&mons[first]))) num -= 10;
+		if ((have_dnhdnh() && is_dnethackmonster(&mons[first]))) num -= 2;
+		if (((have_dnhdnh() == 2) && is_dnethackmonster(&mons[first]))) num -= 3;
 		if ((Role_if(PM_ARCHEOLOGIST) && is_vanillamonster(&mons[first]))) num -= 1;
 		if ((uimplant && uimplant->oartifact == ART_GELMER_KELANA_TWIN && is_vanillamonster(&mons[first]))) num -= 10;
 		if ((Role_if(PM_ARTIST) && attacktype(&mons[first], AT_GAZE))) num -= 2;

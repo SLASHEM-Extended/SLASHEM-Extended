@@ -26808,6 +26808,102 @@ A("Dnn dnn dnn, dndndndnnnnnn!",				ACID_SYRINGE, /* rn1(5,5) turns of invulnera
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
 
+A("holier than thou",				CHEST, /* randart container (can be bag of tricks), always spawns blessed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Self Similarity",				CHEST, /* randart container (can't be bag of tricks), spawns another instance of the same base type inside */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Several Dungeons Worth Of Acension",				CHEST, /* randart2 container (can't be bag of tricks), spawns a treasure chest and a loot chest inside */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Three of Charm",				CHEST, /* randart2 container (can be bag of tricks), spawns two more of the same base type somewhere on the level upon generating */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("No Stopping The Courier",				CHEST, /* randart container (can be bag of tricks), becomes erosionproof whenever you apply it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Tinplague",				CHEST, /* randart2 container (can be bag of tricks), material becomes SINNUM upon generating */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Bestanding in the weather",				CHEST, /* randart container (can be bag of tricks), immune to the four regular types of erosion */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Clone Dyke Treasure",				CHEST, /* randart2 container (can be bag of tricks), material becomes GOLD upon generating, carrying it reduces your carry capacity by 750 and gives wild weather and confusion resistance; this item cannot be dropped so you need to throw it if you want to remove it from your inventory */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Refractura",				CHEST, /* randart container (can't be bag of tricks), gives the johanetta trap effect permanently upon generating; carrying it while under the effect of that trap gives reflection and half spell damage */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
+
+A("OMMMMMMMG WISH GET",				CHEST, /* randart2 container (can't be bag of tricks), spawns with a scroll of wishing inside */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 25000L ),
+
+A("Gallus' Trinket",				SKELETON_KEY, /* randart unlocking tool, "doorunlockchance" and "pickbreakchance" are doubled */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Karliah's Nuka Break",				SKELETON_KEY, /* randart2 unlocking tool, gives a random nuka cola name upon generating and 50k turns of the corresponding feminism trap effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Brass Closel",				SKELETON_KEY, /* randart unlocking tool, material becomes ALLOY upon generating */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Rimsky's Hand Star",				SKELETON_KEY, /* randart2 unlocking tool, material becomes MITHRIL upon generating */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Overpowerement Radii",				WAX_CANDLE, /* randart light source, +1 radius */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("A Yard Is Not A Meter",				WAX_CANDLE, /* randart2 light source, +2 radius */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 15000L ),
+
+A("Xaw Munnats pfout",				WAX_CANDLE, /* randart light source, material becomes SINNUM upon generating */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("clirr",				WAX_CANDLE, /* randart light source, material becomes GLASS upon generating and also causes wake_nearby when it generates */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Hole in the tree",				WAX_CANDLE, /* randart2 light source, material becomes AMBER upon generating */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("D N H! D N H!",				WAX_CANDLE, /* randart2 light source, material becomes PWNBUBBLE upon generating; while carried, all dnethack monsters have +2 spawn freq and if it's lit, an additional +3 */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("less protected glass cannon",				PLAIN_ROBE, /* randart2 robe, johanetta trap effect, -12 AC, +15 DEX, boosts your speed like 5x real speed devil */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Everything A Princess Needs To Know",				JOHANETTA_GIRL_SHOES, /* upon generating, unlocks the following skills if they're restricted: riding, general combat, body armor and missile weapons */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 22000L ),
+
+A("Most Erotic Air Current Noises",				JOHANETTA_GIRL_SHOES, /* +1 MC, discount action, becomes bright magenta upon generating, gives +1 CHA for every worn bright magenta armor piece, your kick has 20% chance of missing and if it does miss, the target monster becomes confused (with no chance for it to resist) */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 17000L ),
+
+A("Ready To Go",				LOW_BOOTS, /* initialized to always be strap-on stilettos, fast speed */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

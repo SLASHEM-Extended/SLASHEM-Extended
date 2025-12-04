@@ -4649,6 +4649,12 @@ nh_timeout()
 
 		 break;
 
+		 case FEMTRAP_JOHANETTA:
+
+			pline("The spawn rates for female shoes have gone back to normal.");
+
+		 break;
+
 		 case FEMTRAP_CHLOE:
 
 			pline("Finally, no one is forcing you to wear stupid designer heels anymore. Your %s just can't wait to wear comfortable shoes again.", makeplural(body_part(FOOT)) );
@@ -7514,6 +7520,9 @@ begin_burn(obj, already_lit)
 		}
 		break;
 	}
+
+	if (obj && obj->oartifact == ART_OVERPOWEREMENT_RADII) radius++;
+	if (obj && obj->oartifact == ART_A_YARD_IS_NOT_A_METER) radius += 2;
 
 	/* foggy weather limits light radius from any light source to 2 squares --Amy */
 	if ((radius > 2) && (u.currentweather == WEATHER_FOG)) radius = 2;

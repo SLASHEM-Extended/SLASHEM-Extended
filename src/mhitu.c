@@ -547,7 +547,7 @@ elena4:
 			}
 
 			/* synthetic sandals use M4_SANDALS */
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == SYNTHETIC_SANDALS) || (footwear && itemhasappearance(footwear, APP_PLOF_HEELS)) || (footwear && itemhasappearance(footwear, APP_RADIANT_HEELS)) || (footwear && itemhasappearance(footwear, APP_FLATFORM_SANDALS)) || (randomsexyheels == 6) || mtmp->data == &mons[PM_ANIMATED_SYNTHETIC_SANDAL] || mtmp->data == &mons[PM_COLUMNAR_HEEL_SANDAL]) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == SYNTHETIC_SANDALS) || (footwear && footwear->otyp == JOHANETTA_GIRL_SHOES) || (footwear && itemhasappearance(footwear, APP_PLOF_HEELS)) || (footwear && itemhasappearance(footwear, APP_RADIANT_HEELS)) || (footwear && itemhasappearance(footwear, APP_FLATFORM_SANDALS)) || (randomsexyheels == 6) || mtmp->data == &mons[PM_ANIMATED_SYNTHETIC_SANDAL] || mtmp->data == &mons[PM_COLUMNAR_HEEL_SANDAL]) ) {
 elena5:
 				u.cnd_shoedamageamount++;
 				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -1204,7 +1204,7 @@ elena19:
 
 			}
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && itemhasappearance(footwear, APP_WINTER_STILETTOS) ) || (footwear && footwear->otyp == RUEA_COMBAT_BOOTS) || (footwear && footwear->otyp == RITA_STILETTOS) || (footwear && footwear->otyp == SANDRA_COMBAT_BOOTS) || (footwear && itemhasappearance(footwear, APP_FEMMY_BOOTS)) || (footwear && itemhasappearance(footwear, APP_FILIGREE_STILETTOS)) || (footwear && itemhasappearance(footwear, APP_COPPER_STILETTOS)) || (footwear && itemhasappearance(footwear, APP_DIAMOND_STILETTOS)) || (footwear && itemhasappearance(footwear, APP_PLATINUM_STILETTOS)) || (footwear && itemhasappearance(footwear, APP_SILVER_STILETTOS)) || (footwear && itemhasappearance(footwear, APP_A_HEELS)) || (footwear && itemhasappearance(footwear, APP_STUPID_STILETTOS)) || (footwear && itemhasappearance(footwear, APP_WEAPON_LIGHT_BOOTS)) || (footwear && itemhasappearance(footwear, APP_FETISH_HEELS)) || mtmp->data == &mons[PM_ANIMATED_WINTER_STILETTO] || mtmp->data == &mons[PM_WEREWINTERSTILETTO] || (randomsexyheels == 24) || mtmp->data == &mons[PM_HUMAN_WEREWINTERSTILETTO] || mtmp->data == &mons[PM_STILETTO_LOVER] || mtmp->data == &mons[PM_BULLETATOR_SOPHIA] || mtmp->data == &mons[PM_SABRINA_S_CONE_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_ELEGANT_STILETTO_BOOT] || (FemtrapActiveSandra && humanoid(mtmp->data) && is_female(mtmp->data) ) || mtmp->data == &mons[PM_BOOT_GIRL] ) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && itemhasappearance(footwear, APP_WINTER_STILETTOS) ) || (footwear && footwear->otyp == RUEA_COMBAT_BOOTS) || (footwear && footwear->otyp == RITA_STILETTOS) || (footwear && footwear->otyp == SANDRA_COMBAT_BOOTS) || (footwear && itemhasappearance(footwear, APP_FEMMY_BOOTS)) || (footwear && itemhasappearance(footwear, APP_FILIGREE_STILETTOS)) || (footwear && itemhasappearance(footwear, APP_COPPER_STILETTOS)) || (footwear && itemhasappearance(footwear, APP_DIAMOND_STILETTOS)) || (footwear && itemhasappearance(footwear, APP_PLATINUM_STILETTOS)) || (footwear && itemhasappearance(footwear, APP_STRAP_ON_STILETTOS)) || (footwear && itemhasappearance(footwear, APP_SILVER_STILETTOS)) || (footwear && itemhasappearance(footwear, APP_A_HEELS)) || (footwear && itemhasappearance(footwear, APP_STUPID_STILETTOS)) || (footwear && itemhasappearance(footwear, APP_WEAPON_LIGHT_BOOTS)) || (footwear && itemhasappearance(footwear, APP_FETISH_HEELS)) || mtmp->data == &mons[PM_ANIMATED_WINTER_STILETTO] || mtmp->data == &mons[PM_WEREWINTERSTILETTO] || (randomsexyheels == 24) || mtmp->data == &mons[PM_HUMAN_WEREWINTERSTILETTO] || mtmp->data == &mons[PM_STILETTO_LOVER] || mtmp->data == &mons[PM_BULLETATOR_SOPHIA] || mtmp->data == &mons[PM_SABRINA_S_CONE_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_ELEGANT_STILETTO_BOOT] || (FemtrapActiveSandra && humanoid(mtmp->data) && is_female(mtmp->data) ) || mtmp->data == &mons[PM_BOOT_GIRL] ) ) {
 elena20:
 				u.cnd_shoedamageamount++;
 				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -7035,6 +7035,7 @@ struct monst *mon;
 		if (uarm && uarm->oartifact == ART_EMSE_TRADE) armpro += 3;
 		if (uarmh && uarmh->oartifact == ART_SENOBIA_S_CROWN) armpro++;
 		if (uarm && uarm->oartifact == ART_SMALLIST) armpro++;
+		if (uarmf && uarmf->oartifact == ART_MOST_EROTIC_AIR_CURRENT_NO) armpro++;
 		if (uarmh && uarmh->oartifact == ART_HENRIETTA_S_CRYSTAL_HOOD) armpro += 2;
 		if (uarmc && uarmc->oartifact == ART_NATALIA_S_PROTECTOR_POWER && flags.female && FemtrapActiveNatalia) armpro += 3;
 		if (uarm && uarm->otyp == NOPE_DRAGON_SCALE_MAIL) armpro += 2;

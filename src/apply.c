@@ -5775,6 +5775,8 @@ doapply()
 
 	if (CurseAsYouUse && obj && obj->otyp != CANDELABRUM_OF_INVOCATION && obj->otyp != SPE_BOOK_OF_THE_DEAD && obj->otyp != BELL_OF_OPENING) curse(obj);
 
+	if (obj && obj->oartifact == ART_NO_STOPPING_THE_COURIER) obj->oerodeproof = TRUE;
+
 	if (InterruptEffect || u.uprops[INTERRUPT_EFFECT].extrinsic || have_interruptionstone()) {
 		nomul(-(rnd(5)), "applying a tool", TRUE);
 	}
@@ -6802,6 +6804,7 @@ pillremoved:
 	case ANASTASIA_S_JEWEL:
 	case JESSICA_S_JEWEL:
 	case MARLENA_S_JEWEL:
+	case JOHANETTA_S_JEWEL:
 	case CHLOE_S_JEWEL:
 	case ANJA_S_JEWEL:
 	case CELIA_S_JEWEL:

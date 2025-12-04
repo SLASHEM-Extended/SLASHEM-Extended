@@ -1753,6 +1753,47 @@ have_meefmeef()
 	return(FALSE);
 }
 
+/* "D N H! D N H!" artifact: return 1 if you have it, or 2 if it's lit */
+int
+have_dnhdnh()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->oartifact == ART_D_N_H__D_N_H_) {
+			if (otmp->lamplit) return 2;
+			else return 1;
+		}
+	}
+	return(FALSE);
+}
+
+/* "refractura" container: gives its effects only if you have the johanetta trap effect active */
+boolean
+have_refractura()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->oartifact == ART_REFRACTURA) {
+			if (FemtrapActiveJohanetta) return(TRUE);
+		}
+	}
+	return(FALSE);
+}
+
+boolean
+have_clonedyke()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->oartifact == ART_CLONE_DYKE_TREASURE)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
 boolean
 have_estealdoctor()
 {
@@ -3569,6 +3610,20 @@ have_femtrapchloe()
 		}
 	}
 	if (feminizecheck(109)) return TRUE;
+	return(FALSE);
+}
+
+int
+have_femtrapjohanetta()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == JOHANETTA_S_JEWEL) {
+			return(TRUE);
+		}
+	}
+	if (feminizecheck(110)) return TRUE;
 	return(FALSE);
 }
 
@@ -14051,6 +14106,8 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 			pline("Very sexy lady boots with treaded block heels. They love to step into shit because they know that you want to clean them again and again.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_DIAMOND_STILETTOS))
 			pline("This pair of stiletto heels looks like it must be worth a fortune.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_STRAP_ON_STILETTOS))
+			pline("This particular footwear was suggested by Demo. It has stiletto heels, but doesn't cover the rest of your feet, so you'd better not try to kick anything that petrifies you on touch!");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_STEEL_TOED_BOOTS))
 			pline("Kicking a monster with these boots deals an extra point of kicking damage.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_MARJI_SHOES))
@@ -16113,6 +16170,8 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 				pline("This pair of sexy flats is rather solid. They carry Marlena's curse, and have 3 AC and 0 MC."); break;
 			case ROSA_GIRL_SHOES:
 				pline("An innocuous pair of pink girl shoes. They carry Rosa's curse, and have 1 AC and 0 MC."); break;
+			case JOHANETTA_GIRL_SHOES:
+				pline("This bright pink pair of girl shoes has very cute pointy toes, and counts as sexy flats. They carry Johanetta's curse, and have 2 AC and 2 MC."); break;
 			case JANINA_LADY_PUMPS:
 				pline("Quite attractive and sexy cone heels. They carry Janina's curse, and have 2 AC and 2 MC."); break;
 			case ANASTASIA_DANCING_SHOES:
@@ -20737,6 +20796,8 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 				pline("While having this jewel in your inventory, you're afflicted with Jessica's curse. It autocurses and cannot be dropped while cursed."); break;
 			case MARLENA_S_JEWEL:
 				pline("While having this jewel in your inventory, you're afflicted with Marlena's curse. It autocurses and cannot be dropped while cursed."); break;
+			case JOHANETTA_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Johanetta's curse. It autocurses and cannot be dropped while cursed."); break;
 			case CHLOE_S_JEWEL:
 				pline("While having this jewel in your inventory, you're afflicted with Chloe's curse. It autocurses and cannot be dropped while cursed."); break;
 			case ANJA_S_JEWEL:
@@ -35655,6 +35716,54 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: applying it causes you to hallucinate for a while."); break;
 				case ART_DNN_DNN_DNN__DNDNDNDNNNNNN:
 					pline("Artifact specs: applying it makes you invulnerable for a few turns."); break;
+				case ART_HOLIER_THAN_THOU:
+					pline("Artifact specs: spawns blessed."); break;
+				case ART_SELF_SIMILARITY:
+					pline("Artifact specs: contains another container of the same type."); break;
+				case ART_SEVERAL_DUNGEONS_WORTH_OF_:
+					pline("Artifact specs: contains several heavy containers. How are you supposed to get them out? Good luck finding a way."); break;
+				case ART_THREE_OF_CHARM:
+					pline("Artifact specs: when it generated, several more of the same type of container got generated somewhere."); break;
+				case ART_NO_STOPPING_THE_COURIER:
+					pline("Artifact specs: applying it erosionproofs it."); break;
+				case ART_TINPLAGUE:
+					pline("Artifact specs: made of sinnum."); break;
+				case ART_BESTANDING_IN_THE_WEATHER:
+					pline("Artifact specs: immune to erosion, regardless of its material."); break;
+				case ART_CLONE_DYKE_TREASURE:
+					pline("Artifact specs: made of gold. Carrying it reduces your carry capacity and gives wild weather and confusion resistance. You cannot drop this container; can you think of some different action that allows you to get rid of it?"); break;
+				case ART_REFRACTURA:
+					pline("Artifact specs: when it got generated, you got the johanetta trap effect permanently. If you carry it while having the johanetta trap effect, you have reflection and half spell damage."); break;
+				case ART_OMMMMMMMG_WISH_GET:
+					pline("Artifact specs: contains something very valuable."); break;
+				case ART_GALLUS__TRINKET:
+					pline("Artifact specs: better chances of unlocking locked things with it, and lesser risk of it becoming brittle."); break;
+				case ART_KARLIAH_S_NUKA_BREAK:
+					pline("Artifact specs: when it generated, you got a long-lasting nuka cola feminism trap effect, hahahahaha!"); break;
+				case ART_BRASS_CLOSEL:
+					pline("Artifact specs: made of alloy."); break;
+				case ART_RIMSKY_S_HAND_STAR:
+					pline("Artifact specs: made of mithril."); break;
+				case ART_OVERPOWEREMENT_RADII:
+					pline("Artifact specs: +1 light radius."); break;
+				case ART_A_YARD_IS_NOT_A_METER:
+					pline("Artifact specs: +2 light radius."); break;
+				case ART_XAW_MUNNATS_PFOUT:
+					pline("Artifact specs: made of sinnum."); break;
+				case ART_CLIRR:
+					pline("Artifact specs: made of glass, and when it generated, it made a loud sound."); break;
+				case ART_HOLE_IN_THE_TREE:
+					pline("Artifact specs: made of amber."); break;
+				case ART_D_N_H__D_N_H_:
+					pline("Artifact specs: made of pwn-bubble. While you're carrying it, dnethack monsters spawn more often, especially if it's lit."); break;
+				case ART_LESS_PROTECTED_GLASS_CANNO:
+					pline("Artifact specs: johanetta trap effect when worn, makes your AC worse by 12 points, +15 dexterity and allows you to move significantly faster."); break;
+				case ART_EVERYTHING_A_PRINCESS_NEED:
+					pline("Artifact specs: when it generated, it might have unlocked a bunch of useful skills."); break;
+				case ART_MOST_EROTIC_AIR_CURRENT_NO:
+					pline("Artifact specs: +2 kick damage, but your kick will occasionally miss. If it does, the target monster becomes confused. It also grants +1 MC and discount action. This pair of shoes is normally bright pink and while you're wearing them, every worn armor piece that is bright pink gives +1 charisma."); break;
+				case ART_READY_TO_GO:
+					pline("Artifact specs: fast speed when worn."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

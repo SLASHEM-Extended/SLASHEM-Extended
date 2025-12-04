@@ -29699,6 +29699,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"You suddenly have to smoke a stinking cigarette! (Hint: quit smoking, or you'll have to do this 25 times per day and spend far too much money to buy more.)",
 	"You suddenly have to smoke a stinking cigarette! (Hint: if you don't quit smoking, and end up terminally ill from lung cancer, I won't pity you because you only have yourself to blame.)",
 	"You feel that the dangerous right securer whose name may not be spoken is now facing a lawsuit for using protected brand names.",
+	"The spawn rates for female shoes have gone back to normal.",
+	"You feel that you'll have to fight lots of female shoes, and more powerful ones too.",
 
 };
 

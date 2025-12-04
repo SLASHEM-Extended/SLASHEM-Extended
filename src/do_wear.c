@@ -423,6 +423,7 @@ Boots_on()
 	case RITA_STILETTOS:
 	case JANINA_LADY_PUMPS:
 	case ROSA_GIRL_SHOES:
+	case JOHANETTA_GIRL_SHOES:
 	case KSENIA_PLATFORM_SANDALS:
 	case LYDIA_LADY_PUMPS:
 	case CONNY_COMBAT_BOOTS:
@@ -558,7 +559,7 @@ Boots_on()
     }
 
     if (uarmf && uarmf->oartifact == ART_ZERO_SUGAR) {
-	int nukaroll = rnd(109); /* keyword: "marlena" */
+	int nukaroll = rnd(110); /* keyword: "marlena" */
 
 	curse(uarmf);
 	uarmf->hvycurse = uarmf->stckcurse = TRUE;
@@ -1278,6 +1279,7 @@ Boots_off()
 	case RITA_STILETTOS:
 	case JANINA_LADY_PUMPS:
 	case ROSA_GIRL_SHOES:
+	case JOHANETTA_GIRL_SHOES:
 	case KSENIA_PLATFORM_SANDALS:
 	case LYDIA_LADY_PUMPS:
 	case CONNY_COMBAT_BOOTS:
@@ -8194,6 +8196,7 @@ find_ac()
 	if (uarms && uarms->otyp == STORM_SHIELD) uac += 2;
 	if (uarmf && uarmf->oartifact == ART_OH_MAN_BORING) uac -= 1;
 	if (uarmf && uarmf->oartifact == ART_STERDYNES) uac -= 1;
+	if (uarm && uarm->oartifact == ART_LESS_PROTECTED_GLASS_CANNO) uac += 12;
 	if (bmwride(ART_PANZER_TANK)) uac -= 10;
 	if (bmwride(ART_PLATED_BARDING)) uac -= 2;
 	if (bmwride(ART_DEATH_SQUAD_MOBILE)) uac -= 5;

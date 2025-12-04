@@ -3506,6 +3506,15 @@ int x;
 			if (uamul->bbrcurse) tmp--;
 			if (uamul->morgcurse) tmp--;
 		}
+		if (uarmf && uarmf->oartifact == ART_MOST_EROTIC_AIR_CURRENT_NO) {
+			if (uarm && objects[uarm->otyp].oc_color == CLR_BRIGHT_MAGENTA) tmp++;
+			if (uarmf && objects[uarmf->otyp].oc_color == CLR_BRIGHT_MAGENTA) tmp++;
+			if (uarmc && objects[uarmc->otyp].oc_color == CLR_BRIGHT_MAGENTA) tmp++;
+			if (uarmh && objects[uarmh->otyp].oc_color == CLR_BRIGHT_MAGENTA) tmp++;
+			if (uarmg && objects[uarmg->otyp].oc_color == CLR_BRIGHT_MAGENTA) tmp++;
+			if (uarms && objects[uarms->otyp].oc_color == CLR_BRIGHT_MAGENTA) tmp++;
+			if (uarmu && objects[uarmu->otyp].oc_color == CLR_BRIGHT_MAGENTA) tmp++;
+		}
 		if (uarmu && uarmu->oartifact == ART_BIENVENIDO_A_MIAMI) tmp += 3;
 		if (uarmh && uarmh->oartifact == ART_MASSIVE_IRON_CROWN_OF_MORG) tmp += 5;
 		if (uarmc && uarmc->oartifact == ART_SEXY_STROKING_UNITS) tmp += 5;
@@ -3979,6 +3988,7 @@ int x;
 		if (uleft && uleft->oartifact == ART_SPEECHBREAK) tmp += 5;
 		if (u.martialstyle == MARTIALSTYLE_WRESTLING) tmp += 1;
 		if (uright && uright->oartifact == ART_SPEECHBREAK) tmp += 5;
+		if (uarm && uarm->oartifact == ART_LESS_PROTECTED_GLASS_CANNO) tmp += 15;
 		if (uarm && uarm->otyp == CRYSTALLINE_DRAGON_SCALES) tmp += 1;
 		if (uarm && uarm->otyp == CRYSTALLINE_DRAGON_SCALE_MAIL) tmp += 1;
 		if (uarms && uarms->otyp == CRYSTALLINE_DRAGON_SCALE_SHIEL) tmp += 1;

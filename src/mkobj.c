@@ -3344,7 +3344,7 @@ boolean shopinit;
 		case BRASS_LANTERN:
 		case DWARVEN_LANTERN:
 		case OIL_LAMP:
-		case PIT_LAMP:
+		case ELECTRIC_LAMP:
 			otmp->recharged = 0;
 			if(!rn2(5)) otmp->recharged = rnd(7);
 			otmp->spe = 1;
@@ -3363,7 +3363,7 @@ boolean shopinit;
 					otmp->lamplit = 0;
 					blessorcurse_on_creation(otmp, 5);
 					break;
-		case ELECTRIC_LAMP:
+		case PIT_LAMP:
 			otmp->recharged = 0;
 			if(!rn2(5)) otmp->recharged = rnd(7);
 			otmp->spe = 1;
@@ -5681,6 +5681,7 @@ register struct obj *otmp;
 	if (otmp && otmp->oartifact == ART_WORKER_METAL) return FALSE;
 	if (otmp && otmp->oartifact == ART_VAELGROM_S_SPINE) return FALSE;
 	if (otmp && otmp->oartifact == ART_MASSIVITY_CUTEBLOCK) return FALSE;
+	if (otmp && otmp->oartifact == ART_BESTANDING_IN_THE_WEATHER) return FALSE;
 
 	if (uamul && uamul->oartifact == ART_AUTOMATICALLY_METAL) {
 		return (!(is_metallic(otmp)));
@@ -5735,6 +5736,7 @@ register struct obj *otmp;
 	if (otmp && otmp->oartifact == ART_WORKER_METAL) return FALSE;
 	if (otmp && otmp->oartifact == ART_VAELGROM_S_SPINE) return FALSE;
 	if (otmp && otmp->oartifact == ART_MASSIVITY_CUTEBLOCK) return FALSE;
+	if (otmp && otmp->oartifact == ART_BESTANDING_IN_THE_WEATHER) return FALSE;
 
 	if (itemhasappearance(otmp, APP_WHITE_BUFFALO_BOOTS)) return TRUE;
 
@@ -5781,6 +5783,7 @@ register struct obj *otmp;
 	if (otmp && otmp->oartifact == ART_VAELGROM_S_SPINE) return FALSE;
 	if (otmp && otmp->oartifact == ART_RUST_OK) return FALSE;
 	if (otmp && otmp->oartifact == ART_MASSIVITY_CUTEBLOCK) return FALSE;
+	if (otmp && otmp->oartifact == ART_BESTANDING_IN_THE_WEATHER) return FALSE;
 
 	if (SpellColorMetal) {
 		return (!(is_metallic(otmp)));
@@ -5815,6 +5818,7 @@ register struct obj *otmp;
 	if (otmp && otmp->oartifact == ART_WORKER_METAL) return FALSE;
 	if (otmp && otmp->oartifact == ART_VAELGROM_S_SPINE) return FALSE;
 	if (otmp && otmp->oartifact == ART_MASSIVITY_CUTEBLOCK) return FALSE;
+	if (otmp && otmp->oartifact == ART_BESTANDING_IN_THE_WEATHER) return FALSE;
 
 	if (uarmg && uarmg->oartifact == ART_BRIGITTE_S_SAFETY_MITTENS) return FALSE;
 
