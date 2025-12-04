@@ -5023,6 +5023,11 @@ dothetrap:
 		    break;
 		}
 
+		if (uarmh && is_power_helm(uarmh) && rn2(4)) {
+		    You("are enveloped in a cloud of gas!");
+		    break;
+		}
+
 		if (RngeGasFiltering && !rn2(2)) {
 		    You("are enveloped in a cloud of gas!");
 		    break;
@@ -5052,6 +5057,11 @@ dothetrap:
 		}
 
 		if (RngeGasFiltering && !rn2(2)) {
+		    You("are enveloped in a cloud of gas!");
+		    break;
+		}
+
+		if (uarmh && is_power_helm(uarmh) && rn2(4)) {
 		    You("are enveloped in a cloud of gas!");
 		    break;
 		}
@@ -5092,6 +5102,11 @@ dothetrap:
 		    break;
 		}
 
+		if (uarmh && is_power_helm(uarmh) && rn2(4)) {
+		    You("are enveloped in a cloud of gas!");
+		    break;
+		}
+
 		if (RngeGasFiltering && !rn2(2)) {
 		    pline("A cloud of gas surrounds you!");
 		    break;
@@ -5118,6 +5133,11 @@ dothetrap:
 
 		if (uarmh && itemhasappearance(uarmh, APP_FILTERED_HELMET) && !rn2(2) ) {
 		    pline("A cloud of foggy gas shoots out at you!");
+		    break;
+		}
+
+		if (uarmh && is_power_helm(uarmh) && rn2(4)) {
+		    You("are enveloped in a cloud of gas!");
 		    break;
 		}
 

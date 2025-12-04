@@ -14404,6 +14404,26 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 				pline("Equivalent armor-wise to a splint mail, but made of a better material."); break;
 			case GIANT_SEA_ANEMONE:
 				pline("This edible armor is actually as weak as a crappy leather armor."); break;
+			case ENCLAVE_POWER_ARMOR:
+				pline("A very powerful suit of dark power armor that provides 12 points of AC. All power armor provides partial protection from radiation and missiles at the expense of mobility. It can only be worn if you've received power armor training."); break;
+			case BROTHERHOOD_POWER_ARMOR:
+				pline("A rather powerful suit of silvery power armor that provides 11 points of AC. All power armor provides partial protection from radiation and missiles at the expense of mobility. It can only be worn if you've received power armor training."); break;
+			case OUTCAST_POWER_ARMOR:
+				pline("A powerful suit of red power armor that provides 10 points of AC. All power armor provides partial protection from radiation and missiles at the expense of mobility. It can only be worn if you've received power armor training."); break;
+			case TESLA_POWER_ARMOR:
+				pline("A super powerful suit of dark power armor that provides 13 points of AC as well as shock resistance and protects your items from lightning damage. All power armor provides partial protection from radiation and missiles at the expense of mobility. It can only be worn if you've received power armor training."); break;
+			case FULL_POWER_ARMOR:
+				pline("An enormously powerful suit of white power armor that provides 15 points of AC. All power armor provides partial protection from radiation and missiles at the expense of mobility. It can only be worn if you've received power armor training."); break;
+			case ENCLAVE_POWER_HELM:
+				pline("A very powerful dark power helm that provides 5 points of AC. All power helms provide partial protection from gas and poison at the expense of appearance and ability to speak. It can only be worn if you've received power armor training."); break;
+			case BROTHERHOOD_POWER_HELM:
+				pline("A rather powerful silvery power helm that provides 4 points of AC. All power helms provide partial protection from gas and poison at the expense of appearance and ability to speak. It can only be worn if you've received power armor training."); break;
+			case OUTCAST_POWER_HELM:
+				pline("A powerful red power helm that provides 3 points of AC. All power helms provide partial protection from gas and poison at the expense of appearance and ability to speak. It can only be worn if you've received power armor training."); break;
+			case TESLA_POWER_HELM:
+				pline("A super powerful dark power helm that provides 6 points of AC as well as protection from beheading and a chance to stop hostile projectiles. All power helms provide partial protection from gas and poison at the expense of appearance and ability to speak. It can only be worn if you've received power armor training."); break;
+			case FULL_POWER_HELM:
+				pline("An enormously powerful white power helm that provides 8 points of AC. All power helms provide partial protection from gas and poison at the expense of appearance and ability to speak. It can only be worn if you've received power armor training."); break;
 			case WONDER_PLATE:
 				pline("Hmm, I wonder what material this suit of armor is made from. It provides very good armor class and 2 points of magic cancellation."); break;
 			case METAL_LAMELLAR_ARMOR:

@@ -3658,6 +3658,7 @@ int x;
 		if (ublindf && ublindf->oartifact == ART_SYLBE_S_LACK) tmp -= 4;
 		if (Race_if(PM_LOWER_ENT) && Burned) tmp -= 2;
 		if (uarms && uarms->oartifact == ART_AL_UD) tmp -= 3;
+		if (uarmh && is_power_helm(uarmh)) tmp -= 5;
 		if (isbadstatter) tmp -= 2;
 		if (uarmh && uarmh->otyp == CORNUTHAUM && !Role_if(PM_WIZARD)) tmp -= 1;
 		if (uleft && uleft->oartifact == ART_SECOND_EXCHANGE) tmp -= 5;
@@ -4335,6 +4336,18 @@ register int n;
 	}
 
 	if (uarmh && uarmh->oartifact == ART_VERCHANGE_CHILD && !rn2(2) && (n < 0)) {
+		return;
+	}
+
+	if ((n < 0) && uarm && uarm->otyp == BROTHERHOOD_POWER_ARMOR && uarmh && uarmh->otyp == BROTHERHOOD_POWER_HELM && !rn2(2) && (u.ualign.type == A_LAWFUL) ) {
+		return;
+	}
+
+	if ((n < 0) && uarm && uarm->otyp == OUTCAST_POWER_ARMOR && uarmh && uarmh->otyp == OUTCAST_POWER_HELM && !rn2(2) && (u.ualign.type == A_NEUTRAL) ) {
+		return;
+	}
+
+	if ((n < 0) && uarm && uarm->otyp == ENCLAVE_POWER_ARMOR && uarmh && uarmh->otyp == ENCLAVE_POWER_HELM && !rn2(2) && (u.ualign.type == A_CHAOTIC) ) {
 		return;
 	}
 

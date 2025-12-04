@@ -11675,6 +11675,11 @@ register int osym, dmgtyp;
 				break;
 			}
 
+			if (uarm && uarm->otyp == TESLA_POWER_ARMOR) {
+				skip++;
+				break;
+			}
+
 			if (ShockImmunity) {
 				skip++;
 				break;

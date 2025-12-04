@@ -348,6 +348,17 @@ struct obj {
 				|| (otmp)->otyp == GNOMISH_SUIT\
 				|| (otmp)->otyp == GNOMISH_BOOTS)
 
+#define is_power_armor(otmp)		((otmp)->otyp == OUTCAST_POWER_ARMOR\
+				|| (otmp)->otyp == BROTHERHOOD_POWER_ARMOR\
+				|| (otmp)->otyp == ENCLAVE_POWER_ARMOR\
+				|| (otmp)->otyp == FULL_POWER_ARMOR\
+				|| (otmp)->otyp == TESLA_POWER_ARMOR)
+#define is_power_helm(otmp)		((otmp)->otyp == OUTCAST_POWER_HELM\
+				|| (otmp)->otyp == BROTHERHOOD_POWER_HELM\
+				|| (otmp)->otyp == ENCLAVE_POWER_HELM\
+				|| (otmp)->otyp == FULL_POWER_HELM\
+				|| (otmp)->otyp == TESLA_POWER_HELM)
+
 #define is_blindfold_slot(otmp)	((otmp)->otyp == BLINDFOLD\
 				|| (otmp)->otyp == CONDOME\
 				|| (otmp)->otyp == TOWEL\

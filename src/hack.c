@@ -5036,6 +5036,16 @@ boolean tellplayer;
 
 	if (FalloutEffectXtra) amount *= 2;
 
+	/* power armor gives a bit of contamination resistance */
+	if (uarm && is_power_armor(uarm)) {
+		if ((amount == 1) && rn2(2)) {
+			return; /* player unaffected */
+		} else if (amount > 1) {
+			amount *= 4;
+			amount /= 5;
+		}
+	}
+
 	/* Contamination resistance divides incoming contamination by 5, but not below 1 */
 	if (Cont_resist && amount > 1) {
 		amount /= 5;

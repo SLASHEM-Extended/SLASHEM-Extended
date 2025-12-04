@@ -6486,6 +6486,11 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 				goto beheadingdone;
 			}
 
+			if (uarmh && uarmh->otyp == TESLA_POWER_HELM) {
+				pline("%s slices into your %s.", wepdesc, body_part(NECK));
+				willreturntrue = 1;
+				goto beheadingdone;
+			}
 			if (uarmh && itemhasappearance(uarmh, APP_COMPLETE_HELMET) ) {
 				pline("%s slices into your %s.", wepdesc, body_part(NECK));
 				willreturntrue = 1;

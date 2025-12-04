@@ -8432,6 +8432,7 @@ int  typ, fatal;
 			if (poisonstatreducechance < 1) poisonstatreducechance = 1;
 
 			if (uarmg && uarmg->oartifact == ART_POISON_HAND && rn2(2)) return;
+			if (uarmh && is_power_helm(uarmh) && rn2(2)) return;
 
 			if(!rn2(poisonstatreducechance)) {
 				/* Check that a stat change was made */
@@ -8453,6 +8454,7 @@ int  typ, fatal;
 			if (poisonstatreducechance < 1) poisonstatreducechance = 1;
 
 			if (uarmg && uarmg->oartifact == ART_POISON_HAND && rn2(2)) return;
+			if (uarmh && is_power_helm(uarmh) && rn2(2)) return;
 
 			if(!rn2(poisonstatreducechance)) {
 				/* Check that a stat change was made */
@@ -8475,7 +8477,7 @@ int  typ, fatal;
 	    kprefix = KILLED_BY;
 	}
 	i = rn2(fatal + 20*thrown_weapon);
-	if(i == 0 && (!Poison_resistance || (Race_if(PM_VIETIS) && !StrongPoison_resistance)) && !(uarmf && uarmf->oartifact == ART_PURPLE_JUNGLE) && !(uarms && uarms->oartifact == ART_ANTINSTANT_DEATH) && typ != A_CHA && !rn2((Race_if(PM_VIETIS) && !Poison_resistance) ? 10 : 100)) {
+	if(i == 0 && (!Poison_resistance || (Race_if(PM_VIETIS) && !StrongPoison_resistance)) && !(uarmf && uarmf->oartifact == ART_PURPLE_JUNGLE) && !(uarmh && is_power_helm(uarmh)) && !(uarms && uarms->oartifact == ART_ANTINSTANT_DEATH) && typ != A_CHA && !rn2((Race_if(PM_VIETIS) && !Poison_resistance) ? 10 : 100)) {
 		if (Invulnerable || (StrongWonderlegs && !rn2(10) && Wounded_legs) || ((PlayerInBlockHeels || PlayerInWedgeHeels) && tech_inuse(T_EXTREME_STURDINESS) && !rn2(2) ) || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) )
 		   pline("You are unharmed!");
 		else {
@@ -8485,6 +8487,7 @@ int  typ, fatal;
 	} else if(i <= ((uimplant && uimplant->oartifact == ART_PULSE_NODE_OF_GERALT) ? 10 : 5) ) {
 
 		if (uarmg && uarmg->oartifact == ART_POISON_HAND && rn2(2)) goto statchangedone;
+		if (uarmh && is_power_helm(uarmh) && rn2(2)) goto statchangedone;
 
 		/* Check that a stat change was made */
 		if (adjattrib(typ, thrown_weapon ? -1 : StrongPoison_resistance ? -1 : Poison_resistance ? -rno(3) : -rnd(5), 1, TRUE)) {

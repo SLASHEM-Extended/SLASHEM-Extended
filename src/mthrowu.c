@@ -513,6 +513,12 @@ shieldblockboo:
 			else You("skillfully evade %s.", onm);
 			return(0);
 
+	} else if (uarmh && uarmh->otyp == TESLA_POWER_HELM && !rn2(10)) {
+
+			if(Blind || !flags.verbose) You("block a projectile with your helmet.");
+			else You("block %s with your helmet.", onm);
+			return(0);
+
 	} else if (uarmg && uarmg->oartifact == ART_CLARA_S_GLOVES_OF_THE_TIDE && !rn2(10)) {
 
 			if(Blind || !flags.verbose) You("brush off a projectile.");
@@ -773,6 +779,13 @@ shieldblockboo:
 
 			if (Half_physical_damage && (rn2(2) || (uwep && uwep->oartifact == ART_SOOTHE_)) ) dam = (dam+1) / 2;
 			if (StrongHalf_physical_damage && (rn2(2) || (uwep && uwep->oartifact == ART_SOOTHE_)) ) dam = (dam+1) / 2;
+
+			/* power armor absorbs some damage you take from missiles --Amy */
+			if (uarm && is_power_armor(uarm) && (dam > 1)) {
+				dam *= 4;
+				dam /= 5;
+				if (dam < 1) dam = 1;
+			}
 
 			if (uarmh && uarmh->oartifact == ART_RENEE_S_FEATHERED_HOOD && (dam > 1)) {
 				dam += 1;

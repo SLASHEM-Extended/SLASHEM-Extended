@@ -11884,6 +11884,9 @@ u_init()
 	u.havebeeninludios = 0;
 	u.maxrndmonstchoicecount = 0;
 
+	u.powerarmortraining = 0;
+	if (Role_if(PM_STORMBOY)) u.powerarmortraining = 1;
+
 	u.martialstyle = MARTIALSTYLE_BRAWLING; /* can be changed with martial style tech */
 	if (Race_if(PM_SAMEDI)) u.martialstyle = MARTIALSTYLE_CAPOEIRA; /* sons of samedi always use capoeira */
 

@@ -2561,6 +2561,11 @@ Helmet_on()
 	case CRYSTAL_HELM:
 	case DENTED_POT:
 	case BASINET:
+	case ENCLAVE_POWER_HELM:
+	case BROTHERHOOD_POWER_HELM:
+	case OUTCAST_POWER_HELM:
+	case TESLA_POWER_HELM:
+	case FULL_POWER_HELM:
 	case BROKEN_HELMET:
 	case ELVEN_LEATHER_HELM:
 	case ELVEN_HELM:
@@ -3137,6 +3142,11 @@ Helmet_off()
 	case HELM_OF_STEEL:
 	case DENTED_POT:
 	case BASINET:
+	case ENCLAVE_POWER_HELM:
+	case BROTHERHOOD_POWER_HELM:
+	case OUTCAST_POWER_HELM:
+	case TESLA_POWER_HELM:
+	case FULL_POWER_HELM:
 	case BROKEN_HELMET:
 	case ELVEN_LEATHER_HELM:
 	case ELVEN_HELM:
@@ -6908,6 +6918,14 @@ boolean noisy;
 		return 0;
 	}
 
+	if ((is_power_armor(otmp) || is_power_helm(otmp)) && !u.powerarmortraining) {
+		if (noisy) {
+			if (FunnyHallu) pline("That thing seems way too bulky, you decide to not bother trying to wear it.");
+			else pline("You can't wear power armor without having received power armor training!");
+		}
+		return 0;
+	}
+
 	if (!is_cloak(otmp) && !is_boots(otmp) && !(otmp->oartifact == ART_ELONA_S_SNAIL_TRAIL) && Race_if(PM_ELONA_SNAIL) && !Upolyd) {
 		if (noisy) pline("As a snail, the only types of armor you can wear are cloaks and boots.");
 		return 0;
@@ -7906,6 +7924,7 @@ find_ac()
 	if (uarm && uarm->oartifact == ART_NOPPED_SUIT) uac -= 3;
 	if (uarm && uarm->oartifact == ART_BLASWON) uac -= 1;
 	if (uarm && uarm->oartifact == ART_TANKSTA_S_SUIT) uac -= 6;
+	if (uarm && uarm->otyp == FULL_POWER_ARMOR && uarmh && uarmh->otyp == FULL_POWER_HELM) uac -= 5;
 	if (uarm && uarm->oartifact == ART_WOOHOO_AMATEURHOUR_) uac -= 5;
 	if (uarm && uarm->oartifact == ART_COME_ON_AMMY) uac -= 5;
 	if (uarm && uarm->oartifact == ART_HANDSOME_THREESOME) uac -= 3;

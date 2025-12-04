@@ -4332,6 +4332,25 @@ repairitemchoice:
 		else verbl_msg = "On your knees, coward!";
 		break;
 	case MS_BOS:
+
+		if ((mtmp->data == &mons[PM_PALADIN_GUNNY]) && mtmp->mpeaceful && !u.powerarmortraining) {
+			verbalize("Rookie! You've got some nerve! Oh wait, you're not actually from the Brotherhood of Steel... What's that you want? Power armor training? I'm not teaching that to outsiders for free!");
+			if (u.ugold < 5000) {
+				verbalize("Come back when you've got 5000 caps!");
+				break;
+			}
+			if (yn("Pay 5000 caps for power armor training?") == 'y') {
+				u.ugold -= 5000;
+				u.powerarmortraining = TRUE;
+				verbalize("Alright, look here, you put it on like this, pull that lash over, and then let the suit do all the work. That's all!");
+				pline("You have received power armor training, and are now fully capable of wearing all suits of power armor and the accompanying helmets!");
+			} else {
+				verbalize("Well, come back if you change your mind!");
+			}
+
+			break;
+		}
+
 		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
 			verbl_msg = "Damn, I'm gonna have to contact Scribe Jameson, for the scrolls...";
 			break;
@@ -7039,6 +7058,11 @@ dotalk()
 	pline("The chat command is currently unavailable!");
 	if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	return 0;
+	}
+
+	if (uarmh && is_power_helm(uarmh) && !rn2(5)) {
+		Your("helmet modulates your voice, and you fail to talk properly!");
+		return 1;
 	}
 
 	if (HardcoreAlienMode) {

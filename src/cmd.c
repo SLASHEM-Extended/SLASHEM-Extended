@@ -7217,6 +7217,11 @@ boolean guaranteed;
 #ifdef WIZARD
 	 else if (wizard) enl_msg("Your mana bonus ", "is", "was", " zero");
 #endif
+
+	if (u.powerarmortraining) {
+		sprintf(buf, "You have power armor training.");
+	}
+
 	if (guaranteed || !rn2(10)) {
 		sprintf(buf, "spell retention for remembering %d spells", urole.spelrete);
 		you_have(buf);
@@ -11932,6 +11937,10 @@ int final;
 	      dump(youhad, buf);
 	}
 	else dump("  ", "Your mana bonus was zero");
+
+	if (u.powerarmortraining) {
+		dump("  ", "You had power armor training");
+	}
 
 	sprintf(buf, "spell retention for remembering %d spells", urole.spelrete);
 	dump(youhad, buf);

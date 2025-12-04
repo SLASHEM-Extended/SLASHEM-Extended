@@ -2949,7 +2949,9 @@ convertdone:
 			u.cnd_perfumecount++;
 			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 
-			if (rn2(10) && uarmh && itemhasappearance(uarmh, APP_GAS_MASK) ) {
+			if (uarmh && is_power_helm(uarmh) && !rn2(3)) {
+				pline("But your helmet protects you from the effects.");
+			} else if (rn2(10) && uarmh && itemhasappearance(uarmh, APP_GAS_MASK) ) {
 				pline("But the gas mask protects you from the effects.");
 			} else if (rn2(5) && uarmf && uarmf->oartifact == ART_CLAUDIA_S_SELF_WILL) {
 				pline("But you actually enjoy the lovely scent.");

@@ -1672,6 +1672,8 @@ struct you {
 	int chokhmahdamage;	/* AD_CHKH - damage increases by 1 with every hit */
 	int extralives;		/* for scroll of resurrection */
 
+	boolean powerarmortraining;	/* can the character use power armor? --Amy */
+
 	int suppress_dim;		/* for certain artifacts: player is temporarily immune to a specific status effect --Amy */
 	int suppress_burn;
 	int suppress_freeze;

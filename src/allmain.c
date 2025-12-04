@@ -1990,9 +1990,16 @@ moveloop()
 		/* The new numbed and frozen properties seem to dislike rn2 calls for some reason.
 		 * So I need to make a subloop to prevent numbed or frozen players from being completely immobile. */
 
+			/* numbed characters sometimes miss turns --Amy */
 			if (Numbed && moveamt > 1) {
 				if ( (youmonst.data->mmove > 1 || !rn2(2)) && !rn2(10))
-				moveamt = 0; /* numbed characters sometimes miss turns --Amy */
+				moveamt = 0;
+			}
+
+			/* power armor slows you down a bit --Amy */
+			if (uarm && is_power_armor(uarm) && moveamt > 1) {
+				if ( (youmonst.data->mmove > 1 || !rn2(2)) && !rn2(5))
+				moveamt = 0;
 			}
 
 			if (is_snow(u.ux, u.uy) && (u.umoved || !rn2(4)) && !Flying && !Levitation) {
@@ -5264,6 +5271,8 @@ newbossS:
 				} else if (uarmh && itemhasappearance(uarmh, APP_FILTERED_HELMET) && !rn2(2) ) {
 					 pline("A cloud of spores surrounds you!");
 				} else if (RngeGasFiltering && !rn2(2)) {
+					 pline("A cloud of spores surrounds you!");
+				} else if (uarmh && is_power_helm(uarmh) && rn2(4)) {
 					 pline("A cloud of spores surrounds you!");
 
 				 } else if (!Strangled && !Breathless) {
@@ -16071,6 +16080,13 @@ pastds2:
 				flags.botl = 1;
 			}
 
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && !rn2(5) && uarm && uarm->otyp == TESLA_POWER_ARMOR && uarmh && uarmh->otyp == TESLA_POWER_HELM) {
+				u.uen++;
+				if (Race_if(PM_PIERCER)) u.uen++;
+				if (u.uen > u.uenmax)  u.uen = u.uenmax;
+				flags.botl = 1;
+			}
+
 			if (!CannotRegenerateMP() && !contaminationcheck(2) && !issoviet && !rn2(40 - GushLevel) ) {
 				u.uen++;
 				if (Race_if(PM_PIERCER)) u.uen++;
@@ -17209,6 +17225,15 @@ past4:
 			You("break the hold!");
 			setustuck(0);
 		}
+	}
+
+	if (uarm && is_power_armor(uarm) && !u.powerarmortraining) {
+		You("can't wear power armor!");
+		(void) Armor_off();
+	}
+	if (uarmh && is_power_helm(uarmh) && !u.powerarmortraining) {
+		You("can't wear power armor!");
+		(void) Helmet_off();
 	}
 
 	if (uarm && uarm->oartifact == ART_WEGEO_ACQUA_DE_EISU_FORTE) {

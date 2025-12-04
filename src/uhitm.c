@@ -14174,6 +14174,7 @@ boolean ranged;
 		if (uarmh && itemhasappearance(uarmh, APP_FILTERED_HELMET) && !rn2(2) ) break;
 
 		if (RngeGasFiltering && !rn2(2)) break;
+		if (uarmh && is_power_helm(uarmh) && rn2(4)) break;
 
 	      if (!Strangled && !Breathless) {
 			pline("You inhale a cloud of spores!");
@@ -14192,6 +14193,7 @@ boolean ranged;
 		if (uarmh && itemhasappearance(uarmh, APP_FILTERED_HELMET) && !rn2(2) ) break;
 
 		if (RngeGasFiltering && !rn2(2)) break;
+		if (uarmh && is_power_helm(uarmh) && rn2(4)) break;
 
 	      if (!Strangled && !Breathless) {
 			pline("You inhale a cloud of spores!");
@@ -14209,6 +14211,7 @@ boolean ranged;
 		if (uarmh && itemhasappearance(uarmh, APP_FILTERED_HELMET) && !rn2(2) ) break;
 
 		if (RngeGasFiltering && !rn2(2)) break;
+		if (uarmh && is_power_helm(uarmh) && rn2(4)) break;
 
 	      if (!Strangled && !Breathless) {
 			pline("You inhale a cloud of spores!");
@@ -14226,6 +14229,7 @@ boolean ranged;
 		if (uarmh && itemhasappearance(uarmh, APP_FILTERED_HELMET) && !rn2(2) ) break;
 
 		if (RngeGasFiltering && !rn2(2)) break;
+		if (uarmh && is_power_helm(uarmh) && rn2(4)) break;
 
 	      if (!Strangled && !Breathless) {
 			pline("You inhale a cloud of spores!");
@@ -14243,6 +14247,7 @@ boolean ranged;
 		if (uarmh && itemhasappearance(uarmh, APP_FILTERED_HELMET) && !rn2(2) ) break;
 
 		if (RngeGasFiltering && !rn2(2)) break;
+		if (uarmh && is_power_helm(uarmh) && rn2(4)) break;
 
 	      if (!Strangled && !Breathless) {
 			pline("You inhale a cloud of spores!");
@@ -14260,6 +14265,7 @@ boolean ranged;
 		if (uarmh && itemhasappearance(uarmh, APP_FILTERED_HELMET) && !rn2(2) ) break;
 
 		if (RngeGasFiltering && !rn2(2)) break;
+		if (uarmh && is_power_helm(uarmh) && rn2(4)) break;
 
 	      if (!Strangled && !Breathless) {
 			pline("You inhale a cloud of spores!");
@@ -14277,6 +14283,7 @@ boolean ranged;
 		if (chromeprotection()) break;
 
 		if (RngeGasFiltering && !rn2(3)) break;
+		if (uarmh && is_power_helm(uarmh) && rn2(3)) break;
 
 	      if (!Strangled && !Breathless) {
 			pline("You inhale a cloud of superpoisonous gas!");

@@ -4979,6 +4979,16 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ REPELLANT_SADDLE, "todo" },
 	{ ARMORED_LEASH, "todo" },
 	{ JOHANETTA_GIRL_SHOES, "todo" },
+	{ ENCLAVE_POWER_ARMOR, "todo" },
+	{ BROTHERHOOD_POWER_ARMOR, "todo" },
+	{ OUTCAST_POWER_ARMOR, "todo" },
+	{ FULL_POWER_ARMOR, "todo" },
+	{ TESLA_POWER_ARMOR, "todo" },
+	{ ENCLAVE_POWER_HELM, "todo" },
+	{ BROTHERHOOD_POWER_HELM, "todo" },
+	{ OUTCAST_POWER_HELM, "todo" },
+	{ FULL_POWER_HELM, "todo" },
+	{ TESLA_POWER_HELM, "todo" },
 
 	{0, "" }
 };
@@ -8676,6 +8686,16 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ REPELLANT_SADDLE, "todo" },
 	{ ARMORED_LEASH, "todo" },
 	{ JOHANETTA_GIRL_SHOES, "todo" },
+	{ ENCLAVE_POWER_ARMOR, "todo" },
+	{ BROTHERHOOD_POWER_ARMOR, "todo" },
+	{ OUTCAST_POWER_ARMOR, "todo" },
+	{ FULL_POWER_ARMOR, "todo" },
+	{ TESLA_POWER_ARMOR, "todo" },
+	{ ENCLAVE_POWER_HELM, "todo" },
+	{ BROTHERHOOD_POWER_HELM, "todo" },
+	{ OUTCAST_POWER_HELM, "todo" },
+	{ FULL_POWER_HELM, "todo" },
+	{ TESLA_POWER_HELM, "todo" },
 
 	{0, "" }
 };
@@ -11607,6 +11627,11 @@ boolean actualwish;
 	   strncmpi(bp, "ring mail", 9) &&
 	   strncmpi(bp, "studded leather arm", 19) &&
 	   strncmpi(bp, "imperial elven armor", 20) &&
+	   strncmpi(bp, "enclave power armor", 19) &&
+	   strncmpi(bp, "brotherhood power armor", 23) &&
+	   strncmpi(bp, "outcast power armor", 19) &&
+	   strncmpi(bp, "tesla power armor", 17) &&
+	   strncmpi(bp, "full power armor", 16) &&
 	   strncmpi(bp, "clockwork plate armor", 21) &&
 	   strncmpi(bp, "poison-repellant armor", 22) &&
 	   strncmpi(bp, "special leather armor", 21) &&

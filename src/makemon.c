@@ -8153,6 +8153,13 @@ register struct	monst	*mtmp;
 		if (monsndx(ptr) == PM_HUMAN_WERECOMBATSTILETTO) (void)mongets(mtmp, COMBAT_STILETTOS);
 		if (monsndx(ptr) == PM_HUMAN_WERESTILETTOSANDAL) (void)mongets(mtmp, HIGH_STILETTOS);
 
+		if (ptr == &mons[PM_PALADIN_GUNNY]) {
+			(void) mongets(mtmp, BROTHERHOOD_POWER_ARMOR);
+			(void) mongets(mtmp, HAND_BLASTER);
+	  		m_initthrow(mtmp, BLASTER_BOLT, 30);
+	  		m_initthrow(mtmp, FRAG_GRENADE, 10);
+
+		}
 		if (monsndx(ptr) == PM_ILSE_S_LADY_PUMP) (void)mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		if (ptr == &mons[PM_HIGH_DAIMYO]) (void) mongets(mtmp, KATANA);
 		if (ptr == &mons[PM_INCONSPICUOUS_HISPANIC_LADY]) (void) mongets(mtmp, DIDIER_SACHS_SHOES);
@@ -8258,20 +8265,17 @@ register struct	monst	*mtmp;
 			(void) mongets(mtmp, LONG_SWORD);
 			(void) mongets(mtmp, BOW);
 	  		m_initthrow(mtmp, ARROW, 20);
-
 		}
 
 		if (ptr == &mons[PM_BAZOOKER]) {
 			(void) mongets(mtmp, ROCKET_LAUNCHER);
 	  		m_initthrow(mtmp, ROCKET, 7);
-
 		}
 
 		if (ptr == &mons[PM_BROTHERHOOD_INITIATE]) {
 			(void) mongets(mtmp, CHAIN_MAIL);
 			(void) mongets(mtmp, FLINTLOCK);
 	  		m_initthrow(mtmp, PISTOL_BULLET, 15);
-
 		}
 
 		if (ptr == &mons[PM_MEMBER_OF_THE_WOMEN_S_GANG]) {
@@ -8302,7 +8306,6 @@ register struct	monst	*mtmp;
 			(void) mongets(mtmp, FLINTLOCK);
 			(void) mongets(mtmp, FEDORA);
 	  		m_initthrow(mtmp, PISTOL_BULLET, 20);
-
 		}
 
 		if (ptr == &mons[PM_GANG_SCIENTIST]) {
@@ -33597,6 +33600,7 @@ register int otyp;
 		    if (otmp->oclass == GEM_CLASS && !objects[otmp->otyp].oc_magic) otmp->mstartinventB = 1;
 		    if (is_weptool(otmp)) otmp->mstartinventB = 1;
 		    if (otmp->otyp == MUMMY_WRAPPING && mtmp->data->mlet == S_MUMMY) otmp->mstartinventC = 1;
+		    if ( (monstersoundtype(mtmp) == MS_BOS || monstersoundtype(mtmp) == MS_OUTCAST || monstersoundtype(mtmp) == MS_ENCLAVE) && (is_power_armor(otmp) || is_power_helm(otmp)) ) otmp->mstartinventC = 1;
 		    if (otmp->otyp == LONG_SWORD && mtmp->data->mlet == S_ANGEL) otmp->mstartinventC = 1;
 		    if (otmp->otyp == LARGE_SHIELD && mtmp->data->mlet == S_ANGEL) otmp->mstartinventC = 1;
 		    if (otmp->otyp == SHIELD_OF_REFLECTION && mtmp->data->mlet == S_ANGEL) otmp->mstartinventC = 1;
