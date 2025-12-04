@@ -273,7 +273,7 @@ boolean barehanded;
 	    wakeup(mtmp);
 	}
 
-	if (flags.confirm && !(ParanoiaBugEffect || u.uprops[PARANOIA_BUG].extrinsic || have_paranoiastone()) && mtmp->mpeaceful
+	if (flags.confirm && !(ParanoiaBugEffect || u.uprops[PARANOIA_BUG].extrinsic || have_paranoiastone() || (uarmh && uarmh->oartifact == ART_JANELLE_S_BETRAYAL)) && mtmp->mpeaceful
 	    && !(Confusion && !Conf_resist) && !Hallucination && !(Stunned && !Stun_resist) ) {
 		/* Intelligent chaotic weapons (Stormbringer) want blood */
 		if ((BloodthirstyAttacking || (uwep && weapon_is_bloodthirsty(uwep)) )) {
@@ -1458,7 +1458,8 @@ int dieroll;
 
 		}
 
-		if(!rn2(juyofleechance) && mon->mhp < mon->mhpmax/2
+		if( (!rn2(juyofleechance) || (uarmh && uarmh->oartifact == ART_BADGUY_VISIER && !rn2(10)) )
+			    && mon->mhp < mon->mhpmax/2
 			    && !(u.uswallow && mon == u.ustuck)) {
 		    /* maybe should regurgitate if swallowed? */
 		    if(!rn2(3)) {
@@ -4472,6 +4473,7 @@ int dieroll;
 		if (!thrown && uarms && uarms->oartifact == ART_BOENGSCHRACK) tmp += 2;
 		if (!thrown && uarmg && uarmg->oartifact == ART_OFFENDUFF) tmp += 2;
 		if (!thrown && uarmc && uarmc->oartifact == ART_ULFRIC_HIGH_KING) tmp += 3;
+		if (!thrown && uarmh && uarmh->oartifact == ART_JANELLE_S_BETRAYAL) tmp += 5;
 		if (uwep && uwep->oartifact == ART_DARKGOD_S_MINUSES) tmp -= 6;
 		if (uarm && uarm->oartifact == ART_TIMONA_S_INNER_BICKER) tmp += 1;
 		if (u.tempincrdmg1) tmp += 1;

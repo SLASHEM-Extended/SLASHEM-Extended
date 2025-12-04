@@ -1469,7 +1469,7 @@ walscholardone:
 		if (mode == DO_MOVE) {
 		    if (amorphous(youmonst.data))
 			You("try to ooze under the door, but can't squeeze your possessions through.");
-		    else if (iflags.autoopen && !Confusion && !Stunned && !Fumbling && levl[ux][uy].seenv && !(RightMouseButtonDoesNotGo || u.totter || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY) || (uarms && uarms->oartifact == ART_BLUE_SHIRT_OF_DEATH) || u.uprops[TOTTER_EFFECT].extrinsic || TotterTrapEffect || have_directionswapstone() || autismweaponcheck(ART_HOW_IS_THE_CAR_ROWED) || (uimplant && uimplant->oartifact == ART_CORTEX_COPROCESSOR) || ClockwiseSpinBug || u.uprops[CLOCKWISE_SPIN_BUG].extrinsic || have_clockwisestone() || CounterclockwiseSpin || u.uprops[COUNTERCLOCKWISE_SPIN_BUG].extrinsic || have_counterclockwisestone() || InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || autismringcheck(ART_LAISHA_DEAL) || (uarmc && uarmc->oartifact == ART_DOEDOEDOEDOEDOEDOEDOE_TEST) || autismweaponcheck(ART_PWNHAMMER) || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || (uarm && uarm->oartifact == ART_FEHLIRON) || Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || (uimplant && uimplant->oartifact == ART_ND_D___N_NDMNN_ND___NDMN_N) || autismweaponcheck(ART_OMGHAXERETH) || (SpellColorSilver && !u.seesilverspell) || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || (uamul && uamul->oartifact == ART_ADELAIDE_S_RACING) || autismweaponcheck(ART_SAY__CHESS_) || WallsAreHyperBlue ) ) {
+		    else if (iflags.autoopen && !Confusion && !Stunned && !Fumbling && levl[ux][uy].seenv && !(RightMouseButtonDoesNotGo || u.totter || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY) || (uarms && uarms->oartifact == ART_BLUE_SHIRT_OF_DEATH) || u.uprops[TOTTER_EFFECT].extrinsic || TotterTrapEffect || have_directionswapstone() || autismweaponcheck(ART_HOW_IS_THE_CAR_ROWED) || (uimplant && uimplant->oartifact == ART_CORTEX_COPROCESSOR) || ClockwiseSpinBug || u.uprops[CLOCKWISE_SPIN_BUG].extrinsic || have_clockwisestone() || CounterclockwiseSpin || u.uprops[COUNTERCLOCKWISE_SPIN_BUG].extrinsic || have_counterclockwisestone() || InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || autismringcheck(ART_LAISHA_DEAL) || (uarmc && uarmc->oartifact == ART_DOEDOEDOEDOEDOEDOEDOE_TEST) || autismweaponcheck(ART_PWNHAMMER) || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || (uarmh && uarmh->oartifact == ART_JANELLE_S_BETRAYAL) || (uarm && uarm->oartifact == ART_FEHLIRON) || Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || (uimplant && uimplant->oartifact == ART_ND_D___N_NDMNN_ND___NDMN_N) || autismweaponcheck(ART_OMGHAXERETH) || (SpellColorSilver && !u.seesilverspell) || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || (uamul && uamul->oartifact == ART_ADELAIDE_S_RACING) || autismweaponcheck(ART_SAY__CHESS_) || WallsAreHyperBlue ) ) {
 			    door_opened = flags.move = doopen_indir(x, y);
 			    opentry = 1;
 		    }
@@ -1800,7 +1800,7 @@ ask_about_trap(int x, int y)
 
 	struct trap *traphere = t_at(x, y);
 
-	if (ParanoiaBugEffect || u.uprops[PARANOIA_BUG].extrinsic || have_paranoiastone()) return FALSE;
+	if (ParanoiaBugEffect || u.uprops[PARANOIA_BUG].extrinsic || have_paranoiastone() || (uarmh && uarmh->oartifact == ART_JANELLE_S_BETRAYAL)) return FALSE;
 
 	if (KnowledgeBug || u.uprops[KNOWLEDGE_BUG].extrinsic || have_trapknowledgestone()) return FALSE;
 
@@ -1887,7 +1887,7 @@ ask_about_trap(int x, int y)
 boolean
 ask_about_water(int x, int y)
 {
-	if (ParanoiaBugEffect || u.uprops[PARANOIA_BUG].extrinsic || have_paranoiastone()) return FALSE;
+	if (ParanoiaBugEffect || u.uprops[PARANOIA_BUG].extrinsic || have_paranoiastone() || (uarmh && uarmh->oartifact == ART_JANELLE_S_BETRAYAL)) return FALSE;
 
 	if (is_pool(u.ux, u.uy)) return FALSE;
 	if (is_watertunnel(u.ux, u.uy)) return FALSE;
@@ -1903,7 +1903,7 @@ ask_about_water(int x, int y)
 boolean
 ask_about_lava(int x, int y)
 {
-	if (ParanoiaBugEffect || u.uprops[PARANOIA_BUG].extrinsic || have_paranoiastone()) return FALSE;
+	if (ParanoiaBugEffect || u.uprops[PARANOIA_BUG].extrinsic || have_paranoiastone() || (uarmh && uarmh->oartifact == ART_JANELLE_S_BETRAYAL)) return FALSE;
 
 	if (is_lava(u.ux, u.uy)) return FALSE;
 
@@ -1914,7 +1914,7 @@ ask_about_lava(int x, int y)
 boolean
 ask_about_watertunnel(int x, int y)
 {
-	if (ParanoiaBugEffect || u.uprops[PARANOIA_BUG].extrinsic || have_paranoiastone()) return FALSE;
+	if (ParanoiaBugEffect || u.uprops[PARANOIA_BUG].extrinsic || have_paranoiastone() || (uarmh && uarmh->oartifact == ART_JANELLE_S_BETRAYAL)) return FALSE;
 
 	if (is_watertunnel(u.ux, u.uy)) return FALSE;
 	if (is_pool(u.ux, u.uy)) return FALSE;
@@ -1926,7 +1926,7 @@ ask_about_watertunnel(int x, int y)
 boolean
 ask_about_crystalwater(int x, int y)
 {
-	if (ParanoiaBugEffect || u.uprops[PARANOIA_BUG].extrinsic || have_paranoiastone()) return FALSE;
+	if (ParanoiaBugEffect || u.uprops[PARANOIA_BUG].extrinsic || have_paranoiastone() || (uarmh && uarmh->oartifact == ART_JANELLE_S_BETRAYAL)) return FALSE;
 
 	if (is_crystalwater(u.ux, u.uy)) return FALSE;
 
@@ -1937,7 +1937,7 @@ ask_about_crystalwater(int x, int y)
 boolean
 ask_about_moorland(int x, int y)
 {
-	if (ParanoiaBugEffect || u.uprops[PARANOIA_BUG].extrinsic || have_paranoiastone()) return FALSE;
+	if (ParanoiaBugEffect || u.uprops[PARANOIA_BUG].extrinsic || have_paranoiastone() || (uarmh && uarmh->oartifact == ART_JANELLE_S_BETRAYAL)) return FALSE;
 
 	if (is_moorland(u.ux, u.uy)) return FALSE;
 
@@ -1948,7 +1948,7 @@ ask_about_moorland(int x, int y)
 boolean
 ask_about_urinelake(int x, int y)
 {
-	if (ParanoiaBugEffect || u.uprops[PARANOIA_BUG].extrinsic || have_paranoiastone()) return FALSE;
+	if (ParanoiaBugEffect || u.uprops[PARANOIA_BUG].extrinsic || have_paranoiastone() || (uarmh && uarmh->oartifact == ART_JANELLE_S_BETRAYAL)) return FALSE;
 
 	if (is_urinelake(u.ux, u.uy)) return FALSE;
 
@@ -1959,7 +1959,7 @@ ask_about_urinelake(int x, int y)
 boolean
 ask_about_shiftingsand(int x, int y)
 {
-	if (ParanoiaBugEffect || u.uprops[PARANOIA_BUG].extrinsic || have_paranoiastone()) return FALSE;
+	if (ParanoiaBugEffect || u.uprops[PARANOIA_BUG].extrinsic || have_paranoiastone() || (uarmh && uarmh->oartifact == ART_JANELLE_S_BETRAYAL)) return FALSE;
 
 	if (is_shiftingsand(u.ux, u.uy)) return FALSE;
 
@@ -1970,7 +1970,7 @@ ask_about_shiftingsand(int x, int y)
 boolean
 ask_about_styxriver(int x, int y)
 {
-	if (ParanoiaBugEffect || u.uprops[PARANOIA_BUG].extrinsic || have_paranoiastone()) return FALSE;
+	if (ParanoiaBugEffect || u.uprops[PARANOIA_BUG].extrinsic || have_paranoiastone() || (uarmh && uarmh->oartifact == ART_JANELLE_S_BETRAYAL)) return FALSE;
 
 	if (is_styxriver(u.ux, u.uy)) return FALSE;
 
@@ -1981,7 +1981,7 @@ ask_about_styxriver(int x, int y)
 boolean
 ask_about_burningwagon(int x, int y)
 {
-	if (ParanoiaBugEffect || u.uprops[PARANOIA_BUG].extrinsic || have_paranoiastone()) return FALSE;
+	if (ParanoiaBugEffect || u.uprops[PARANOIA_BUG].extrinsic || have_paranoiastone() || (uarmh && uarmh->oartifact == ART_JANELLE_S_BETRAYAL)) return FALSE;
 
 	if (is_burningwagon(u.ux, u.uy)) return FALSE;
 
@@ -1992,7 +1992,7 @@ ask_about_burningwagon(int x, int y)
 boolean
 ask_about_nethermist(int x, int y)
 {
-	if (ParanoiaBugEffect || u.uprops[PARANOIA_BUG].extrinsic || have_paranoiastone()) return FALSE;
+	if (ParanoiaBugEffect || u.uprops[PARANOIA_BUG].extrinsic || have_paranoiastone() || (uarmh && uarmh->oartifact == ART_JANELLE_S_BETRAYAL)) return FALSE;
 
 	if (is_nethermist(u.ux, u.uy)) return FALSE;
 
@@ -2003,7 +2003,7 @@ ask_about_nethermist(int x, int y)
 boolean
 ask_about_stalactite(int x, int y)
 {
-	if (ParanoiaBugEffect || u.uprops[PARANOIA_BUG].extrinsic || have_paranoiastone()) return FALSE;
+	if (ParanoiaBugEffect || u.uprops[PARANOIA_BUG].extrinsic || have_paranoiastone() || (uarmh && uarmh->oartifact == ART_JANELLE_S_BETRAYAL)) return FALSE;
 
 	if (is_stalactite(u.ux, u.uy)) return FALSE;
 
@@ -2014,7 +2014,7 @@ ask_about_stalactite(int x, int y)
 boolean
 ask_about_raincloud(int x, int y)
 {
-	if (ParanoiaBugEffect || u.uprops[PARANOIA_BUG].extrinsic || have_paranoiastone()) return FALSE;
+	if (ParanoiaBugEffect || u.uprops[PARANOIA_BUG].extrinsic || have_paranoiastone() || (uarmh && uarmh->oartifact == ART_JANELLE_S_BETRAYAL)) return FALSE;
 
 	if (is_raincloud(u.ux, u.uy)) return FALSE;
 
@@ -2025,7 +2025,7 @@ ask_about_raincloud(int x, int y)
 boolean
 ask_about_bubble(int x, int y)
 {
-	if (ParanoiaBugEffect || u.uprops[PARANOIA_BUG].extrinsic || have_paranoiastone()) return FALSE;
+	if (ParanoiaBugEffect || u.uprops[PARANOIA_BUG].extrinsic || have_paranoiastone() || (uarmh && uarmh->oartifact == ART_JANELLE_S_BETRAYAL)) return FALSE;
 
 	if (is_bubble(u.ux, u.uy)) return FALSE;
 
@@ -2357,7 +2357,7 @@ domove()
 			You("cannot displace that monster into a harmful liquid!");
 			return;
 		} else if (mtmp && mtmp->mtame) {
-			if (!(ParanoiaBugEffect || u.uprops[PARANOIA_BUG].extrinsic || have_paranoiastone())) {
+			if (!(ParanoiaBugEffect || u.uprops[PARANOIA_BUG].extrinsic || have_paranoiastone() || (uarmh && uarmh->oartifact == ART_JANELLE_S_BETRAYAL))) {
 				if (yn("Really displace the pet into a harmful liquid?") != 'y') {
 					return;
 				}
@@ -5045,6 +5045,8 @@ boolean tellplayer;
 			amount /= 5;
 		}
 	}
+
+	if (uarm && uarm->oartifact == ART_BEXLEY_S_CUTESY && (amount > 1)) amount /= 2;
 
 	/* Contamination resistance divides incoming contamination by 5, but not below 1 */
 	if (Cont_resist && amount > 1) {

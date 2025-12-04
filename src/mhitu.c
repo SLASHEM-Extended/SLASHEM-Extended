@@ -2520,6 +2520,7 @@ mattacku(mtmp)
 	if (uimplant && uimplant->oartifact == ART_GYMNASTIC_LOVE && !rn2(5)) tmp -= 100;
 	if (uarmf && uarmf->oartifact == ART_TANGO_HEELS && !rn2(3)) tmp -= 100;
 	if (uarmc && uarmc->oartifact == ART_NUDE_PUNAM && !rn2(5)) tmp -= 100;
+	if (uarm && uarm->oartifact == ART_BEXLEY_S_CUTESY && !rn2(10)) tmp -= 100;
 	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_OCULAR_LENS_OF_DRIZZT && (rnd(100) < 16) ) tmp -= 100;
 
 	if (uarmf && uarmf->oartifact == ART_OUT_OF_REACH) {
@@ -8328,7 +8329,7 @@ dopois:
 			if (mtmp->mhp < 1) break;
 		}
 
-		if (defends(AD_DRIN, uwep) || (ublindf && ublindf->oartifact == ART_HEADHORN) || (uarmh && itemhasappearance(uarmh, APP_HARDCORE_CLOTH)) || (StrongPsi_resist && rn2(3)) || !has_head(youmonst.data) || (uarmh && uarmh->otyp == ANTIMINDFLAY_HELMET) || (uarmh && uarmh->oartifact == ART_NO_MIND_DECAY) || Role_if(PM_COURIER)  || Race_if(PM_KUTAR) || (uwep && uwep->oartifact == ART_MAGEMASHER) || (ublindf && ublindf->oartifact == ART_SYLBE_S_LACK) || (uwep && uwep->oartifact == ART_GOSSIP_HARISEN) || (rn2(8) && uarmf && itemhasappearance(uarmf, APP_MARY_JANES) ) ) {
+		if (defends(AD_DRIN, uwep) || (uarmh && uarmh->oartifact == ART_SPIREHEAD) || (ublindf && ublindf->oartifact == ART_HEADHORN) || (uarmh && itemhasappearance(uarmh, APP_HARDCORE_CLOTH)) || (StrongPsi_resist && rn2(3)) || !has_head(youmonst.data) || (uarmh && uarmh->otyp == ANTIMINDFLAY_HELMET) || (uarmh && uarmh->oartifact == ART_NO_MIND_DECAY) || Role_if(PM_COURIER)  || Race_if(PM_KUTAR) || (uwep && uwep->oartifact == ART_MAGEMASHER) || (ublindf && ublindf->oartifact == ART_SYLBE_S_LACK) || (uwep && uwep->oartifact == ART_GOSSIP_HARISEN) || (rn2(8) && uarmf && itemhasappearance(uarmf, APP_MARY_JANES) ) ) {
 		    You("don't seem harmed.");
 		    /* Not clear what to do for green slimes */
 		    break;
@@ -11128,6 +11129,7 @@ dopois:
 		if (uarmg && uarmg->otyp == BRACERS_OF_ABSORPTION && uarmg->spe > 0) tempval += uarmg->spe;
 
 		if (uarmf && itemhasappearance(uarmf, APP_HEROINE_MOCASSINS)) tempval *= 2;
+		if (uarm && uarm->oartifact == ART_AYZAH_S_HURDLE) tempval *= 2;
 		if (uarmf && uarmf->oartifact == ART_INDIAN_SMOKE_SYMBOL) tempval *= 2;
 		if (uamul && uamul->otyp == AMULET_OF_THE_MATRIX) tempval *= 2;
 

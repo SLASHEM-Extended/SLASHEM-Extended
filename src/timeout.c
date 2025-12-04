@@ -3353,7 +3353,7 @@ nh_timeout()
 		    for (otmpi = invent; otmpi; otmpi = otmpii) {
 		      otmpii = otmpi->nobj;
 
-			if (!rn2(ItemportingXtra ? 5000 : 10000) && (otmpi->otyp != AMULET_OF_ITEM_TELEPORTATION) && !(otmpi->oartifact == ART_SCHWUEU) && !(otmpi->oartifact == ART_HERSAY_PRICE) && (otmpi->otyp != ITEM_TELEPORTING_STONE) && !(otmpi->oartifact == ART_SARAH_S_GRANNY_WEAR) && !(objects[otmpi->otyp].oc_material == MT_BONE && rn2(10)) && !stack_too_big(otmpi) ) {
+			if (!rn2(ItemportingXtra ? 5000 : 10000) && (otmpi->otyp != AMULET_OF_ITEM_TELEPORTATION) && !(otmpi->oartifact == ART_SCHWUEU) && !(otmpi->oartifact == ART_HERSAY_PRICE) && (otmpi->otyp != ITEM_TELEPORTING_STONE) && !(otmpi->oartifact == ART_SARAH_S_GRANNY_WEAR) && !(otmpi->oartifact == ART_AYZAH_S_HURDLE) && !(objects[otmpi->otyp].oc_material == MT_BONE && rn2(10)) && !stack_too_big(otmpi) ) {
 
 				if (otmpi->owornmask & W_ARMOR) {
 				    if (otmpi == uskin) {
@@ -3407,7 +3407,7 @@ nh_timeout()
 		    for (otmpi = invent; otmpi; otmpi = otmpii) {
 		      otmpii = otmpi->nobj;
 
-			if (!rn2(ItemportingXtra ? 5000 : 10000) && (otmpi->otyp != AMULET_OF_ITEM_TELEPORTATION) && !(otmpi->oartifact == ART_SCHWUEU) && !(otmpi->oartifact == ART_HERSAY_PRICE) && (otmpi->otyp != ITEM_TELEPORTING_STONE) && !(otmpi->oartifact == ART_SARAH_S_GRANNY_WEAR) && !(objects[otmpi->otyp].oc_material == MT_BONE && rn2(10)) && !stack_too_big(otmpi) ) {
+			if (!rn2(ItemportingXtra ? 5000 : 10000) && (otmpi->otyp != AMULET_OF_ITEM_TELEPORTATION) && !(otmpi->oartifact == ART_SCHWUEU) && !(otmpi->oartifact == ART_HERSAY_PRICE) && (otmpi->otyp != ITEM_TELEPORTING_STONE) && !(otmpi->oartifact == ART_SARAH_S_GRANNY_WEAR) && !(otmpi->oartifact == ART_AYZAH_S_HURDLE) && !(objects[otmpi->otyp].oc_material == MT_BONE && rn2(10)) && !stack_too_big(otmpi) ) {
 
 				if (otmpi->owornmask & W_ARMOR) {
 				    if (otmpi == uskin) {
@@ -3461,7 +3461,7 @@ nh_timeout()
 		    for (otmpi = invent; otmpi; otmpi = otmpii) {
 		      otmpii = otmpi->nobj;
 
-			if (!rn2(ItemportingXtra ? 5000 : 10000) && (otmpi->otyp != AMULET_OF_ITEM_TELEPORTATION) && !(otmpi->oartifact == ART_SCHWUEU) && !(otmpi->oartifact == ART_HERSAY_PRICE) && (otmpi->otyp != ITEM_TELEPORTING_STONE) && !(otmpi->oartifact == ART_SARAH_S_GRANNY_WEAR) && !(objects[otmpi->otyp].oc_material == MT_BONE && rn2(10)) && !stack_too_big(otmpi) ) {
+			if (!rn2(ItemportingXtra ? 5000 : 10000) && (otmpi->otyp != AMULET_OF_ITEM_TELEPORTATION) && !(otmpi->oartifact == ART_SCHWUEU) && !(otmpi->oartifact == ART_HERSAY_PRICE) && (otmpi->otyp != ITEM_TELEPORTING_STONE) && !(otmpi->oartifact == ART_SARAH_S_GRANNY_WEAR) && !(otmpi->oartifact == ART_AYZAH_S_HURDLE) && !(objects[otmpi->otyp].oc_material == MT_BONE && rn2(10)) && !stack_too_big(otmpi) ) {
 
 				if (otmpi->owornmask & W_ARMOR) {
 				    if (otmpi == uskin) {
@@ -3515,7 +3515,61 @@ nh_timeout()
 		    for (otmpi = invent; otmpi; otmpi = otmpii) {
 		      otmpii = otmpi->nobj;
 
-			if (!rn2(ItemportingXtra ? 5000 : 10000) && (otmpi->otyp != AMULET_OF_ITEM_TELEPORTATION) && !(otmpi->oartifact == ART_SCHWUEU) && !(otmpi->oartifact == ART_HERSAY_PRICE) && (otmpi->otyp != ITEM_TELEPORTING_STONE) && !(otmpi->oartifact == ART_SARAH_S_GRANNY_WEAR) && !(objects[otmpi->otyp].oc_material == MT_BONE && rn2(10)) && !stack_too_big(otmpi) ) {
+			if (!rn2(ItemportingXtra ? 5000 : 10000) && (otmpi->otyp != AMULET_OF_ITEM_TELEPORTATION) && !(otmpi->oartifact == ART_SCHWUEU) && !(otmpi->oartifact == ART_HERSAY_PRICE) && (otmpi->otyp != ITEM_TELEPORTING_STONE) && !(otmpi->oartifact == ART_SARAH_S_GRANNY_WEAR) && !(otmpi->oartifact == ART_AYZAH_S_HURDLE) && !(objects[otmpi->otyp].oc_material == MT_BONE && rn2(10)) && !stack_too_big(otmpi) ) {
+
+				if (otmpi->owornmask & W_ARMOR) {
+				    if (otmpi == uskin) {
+					skinback(TRUE);		/* uarm = uskin; uskin = 0; */
+				    }
+				    if (otmpi == uarm) (void) Armor_off();
+				    else if (otmpi == uarmc) (void) Cloak_off();
+				    else if (otmpi == uarmf) (void) Boots_off();
+				    else if (otmpi == uarmg) (void) Gloves_off();
+				    else if (otmpi == uarmh) (void) Helmet_off();
+				    else if (otmpi == uarms) (void) Shield_off();
+				    else if (otmpi == uarmu) (void) Shirt_off();
+				    /* catchall -- should never happen */
+				    else setworn((struct obj *)0, otmpi ->owornmask & W_ARMOR);
+				} else if (otmpi ->owornmask & W_AMUL) {
+				    Amulet_off();
+				} else if (otmpi ->owornmask & W_IMPLANT) {
+				    Implant_off();
+				} else if (otmpi ->owornmask & W_RING) {
+				    Ring_gone(otmpi);
+				} else if (otmpi ->owornmask & W_TOOL) {
+				    Blindf_off(otmpi, FALSE);
+				} else if (otmpi ->owornmask & (W_WEP|W_SWAPWEP|W_QUIVER)) {
+				    if (otmpi == uwep)
+					uwepgone();
+				    if (otmpi == uswapwep)
+					uswapwepgone();
+				    if (otmpi == uquiver)
+					uqwepgone();
+				}
+
+				if (otmpi->owornmask & (W_BALL|W_CHAIN)) {
+				    unpunish();
+				} else if (otmpi->owornmask) {
+				/* catchall */
+				    setnotworn(otmpi);
+				}
+
+				dropx(otmpi);
+			      if (otmpi && otmpi->where == OBJ_FLOOR) rloco(otmpi);
+				u.cnd_itemportcount++;
+			}
+		    }
+		}
+
+	}
+
+	if (uarm && uarm->oartifact == ART_AYZAH_S_HURDLE) {
+
+		if (invent) {
+		    for (otmpi = invent; otmpi; otmpi = otmpii) {
+		      otmpii = otmpi->nobj;
+
+			if (!rn2(ItemportingXtra ? 5000 : 10000) && (otmpi->otyp != AMULET_OF_ITEM_TELEPORTATION) && !(otmpi->oartifact == ART_SCHWUEU) && !(otmpi->oartifact == ART_HERSAY_PRICE) && (otmpi->otyp != ITEM_TELEPORTING_STONE) && !(otmpi->oartifact == ART_SARAH_S_GRANNY_WEAR) && !(otmpi->oartifact == ART_AYZAH_S_HURDLE) && !(objects[otmpi->otyp].oc_material == MT_BONE && rn2(10)) && !stack_too_big(otmpi) ) {
 
 				if (otmpi->owornmask & W_ARMOR) {
 				    if (otmpi == uskin) {
@@ -3569,7 +3623,7 @@ nh_timeout()
 		    for (otmpi = invent; otmpi; otmpi = otmpii) {
 		      otmpii = otmpi->nobj;
 
-			if (!rn2(ItemportingXtra ? 5000 : 10000) && (otmpi->otyp != AMULET_OF_ITEM_TELEPORTATION) && !(otmpi->oartifact == ART_SCHWUEU) && !(otmpi->oartifact == ART_HERSAY_PRICE) && (otmpi->otyp != ITEM_TELEPORTING_STONE) && !(otmpi->oartifact == ART_SARAH_S_GRANNY_WEAR) && !(objects[otmpi->otyp].oc_material == MT_BONE && rn2(10)) && !stack_too_big(otmpi) ) {
+			if (!rn2(ItemportingXtra ? 5000 : 10000) && (otmpi->otyp != AMULET_OF_ITEM_TELEPORTATION) && !(otmpi->oartifact == ART_SCHWUEU) && !(otmpi->oartifact == ART_HERSAY_PRICE) && (otmpi->otyp != ITEM_TELEPORTING_STONE) && !(otmpi->oartifact == ART_SARAH_S_GRANNY_WEAR) && !(otmpi->oartifact == ART_AYZAH_S_HURDLE) && !(objects[otmpi->otyp].oc_material == MT_BONE && rn2(10)) && !stack_too_big(otmpi) ) {
 
 				if (otmpi->owornmask & W_ARMOR) {
 				    if (otmpi == uskin) {
@@ -3623,7 +3677,7 @@ nh_timeout()
 		    for (otmpi = invent; otmpi; otmpi = otmpii) {
 		      otmpii = otmpi->nobj;
 
-			if (!rn2(ItemportingXtra ? 5000 : 10000) && (otmpi->otyp != AMULET_OF_ITEM_TELEPORTATION) && !(otmpi->oartifact == ART_SCHWUEU) && !(otmpi->oartifact == ART_HERSAY_PRICE) && (otmpi->otyp != ITEM_TELEPORTING_STONE) && !(otmpi->oartifact == ART_SARAH_S_GRANNY_WEAR) && !(objects[otmpi->otyp].oc_material == MT_BONE && rn2(10)) && !stack_too_big(otmpi) ) {
+			if (!rn2(ItemportingXtra ? 5000 : 10000) && (otmpi->otyp != AMULET_OF_ITEM_TELEPORTATION) && !(otmpi->oartifact == ART_SCHWUEU) && !(otmpi->oartifact == ART_HERSAY_PRICE) && (otmpi->otyp != ITEM_TELEPORTING_STONE) && !(otmpi->oartifact == ART_SARAH_S_GRANNY_WEAR) && !(otmpi->oartifact == ART_AYZAH_S_HURDLE) && !(objects[otmpi->otyp].oc_material == MT_BONE && rn2(10)) && !stack_too_big(otmpi) ) {
 
 				if (otmpi->owornmask & W_ARMOR) {
 				    if (otmpi == uskin) {
@@ -3671,13 +3725,13 @@ nh_timeout()
 
 	}
 
-	if (uamul && uamul->oartifact == ART_SCHWUEU ) {
+	if (uamul && uamul->oartifact == ART_SCHWUEU) {
 
 		if (invent) {
 		    for (otmpi = invent; otmpi; otmpi = otmpii) {
 		      otmpii = otmpi->nobj;
 
-			if (!rn2(ItemportingXtra ? 5000 : 10000) && (otmpi->otyp != AMULET_OF_ITEM_TELEPORTATION) && !(otmpi->oartifact == ART_SCHWUEU) && !(otmpi->oartifact == ART_HERSAY_PRICE) && (otmpi->otyp != ITEM_TELEPORTING_STONE) && !(otmpi->oartifact == ART_SARAH_S_GRANNY_WEAR) && !(objects[otmpi->otyp].oc_material == MT_BONE && rn2(10)) && !stack_too_big(otmpi) ) {
+			if (!rn2(ItemportingXtra ? 5000 : 10000) && (otmpi->otyp != AMULET_OF_ITEM_TELEPORTATION) && !(otmpi->oartifact == ART_SCHWUEU) && !(otmpi->oartifact == ART_HERSAY_PRICE) && (otmpi->otyp != ITEM_TELEPORTING_STONE) && !(otmpi->oartifact == ART_SARAH_S_GRANNY_WEAR) && !(otmpi->oartifact == ART_AYZAH_S_HURDLE) && !(objects[otmpi->otyp].oc_material == MT_BONE && rn2(10)) && !stack_too_big(otmpi) ) {
 
 				if (otmpi->owornmask & W_ARMOR) {
 				    if (otmpi == uskin) {

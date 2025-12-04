@@ -11434,7 +11434,7 @@ mergable(otmp, obj)	/* returns TRUE if obj  & otmp can be merged */
 
 	if (obj->stackmarked || otmp->stackmarked) return FALSE; /* by Amy */
 
-	if (FuckfuckfuckEffect || u.uprops[FUCKFUCKFUCK_EFFECT].extrinsic || have_fuckfuckfuckstone()) {
+	if (FuckfuckfuckEffect || u.uprops[FUCKFUCKFUCK_EFFECT].extrinsic || have_fuckfuckfuckstone() || (uarmf && uarmf->oartifact == ART_NEIMA_S_GATE) ) {
 		if (obj->bknown != otmp->bknown) return FALSE;
 		if (obj->known != otmp->known) return FALSE;
 		if (obj->rknown != otmp->rknown) return FALSE;
@@ -22346,7 +22346,7 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: Confusion and stun resistance when worn, neutral."); break;
 				case ART_VICTORIA_IS_EVIL_BUT_PRETT:
 					pline("Artifact specs: Polymorph control and manaleech when worn, chaotic."); break;
-				case ART_MEDICAL_POWER_ARMOR_PROTOT:
+				case ART_MEDICAL_RECON_ARMOR_PROTOT:
 					pline("Artifact specs: Protection when worn, can be invoked for healing."); break;
 				case ART_AS_HEAVY_AS_IT_IS_UGLY:
 					pline("Artifact specs: regeneration when worn."); break;
@@ -35784,6 +35784,54 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: +2 kick damage, but your kick will occasionally miss. If it does, the target monster becomes confused. It also grants +1 MC and discount action. This pair of shoes is normally bright pink and while you're wearing them, every worn armor piece that is bright pink gives +1 charisma."); break;
 				case ART_READY_TO_GO:
 					pline("Artifact specs: fast speed when worn."); break;
+				case ART_COLONEL_BASTARD_S_HIDDEN_A:
+					pline("Artifact specs: reflection and shock resistance when worn. Wearing this artifact together with Colonel Bastard's Ballistic Helmet gives you superpowered ESP that works even when you're not blind."); break;
+				case ART_COLONEL_BASTARD_S_BALLISTI:
+					pline("Artifact specs: prevents beheading, 2 extra points of AC and sometimes lets you avoid hostile projectile attacks, chaotic. Wearing this artifact together with Colonel Bastard's Hidden Armor gives you superpowered ESP that works even when you're not blind."); break;
+				case ART_AYZAH_S_HURDLE:
+					pline("Artifact specs: double itemporting, 10 extra points of AC, free action and sleep resistance when worn, and improves the effectiveness of AC when it comes to reducing monster melee damage."); break;
+				case ART_GREENHUE:
+					pline("Artifact specs: double poison resistance when worn. Putting this artifact on changes its color to 'green'."); break;
+				case ART_OWYN_S_SHINY_ARMOR:
+					pline("Artifact specs: 15 extra points of AC when worn, lawful. Wearing this artifact together with Owyn's War Helmet gives enhanced weapon practice and passively trains gun control over time."); break;
+				case ART_OWYN_S_WAR_HELMET:
+					pline("Artifact specs: infravision, warns of always-hostile monsters, lawful. Wearing this artifact together with Owyn's Shiny Armor gives enhanced weapon practice and passively trains gun control over time."); break;
+				case ART_BEXLEY_S_CUTESY:
+					pline("Artifact specs: cold resistance, double marike trap effect and gives partial protection from effects that drain your alla, increase your contamination or increase your sanity."); break;
+				case ART_SEWERIC_OUTLOOKPOST:
+					pline("Artifact specs: undead warning when worn, and if you're using a shield, you gain a significant boost to your chance to block."); break;
+				case ART_CASDIN_S_TANK_SUIT:
+					pline("Artifact specs: makes all items immune to burn damage while you're wearing it and protects your inventory from fire-based item destruction. Wearing this artifact together with Casdin's Steel Visor gives double stun resistance and fire immunity."); break;
+				case ART_CASDIN_S_STEEL_VISOR:
+					pline("Artifact specs: improved vision when worn, and double improved vision if you're neutral. This artifact is also neutral-aligned itself. Wearing this artifact together with Casdin's Tank Suit gives double stun resistance and fire immunity."); break;
+				case ART_EMRYS_BACKSCALE:
+					pline("Artifact specs: double may-britt effect, death resistance and +3 STR, DEX and CON when worn. While wearing it, your alla goes up slowly over time, but monsters who preach conversion sermon spawn more often."); break;
+				case ART_REDHOT_GLEAM:
+					pline("Artifact specs: putting it on changes the weather to 'sunny', and while it is sunny you can #monster to breathe light."); break;
+				case ART_MEDICAL_POWER_ARMOR_PROTOT:
+					pline("Artifact specs: half physical damage when worn."); break;
+				case ART_ELECTRO_COIL:
+					pline("Artifact specs: lightning immunity when worn."); break;
+				case ART_JANELLE_S_BETRAYAL:
+					pline("Artifact specs: paranoia, bloodthirsty and double gray center trap effects when worn, autocurses, boosts your melee damage output by 5."); break;
+				case ART_BADGUY_VISIER:
+					pline("Artifact specs: makes you highly resistant to perfume when worn, and hitting a monster causes it to flee sometimes."); break;
+				case ART_HILMA_S_AGE:
+					pline("Artifact specs: double recurring amnesia and death resistance when worn, and your kick deals extra damage as well as bleeding damage."); break;
+				case ART_HILL_SCOUT:
+					pline("Artifact specs: boosts your sight range by 4 when worn."); break;
+				case ART_JABA_FROM_THE_OFF:
+					pline("Artifact specs: double claudia trap effect, double invisibility and allows you to hide underneath items when worn. Your ranged weapons have +3 range while wearing it."); break;
+				case ART_DUSK_SENSUAL:
+					pline("Artifact specs: stealth and infravision when worn, and your firearms have +10 to-hit when you fire them."); break;
+				case ART_SPIREHEAD:
+					pline("Artifact specs: protects you from mind flayer tentacle attacks and psychic blasts, and gives double psi resistance while worn."); break;
+				case ART_SARAH_S_AWE_INVITATION:
+					pline("Artifact specs: boosts your AC by 5 when worn."); break;
+				case ART_ANCHORAGE_BATTLECOAT:
+					pline("Artifact specs: +5 strength and dexterity when worn. If you put it on while not having received power armor training yet, you gain it and will then be able to wear power armor."); break;
+				case ART_NEIMA_S_GATE:
+					pline("Artifact specs: double fuckfuckfuck trap effect and prime autocurses when worn, plus its material becomes 'bone'. If you don't have power armor training yet when you put it on, you get a random permanent feminism trap effect and then learn how to use power armor."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

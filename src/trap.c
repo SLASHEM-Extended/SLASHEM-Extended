@@ -1827,8 +1827,9 @@ struct monst *victim;
     char buf[BUFSZ];
     int mat_idx;
 
-	if (victim == &youmonst && steelbreak()) return 0;
+	if (victim == &youmonst && !steelbreak()) return 0;
 	if (victim == &youmonst && FireImmunity) return 0;
+	if (victim == &youmonst && uarm && uarm->oartifact == ART_CASDIN_S_TANK_SUIT) return 0;
 	if (victim == &youmonst && uarmf && uarmf->oartifact == ART_MARIA_S_FLEECLE_FLOPS) return 0;
 	if (victim == &youmonst && uarm && uarm->otyp == SATANIC_ARMOR) return 0;
 	if (victim == &youmonst && uarm && uarm->oartifact == ART_DARK_L) return 0;

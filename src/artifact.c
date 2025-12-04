@@ -799,12 +799,14 @@ init_randarts()
 	artilist[ART_TURN_TO_ELEVEN].otyp = randartelementhorn();
 
 	artilist[ART_JANA_S_GRAVE_WALL].otyp = randartcloakX();
+	artilist[ART_ANCHORAGE_BATTLECOAT].otyp = randartcloakX();
 	artilist[ART_SKI_CAN_CERIUM_FORM].otyp = randartcloakX();
 	artilist[ART_CLOAK_OF_THE_UNHELD_POTATO].otyp = randartcloakX();
 	artilist[ART_UNBINDALL_CHEAT].otyp = randartcloakX();
 	artilist[ART_FIND_ME_NEVERTHELESS].otyp = randartcloakX();
 	artilist[ART_OLD_PERSON_TALK].otyp = randartcloakX();
 	artilist[ART_GRAVE_ROUSE].otyp = randartbootsX();
+	artilist[ART_NEIMA_S_GATE].otyp = randartbootsX();
 	artilist[ART_VERA_S_EMBERTRAIL_BOOTS].otyp = randartbootsX();
 	artilist[ART_HENRIETTA_S_DOGSHIT_BOOTS].otyp = randartbootsX();
 	artilist[ART_FANNY_S_BROOK_THAT_YOU_MIS].otyp = randartbootsX();
@@ -6487,6 +6489,11 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 			}
 
 			if (uarmh && uarmh->otyp == TESLA_POWER_HELM) {
+				pline("%s slices into your %s.", wepdesc, body_part(NECK));
+				willreturntrue = 1;
+				goto beheadingdone;
+			}
+			if (uarmh && uarmh->oartifact == ART_COLONEL_BASTARD_S_BALLISTI) {
 				pline("%s slices into your %s.", wepdesc, body_part(NECK));
 				willreturntrue = 1;
 				goto beheadingdone;

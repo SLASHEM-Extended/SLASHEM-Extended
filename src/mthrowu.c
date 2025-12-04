@@ -186,6 +186,7 @@ const char *name;	/* if null, then format `obj' */
 		if (uarms->spe < 0) shieldblockrate += (uarms->spe * 2);
 
 		if (uarm && uarm->oartifact == ART_WOODSTOCK) shieldblockrate += 5;
+		if (uarm && uarm->oartifact == ART_SEWERIC_OUTLOOKPOST) shieldblockrate += 20;
 		if (uamul && uamul->oartifact == ART_IMPROVED_SIGN) shieldblockrate += 10;
 		if (uwep && uwep->oartifact == ART_HOLD_IT_OUT) shieldblockrate += 20;
 		if (uwep && uwep->oartifact == ART_SECANTED) shieldblockrate += 5;
@@ -514,6 +515,12 @@ shieldblockboo:
 			return(0);
 
 	} else if (uarmh && uarmh->otyp == TESLA_POWER_HELM && !rn2(10)) {
+
+			if(Blind || !flags.verbose) You("block a projectile with your helmet.");
+			else You("block %s with your helmet.", onm);
+			return(0);
+
+	} else if (uarmh && uarmh->oartifact == ART_COLONEL_BASTARD_S_BALLISTI && !rn2(3)) {
 
 			if(Blind || !flags.verbose) You("block a projectile with your helmet.");
 			else You("block %s with your helmet.", onm);

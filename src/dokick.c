@@ -364,6 +364,7 @@ register boolean clumsy;
 	if (uarmf && uarmf->oartifact == ART_KYLIE_LUM_S_SNAKESKIN_BOOT) dmg += 10;
 	if (uarmc && uarmc->oartifact == ART_CONNY_S_COMBAT_COAT) dmg += 5;
 	if (uarmh && uarmh->oartifact == ART_CLAUDIA_S_SEXY_SCENT) dmg += 10;
+	if (uarmh && uarmh->oartifact == ART_HILMA_S_AGE) dmg += rnd(10);
 
 	if (uarmf && itemhasappearance(uarmf, APP_STEEL_TOED_BOOTS) ) dmg++;
 
@@ -886,6 +887,11 @@ register boolean clumsy;
 	if (uarmf && itemhasappearance(uarmf, APP_SISTER_SHOES)) {
 		mon->bleedout += rnd(5);
 		pline("Your very pretty block heels scratch %sy wounds on %s's %s!", mbodypart(mon, BLOOD), mon_nam(mon), makeplural(mbodypart(mon, LEG)) );
+	}
+
+	if (uarmh && uarmh->oartifact == ART_HILMA_S_AGE) {
+		mon->bleedout += rn1(5,5);
+		pline("You violently scratch %s's %s!", mon_nam(mon), mbodypart(mon, LEG));
 	}
 
 	if (uarmf && uarmf->oartifact == ART_KARIN_S_SHARP_EDGE) {

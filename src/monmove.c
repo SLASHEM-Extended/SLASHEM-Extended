@@ -2951,6 +2951,8 @@ convertdone:
 
 			if (uarmh && is_power_helm(uarmh) && !rn2(3)) {
 				pline("But your helmet protects you from the effects.");
+			} else if (uarmh && uarmh->oartifact == ART_BADGUY_VISIER && rn2(5)) {
+				pline("But your helmet protects you from the effects.");
 			} else if (rn2(10) && uarmh && itemhasappearance(uarmh, APP_GAS_MASK) ) {
 				pline("But the gas mask protects you from the effects.");
 			} else if (rn2(5) && uarmf && uarmf->oartifact == ART_CLAUDIA_S_SELF_WILL) {
@@ -3056,7 +3058,7 @@ convertdone:
 		if ( (mtmp->mpeaceful || (Psi_resist && rn2(StrongPsi_resist ? 100 : 20) ) ) &&
 		    (!Conflict || resist(mtmp, RING_CLASS, 0, 0))) {
 			pline("It feels quite soothing.");
-		} else if ((uarmh && uarmh->oartifact == ART_NOTKNOW_EY) || (ublindf && ublindf->oartifact == ART_SYLBE_S_LACK) || (uarmh && itemhasappearance(uarmh, APP_TT_HELMET)) || (uarmh && uarmh->oartifact == ART_PROTECTOR_NO____)) {
+		} else if ((uarmh && uarmh->oartifact == ART_NOTKNOW_EY) || (uarmh && uarmh->oartifact == ART_SPIREHEAD) || (ublindf && ublindf->oartifact == ART_SYLBE_S_LACK) || (uarmh && itemhasappearance(uarmh, APP_TT_HELMET)) || (uarmh && uarmh->oartifact == ART_PROTECTOR_NO____)) {
 			pline("But it doesn't affect you.");
 		} else {
 			if (!mtmp->mpeaceful) maybehackimplant();

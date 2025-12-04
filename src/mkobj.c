@@ -5683,6 +5683,8 @@ register struct obj *otmp;
 	if (otmp && otmp->oartifact == ART_MASSIVITY_CUTEBLOCK) return FALSE;
 	if (otmp && otmp->oartifact == ART_BESTANDING_IN_THE_WEATHER) return FALSE;
 
+	if (uarm && uarm->oartifact == ART_CASDIN_S_TANK_SUIT) return FALSE;
+
 	if (uamul && uamul->oartifact == ART_AUTOMATICALLY_METAL) {
 		return (!(is_metallic(otmp)));
 	}

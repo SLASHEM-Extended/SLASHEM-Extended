@@ -671,7 +671,7 @@ boolean creation;
 	snuff_otmp = TRUE;
     }
 
-    if (FuckfuckfuckEffect || u.uprops[FUCKFUCKFUCK_EFFECT].extrinsic || have_fuckfuckfuckstone()) {
+    if (FuckfuckfuckEffect || u.uprops[FUCKFUCKFUCK_EFFECT].extrinsic || have_fuckfuckfuckstone() || (uarmf && uarmf->oartifact == ART_NEIMA_S_GATE) ) {
 	if (otmp) {
 		otmp->known = FALSE;
 		otmp->dknown = FALSE;

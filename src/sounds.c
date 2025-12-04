@@ -5585,8 +5585,12 @@ metalmafiaagain:
 				} else {
 					pline("Inhaling %s's scentful perfume is not the brightest idea. But in this case you didn't have a choice...", mon_nam(mtmp));
 
-					if (rn2(10) && uarmh && itemhasappearance(uarmh, APP_GAS_MASK) ) {
+					if (uarmh && is_power_helm(uarmh) && !rn2(3)) {
+						pline("But your helmet protects you from the effects.");
+					} else if (rn2(10) && uarmh && itemhasappearance(uarmh, APP_GAS_MASK) ) {
 						pline("But the gas mask protects you from the effects.");
+					} else if (uarmh && uarmh->oartifact == ART_BADGUY_VISIER && rn2(5)) {
+						pline("But your helmet protects you from the effects.");
 					} else if (rn2(5) && uarmf && uarmf->oartifact == ART_CLAUDIA_S_SELF_WILL) {
 						pline("But you actually enjoy the lovely scent.");
 					} else if (rn2(20) && uwep && uwep->oartifact == ART_HIGH_ORIENTAL_PRAISE) {
@@ -5630,8 +5634,12 @@ metalmafiaagain:
 		} else {
 			pline("Inhaling %s's scentful perfume is not the brightest idea.", mon_nam(mtmp));
 
-			if (rn2(10) && uarmh && itemhasappearance(uarmh, APP_GAS_MASK) ) {
+			if (uarmh && is_power_helm(uarmh) && !rn2(3)) {
+				pline("But your helmet protects you from the effects.");
+			} else if (rn2(10) && uarmh && itemhasappearance(uarmh, APP_GAS_MASK) ) {
 				pline("But the gas mask protects you from the effects.");
+			} else if (uarmh && uarmh->oartifact == ART_BADGUY_VISIER && rn2(5)) {
+				pline("But your helmet protects you from the effects.");
 			} else if (rn2(5) && uarmf && uarmf->oartifact == ART_CLAUDIA_S_SELF_WILL) {
 				pline("But you actually enjoy the lovely scent.");
 			} else if (rn2(20) && uwep && uwep->oartifact == ART_HIGH_ORIENTAL_PRAISE) {

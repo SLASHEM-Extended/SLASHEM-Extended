@@ -3131,6 +3131,7 @@ nyssaraend:
 		if (uwep && uwep->oartifact == ART_SMEAR_PERMA) uwep->oerodeproof = TRUE;
 
 		if (uarmg && uarmg->oartifact == ART_NIA_S_NEAR_MISS && !rn2(1000)) gain_alla(1);
+		if (uarm && uarm->oartifact == ART_EMRYS_BACKSCALE && !rn2(1000)) gain_alla(1);
 
 		if (uamul && uamul->oartifact == ART_HAVEN_T_EATEN_IN_A_WEEK) {
 			if (u.uhs >= FAINTING && !rn2(100)) gain_alla(1);
@@ -8724,6 +8725,10 @@ newbossJANI:
 			u.mongetshack = 0;
 		}
 
+		if (uarm && uarm->oartifact == ART_OWYN_S_SHINY_ARMOR && uarmh && uarmh->oartifact == ART_OWYN_S_WAR_HELMET && !rn2(1000)) {
+			use_skill(P_GUN_CONTROL, 1);
+		}
+
 		if (uwep && uwep->oartifact == ART_SYSETTE_S_THIEVINGNESS) {
 			if (!rn2(100)) use_skill(P_FIREARM, 1);
 			if (!rn2(1000)) use_skill(P_GUN_CONTROL, 1);
@@ -14069,6 +14074,11 @@ newboss:
 		}
 
 		if (have_amnesiastone() && !rn2(AmnesiaRecurrXtra ? 200 : 1000)) {
+			You_feel("dizzy!");
+			forget(1 + rn2(5), FALSE);
+		}
+
+		if (uarmh && uarmh->oartifact == ART_HILMA_S_AGE && !rn2(AmnesiaRecurrXtra ? 200 : 1000)) {
 			You_feel("dizzy!");
 			forget(1 + rn2(5), FALSE);
 		}

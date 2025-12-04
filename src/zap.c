@@ -11562,6 +11562,11 @@ register int osym, dmgtyp;
 				break;
 			}
 
+			if (uarm && uarm->oartifact == ART_CASDIN_S_TANK_SUIT) {
+				skip++;
+				break;
+			}
+
 			if (uamul && uamul->oartifact == ART_ZUBRIT_S_HOTNESS) {
 				skip++;
 				break;

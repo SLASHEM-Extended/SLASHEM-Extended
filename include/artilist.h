@@ -773,7 +773,7 @@ A("Victoria Is Evil But Pretty",			VICTORIAN_UNDERWEAR, /* polymorph control and
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 8000L ),
 
-A("Medical Power Armor Prototype",			FULL_PLATE_MAIL,
+A("Medical Recon Armor Prototype",			FULL_PLATE_MAIL,
 	(SPFX_RESTR|SPFX_SPEAK|SPFX_PROTEC), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, HEALING, A_NONE, NON_PM, NON_PM, 2500L ),
 
@@ -26816,7 +26816,7 @@ A("Self Similarity",				CHEST, /* randart container (can't be bag of tricks), sp
 	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
-A("Several Dungeons Worth Of Acension",				CHEST, /* randart2 container (can't be bag of tricks), spawns a treasure chest and a loot chest inside */
+A("Several Dungeons Worth Of Ascension",				CHEST, /* randart2 container (can't be bag of tricks), spawns a treasure chest and a loot chest inside */
 	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
 
@@ -26903,6 +26903,105 @@ A("Most Erotic Air Current Noises",				JOHANETTA_GIRL_SHOES, /* +1 MC, discount 
 A("Ready To Go",				LOW_BOOTS, /* initialized to always be strap-on stilettos, fast speed */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Colonel Bastard's Hidden Armor",				ENCLAVE_POWER_ARMOR,
+	(SPFX_RESTR|SPFX_EVIL|SPFX_REFLECT|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_ELEC), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+/* wearing colonel bastard's hidden armor and ballistic helmet together gives double esp and allows you to use blind esp even when not blind */
+A("Colonel Bastard's Ballistic Helmet",				ENCLAVE_POWER_HELM, /* prevents beheading, 33% chance to evade projectiles, +2 AC */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 4000L ),
+
+A("Ayzah's Hurdle",				ENCLAVE_POWER_ARMOR, /* double itemporting, +10 AC, free action, resist sleep, doubles AC-based damage reduction */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Greenhue",				ENCLAVE_POWER_ARMOR, /* double poison resistance, color becomes GREEN when worn */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_DRST), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Owyn's Shiny Armor",				BROTHERHOOD_POWER_ARMOR, /* +15 AC */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 8000L ),
+
+/* wearing owyn's shiny armor and war helmet together gives weapon practice and 1 in 1000 per turn to train gun control by one */
+A("Owyn's War Helmet",				BROTHERHOOD_POWER_HELM, /* infravision */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_WARN|SPFX_DFLAG2), 0, (M2_HOSTILE),
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 10000L ),
+
+A("Bexley's Cutesy",				BROTHERHOOD_POWER_ARMOR, /* double marike trap effect, effects that drain your alla, increase your sanity or increase your contamination are halved (minimum 1), monsters automiss in melee 10% of the time */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_COLD), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Seweric Outlookpost",				BROTHERHOOD_POWER_ARMOR, /* undead warning, 20% extra chance to block if using a shield */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Casdin's Tank Suit",				OUTCAST_POWER_ARMOR, /* while you're wearing it, all items are immune to burn damage and your inventory is protected from fire */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+/* wearing casdin's tank suit and steel visor together gives double stun resistance and fire immunity */
+A("Casdin's Steel Visor",				OUTCAST_POWER_HELM, /* improved vision, and double if you're neutral */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 6000L ),
+
+A("Emrys Backscale",				OUTCAST_POWER_ARMOR, /* double may-britt effect, death resistance, +3 STR/DEX/CON, 1 in 1000 per turn to gain a point of alla, +2 spawn freq for MS_CONVERT */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Redhot Gleam",				OUTCAST_POWER_ARMOR, /* putting it on changes weather to "sunny", and while the weather is sunny, you can #monster to breathe light (strength 8) */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 9000L ),
+
+A("Medical Power Armor Prototype",				FULL_POWER_ARMOR,
+	(SPFX_RESTR|SPFX_EVIL|SPFX_HPHDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Electro Coil",				TESLA_POWER_ARMOR, /* lightning immunity */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Janelle's Betrayal",				ENCLAVE_POWER_HELM, /* autocurses, double gray center, paranoia and bloodthirsty effects, +5 increase melee damage */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3500L ),
+
+A("Badguy Visier",				ENCLAVE_POWER_HELM, /* 10% unconditional chance that attacks cause monsters to flee (similar to juyo), additional 80% chance to resist perfume */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Hilma's Age",				OUTCAST_POWER_HELM, /* double recurring amnesia, death resistance, your kick deals +d10 damage and +rn1(5,5) bleeding damage */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Hill Scout",				OUTCAST_POWER_HELM, /* +4 sight range */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Jaba From The Off",				BROTHERHOOD_POWER_HELM, /* double claudia trap effect, double invis, allows you to hide underneath items, your ranged weapons have +3 range */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Dusk Sensual",				BROTHERHOOD_POWER_HELM, /* infravision, +10 to-hit for firearms */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_STLTH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Spirehead",				TESLA_POWER_HELM, /* prevents mind flayer tentacle attacks, protects against psychic blasts, double resist psi */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Sarah's Awe Invitation",				FULL_POWER_HELM, /* +5 AC */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Anchorage Battlecoat",				LEATHER_CLOAK, /* randart2 cloak, +5 STR and DEX, putting it on teaches power armor training */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Neima's Gate",				LOW_BOOTS, /* randart2 boots, double fuckfuckfuck effect, prime autocurses, material becomes BONE if equipped, putting it on while you don't have power armor training gives it but also a permanent feminism trap effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 12000L ),
 
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 

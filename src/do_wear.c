@@ -584,6 +584,21 @@ Boots_on()
 	Your("clogs are very heavily cursed!");
     }
 
+    if (uarmf && uarmf->oartifact == ART_NEIMA_S_GATE) {
+	curse(uarmf);
+	uarmf->hvycurse = uarmf->prmcurse = TRUE;
+	pline("A terrible black aura surrounds your boots!");
+	if (objects[uarmf->otyp].oc_material != MT_BONE) {
+		pline_The("boots are made of bone now.");
+		objects[uarmf->otyp].oc_material = MT_BONE;
+	}
+	if (!u.powerarmortraining) {
+		getfeminismtrapintrinsic();
+		u.powerarmortraining = TRUE;
+		pline("Congratulations, you've received power armor training and are now capable of wearing all suits of power armor and the accompanying helmets!");
+	}
+    }
+
     if (uarmf && uarmf->oartifact == ART_DORIKA_S_COLORBLOCK) {
 	curse(uarmf);
 	uarmf->stckcurse = TRUE;
@@ -1880,6 +1895,13 @@ Cloak_on()
 		You_feel("ignorant.");
 	}
 
+	if (uarmc && uarmc->oartifact == ART_ANCHORAGE_BATTLECOAT) {
+		if (!u.powerarmortraining) {
+			u.powerarmortraining = TRUE;
+			pline("Congratulations, you've received power armor training and are now capable of wearing all suits of power armor and the accompanying helmets!");
+		}
+	}
+
 	if ( (Role_if(PM_GEEK) || Role_if(PM_GRADUATE) || Role_if(PM_CRACKER) || Role_if(PM_SOFTWARE_ENGINEER)) && uarmc && itemhasappearance(uarmc, APP_GEEK_CLOAK) ) {
 		int i;
 		for (i = 0; i < MAXSPELL; i++)  {
@@ -2861,6 +2883,13 @@ Helmet_on()
 		if (!uarmh->cursed) {
 			curse(uarmh);
 			pline("Oops, the helmet cursed itself.");
+		}
+    }
+
+    if (uarmh && uarmh->oartifact == ART_JANELLE_S_BETRAYAL) {
+		if (!uarmh->cursed) {
+			curse(uarmh);
+			pline("Janelle betrayed you, and now you can't take the helmet off.");
 		}
     }
 
@@ -4691,6 +4720,12 @@ Armor_on()
 		pline("Oh whoops, your suit welds itself to your body. This might be the result of a curse.%s", FunnyHallu ? " (Thank you, Captain Obvious.)" : "" );
 		curse(uarm);
 	}
+
+	if (uarm && uarm->oartifact == ART_GREENHUE && (objects[uarm->otyp].oc_color != CLR_GREEN)) {
+		pline_The("power armor becomes green!");
+		objects[uarm->otyp].oc_color = CLR_GREEN;
+	}
+
 	if (uarm && uarm->otyp == EVIL_DRAGON_SCALES) {
 		if (!uarm->cursed) curse(uarm);
 	}
@@ -4740,6 +4775,12 @@ Armor_on()
 	}
 	if (uarm && uarm->oartifact == ART_CURSED_APACHE && !(uarmf && uarmf->otyp == HENRIETTA_COMBAT_BOOTS) ) {
 		curse(uarm);
+	}
+
+	if (uarm && uarm->oartifact == ART_REDHOT_GLEAM && u.currentweather != WEATHER_SUNNY) {
+		pline_The("sun comes out.");
+		u.currentweather = WEATHER_SUNNY;
+		tell_main_weather();
 	}
 
 	if (uarm && uarm->oartifact == ART_NOW_FOR_THE_DISCHARGE) {
@@ -7967,7 +8008,11 @@ find_ac()
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SHIELD_TONFA) uac -= 12;
 	if (uarms && uarms->oartifact == ART_AL_UD) uac -= 4;
 	if (uarmf && uarmf->oartifact == ART_TANK_SOLE_PAIR) uac -= 15;
+	if (uarmh && uarmh->oartifact == ART_COLONEL_BASTARD_S_BALLISTI) uac -= 2;
+	if (uarmh && uarmh->oartifact == ART_SARAH_S_AWE_INVITATION) uac -= 5;
 	if (uarm && uarm->oartifact == ART_THA_WALL) uac -= 9;
+	if (uarm && uarm->oartifact == ART_OWYN_S_SHINY_ARMOR) uac -= 15;
+	if (uarm && uarm->oartifact == ART_AYZAH_S_HURDLE) uac -= 10;
 	if (uarmf && uarmf->oartifact == ART_HANNAH_S_INNOCENCE) uac -= 5;
 	if (uarmf && uarmf->oartifact == ART_LARS_S_IRONSTRIDE_BOOTS && (u.ualign.type == A_LAWFUL) ) uac -= 1;
 	if (uarmg && uarmg->oartifact == ART_OTTO_S_STEELWEAVE_GLOVES) uac -= 2;

@@ -694,6 +694,7 @@ vision_recalc(control)
 	if (uwep && uwep->oartifact == ART_HECATE_S_ORBIT) efflightradius += 2;
 	if (uwep && uwep->oartifact == ART_BRIGHT_CHAMBER) efflightradius += 1;
 	if (uchain && uchain->oartifact == ART_BRIGHT_CHAMBER) efflightradius += 2;
+	if (uarmh && uarmh->oartifact == ART_HILL_SCOUT) efflightradius += 4;
 
 	if (uarmg && uarmg->oartifact == ART_MAX_THE_SECRET_AGENT) efflightradius = MAX_RADIUS;
 	if (uarm && uarm->oartifact == ART_DARK_MINDDRILL) efflightradius = MAX_RADIUS;

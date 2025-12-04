@@ -2355,6 +2355,7 @@ int thrown;
 		if (obj && obj->oartifact == ART_FTS) range += 10;
 		if (obj && obj->oartifact == ART_WASHINGTON_S_CAPPER) range += 5;
 		if (uarmu && uarmu->oartifact == ART_NOW_YOU_MADE_HER_SAD) range += 2;
+		if (uarmh && uarmh->oartifact == ART_JABA_FROM_THE_OFF) range += 3;
 
 		if (obj && obj->oartifact == ART_RACER_PROJECTILE) range *= 2;
 
@@ -2922,6 +2923,7 @@ boolean polearming;
 	if (u.ulevel >= 16) tmp++;
 	if (u.ulevel >= 24) tmp++;
 	if (u.ulevel >= 30) tmp++;
+	if (uarmh && uarmh->oartifact == ART_DUSK_SENSUAL && gunused) tmp += 10;
 
 	if (uleft && uleft->oartifact == ART_KRATSCHEM_HARD) tmp += 3;
 	if (uright && uright->oartifact == ART_KRATSCHEM_HARD) tmp += 3;

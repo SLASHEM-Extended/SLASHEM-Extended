@@ -356,6 +356,7 @@ STATIC_OVL NEARDATA const char *abil_names[] = {
 	"overcast",
 	"toggle pet damage reduction",
 	"toggle symbiote damage reduction",
+	"breathe sunlight",
 	"euthanize symbiote",
 	""
 };
@@ -3347,6 +3348,10 @@ int abil;
 			if (can_breathe(youmonst.data) || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_EXPERT && uactivesymbiosis && can_breathe(&mons[u.usymbiote.mnum]) ) ) return TRUE;
 			return FALSE;
 			break;
+		case ABIL_BREATHE_LIGHT:
+			if (uarm && uarm->oartifact == ART_REDHOT_GLEAM && u.currentweather == WEATHER_SUNNY) return TRUE;
+			return FALSE;
+			break;
 		case ABIL_POLY_SPIT:
 			if (attacktype(youmonst.data, AT_SPIT) || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_BASIC && uactivesymbiosis && attacktype(&mons[u.usymbiote.mnum], AT_SPIT) ) ) return TRUE;
 			return FALSE;
@@ -3598,6 +3603,9 @@ domonabil()
 					break;
 				case ABIL_POLY_BREATHE:
 					pline("Breathes at the enemy. Requires you to have a breath attack.");
+					break;
+				case ABIL_BREATHE_LIGHT:
+					pline("Allows you to breathe light at the enemy. This can only be done if you wear the 'Redhot Gleam' artifact armor and the weather is currently sunny.");
 					break;
 				case ABIL_POLY_SPIT:
 					pline("Spits at the enemy. Requires you to have a spit attack.");
@@ -3876,6 +3884,47 @@ int abil_no;
 			break;
 		case ABIL_POLY_BREATHE:
 			abilreturncode = dobreathe();
+			break;
+		case ABIL_BREATHE_LIGHT:
+		{
+			int breatheenergy = 20;
+			int squeakamount = 0;
+
+			squeakamount = breatheenergy;
+			/* squeaking skill can reduce the required amount; reduce it after setting up the variable for skill training */
+			if (!PlayerCannotUseSkills && breatheenergy > 2) {
+				switch (P_SKILL(P_SQUEAKING)) {
+			      	case P_BASIC:	breatheenergy *= 9; breatheenergy /= 10; break;
+			      	case P_SKILLED:	breatheenergy *= 8; breatheenergy /= 10; break;
+			      	case P_EXPERT:	breatheenergy *= 7; breatheenergy /= 10; break;
+			      	case P_MASTER:	breatheenergy *= 6; breatheenergy /= 10; break;
+			      	case P_GRAND_MASTER:	breatheenergy *= 5; breatheenergy /= 10; break;
+			      	case P_SUPREME_MASTER:	breatheenergy *= 4; breatheenergy /= 10; break;
+			      	default: break;
+				}
+			}
+
+			if (u.uen < breatheenergy) {
+				abilreturncode = FALSE;
+				You("don't have enough energy to breathe! You need at least %d mana!", breatheenergy);
+				if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+				break;
+			}
+
+			u.uen -= breatheenergy;
+			flags.botl = 1;
+
+			getdir(NULL);
+			buzz(28,8,u.ux,u.uy,u.dx,u.dy);
+
+			while (squeakamount > 5) {
+				use_skill(P_SQUEAKING, 1);
+				squeakamount -= 5;
+			}
+			use_skill(P_SQUEAKING, 1);
+
+			abilreturncode = TRUE;
+		}
 			break;
 		case ABIL_POLY_SPIT:
 			abilreturncode = dospit();
