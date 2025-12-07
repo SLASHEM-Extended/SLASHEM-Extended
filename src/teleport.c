@@ -1902,6 +1902,7 @@ random_teleport_level()
 {
 	int nlev, max_depth, min_depth,
 	    cur_depth = (int)depth(&u.uz);
+	int depthlimit;
 
 	if (!rn2(5) || Is_knox(&u.uz) ||
 		Is_blackmarket(&u.uz) ||
@@ -1940,8 +1941,11 @@ random_teleport_level()
 	/* Range is 1 to current+3, current not counting */
 	/* Amy edit: somehow this is just stupid. Why not make it so that your deepest level counts? */
 	if (In_quest(&u.uz)) nlev = dungeons[u.uz.dnum].depth_start + rnd(6);
-	else { nlev = rn2(/*cur_depth*/deepest_lev_reached(TRUE) + 3 - min_depth) + min_depth;
-	if (nlev >= cur_depth) nlev++;
+	else {
+		depthlimit = (deepest_lev_reached(TRUE) + 3 - min_depth);
+		if ((depthlimit + min_depth) > max_depth) depthlimit = (max_depth - min_depth);
+		nlev = rn2(depthlimit) + min_depth;
+		if (nlev >= cur_depth) nlev++;
 	}
 
 	if (nlev > max_depth) {
