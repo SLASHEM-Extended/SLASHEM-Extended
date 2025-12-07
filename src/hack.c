@@ -5987,16 +5987,15 @@ inv_weight()
 	   of invent for easier manipulation by askchain & co, but it's also
 	   retained in u.ugold in order to keep the status line accurate; we
 	   mustn't add its weight in twice under that circumstance */
-	/* tried to make gold lighter --Amy */
-	wt = (otmp && otmp->oclass == COIN_CLASS) ? 0 :
-		(int)((u.ugold + 50L) / /*100L*/1000000L);
+	/* decided to make gold weightless --Amy */
+	wt = 0;
 #endif
 	while (otmp) {
 #ifndef GOLDOBJ
 		if ( (otmp->otyp != BOULDER && otmp->otyp != LOADBOULDER) || (!throws_rocks(youmonst.data) && !(uarmg && uarmg->oartifact == ART_MOUNTAIN_FISTS)) )
 #else
 		if (otmp->oclass == COIN_CLASS)
-			wt += (int)(((long)otmp->quan + 50L) / /*100L*/10000L);
+			wt += 0;
 		else if ( (otmp->otyp != BOULDER && otmp->otyp != LOADBOULDER) || !throws_rocks(youmonst.data))
 #endif
 			wt += otmp->owt;

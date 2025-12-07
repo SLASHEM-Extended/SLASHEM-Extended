@@ -1098,7 +1098,7 @@ int qflags;
 STATIC_OVL long
 carry_count(obj, container, count, telekinesis, wt_before, wt_after)
 struct obj *obj, *container;	/* object to pick up, bag it's coming out of */
-long count;
+long count; /* I guess this nondescript variable is the amount you're trying to pick up? --Amy */
 boolean telekinesis;
 int *wt_before, *wt_after;
 {
@@ -1146,6 +1146,9 @@ int *wt_before, *wt_after;
 
     /* see how many we can lift */
     if (is_gold) {
+
+	goto golddone; /* doesn't weigh anything, so... --Amy */
+
 #ifndef GOLDOBJ
 	iw -= (int)GOLD_WT(u.ugold);
 	if (!adjust_wt) {
@@ -1208,6 +1211,9 @@ int *wt_before, *wt_after;
 	/* there's only one, and we can't lift it */
 	qq = 0L;
     }
+
+golddone:
+
     obj->quan = savequan;
     obj->owt = saveowt;
 
@@ -1403,13 +1409,13 @@ boolean alwaysflag;	/* force the item to be picked up even if it burdens you --A
 	    long iw = (long)max_capacity() - GOLD_WT(u.ugold);
 	    long gold_capacity = GOLD_CAPACITY(iw, u.ugold);
 
-	    if (gold_capacity <= 0L) {
+	    if (/*gold_capacity <= 0L*/FALSE) { /* you can always carry gold because it's weightless! --Amy */
 		pline(
 	       "There %s %ld gold piece%s %s, but you cannot carry any more.",
 		      otense(obj, "are"),
 		      obj->quan, plur(obj->quan), where);
 		return 0;
-	    } else if (gold_capacity < count) {
+	    } else if (/*gold_capacity < count*/FALSE) { /* you can always carry the entire stack too because it's still weightless! --Amy */
 		You("can only %s %s of the %ld gold pieces lying %s.",
 		    telekinesis ? "acquire" : "carry",
 		    gold_capacity == 1L ? "one" : "some", obj->quan, where);

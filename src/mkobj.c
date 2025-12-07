@@ -5365,10 +5365,10 @@ register struct obj *obj;
 	} else if (obj->oclass == FOOD_CLASS && obj->oeaten) {
 		return eaten_stat((int)obj->quan * wt, obj);
 	} else if (obj->oclass == COIN_CLASS)
-		return (int)((obj->quan + 50L) / /*100*/10000L); /* gold weight fix --Amy */
+		return (int) 0; /* gold shouldn't weigh anything! --Amy */
 	else if (obj->otyp == HEAVY_IRON_BALL && obj->owt != 0)
 		return((int)(obj->owt));	/* kludge for "very" heavy iron ball */
-	return(wt ? wt*(int)obj->quan : ((int)obj->quan + 1)>>5);
+	return(wt ? wt*(int)obj->quan : (int) 0); /* weightless items should be *really* weightless --Amy */
 }
 
 static int treefruits[] = {APPLE,ORANGE,PEAR,BANANA,EUCALYPTUS_LEAF,LEMON,CHERRY};
