@@ -35832,6 +35832,26 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: +5 strength and dexterity when worn. If you put it on while not having received power armor training yet, you gain it and will then be able to wear power armor."); break;
 				case ART_NEIMA_S_GATE:
 					pline("Artifact specs: double fuckfuckfuck trap effect and prime autocurses when worn, plus its material becomes 'bone'. If you don't have power armor training yet when you put it on, you get a random permanent feminism trap effect and then learn how to use power armor."); break;
+				case ART_LOOKS_LIKE_A_DILDO:
+					pline("Artifact specs: +5 to-hit and +5 stun damage against @ and K. This artifact was inspired by Amy's roommate because she didn't know what a 'Streitkolben' (German for 'mace') was supposed to be and guessed what it looked like. :-)"); break;
+				case ART_PERFECT_HARMONY:
+					pline("Artifact specs: +5 to-hit and +12 damage to crossaligned monsters, free action and sleep resistance when wielded, neutral. A neutral knight may receive it by dipping a long sword in a fountain or sacrificing a crossaligned unicorn on a neutral altar while wielding a regular long sword."); break;
+				case ART_GET_RICH_FAST:
+					pline("Artifact specs: may contain a fortune, but getting it will require you to pay a price. I'm also wondering how the hell you even managed to pick up this artifact, considering its enormous weight."); break;
+				case ART_MAKE_MUCHO_MONEY:
+					pline("Artifact specs: not sure how on earth you managed to pick up this heavy container, but anyway, it contains quite a bunch of money. Opening it will subject you to various negative effects for balance reasons though."); break;
+				case ART_ENTROPI_CONTACT:
+					pline("Artifact specs: while wearing them, your unarmed attacks can drain the maximum health of enemies."); break;
+				case ART_SOVNGARDE_TUM_DA_SAL:
+					pline("Artifact specs: while wearing it, casting a spell that is at least level 5 may surround you with tame freezing spheres who will attack nearby enemies."); break;
+				case ART_DECREO_TALAM_LA_NOSTER_:
+					pline("Artifact specs: whenever you fire it, there's a small chance of you firing a slow monster beam in the direction of your shot."); break;
+				case ART_ALABALAM_EN_VACUO_MAGICKA_:
+					pline("Artifact specs: if you pound with it, the target's mana is reduced and their special abilities set on a short timer."); break;
+				case ART_ODRA_ABILIO_BRIARIUM_DA_MA:
+					pline("Artifact specs: deals significant amounts of damage to monsters who hit you in melee."); break;
+				case ART_DAENNAE_DAENNAE_SCHNAEDDAE:
+					pline("Artifact specs: autocurses when worn and gives the aefde trap effect but also makes you highly resistant to sanity-increasing effects."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

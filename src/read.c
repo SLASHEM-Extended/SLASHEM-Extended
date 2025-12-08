@@ -867,7 +867,7 @@ static const char *actualshirtmessages[] = { /* Scott Bigham */
 	"My blonde head has pretty blonde hair, which is remarkable because normally a blonde head has black hair growing on it!",
 	"Miles Edgeworth x Wendy Oldbag - the one true pairing",
 	"Maya Fey x Franziska von Karma - the one true pairing",
-	"I love to hug Sister Bikini, espeically in summer! <3 Such a sweet, lovely lady!",
+	"I love to hug Sister Bikini, especially in summer! <3 Such a sweet, lovely lady!",
 	"Godot is the most sympathetic prosecutor by far, with Winston Payne being a distant second.", /* sorry, Edgeworth fans, but I've not forgotten that "updated autopsy report" and all the underhanded techniques Edgey pulled to try getting Maya and/or Phoenix found guilty in 1-2! Especially since Edgey most probably did his research and therefore KNEW that Redd White was the true culprit! */
 	"I've gotten a loan from Tender Lender and Viola Cadaverini hasn't killed me yet for not paying it back!",
 	"I'm a regular at the famous Tres Bien restaurant even though the food is terrible! The real reason why I keep coming there is Maya's sexy waitress outfit, complete with light brown block-heeled mary janes! <3<3<3",
@@ -13136,7 +13136,7 @@ secremchoice:
 						pline("Your %s is surrounded by an ice-cold aura.", xname(secrem));
 						secrem->bknown = TRUE;
 					} else {
-						secrem->cursed = secrem->hvycurse = secrem->prmcurse = secrem->morgcurse = secrem->evilcurse = secrem->bbrcurse = secrem->stckcurse = 0;
+						uncurse_completely(secrem, TRUE);
 						pline("Your %s is surrounded by a warm aura.", xname(secrem));
 						secrem->bknown = TRUE;
 					}

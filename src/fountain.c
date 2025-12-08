@@ -684,9 +684,9 @@ register struct obj *obj;
 	if (obj->otyp == LONG_SWORD && obj->quan == 1L
 		/* it's supposed to be rare to get the thing if you're not a knight --Amy */
 	    && u.ulevel > 4 && (!isfriday || !rn2(3)) && !rn2(Role_if(PM_KNIGHT) ? 8 : 50) && !obj->oartifact && !obj->fakeartifact
-	    && !exist_artifact(LONG_SWORD, u.ualign.type == A_CHAOTIC ? artiname(ART_DIRGE) : artiname(ART_EXCALIBUR))) {
+	    && !exist_artifact(LONG_SWORD, u.ualign.type == A_CHAOTIC ? artiname(ART_DIRGE) : u.ualign.type == A_NEUTRAL ? artiname(ART_PERFECT_HARMONY) : artiname(ART_EXCALIBUR))) {
 
-		if (u.ualign.type == A_NEUTRAL || (u.ualign.type == A_CHAOTIC && !Role_if(PM_KNIGHT)) ) {
+		if (( (u.ualign.type == A_NEUTRAL || u.ualign.type == A_CHAOTIC) && !Role_if(PM_KNIGHT)) ) {
 			/* Ha!  Trying to cheat her. */
 			pline("A freezing mist rises from the water and envelopes the sword.");
 			pline_The("fountain disappears!");
@@ -706,6 +706,20 @@ register struct obj *obj;
 			exercise(A_WIS, TRUE);
 #ifdef LIVELOGFILE
 			livelog_report_trophy("had Dirge thrown to them by some watery tart");
+#endif
+		} else if (u.ualign.type == A_NEUTRAL) {
+			pline("Your sword suddenly feels much more balanced!");
+			pline("The fountain disappears!");
+			obj = oname(obj, artiname(ART_PERFECT_HARMONY));
+			discover_artifact(ART_PERFECT_HARMONY);
+			uncurse_completely(obj, TRUE);
+			unbless(obj);
+			if (obj->spe < 10) obj->spe++;
+			obj->oeroded = obj->oeroded2 = 0;
+			obj->oerodeproof = TRUE;
+			exercise(A_WIS, TRUE);
+#ifdef LIVELOGFILE
+			livelog_report_trophy("had Perfect Harmony thrown to them by some watery tart");
 #endif
 		} else {
 			/* The lady of the lake acts! - Eric Backus */

@@ -7668,6 +7668,15 @@ castanyway:
 		if (!rn2(intellchance)) (void) adjattrib(A_INT, 1, FALSE, TRUE);
 	}
 
+	if (uarmc && uarmc->oartifact == ART_SOVNGARDE_TUM_DA_SAL && (spellev(spell) > 4) && !rn2(50) ) {
+		int sovspheres = rnd(8);
+		while (sovspheres > 0) {
+			sovspheres--;
+			(void) make_helper(PM_FREEZING_SPHERE, u.ux, u.uy); /* stronger than the summoned version created by the freeze sphere --Amy */
+		}
+		pline("A bunch of freezing spheres is summoned!");
+	}
+
 	if (uwep && is_lightsaber(uwep) && (uwep->lamplit || Role_if(PM_SHADOW_JEDI)) ) {
 		u.unimanturns++;
 

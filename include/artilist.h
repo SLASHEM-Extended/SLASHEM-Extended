@@ -27003,6 +27003,46 @@ A("Neima's Gate",				LOW_BOOTS, /* randart2 boots, double fuckfuckfuck effect, p
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 12000L ),
 
+A("looks like a dildo",				MACE, /* randart mace, inspired by Amy's roommate, bonus works against S_KOP too */
+	(SPFX_RESTR|SPFX_DCLAS), 0, (S_HUMAN),
+	STUN(5, 5), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Perfect Harmony",			LONG_SWORD, /* free action and sleep resistance, can be created by a neutral knight by either dipping a long sword in a fountain or sacrificing a crossaligned unicorn on a neutral altar while wielding a long sword */
+	(SPFX_ATTK|SPFX_RESTR|SPFX_DALIGN|SPFX_INTEL), 0, 0,
+	PHYS(5,12),	NO_DFNS,	NO_CARY,	0, A_NEUTRAL, NON_PM, NON_PM, 3000L ),
+
+A("Get Rich Fast",				TREASURE_CHEST, /* contains 1 million zorkmids; every time you open it, you get rnz(100k) turns of a random nasty trap effect and a random feminism trap effect, 1 turn of timerun and -50 max alignment */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Make Mucho Money",				LOOT_CHEST, /* contains 100k zorkmids; every time you open it, you get rnz(20k) turns of a random feminism trap effect and rnz(5000) turns of a random nasty trap effect, advance the turn counter by 5 and are subjected to a random really bad effect */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Entropi Contact",				REGULAR_GLOVES, /* randart gloves, your unarmed attack reduces the target's max HP by 1 every time you hit */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Sovngarde Tum Da Sal",				LEATHER_CLOAK, /* randart cloak, every time you successfully cast a spell that is level 5 or higher, there's a 1 in 50 chance that d8 freezing spheres are summoned as helpers */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Decreo talam la noster!",				BOW, /* randart2 bow, firing has 1 in 20 chance of shooting a slow monster spell effect in the direction of your shot */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Alabalam en vacuo magicka!",				HALBERD, /* randart polearm, the pounding attack reduces the target's mana by d10 and the maximum by one, and increases its mspec_used by d5 */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Odra abilio briarium da manta!",				LEATHER_ARMOR, /* randart2 suit, monsters who attack you in melee take d15 damage */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("daennae daennae schnaeddae doe",				LEATHER_CLOAK, /* randart2 cloak, autocurses, aefde trap effect, 90% chance to nullify sanity-increasing effects */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

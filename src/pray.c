@@ -2324,6 +2324,26 @@ dosacrifice()
 		u.usacrifice += 5;
 #endif
 		value += 3;
+
+		/* create Perfect Harmony from player's longsword here if possible */
+		if (u.ualign.type == A_NEUTRAL && Role_if(PM_KNIGHT) && !u.ugangr && u.ualign.record > 0 && uwep && uwep->otyp == LONG_SWORD && !uwep->oartifact && !exist_artifact(LONG_SWORD, artiname(ART_PERFECT_HARMONY))) {
+
+			uwep = oname(uwep, artiname(ART_PERFECT_HARMONY));
+			if (uwep) { /* you can never be safe... --Amy */
+				uncurse_completely(uwep, TRUE);
+				unbless(uwep);
+				if (uwep->spe < 10) uwep->spe++;
+				uwep->oeroded = uwep->oeroded2 = 0;
+				uwep->oerodeproof = TRUE;
+				discover_artifact(ART_PERFECT_HARMONY);
+				exercise(A_WIS,TRUE);
+				pline("Your sword suddenly feels much more balanced!");
+#ifdef LIVELOGFILE
+				livelog_report_trophy("had Perfect Harmony gifted to them by the grace of a neutral deity");
+#endif
+			}
+		}
+
 	    } else
 		/* If sacrificing unicorn of your alignment to altar not of */
 		/* your alignment, your god gets angry and it's a conversion */

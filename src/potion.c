@@ -2300,7 +2300,7 @@ playerextrinsicsleepres()
 	if ((uarms && uarms->oartifact == ART_CREMATED) || (uwep && uwep->oartifact == ART_CREAMRES) || (uwep && uwep->oartifact == ART_DROWSING_ROD) || (uarm && uarm->oartifact == ART_FULL_SPECTRUM) || (uarm && uarm->oartifact == ART_DAMMIT_PICK_UP) || (uarmh && uarmh->oartifact == ART_ENFORCED_MIND) || (uarmc && uarmc->oartifact == ART_RESIST_BOREDOM) || (uwep && uwep->oartifact == ART_HELF_ME_NEVERTHELESS) || (uwep && uwep->oartifact == ART_HENRIETTENFORCE) || (uimplant && uimplant->oartifact == ART_CLEAN_ASCENSION_RUN && In_endgame(&u.uz)) || (uarmh && uarmh->oartifact == ART_HEAD_W) || (uarm && uarm->oartifact == ART_HEART_INFACT) || (uwep && uwep->oartifact == ART_EVA_S_COLORCHANGE) || (uarm && uarm->oartifact == ART_CHIP_INFACT) || (uwep && uwep->oartifact == ART_YAWNEN) || (uwep && uwep->oartifact == ART_SLAM_) ) return TRUE;
 	if (uarm && uarm->oartifact == ART_FUCK_UGGHH_THAT_S_HEAVY_ && (u.uhp < (u.uhpmax / 10)) ) return TRUE;
 	if ( (uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_UNHELD_ONE) || (uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_UNHELD_POTATO) || (uarmc && uarmc->oartifact == ART_STRIPED_SHIRT_OF_THE_FALSE) || (uarmh && uarmh->oartifact == ART_CROWN_OF_THE_PERCIPIENT) || (uarmf && uarmf->oartifact == ART_SYLVIE_S_YAWN) || (uarmc && uarmc->oartifact == ART_RUFFLED_SHIRT_OF_THE_ARIST) || (uarmc && uarmc->oartifact == ART_NUTKNU_KOLAS) || (uarmh && uarmh->oartifact == ART_ENSNARED_MIND) || autismringcheck(ART_BUT_YOU_MUST) || (uarmf && uarmf->oartifact == ART_DAPHNE_S_BOREDOM) || autismringcheck(ART_IT_S_NOT_BEDTIME_YET) || autismringcheck(ART_GRISHUH) || (ublindf && ublindf->oartifact == ART_TOTALLY_THE_SPECTRUM) || (uarmc && uarmc->oartifact == ART_WAKESTAY) || (uarms && uarms->oartifact == ART_KAVYA_S_HASPLE) || (uarmu && uarmu->oartifact == ART_SETH_S_ERROR) || (uarmf && uarmf->oartifact == ART_DORIKA_S_COLORBLOCK) || (uwep && uwep->oartifact == ART_MECHINEFELL) || (uchain && uchain->oartifact == ART_MECHINEFELL) ) return TRUE;
-	if ( (uarmf && uarmf->oartifact == ART_KARIN_S_SHARP_EDGE) || (ublindf && ublindf->oartifact == ART_LEANDRA_S_WORD) || (uarmf && uarmf->oartifact == ART_SOLVEJG_S_SQUEEZE_IN) || (ublindf && ublindf->oartifact == ART_SYLBE_S_LACK) || (uarm && uarm->oartifact == ART_AYZAH_S_HURDLE) || (uarmf && uarmf->oartifact == ART_JESSICA_S_RAINBOW) ) return TRUE;
+	if ( (uarmf && uarmf->oartifact == ART_KARIN_S_SHARP_EDGE) || (ublindf && ublindf->oartifact == ART_LEANDRA_S_WORD) || (uarmf && uarmf->oartifact == ART_SOLVEJG_S_SQUEEZE_IN) || (ublindf && ublindf->oartifact == ART_SYLBE_S_LACK) || (uarm && uarm->oartifact == ART_AYZAH_S_HURDLE) || (uarmf && uarmf->oartifact == ART_JESSICA_S_RAINBOW) || (uwep && uwep->oartifact == ART_PERFECT_HARMONY) ) return TRUE;
 
 	return FALSE;
 }
@@ -2353,7 +2353,7 @@ playerextrinsicfreeaction()
 	if ((uarmf && uarmf->oartifact == ART_FREE_FOR_ENOUGH) || (uarmf && uarmf->oartifact == ART_MANDY_S_ROUGH_BEAUTY) || (uarmf && uarmf->oartifact == ART_WAITING_TIMEOUT) || (uamul && uamul->oartifact == ART_BALLSY_BASTARD) || tech_inuse(T_POWERFUL_AURA) || (uamul && uamul->oartifact == ART___TH_NAZGUL) || (uamul && uamul->oartifact == ART_NAZGUL_S_REVENGE) || (uwep && uwep->oartifact == ART_SOURCE_CODES_OF_WORK_AVOID) || (uwep && uwep->oartifact == ART_BLU_TOE) ) return TRUE;
 	if ((uarmg && uarmg->oartifact == ART_A_LITTLE_SUGAR) || (uwep && uwep->oartifact == ART_HELF_ME_NEVERTHELESS) || (uimplant && uimplant->oartifact == ART_CLEAN_ASCENSION_RUN && In_endgame(&u.uz)) || (uarmu && uarmu->oartifact == ART_THEY_ALL_FEEL_FLEECY) || (uarmh && uarmh->oartifact == ART_IN_BALANCE) || (uwep && uwep->oartifact == ART_YES_OCCIFER) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_GOOSCH_HIDARI) || (uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_UNHELD_ONE) || (uarm && uarm->oartifact == ART_STEEL_SCALES_OF_KURTULMAK) || (uarmg && uarmg->oartifact == ART_RED_CORDS_OF_ILMATER) || (uwep && uwep->oartifact == ART_TONA_S_GAMES && (PlayerInBlockHeels || PlayerInWedgeHeels) ) || (uwep && uwep->oartifact == ART_LONG_SWORD_OF_ETERNITY) || (uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_UNHELD_POTATO) ) return TRUE;
 	if ( (uwep && uwep->oartifact == ART_HEAVY_CROSSBOW_OF_ETERNITY) || (uamul && uamul->oartifact == ART_AMULET_OF_INGWE) || (uarm && uarm->oartifact == ART_THEY_SMOKED_POT_) || (uarm && uarm->oartifact == ART_VENGEANCE_OF_ETERNITY) || (uwep && uwep->oartifact == ART_AMALGAMATED_SKIES) || (uwep && uwep->oartifact == ART_ABSURD_OVERPOWEREDNESS) || autismringcheck(ART_BUT_YOU_MUST) || autismringcheck(ART_RING_OF_STEEL_DRAGON) || (uwep && uwep->oartifact == ART_PURE_BLACK_DIABLO) || (uwep && uwep->oartifact == ART_DAMON_S_SHOCK) || (uamul && uamul->oartifact == ART_HUMBLE_STUMBLE) || (uamul && uamul->oartifact == ART_DUMDUMDUM__DUMDUMDUM) || (uwep && uwep->oartifact == ART_MARC_S_WRONG_SPELL) || (uarmc && uarmc->oartifact == ART_FLECTION_INNA_BED) || (uarms && uarms->oartifact == ART_WENG_S_MAHT) || (uarms && uarms->oartifact == ART_KAVYA_S_HASPLE) || (uarmh && uarmh->oartifact == ART_SING_AND_JULIETTA_S_JOINT_) || (uarmc && uarmc->oartifact == ART_JENNELLE_S_IMMEDIATIVITY) || (uarmh && uarmh->oartifact == ART_TRACK_STOPID) ) return TRUE;
-	if ( (uarmf && uarmf->oartifact == ART_ROUGHGRAVEL_MASTER) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_DIDI_S_LEG_PAINTING) || (uarmc && uarmc->oartifact == ART_GERMAN_CHANCELLOR_SAYS_) || (uarm && uarm->oartifact == ART_AYZAH_S_HURDLE) || (uarmf && uarmf->oartifact == ART_JANET_S_DETACHMENT) || (ublindf && ublindf->oartifact == ART_HEADHORN) || (uarmf && uarmf->oartifact == ART_RINGFIGHTER_S_GUARD) || (u.usteed && uamul && uamul->oartifact == ART_ADELAIDE_S_RACING) || (uarmf && uarmf->oartifact == ART_ERIK_S_MARCHING_BOOTS) ) return TRUE;
+	if ( (uarmf && uarmf->oartifact == ART_ROUGHGRAVEL_MASTER) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_DIDI_S_LEG_PAINTING) || (uarmc && uarmc->oartifact == ART_GERMAN_CHANCELLOR_SAYS_) || (uarm && uarm->oartifact == ART_AYZAH_S_HURDLE) || (uarmf && uarmf->oartifact == ART_JANET_S_DETACHMENT) || (ublindf && ublindf->oartifact == ART_HEADHORN) || (uarmf && uarmf->oartifact == ART_RINGFIGHTER_S_GUARD) || (u.usteed && uamul && uamul->oartifact == ART_ADELAIDE_S_RACING) || (uarmf && uarmf->oartifact == ART_ERIK_S_MARCHING_BOOTS) || (uwep && uwep->oartifact == ART_PERFECT_HARMONY) ) return TRUE;
 
 	return FALSE;
 }
@@ -6688,7 +6688,7 @@ secremchoice:
 						if (stack_too_big(secrem)) {
 							pline("The stack was too big! Nothing happens.");
 						} else {
-							secrem->cursed = secrem->hvycurse = secrem->prmcurse = secrem->morgcurse = secrem->evilcurse = secrem->bbrcurse = secrem->stckcurse = 0;
+							uncurse_completely(secrem, TRUE);
 							pline("Your %s is surrounded by a warm aura.", xname(secrem));
 							secrem->bknown = TRUE;
 						}
@@ -12663,7 +12663,8 @@ resistdarknesseffect()
 	return FALSE;
 }
 
-/* sanity - yes it's not a bug that you start at 0 sanity and gradually become more sane :P --Amy */
+/* sanity - yes it's not a bug that you start at 0 sanity and gradually become more sane :P --Amy
+ * this effect can be resisted, while the increasesanity_noeffect below can not (this is by design) */
 void
 increasesanity(snamount)
 int snamount;
@@ -12671,6 +12672,7 @@ int snamount;
 	if (Upolyd && dmgtype(youmonst.data, AD_SPC2) && rn2(5)) return;
 	if (Upolyd && dmgtype(youmonst.data, AD_INSA) && rn2(100)) return;
 	if (Upolyd && dmgtype(youmonst.data, AD_SANI) && rn2(100)) return;
+	if (uarmc && uarmc->oartifact == ART_DAENNAE_DAENNAE_SCHNAEDDAE && rn2(10)) return;
 	if (Race_if(PM_PLAYER_FAIRY) && rn2(2)) return;
 	if (StrongHalluc_resistance && snamount < 3 && rn2(3)) return;
 
@@ -17808,7 +17810,8 @@ boolean amnesia;
 			useup(obj);
 			otmp = mksobj(POT_SALT_WATER,TRUE,FALSE, FALSE);
 			if (otmp) {
-				otmp->blessed = otmp->cursed = otmp->hvycurse = otmp->prmcurse = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
+				otmp->blessed = FALSE;
+				uncurse_completely(otmp, TRUE);
 				addinv(otmp);
 				update_inventory();
 			}

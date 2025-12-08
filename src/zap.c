@@ -3504,7 +3504,7 @@ poly_obj(obj, id, degradation)
 		otmp->oerodeproof = TRUE;
 		otmp->quan = 1L;
 		otmp->owt = weight(otmp);
-		otmp->cursed = otmp->hvycurse = otmp->prmcurse = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = FALSE;
+		uncurse_completely(otmp, TRUE);
 	    }
 	}
 

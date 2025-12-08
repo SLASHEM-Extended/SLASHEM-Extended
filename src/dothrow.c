@@ -81,6 +81,9 @@ int thrown;
 	boolean reallyfullmultishot = FALSE;
 	int angeramount; /* for blade anger technique */
 
+	struct obj *pseudo; /* for stuff like blade anger */
+	boolean freepseudo = FALSE; /* did "pseudo" get defined? if so, we need to free it later --Amy */
+
 	if (RngeMultishot) multishot++;
 	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_INGLAS_RANGE) multishot++;
 	if (Race_if(PM_SPARD)) multishot += rnd(4);
@@ -929,41 +932,32 @@ newbossO:
 		buzz(1, 1, u.ux, u.uy, u.dx, u.dy); /* 1, not 11, or it'll explode! */
 	}
 
+	/* beam-spell-like effects by Amy: these will define "pseudo", which then has to be freed later */
+	if (uwep && obj && ammo_and_launcher(obj,uwep) && uwep->oartifact == ART_DECREO_TALAM_LA_NOSTER_ && !rn2(20)) {
+		pseudo = mksobj(SPE_SLOW_MONSTER, FALSE, 2, FALSE);
+		if (!pseudo) goto bladeangerdone;
+		if (pseudo) freepseudo = TRUE;
+		if (pseudo->otyp == GOLD_PIECE) pseudo->otyp = SPE_SLOW_MONSTER; /* minimalist fix */
+		pseudo->blessed = pseudo->cursed = 0;
+		pseudo->quan = 20L;			/* do not let useup get it */
+		pseudo->spe = obj->spe;
+
+		/* now proc the slow monster effect */
+		verbalize("Decreo talam la noster!");
+		weffects(pseudo);
+	}
+
 	if (tech_inuse(T_BLADE_ANGER) && (objects[obj->otyp].oc_skill == -P_SHURIKEN || objects[obj->otyp].oc_skill == P_SHURIKEN ) ) {
-		struct obj *pseudo;
 		pseudo = mksobj(SPE_BLADE_ANGER, FALSE, 2, FALSE);
 		if (!pseudo) goto bladeangerdone;
+		if (pseudo) freepseudo = TRUE;
 		if (pseudo->otyp == GOLD_PIECE) pseudo->otyp = SPE_BLADE_ANGER; /* minimalist fix */
 		pseudo->blessed = pseudo->cursed = 0;
 		pseudo->quan = 20L;			/* do not let useup get it */
 		pseudo->spe = obj->spe;
 		angeramount = multishot;
 
-		/* we have to clone the entire remaining function because of eternal bugs...
-		 * defining pseudo in the function leads to obfree throwing an error if you didn't use blade anger,
-		 * and pseudo isn't used in any other way (yet), so let's do it like this --Amy */
-
-		wep_mask = obj->owornmask;
-		m_shot.o = obj->otyp;
-		m_shot.n = multishot;
-		for (m_shot.i = 1; m_shot.i <= m_shot.n; m_shot.i++) {
-		    twoweap = u.twoweap;
-		    /* split this object off from its slot if necessary */
-		    if (obj->quan > 1L) {
-			otmp = splitobj(obj, 1L);
-		    } else {
-			otmp = obj;
-			if (otmp->owornmask)
-			    remove_worn_item(otmp, FALSE);
-		    }
-		    freeinv(otmp);
-		    throwit(otmp, wep_mask, twoweap, thrown);
-		}
-		m_shot.n = m_shot.i = 0;
-		m_shot.o = STRANGE_OBJECT;
-		m_shot.s = FALSE;
-
-		/* now do blade anger damage (it usually has a higher range than the thrown shuriken) */
+		/* now do blade anger damage (it usually has a higher range than the thrown shuriken); it's proc'd once for every shot */
 		if (u.uen < 10) pline("Not enough mana for blade anger.");
 		while (pseudo && angeramount >= 1) {
 			if (u.uen >= 10) {
@@ -973,51 +967,21 @@ newbossO:
 			}
 			angeramount--;
 		}
-		if (pseudo) obfree(pseudo, (struct obj *)0);	/* now, get rid of it */
-		return 1;
-
 	}
 
 	if ((tech_inuse(T_BEAMSWORD) || (obj && obj->oartifact == ART_LINK_S_MASTER_SWORD)) && is_lightsaber(obj) && obj->lamplit ) {
 		if (obj && obj->oartifact == ART_LINK_S_MASTER_SWORD) u.linkmasterswordhack = 1;
-		struct obj *pseudo;
+
 		pseudo = mksobj(SPE_BEAMSWORD, FALSE, 2, FALSE);
 		if (!pseudo) goto bladeangerdone;
+		if (pseudo) freepseudo = TRUE;
 		if (pseudo->otyp == GOLD_PIECE) pseudo->otyp = SPE_BEAMSWORD; /* minimalist fix */
 		pseudo->blessed = pseudo->cursed = 0;
 		pseudo->quan = 20L;			/* do not let useup get it */
 		pseudo->spe = obj->spe;
 
-		/* we have to clone the entire remaining function because of eternal bugs...
-		 * defining pseudo in the function leads to obfree throwing an error if you didn't use blade anger,
-		 * and pseudo isn't used in any other way (yet), so let's do it like this --Amy */
-
-		wep_mask = obj->owornmask;
-		m_shot.o = obj->otyp;
-		m_shot.n = multishot;
-		for (m_shot.i = 1; m_shot.i <= m_shot.n; m_shot.i++) {
-		    twoweap = u.twoweap;
-		    /* split this object off from its slot if necessary */
-		    if (obj->quan > 1L) {
-			otmp = splitobj(obj, 1L);
-		    } else {
-			otmp = obj;
-			if (otmp->owornmask)
-			    remove_worn_item(otmp, FALSE);
-		    }
-		    freeinv(otmp);
-		    throwit(otmp, wep_mask, twoweap, thrown);
-		}
-		m_shot.n = m_shot.i = 0;
-		m_shot.o = STRANGE_OBJECT;
-		m_shot.s = FALSE;
-
 		/* now do beamsword damage (it usually has a higher range than the thrown lightsaber) */
 		weffects(pseudo);
-
-		if (pseudo) obfree(pseudo, (struct obj *)0);	/* now, get rid of it */
-		return 1;
-
 	}
 
 bladeangerdone:
@@ -1047,6 +1011,7 @@ bladeangerdone:
 		m_shot.n = m_shot.i = 0;
 		m_shot.o = STRANGE_OBJECT;
 		m_shot.s = FALSE;
+		if (freepseudo && pseudo) obfree(pseudo, (struct obj *)0);	/* get rid of pseudo object since it's no longer needed --Amy */
 		return 1;
 	    }
 
@@ -1097,6 +1062,8 @@ bladeangerdone:
 	m_shot.n = m_shot.i = 0;
 	m_shot.o = STRANGE_OBJECT;
 	m_shot.s = FALSE;
+
+	if (freepseudo && pseudo) obfree(pseudo, (struct obj *)0);	/* now, get rid of it */
 
 	return 1;
 
@@ -2743,18 +2710,19 @@ boolean polearming;
 	boolean guaranteed_hit = (u.uswallow && mon == u.ustuck && rn2(3));
 	int dieroll = rnd(20);
 
-	boolean stupidrock = 0;
+	boolean stupidrock = 0; /* TRUE if shooting rocks, as in the base item named "rock" */
 	if (obj->otyp == ROCK) stupidrock = 1;
 
 	boolean bulletate = 0;
 	if (objects[obj->otyp].oc_skill == P_FIREARM || objects[obj->otyp].oc_skill == -P_FIREARM) bulletate = 1;
 
-	boolean pieks = 0;
-	if (objects[obj->otyp].oc_skill == P_POLEARMS) pieks = 1;
-	if (objects[obj->otyp].oc_skill == P_LANCE) pieks = 1;
-	if (obj->otyp == GRAPPLING_HOOK) pieks = 1;
-	if (obj->otyp == LAJATANG) pieks = 1;
-	if (obj->otyp == JACK_KNIFE) pieks = 1;
+	boolean pieks = 0; /* TRUE if pounding with a polearm, lance or similar weapon --Amy */
+	if (obj && uwep && (obj == uwep) && objects[obj->otyp].oc_skill == P_POLEARMS) pieks = 1;
+	if (obj && uwep && (obj == uwep) && objects[obj->otyp].oc_skill == P_LANCE) pieks = 1;
+	if (obj && uwep && (obj == uwep) && objects[obj->otyp].oc_skill == P_GRINDER) pieks = 1;
+	if (obj && uwep && (obj == uwep) && obj->otyp == GRAPPLING_HOOK) pieks = 1;
+	if (obj && uwep && (obj == uwep) && obj->otyp == LAJATANG) pieks = 1;
+	if (obj && uwep && (obj == uwep) && obj->otyp == JACK_KNIFE) pieks = 1;
 	boolean stopevading = 0;
 	if (obj->oartifact == ART_STOP_EVADING_ME) stopevading = 1;
 

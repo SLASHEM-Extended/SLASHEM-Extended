@@ -11511,7 +11511,7 @@ bucchoice:
 				uammo->quan = 1;
 				uammo->known = uammo->dknown = uammo->bknown = uammo->rknown = 1;
 				uammo->spe = rnd(7);
-				uammo->cursed = uammo->hvycurse = uammo->stckcurse = uammo->prmcurse = uammo->bbrcurse = uammo->morgcurse = uammo->evilcurse = FALSE;
+				uncurse_completely(uammo, TRUE);
 				uammo->owt = weight(uammo);
 				dropy(uammo);
 				stackobj(uammo);

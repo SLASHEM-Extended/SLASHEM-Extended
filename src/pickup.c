@@ -1560,7 +1560,7 @@ boolean alwaysflag;	/* force the item to be picked up even if it burdens you --A
 
 	if (obj && obj->oartifact == ART_HAAAAAAAAAAAAA_LELUJA) {
 		obj->bknown = 1;
-		obj->cursed = obj->hvycurse = obj->prmcurse = obj->evilcurse = obj->morgcurse = obj->bbrcurse = obj->stckcurse = 0;
+		uncurse_completely(obj, TRUE);
 		obj->blessed = 1;
 	}
 
@@ -2793,6 +2793,24 @@ int held;
 
 	current_container = obj;	/* for use by in/out_container */
 	/* from here on out, all early returns go through containerdone */
+
+	if (obj->oartifact == ART_GET_RICH_FAST) {
+		randomnastytrapeffect(rnz(100000), 1000);
+		randomfeminismtrap(rnz(100000));
+		TimerunBug += 1; /* ugh, ugly hack --Amy */
+		u.alignlim -= 50;
+		if(u.ualign.record > u.alignlim) {
+			u.ualign.record = u.alignlim;
+		}
+	}
+
+	if (obj->oartifact == ART_MAKE_MUCHO_MONEY) {
+		randomnastytrapeffect(rnz(5000), 1000);
+		randomfeminismtrap(rnz(20000));
+		monstermoves += 5;
+		moves += 5;
+		reallybadeffect();
+	}
 
 	if (obj->oartifact == ART_ELECTRONIC_LOCK) {
 		if (ContainerKaboom < 10000) ContainerKaboom = 10000;

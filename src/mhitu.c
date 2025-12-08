@@ -21804,6 +21804,16 @@ register struct attack *mattk;
 		}
 	}
 
+	if (uarm && uarm->oartifact == ART_ODRA_ABILIO_BRIARIUM_DA_MA) {
+		pline("%s is damaged by your thorns!", Monnam(mtmp));
+		if((mtmp->mhp -= rnd(15) ) <= 0) {
+			pline("%s bleeds to death!", Monnam(mtmp));
+			xkilled(mtmp,0);
+			if (mtmp->mhp > 0) return 1;
+			return 2;
+		}
+	}
+
 	if (uarmf && uarmf->otyp == FLECHETTE_BOOTS) {
 		pline("%s is spiked by your boots' needles!", Monnam(mtmp));
 		if((mtmp->mhp -= 1 ) <= 0) {

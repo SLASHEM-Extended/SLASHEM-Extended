@@ -1804,16 +1804,16 @@ int dieroll;
 
 	boolean sanitymessage = (u.usanity > rn2(1000));
 
-	boolean stupidrock = 0;
+	boolean stupidrock = 0; /* TRUE if shooting rocks, as in the base item named "rock" */
 	if (thrown && obj->otyp == ROCK) stupidrock = 1;
 
-	boolean pieks = 0;
-	if (obj && thrown == 1 && objects[obj->otyp].oc_skill == P_POLEARMS) pieks = 1;
-	if (obj && thrown == 1 && objects[obj->otyp].oc_skill == P_LANCE) pieks = 1;
-	if (obj && thrown == 1 && objects[obj->otyp].oc_skill == P_GRINDER) pieks = 1;
-	if (obj && thrown == 1 && obj->otyp == GRAPPLING_HOOK) pieks = 1;
-	if (obj && thrown == 1 && obj->otyp == JACK_KNIFE) pieks = 1;
-	if (obj && thrown == 1 && obj->otyp == LAJATANG) pieks = 1;
+	boolean pieks = 0; /* TRUE if pounding with a polearm, lance or similar weapon --Amy */
+	if (obj && uwep && (obj == uwep) && (thrown == 1) && objects[obj->otyp].oc_skill == P_POLEARMS) pieks = 1;
+	if (obj && uwep && (obj == uwep) && (thrown == 1) && objects[obj->otyp].oc_skill == P_LANCE) pieks = 1;
+	if (obj && uwep && (obj == uwep) && (thrown == 1) && objects[obj->otyp].oc_skill == P_GRINDER) pieks = 1;
+	if (obj && uwep && (obj == uwep) && (thrown == 1) && obj->otyp == GRAPPLING_HOOK) pieks = 1;
+	if (obj && uwep && (obj == uwep) && (thrown == 1) && obj->otyp == JACK_KNIFE) pieks = 1;
+	if (obj && uwep && (obj == uwep) && (thrown == 1) && obj->otyp == LAJATANG) pieks = 1;
 
 	if (thrown == 1) launcher = uwep;
 	else if (thrown == 2) launcher = uswapwep;
@@ -2318,6 +2318,11 @@ int dieroll;
 				pline("%s slows down.", Monnam(mon));
 
 			}
+		}
+
+		if (uarmg && uarmg->oartifact == ART_ENTROPI_CONTACT && mon->mhpmax > 1) {
+			mon->mhpmax--;
+			if (mon->mhp > mon->mhpmax) mon->mhp = mon->mhpmax;
 		}
 
 		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_VIRAL_CORE_OF_ISKAR_THE_PA && !resists_cold(mon) ) {
@@ -4407,6 +4412,14 @@ int dieroll;
 			if (!Blind) pline("%s is put to sleep by you!", Monnam(mon));
 			slept_monst(mon);
 		}
+	}
+
+	if (obj && obj->oartifact == ART_ALABALAM_EN_VACUO_MAGICKA_ && pieks && mon) {
+		mon->m_en -= rnd(10);
+		if (mon->m_enmax > 0) mon->m_enmax--;
+		if (mon->m_en < 0) mon->m_en = 0;
+		if (mon->m_en > mon->m_enmax) mon->m_en = mon->m_enmax;
+		mon->mspec_used += rnd(5);
 	}
 
 	if (obj && obj->oartifact == ART_KABOOOOOM_ && pieks && mon && isok(mon->mx, mon->my) ) {

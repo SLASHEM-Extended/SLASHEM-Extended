@@ -5718,27 +5718,27 @@ newbossSING:
 
 		trophy = mksobj(POT_TECH_LEVEL_UP, FALSE, FALSE, FALSE);
 		if (trophy) {
-		    trophy->prmcurse = trophy->hvycurse = trophy->cursed = trophy->morgcurse = trophy->evilcurse = trophy->bbrcurse = trophy->stckcurse = 0;
+		    uncurse_completely(trophy, TRUE);
 		    dropy(trophy);
 		}
 		trophy = mksobj(POT_TECH_LEVEL_UP, FALSE, FALSE, FALSE);
 		if (trophy) {
-		    trophy->prmcurse = trophy->hvycurse = trophy->cursed = trophy->morgcurse = trophy->evilcurse = trophy->bbrcurse = trophy->stckcurse = 0;
+		    uncurse_completely(trophy, TRUE);
 		    dropy(trophy);
 		}
 		trophy = mksobj(POT_TECH_LEVEL_UP, FALSE, FALSE, FALSE);
 		if (trophy) {
-		    trophy->prmcurse = trophy->hvycurse = trophy->cursed = trophy->morgcurse = trophy->evilcurse = trophy->bbrcurse = trophy->stckcurse = 0;
+		    uncurse_completely(trophy, TRUE);
 		    dropy(trophy);
 		}
 		trophy = mksobj(POT_TECH_LEVEL_UP, FALSE, FALSE, FALSE);
 		if (trophy) {
-		    trophy->prmcurse = trophy->hvycurse = trophy->cursed = trophy->morgcurse = trophy->evilcurse = trophy->bbrcurse = trophy->stckcurse = 0;
+		    uncurse_completely(trophy, TRUE);
 		    dropy(trophy);
 		}
 		trophy = mksobj(POT_TECH_LEVEL_UP, FALSE, FALSE, FALSE);
 		if (trophy) {
-		    trophy->prmcurse = trophy->hvycurse = trophy->cursed = trophy->morgcurse = trophy->evilcurse = trophy->bbrcurse = trophy->stckcurse = 0;
+		    uncurse_completely(trophy, TRUE);
 		    dropy(trophy);
 		}
 

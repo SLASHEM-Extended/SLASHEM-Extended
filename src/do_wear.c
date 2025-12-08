@@ -2099,6 +2099,10 @@ Cloak_on()
 		uarmc->hvycurse = 1;
 	}
 
+	if (uarmc && uarmc->oartifact == ART_DAENNAE_DAENNAE_SCHNAEDDAE) {
+		if (!uarmc->cursed) curse(uarmc);
+	}
+
 	if (uarmc && uarmc->oartifact == ART_WRITER_S_BLOCK) {
 		if (!uarmc->cursed) curse(uarmc);
 		uarmc->hvycurse = uarmc->stckcurse = 1;

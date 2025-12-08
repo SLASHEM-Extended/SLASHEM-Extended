@@ -5034,6 +5034,7 @@ start_corpse_timeout(body)
 	(void) start_timer(when, TIMER_OBJECT, action, (void *)body);
 }
 
+/* bless an item - if it's heavily cursed or worse, it can resist, otherwise it'll go straight from cursed to blessed, or from uncursed to blessed --Amy */
 void
 bless(otmp)
 register struct obj *otmp;
@@ -5052,16 +5053,17 @@ register struct obj *otmp;
 	}
 	else if (!(otmp->prmcurse) && !(otmp->hvycurse) && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) ) otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->stckcurse = 0;
 
+	/* now the item can be blessed, but only if the uncursing attempt above was successful --Amy */
 	if (otmp->cursed == 0) {
-	otmp->blessed = 1;
-	if (carried(otmp) && confers_luck(otmp))
-	    set_moreluck();
-	if (otmp->otyp == HEALTHSTONE)
-	    recalc_health();
-	if (otmp->otyp == BAG_OF_HOLDING || otmp->otyp == ICE_BOX_OF_HOLDING || otmp->otyp == CHEST_OF_HOLDING || otmp->oartifact == ART_SACK_OF_HOLDING)
-	    otmp->owt = weight(otmp);
-	if (otmp->otyp == FIGURINE && otmp->timed)
-	    (void) stop_timer(FIG_TRANSFORM, (void *) otmp);
+		otmp->blessed = 1;
+		if (carried(otmp) && confers_luck(otmp))
+		    set_moreluck();
+		if (otmp->otyp == HEALTHSTONE)
+		    recalc_health();
+		if (otmp->otyp == BAG_OF_HOLDING || otmp->otyp == ICE_BOX_OF_HOLDING || otmp->otyp == CHEST_OF_HOLDING || otmp->oartifact == ART_SACK_OF_HOLDING)
+		    otmp->owt = weight(otmp);
+		if (otmp->otyp == FIGURINE && otmp->timed)
+		    (void) stop_timer(FIG_TRANSFORM, (void *) otmp);
 	}
 	return;
 }
@@ -5227,6 +5229,31 @@ boolean guaranteed; /* can it work even when you have permacurse nastytrap effec
 		otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->stckcurse = 0;
 	}
 	else if (!(otmp->prmcurse) && !otmp->hvycurse && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) ) otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->stckcurse = 0;
+	if (carried(otmp) && confers_luck(otmp))
+	    set_moreluck();
+	/* KMH, balance patch -- healthstones affect healing */
+	if (otmp->otyp == HEALTHSTONE)
+	    recalc_health();
+	if (otmp->otyp == BAG_OF_HOLDING || otmp->otyp == ICE_BOX_OF_HOLDING || otmp->otyp == CHEST_OF_HOLDING || otmp->oartifact == ART_SACK_OF_HOLDING)
+	    otmp->owt = weight(otmp);
+}
+
+/* remove all curses present on an item, by Amy */
+void
+uncurse_completely(otmp, guaranteed)
+register struct obj *otmp;
+boolean guaranteed; /* can it work even when you have permacurse nastytrap effect? --Amy */
+{
+	if (!guaranteed && (PermacurseEffect || u.uprops[PERMACURSE_EFFECT].extrinsic || have_permacursestone() || autismringcheck(ART_FINDBOLD) || (uamul && uamul->oartifact == ART_PERMANENTLY_BLACK) || (uarmu && uarmu->oartifact == ART_MENSTRUATION_HURTS && !Role_if(PM_CLIMACTERIAL)) || (uimplant && uimplant->oartifact == ART_ARABELLA_S_RECTIFIER) || (uarmf && uarmf->oartifact == ART_PROPERTY_GRUMBLE) ) ) return;
+
+	if (!guaranteed && uarm && uarm->oartifact == ART_ARABELLA_S_FEMINIZER && rn2(2)) return;
+
+	if (otmp && otmp->oartifact == ART_HAVE_IT_ALL_BUT_NOT_GET) return; /* so immune that even "guaranteed" remove curse effects do not uncurse it --Amy */
+	if (otmp && otmp->oartifact == ART_CURSED_APACHE) return;
+
+	/* remove all curses that might be present on the item --Amy */
+	otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->stckcurse = 0;
+
 	if (carried(otmp) && confers_luck(otmp))
 	    set_moreluck();
 	/* KMH, balance patch -- healthstones affect healing */

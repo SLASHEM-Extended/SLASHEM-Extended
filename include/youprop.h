@@ -101,7 +101,7 @@
 
 #define EpviProblemActive	(EpviEffect || u.uprops[EPVI_EFFECT].extrinsic || have_epvistone() || (uarm && uarm->oartifact == ART_YOU_REALLY_HAVE_A_TOTAL_DA) )
 
-#define AefdeActive	(AefdeEffect || u.uprops[AEFDE_EFFECT].extrinsic || have_aefdestone() || (uarm && uarm->oartifact == ART_BECAUSE_YOU_LOSE) )
+#define AefdeActive	(AefdeEffect || u.uprops[AEFDE_EFFECT].extrinsic || have_aefdestone() || (uarmc && uarmc->oartifact == ART_DAENNAE_DAENNAE_SCHNAEDDAE) || (uarm && uarm->oartifact == ART_BECAUSE_YOU_LOSE) )
 
 #define StillTriggerGroundTraps	(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK) || (uarmf && uarmf->oartifact == ART_ELIZAH_S_SINKER) )
 

@@ -503,6 +503,7 @@ init_randarts()
 	artilist[ART_THA_WALL].otyp = randartsuit();
 	artilist[ART_LLLLLLLLLLLLLM].otyp = randarthelm();
 	artilist[ART_SPELLSNIPE].otyp = randartgloves();
+	artilist[ART_ENTROPI_CONTACT].otyp = randartgloves();
 	artilist[ART_REAL_FORCE].otyp = randartgloves();
 	artilist[ART_RED_CORDS_OF_ILMATER].otyp = randartgloves();
 	artilist[ART_MELUGAS_ROCKET].otyp = randartgloves();
@@ -551,6 +552,7 @@ init_randarts()
 	artilist[ART_ONE_THROUGH_FOUR_SCEPTER].otyp = randartmeleeweapon();
 	artilist[ART_AL_CANONE].otyp = randartlauncher();
 	artilist[ART_VEIL_OF_MINISTRY].otyp = randartcloak();
+	artilist[ART_SOVNGARDE_TUM_DA_SAL].otyp = randartcloak();
 	artilist[ART_ZANKAI_HUNG_ZE_TUNG_DO_HAI].otyp = randartmeleeweapon();
 	artilist[ART_AWKWARDNESS].otyp = randartmeleeweapon();
 	artilist[ART_SCHWANZUS_LANGUS].otyp = randartmeleeweapon();
@@ -563,6 +565,7 @@ init_randarts()
 	artilist[ART_ARABELLA_S_ARTIFACT_CREATI].otyp = randartmeleeweapon();
 	artilist[ART_VERSUS_ELECTRICALLY_BASED_].otyp = randartmeleeweapon();
 	artilist[ART_ULTRA_ANNOYANCE].otyp = randartpolearm();
+	artilist[ART_ALABALAM_EN_VACUO_MAGICKA_].otyp = randartpolearm();
 	artilist[ART_JENSEMAN_S_LUCK].otyp = randartpolearm();
 	artilist[ART_CHATGPT_S_FREEZE].otyp = randartpolearm();
 	artilist[ART_THUNDERING_GLAIVE].otyp = randartpolearm();
@@ -711,8 +714,9 @@ init_randarts()
 	artilist[ART_BRUTISH_CLAYMORE].otyp = randarttwohandedsword();
 	artilist[ART_AMALGAMATED_SKIES].otyp = randarttwohandedsword();
 	artilist[ART_ATLANTEAN_ROYAL_SWORD].otyp = randarttwohandedsword();
-	artilist[ART_CELESTIAL_SCEPTRE].otyp = randartmace();
 	artilist[ART_SMASHIN].otyp = randartmace();
+	artilist[ART_CELESTIAL_SCEPTRE].otyp = randartmace();
+	artilist[ART_LOOKS_LIKE_A_DILDO].otyp = randartmace();
 	artilist[ART_INDOBURDENIA_VIRII].otyp = randartmace();
 	artilist[ART_KLOEB].otyp = randartclub();
 	artilist[ART_BLOOD_MOON].otyp = randartclub();
@@ -887,12 +891,14 @@ init_randarts()
 	artilist[ART_LYST_ERG].otyp = randartquarterstaffX();
 	artilist[ART_DROWSING_ROD].otyp = randartquarterstaffX();
 	artilist[ART_PAINBOWSWANDIR].otyp = randartbowX();
+	artilist[ART_DECREO_TALAM_LA_NOSTER_].otyp = randartbowX();
 	artilist[ART_KRASCHEEP].otyp = randartbowX();
 	artilist[ART_ARROW_RAIN].otyp = randartbowX();
 	artilist[ART_EARTH_GAS_GUN].otyp = randartlauncherX();
 	artilist[ART_FIRE_ALREADY].otyp = randartmissileX();
 	artilist[ART_HUMAN_WIPEOUT].otyp = randartmeleeweaponX();
 	artilist[ART_ESPECIALLYRANDARM].otyp = randartsuitX();
+	artilist[ART_ODRA_ABILIO_BRIARIUM_DA_MA].otyp = randartsuitX();
 	artilist[ART_GO_MIEFTLY_THEN_QUEUE__DAE].otyp = randartsuitX();
 	artilist[ART_SPLINTER_ARMAMENT].otyp = randartsuitX();
 	artilist[ART_BELLY_W].otyp = randartsuitX();
@@ -931,8 +937,9 @@ init_randarts()
 	artilist[ART_CHAOSWEAVER_ROBES].otyp = randartrobeX();
 	artilist[ART_COPE_OF_THE_ELDRITCH_KNIGH].otyp = randartrobeX();
 	artilist[ART_ROBE_OF_CLOSED_EYES].otyp = randartrobeX();
-	artilist[ART_HALF_MOON_TONIGHT].otyp = randartcloakX();
 	artilist[ART_PANTAP].otyp = randartcloakX();
+	artilist[ART_DAENNAE_DAENNAE_SCHNAEDDAE].otyp = randartcloakX();
+	artilist[ART_HALF_MOON_TONIGHT].otyp = randartcloakX();
 	artilist[ART_RUTH_S_DARK_FORCE].otyp = randarthelmX();
 	artilist[ART_FIVE_HORNED_HELM].otyp = randarthelmX();
 	artilist[ART_PEOPLE_DUMBING].otyp = randarthelmX();
@@ -2466,7 +2473,7 @@ register boolean mod;
 		    if (otmp && otmp->oartifact == ART_LIGHTBLUE_ELVEN_COLOR) {
 			otmp->quan += rnd(4);
 			otmp->owt = weight(otmp);
-			otmp->cursed = otmp->hvycurse = otmp->prmcurse = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
+			uncurse_completely(otmp, TRUE);
 			bless(otmp);
 			}
 		    if (otmp && otmp->oartifact == ART_DELIA_S_TENDERCHUNK) {
@@ -2763,7 +2770,7 @@ register boolean mod;
 			otmp->owt = weight(otmp);
 		    }
 		    if (otmp && otmp->oartifact == ART_URANIUM_GLASS) {
-			otmp->cursed = otmp->hvycurse = otmp->prmcurse = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
+			uncurse_completely(otmp, TRUE);
 			bless(otmp);
 		    }
 		    if (otmp && otmp->oartifact == ART_DARKER_THAN_OPAQUE) {
@@ -3166,11 +3173,11 @@ register boolean mod;
 			u.evilvartemporary += 50000;
 			pline("Have fun with the evil variant, sucker.");
 			otmp->spe += rnz(20);
-			otmp->cursed = otmp->hvycurse = otmp->prmcurse = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
+			uncurse_completely(otmp, TRUE);
 			bless(otmp);
 		    }
 		    if (otmp && otmp->oartifact == ART_HOLIER_THAN_THOU) {
-			otmp->cursed = otmp->hvycurse = otmp->prmcurse = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
+			uncurse_completely(otmp, TRUE);
 			bless(otmp);
 		    }
 		    if (otmp && otmp->oartifact == ART_TY___GLUPAYA_LEDYANAYA_GLY) {
@@ -4267,6 +4274,28 @@ register boolean mod;
 			}
 		    }
 
+		    if (otmp && otmp->oartifact == ART_GET_RICH_FAST) {
+
+			register struct obj *ocont;
+			ocont = mksobj(GOLD_PIECE, FALSE, FALSE, FALSE);
+			ocont->quan = 1000000;
+			if (ocont) {
+				ocont->owt = weight(ocont);
+				(void) add_to_container(otmp, ocont, TRUE);
+			}
+		    }
+
+		    if (otmp && otmp->oartifact == ART_MAKE_MUCHO_MONEY) {
+
+			register struct obj *ocont;
+			ocont = mksobj(GOLD_PIECE, FALSE, FALSE, FALSE);
+			ocont->quan = 100000;
+			if (ocont) {
+				ocont->owt = weight(ocont);
+				(void) add_to_container(otmp, ocont, TRUE);
+			}
+		    }
+
 		    if (otmp && otmp->oartifact == ART_OORTOCASH) {
 
 			register struct obj *ocont;
@@ -5286,11 +5315,19 @@ struct obj *otmp;
 	} else if (weap->spfx & SPFX_DCLAS) {
 	    retval &= (weap->mtype == (unsigned long)ptr->mlet);
 
+		/* ultra stupid that we can't just define several in artilist.h... this means that all the "banes" are "narrow weapons" (according to a certain very smart
+		 * individual who comes up with weird-ass terms and then expects everyone to magically know what they mean), i.e. weapons that work only against a very
+		 * narrow subset of monsters while it deals just the base item's damage versus everything else. if we can have weapons whose bonuses work against more than
+		 * one single letter of monsters at least, maybe they'll be a biiiiiiit better, so this extra code is needed --Amy */
+
 		if (otmp && otmp->oartifact == ART_JONADAB_S_BRAINSTORMING) {
 			if (S_DEMON == (unsigned long)ptr->mlet) retval = TRUE;
 		}
 		if (otmp && otmp->oartifact == ART_OGRE_AND_GIANTSLAYER) {
 			if (S_GIANT == (unsigned long)ptr->mlet) retval = TRUE;
+		}
+		if (otmp && otmp->oartifact == ART_LOOKS_LIKE_A_DILDO) {
+			if (S_KOP == (unsigned long)ptr->mlet) retval = TRUE;
 		}
 		if (otmp && otmp->oartifact == ART_SHUGO) {
 			if (S_UNICORN == (unsigned long)ptr->mlet) retval = TRUE;
