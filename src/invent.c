@@ -19997,7 +19997,7 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 			case SPE_NEXUS_FIELD:
 				pline("Tries to teleport all monsters adjacent to you away, although they have a chance to resist. It will occasionally backlash by reducing one of your attributes, permanently."); break;
 			case SPE_COMMAND_DEMON:
-				pline("Use this spell if you're surrounded by demons, and they have a chance of becoming peaceful or even tame! Their magic resistance (if present) is quite likely to make them resist this effect. Casting this spell may occaisonally backfire though, and occasionally the demons become frenzied instead. Also, if it successfully tries to tame or pacify a demon, your maximum mana is damaged."); break;
+				pline("Use this spell if you're surrounded by demons, and they have a chance of becoming peaceful or even tame! Their magic resistance (if present) is quite likely to make them resist this effect. Casting this spell may occasionally backfire though, and occasionally the demons become frenzied instead. Also, if it successfully tries to tame or pacify a demon, your maximum mana is damaged."); break;
 			case SPE_FIRE_GOLEM:
 				pline("This spell requires you to have a torch to create the golem from, which will be used up. The fire golem will then fight alongside you, and you get experience and credit for its kills, but beware: usually it will turn hostile after a while!"); break;
 			case SPE_DISRUPTION_SHIELD:

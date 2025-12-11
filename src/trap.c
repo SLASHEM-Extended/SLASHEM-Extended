@@ -25807,10 +25807,9 @@ xchar x, y;
 }
 
 /* This function is there for special handling of players being subjected to the lethe waters,
-   which may happen because they stepped into it, got pulled down, or were hit by a geyser on a lethe level.
-   What it does is "withering" objects, that is, damaging them even if they're erodeproof or outright immune to damage.
-   We don't want this to happen to every single item though. --Amy */
-
+ * which may happen because they stepped into it, got pulled down, or were hit by a geyser on a lethe level.
+ * What it does is "withering" objects, that is, damaging them even if they're erodeproof or outright immune to damage.
+ * We don't want this to happen to every single item though. --Amy */
 void
 lethe_damage(obj, force, here)
 register struct obj *obj;
@@ -26090,7 +26089,7 @@ register boolean force, here;
 				obj->odiluted++;
 			break;
 		    case GEM_CLASS:
-			if (level.flags.lethe && (obj->otyp == LUCKSTONE
+			if (level.flags.lethe && (!rn2(5) || issoviet || evilfriday) && (!obj->oartifact || issoviet || isevilvariant) && (obj->otyp == LUCKSTONE
 					|| obj->otyp == LOADSTONE
 					|| obj->otyp == HEALTHSTONE
 					|| obj->otyp == MANASTONE
@@ -26108,28 +26107,40 @@ register boolean force, here;
 			if (level.flags.lethe) {
 			    switch (obj->otyp) {
 			    case MAGIC_LAMP:
-				obj->otyp = OIL_LAMP;
-				obj->age = 0; /* fixing a very obvious slashem bug... --Amy */
+				if ((!rn2(5) || issoviet || evilfriday) && (!obj->oartifact || issoviet || isevilvariant)) {
+					obj->otyp = OIL_LAMP;
+					obj->age = rn1(100, 100); /* fixing a very obvious slashem bug... --Amy */
+				}
 				break;
 			    case MAGIC_CANDLE:
-				obj->otyp = rn2(2)? WAX_CANDLE : TALLOW_CANDLE;
-				obj->age = 0; /* fixing a very obvious slashem bug... --Amy */
+				if ((!rn2(5) || issoviet || evilfriday) && (!obj->oartifact || issoviet || isevilvariant)) {
+					obj->otyp = rn2(2)? WAX_CANDLE : TALLOW_CANDLE;
+					obj->age = rn1(100, 100); /* fixing a very obvious slashem bug... --Amy */
+				}
 				break;
 			    case MAGIC_WHISTLE:
-				obj->otyp = TIN_WHISTLE;
+				if ((!rn2(5) || issoviet || evilfriday) && (!obj->oartifact || issoviet || isevilvariant)) {
+					obj->otyp = TIN_WHISTLE;
+				}
 				break;	
 			    case MAGIC_FLUTE:
-				obj->otyp = WOODEN_FLUTE;
-				obj->spe  = 0;
+				if ((!rn2(5) || issoviet || evilfriday) && (!obj->oartifact || issoviet || isevilvariant)) {
+					obj->otyp = WOODEN_FLUTE;
+					obj->spe = 0;
+				}
 				break;	
 			    case PAN_PIPE_OF_THE_SEWERS:
 			    case PAN_PIPE_OF_SUMMONING:
-				obj->otyp = PAN_PIPE;
-				obj->spe  = 0;
+				if ((!rn2(5) || issoviet || evilfriday) && (!obj->oartifact || issoviet || isevilvariant)) {
+					obj->otyp = PAN_PIPE;
+					obj->spe  = 0;
+				}
 				break;
 			    case MAGIC_HARP:
-				obj->otyp = WOODEN_HARP;
-				obj->spe  = 0;
+				if ((!rn2(5) || issoviet || evilfriday) && (!obj->oartifact || issoviet || isevilvariant)) {
+					obj->otyp = WOODEN_HARP;
+					obj->spe  = 0;
+				}
 				break;
 			    case FIRE_HORN:
 			    case FROST_HORN:
@@ -26139,12 +26150,16 @@ register boolean force, here;
 			    case DEATH_HORN:
 			    case SHADOW_HORN:
 			    case HORN_OF_PLENTY:
-				obj->otyp = TOOLED_HORN;
-				obj->spe  = 0;
+				if ((!rn2(5) || issoviet || evilfriday) && (!obj->oartifact || issoviet || isevilvariant)) {
+					obj->otyp = TOOLED_HORN;
+					obj->spe  = 0;
+				}
 				break;
 			    case DRUM_OF_EARTHQUAKE:
-				obj->otyp = LEATHER_DRUM;
-				obj->spe  = 0;
+				if ((!rn2(5) || issoviet || evilfriday) && (!obj->oartifact || issoviet || isevilvariant)) {
+					obj->otyp = LEATHER_DRUM;
+					obj->spe  = 0;
+				}
 				break;
 			    }
 			}
@@ -26204,9 +26219,9 @@ register boolean force, here;
 
 
 			/* The Lethe may unfooproof the item... */
-			if (level.flags.lethe
-					&& obj->oerodeproof && !rn2(5))
-			    obj->oerodeproof = FALSE;
+			if (level.flags.lethe && obj->oerodeproof && !rn2(5)) {
+				obj->oerodeproof = FALSE;
+			}
 		    }
 
 		} /* switch statement, but it doesn't seem to always be run */
@@ -26215,6 +26230,14 @@ register boolean force, here;
 	} /* for loop */
 }
 
+/* subject the player's inventory to lethe damage; because of the function's turboweirdness, "obj" doesn't actually take a single object
+ * instead, the caller will usually specify "invent" to target the player's entire inventory
+ * it used to be that this could permanently ruin artifacts (luckstone, magic whistle etc.), probably because SLASH'EM didn't have artifact versions of those,
+ * but I think there was an artifact magic candle or something? well 99.9% certain the devs just didn't think about this possible interaction :-P --Amy
+ * anyway, artifacts are now immune to the rewrite, unless you're playing the evil variant (specifically, i.e. merely playing on Friday 13 doesn't cause this)
+ * or soviet mode. Harharharharharharhar! Because in Soviet Russia, everything has to work the way it does in SLASH'EM, after all the type of ice block has the
+ * holy mission to undo every single change that Amy makes, and this fix is by me (Amy) so it's reverted in soviet mode, just like the martial arts damage bugfix
+ * and the monster timer re-initialization bugfix. The Kreml wants everyone to play SLASHTHEM, now with 200% more bugs! :D */
 void
 actual_lethe_damage(obj, force, here)
 register struct obj *obj;
@@ -26271,41 +26294,56 @@ register boolean force, here;
 			}
 			break;
 		    case GEM_CLASS:
-			if ((obj->otyp == LUCKSTONE
+			if ( (!rn2(5) || issoviet || evilfriday) && (!obj->oartifact || issoviet || isevilvariant) ) {
+				if ((obj->otyp == LUCKSTONE
 					|| obj->otyp == HEALTHSTONE
 					|| obj->otyp == MANASTONE
 					|| obj->otyp == STONE_OF_MAGIC_RESISTANCE
 					|| obj->otyp == TOUCHSTONE)) {
-			    obj->otyp = FLINT;
-				recalc_health();
-				recalc_mana();
+
+					obj->otyp = FLINT;
+					recalc_health();
+					recalc_mana();
+				}
 			}
 			break;
 		    case TOOL_CLASS:
 			    switch (obj->otyp) {
 			    case MAGIC_LAMP:
-				obj->otyp = OIL_LAMP;
-				obj->age = 0; /* fixing a very obvious slashem bug... --Amy */
+				if ( (!rn2(5) || issoviet || evilfriday) && (!obj->oartifact || issoviet || isevilvariant) ) {
+					obj->otyp = OIL_LAMP;
+					obj->age = rn1(100, 100); /* fixing a very obvious slashem bug... --Amy */
+				}
 				break;
 			    case MAGIC_CANDLE:
-				obj->otyp = rn2(2)? WAX_CANDLE : TALLOW_CANDLE;
-				obj->age = 0; /* fixing a very obvious slashem bug... --Amy */
+				if ( (!rn2(5) || issoviet || evilfriday) && (!obj->oartifact || issoviet || isevilvariant) ) {
+					obj->otyp = rn2(2)? WAX_CANDLE : TALLOW_CANDLE;
+					obj->age = rn1(100, 100); /* fixing a very obvious slashem bug... --Amy */
+				}
 				break;
 			    case MAGIC_WHISTLE:
-				obj->otyp = TIN_WHISTLE;
+				if ( (!rn2(5) || issoviet || evilfriday) && (!obj->oartifact || issoviet || isevilvariant) ) {
+					obj->otyp = TIN_WHISTLE;
+				}
 				break;	
 			    case MAGIC_FLUTE:
-				obj->otyp = WOODEN_FLUTE;
-				obj->spe  = 0;
+				if ( (!rn2(5) || issoviet || evilfriday) && (!obj->oartifact || issoviet || isevilvariant) ) {
+					obj->otyp = WOODEN_FLUTE;
+					obj->spe  = 0;
+				}
 				break;	
 			    case PAN_PIPE_OF_THE_SEWERS:
 			    case PAN_PIPE_OF_SUMMONING:
-				obj->otyp = PAN_PIPE;
-				obj->spe  = 0;
+				if ( (!rn2(5) || issoviet || evilfriday) && (!obj->oartifact || issoviet || isevilvariant) ) {
+					obj->otyp = PAN_PIPE;
+					obj->spe  = 0;
+				}
 				break;
 			    case MAGIC_HARP:
-				obj->otyp = WOODEN_HARP;
-				obj->spe  = 0;
+				if ( (!rn2(5) || issoviet || evilfriday) && (!obj->oartifact || issoviet || isevilvariant) ) {
+					obj->otyp = WOODEN_HARP;
+					obj->spe  = 0;
+				}
 				break;
 			    case FIRE_HORN:
 			    case FROST_HORN:
@@ -26315,12 +26353,16 @@ register boolean force, here;
 			    case DEATH_HORN:
 			    case SHADOW_HORN:
 			    case HORN_OF_PLENTY:
-				obj->otyp = TOOLED_HORN;
-				obj->spe  = 0;
+				if ( (!rn2(5) || issoviet || evilfriday) && (!obj->oartifact || issoviet || isevilvariant) ) {
+					obj->otyp = TOOLED_HORN;
+					obj->spe  = 0;
+				}
 				break;
 			    case DRUM_OF_EARTHQUAKE:
-				obj->otyp = LEATHER_DRUM;
-				obj->spe  = 0;
+				if ( (!rn2(5) || issoviet || evilfriday) && (!obj->oartifact || issoviet || isevilvariant) ) {
+					obj->otyp = LEATHER_DRUM;
+					obj->spe  = 0;
+				}
 				break;
 			    }
 

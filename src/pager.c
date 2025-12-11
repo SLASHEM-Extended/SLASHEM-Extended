@@ -5834,6 +5834,7 @@ static NEARDATA const char * const soviettaunts[] = {
 "Kreml' ne pozvolit nikomu uznat' summu obvineniy, ob''yavlennykh v den' otkrytiya, potomu chto grazhdanskiye litsa, imeyushchiye dostup k etoy informatsii, budut obvineny v gosudarstvennoy izmene.",
 "Konechno, v Sovetskoy Rossii ne razreshayetsya poluchat' bol'she odnogo podarka na koronatsiyu. Eto deystvitel'no kul'minatsiya kommunizma.",
 "Sovetskiy mododel tochno znayet, chto vam zakhochetsya chitat' knigi zaklinaniy bol'she tridtsati raz, i poetomu sdelal eto nevozmozhnym! KHO-kho-kho.",
+"Tip ledyanogo bloka govorit o tom, chto vashe artefaktnoye snaryazheniye mozhet byt' polnost'yu unichtozheno letal'noy vodoy, potomu chto on KOROL' igrovogo balansa MUA KHA KHA KHA i on vsegda prav v svoikh dizaynerskikh resheniyakh! KHUA KHAR KHAR KHAR KHARRRR!",
 };
 
 static NEARDATA const char * const practicantlines[] = {

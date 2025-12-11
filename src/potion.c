@@ -279,6 +279,7 @@ struct obj *otmp;
 		case SCR_SUMMON_GHOST:
 		case SCR_MEGALOAD:
 		case SCR_VILENESS:
+		case SCR_SLEEP:
 		case SCR_HYBRIDIZATION:
 		case SCR_BAD_EQUIPMENT:
 		case SCR_ENRAGE:
@@ -512,6 +513,7 @@ int number;
 		case SCR_SUMMON_GHOST:
 		case SCR_MEGALOAD:
 		case SCR_VILENESS:
+		case SCR_SLEEP:
 		case SCR_HYBRIDIZATION:
 		case SCR_BAD_EQUIPMENT:
 		case SCR_ENRAGE:

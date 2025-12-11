@@ -22606,7 +22606,13 @@ cloneu()
 	mon = makemon(youmonst.data, u.ux, u.uy, NO_MINVENT|MM_EDOG);
 	if (mon) {
 	mon = christen_monst(mon, playeraliasname);
-	initedog(mon);
+	/* players shouldn't be able to easily create a swarm of tame Demogorgons with the incarnation technique! --Amy */
+	if (polyok(mon->data) || !rn2(10)) {
+		initedog(mon);
+	} else {
+		mon->mpeaceful = FALSE;
+		mon->mfrenzied = TRUE;
+	}
 	mon->m_lev = youmonst.data->mlevel;
 	mon->mhpmax = u.mhmax;
 	mon->mhp = u.mh / 2;

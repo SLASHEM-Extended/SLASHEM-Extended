@@ -1234,7 +1234,7 @@ int
 nastymusableitem() /* select the ID number of an item that the monsters may use against you --Amy */
 {
 
-	switch (rnd(210)) {
+	switch (rnd(211)) {
 
 		case 1:
 		case 2:
@@ -1566,6 +1566,8 @@ nastymusableitem() /* select the ID number of an item that the monsters may use 
 			return SCR_COURSE_TRAVELING;
 		case 210:
 			return POT_GREASE;
+		case 211:
+			return SCR_SLEEP;
 		default: /* fail safe */
 			return WAN_CREATE_HORDE;
 	}
@@ -1575,7 +1577,7 @@ nastymusableitem() /* select the ID number of an item that the monsters may use 
 int
 makemusableitem() /* select the ID number of a musable item --Amy */
 {
-	switch (rnd(325)) {
+	switch (rnd(326)) {
 
 		case 1: return WAN_SLEEP;
 		case 2: return WAN_FIREBALL;
@@ -1902,6 +1904,7 @@ makemusableitem() /* select the ID number of a musable item --Amy */
 		case 323: return WAN_SUPER_HEALING;
 		case 324: return WAN_TELEPORT_SELF;
 		case 325: return POT_GREASE;
+		case 326: return SCR_SLEEP;
 		default: return WAN_MAGIC_MISSILE;
 
 	}

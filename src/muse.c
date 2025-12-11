@@ -5118,6 +5118,7 @@ struct monst *mtmp;
 #define MUSE_POT_NITROGLYCERIN 164
 #define MUSE_DEATH_HORN 165
 #define MUSE_POT_GREASE 166
+#define MUSE_SCR_SLEEP 167
 
 /* Select an offensive item/action for a monster.  Returns TRUE iff one is
  * found.
@@ -5749,6 +5750,11 @@ struct monst *mtmp;
 		if(obj->otyp == SCR_VILENESS) {
 			m.offensive = obj;
 			m.has_offense = MUSE_SCR_VILENESS;
+		}
+		nomore(MUSE_SCR_SLEEP);
+		if(obj->otyp == SCR_SLEEP && (multi >= 0)) {
+			m.offensive = obj;
+			m.has_offense = MUSE_SCR_SLEEP;
 		}
 		nomore(MUSE_SCR_HYBRIDIZATION);
 		if(obj->otyp == SCR_HYBRIDIZATION) {
@@ -7612,6 +7618,22 @@ destroyagain:
 		if (otmp->oartifact == ART_ARABELLA_S_FILLER) {
 			bad_artifact();
 			bad_artifact();
+		}
+
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
+
+		return 2;
+
+	case MUSE_SCR_SLEEP:
+
+		mreadmsg(mtmp, otmp);
+		makeknown(otmp->otyp);
+
+		pline("You fall asleep!");
+		if (otmp->oartifact == ART_GUTNACHT_) {
+			fall_asleep(-rn1(50,50), TRUE);
+		} else {
+			fall_asleep(-rn1(5,5), TRUE);
 		}
 
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
@@ -10328,7 +10350,7 @@ newboss:
 		if (otmp && otmp->oartifact == ART_FUMBLE_FOR_THE_REST_OF_ALL) {
 			u.fumbleduration += rnz(10000);
 		} else {
-			u.fumbleduration += rnz(1000);
+			u.fumbleduration += rnz(250);
 		}
 
 		if (oseen) makeknown(WAN_FUMBLING);
@@ -10746,8 +10768,10 @@ newboss:
 		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 
 		You_feel("a hole in your %s!", body_part(STOMACH) );
-		if (u.uhunger > 0) morehungry(rnd(1000));
-		else morehungry(rnd(200)); /* we don't want to be TOO unfair... --Amy */
+		if (u.uhunger > 250) morehungry(rnd(1000));
+		else if (u.uhunger > 0) morehungry(rnd(400));
+		else if (u.uhunger > -500) morehungry(rnd(200));
+		else morehungry(rnd(50)); /* we don't want to be TOO unfair... --Amy */
 
 		if (otmp && otmp->oartifact == ART_INA_S_THERAPY) {
 			FemaleTrapIna += 5000;
@@ -11174,7 +11198,7 @@ struct monst *mtmp;
 			|| pm->mlet == S_GHOST
 			|| pm->mlet == S_KOP
 		) && issoviet) return 0;
-	switch (rn2(270)) {
+	switch (rn2(271)) {
 
 		case 0: return WAN_DEATH;
 		case 1: return WAN_SLEEP;
@@ -11446,6 +11470,7 @@ struct monst *mtmp;
 		case 267: return SCR_VISIBLE_ITEM;
 		case 268: return DEATH_HORN;
 		case 269: return POT_GREASE;
+		case 270: return SCR_SLEEP;
 
 		/* reminder to keep the below functions synced!! --Amy */
 
@@ -13130,6 +13155,7 @@ struct obj *obj;
 		 typ == SCR_GROUP_SUMMONING ||
 		 typ == SCR_FLOOD ||
 		 typ == SCR_VILENESS ||
+		 typ == SCR_SLEEP ||
 		 typ == SCR_HYBRIDIZATION ||
 		 typ == SCR_NASTY_CURSE ||
 		 typ == SCR_BAD_EQUIPMENT ||
