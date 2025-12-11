@@ -7425,12 +7425,6 @@ castanyway:
 
 	}
 
-	if (spellid(spell) == SPE_PARTICLE_CANNON) {
-
-		nomul(-6, "shooting the particle cannon", FALSE);
-
-	}
-
 	if (MiscastBug || u.uprops[MISCAST_BUG].extrinsic || have_miscastingstone()) {
 		badeffect();
 	}
@@ -7923,6 +7917,7 @@ metronomedoit:
 				break;
 			} else {
 				u.gaugetimer = 50;
+				nomul(-6, "shooting the particle cannon", FALSE);
 			}
 		}
 
