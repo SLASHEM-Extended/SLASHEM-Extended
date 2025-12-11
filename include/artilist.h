@@ -27043,6 +27043,34 @@ A("daennae daennae schnaeddae doe",				LEATHER_CLOAK, /* randart2 cloak, autocur
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
 
+A("Armando's Driving Force",				SPE_MAGICTORCH, /* randart2 spellbook, upon generating it tries to unlock skills and forces you to equip cursed artifacts for every skill that gets unlocked. firearms -> Godot's Suit Shoes, gun control -> Godot's Infrared Mask, djem so -> Godot's Coffee Supply, hammer -> Godot's Desk Slam */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
+
+A("Godot's Suit Shoes",				LOW_BOOTS, /* randart2 boots, resist stun, can walk on snow, +2 INT, heavily sticky autocurses */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Godot's Infrared Mask",				STANDARD_HELMET, /* randart2 helmet, double infravision, blindness resistance, changes red things to white, heavily autocurses */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Godot's Coffee Supply",				LEATHER_CLOAK, /* randart2 cloak, double sleep resistance, sticky autocurses */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Godot's Desk Slam",				REGULAR_GLOVES, /* randart2 gloves, aggravate monster, +4 increase damage, prime autocurses */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Stone of Health",				HEALTHSTONE, /* +5 healthbonus when carried */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Stone of Rotting",				HEALTHSTONE, /* autocurses, -5 healthbonus when carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

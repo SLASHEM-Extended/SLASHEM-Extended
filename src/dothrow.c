@@ -1844,6 +1844,7 @@ boolean hitsroof;
 	if (dmg > 0 && uarmf && uarmf->oartifact == ART_WOOT_WOOT) dmg += 1;
 	if (dmg > 0 && uwep && uwep->oartifact == ART_THOR_S_STRIKE && ACURR(A_STR) >= STR19(25)) dmg += 5;
 	if (dmg > 0 && uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) dmg += 10;
+	if (dmg > 0 && uarmg && uarmg->oartifact == ART_GODOT_S_DESK_SLAM) dmg += 4;
 	if (dmg > 0 && uarmc && uarmc->oartifact == ART_ORNA_S_DOUBLE) dmg += 4;
 	if (dmg > 0 && uimplant && uimplant->oartifact == ART_BREAHNA_S_GARBLE) dmg += 2;
 	if (dmg > 0 && uarmc && uarmc->oartifact == ART_SELVERFEND) dmg += 1;

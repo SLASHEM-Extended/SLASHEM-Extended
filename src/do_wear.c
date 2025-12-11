@@ -553,6 +553,12 @@ Boots_on()
 	}
     }
 
+    if (uarmf && uarmf->oartifact == ART_GODOT_S_SUIT_SHOES) {
+	curse(uarmf);
+	uarmf->hvycurse = uarmf->stckcurse = TRUE;
+	Your("boots are surrounded by a dark aura!");
+    }
+
     if (uarmf && uarmf->oartifact == ART_NINA_S_NONCOOPERATION) {
 	uarmf->oerodeproof = TRUE;
 	uarmf->rknown = TRUE;
@@ -1998,6 +2004,12 @@ Cloak_on()
 
 	if (uarmc && uarmc->oartifact == ART_ABDE_SCHRTSCH) uarmc->oerodeproof = TRUE;
 
+	if (uarmc && uarmc->oartifact == ART_GODOT_S_COFFEE_SUPPLY) {
+		curse(uarmc);
+		uarmc->stckcurse = TRUE;
+		Your("cloak is surrounded by a dark aura!");
+	}
+
 	if (uarmc && !(uarmc->cursed) && uarmc->oartifact == ART_BERTILLE_S_MOUSY_ATTITUDE) {
 		pline("Now your cloak is cursed.");
 		curse(uarmc);
@@ -2924,6 +2936,12 @@ Helmet_on()
 		}
     }
 
+    if (uarmh && uarmh->oartifact == ART_GODOT_S_INFRARED_MASK) {
+	curse(uarmh);
+	uarmh->hvycurse = TRUE;
+	Your("helmet is surrounded by a dark aura!");
+    }
+
     if (uarmh && uarmh->oartifact == ART_FLYYYYY) {
 		if (!uarmh->cursed) {
 			curse(uarmh);
@@ -3585,6 +3603,12 @@ Gloves_on()
 			uarmg->hvycurse = 1;
 		}
 
+	}
+
+	if (uarmg && uarmg->oartifact == ART_GODOT_S_DESK_SLAM) {
+		curse(uarmg);
+		uarmg->hvycurse = uarmg->prmcurse = TRUE;
+		Your("gloves are surrounded by a dark aura!");
 	}
 
 	if (uarmg && uarmg->oartifact == ART_OTTO_S_STEELWEAVE_GLOVES && !is_metallic(uarmg)) {

@@ -803,6 +803,7 @@ init_randarts()
 	artilist[ART_TURN_TO_ELEVEN].otyp = randartelementhorn();
 
 	artilist[ART_JANA_S_GRAVE_WALL].otyp = randartcloakX();
+	artilist[ART_GODOT_S_COFFEE_SUPPLY].otyp = randartcloakX();
 	artilist[ART_ANCHORAGE_BATTLECOAT].otyp = randartcloakX();
 	artilist[ART_SKI_CAN_CERIUM_FORM].otyp = randartcloakX();
 	artilist[ART_CLOAK_OF_THE_UNHELD_POTATO].otyp = randartcloakX();
@@ -846,6 +847,7 @@ init_randarts()
 	artilist[ART_SPECIAL_LACK].otyp = randartmeleeweaponX();
 	artilist[ART_WING_WING].otyp = randartmeleeweaponX();
 	artilist[ART_CARMOUFALSCH].otyp = randartspellbookX();
+	artilist[ART_ARMANDO_S_DRIVING_FORCE].otyp = randartspellbookX();
 	artilist[ART_WIE_ES_AUCH_SEI].otyp = randartspellbookX();
 	artilist[ART_MORTON_THEIRS_OF_RAVEL_RAD].otyp = randartspellbookX();
 	artilist[ART_DEEP_FRIENDS].otyp = randartspellbookX();
@@ -954,8 +956,9 @@ init_randarts()
 	artilist[ART_ARABELLA_S_MELEE_POWER].otyp = randartmeleeweaponX();
 	artilist[ART_ASBESTOS_MATERIAL].otyp = randartmeleeweaponX();
 	artilist[ART_DO_NOT_DISPLAY_THE_CHARGES].otyp = randartmeleeweaponX();
-	artilist[ART_TANKS_A_LOT].otyp = randartglovesX();
 	artilist[ART_GHAND].otyp = randartglovesX();
+	artilist[ART_GODOT_S_DESK_SLAM].otyp = randartglovesX();
+	artilist[ART_TANKS_A_LOT].otyp = randartglovesX();
 	artilist[ART_GAUNTLETS_OF_YIN_AND_YANG].otyp = randartglovesX();
 	artilist[ART_DIMVISION].otyp = randartglovesX();
 	artilist[ART_AL_UD].otyp = randartshieldX();
@@ -972,8 +975,9 @@ init_randarts()
 	artilist[ART_SUPER_ENERGY_LINES].otyp = randartshieldX();
 	artilist[ART_CCC_CCC_CCCCCCC].otyp = randartshieldX();
 	artilist[ART_FIVE_STAR_PARTY].otyp = randartshieldX();
-	artilist[ART_GUDRUN_S_STOMPING].otyp = randartbootsX();
 	artilist[ART_GOEFFELBOEFFEL].otyp = randartbootsX();
+	artilist[ART_GODOT_S_SUIT_SHOES].otyp = randartbootsX();
+	artilist[ART_GUDRUN_S_STOMPING].otyp = randartbootsX();
 	artilist[ART_TEMPERATOR].otyp = randartbootsX();
 	artilist[ART_PEWWWWWWW].otyp = randartjavelinX();
 	artilist[ART_VILYA].otyp = randartringX();
@@ -1036,6 +1040,7 @@ init_randarts()
 	artilist[ART_PROTECT_WHAT_CANNOT_BE_PRO].otyp = randartcloakX();
 	artilist[ART_DOEDOEDOEDOEDOEDOEDOE_TEST].otyp = randartcloakX();
 	artilist[ART_GIRLFUL_FARTING_NOISES].otyp = randarthelmX();
+	artilist[ART_GODOT_S_INFRARED_MASK].otyp = randarthelmX();
 	artilist[ART_YOU_SEE_HERE_AN_ARTIFACT].otyp = randarthelmX();
 	artilist[ART_NUMB_OR_MAYBE].otyp = randartglovesX();
 	artilist[ART_GLOVES_OF_VESDA].otyp = randartglovesX();
@@ -2800,6 +2805,78 @@ register boolean mod;
 			if (isok(cc.x, cc.y)) {
 				(void) mksobj_at(SCR_FLOOD, cc.x, cc.y, TRUE, FALSE, FALSE);
 			}
+		    }
+
+		    if (otmp && otmp->oartifact == ART_ARMANDO_S_DRIVING_FORCE) {
+			if (P_MAX_SKILL(P_FIREARM) == P_ISRESTRICTED) {
+
+				register struct obj *godotartifact;
+				godotartifact = mksobj(artilist[ART_GODOT_S_SUIT_SHOES].otyp, TRUE, FALSE, FALSE);
+				if (godotartifact) {
+					godotartifact = onameX(godotartifact, artiname(ART_GODOT_S_SUIT_SHOES));
+					(void) pickup_object(godotartifact, godotartifact->quan, TRUE, TRUE);
+					if (uarmf) remove_worn_item(uarmf, TRUE);
+					setworn(godotartifact, W_ARMF);
+					Boots_on();
+					if (godotartifact) curse(godotartifact);
+				}
+
+				unrestrict_weapon_skill(P_FIREARM);
+				P_MAX_SKILL(P_FIREARM) = P_BASIC;
+				pline("You can now learn the firearms skill!");
+			}
+			if (P_MAX_SKILL(P_GUN_CONTROL) == P_ISRESTRICTED) {
+
+				register struct obj *godotartifact;
+				godotartifact = mksobj(artilist[ART_GODOT_S_INFRARED_MASK].otyp, TRUE, FALSE, FALSE);
+				if (godotartifact) {
+					godotartifact = onameX(godotartifact, artiname(ART_GODOT_S_INFRARED_MASK));
+					(void) pickup_object(godotartifact, godotartifact->quan, TRUE, TRUE);
+					if (uarmh) remove_worn_item(uarmh, TRUE);
+					setworn(godotartifact, W_ARMH);
+					Helmet_on();
+					if (godotartifact) curse(godotartifact);
+				}
+
+				unrestrict_weapon_skill(P_GUN_CONTROL);
+				P_MAX_SKILL(P_GUN_CONTROL) = P_BASIC;
+				pline("You can now learn the gun control skill!");
+			}
+			if (P_MAX_SKILL(P_DJEM_SO) == P_ISRESTRICTED) {
+
+				register struct obj *godotartifact;
+				godotartifact = mksobj(artilist[ART_GODOT_S_COFFEE_SUPPLY].otyp, TRUE, FALSE, FALSE);
+				if (godotartifact) {
+					godotartifact = onameX(godotartifact, artiname(ART_GODOT_S_COFFEE_SUPPLY));
+					(void) pickup_object(godotartifact, godotartifact->quan, TRUE, TRUE);
+					if (uarmc) remove_worn_item(uarmc, TRUE);
+					setworn(godotartifact, W_ARMC);
+					Cloak_on();
+					if (godotartifact) curse(godotartifact);
+				}
+
+				unrestrict_weapon_skill(P_DJEM_SO);
+				P_MAX_SKILL(P_DJEM_SO) = P_BASIC;
+				pline("You can now learn the form V (Djem So) skill!");
+			}
+			if (P_MAX_SKILL(P_HAMMER) == P_ISRESTRICTED) {
+
+				register struct obj *godotartifact;
+				godotartifact = mksobj(artilist[ART_GODOT_S_DESK_SLAM].otyp, TRUE, FALSE, FALSE);
+				if (godotartifact) {
+					godotartifact = onameX(godotartifact, artiname(ART_GODOT_S_DESK_SLAM));
+					(void) pickup_object(godotartifact, godotartifact->quan, TRUE, TRUE);
+					if (uarmg) remove_worn_item(uarmg, TRUE);
+					setworn(godotartifact, W_ARMG);
+					Gloves_on();
+					if (godotartifact) curse(godotartifact);
+				}
+
+				unrestrict_weapon_skill(P_HAMMER);
+				P_MAX_SKILL(P_HAMMER) = P_BASIC;
+				pline("You can now learn the hammer skill!");
+			}
+
 		    }
 
 		    if (otmp && otmp->oartifact == ART_NINER) {

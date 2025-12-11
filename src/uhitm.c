@@ -4469,6 +4469,7 @@ int dieroll;
 		if (uarmf && uarmf->oartifact == ART_MAY_BRITT_S_ADULTHOOD) tmp += 1;
 		if (uwep && uwep->oartifact == ART_THOR_S_STRIKE && ACURR(A_STR) >= STR19(25)) tmp += 5;
 		if (uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) tmp += 10;
+		if (uarmg && uarmg->oartifact == ART_GODOT_S_DESK_SLAM) tmp += 4;
 		if (uarmf && uarmf->oartifact == ART_WOOT_WOOT) tmp += 1;
 		if (uarmf && uarmf->oartifact == ART_KUUGRUU__KUUGRUU_) tmp += 2;
 		if (uarmc && uarmc->oartifact == ART_ORNA_S_DOUBLE) tmp += 4;

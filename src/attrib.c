@@ -2108,9 +2108,12 @@ recalc_health()
 	u.uhealbonus = 0;
 
 	for(otmp = invent; otmp; otmp=otmp->nobj)
-	    if (otmp->otyp == HEALTHSTONE)
+	    if (otmp->otyp == HEALTHSTONE) {
 	    	u.uhealbonus += otmp->quan *
 	    			(otmp->blessed ? 2 : otmp->cursed ? -2 : 1);
+		if (otmp->oartifact == ART_STONE_OF_HEALTH) u.uhealbonus += (otmp->quan * 5);
+		if (otmp->oartifact == ART_STONE_OF_ROTTING) u.uhealbonus -= (otmp->quan * 5);
+	    }
 
 	if (uarmh && uarmh->oartifact == ART_NIAMH_PENH) u.uhealbonus += 2;
 	if (uwep && uwep->oartifact == ART_SYLVIE_S_EASY_MODE) u.uhealbonus += 10;
@@ -3759,6 +3762,7 @@ int x;
 		if (x == A_INT && uwep && uwep->oartifact == ART_SPECIFI_X_) tmp += 10;
 		if (x == A_INT && uwep && uwep->oartifact == ART_SHIVERING_STAFF) tmp += 4;
 		if (x == A_INT && uwep && uwep->oartifact == ART_STAFF_OF_INSANITY) tmp += 4;
+		if (x == A_INT && uarmf && uarmf->oartifact == ART_GODOT_S_SUIT_SHOES) tmp += 2;
 		if (uarmf && uarmf->oartifact == ART_COLLEGE_ROCKZ) tmp += 3;
 		if (uarm && uarm->oartifact == ART_PAUA_FOR_ME_) tmp += 1;
 		if (x == A_INT && uimplant && uimplant->oartifact == ART_TEMPORAL_LOBE_OF_ZORATH_TH) tmp += 3;

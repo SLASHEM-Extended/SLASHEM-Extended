@@ -961,6 +961,8 @@ struct obj *obj;
 		(void) stop_timer(FIG_TRANSFORM, (void *) obj);
 	}
 
+	if (obj->oartifact == ART_STONE_OF_ROTTING) curse(obj);
+
 	if (obj && obj->oartifact == ART_KHOR_S_CURSE) {
 		curse(obj);
 		if (obj->spe > -5) obj->spe = -5;
@@ -35852,6 +35854,20 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: deals significant amounts of damage to monsters who hit you in melee."); break;
 				case ART_DAENNAE_DAENNAE_SCHNAEDDAE:
 					pline("Artifact specs: autocurses when worn and gives the aefde trap effect but also makes you highly resistant to sanity-increasing effects."); break;
+				case ART_ARMANDO_S_DRIVING_FORCE:
+					pline("Artifact specs: upon generating, it taught you the secrets of Diego Armando, potentially forcing you to dress up like his future identity (Godot) in the process."); break;
+				case ART_GODOT_S_SUIT_SHOES:
+					pline("Artifact specs: stun resistance, +2 intelligence when worn and allows you to walk on snow. These boots become heavily sticky cursed when worn."); break;
+				case ART_GODOT_S_INFRARED_MASK:
+					pline("Artifact specs: double infravision, blindness resistance and red-white color blindness when worn. This helmet heavily autocurses when worn."); break;
+				case ART_GODOT_S_COFFEE_SUPPLY:
+					pline("Artifact specs: double sleep resistance, sticky autocurses when worn."); break;
+				case ART_GODOT_S_DESK_SLAM:
+					pline("Artifact specs: aggravate monster, +4 increase damage, prime autocurses when worn."); break;
+				case ART_STONE_OF_HEALTH:
+					pline("Artifact specs: gives a +5 boost to your health regeneration rate when carried."); break;
+				case ART_STONE_OF_ROTTING:
+					pline("Artifact specs: gives a -5 malus to your health regeneration rate when carried. Autocurses, because simply being able to ditch this artifact would be too easy."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;
