@@ -9858,9 +9858,13 @@ struct obj **ootmp;	/* to return worn armor for caller to disintegrate */
 			tmp /= 2;
 		}
 
-		pline("The beam confuses %s!",mon_nam(mon));
-		mon->mconf = TRUE;
-		if (Role_if(PM_PSION)) mon->mstun = TRUE;
+		/* wtf, what was I thinking when I originally designed this??? of course there needs to be a saving throw for the target monster! --Amy
+		 * otherwise, you could turn even Demogorgon into a target dummy who walks randomly instead of attacking, due to him constantly being confused! */
+		if (!resist(mon, SPBOOK_CLASS, 0, NOTELL)) {
+			if (!mon->mconf) pline("The beam confuses %s!",mon_nam(mon));
+			mon->mconf = TRUE;
+			if (Role_if(PM_PSION)) mon->mstun = TRUE;
+		}
 		break;
 	}
 	if (sho_shieldeff) shieldeff(mon->mx, mon->my);
