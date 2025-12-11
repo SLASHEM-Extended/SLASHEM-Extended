@@ -22677,6 +22677,7 @@ timebasedlowerchance()
 	}
 
 	if (ismatrayser && !rn2(20)) return FALSE; /* downside for having potentially better item materials */
+	if (flags.hybridmatrayser && !rn2(5)) return FALSE; /* extra downside because someone might pick this hybrid specifically to gain some advantage --Amy */
 
 	if (uarmh && uarmh->oartifact == ART_SUDUNSEL) return TRUE; /* always generate the item */
 
