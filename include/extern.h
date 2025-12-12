@@ -1093,6 +1093,7 @@ E boolean have_spectrumplinggem(void);
 E boolean have_amateurluckstone(void);
 E boolean have_suckstonearti(void);
 E boolean have_femityjewel(void);
+E boolean have_albiestone(void);
 E boolean have_refractura(void);
 E boolean have_analeahjewel(void);
 E boolean have_fragrantjewel(void);
@@ -1236,6 +1237,7 @@ E int have_highlevelstone(void);
 E int have_spellforgettingstone(void);
 E int have_soundeffectstone(void);
 E int have_timerunstone(void); /* Amy note: some nasty traps have "supernasty" versions */
+E int have_antimatterstone(void);
 E int have_antiswitchstone(void);
 E int have_bounddaychoicestone(void);
 E int have_epvistone(void);

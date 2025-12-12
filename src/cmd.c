@@ -3683,6 +3683,12 @@ boolean guaranteed;
 		you_have(buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && (AntimatterProblem || u.uprops[ANTIMATTER_PROBLEM].extrinsic || have_antimatterstone())) {
+		sprintf(buf, "the following problem: You repeatedly get hit with antimatter.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", AntimatterProblem);
+		you_have(buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && (BoundDayChoiceEffect || u.uprops[BOUND_DAY_CHOICE_EFFECT].extrinsic || have_bounddaychoicestone())) {
 		sprintf(buf, "the following problem: The bound day choice is happening.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", BoundDayChoiceEffect);
@@ -6754,6 +6760,7 @@ boolean guaranteed;
 		if (uarm && uarm->oartifact == ART_MOEBIUS_ARMOR) shieldblockrate += 10;
 		if (uarms->oartifact == ART_I_M_GETTING_HUNGRY) shieldblockrate += 20;
 		if (uarms->oartifact == ART_WHANG_CLINK_CLONK) shieldblockrate += 10;
+		if (uarms->oartifact == ART_SIDONIE_S_MIRROR) shieldblockrate += 25;
 		if (uarms->oartifact == ART_EASY_HOLD && !(uwep && bimanual(uwep)) && !(u.twoweap && uswapwep) ) shieldblockrate += 20;
 		if (uarms->oartifact == ART_BLACK_TOWER) shieldblockrate += 10;
 		if (uarms->oartifact == ART_EVEN_MORE_SUPERER) shieldblockrate += 10;
@@ -6773,9 +6780,6 @@ boolean guaranteed;
 		if (u.holyshield) shieldblockrate += (3 + spell_damage_bonus(SPE_HOLY_SHIELD));
 
 		if (uarms->spe > 0) shieldblockrate += (uarms->spe * 2);
-
-		if (uarms->cursed) shieldblockrate /= 2;
-		if (uarms->blessed) shieldblockrate += 5;
 
 		if (uarms->spe < 0) shieldblockrate += (uarms->spe * 2);
 
@@ -6799,6 +6803,9 @@ boolean guaranteed;
 			}
 		}
 
+		if (uarms->blessed) shieldblockrate += 5;
+		if (uarms->cursed && !(uarms->oartifact == ART_SIDONIE_S_MIRROR)) shieldblockrate /= 2;
+
 		if (Conflict && shieldblockrate > 0) {
 			shieldblockrate *= 2;
 			shieldblockrate /= 3;
@@ -6813,6 +6820,7 @@ boolean guaranteed;
 		if (uarms && uarms->oartifact == ART_THERMO_NUCLEAR_CHAMBER) shieldblockrate = 0;
 		if (uarms && uarms->oartifact == ART_SUPER_ENERGY_LINES) shieldblockrate = 0;
 		if (uarms && uarms->otyp == BROKEN_SHIELD) shieldblockrate = 0;
+		if (uarmf && uarmf->otyp == CATWALK_SANDALS) shieldblockrate = 0;
 
 		if (shieldblockrate < 0) shieldblockrate = 0;
 
@@ -8531,6 +8539,12 @@ int final;
 	      sprintf(eos(buf), " (%ld)", TimerunBug);
 		dump(youhad, buf);
 	}
+	if (AntimatterProblem || u.uprops[ANTIMATTER_PROBLEM].extrinsic || have_antimatterstone()) {
+		sprintf(buf, "the following problem: You repeatedly get hit with antimatter.");
+	      sprintf(eos(buf), " (%ld)", AntimatterProblem);
+		dump(youhad, buf);
+	}
+
 	if (BoundDayChoiceEffect || u.uprops[BOUND_DAY_CHOICE_EFFECT].extrinsic || have_bounddaychoicestone()) {
 		sprintf(buf, "the following problem: The bound day choice is happening.");
 		sprintf(eos(buf), " (%ld)", BoundDayChoiceEffect);

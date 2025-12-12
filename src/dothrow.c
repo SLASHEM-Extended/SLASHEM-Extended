@@ -299,6 +299,7 @@ int thrown;
 	    if (uarmf && uarmf->oartifact == ART_FRENCHYPOSS && uarmf->blessed && launcher && objects[launcher->otyp].oc_skill == P_FIREARM) multishot++;
 
 	    if (uarms && uarms->oartifact == ART_MISSING_LETTER_D && launcher && objects[launcher->otyp].oc_skill == P_SLING) multishot += 2;
+	    if (uarmg && uarmg->oartifact == ART_GLENNIS_DOWNS && launcher && objects[launcher->otyp].oc_skill == P_SLING) multishot += rnd(3);
 	    if (uleft && uleft->oartifact == ART_ACTUAL_CAVE_DWELLING && launcher && objects[launcher->otyp].oc_skill == P_SLING) multishot++;
 	    if (uright && uright->oartifact == ART_ACTUAL_CAVE_DWELLING && launcher && objects[launcher->otyp].oc_skill == P_SLING) multishot++;
 
@@ -352,6 +353,8 @@ int thrown;
 
 	    if (uamul && uamul->oartifact == ART_PURPLE_ARBALEST && launcher && objects[launcher->otyp].oc_skill == P_CROSSBOW) multishot++;
 	    if (uamul && uamul->oartifact == ART_PURPLE_ARBALEST) multishot++;
+	    if (uimplant && uimplant->oartifact == ART_JANONE_S_CANONE) multishot++;
+	    if (powerfulimplants() && uimplant && uimplant->oartifact == ART_JANONE_S_CANONE) multishot += 2;
 
 	    if (uimplant && uimplant->oartifact == ART_BIUUU_ && launcher && objects[launcher->otyp].oc_skill == P_CROSSBOW) multishot++;
 	    if (powerfulimplants() && uimplant && uimplant->oartifact == ART_BIUUU_ && launcher && objects[launcher->otyp].oc_skill == P_BOW) multishot++;
@@ -2846,6 +2849,7 @@ boolean polearming;
 	if (uarmg && uarmg->oartifact == ART_SI_OH_WEE) tmp += 2;
 	if (uimplant && uimplant->oartifact == ART_SOME_LITTLE_AID) tmp += 1;
 	if (uwep && uwep->oartifact == ART_RIP_STRATEGY) tmp -= 5;
+	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_JANONE_S_CANONE) tmp += 7;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_RIP_STRATEGY) tmp -= 5;
 	if (uarmf && uarmf->oartifact == ART_CRASHING_YOUR_SISTER_S_WED) tmp -= 5;
 	if (uarmf && uarmf->oartifact == ART_CAT_ROCKZ) tmp += 5;
@@ -2868,9 +2872,12 @@ boolean polearming;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_DUAL_MASTERY) tmp += 5;
 	if (uwep && uwep->oartifact == ART_SPINESHOOTER) tmp += 5;
 	if (uarmf && uarmf->oartifact == ART_PROPERTY_GRUMBLE) tmp -= 5;
+	if (uwep && uwep->oartifact == ART_BARANA_S_MISS) tmp -= 10;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_BARANA_S_MISS) tmp -= 10;
 	if (uarmg && uarmg->oartifact == ART_UNKNOWINGNESS_AS_A_WEAPON && !(objects[uarmg->otyp].oc_name_known)) tmp += 5;
 	if (uwep && uwep->oartifact == ART_FALCO_S_ORB) tmp += 1;
 	if (uwep && uwep->oartifact == ART_VERY_SPECIFICNESS) tmp += 1;
+	if (uarmg && itemhasappearance(uarmg, APP_NIMBLE_GLOVES)) tmp += 5;
 	if (uarmg && uarmg->oartifact == ART_PLUS_TO_HIT) tmp += 5;
 	if (uarmh && uarmh->oartifact == ART_BE_THE_LITE) tmp += 1;
 	if (uarms && uarms->oartifact == ART_RONDITSCH) tmp += 1;

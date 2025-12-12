@@ -270,14 +270,29 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 		Your("katana welds itself to your %s!", body_part(HAND));
 	}
 
+	if (uwep && uwep->oartifact == ART_BARANA_S_MISS && !uwep->cursed) {
+		curse(uwep);
+		Your("crossbow welds itself to your %s!", makeplural(body_part(HAND)));
+	}
+
 	if (uwep && uwep->oartifact == ART_OZYZEVPDWTVP && !uwep->cursed) {
 		curse(uwep);
 		Your("bow becomes cursed, hahaha.");
 	}
 
+	if (uwep && uwep->oartifact == ART_LENNY_S_MUSIC_MAKER && !uwep->cursed) {
+		curse(uwep);
+		Your("guitar becomes cursed, hahaha.");
+	}
+
 	if (uwep && uwep->oartifact == ART_EN_GARDE____TOUCHE_ && !uwep->cursed) {
 		curse(uwep);
 		Your("weapon becomes cursed. En garde... bitch.");
+	}
+
+	if (uwep && uwep->oartifact == ART_LERYN_S_HAMMER && !uwep->cursed) {
+		curse(uwep);
+		Your("weapon becomes cursed.");
 	}
 
 	if (uwep && uwep->oartifact == ART_KRASCHEEP && !uwep->cursed) {
@@ -778,14 +793,29 @@ swapweaponchoice:
 			Your("katana welds itself to your other %s!", body_part(HAND));
 		}
 
+		if (uswapwep && uswapwep->oartifact == ART_BARANA_S_MISS && !uswapwep->cursed) {
+			curse(uswapwep);
+			Your("crossbow, which you shouldn't even be able to off-hand, becomes cursed!");
+		}
+
 		if (uswapwep && uswapwep->oartifact == ART_OZYZEVPDWTVP && !uswapwep->cursed) {
 			curse(uswapwep);
 			Your("bow becomes cursed, hahaha.");
 		}
 
+		if (uswapwep && uswapwep->oartifact == ART_LENNY_S_MUSIC_MAKER && !uswapwep->cursed) {
+			curse(uswapwep);
+			Your("guitar becomes cursed, hahaha.");
+		}
+
 		if (uswapwep && uswapwep->oartifact == ART_EN_GARDE____TOUCHE_ && !uswapwep->cursed) {
 			curse(uswapwep);
 			Your("weapon becomes cursed. En garde... bitch.");
+		}
+
+		if (uswapwep && uswapwep->oartifact == ART_LERYN_S_HAMMER && !uswapwep->cursed) {
+			curse(uswapwep);
+			Your("weapon becomes cursed.");
 		}
 
 		if (uswapwep && uswapwep->oartifact == ART_KRASCHEEP && !uswapwep->cursed) {

@@ -4990,6 +4990,9 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ FULL_POWER_HELM, "todo" },
 	{ TESLA_POWER_HELM, "todo" },
 
+	{ ANTIMATTER_GLOVES, "todo" },
+	{ ANTIMATTER_STONE, "todo" },
+
 	{0, "" }
 };
 
@@ -8696,6 +8699,9 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ OUTCAST_POWER_HELM, "todo" },
 	{ FULL_POWER_HELM, "todo" },
 	{ TESLA_POWER_HELM, "todo" },
+
+	{ ANTIMATTER_GLOVES, "todo" },
+	{ ANTIMATTER_STONE, "todo" },
 
 	{0, "" }
 };

@@ -16402,6 +16402,8 @@ int spell;
 	if (uarmh && uarmh->oartifact == ART_ZERO_PERCENT_FAILURE) chance += 10;
 	if (uarmf && uarmf->oartifact == ART_SPELLBOOTS) chance += 10;
 	if (uarmc && uarmc->oartifact == ART_HENRIETTA_S_HEAVY_CASTER) chance += 15;
+	if (have_albiestone()) chance += 100;
+	if (uarmf && uarmf->oartifact == ART_ROWALLAN_S_BALLING) chance += 10;
 	if (uarmg && uarmg->oartifact == ART_ERASMUS__SCRIPTED_GAUNTLET) chance += 30;
 	if (uimplant && uimplant->oartifact == ART_SPINAL_MATRIX_OF_RAISTLIN) chance += 20;
 	if (uimplant && uimplant->oartifact == ART_SYNAPSE_CROWN_OF_GANDALF) chance += 15;

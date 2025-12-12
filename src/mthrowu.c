@@ -160,6 +160,7 @@ const char *name;	/* if null, then format `obj' */
 		if (uarm && uarm->oartifact == ART_MOEBIUS_ARMOR) shieldblockrate += 10;
 		if (uarms->oartifact == ART_I_M_GETTING_HUNGRY) shieldblockrate += 20;
 		if (uarms->oartifact == ART_WHANG_CLINK_CLONK) shieldblockrate += 10;
+		if (uarms->oartifact == ART_SIDONIE_S_MIRROR) shieldblockrate += 25;
 		if (uarms->oartifact == ART_EASY_HOLD && !(uwep && bimanual(uwep)) && !(u.twoweap && uswapwep) ) shieldblockrate += 20;
 		if (uarms->oartifact == ART_BLACK_TOWER) shieldblockrate += 10;
 		if (uarms->oartifact == ART_EVEN_MORE_SUPERER) shieldblockrate += 10;
@@ -179,9 +180,6 @@ const char *name;	/* if null, then format `obj' */
 		if (u.holyshield) shieldblockrate += (3 + spell_damage_bonus(SPE_HOLY_SHIELD));
 
 		if (uarms->spe > 0) shieldblockrate += (uarms->spe * 2);
-
-		if (uarms->cursed) shieldblockrate /= 2;
-		if (uarms->blessed) shieldblockrate += 5;
 
 		if (uarms->spe < 0) shieldblockrate += (uarms->spe * 2);
 
@@ -207,6 +205,9 @@ const char *name;	/* if null, then format `obj' */
 			}
 		}
 
+		if (uarms->blessed) shieldblockrate += 5;
+		if (uarms->cursed && !(uarms->oartifact == ART_SIDONIE_S_MIRROR)) shieldblockrate /= 2;
+
 		if (Conflict && shieldblockrate > 0) {
 			shieldblockrate *= 2;
 			shieldblockrate /= 3;
@@ -221,13 +222,13 @@ const char *name;	/* if null, then format `obj' */
 		if (uarms && uarms->oartifact == ART_THERMO_NUCLEAR_CHAMBER) shieldblockrate = 0;
 		if (uarms && uarms->oartifact == ART_SUPER_ENERGY_LINES) shieldblockrate = 0;
 		if (uarms && uarms->otyp == BROKEN_SHIELD) shieldblockrate = 0;
+		if (uarmf && uarmf->otyp == CATWALK_SANDALS) shieldblockrate = 0;
 
 		if (shieldblockrate < 0) shieldblockrate = 0;
 
 		/* If you're berserk, you cannot block at all. We will still show your actual chance to block in enlightenment,
 		   so this line should not be copied over to cmd.c --Amy */
 		if (u.berserktime) shieldblockrate = 0;
-		if (uarmf && uarmf->otyp == CATWALK_SANDALS) shieldblockrate = 0;
 
 	}
 

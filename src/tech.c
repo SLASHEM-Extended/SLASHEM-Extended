@@ -3373,7 +3373,7 @@ int abil;
 			return FALSE;
 			break;
 		case ABIL_POLY_HIDE:
-			if (is_hider(youmonst.data) || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_SKILLED && uactivesymbiosis && is_hider(&mons[u.usymbiote.mnum]) ) ) return TRUE;
+			if (is_hider(youmonst.data) || autismringcheck(ART_ADELISA_S_HIDING_GAME) || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_SKILLED && uactivesymbiosis && is_hider(&mons[u.usymbiote.mnum]) ) ) return TRUE;
 			return FALSE;
 			break;
 		case ABIL_POLY_MIND_BLAST:

@@ -1062,7 +1062,7 @@ doread()
 	    }
 	}
 
-	if (UnKnowledgeEffect || u.uprops[UN_KNOWLEDGE_EFFECT].extrinsic || have_unknowledgestone()) {
+	if (UnKnowledgeEffect || u.uprops[UN_KNOWLEDGE_EFFECT].extrinsic || have_unknowledgestone() || (uarmu && uarmu->oartifact == ART_STOCKTON_BRAND) ) {
 		if (scroll->oclass == SPBOOK_CLASS && scroll->otyp != SPE_BOOK_OF_THE_DEAD && !(objects[scroll->otyp].oc_name_known) ) {
 			pline("Unfortunately you don't know how to read that book.");
 			return(0);

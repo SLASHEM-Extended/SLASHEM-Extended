@@ -4074,7 +4074,7 @@ repairitemchoice:
 		break;
 	case MS_BARBER:
 
-		if (u.barbertimer < 5000) {
+		if (u.barbertimer < ((uarmu && uarmu->oartifact == ART_SOLINE_S_RUFFLE) ? 2500 : 5000) ) {
 			verbalize("Sorry, your last haircut was just %d turns ago, you have to wait a bit until I can give you another!", u.barbertimer);
 			break;
 		}
@@ -4089,6 +4089,9 @@ repairitemchoice:
 					barbercost += 100;
 				}
 			}
+			if (uarmu && uarmu->oartifact == ART_SOLINE_S_RUFFLE) barbercost /= 3;
+
+			if (barbercost < 10) barbercost = 10; /* sanity check */
 
 			verbalize("Hey %s, want a new haircut? Just %d zorkmids!", flags.female ? "girl" : "man", barbercost);
 

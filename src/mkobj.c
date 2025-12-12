@@ -4546,6 +4546,7 @@ boolean shopinit;
 				if (!rn2(5)) willhaveenchantment = TRUE;
 				break;
 			case HIPPIE_HEELS:
+			case ANTIMATTER_GLOVES:
 			case SENTIENT_HIGH_HEELED_SHOES:
 				if (!rn2(3)) willhaveenchantment = TRUE;
 				break;
@@ -4860,6 +4861,8 @@ boolean shopinit;
 	if (otmp && otmp->oclass != COIN_CLASS && weapon_type(otmp) != P_NONE && (weapchantreclevel() > rn2(400)) ) otmp->known = TRUE;
 
 	if (otmp && otmp->oclass != COIN_CLASS && (otmp->otyp == TIN || otmp->otyp == EGG) && !rn2(100 - (u.ulevel * (ishaxor ? 2 : 1) ) )) otmp->known = TRUE;
+
+	if (otmp && itemhasappearance(otmp, APP_BUCKLOAK)) otmp->bknown = TRUE;
 
 	/* For a curser, every item has an 80% chance of being cursed if it would have been noncursed. --Amy */
 	if (iscurser && otmp && otmp->oclass != COIN_CLASS && rn2(5)) curse_on_creation(otmp);

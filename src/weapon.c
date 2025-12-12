@@ -4272,10 +4272,12 @@ int skill;
 			if (NopeskillXtra) {
 				P_ADVANCE(skill) /= 2;
 				if (P_ADVANCE(skill) < 0) P_ADVANCE(skill) = 0;
+				skill_sanity_check(skill);
 			}
 
 			if (P_ADVANCE(skill) < 5) P_ADVANCE(skill) = 0;
 			else P_ADVANCE(skill) -= 5;
+			skill_sanity_check(skill);
 
 			if (!can_advance(skill, FALSE)) {
 				pline("Nope.");
@@ -7395,6 +7397,39 @@ screwupsdone:
 		}
 	}
 
+	if (bmwride(ART_MILAGROS_CURVE) && skill == P_RIDING && (P_MAX_SKILL(skill) < P_SUPREME_MASTER) ) {
+		if (P_RESTRICTED(P_RIDING) && P_ADVANCE(P_RIDING) >= 200) {
+			unrestrict_weapon_skill(P_RIDING);
+			P_MAX_SKILL(P_RIDING) = P_BASIC;
+			You("learn the riding skill!");
+		} else if (P_MAX_SKILL(P_RIDING) == P_BASIC && P_ADVANCE(P_RIDING) >= 1600) {
+			P_ADVANCE(P_RIDING) = 0;
+			skill_sanity_check(P_RIDING);
+			P_MAX_SKILL(P_RIDING) = P_SKILLED;
+			pline("You can now become skilled in riding!");
+		} else if (P_MAX_SKILL(P_RIDING) == P_SKILLED && P_ADVANCE(P_RIDING) >= 5400) {
+			P_ADVANCE(P_RIDING) = 0;
+			skill_sanity_check(P_RIDING);
+			P_MAX_SKILL(P_RIDING) = P_EXPERT;
+			pline("You can now become expert in riding!");
+		} else if (P_MAX_SKILL(P_RIDING) == P_EXPERT && P_ADVANCE(P_RIDING) >= 12800) {
+			P_ADVANCE(P_RIDING) = 0;
+			skill_sanity_check(P_RIDING);
+			P_MAX_SKILL(P_RIDING) = P_MASTER;
+			pline("You can now become master in riding!");
+		} else if (P_MAX_SKILL(P_RIDING) == P_MASTER && P_ADVANCE(P_RIDING) >= 25000) {
+			P_ADVANCE(P_RIDING) = 0;
+			skill_sanity_check(P_RIDING);
+			P_MAX_SKILL(P_RIDING) = P_GRAND_MASTER;
+			pline("You can now become grand master in riding!");
+		} else if (P_MAX_SKILL(P_RIDING) == P_GRAND_MASTER && P_ADVANCE(P_RIDING) >= 43200) {
+			P_ADVANCE(P_RIDING) = 0;
+			skill_sanity_check(P_RIDING);
+			P_MAX_SKILL(P_RIDING) = P_SUPREME_MASTER;
+			pline("You can now become supreme master in riding!");
+		}
+	}
+
 	if (uarmf && uarmf->oartifact == ART_ANALIS_VIRGINALIS && skill == P_MARTIAL_ARTS && (P_MAX_SKILL(skill) < P_SUPREME_MASTER) ) {
 		if (P_ADVANCE(P_MARTIAL_ARTS) >= 5000) {
 			if (P_RESTRICTED(P_MARTIAL_ARTS)) {
@@ -7403,6 +7438,7 @@ screwupsdone:
 				You("learn the martial arts skill!");
 			} else {
 				P_ADVANCE(P_MARTIAL_ARTS) = 0;
+				skill_sanity_check(P_MARTIAL_ARTS);
 
 				if (P_MAX_SKILL(P_MARTIAL_ARTS) == P_BASIC) {
 					P_MAX_SKILL(P_MARTIAL_ARTS) = P_SKILLED;

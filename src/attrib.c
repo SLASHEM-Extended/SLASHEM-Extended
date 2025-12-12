@@ -1863,6 +1863,11 @@ adjattrib(ndx, incr, msgflg, canresist)
 			return FALSE;
 		}
 
+		if (uarmh && uarmh->oartifact == ART_SAMIRA_S_EXPRESSION && !rn2(2)) {
+			Your("helmet prevents the stat loss!");
+			return FALSE;
+		}
+
 		if (uarm && uarm->oartifact == ART_CON_HOLD && ndx == A_CON) {
 			Your("armor prevents the constitution drain!");
 			return FALSE;
@@ -3168,6 +3173,7 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_LILAC_BEAUTY) tmp -= 5;
 		if (uarmf && uarmf->oartifact == ART_STEFANJE_S_PROBLEM) tmp += 2;
 		if (uwep && uwep->oartifact == ART_GAIA_HAMMER) tmp += 6;
+		if (ublindf && ublindf->oartifact == ART_SORELIE_S_ROPE) tmp += 10;
 		if (uwep && uwep->oartifact == ART_SEA_ANGERANCHOR) tmp += 7;
 		if (uwep && uwep->oartifact == ART_FUNE_NO_IKARI) tmp += 7;
 		if (uarm && uarm->oartifact == ART_TIMONA_S_INNER_BICKER) tmp += 3;
@@ -3397,6 +3403,7 @@ int x;
 		if (uarmc && uarmc->oartifact == ART_LILIANE_S_GLAMOUR_VEIL) tmp += 7;
 		if (uarmu && uarmu->oartifact == ART_JEDE_SIZE_HIZE) tmp += 3;
 		if (uarm && uarm->oartifact == ART_SING_S_STUNNING_BEAUTY) tmp += 10;
+		if (uarms && uarms->oartifact == ART_SIDONIE_S_MIRROR) tmp += 12;
 		if (uarmf && uarmf->oartifact == ART_LISSIE_S_SHEAGENTUR) tmp += 3;
 		if (uarmf && uarmf->oartifact == ART_EVELINE_S_LOVELIES) tmp += 3;
 		if (uarmf && uarmf->oartifact == ART_STEFANJE_S_PROBLEM) tmp += 2;
@@ -3436,6 +3443,7 @@ int x;
 		if (uarmh && uarmh->oartifact == ART_CAP_OF_THENGEL) tmp += 3;
 		if (uarmh && uarmh->oartifact == ART_SHREW_WIND) tmp += 5;
 		if (uamul && uamul->oartifact == ART_BEGGER_S_PENDANT) tmp += 4;
+		if (uarmh && uarmh->oartifact == ART_SAMIRA_S_EXPRESSION) tmp -= 2;
 		if (uarm && uarm->oartifact == ART_COLORED_OTHER) tmp += 1;
 		if (uarmh && uarmh->oartifact == ART_DREHTURN) tmp += 5;
 		if (uarmf && uarmf->otyp == SHOCK_ISOLATED_HEELS) tmp += 2;
@@ -3867,6 +3875,9 @@ int x;
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_MINOPOWER) tmp -= 3;
 		if (x == A_INT && uwep && uwep->oartifact == ART_SKAZKA_OB_DURAKE) tmp -= 3;
 		if (x == A_INT && u.twoweap && uswapwep && uswapwep->oartifact == ART_SKAZKA_OB_DURAKE) tmp -= 3;
+		if (x == A_INT && uleft && uleft->oartifact == ART_ADELISA_S_HIDING_GAME) tmp -= 2;
+		if (x == A_INT && uright && uright->oartifact == ART_ADELISA_S_HIDING_GAME) tmp -= 2;
+		if (uarmf && uarmf->oartifact == ART_JABINE_S_ORTHOGRAPHY) tmp -= 2;
 
 		if (x == A_INT && uarm && uarm->oartifact == ART_EITHER_INTELLIGENT_OR_FAIR && u.ualign.type != A_CHAOTIC) tmp -= 10;
 
@@ -3953,6 +3964,8 @@ int x;
 		if (uarmg && uarmg->oartifact == ART_ELARA_S_AGILITY) tmp += 5;
 		if (uarmf && uarmf->oartifact == ART_RONIKA_S_NORM) tmp += 1;
 		if (uarmc && uarmc->oartifact == ART_BERTILLE_S_MOUSY_ATTITUDE) tmp += 3;
+		if (uleft && uleft->oartifact == ART_ADELISA_S_HIDING_GAME) tmp += 3;
+		if (uright && uright->oartifact == ART_ADELISA_S_HIDING_GAME) tmp += 3;
 		if (uarmc && uarmc->oartifact == ART_ANCHORAGE_BATTLECOAT) tmp += 5;
 		if (uarmh && uarmh->oartifact == ART_CUMBERSOME_DESC) tmp += 2;
 		if (uleft && uleft->oartifact == ART_MAHPTY) tmp += 1;
@@ -3972,6 +3985,7 @@ int x;
 		if (uwep && uwep->oartifact == ART_ISSEGADA_KEN) tmp += 3;
 		if (uamul && uamul->otyp == AMULET_OF_PHYSICAL_BOOST) tmp += 3;
 		if (uarm && uarm->oartifact == ART_GREYSHADE) tmp += 5;
+		if (uarmg && itemhasappearance(uarmg, APP_DEXTROUS_GLOVES)) tmp += 3;
 		if (uarmf && uarmf->oartifact == ART_MELTEM_S_FEELING) tmp += 2;
 		if (uwep && uwep->oartifact == ART_HEAVY_CROSSBOW_OF_ETERNITY) tmp += 10;
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SABER_TONFA) tmp += 5;
@@ -4156,6 +4170,7 @@ int x;
 		if (uright && uright->oartifact == ART_CROQUE_FORD) tmp += 4;
 		if (uleft && uleft->oartifact == ART_BAHA_HARD) tmp += 5;
 		if (uright && uright->oartifact == ART_BAHA_HARD) tmp += 5;
+		if (uarmg && uarmg->oartifact == ART_GLENNIS_DOWNS) tmp += 8;
 		if (uimplant && uimplant->oartifact == ART_EARCLIP_OF_BEOWULF) tmp += 2;
 		if (uimplant && uimplant->oartifact == ART_NEURAL_GRAFT_OF_VAELRIC_TH) tmp += 2;
 		if (uimplant && uimplant->oartifact == ART_DIDI_S_LEG_PAINTING) tmp += 1;
@@ -4273,6 +4288,8 @@ int x;
 		if (uarmu && uarmu->oartifact == ART_TILLMANN_S_TARGET) tmp -= 5;
 		if (uarmf && uarmf->oartifact == ART_FAR_EAST_RELATION) tmp -= 3;
 		if (u.martialstyle == MARTIALSTYLE_BOOYAKASHA) tmp -= 5;
+		if (uleft && uleft->oartifact == ART_ADELISA_S_HIDING_GAME) tmp -= 2;
+		if (uright && uright->oartifact == ART_ADELISA_S_HIDING_GAME) tmp -= 2;
 
 		if (AllStatsAreLower) tmp -= min(tmp - 3, 10);
 		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= min(tmp - 3, 10);

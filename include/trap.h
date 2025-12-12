@@ -904,6 +904,8 @@ extern struct trap *ftrap;
 #define CHLOE_TRAP 788
 #define JOHANETTA_TRAP 789
 
+#define ANTIMATTER_TRAP 790
+
 /* todo area
 
 normal ones:
@@ -929,7 +931,6 @@ nasty traps:
 #define MONEYSAP_TRAP
 #define DROPPORT_TRAP
 #define CONTAINER_SPILL_TRAP
-#define ANTIMATTER_TRAP
 #define TELEPORTING_TRAPS_TRAP
 #define HARDEST_LAST_LINE_TRAP
 #define SUFFIX_TRAP
@@ -985,9 +986,9 @@ special ones that don't spawn randomly:
 
 */
 
-#define TIMERUN_TRAP	790
+#define TIMERUN_TRAP	791
 
-#define TRAPNUM 791
+#define TRAPNUM 792
 
 /* "newtraps" in particular, but also timerun and vulnerate may be targets for grepping --Amy */
 

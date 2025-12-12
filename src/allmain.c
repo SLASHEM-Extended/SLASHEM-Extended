@@ -2823,6 +2823,70 @@ nyssaraend:
 			castspecificspell(SPE_DETECT_TREASURE);
 		}
 
+		if (uwep && uwep->oartifact == ART_LENNY_S_MUSIC_MAKER && !rn2(5000)) {
+			if (P_MAX_SKILL(P_UNICORN_HORN) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(P_UNICORN_HORN);
+				pline("You can now learn the unicorn horn skill!");
+			} else if (P_MAX_SKILL(P_UNICORN_HORN) == P_UNSKILLED) {
+				unrestrict_weapon_skill(P_UNICORN_HORN);
+				pline("You can now learn the unicorn horn skill!");
+				P_MAX_SKILL(P_UNICORN_HORN) = P_BASIC;
+			} else if (P_MAX_SKILL(P_UNICORN_HORN) == P_BASIC && !rn2(2)) {
+				P_MAX_SKILL(P_UNICORN_HORN) = P_SKILLED;
+				P_ADVANCE(P_UNICORN_HORN) = 0;
+				skill_sanity_check(P_UNICORN_HORN);
+				pline("You can now become skilled with unicorn horns!");
+			} else if (P_MAX_SKILL(P_UNICORN_HORN) == P_SKILLED && !rn2(3)) {
+				P_MAX_SKILL(P_UNICORN_HORN) = P_EXPERT;
+				P_ADVANCE(P_UNICORN_HORN) = 0;
+				skill_sanity_check(P_UNICORN_HORN);
+				pline("You can now become expert with unicorn horns!");
+			} else if (P_MAX_SKILL(P_UNICORN_HORN) == P_EXPERT && !rn2(5)) {
+				P_MAX_SKILL(P_UNICORN_HORN) = P_MASTER;
+				P_ADVANCE(P_UNICORN_HORN) = 0;
+				skill_sanity_check(P_UNICORN_HORN);
+				pline("You can now become master with unicorn horns!");
+			} else if (P_MAX_SKILL(P_UNICORN_HORN) == P_MASTER && !rn2(10)) {
+				P_MAX_SKILL(P_UNICORN_HORN) = P_GRAND_MASTER;
+				P_ADVANCE(P_UNICORN_HORN) = 0;
+				skill_sanity_check(P_UNICORN_HORN);
+				pline("You can now become grand master with unicorn horns!");
+			} else if (P_MAX_SKILL(P_UNICORN_HORN) == P_GRAND_MASTER && !rn2(50)) {
+				P_MAX_SKILL(P_UNICORN_HORN) = P_SUPREME_MASTER;
+				P_ADVANCE(P_UNICORN_HORN) = 0;
+				skill_sanity_check(P_UNICORN_HORN);
+				pline("You can now become supreme master with unicorn horns!");
+			}
+
+		}
+
+		if (uamul && uamul->oartifact == ART_ROSINE_S_RAISE && !rn2(10000)) {
+			if (P_MAX_SKILL(P_PETKEEPING) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(P_PETKEEPING);
+				pline("You can now learn the petkeeping skill!");
+			} else if (P_MAX_SKILL(P_PETKEEPING) == P_UNSKILLED) {
+				unrestrict_weapon_skill(P_PETKEEPING);
+				pline("You can now learn the petkeeping skill!");
+				P_MAX_SKILL(P_PETKEEPING) = P_BASIC;
+			} else if (P_MAX_SKILL(P_PETKEEPING) == P_BASIC && !rn2(5)) {
+				P_MAX_SKILL(P_PETKEEPING) = P_SKILLED;
+				pline("You can now become skilled in petkeeping!");
+			} else if (P_MAX_SKILL(P_PETKEEPING) == P_SKILLED && !rn2(5)) {
+				P_MAX_SKILL(P_PETKEEPING) = P_EXPERT;
+				pline("You can now become expert in petkeeping!");
+			} else if (P_MAX_SKILL(P_PETKEEPING) == P_EXPERT && !rn2(5)) {
+				P_MAX_SKILL(P_PETKEEPING) = P_MASTER;
+				pline("You can now become master in petkeeping!");
+			} else if (P_MAX_SKILL(P_PETKEEPING) == P_MASTER && !rn2(5)) {
+				P_MAX_SKILL(P_PETKEEPING) = P_GRAND_MASTER;
+				pline("You can now become grand master in petkeeping!");
+			} else if (P_MAX_SKILL(P_PETKEEPING) == P_GRAND_MASTER && !rn2(5)) {
+				P_MAX_SKILL(P_PETKEEPING) = P_SUPREME_MASTER;
+				pline("You can now become supreme master in petkeeping!");
+			}
+
+		}
+
 		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_WENDLEWOOD && !rn2(5000)) {
 			use_temporary_tech(T_CLONE_JAVELIN);
 		}
@@ -2833,7 +2897,7 @@ nyssaraend:
 		}
 
 		if (uarmf && uarmf->oartifact == ART__K_FCJZ_OEAL_I_NE___P_OAMB) {
-			u.catwalknastytrap = rnd(287); /* timerun */
+			u.catwalknastytrap = rnd(288); /* timerun */
 		}
 
 		if (uimplant && uimplant->oartifact == ART_OCULAR_LENS_OF_DRIZZT && !rn2(5000)) {
@@ -2897,6 +2961,19 @@ nyssaraend:
 				dropy(acqo);
 				pline("A great item was spawned on the ground!");
 			}
+		}
+
+		if (AntimatterProblem && !rn2(AntimatterProblemXtra ? 1000 : 2000)) {
+			antimatter_damage(invent, FALSE, FALSE);
+		}
+		if (u.uprops[ANTIMATTER_PROBLEM].extrinsic && !rn2(AntimatterProblemXtra ? 1000 : 2000)) {
+			antimatter_damage(invent, FALSE, FALSE);
+		}
+		if (have_antimatterstone() && !rn2(AntimatterProblemXtra ? 1000 : 2000)) {
+			antimatter_damage(invent, FALSE, FALSE);
+		}
+		if (uamul && uamul->oartifact == ART_ROSINE_S_RAISE && !rn2(AntimatterProblemXtra ? 1000 : 2000)) {
+			antimatter_damage(invent, FALSE, FALSE);
 		}
 
 		if (uarmh && uarmh->oartifact == ART_RNG_DAEOLOEOLOEOLOEOLOEOLO && uarmh->spe > 0) uarmh->spe = 0;
@@ -6104,6 +6181,11 @@ greasingdone:
 			else skilltrainingdecrease((level_difficulty() * rnd(3)) + 1);
 		}
 
+		if (uarmh && uarmh->oartifact == ART_SAMIRA_S_EXPRESSION && !rn2(1000)) {
+			if (AntiTrainingXtra) skilltrainingdecrease((level_difficulty() * rnd(15)) + 1);
+			else skilltrainingdecrease((level_difficulty() * rnd(3)) + 1);
+		}
+
 		if (have_amateurluckstone() && !rn2(100)) {
 			contaminate(rnd(10), FALSE);
 		}
@@ -8981,7 +9063,7 @@ newbossJANI:
 		}
 
 		if (!rn2(5000)) {
-			u.startscummereffect = rnd(287); /* timerun effect */
+			u.startscummereffect = rnd(288); /* timerun effect */
 		}
 
 		if (FemtrapActiveElla && u.ulevel >= 10 && !rn2(20000)) {
@@ -10818,6 +10900,12 @@ newbossO:
 
 		}
 
+		if (!rn2(EvilPatchEffXtra ? 666 : 2000) && (uarmc && uarmc->oartifact == ART_NIMER_AGAIN) ) {
+			
+			getnastytrapintrinsic();
+
+		}
+
 		if (!rn2(EvilPatchEffXtra ? 666 : 2000) && uarm && uarm->oartifact == ART_TURBULENT_TIME) {
 			
 			getnastytrapintrinsic();
@@ -11377,6 +11465,29 @@ newbossO:
 		}
 
 		if (have_destructionstone() && !rn2(DestructionEffXtra ? 20 : 100)) {
+			switch (rnd(4)) {
+				case 1:
+					(void) burnarmor(&youmonst);
+					destroy_item(SCROLL_CLASS, AD_FIRE);
+					destroy_item(SPBOOK_CLASS, AD_FIRE);
+					destroy_item(POTION_CLASS, AD_FIRE);
+					break;
+				case 2:
+					destroy_item(POTION_CLASS, AD_COLD);
+					break;
+				case 3:
+					destroy_item(RING_CLASS, AD_ELEC);
+					destroy_item(WAND_CLASS, AD_ELEC);
+					destroy_item(AMULET_CLASS, AD_ELEC);
+					break;
+				case 4:
+					(void) destroy_item(POTION_CLASS, AD_VENO);
+					(void) destroy_item(FOOD_CLASS, AD_VENO);
+					break;
+			}
+		}
+
+		if (uimplant && uimplant->oartifact == ART_JANONE_S_CANONE && !rn2(DestructionEffXtra ? 20 : 100)) {
 			switch (rnd(4)) {
 				case 1:
 					(void) burnarmor(&youmonst);
@@ -12508,6 +12619,15 @@ newbossB:
 		}
 
 		if ( have_cursingstone() && !rn2(CursingThingsXtra ? 200 : 1000) ) {
+			if (!Blind) {
+				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+			}
+			rndcurse();
+
+		}
+
+		if ( (uarmc && uarmc->oartifact == ART_ADRIA_S_MIMICKING) && !rn2(CursingThingsXtra ? 200 : 1000) ) {
 			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
@@ -13685,6 +13805,17 @@ newboss:
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 
+		if (uarmg && uarmg->oartifact == ART_EXTREMOPLAS && !rn2(DisenchantRepXtra ? 200 : 1000)) {
+
+			struct obj *otmpE;
+		      for (otmpE = invent; otmpE; otmpE = otmpE->nobj) {
+				if (otmpE && !rn2(10)) (void) drain_item(otmpE);
+			}
+			Your("equipment seems less effective.");
+			u.cnd_disenchantamount++;
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+		}
+
 		if ((uarmc && uarmc->oartifact == ART_NUDE_PUNAM) && !rn2(DisenchantRepXtra ? 200 : 1000)) {
 
 			struct obj *otmpE;
@@ -13906,6 +14037,17 @@ newboss:
 			chaosy = rn2(ROWNO);
 			if (chaosx && chaosy && isok(chaosx, chaosy) && (levl[chaosx][chaosy].typ == ROOM || levl[chaosx][chaosy].typ == CORR) ) {
 				levl[chaosx][chaosy].typ = TOILET;
+			}
+
+		}
+
+		if (uarm && uarm->oartifact == ART_RHIANNON_S_RAINCLOUD && !rn2(50)) {
+
+			int chaosx, chaosy;
+			chaosx = rn1(COLNO-3,2);
+			chaosy = rn2(ROWNO);
+			if (chaosx && chaosy && isok(chaosx, chaosy) && (levl[chaosx][chaosy].typ == ROOM || levl[chaosx][chaosy].typ == CORR) ) {
+				levl[chaosx][chaosy].typ = RAINCLOUD;
 			}
 
 		}
@@ -20328,6 +20470,7 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "ball heels")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "flatform sandals")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "strap-on stilettos")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "gambling gloves")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}
@@ -21882,6 +22025,7 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "ball heels")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "flatform sandals")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "strap-on stilettos")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "gambling gloves")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}

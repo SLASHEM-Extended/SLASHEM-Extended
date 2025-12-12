@@ -5561,7 +5561,7 @@ eatcorpse(otmp)		/* called when a corpse is selected as food */
 	 * all. So you can save your holy waters, halleluja! --Amy */
 
 	if (!tp && !nocorpsedecay(&mons[mnum]) && mons[mnum].mlet != S_TROVE &&
-			(otmp->orotten || otmp->cursed || FoodIsAlwaysRotten || u.uprops[FOOD_IS_ROTTEN].extrinsic || have_rottenstone() || (mnum == PM_WINE_DANDELION) || (issoviet && !rn2(5)) || (!rn2(20) && !otmp->blessed) ) ) {
+			(otmp->orotten || otmp->cursed || FoodIsAlwaysRotten || u.uprops[FOOD_IS_ROTTEN].extrinsic || have_rottenstone() || (mnum == PM_WINE_DANDELION) || (issoviet && !rn2(5)) || (!rn2(20) && !(uamul && uamul->oartifact == ART_ROSINE_S_RAISE) && !otmp->blessed) ) ) {
 /* Come on, blessed food being equally susceptible to rotting is just stupid. --Amy */
 
 	    if (rottenfood(otmp)) {
@@ -6752,6 +6752,8 @@ eatspecial() /* called after eating non-food */
 				    NopeskillEffect |= FROMOUTSIDE; break;
 			case TIME_USE_STONE:
 				    TimerunBug |= FROMOUTSIDE; break;
+			case ANTIMATTER_STONE:
+				    AntimatterProblem |= FROMOUTSIDE; break;
 			case MULCH_STONE:
 				    MulchBug |= FROMOUTSIDE; break;
 			case ANTISWITCH_STONE:
@@ -9195,7 +9197,7 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 	    if (otmp->otyp != FORTUNE_COOKIE &&
 		(otmp->cursed || FoodIsAlwaysRotten || u.uprops[FOOD_IS_ROTTEN].extrinsic || have_rottenstone() ||
 		 (((monstermoves - otmp->age) > (int) (otmp->blessed ? 50 : 30)) &&
-		(otmp->orotten || (issoviet && !rn2(5)) || (!rn2(20) && !otmp->blessed) )))) {
+		(otmp->orotten || (issoviet && !rn2(5)) || (!rn2(20) && !(uamul && uamul->oartifact == ART_ROSINE_S_RAISE) && !otmp->blessed) )))) {
 
 		if (rottenfood(otmp)) {
 		    otmp->orotten = TRUE;

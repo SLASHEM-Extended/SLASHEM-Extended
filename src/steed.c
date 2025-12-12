@@ -619,6 +619,14 @@ mount_steed(mtmp, force)
 	    if (nogoodsteed(mtmp)) pline("This creature is too weak to carry you.");
 	    else if (dedicatedsteed(mtmp)) You_feel("comfortable.");
 
+	    if (otmp && otmp->oartifact == ART_YARA_S_HANDLE) {
+		if (P_MAX_SKILL(P_RIDING) == P_ISRESTRICTED) {
+			unrestrict_weapon_skill(P_RIDING);
+			P_MAX_SKILL(P_RIDING) = P_BASIC;
+			pline("You can now learn the riding skill!");
+		}
+	    }
+
 	    if (otmp && otmp->oartifact == ART_SADDLE_OF_REFLECTION) {
 		You("reflect upon your life choices when climbing the saddle.");
 		adjattrib(A_WIS, -1, FALSE, TRUE);

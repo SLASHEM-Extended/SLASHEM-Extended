@@ -1206,7 +1206,7 @@ can_reach_floor()
 {
 	return (boolean)(!u.uswallow &&
 			/* Restricted/unskilled riders can't reach the floor */
-			!(u.usteed && !(uwep && uwep->oartifact == ART_SORTIE_A_GAUCHE) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && !FemtrapActiveKerstin && !(bmwride(ART_DEEPER_LAID_BMW)) && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) ) &&
+			!(u.usteed && !(uwep && uwep->oartifact == ART_SORTIE_A_GAUCHE) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && !FemtrapActiveKerstin && !bmwride(ART_JAFARO_ON_TOUR) && !(bmwride(ART_DEEPER_LAID_BMW)) && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) ) &&
 			 ((!Levitation || (uarmf && uarmf->oartifact == ART_FLOTATED_DESK) || StrongLevitation) || is_table(u.ux, u.uy) ||
 			  Is_airlevel(&u.uz) || Is_waterlevel(&u.uz)));
 }
@@ -1547,6 +1547,8 @@ int
 freehand()
 {
 	if (uwep && uwep->oartifact == ART_WAR_S_SWORD) return 1;
+	if (uwep && uwep->oartifact == ART_BARANA_S_MISS) return 1;
+	if (uwep && uwep->oartifact == ART_LENNY_S_MUSIC_MAKER) return 1;
 	if (uwep && uwep->oartifact == ART_PIPPA_S_URGE) return 1;
 	if (uwep && uwep->oartifact == ART_BARDICHE_ASSALT) return 1;
 	if (uwep && uwep->oartifact == ART_DE_SID) return 1;
@@ -1569,6 +1571,8 @@ int
 freehandX()
 {
 	if (uwep && uwep->oartifact == ART_WAR_S_SWORD) return 1;
+	if (uwep && uwep->oartifact == ART_BARANA_S_MISS) return 1;
+	if (uwep && uwep->oartifact == ART_LENNY_S_MUSIC_MAKER) return 1;
 	if (uwep && uwep->oartifact == ART_PIPPA_S_URGE) return 1;
 	if (uwep && uwep->oartifact == ART_BARDICHE_ASSALT) return 1;
 	if (uwep && uwep->oartifact == ART_DE_SID) return 1;

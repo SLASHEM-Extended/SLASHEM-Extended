@@ -1844,6 +1844,10 @@ nh_timeout()
 		u.tempsupernastytrap_unidentify--;
 		if (u.tempsupernastytrap_unidentify < 0) u.tempsupernastytrap_unidentify = 0;
 	}
+	if (u.tempsupernastytrap_antimatter) {
+		u.tempsupernastytrap_antimatter--;
+		if (u.tempsupernastytrap_antimatter < 0) u.tempsupernastytrap_antimatter = 0;
+	}
 	if (u.tempsupernastytrap_antiswitch) {
 		u.tempsupernastytrap_antiswitch--;
 		if (u.tempsupernastytrap_antiswitch < 0) u.tempsupernastytrap_antiswitch = 0;

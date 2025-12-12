@@ -1881,7 +1881,7 @@ struct obj *obj;
 		return;
 	}
 
-	if (UnKnowledgeEffect || u.uprops[UN_KNOWLEDGE_EFFECT].extrinsic || have_unknowledgestone()) {
+	if (UnKnowledgeEffect || u.uprops[UN_KNOWLEDGE_EFFECT].extrinsic || have_unknowledgestone() || (uarmu && uarmu->oartifact == ART_STOCKTON_BRAND)) {
 		if (obj->otyp != CANDELABRUM_OF_INVOCATION && obj->otyp != BELL_OF_OPENING && !(objects[obj->otyp].oc_name_known) ) {
 			pline("Unfortunately, you don't know how to use that tool.");
 			return;
@@ -4743,7 +4743,7 @@ use_pole (obj)
 		pline("%s is frenzied!", Monnam(mtmp));
 	    }
 
-	    if ((!rn2(isfriday ? 50 : 100) || (!rn2(isfriday ? 12 : 25) && obj->otyp == WOODEN_BAR) || (!rn2(isfriday ? 12 : 25) && (obj->otyp == AKLYS || obj->otyp == BLOW_AKLYS))) && !mtmp->mpeaceful && !mtmp->mtame && !(amorphous(mtmp->data) || notake(mtmp->data) || nolimbs(mtmp->data) ) ) {
+	    if ((!rn2(isfriday ? 50 : 100) || (uarm && uarm->oartifact == ART_RHIANNON_S_RAINCLOUD && uarm->otyp != WEATHER_DRAGON_SCALES && !rn2(isfriday ? 50 : 100) ) || (!rn2(isfriday ? 12 : 25) && obj->otyp == WOODEN_BAR) || (!rn2(isfriday ? 12 : 25) && (obj->otyp == AKLYS || obj->otyp == BLOW_AKLYS))) && !mtmp->mpeaceful && !mtmp->mtame && !(amorphous(mtmp->data) || notake(mtmp->data) || nolimbs(mtmp->data) ) ) {
 		mon_adjust_speed(mtmp, 1, (struct obj *)0);
 	    }
 
@@ -5757,7 +5757,7 @@ doapply()
 
 	/* un-knowledge nastytrap: can't apply any tool, but invocation tools have to be exempt --Amy
 	 * candles must also be exempt because those can be put on the candelabrum */
-	if (UnKnowledgeEffect || u.uprops[UN_KNOWLEDGE_EFFECT].extrinsic || have_unknowledgestone()) {
+	if (UnKnowledgeEffect || u.uprops[UN_KNOWLEDGE_EFFECT].extrinsic || have_unknowledgestone() || (uarmu && uarmu->oartifact == ART_STOCKTON_BRAND)) {
 		if (obj->oclass == TOOL_CLASS && obj->otyp != CANDELABRUM_OF_INVOCATION && obj->otyp != BELL_OF_OPENING && !Is_candle(obj) && !(objects[obj->otyp].oc_name_known) ) {
 			pline("Unfortunately you don't know how to use that item.");
 			return(0);

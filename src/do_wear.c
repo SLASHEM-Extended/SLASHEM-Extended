@@ -559,6 +559,11 @@ Boots_on()
 	Your("boots are surrounded by a dark aura!");
     }
 
+    if (uarmf && uarmf->oartifact == ART_JABINE_S_ORTHOGRAPHY) {
+	curse(uarmf);
+	Your("boots became cursed.");
+    }
+
     if (uarmf && uarmf->oartifact == ART_NINA_S_NONCOOPERATION) {
 	uarmf->oerodeproof = TRUE;
 	uarmf->rknown = TRUE;
@@ -659,6 +664,11 @@ Boots_on()
     if (uarmf && uarmf->oartifact == ART_ENDARKEN_EVERYTHING && (objects[uarmf->otyp].oc_material != MT_SHADOWSTUFF)) {
 		pline_The("boots are made of shadowstuff now.");
 		objects[uarmf->otyp].oc_material = MT_SHADOWSTUFF;
+    }
+
+    if (uarmf && uarmf->oartifact == ART_ROWALLAN_S_BALLING && (objects[uarmf->otyp].oc_material != MT_STEEL)) {
+		pline_The("boots are made of steel now.");
+		objects[uarmf->otyp].oc_material = MT_STEEL;
     }
 
     if (uarmf && uarmf->oartifact == ART_GUDRUN_S_SURPRISE) {
@@ -1981,6 +1991,11 @@ Cloak_on()
 		curse(uarmc);
 		uarmc->hvycurse = TRUE;
 		You_feel("that the cloak is sticking to your body.");
+	}
+
+	if (uarmc && uarmc->oartifact == ART_NIMER_AGAIN) {
+		curse(uarmc);
+		Your("cloak is surrounded by a dark aura.");
 	}
 
 	if (uarmc && uarmc->oartifact == ART_GERMAN_CHANCELLOR_SAYS_) {
@@ -3469,6 +3484,7 @@ Gloves_on()
 	case INACCURATE_GLOVES:
 	case CONFUSING_GLOVES:
 	case UNDROPPABLE_GLOVES:
+	case ANTIMATTER_GLOVES:
 	case GAUNTLETS_OF_MISSING_INFORMATI:
 	case GAUNTLETS_OF_TRAP_CREATION:
 	case SADO_MASO_GLOVES:
@@ -3866,6 +3882,7 @@ Gloves_off()
 	case INACCURATE_GLOVES:
 	case CONFUSING_GLOVES:
 	case UNDROPPABLE_GLOVES:
+	case ANTIMATTER_GLOVES:
 	case GAUNTLETS_OF_MISSING_INFORMATI:
 	case GAUNTLETS_OF_TRAP_CREATION:
 	case SADO_MASO_GLOVES:
@@ -4273,6 +4290,10 @@ Shield_on()
 			curse(uarms);
 		}
     }
+    if (uarms && uarms->oartifact == ART_SIDONIE_S_MIRROR) {
+	curse(uarms);
+	Your("shield became cursed.");
+    }
     if (uarms && uarms->oartifact == ART_CCC_CCC_CCCCCCC) {
 		if (!uarms->cursed) {
 			curse(uarms);
@@ -4583,6 +4604,13 @@ Shirt_on()
 		pline("Yay, the sexy underwear sticks! Yay!");
 	}
 
+	if (uarmu && uarmu->oartifact == ART_STOCKTON_BRAND) {
+		curse(uarmu);
+		uarmu->oerodeproof = TRUE;
+		uarmu->rknown = TRUE;
+		Your("shirt is surrounded by a dark aura.");
+	}
+
 	if (uarmu->oartifact == ART_TRAP_DUNGEON_OF_SHAMBHALA) {
 
 		if (uarmu->spe < 10) uarmu->spe = 10;
@@ -4850,6 +4878,11 @@ Armor_on()
 	if (uarm && uarm->oartifact == ART_PLATFLAT && (objects[uarm->otyp].oc_material != MT_PLATINUM)) {
 		pline_The("armor is made of platinum now.");
 		objects[uarm->otyp].oc_material = MT_PLATINUM;
+	}
+
+	if (uarm && uarm->oartifact == ART_RHIANNON_S_RAINCLOUD && uarm->otyp != WEATHER_DRAGON_SCALES) {
+		curse(uarm);
+		Your("armor reacts strangely!");
 	}
 
 	if (uarm && uarm->oartifact == ART_LET_IT_STAY && uarm->otyp >= GRAY_DRAGON_SCALES && uarm->otyp <= YELLOW_DRAGON_SCALES) {
@@ -5576,6 +5609,11 @@ Amulet_on()
 		verbalize("Wo-wo-wo-wo-wo.");
     }
 
+    if (uamul && uamul->oartifact == ART_ROSINE_S_RAISE) {
+		curse(uamul);
+		Your("amulet got cursed.");
+    }
+
     if (uamul && uamul->oartifact == ART_MEDI_LEASH && !uamul->cursed) {
 		curse(uamul);
 		pline("Oops, the leash fastens itself around your throat.");
@@ -6178,6 +6216,12 @@ register struct obj *obj;
 		Your("ring cursed itself.");
     }
 
+    if (obj->oartifact == ART_ADELISA_S_HIDING_GAME) {
+	curse(obj);
+	obj->hvycurse = TRUE;
+	Your("ring became heavily cursed!");
+    }
+
     if (obj->oartifact == ART_FINDBOLD) {
 	if (!obj->cursed) curse(obj);
 	obj->stckcurse = TRUE;
@@ -6505,6 +6549,11 @@ register struct obj *otmp;
 
 	if (otmp && otmp->oartifact == ART_GIRLFRIEND_DOESN_T_WANNA_C) {
 		curse(otmp);
+	}
+
+	if (otmp && otmp->oartifact == ART_SORELIE_S_ROPE) {
+		curse(otmp);
+		pline("It seems that the rope is cursed!");
 	}
 
 	if (otmp && otmp->oartifact == ART_SYLBE_S_LACK) {
@@ -7993,6 +8042,7 @@ find_ac()
 	if (uarm && uarm->oartifact == ART_NOPPED_SUIT) uac -= 3;
 	if (uarm && uarm->oartifact == ART_BLASWON) uac -= 1;
 	if (uarm && uarm->oartifact == ART_TANKSTA_S_SUIT) uac -= 6;
+	if (uarmc && uarmc->oartifact == ART_NIMER_AGAIN) uac -= 10;
 	if (uarm && uarm->otyp == FULL_POWER_ARMOR && uarmh && uarmh->otyp == FULL_POWER_HELM) uac -= 5;
 	if (uarm && uarm->oartifact == ART_WOOHOO_AMATEURHOUR_) uac -= 5;
 	if (uarm && uarm->oartifact == ART_COME_ON_AMMY) uac -= 5;
@@ -8010,6 +8060,7 @@ find_ac()
 	if (uarmh && uarmh->oartifact == ART_NOSED_BUG) uac -= 7;
 	if (uarmh && uarmh->oartifact == ART_NO_MIND_DECAY) uac -= 5;
 	if (uarmf && uarmf->oartifact == ART_PORCELAIN_ELEPHANT) uac -= 5;
+	if (uarmg && uarmg->oartifact == ART_EXTREMOPLAS) uac -= 10;
 	if (uarmf && uarmf->oartifact == ART_XTRA_CUTENESS) uac -= 5;
 	if (uarmf && uarmf->oartifact == ART_KRISTIN_S_INNER_FEEL && objects[uarmf->otyp].oc_color == CLR_RED) uac -= 10;
 	if (uarmf && uarmf->oartifact == ART_DAMPENER) uac -= 5;
@@ -8046,6 +8097,7 @@ find_ac()
 	if (uarmg && uarmg->oartifact == ART_OTTO_S_STEELWEAVE_GLOVES) uac -= 2;
 	if (uarmc && uarmc->oartifact == ART_CLARA_S_WINDCLOAK) uac -= 1;
 	if (uarm && uarm->oartifact == ART_DONNICA_S_SUPERLATIVE) uac -= 30;
+	if (uarmu && uarmu->oartifact == ART_STOCKTON_BRAND) uac -= 2;
 	if (uarmc && uarmc->oartifact == ART_NATALIA_S_PROTECTOR_POWER && flags.female && FemtrapActiveNatalia) uac -= 8;
 	if (uarmh && uarmh->oartifact == ART_LEHOBAUM) uac -= 100;
 	if (uimplant && uimplant->oartifact == ART_BONE_LATTICE_OF_LANCELOT) uac -= 2;
@@ -8826,6 +8878,7 @@ glibr()
 	const char *otherwep = 0;
 
 	int isknuckles = FALSE;
+	int willstayinhand = FALSE;
 
 	leftfall = (uleft && !uleft->cursed &&
 		    (!uwep || !welded(uwep) || !bimanual(uwep)));
@@ -8850,7 +8903,7 @@ glibr()
 	}
 
 	otmp = uswapwep;
-	if (u.twoweap && otmp && (otmp->otyp != BRASS_KNUCKLES) && !(otmp->oartifact == ART_GREEN_ASSISTANT) && (otmp->otyp != SUPER_KNUCKLES) && (otmp->otyp != ULTRA_KNUCKLES) && (otmp->otyp != MASTER_KNUCKLES) && (otmp->otyp != ELITE_KNUCKLES) ) {
+	if (u.twoweap && otmp && (otmp->otyp != BRASS_KNUCKLES) && !(ublindf && ublindf->oartifact == ART_SORELIE_S_ROPE) && !(otmp->oartifact == ART_GREEN_ASSISTANT) && (otmp->otyp != SUPER_KNUCKLES) && (otmp->otyp != ULTRA_KNUCKLES) && (otmp->otyp != MASTER_KNUCKLES) && (otmp->otyp != ELITE_KNUCKLES) ) {
 		otherwep = is_sword(otmp) ? c_sword :
 		    makesingular(oclass_names[(int)otmp->oclass]);
 		Your("%s %sslips from your %s.",
@@ -8865,9 +8918,10 @@ glibr()
 	otmp = uwep;
 
 	/* brass knuckles do not fall off, unless (hypothetically) you're wearing heavy ones with a STR of 1 --Amy */
-	if (otmp && (otmp->otyp == BRASS_KNUCKLES || otmp->otyp == SUPER_KNUCKLES || otmp->otyp == ULTRA_KNUCKLES || otmp->otyp == MASTER_KNUCKLES || otmp->otyp == ELITE_KNUCKLES || otmp->oartifact == ART_GREEN_ASSISTANT) ) isknuckles = TRUE;
+	if (otmp && (otmp->otyp == BRASS_KNUCKLES || otmp->otyp == SUPER_KNUCKLES || otmp->otyp == ULTRA_KNUCKLES || otmp->otyp == MASTER_KNUCKLES || otmp->otyp == ELITE_KNUCKLES) ) isknuckles = TRUE;
+	if (otmp && (otmp->oartifact == ART_GREEN_ASSISTANT || (ublindf && ublindf->oartifact == ART_SORELIE_S_ROPE) ) ) willstayinhand = TRUE;
 
-	if (otmp && !welded(otmp) && !(uarmg && uarmg->oartifact == ART_CORVIN_S_GRIP_OF_PERSISTEN) && !(isknuckles && ACURR(A_STR) > 1) ) {
+	if (otmp && !welded(otmp) && !(uarmg && uarmg->oartifact == ART_CORVIN_S_GRIP_OF_PERSISTEN) && !willstayinhand && !(isknuckles && ACURR(A_STR) > 1) ) {
 		const char *thiswep;
 
 		/* nice wording if both weapons are the same type */

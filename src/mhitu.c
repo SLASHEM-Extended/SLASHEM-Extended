@@ -2043,6 +2043,7 @@ u_slow_down()
 	if (uarmf && uarmf->oartifact == ART_ERIK_S_MARCHING_BOOTS) return;
 	if (Race_if(PM_SAMEDI)) return;
 	if (bmwride(ART_SENATOR_S_SPEED)) return;
+	if (uarmf && uarmf->oartifact == ART_ROWALLAN_S_BALLING) return;
 	if (uarmf && itemhasappearance(uarmf, APP_NOT_SLOWING_DOWN_BOOTS) && rn2(10)) return; /* 90% resistance */
 
 	HFast = 0L;
@@ -2522,6 +2523,7 @@ mattacku(mtmp)
 	if (uarmc && uarmc->oartifact == ART_NUDE_PUNAM && !rn2(5)) tmp -= 100;
 	if (uarm && uarm->oartifact == ART_BEXLEY_S_CUTESY && !rn2(10)) tmp -= 100;
 	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_OCULAR_LENS_OF_DRIZZT && (rnd(100) < 16) ) tmp -= 100;
+	if (uarmf && uarmf->oartifact == ART_JABINE_S_ORTHOGRAPHY && is_female(mtmp->data) && !rn2(10)) tmp -= 100;
 
 	if (uarmf && uarmf->oartifact == ART_OUT_OF_REACH) {
 		if (verysmall(mtmp->data)) {
@@ -7032,6 +7034,7 @@ struct monst *mon;
 		if (uarmf && uarmf->oartifact == ART_HANNAH_S_INNOCENCE) armpro += 2;
 		if (uarm && uarm->otyp == NOPE_DRAGON_SCALES) armpro += 2;
 		if (uarmc && uarmc->oartifact == ART_EMIL_S_MANTLE_OF_RESOLVE) armpro += 2;
+		if (uarmc && uarmc->oartifact == ART_ADRIA_S_MIMICKING) armpro += 2;
 		if (uarmh && uarmh->oartifact == ART_GISELA_S_TRICK) armpro += 3;
 		if (uarm && uarm->oartifact == ART_EMSE_TRADE) armpro += 3;
 		if (uarmh && uarmh->oartifact == ART_SENOBIA_S_CROWN) armpro++;
@@ -7078,6 +7081,7 @@ struct monst *mon;
 		if (ublindf && ublindf->oartifact == ART_SYLBE_S_LACK) armpro--;
 
 		if (uimplant && uimplant->oartifact == ART_ARABELLA_S_RECTIFIER) armpro *= 2;
+		if (uarmg && uarmg->oartifact == ART_EXTREMOPLAS) armpro *= 2;
 
 		/* artifact that sets MC to an exact value, ignoring modifiers (except unbalancor) */
 		if (uarm && uarm->oartifact == ART_EMSI_WOERS) armpro = 2;
@@ -7238,7 +7242,7 @@ hitmu(mtmp, mattk)
 
 	}
 
-	if ((UnfairAttackBug || u.uprops[UNFAIR_ATTACK_BUG].extrinsic || have_unfairattackstone()) && atttyp == AD_PHYS && !rn2(UnfairAttackXtra ? 20 : 100)) {
+	if ((UnfairAttackBug || u.uprops[UNFAIR_ATTACK_BUG].extrinsic || have_unfairattackstone() || (uarmf && uarmf->oartifact == ART_ROWALLAN_S_BALLING) ) && atttyp == AD_PHYS && !rn2(UnfairAttackXtra ? 20 : 100)) {
 		while (atttyp == AD_ENDS || atttyp == AD_RBRE || atttyp == AD_WERE || atttyp == AD_PHYS) {
 			atttyp = rn2(AD_ENDS); }
 
@@ -8987,6 +8991,8 @@ dopois:
 			} else if (Role_if(PM_ASTRONAUT) && rn2(5)) {
 			/* astronauts are good at wriggling free, but will still get hurt by the attack itself --Amy */
 				pline("%s constricts you!", Monnam(mtmp)); /* but doesn't wrap around you */
+			} else if (ublindf && ublindf->oartifact == ART_SORELIE_S_ROPE && rn2(10)) {
+				pline("%s constricts you!", Monnam(mtmp)); /* but doesn't wrap around you */
 			} else if (uamul && uamul->oartifact == ART_EMPTYSNAP) {
 				pline("%s constricts you!", Monnam(mtmp)); /* but doesn't wrap around you */
 			} else if ((uwep && uwep->oartifact == ART_HELICOPTER_CHAIN) || (uchain && uchain->oartifact == ART_HELICOPTER_CHAIN)) {
@@ -9298,7 +9304,7 @@ dopois:
 			if (mtmp->mcan) break;
 			/* Continue below */
 		} else if (rn2(5) && !(StealersActive) &&
-			(dmgtype(youmonst.data, AD_SEDU) || (uarmg && uarmg->oartifact == ART_LORSKEL_S_SPECIAL_PROTECTI) || (ublindf && ublindf->oartifact == ART_CLICKPASS) || (uwep && uwep->oartifact == ART_LUCKY_DAGGER) || (uwep && uwep->oartifact == ART_THIN_DAGGER) || autismringcheck(ART_PALMIA_PRIDE) || (uamul && uamul->oartifact == ART_BEGGER_S_PENDANT) || (uwep && uwep->oartifact == ART_SEA_ANGERANCHOR) || (uarmh && uarmh->oartifact == ART_BIG_REAR_END) || (uarmh && uarmh->oartifact == ART_SHREW_WIND) || (uwep && uwep->oartifact == ART_FUNE_NO_IKARI) || (ublindf && ublindf->oartifact == ART_MILARY_S_DAILY_SIGH) || (uarm && uarm->oartifact == ART_BELLY_W) || (uleft && uleft->oartifact == ART_DOUBLE_ADORNING && uleft->spe >= 0) || (uright && uright->oartifact == ART_DOUBLE_ADORNING && uright->spe >= 0) || (uarm && uarm->oartifact == ART_TRIANGLE_GIRL && flags.female && u.ulevel < 10) || (uwep && uwep->oartifact == ART_ST_ICKYNESS) || (uarmf && uarmf->oartifact == ART_SHE_S_NOT_FORGOTTEN) || (uwep && uwep->oartifact == ART_ONE_HUNDRED_STARS) || (uwep && uwep->oartifact == ART_SNATCHER) || (uwep && uwep->oartifact == ART_SILPHEED) || (uarmc && uarmc->otyp == CLOAK_OF_THEFT_PREVENTION) || (uarmu && uarmu->oartifact == ART_STRIPED_SHIRT_OF_THE_THIEF)
+			(dmgtype(youmonst.data, AD_SEDU) || (uarmg && uarmg->oartifact == ART_LORSKEL_S_SPECIAL_PROTECTI) || (ublindf && ublindf->oartifact == ART_CLICKPASS) || (uwep && uwep->oartifact == ART_LUCKY_DAGGER) || (uwep && uwep->oartifact == ART_THIN_DAGGER) || autismringcheck(ART_PALMIA_PRIDE) || (uamul && uamul->oartifact == ART_BEGGER_S_PENDANT) || (uwep && uwep->oartifact == ART_SEA_ANGERANCHOR) || (uarmh && uarmh->oartifact == ART_BIG_REAR_END) || (uarmh && uarmh->oartifact == ART_SHREW_WIND) || (uwep && uwep->oartifact == ART_FUNE_NO_IKARI) || autismringcheck(ART_ADELISA_S_HIDING_GAME) || (ublindf && ublindf->oartifact == ART_MILARY_S_DAILY_SIGH) || (uarm && uarm->oartifact == ART_BELLY_W) || (uleft && uleft->oartifact == ART_DOUBLE_ADORNING && uleft->spe >= 0) || (uright && uright->oartifact == ART_DOUBLE_ADORNING && uright->spe >= 0) || (uarm && uarm->oartifact == ART_TRIANGLE_GIRL && flags.female && u.ulevel < 10) || (uwep && uwep->oartifact == ART_ST_ICKYNESS) || (uarmf && uarmf->oartifact == ART_SHE_S_NOT_FORGOTTEN) || (uwep && uwep->oartifact == ART_ONE_HUNDRED_STARS) || (uwep && uwep->oartifact == ART_SNATCHER) || (uwep && uwep->oartifact == ART_SILPHEED) || (uarmc && uarmc->otyp == CLOAK_OF_THEFT_PREVENTION) || (uarmu && uarmu->oartifact == ART_STRIPED_SHIRT_OF_THE_THIEF)
 			|| dmgtype(youmonst.data, AD_SSEX)
 						) ) {
 			pline("%s %s.", Monnam(mtmp), mtmp->minvent ?
@@ -9688,7 +9694,7 @@ dopois:
 		{
 			register int midentity = mtmp->m_id;
 			if (midentity < 0) midentity *= -1;
-			while (midentity > 287) midentity -= 287; /* timerun! */
+			while (midentity > 288) midentity -= 288; /* timerun! */
 
 			register int nastyduration = ((dmg + 2) * rnd(10));
 			if (YouAreScrewedEternally) nastyduration *= 20;
@@ -11321,7 +11327,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 
 	}
 
-	if ((UnfairAttackBug || u.uprops[UNFAIR_ATTACK_BUG].extrinsic || have_unfairattackstone()) && atttypA == AD_PHYS && !rn2(UnfairAttackXtra ? 20 : 100)) {
+	if ((UnfairAttackBug || u.uprops[UNFAIR_ATTACK_BUG].extrinsic || have_unfairattackstone() || (uarmf && uarmf->oartifact == ART_ROWALLAN_S_BALLING) ) && atttypA == AD_PHYS && !rn2(UnfairAttackXtra ? 20 : 100)) {
 		while (atttypA == AD_ENDS || atttypA == AD_RBRE || atttypA == AD_WERE || atttypA == AD_PHYS) {
 			atttypA = rn2(AD_ENDS); }
 
@@ -11897,7 +11903,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 		{
 			register int midentity = mtmp->m_id;
 			if (midentity < 0) midentity *= -1;
-			while (midentity > 287) midentity -= 287; /* timerun! */
+			while (midentity > 288) midentity -= 288; /* timerun! */
 
 			register int nastyduration = ((tmp + 2) * rnd(10));
 			if (YouAreScrewedEternally) nastyduration *= 20;
@@ -13849,7 +13855,7 @@ boolean ufound;
 
 	}
 
-	if ((UnfairAttackBug || u.uprops[UNFAIR_ATTACK_BUG].extrinsic || have_unfairattackstone()) && atttypC == AD_PHYS && !rn2(UnfairAttackXtra ? 20 : 100)) {
+	if ((UnfairAttackBug || u.uprops[UNFAIR_ATTACK_BUG].extrinsic || have_unfairattackstone() || (uarmf && uarmf->oartifact == ART_ROWALLAN_S_BALLING) ) && atttypC == AD_PHYS && !rn2(UnfairAttackXtra ? 20 : 100)) {
 		while (atttypC == AD_ENDS || atttypC == AD_RBRE || atttypC == AD_WERE || atttypC == AD_PHYS) {
 			atttypC = rn2(AD_ENDS); }
 
@@ -14109,7 +14115,7 @@ common:
 		{
 			register int midentity = mtmp->m_id;
 			if (midentity < 0) midentity *= -1;
-			while (midentity > 287) midentity -= 287; /* timerun! */
+			while (midentity > 288) midentity -= 288; /* timerun! */
 
 			register int nastyduration = ((tmp + 2) * rnd(10));
 			if (YouAreScrewedEternally) nastyduration *= 20;
@@ -16210,7 +16216,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 	}
 
-	if ((UnfairAttackBug || u.uprops[UNFAIR_ATTACK_BUG].extrinsic || have_unfairattackstone()) && atttypB == AD_PHYS && !rn2(UnfairAttackXtra ? 20 : 100)) {
+	if ((UnfairAttackBug || u.uprops[UNFAIR_ATTACK_BUG].extrinsic || have_unfairattackstone() || (uarmf && uarmf->oartifact == ART_ROWALLAN_S_BALLING) ) && atttypB == AD_PHYS && !rn2(UnfairAttackXtra ? 20 : 100)) {
 		while (atttypB == AD_ENDS || atttypB == AD_RBRE || atttypB == AD_WERE || atttypB == AD_PHYS) {
 			atttypB = rn2(AD_ENDS); }
 
@@ -18797,7 +18803,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 			register int midentity = mtmp->m_id;
 			if (midentity < 0) midentity *= -1;
-			while (midentity > 287) midentity -= 287; /* timerun! */
+			while (midentity > 288) midentity -= 288; /* timerun! */
 
 			register int nastyduration = ((dmgplus + 2) * rnd(10));
 			if (YouAreScrewedEternally) nastyduration *= 20;
@@ -21792,6 +21798,13 @@ register struct attack *mattk;
 		mtmp->mcanmove = FALSE;
 		mtmp->mfrozen = 2;
 		pline("%s is stopped for a moment!", Monnam(mtmp));
+	}
+
+	if (uarms && uarms->oartifact == ART_SIDONIE_S_MIRROR && mtmp->data->maligntyp < 0) {
+		if (!resist(mtmp, WEAPON_CLASS, 0, NOTELL) ) {
+			monflee(mtmp, rn1(10, 10), FALSE, TRUE, FALSE);
+			pline("%s is suddenly very afraid!", Monnam(mtmp));
+		}
 	}
 
 	if (uwep && uwep->oartifact == ART_RHORN) {

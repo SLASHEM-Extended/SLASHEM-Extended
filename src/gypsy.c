@@ -999,6 +999,9 @@ newblackjackrun:
 		if (uright->cursed) dealeravoidace = TRUE;
 		if (uright->blessed) youavoidace = TRUE;
 	}
+	if (uarmg && itemhasappearance(uarmg, APP_NIMBLE_GLOVES)) {
+		dealeravoidace = youavoidace = TRUE;
+	}
 
 	/* the dealer's first card is upside down so you don't know what it is */
 	dealerfirstcard = blackjack_card();
@@ -1073,10 +1076,18 @@ newblackjackrun:
 			if (playerhand == 11 && tempcardvar == 11) tempcardvar = 1; /* can't bust by drawing an ace while having a hand of 11 */
 		}
 
-		if (playerhand >= 11 && (rn2(100) < dealercheatchance)) { /* dealer can cheat to make you bust */
-			tempcardvar = 11;
-			u.cnd_blackjackdealercheat++;
+		if (youavoidace) {
+			if (playerhand >= 12 && (rn2(100) < dealercheatchance)) { /* dealer can cheat to make you bust */
+				tempcardvar = 10;
+				u.cnd_blackjackdealercheat++;
+			}
+		} else {
+			if (playerhand >= 11 && (rn2(100) < dealercheatchance)) { /* dealer can cheat to make you bust */
+				tempcardvar = 11;
+				u.cnd_blackjackdealercheat++;
+			}
 		}
+
 		playerhand += tempcardvar;
 		playercards++;
 		if (playerhand > 21) {

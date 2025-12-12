@@ -2269,7 +2269,7 @@ randenchantment()
 int
 randnastyenchantment()
 {
-	switch (rnd(289)) {
+	switch (rnd(290)) {
 
 		case 1: return SPELLS_LOST;
 		case 2: return CASTER_PROBLEM;
@@ -2560,6 +2560,7 @@ randnastyenchantment()
 			case 287: return MONSTER_MULTISHOT_EFFECT;
 			case 288: return ANTISWITCH_BUG;
 			case 289: return BOUND_DAY_CHOICE_EFFECT;
+			case 290: return ANTIMATTER_PROBLEM;
 	}
 
 	/* appease compiler, we should never end up here */
@@ -2867,7 +2868,7 @@ randominsidetrap()
 	else if (!rn2(100)) return SUPERTHING_TRAP;
 	else if (!rn2(200)) return INSTANASTY_TRAP;
 	else if (!rn2(2000)) return AUTOMATIC_SWITCHER;
-	else switch (rnd(289)) {
+	else switch (rnd(290)) {
 		case 1: return RMB_LOSS_TRAP;
 		case 2: return UNINFORMATION_TRAP;
 		case 3: return BIGSCRIPT_TRAP;
@@ -3158,6 +3159,7 @@ randominsidetrap()
 		case 287: return INVENTORY_SIZE_TRAP;
 		case 288: return ANTISWITCH_TRAP;
 		case 289: return BOUND_DAY_CHOICE_EFFECT;
+		case 290: return ANTIMATTER_PROBLEM;
 
 	}
 
@@ -4889,7 +4891,7 @@ struct obj *obj;
 void
 getnastytrapintrinsic()
 {
-			switch (rnd(287)) {
+			switch (rnd(288)) {
 
 				case 1: 
 				    SpeedBug |= FROMOUTSIDE; break;
@@ -5465,6 +5467,8 @@ getnastytrapintrinsic()
 				    AntiswitchBug |= FROMOUTSIDE; break;
 				case 287:
 				    BoundDayChoiceEffect |= FROMOUTSIDE; break;
+				case 288:
+				    AntimatterProblem |= FROMOUTSIDE; break;
 
 			}
 
@@ -6391,7 +6395,7 @@ int duration, blackngvar;
 		if (YouAreScrewedEternally) duration *= 20;
 		if (LongScrewupXtra) duration *= 10;
 
-		switch (rnd(287)) {
+		switch (rnd(288)) {
 
 			case 1: RMBLoss += rnz(duration); break;
 			case 2: NoDropProblem += rnz(duration); break;
@@ -6709,6 +6713,7 @@ int duration, blackngvar;
 			case 285: MonsterMultishotBug += rnz(duration); break;
 			case 286: AntiswitchBug += rnz(duration); break;
 			case 287: BoundDayChoiceEffect += rnz(duration); break;
+			case 288: AntimatterProblem += rnz(duration); break;
 
 		}
 
@@ -7036,6 +7041,7 @@ int efftype, nastyduration, blackngvar;
 		case 285: MonsterMultishotBug += rnz(nastyduration); break;
 		case 286: AntiswitchBug += rnz(nastyduration); break;
 		case 287: BoundDayChoiceEffect += rnz(nastyduration); break;
+		case 288: AntimatterProblem += rnz(nastyduration); break;
 
 		default:
 			impossible("efftype %d called in specificnastytrapeffect()", efftype);

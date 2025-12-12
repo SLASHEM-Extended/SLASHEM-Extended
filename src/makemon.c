@@ -30215,6 +30215,7 @@ loopback:
 		if (ct > 0 && (Role_if(PM_GOFF) && (ptr->msound == MS_AREOLA) )) ct += 6;
 		if (ct > 0 && (Role_if(PM_JANITOR) && (ptr->msound == MS_DEAD) )) ct += 1;
 		if (ct > 0 && (Role_if(PM_LADIESMAN) && (ptr->msound == MS_BARBER) )) ct += 3;
+		if (ct > 0 && (uarmu && uarmu->oartifact == ART_SOLINE_S_RUFFLE && (ptr->msound == MS_BARBER) )) ct += 5;
 		if (ct > 0 && (Role_if(PM_LOCKSMITH) && (ptr->msound == MS_CODE) )) ct += 2;
 		if (ct > 0 && (Role_if(PM_MASTERMIND) && (ptr->msound == MS_CODE) )) ct += 10;
 		if (ct > 0 && (Role_if(PM_NECROMANCER) && (ptr->msound == MS_DEAD) )) ct += 1;
@@ -31835,6 +31836,7 @@ int     spc;
 		if ((Role_if(PM_GOFF) && (mons[last].msound == MS_AREOLA) )) num += 6;
 		if ((Role_if(PM_JANITOR) && (mons[last].msound == MS_DEAD) )) num += 1;
 		if ((Role_if(PM_LADIESMAN) && (mons[last].msound == MS_BARBER) )) num += 3;
+		if ((uarmu && uarmu->oartifact == ART_SOLINE_S_RUFFLE && (mons[last].msound == MS_BARBER) )) num += 5;
 		if ((Role_if(PM_LOCKSMITH) && (mons[last].msound == MS_CODE) )) num += 2;
 		if ((Role_if(PM_MASTERMIND) && (mons[last].msound == MS_CODE) )) num += 10;
 		if ((Role_if(PM_NECROMANCER) && (mons[last].msound == MS_DEAD) )) num += 1;
@@ -33110,6 +33112,7 @@ int     spc;
 		if ((Role_if(PM_GOFF) && (mons[first].msound == MS_AREOLA) )) num -= 6;
 		if ((Role_if(PM_JANITOR) && (mons[first].msound == MS_DEAD) )) num -= 1;
 		if ((Role_if(PM_LADIESMAN) && (mons[first].msound == MS_BARBER) )) num -= 3;
+		if ((uarmu && uarmu->oartifact == ART_SOLINE_S_RUFFLE && (mons[first].msound == MS_BARBER) )) num -= 5;
 		if ((Role_if(PM_LOCKSMITH) && (mons[first].msound == MS_CODE) )) num -= 2;
 		if ((Role_if(PM_MASTERMIND) && (mons[first].msound == MS_CODE) )) num -= 10;
 		if ((Role_if(PM_NECROMANCER) && (mons[first].msound == MS_DEAD) )) num -= 1;
@@ -34298,6 +34301,9 @@ register struct permonst *ptr;
 	if (uarmf && uarmf->oartifact == ART_CLONE_ && is_jokemonster(ptr) && rn2(2)) return TRUE;
 
 	if (uarmc && uarmc->oartifact == ART_KATHERINE_S_BEACHWEAR && flags.female && !rn2(10)) return TRUE;
+
+	if (uarmu && uarmu->oartifact == ART_SOLINE_S_RUFFLE && ptr->msound == MS_BARBER) return TRUE;
+	if (uarmg && uarmg->oartifact == ART_GAMBLEGAMBLEGAMBLEGAMBLE_D && ptr->msound == MS_CASINO) return TRUE;
 
 	if (uarmf && uarmf->oartifact == ART_SUCH_A_LOVELY_SHARK && ptr->mlet == S_EEL) return TRUE;
 

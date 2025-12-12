@@ -1672,6 +1672,10 @@ climdone:
 						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 28, your equipment will dull much more quickly.");
 						else pline("Your auspices say: 28 10");
 						break;
+					case 11:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 28, your inventory will repeatedly get hit with antimatter.");
+						else pline("Your auspices say: 28 11");
+						break;
 				}
 
 			} else if (u.urmaxlvlUP == 29) {

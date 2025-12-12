@@ -3772,6 +3772,7 @@ boolean catchup;	/* restoring a level */
 				&& ttmp->ttyp != STAIRS_TRAP
 				&& ttmp->ttyp != UNINFORMATION_TRAP
 				&& ttmp->ttyp != TIMERUN_TRAP
+				&& ttmp->ttyp != ANTIMATTER_TRAP
 				&& ttmp->ttyp != BOUND_DAY_CHOICE_TRAP
 				&& ttmp->ttyp != ANTISWITCH_TRAP
 				&& ttmp->ttyp != SPELL_COOLDOWN_TRAP

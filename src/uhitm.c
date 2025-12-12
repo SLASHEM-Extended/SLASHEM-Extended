@@ -4493,6 +4493,7 @@ int dieroll;
 		if (u.tempincrdmg1) tmp += 1;
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_DARKGOD_S_MINUSES) tmp -= 6;
 		if (uarmh && uarmh->oartifact == ART_SUDUNSEL) tmp += 2;
+		if (uimplant && uimplant->oartifact == ART_JANONE_S_CANONE) tmp += (thrown ? 4 : 2);
 		if (uarmh && uarmh->oartifact == ART_DOUVONED) tmp += 1;
 		if (uarmg && uarmg->oartifact == ART_FLOEMMELFLOEMMELFLOEMMELFL) tmp += 1;
 		if (uarm && uarm->oartifact == ART_DESTRUCTO_S_COAT) tmp += 4;
@@ -4875,6 +4876,11 @@ int dieroll;
 			if (!rn2(10)) u.uenmax++;
 			flags.botl = TRUE;
 			pline("You feel more energised!");
+		}
+
+		if (obj && obj->oartifact == ART_LERYN_S_HAMMER) {
+			mon->mstun = TRUE;
+			mon->healblock += rn1(10,10);
 		}
 
 		if (!thrown && uwep && uwep->oartifact == ART_TOWEL_OF_THE_INTERSTELLAR_ && obj && objects[obj->otyp].oc_skill == P_WHIP) {
@@ -8311,6 +8317,8 @@ struct obj *obj;	/* weapon */
 	case P_SUPREME_MASTER:
 		joustingchance = 60; break;
     }
+
+    if (uarm && uarm->oartifact == ART_RHIANNON_S_RAINCLOUD) joustingchance += 15;
 
     /* absolute maximum chance: 80% --Amy */
     if (joustingchance > 80) joustingchance = 80;
@@ -13036,7 +13044,7 @@ boolean ranged;
 		{
 			register int midentity = mon->m_id;
 			if (midentity < 0) midentity *= -1;
-			while (midentity > 287) midentity -= 287; /* timerun! */
+			while (midentity > 288) midentity -= 288; /* timerun! */
 
 			register int nastyduration = ((tmp + 2) * rnd(10));
 			if (YouAreScrewedEternally) nastyduration *= 20;

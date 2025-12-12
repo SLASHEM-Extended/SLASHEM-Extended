@@ -27071,6 +27071,106 @@ A("Stone of Rotting",				HEALTHSTONE, /* autocurses, -5 healthbonus when carried
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
 
+A("Adria's Mimicking",				LEATHER_CLOAK, /* initialized to always be shrouded cloak, double cursing things, allows you to hide underneath items, +2 MC */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Barana's Miss",				CROSSBOW, /* double dropcurse, -10 ranged to-hit, autocurses, doesn't make your hands unusable, +10 kick damage but your kick is often "clumsy and does no damage" like friday 13 (and stacks with that) */
+	(SPFX_RESTR|SPFX_DEFN|SPFX_EVIL), 0, 0,
+	PHYS(0, 20), DFNS(AD_COLD), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Nimer again",				LEATHER_CLOAK, /* randart2 cloak, autocurses, double evilpatch effect, resist mystery, disint and death, +10 AC */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_DRLI), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Glennis Downs",				REGULAR_GLOVES, /* randart gloves, double latency effect, +d3 multishot with slings, ultra fast speed, +8 CON but confusion is always heavy confusion */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Janone's Canone",				IMPLANT_OF_DESTRUCTION, /* double destruction effect, intrinsic sight bonus, +2 increase damage for melee attacks and +4 for ranged attacks, +1 multishot with all ranged weapons; if in a form without hands, another +d2 multishot and +7 to-hit with ranged weapons and extrinsic sight bonus */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Rowallan's Balling",				LOW_BOOTS, /* randart2 boots, double unfair attacks, fast speed, protects against AD_SLOW, waterwalking, material becomes STEEL when equipped, 10% better spellcasting chances */
+	(SPFX_RESTR|SPFX_DEFN|SPFX_EVIL|SPFX_ATTK), 0, 0,
+	FIRE(0, 14), DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4500L ),
+
+A("Samira's Expression",				STANDARD_HELMET, /* initialized to always be masked helmet, double antitraining, 50% chance to avoid stat damage, sickness resistance, -2 CHA */
+	(SPFX_RESTR|SPFX_DEFN|SPFX_EVIL), 0, 0,
+	NO_ATTK, DFNS(AD_DRST), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Stockton Brand",				T_SHIRT, /* randart2 shirt, double un-knowledge, +2 AC, autocurses, becomes erosionproof when worn, discount action */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Albie's Whiteout",				SPELL_COOLDOWN_STONE, /* double spell cooldown, +100% spellcasting chance when carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Adelisa's Hiding Game",				RIN_ADORNMENT, /* randart ring, double inventory size effect, heavily autocurses, allows you to hide underneath items and you can also #monster to hide, -2 CON and INT, +3 DEX, unchanging, protects from theft like nymph */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Lenny's Music Maker",				GUITAR, /* double katharina trap effect, autocurses, doesn't make your hands unusable, can be invoked to change its material to a random one; 1 in 5000 chance per turn to unlock the unicorn horn skill if restricted or improve its cap with a certain chance: 1 in 2 if basic, 1 in 3 if skilled, 1 in 5 if expert, 1 in 10 if master and 1 in 50 if grand master. if it does boost your cap, it resets your unicorn horn skill training to 0 */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_ATTK), 0, 0,
+	STUN(12, 2), NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 15000L ),
+
+A("Milagros Curve",				LEATHER_SADDLE, /* randart2 saddle, double elif trap effect, training the riding skill to 10x the threshold of the next cap unlocks the skill (or improves the cap to that value) but resets current riding skill training to 0 */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Lignes Enzymes",				LEATHER_CLOAK, /* randart cloak, double maurah trap effect, double poison and double sickness resistance, 90% chance to resist permanent stat damage effects, 98% chance to resist debuff effects */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_DEFN|SPFX_REGEN), 0, 0,
+	NO_ATTK, DFNS(AD_DRST), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Rhiannon's Raincloud",				WEATHER_DRAGON_SCALES, /* double sarah trap effect, 1 in 250 chance per turn to try to create a rain cloud somewhere (but it only happens if it rolls an empty square), protects your inventory from water damage, +15% chance to joust when using a lance but if it's been upgraded to DSM, it autocurses when worn and pounding attacks are more likely to result in speeding up the target monster */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Leryn's Hammer",				WAR_HAMMER, /* randart2 hammer, double arabella trap effect, does double damage in addition to the shock damage, autocurses, hitting a monster stuns it and gives it rn1(10,10) (more) turns of heal block, both of these effects cannot be resisted by anything, but your searching attempts autofail 66% of the time */
+	(SPFX_RESTR|SPFX_ATTK|SPFX_EVIL), 0, 0,
+	ELEC(6, 16), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Yara's Handle",				LEATHER_SADDLE, /* randart saddle, double johanna trap effect, mounting your steed unlocks riding at basic if you were previously restricted */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Jafaro On Tour",				LEATHER_SADDLE, /* double friederike trap effect, allows you to still reach the ground even if you're unskilled in riding */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Sorelie's Rope",				CLIMBING_SET, /* autocurses, double yasaman trap effect, flying, free action, +10 STR, your weapon doesn't fall off if you're glibbed and AD_WRAP attacks have 90% chance of failing to grab you */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Jabine's Orthography",				LOW_BOOTS, /* randart boots, autocurses, double liselotte trap effect, -2 INT and WIS, M2_FEMALE have 10% chance of automissing you in melee, double resistance piercing, control magic and if you're wearing an implant, you also have contamination resistance */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Sidonie's Mirror",				MIRROR_SHIELD, /* double little marie trap effect, +12 CHA, +25% chance to block, autocurses but if it's cursed, the chance to block is calculated as if it was uncursed; monsters with darkness attacks randomly have appr=-1 or 0, chaotic-aligned monsters who hit you in melee have to make a saving throw or turn to flee for rn1(10,10) turns */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Soline's Ruffle",				FLEECY_CORSET, /* double tanja trap effect, 90% chance to resist random bad effects and 80% chance to resist really bad effects, MS_BARBER have +5 spawn chance, always spawn peaceful and they only charge one third the normal amount of money, plus you can use their services again after half the usual timeout */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4500L ),
+
+A("gamblegamblegamblegamble-dbb-dbb",				REGULAR_GLOVES, /* initialized to always be gambling gloves; while wearing them, MS_CASINO monsters always spawn peaceful */
+	(SPFX_RESTR|SPFX_LUCK), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Extremoplas",				ANTIMATTER_GLOVES, /* +10 AC, doubles your MC, recurring disenchantment */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Breakcrash Pilot",				ANTIMATTER_STONE, /* double antimatter trap effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Rosine's Raise",				AMULET_OF_ESP, /* randart amulet, full nutrients, prevents the 5% chance of non-cursed food being rotten, 1 in 10000 chance per turn to unlock petkeeping with a cap of basic if it's restricted, otherwise 1 in 50000 per turn to increase its cap by one, autocurses, double antimatter trap effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 15000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

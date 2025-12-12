@@ -1708,6 +1708,18 @@ have_femityjewel()
 }
 
 boolean
+have_albiestone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->oartifact == ART_ALBIE_S_WHITEOUT)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
 have_analeahjewel()
 {
 	register struct obj *otmp;
@@ -8831,6 +8843,7 @@ have_spellcooldownstone()
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == SPELL_COOLDOWN_STONE) {
 			if (otmp->oartifact == ART_DND_NO_ONE_IS_GETTING) return 2;
+			if (otmp->oartifact == ART_ALBIE_S_WHITEOUT) return 2;
 			return(TRUE);
 		}
 	}
@@ -9014,6 +9027,25 @@ have_bounddaychoicestone()
 	}
 	if (u.nastinator287) return TRUE;
 	if (sjwcheck(287)) return TRUE;
+	return(FALSE);
+}
+
+int
+have_antimatterstone()
+{
+	register struct obj *otmp;
+
+	if (u.tempsupernastytrap_antimatter) return 2;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == ANTIMATTER_STONE) {
+			if (otmp->oartifact == ART_BREAKCRASH_PILOT) return 2;
+			return(TRUE);
+		}
+	}
+	if (u.nastinator288) return TRUE;
+	if (sjwcheck(288)) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 28 && u.femauspices28 == 11) return TRUE;
 	return(FALSE);
 }
 
@@ -13602,6 +13634,8 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 			pline("A pair of gloves that improves your dexterity by 3.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_NIMBLE_GLOVES))
 			pline("While wearing these gloves, your ranged weapons have significant bonus to-hit.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_GAMBLING_GLOVES))
+			pline("If you're wearing these gloves, aces will count as 1 if the one drawing them would bust with them counting as 11. This is only relevant if you play blackjack.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_FALCONRY_GLOVES))
 			pline("A pair of gloves that protects you against claw attacks, at least if you're female.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_LATEX_GLOVES))
@@ -15767,6 +15801,8 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 				pline("This pair of gloves causes confusing problems. They provide extremely good AC."); break;
 			case UNDROPPABLE_GLOVES:
 				pline("This pair of gloves causes drop bugs. They provide moderately good AC and 4 points of magic cancellation."); break;
+			case ANTIMATTER_GLOVES:
+				pline("This pair of gloves causes recurring antimatter damage. They provide great AC and 6 points of magic cancellation."); break;
 			case GAUNTLETS_OF_MISSING_INFORMATI:
 				pline("This pair of gloves causes a lack of feedback. They provide good AC and 6 points of magic cancellation."); break;
 			case GAUNTLETS_OF_TRAP_CREATION:
@@ -21542,10 +21578,12 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 				pline("A stone that curses itself and causes you to fall through the floor."); break;
 			case NOPESKILL_STONE:
 				pline("A stone that curses itself and causes your skills to be drained when you try to enhance them."); break;
-			case TIME_USE_STONE:
+			case TIME_USE_STONE: /* keyword "timerun" */
 				pline("A stone that curses itself and causes every action to take time."); break;
 			case MULCH_STONE:
 				pline("A stone that curses itself and causes your ammo to mulch every time."); break;
+			case ANTIMATTER_STONE:
+				pline("A stone that curses itself and causes your inventory to get hit with antimatter."); break;
 			case ANTISWITCH_STONE:
 				pline("A stone that curses itself and causes your switchers to not work."); break;
 			case SPELL_COOLDOWN_STONE:
@@ -35868,6 +35906,56 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: gives a +5 boost to your health regeneration rate when carried."); break;
 				case ART_STONE_OF_ROTTING:
 					pline("Artifact specs: gives a -5 malus to your health regeneration rate when carried. Autocurses, because simply being able to ditch this artifact would be too easy."); break;
+				case ART_ADRIA_S_MIMICKING:
+					pline("Artifact specs: double itemcursing, +2 MC and allows you to hide underneath items when worn."); break;
+				case ART_BARANA_S_MISS:
+					pline("Artifact specs: +20 damage, -10 ranged to-hit, double dropcurse, cold resistance, autocurses when wielded but doesn't make your hands unusable, +10 kick damage but your kick is often clumsy."); break;
+				case ART_NIMER_AGAIN:
+					pline("Artifact specs: autocurses when worn, double evilpatch effect, 10 extra points of AC and resistance to drain life, mystery, disintegration and death."); break;
+				case ART_GLENNIS_DOWNS:
+					pline("Artifact specs: double latency effect, good multishot bonus when using a sling, ultra fast speed and +8 constitution when worn but if you get confused, it'll always be heavy confusion."); break;
+				case ART_JANONE_S_CANONE:
+					pline("Artifact specs: double destruction effect, intrinsic sight bonus, +2 increase melee damage, +4 increase ranged damage and +1 multishot with ranged weapons. If you wear it while in a form without hands, your ranged weapons gain an additional +d2 multishot and +7 to-hit, and you also receive extrinsic sight bonus."); break;
+				case ART_ROWALLAN_S_BALLING:
+					pline("Artifact specs: +14 fire damage when kicking enemies with them, fire resistance, double unfair attacks, fast speed, waterwalking and protects you against slowness attacks when worn. They are also made of steel and slightly increase your spellcasting chances."); break;
+				case ART_SAMIRA_S_EXPRESSION:
+					pline("Artifact specs: poison resistance, double antitraining effect, sickness resistance and -2 charisma when worn, and gives a 50%% chance to avoid stat damage."); break;
+				case ART_STOCKTON_BRAND:
+					pline("Artifact specs: double un-knowledge effect, 2 extra points of AC, discount action, autocurses when worn and becomes erosionproof if you put it on."); break;
+				case ART_ALBIE_S_WHITEOUT:
+					pline("Artifact specs: double spell cooldown effect while carried and greatly boosts your spellcasting success chance."); break;
+				case ART_ADELISA_S_HIDING_GAME:
+					pline("Artifact specs: double inventory size effect, heavily autocurses when worn, allows you to hide underneath items and use #monster to hide, -2 constitution and intelligence, +3 dexterity, unchanging and protects you from item theft."); break;
+				case ART_LENNY_S_MUSIC_MAKER:
+					pline("Artifact specs: +12 to-hit and +2 stun damage, double katharina trap effect, autocurses but doesn't make your hands unusable, can be invoked to randomize its material. While wielding it, there is a very low chance of the unicorn horn skill being unlocked if you don't know it, and an even lower chance of boosting the skill's cap if you already know the skill. But if the latter effect happens, all unicorn horn training is nullified."); break;
+				case ART_MILAGROS_CURVE:
+					pline("Artifact specs: riding a steed with this saddle gives you the double elif trap effect and if you ride around a lot, you may unlock the riding skill or boost its cap if the skill is known. If the latter effect happens, all riding skill training is nullified."); break;
+				case ART_LIGNES_ENZYMES:
+					pline("Artifact specs: double poison and double sickness resistance, double maurah trap effect, regeneration and very good odds of resisting debuff or permanent stat damage effects when worn."); break;
+				case ART_RHIANNON_S_RAINCLOUD:
+					pline("Artifact specs: double sarah trap effect, and rain clouds will form over time while you're wearing it but your inventory is protected from water damage. If you're using a lance in melee while riding, your odds of jousting are bigger. However, if you upgraded it to DSM, it autocurses when worn and your pounding attacks are more likely to speed up the target monster."); break;
+				case ART_LERYN_S_HAMMER:
+					pline("Artifact specs: double damage, +6 to-hit and +16 shock damage, autocurses when wielded, double arabella trap effect, hitting a monster stuns it and prevents it from healing for a while. As long as you're wielding it, your searching attempts are likely to fail."); break;
+				case ART_YARA_S_HANDLE:
+					pline("Artifact specs: riding a steed with this saddle gives the double johanna trap effect but if you were restricted in the riding skill, it'll be unlocked."); break;
+				case ART_JAFARO_ON_TOUR:
+					pline("Artifact specs: riding a steed with this saddle gives the double friederike trap effect but allows you to still reach the ground even if you're unskilled or restricted in riding."); break;
+				case ART_SORELIE_S_ROPE:
+					pline("Artifact specs: double yasaman trap effect, flying, free action and +10 strength when worn, and prevents your weapon from falling off if you have slippery hands. You also become highly resistant to being grabbed by wrap attacks."); break;
+				case ART_JABINE_S_ORTHOGRAPHY:
+					pline("Artifact specs: autocurses when worn and gives the double liselotte trap effect, -2 intelligence and wisdom, double resistance piercing and control magic. Monsters who are always female will occasionally miss you with their melee attacks even when they otherwise would've hit. If you're wearing an implant, these boots will additionally convey contamination resistance."); break;
+				case ART_SIDONIE_S_MIRROR:
+					pline("Artifact specs: double little marie trap effect, +12 charisma and much better chance to block when worn. This shield autocurses but even if it is cursed, it still acts as if it was uncursed for the purpose of calculating its chance to block. While wearing it, darkness-based monsters are reluctant to approach you and chaotic monsters who hit you in melee must make a saving throw or flee."); break;
+				case ART_SOLINE_S_RUFFLE:
+					pline("Artifact specs: double tanja trap effect and makes you very resistant to random bad effects, including really bad effects. While wearing it, haircutters spawn more often, always spawn peaceful, charge a lot less money and will offer their services again more quickly after you purchased them."); break;
+				case ART_GAMBLEGAMBLEGAMBLEGAMBLE_D:
+					pline("Artifact specs: acts as a luckstone when worn and causes casino monsters to always spawn peaceful."); break;
+				case ART_EXTREMOPLAS:
+					pline("Artifact specs: boosts your AC by 10 and doubles your MC, but causes recurring disenchantment when worn."); break;
+				case ART_BREAKCRASH_PILOT:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_ROSINE_S_RAISE:
+					pline("Artifact specs: full nutrients when worn and prevents food from randomly being rotten, double antimatter trap effect and while wearing it, there is a very small chance per turn to unlock the petkeeping skill or increase its cap."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

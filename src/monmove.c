@@ -4311,6 +4311,8 @@ altarfound:
 	if (ptr == &mons[PM_HEADER_RA____AUTO]) appr = (!rn2(3) ? -1 : rn2(2) ? 0 : 1);
 	if (ptr == &mons[PM_IRMGARD]) appr = (!rn2(3) ? -1 : rn2(2) ? 0 : 1);
 
+	if (uarms && uarms->oartifact == ART_SIDONIE_S_MIRROR && dmgtype(ptr, AD_DARK)) appr = (rn2(2) ? 0 : -1);
+
 	if (appr == 1 && !rn2(5) && (uarm && itemhasappearance(uarm, APP_CAMO_ROBE)) ) appr = 0;
 
 	if (appr == 1 && uarmf && uarmf->oartifact == ART_SMELL_LIKE_DOG_SHIT && !rn2(10)) appr = 0;

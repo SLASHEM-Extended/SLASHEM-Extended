@@ -1475,7 +1475,7 @@ register struct obj *obj;
 		return(issoviet ? 1 : 0);
 	    }
 	    if (!can_reach_floor()) {
-		if (u.uprops[DROPCURSES_EFFECT].extrinsic || Dropcurses || have_dropcursestone() || autismringcheck(ART_ARABELLA_S_RADAR) ) {
+		if (u.uprops[DROPCURSES_EFFECT].extrinsic || Dropcurses || have_dropcursestone() || autismweaponcheck(ART_BARANA_S_MISS) || autismringcheck(ART_ARABELLA_S_RADAR) ) {
 			curse(obj);
 			if (DropcurseXtra) {
 				if (!rn2(2)) {
@@ -1505,7 +1505,7 @@ register struct obj *obj;
 		You("drop %s.", doname(obj));
 	}
 
-	if (u.uprops[DROPCURSES_EFFECT].extrinsic || Dropcurses || have_dropcursestone() || autismringcheck(ART_ARABELLA_S_RADAR) ) {
+	if (u.uprops[DROPCURSES_EFFECT].extrinsic || Dropcurses || have_dropcursestone() || autismweaponcheck(ART_BARANA_S_MISS) || autismringcheck(ART_ARABELLA_S_RADAR) ) {
 		curse(obj);
 
 		if (DropcurseXtra) {

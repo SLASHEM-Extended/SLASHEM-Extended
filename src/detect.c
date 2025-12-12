@@ -1823,6 +1823,8 @@ register int aflag;
 	register struct monst *mtmp;
 
 	if (AntisearchEffect || u.uprops[ANTISEARCH_EFFECT].extrinsic || have_unfindablestone() || autismweaponcheck(ART_HER_UNREACHABLE_BROOK) ) return(1);
+	if (uwep && uwep->oartifact == ART_LERYN_S_HAMMER && rn2(3)) return(1);
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_LERYN_S_HAMMER && rn2(3)) return(1);
 
 	int fundxtrachange = 10;
 	if (!(PlayerCannotUseSkills)) {

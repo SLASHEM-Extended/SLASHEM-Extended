@@ -357,6 +357,7 @@ register boolean clumsy;
 		}
 	}
 
+	if (uwep && uwep->oartifact == ART_BARANA_S_MISS) dmg += 10;
 	if (uarmf && itemhasappearance(uarmf, APP_BATTLE_BOOTS)) dmg += 5;
 	if (uarmf && itemhasappearance(uarmf, APP_PLATFORM_SNEAKERS)) dmg += 2;
 	if (uarmf && uarmf->oartifact == ART_EVELINE_S_LOVELIES) dmg += 5;
@@ -1344,6 +1345,8 @@ register xchar x, y;
 	if (uarmf && uarmf->oartifact == ART_JUMP_KICK_ACTION) clumsy = FALSE;
 
 	if (isfriday && !rn2(10)) clumsy = TRUE;
+	if (uwep && uwep->oartifact == ART_BARANA_S_MISS && !rn2(10)) clumsy = TRUE;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_BARANA_S_MISS && !rn2(10)) clumsy = TRUE;
 
 doit:
 	if (uarmf && uarmf->oartifact == ART_MOST_EROTIC_AIR_CURRENT_NO && !rn2(5)) {

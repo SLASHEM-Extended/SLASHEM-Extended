@@ -1156,6 +1156,7 @@ struct you {
 	boolean nastinator285;
 	boolean nastinator286;
 	boolean nastinator287;
+	boolean nastinator288;
 
 	/* SJW role - I wonder if there'd be an easier way to do this... --Amy */
 	int sjwL1E1;
@@ -1544,6 +1545,7 @@ struct you {
 
 	/* keyword "timerun" */
 	int tempsupernastytrap_unidentify;
+	int tempsupernastytrap_antimatter;
 	int tempsupernastytrap_cursing;
 	int tempsupernastytrap_difficulty;
 	int tempsupernastytrap_amnesia;

@@ -29702,6 +29702,9 @@ static NEARDATA const char * const fake_plines[] = {
 	"You feel that the dangerous right securer whose name may not be spoken is now facing a lawsuit for using protected brand names.",
 	"The spawn rates for female shoes have gone back to normal.",
 	"You feel that you'll have to fight lots of female shoes, and more powerful ones too.",
+	"You're dripping some funny-looking liquid on the ground!",
+	"Someone seems to have built a running tap into your body!",
+	"You see some soda shooting out of your body like a graceful fountain!",
 
 };
 
