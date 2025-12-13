@@ -12716,7 +12716,14 @@ loveheelover:
 
 		if (ptr == &mons[PM_BLUE_NYMPH]) {
 			(void) mongets(mtmp, SLING);
-			 m_initthrow(mtmp, COBALT_CHUNK, 20);
+			m_initthrow(mtmp, COBALT_CHUNK, 20);
+		}
+		if (ptr == &mons[PM_ANNOYING_NYMPH]) {
+			m_initthrow(mtmp, FRAG_GRENADE, 10);
+		}
+		if (ptr == &mons[PM_EXTRA_ANNOYING_NYMPH]) {
+			(void) mongets(mtmp, GRENADE_LAUNCHER);
+			m_initthrow(mtmp, FRAG_GRENADE, 12);
 		}
 	      if(mtmp->data == &mons[PM_SATYR]){
 	        if(!rn2(2)) (void) mongets(mtmp, POT_BOOZE);
@@ -18740,6 +18747,7 @@ loveheelover:
 		if (ptr == &mons[PM_EXTREMELY_CONTAMINATED_BUG]) (void) mongets(mtmp, SCR_STYX);
 		if (ptr == &mons[PM_KATIA_S_LEATHER_BOOT]) { (void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT); (void) mongets(mtmp, HIPPIE_HEELS); } /* M4_BLOCKHEELBOOTS */
 		if (ptr == &mons[PM_BLADE_BUG]) (void) mongets(mtmp, LOWER_ARM_BLADE);
+		if (ptr == &mons[PM_ORTRUD_S_BLOCK_HEELED_LADY_BOOT]) (void)mongets(mtmp, LADY_BOOTS); /* M4_BLOCKHEELBOOTS */
 
 		if (ptr == &mons[PM_MISRIL_BUG]) {
 			(void) mongets(mtmp, SLING);
@@ -27493,6 +27501,7 @@ register int	mmflags;
 		case S_DEMON:
 			if (mndx == PM_IT_MAKES_PITSCHAEFF_) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_WARP_DEMON) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_DESPISED_OSYLUTH) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_FLUIDATOR_WEND) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mtmp->data == &mons[PM_HARDCORE_ALIEN]) {
 				int spawnnumber = rn1(7, 3);
@@ -27559,6 +27568,7 @@ register int	mmflags;
 			if (mndx == PM_PEN_A_MEDICANT) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_LOGRUS_MASTER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_DARK_ELVEN_SHADE) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_DEVIL_S_HUNTSMAN) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 
 			if (mtmp->data == &mons[PM_TRUE_YOUNG_WOMAN]) {
 				int spawnnumber = rn1(8, 3);
@@ -28014,6 +28024,7 @@ register int	mmflags;
 			if (mndx == PM_ATYPICAL_DEEPSTATE_MEMBER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_GOTTA_STEAL_ALL_THEIR_SHIT) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_HEH_HEH_HEH_NEREID) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_SHADOW_FAIRY) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (ptr == &mons[PM_LOL_U_HAVE_NO_CHANCE]) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 
 			if (mtmp->data == &mons[PM_MIMIC_NYMPH]) set_mimic_sym(mtmp);

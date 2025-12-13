@@ -598,7 +598,7 @@ struct mkroom *sroom;
 	xdim = sroom->hx - sroom->lx + 1;
 	ydim = sroom->hy - sroom->ly + 1;
 	roomsize = xdim * ydim;
-	if (roomsize < (6 + rnd(10)) ) densreduce = FALSE;
+	if (roomsize < (6 + rnd(32)) ) densreduce = FALSE;
 
 	sh = sroom->fdoor;
 	switch(type) {
@@ -3188,8 +3188,12 @@ chatgptsoldiers:
 	goto gotone;
 
 gotone:
+	return(&mons[mndx]);
+
+	/* used to be that this particular room would (uniquely) stop spawning soldier types that were extinct... but that's dumb --Amy
 	if (!(mvitals[mndx].mvflags & G_GONE)) return(&mons[mndx]);
 	else			    return((struct permonst *) 0);
+	*/
 }
 
 struct permonst *
@@ -3360,11 +3364,16 @@ doomsquadmon()
 
 	if ((depthuz < 8) && !In_sokoban_real(&u.uz) && !In_mainframe(&u.uz) && (level_difficulty() < (4 + rn2(3)))) return(&mons[PM_STUNTED_ZOMBIEMAN]);
 
-	if (rn2(4)) return(&mons[PM_ZOMBIEMAN]);
-	else if (rn2(3)) return(&mons[PM_FORMER_SERGEANT]);
-	else if (rn2(2) && i > 90) return(&mons[PM_WOLFENSTEINER]);
-	else if (rn2(2) && i > 115) return(&mons[PM_ARACHNOTRON]);
-	else if (rn2(2) && i > 150) return(&mons[PM_MANCUBUS]);
+	if (i > 250) return(!rn2(20) ? &mons[PM_CYBERDEMON] : &mons[PM_ZOMBIEMAN]);
+	else if (i > 220) return(!rn2(8) ? &mons[PM_HELL_KNIGHT] : &mons[PM_ZOMBIEMAN]);
+	else if (i > 175) return(!rn2(2) ? &mons[PM_BARON_OF_HELL] : &mons[PM_ZOMBIEMAN]);
+	else if (i > 160) return(!rn2(3) ? &mons[PM_DOOM_CACODEMON] : &mons[PM_ZOMBIEMAN]);
+	else if (i > 150) return(!rn2(4) ? &mons[PM_MANCUBUS] : &mons[PM_ZOMBIEMAN]);
+	else if (i > 125) return(!rn2(2) ? &mons[PM_ARCH_VILE] : &mons[PM_ZOMBIEMAN]);
+	else if (i > 115) return(!rn2(2) ? &mons[PM_ARACHNOTRON] : &mons[PM_ZOMBIEMAN]);
+	else if (i > 90) return(!rn2(2) ? &mons[PM_WOLFENSTEINER] : &mons[PM_ZOMBIEMAN]);
+	else if (i > 70) return(!rn2(50) ? &mons[PM_TOUCHNNOY_BRAINIE] : !rn2(5) ? &mons[PM_BRAINIE] : &mons[PM_ZOMBIEMAN]);
+	else if (!rn2(5)) return(&mons[PM_FORMER_SERGEANT]);
 	else return(&mons[PM_ZOMBIEMAN]);
 }
 
