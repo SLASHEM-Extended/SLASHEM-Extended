@@ -7011,6 +7011,15 @@ boolean was_swallowed;			/* digestion */
 			}
 		}
 	}
+	if (terrainok && mdat == &mons[PM_MATTRESS]) {
+		if (levl[monsx][monsy].typ == ROOM || levl[monsx][monsy].typ == CORR || (levl[monsx][monsy].typ >= ICE && levl[monsx][monsy].typ <= CRYPTFLOOR) || (levl[monsx][monsy].typ >= AIR && levl[monsx][monsy].typ <= RAINCLOUD)) {
+			levl[monsx][monsy].typ = STRAWMATTRESS;
+			blockorunblock_point(monsx,monsy);
+			if(cansee(monsx,monsy)) {
+				newsym(monsx,monsy);
+			}
+		}
+	}
 
 	if (mdat == &mons[PM_VLAD_THE_IMPALER] || (mdat->mlet == S_LICH && mdat != &mons[PM_LICHZARD] && !(mon->egotype_troll || (is_reviver(mdat))) ) ) {
 	    if (cansee(mon->mx, mon->my) && !was_swallowed)

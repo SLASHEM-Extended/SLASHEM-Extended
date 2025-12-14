@@ -4087,6 +4087,9 @@ register int after;
 #endif
 
 	/* teleport if that lies in our nature */
+
+	/* ATTENTION: this code does ***NOT*** run if the monster is nonmoving! please add teleportation code for those a couple lines earlier!!! --Amy */
+
 	if( (ptr == &mons[PM_TENGU] || ptr == &mons[PM_CORONA_TASK_FORCE] || ptr == &mons[PM_PURPLE_BOUNCING_GIRL] || ptr == &mons[PM_CORONA_LICHEN] || ptr == &mons[PM_STALKING_CORONA_LICHEN] || ptr == &mons[PM_CORONA_SPORE_LICHEN] || ptr == &mons[PM_CORONA_COLONY_LICHEN] || ptr == &mons[PM_SUDDEN_TENGU] || ptr == &mons[PM_FAKE_NEWS_TENGU] || ptr == &mons[PM_LASTING_TENGU] || ptr == &mons[PM_TELEPORTER] || ptr == &mons[PM_BULLETATOR_I] || ptr == &mons[PM_DISCONNECT_DEVIL] || ptr == &mons[PM_COUNTRY_SHARK] || ptr == &mons[PM_POLITICAL_TENGU] || ptr == &mons[PM_EASTERN_TENGU] || ptr == &mons[PM_PHASING_TENGU] || ptr == &mons[PM_FROZEN_JUMP] || ptr == &mons[PM_CHEERFUL_LEPRECHAUN] || ptr == &mons[PM_BLINK] || ptr == &mons[PM_VORPAL_BUNNY] || ptr == &mons[PM_KING_OF_PORN] || ptr == &mons[PM_TAXI] || ptr == &mons[PM_TAXI_XPRESS] || ptr == &mons[PM_JIL_S_SCENTFUL_SOCKS] || ptr == &mons[PM_ZOMBIE_STUNTMAN] || ptr == &mons[PM_OF_FLOW] || ptr == &mons[PM_PEARDUCK] || ptr == &mons[PM_UAE] || ptr == &mons[PM_CHEATY_SILVER_COIN] || ptr == &mons[PM_SPACEWARP_JELLY] || ptr == &mons[PM_ALSAPIA_MURDERER_MASK] || ptr == &mons[PM_NIGHTMARE_SHEEP] || ptr == &mons[PM_HELL_SHEEP] || ptr == &mons[PM_LOVECRAFT_SHEEP] || ptr == &mons[PM_INDIVIDUAL_WILL_O_THE_WISP] || ptr == &mons[PM_TELEHOBBIT] || ptr == &mons[PM_SPOOPY_GHOST] || ptr == &mons[PM_ANNOYING_SLEX_GHOST] || ptr == &mons[PM_SPRING_WOLF] || ptr == &mons[PM_DIMENSIONAL_SHAMBLER] || ptr == &mons[PM_MAGNET_ELEMENTAL] || ptr == &mons[PM_PHASE_KNIGHT] || ptr == &mons[PM_TELEPORTING_DEMON] || ptr == &mons[PM_BEAMING_UFO_PART] || ptr == &mons[PM_BEAMER] || mtmp->egotype_teleportself) && !rn2(25) && !mtmp->mcan &&
 	   !tele_restrict(mtmp)) {
 	    if(mtmp->mhp < 7 || (ptr == &mons[PM_SPOOPY_GHOST]) || mtmp->mpeaceful || rn2(2))
@@ -4103,7 +4106,7 @@ register int after;
 		goto postmov;
 	}
 
-	if ((ptr == &mons[PM_ASIMA] || ptr == &mons[PM_UTHGEN_RAPPER] || ptr == &mons[PM_YOUR_MAP_SHOWS_] || ptr == &mons[PM_FLEETFOOT] || ptr == &mons[PM_BEARER_OF_BAD_NEWS]) && !rn2(25) && !mtmp->mcan &&
+	if ((ptr == &mons[PM_ASIMA] || ptr == &mons[PM_UTHGEN_RAPPER] || ptr == &mons[PM_YOUR_MAP_SHOWS_] || ptr == &mons[PM_HINGEFREEL] || ptr == &mons[PM_FLEETFOOT] || ptr == &mons[PM_BEARER_OF_BAD_NEWS]) && !rn2(25) && !mtmp->mcan &&
 	   !tele_restrict(mtmp) ) {
 		(void) rloc(mtmp, FALSE);
 		mmoved = 1;

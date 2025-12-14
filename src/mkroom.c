@@ -905,7 +905,7 @@ struct mkroom *sroom;
 		    	(!rn2(20) ? &mons[PM_HORNED_DEVIL] : !rn2(20) ? mkclass(S_DEMON,0) : !rn2(50) ? &mons[ndemon(A_NONE)] : rn2(2) ? mkclass(S_IMP,0) : &mons[PM_LEMURE]) :
 		    (type == MIGOHIVE) ? (sx == tx && sy == ty ? (((depthuz < 10) && !In_sokoban_real(&u.uz) && !In_mainframe(&u.uz) && (level_difficulty() < (5 + rn2(5)))) ? &mons[PM_SUDO_MIGO] : &mons[PM_MIGO_QUEEN]) : migohivemon()) :
 		    (type == BADFOODSHOP) ? mkclass(S_BAD_FOOD,0) :
-		    (type == REALZOO) ? (rn2(3) ? realzoomon() : rn2(3) ? mkclass(S_QUADRUPED,0) : rn2(3) ? mkclass(S_FELINE,0) : rn2(3) ? mkclass(S_YETI,0) : mkclass(S_SNAKE,0) ) :
+		    (type == REALZOO) ? (rn2(3) ? realzoomon() : rn2(3) ? mkclass(S_QUADRUPED,0) : rn2(3) ? mkclass(S_FELINE,0) : rn2(3) ? mkclass(S_YETI,0) : rn2(3) ? mkclass(S_SNAKE,0) : mkclass(S_ZOUTHERN,0) ) :
 		    (type == GIANTCOURT) ? mkclass(S_GIANT,0) :
 		    (struct permonst *) 0,
 		   sx, sy, /*NO_MM_FLAGS*/MM_ADJACENTOK);
@@ -2375,16 +2375,18 @@ schar type;
 struct permonst *
 courtmon()
 {
-	int     i = rnz(60) + rnz(3*level_difficulty());
-	if (i > 200)      return(mkclass(S_DRAGON,0));
-	else if (i > 130) return(mkclass(S_GIANT,0));
-	else if (i > 85)	return(mkclass(S_TROLL,0));
-	else if (i > 75)	return(mkclass(S_JABBERWOCK,0));
-	else if (i > 60)	return(mkclass(S_CENTAUR,0));
-	else if (i > 45)	return(mkclass(S_ORC,0));
-	else if (i > 30)	return(mkclass(S_HUMANOID,0));
-	else if (i > 15)	return(mkclass(S_GNOME,0));
-	else			return(mkclass(S_KOBOLD,0));
+	switch (rnd(9)) {
+		case 1: default: return(mkclass(S_DRAGON,0));
+		case 2: return(mkclass(S_GIANT,0));
+		case 3: return(mkclass(S_TROLL,0));
+		case 4: return(mkclass(S_JABBERWOCK,0));
+		case 5: return(mkclass(S_CENTAUR,0));
+		case 6: return(mkclass(S_ORC,0));
+		case 7: return(mkclass(S_HUMANOID,0));
+		case 8: return(mkclass(S_GNOME,0));
+		case 9: return(mkclass(S_KOBOLD,0));
+	}
+	return (mkclass(S_TROLL,0)); /* fail safe */
 }
 
 struct permonst *
@@ -2802,19 +2804,49 @@ douglas_adams_mon()
 		depthuz = depth(&u.uz);
 	}
 
+	/* low-mid level stuff shouldn't spawn early, but will once you're past a certain depth --Amy
+	 * higher-level stuff will use level_difficulty() to check whether it can spawn */
 	if ((depthuz < 10) && !In_sokoban_real(&u.uz) && !In_mainframe(&u.uz) && (level_difficulty() < (8 + rn2(3)))) {
 		maxdougdiff = depthuz;
 	}
 
-	int     i = rn2(60);
-	if (i > 55) return((maxdougdiff < 12) ? &mons[PM_TRAIL_BEAST] : &mons[PM_RAVENOUS_BUGBLATTER_BEAST_OF_TRAAL]);
-	else if (i > 54 && !rn2(10))        return((maxdougdiff < 9) ? &mons[PM_MRIVAN] : &mons[PM_MARVIN]);
-	else if (i > 46)        return(&mons[PM_CREEPING___]);
-	else if (i > 26)        return(&mons[PM_MICROSCOPIC_SPACE_FLEET]);
-	else if (i > 20)        return((maxdougdiff < 4) ? &mons[PM_BIRDON] : !rn2(5) ? &mons[PM_STUNOGON] : &mons[PM_VOGON]);
-	else if (i > 19)        return((maxdougdiff < 14) ? &mons[PM_BIRDON] : &mons[PM_VOGON_LORD]);
-	else if (i > 2)        return(&mons[PM_BABELFISH]);
-	else                    return((maxdougdiff < 8) ? &mons[PM_MOONTIGER] : &mons[PM_ALGOLIAN_SUNTIGER]);
+	int     i = rn2(242);
+	if (i > 222) return(&mons[PM_VOGSPHERE_GAZELLE]);
+	else if (i > 217) return((maxdougdiff < 7) ? &mons[PM_BETELGEUSIAN] : &mons[PM_VL_HURG]);
+	else if (i > 212) return((maxdougdiff < 6) ? &mons[PM_DRONIDIAN] : &mons[PM_KRIKKITER]);
+	else if (i > 211) return((level_difficulty() < 18) ? &mons[PM_BABELFISH] : &mons[PM_KRARG]);
+	else if (i > 206) return(&mons[PM_JATRAVARTID]);
+	else if (i > 205) return(&mons[PM_HITCHING_HOOLOOVOO]);
+	else if (i > 202) return((maxdougdiff < 8) ? &mons[PM_VOGSPHERE_GAZELLE] : &mons[PM_HINGEFREEL]);
+	else if (i > 199) return((maxdougdiff < 5) ? &mons[PM_JATRAVARTID] : &mons[PM_STRENUOUS_GARFIGHTER]);
+	else if (i > 197) return((maxdougdiff < 10) ? &mons[PM_AMEGLIAN_MAJOR_COW] : &mons[PM_STRANGULOUS_STILETTAN]);
+	else if (i > 192) return(&mons[PM_SMALL_FURRY_CREATURE_FROM_ALPHA_CENTAURI]);
+	else if (i > 190) return((level_difficulty() < 16) ? &mons[PM_MICROSCOPIC_SPACE_FLEET] : &mons[PM_SILASTIC_ARMOURFIEND]);
+	else if (i > 188) return((level_difficulty() < 15) ? &mons[PM_MATTRESS] : &mons[PM_SCINTILLATING_JEWELED_SCUTTLING_CRAB]);
+	else if (i > 186) return(&mons[PM_SALAXALAN_HORSE]);
+	else if (i > 176) return((maxdougdiff < 4) ? &mons[PM_GOLGAFRINCHAN] : &mons[PM_SALAXALAN]);
+	else if (i > 171) return((maxdougdiff < 8) ? &mons[PM_BETELGEUSIAN] : &mons[PM_GREBULON]);
+	else if (i > 161) return(&mons[PM_GOLGAFRINCHAN]);
+	else if (i > 156) return((maxdougdiff < 7) ? &mons[PM_BETELGEUSIAN] : &mons[PM_G_GUGVUNTT]);
+	else if (i > 153) return((level_difficulty() < 12) ? &mons[PM_OGLAROONIAN] : &mons[PM_FUOLORNIS_FIRE_DRAGON]);
+	else if (i > 143) return((maxdougdiff < 4) ? &mons[PM_HYPER_INTELLIGENT_MOUSE] : &mons[PM_PERFECTLY_NORMAL_BEAST]);
+	else if (i > 138) return(&mons[PM_OGLAROONIAN]);
+	else if (i > 123) return(&mons[PM_MATTRESS]);
+	else if (i > 121) return((level_difficulty() < 15) ? &mons[PM_DRONIDIAN] : &mons[PM_MAGRATHEAN]);
+	else if (i > 111) return(&mons[PM_DRONIDIAN]);
+	else if (i > 105) return((maxdougdiff < 3) ? &mons[PM_HYPER_INTELLIGENT_MOUSE] : &mons[PM_DENTRASSI]);
+	else if (i > 100) return((maxdougdiff < 5) ? &mons[PM_BETELGEUSIAN] : &mons[PM_BLAGULON_KAPPAN]);
+	else if (i > 90) return(&mons[PM_BETELGEUSIAN]);
+	else if (i > 80) return(&mons[PM_AMEGLIAN_MAJOR_COW]);
+	else if (i > 60) return(&mons[PM_HYPER_INTELLIGENT_MOUSE]);
+	else if (i > 55) return((maxdougdiff < 12) ? &mons[PM_TRAIL_BEAST] : &mons[PM_RAVENOUS_BUGBLATTER_BEAST_OF_TRAAL]);
+	else if (i > 54 && !rn2(10)) return((maxdougdiff < 9) ? &mons[PM_MRIVAN] : &mons[PM_MARVIN]);
+	else if (i > 46) return(&mons[PM_CREEPING___]);
+	else if (i > 26) return(&mons[PM_MICROSCOPIC_SPACE_FLEET]);
+	else if (i > 20) return((maxdougdiff < 4) ? &mons[PM_BIRDON] : !rn2(5) ? &mons[PM_STUNOGON] : &mons[PM_VOGON]);
+	else if (i > 19) return((maxdougdiff < 14) ? &mons[PM_BIRDON] : &mons[PM_VOGON_LORD]);
+	else if (i > 2) return(&mons[PM_BABELFISH]);
+	else return((maxdougdiff < 8) ? &mons[PM_MOONTIGER] : &mons[PM_ALGOLIAN_SUNTIGER]);
 }
 
 struct permonst *
@@ -2974,17 +3006,39 @@ realzoomon()
 		}
 	}
 
-	int     i = rn2(60 + (3*level_difficulty()) );
-	if (i > 175 && !rn2(50))    return(&mons[PM_JUMBO_THE_ELEPHANT]);
-	else if (i > 115)       return(&mons[PM_MASTODON]);
-	else if (i > 85)        return(&mons[PM_PYTHON]);
-	else if (i > 70)        return(&mons[PM_MUMAK]);
-	else if (i > 60)        return(&mons[PM_TIGER]);
-	else if (i > 55)        return(&mons[PM_LYNX]);
-	else if (i > 45)        return(&mons[PM_PANTHER]);
-	else if (i > 25)        return(&mons[PM_JAGUAR]);
-	else if (i > 15)        return(&mons[PM_APE]);
-	else                    return(&mons[PM_MONKEY]);
+	int i = rnd(27);
+	switch (i) {
+		case 1: return (&mons[PM_MONKEY]);
+		case 2: return (&mons[PM_APE]);
+		case 3: return (&mons[PM_JAGUAR]);
+		case 4: return (&mons[PM_PANTHER]);
+		case 5: return (&mons[PM_LYNX]);
+		case 6: return (&mons[PM_TIGER]);
+		case 7: return ((level_difficulty() > 5) ? &mons[PM_MUMAK] : &mons[PM_TIGER]);
+		case 8: return ((level_difficulty() > 4) ? &mons[PM_PYTHON] : &mons[PM_APE]);
+		case 9: return ((level_difficulty() > 18) ? &mons[PM_MASTODON] : &mons[PM_PANTHER]);
+		case 10: return (((level_difficulty() > 37) && !rn2(50)) ? &mons[PM_JUMBO_THE_ELEPHANT] : &mons[PM_JAGUAR]);
+		case 11: return ((level_difficulty() > 6) ? &mons[PM_CAVE_LION] : &mons[PM_MONKEY]);
+		case 12: return ((level_difficulty() > 11) ? &mons[PM_SABER_TOOTHED_TIGER] : &mons[PM_LYNX]);
+		case 13: return ((level_difficulty() > 7) ? &mons[PM_ZRUTY] : &mons[PM_TIGER]);
+		case 14: return ((level_difficulty() > 11) ? &mons[PM_GORILLA] : &mons[PM_APE]);
+		case 15: return ((level_difficulty() > 9) ? &mons[PM_ANACONDA] : &mons[PM_PANTHER]);
+		case 16: return ((level_difficulty() > 11) ? &mons[PM_BLACK_MAMBA] : &mons[PM_JAGUAR]);
+		case 17: return (&mons[PM_KOALA]);
+		case 18: return ((level_difficulty() > 8) ? &mons[PM_KANGAROO] : &mons[PM_MONKEY]);
+		case 19: return ((level_difficulty() > 10) ? &mons[PM_ZEBRA] : &mons[PM_LYNX]);
+		case 20: return ((level_difficulty() > 16) ? &mons[PM_GIRAFFE] : &mons[PM_TIGER]);
+		case 21: return ((level_difficulty() > 8) ? &mons[PM_BROWN_BEAR] : &mons[PM_APE]);
+		case 22: return ((level_difficulty() > 10) ? &mons[PM_TITANOTHERE] : &mons[PM_PANTHER]);
+		case 23: return ((level_difficulty() > 10) ? &mons[PM_ELEPHANT] : &mons[PM_JAGUAR]);
+		case 24: return ((level_difficulty() > 12) ? &mons[PM_BALUCHITHERIUM] : &mons[PM_MONKEY]);
+		case 25: return ((level_difficulty() > 14) ? &mons[PM_RHINO] : &mons[PM_LYNX]);
+		case 26: return ((level_difficulty() > 16) ? &mons[PM_MAMMOTH] : &mons[PM_TIGER]);
+		case 27: return ((level_difficulty() > 17) ? &mons[PM_CAVE_BEAR] : &mons[PM_APE]);
+	}
+
+	return (&mons[PM_MONKEY]); /* fail safe */
+
 }
 
 STATIC_OVL struct permonst *
