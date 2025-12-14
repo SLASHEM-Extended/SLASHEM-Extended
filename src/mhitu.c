@@ -22872,6 +22872,7 @@ register struct monst *mtmp;
 
 	if (treadedshoemonster(mtmp->data)) pline("Ugh, treaded soles. Cleaning them will be a shitload of work (literally).");
 	if (highheeledshoemonster(mtmp->data)) pline("You don't understand how a woman would be careless enough to make her high heels dirty like that...");
+	if (extraannoying) pline("Eww, cow dung, that stuff's particularly icky!");
 
 	if (extraannoying) mtmp->singdirty = 2;
 	else mtmp->singdirty = 1;

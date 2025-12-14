@@ -9694,6 +9694,7 @@ SCROLL((char *)0,               "WE CRACK UP EVERY TIME GODOT SPITS OUT HIS COFF
 SCROLL((char *)0,               "JEAN ARMSTRONG OF TRES BIEN REALLY SHOULD HAVE WORN PINK PUMPS",  P_NONE,     1,   0, 100, CLR_BRIGHT_MAGENTA, 1),
 SCROLL((char *)0,               "BAD SAEGEBAER NEAR MILTENBERG HAS A LARGE ARTIFICIAL LAKE",  P_NONE,     1,   0, 100, CLR_CYAN, 1),
 SCROLL((char *)0,               "WEIRD INTERMEDIATE TACT FROM HASSLOCH TO LUXOR",  P_NONE,     1,   0, 100, CLR_BROWN, 1),
+SCROLL((char *)0,               "LISTEN TO THE ALBUM  PHANTOM ASSASSIN  BY IVE MENDES",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
 
 /* dummy for easier copypasting */
 /* SCROLL((char *)0,               "",  P_NONE,     1,   0, 100, CLR_, 1), */
@@ -10479,6 +10480,7 @@ SPELL((char *)0,         "third-hand",  P_NONE, 0, 0, 0, 1, 0, CLR_MAGENTA, 1),
 SPELL((char *)0,         "shady",  P_NONE, 0, 0, 0, 1, 0, CLR_BLACK, 1),
 SPELL((char *)0,         "intricate",  P_NONE, 0, 0, 0, 1, 0, CLR_YELLOW, 1),
 SPELL((char *)0,         "analog",  P_NONE, 0, 0, 0, 1, 0, CLR_WHITE, 1),
+SPELL((char *)0,         "emblazoned",  P_NONE, 0, 0, 0, 1, 0, CLR_YELLOW, 1),
 SPELL("blank paper",	 "plain",		P_NONE, 1500,  0, 0, 0, 0, HI_PAPER, 1),
 	/* ...Blank spellbook must come last because it retains its description */
 OBJECT(OBJ("Book of the Dead", "papyrus"),

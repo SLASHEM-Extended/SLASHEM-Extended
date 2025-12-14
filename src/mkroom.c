@@ -3366,13 +3366,24 @@ doomsquadmon()
 
 	if (i > 250) return(!rn2(20) ? &mons[PM_CYBERDEMON] : &mons[PM_ZOMBIEMAN]);
 	else if (i > 220) return(!rn2(8) ? &mons[PM_HELL_KNIGHT] : &mons[PM_ZOMBIEMAN]);
-	else if (i > 175) return(!rn2(2) ? &mons[PM_BARON_OF_HELL] : &mons[PM_ZOMBIEMAN]);
+	else if (i > 215) return(!rn2(30) ? &mons[PM_SPIDERDEMON] : &mons[PM_ZOMBIEMAN]);
+	else if (i > 210) return(!rn2(5) ? &mons[PM_IRON_LICH] : &mons[PM_ZOMBIEMAN]);
+	/* the iron lich is actually from Heretic, but since that's basically a DOOM clone, it is included here ;) --Amy */
+	else if (i > 180) return(!rn2(2) ? &mons[PM_BARON_OF_HELL] : &mons[PM_ZOMBIEMAN]);
 	else if (i > 160) return(!rn2(3) ? &mons[PM_DOOM_CACODEMON] : &mons[PM_ZOMBIEMAN]);
 	else if (i > 150) return(!rn2(4) ? &mons[PM_MANCUBUS] : &mons[PM_ZOMBIEMAN]);
+	else if (i > 145) return(!rn2(4) ? &mons[PM_PAIN_ELEMENTAL] : &mons[PM_ZOMBIEMAN]);
+	else if (i > 135) return(!rn2(2) ? &mons[PM_HOMING_REVENANT] : &mons[PM_ZOMBIEMAN]);
 	else if (i > 125) return(!rn2(2) ? &mons[PM_ARCH_VILE] : &mons[PM_ZOMBIEMAN]);
-	else if (i > 115) return(!rn2(2) ? &mons[PM_ARACHNOTRON] : &mons[PM_ZOMBIEMAN]);
+	else if (i > 115) return(!rn2(30) ? &mons[PM_NEAU_PHARAO] : !rn2(2) ? &mons[PM_ARACHNOTRON] : &mons[PM_ZOMBIEMAN]);
+	/* the Osiris WAD for DOOM 2 replaces arachnotrons with pharaos --Amy */
 	else if (i > 90) return(!rn2(2) ? &mons[PM_WOLFENSTEINER] : &mons[PM_ZOMBIEMAN]);
-	else if (i > 70) return(!rn2(50) ? &mons[PM_TOUCHNNOY_BRAINIE] : !rn2(5) ? &mons[PM_BRAINIE] : &mons[PM_ZOMBIEMAN]);
+	else if (i > 70) return(!rn2(100) ? &mons[PM_DEFILED_SOUL_BAT] : !rn2(50) ? &mons[PM_TOUCHNNOY_BRAINIE] : !rn2(10) ? &mons[PM_FLITTING_BAT] : !rn2(5) ? &mons[PM_BRAINIE] : &mons[PM_ZOMBIEMAN]);
+	/* "brainie" is actually the lost soul enemy from DOOM 2, but one of my friends called them "Hirni" back then because he thought they looked like a brain :P --Amy
+	 * the Osiris WAD changes lost souls to bats */
+	else if (i > 65) return(&mons[PM_CHAINGUNNER]);
+	else if (i > 60) return(rn2(5) ? &mons[PM_BATON_GUY] : &mons[PM_SPECTRAL_BATON_GUY]);
+	/* "baton guy" is actually the pink demon enemy from DOOM 2, but in the Osiris WAD they were replaced by guys with batons --Amy */
 	else if (!rn2(5)) return(&mons[PM_FORMER_SERGEANT]);
 	else return(&mons[PM_ZOMBIEMAN]);
 }

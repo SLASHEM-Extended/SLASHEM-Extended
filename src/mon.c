@@ -1176,6 +1176,7 @@ register struct monst *mtmp;
 	    case PM_GREATER_MUMMY_PRIEST:
 	    case PM_GREATER_MUMMY_PHARAOH:
 	    case PM_GREATER_MUMMY_HIGH_PRIEST:
+	    case PM_HOMING_REVENANT:
 		obj = mkcorpstat(CORPSE, (struct monst *)0, &mons[mndx], x, y, TRUE);
 		obj->age -= 100;                /* this is an *OLD* corpse */
 		break;

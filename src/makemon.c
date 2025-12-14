@@ -14208,6 +14208,7 @@ loveheelover:
 
 		if (ptr == &mons[PM_CELESTIAL_POKER]) (void) mongets(mtmp, CELESTIAL_POLE);
 		if (ptr == &mons[PM_ALIEN_POKER]) (void) mongets(mtmp, ZEBES_POLE);
+		if (ptr == &mons[PM_BATON_GUY] || ptr == &mons[PM_SPECTRAL_BATON_GUY]) (void) mongets(mtmp, CLUB);
 
 		if (mtmp->data == &mons[PM_EVELYN_S_CALF_LEATHER_SANDAL]) (void) mongets(mtmp, WEDGE_SANDALS); /* M4_SANDALS */
 		if (mtmp->data == &mons[PM_EVELYN_S_WALKING_PUMP]) (void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
@@ -17770,6 +17771,22 @@ loveheelover:
 			m_initthrow(mtmp, ARROW, 40);
 		}
 
+		if (mtmp->data == &mons[PM_PAIN_ELEMENTAL]) {
+			int paineggs = rn1(4,4);
+			while (paineggs > 0) {
+				paineggs--;
+				struct obj *otmpX = mksobj(EGG,TRUE,FALSE, FALSE);
+				if (otmpX) {
+					otmpX->spe = 0;
+					otmpX->quan = 1;
+					otmpX->owt = weight(otmpX);
+					otmpX->corpsenm = egg_type_from_parent(rn2(5) ? PM_BRAINIE : PM_TOUCHNNOY_BRAINIE, FALSE);
+					attach_egg_hatch_timeout(otmpX);
+					mpickobj(mtmp,otmpX, TRUE);
+				}
+			}
+		}
+
 		if (ptr == &mons[PM_KNOCKER_OF_DARKNESS]) (void) mongets(mtmp, DARKNESS_CLUB);
 		if (ptr == &mons[PM_HEAVY_GIRL]) (void) mongets(mtmp, COMBAT_STILETTOS);
 		if (monsndx(ptr) == PM_ICELANDIC_GUN_CHICK) { (void) mongets(mtmp, PISTOL); m_initthrow(mtmp, PISTOL_BULLET, 30); }
@@ -17928,6 +17945,17 @@ loveheelover:
 		if(ptr == &mons[PM_JANELITH]) (void) mongets(mtmp, SEXY_MARY_JANE);
 		if(ptr == &mons[PM_CLUBBER_DEMON]) (void) mongets(mtmp, rnd_class(CLUB, LOG));
 
+		if (ptr == &mons[PM_NEAU_PHARAO]) {
+			if (rn2(2)) {
+				(void) mongets(mtmp, RAYGUN);
+				m_initthrow(mtmp, RAYGUN_BOLT, 30);
+			}
+			else {
+				(void) mongets(mtmp, ARM_BLASTER);
+				m_initthrow(mtmp, HEAVY_BLASTER_BOLT, 30);
+			}
+		}
+
 		if(ptr == &mons[PM_KYLE_KATARN]) (void) mongets(mtmp, BLUE_LIGHTSABER);
 		if(ptr == &mons[PM_TAVION]) (void) mongets(mtmp, WHITE_DOUBLE_LIGHTSABER);
 		if(ptr == &mons[PM_DESANN]) (void) mongets(mtmp, BLACK_LIGHTSABER);
@@ -17938,6 +17966,10 @@ loveheelover:
 			(void) mongets(mtmp, !rn2(3) ? BATTLE_AXE : rn2(2) ? TWO_HANDED_SWORD : WAR_HAMMER);
 			 m_initthrow(mtmp, SHURIKEN, 50);
 			 m_initthrow(mtmp, SHURIKEN, 50);
+		}
+		if(ptr == &mons[PM_CHAINGUNNER]) {
+			(void) mongets(mtmp, ASSAULT_RIFLE);
+			 m_initthrow(mtmp, ASSAULT_RIFLE_BULLET, 50);
 		}
 
 		if(ptr == &mons[PM_INGRID]) {
@@ -19606,6 +19638,15 @@ loveheelover:
 		if (ptr == &mons[PM_CAMPER_ASSHOLE]) {
 			(void)mongets(mtmp, SNIPER_RIFLE);
 			m_initthrow(mtmp, SNIPER_BULLET, 10);
+		}
+		if (ptr == &mons[PM_SPIDERDEMON]) {
+			(void)mongets(mtmp, HEAVY_MACHINE_GUN);
+			m_initthrow(mtmp, MG_BULLET, 50);
+			m_initthrow(mtmp, MG_BULLET, 50);
+			m_initthrow(mtmp, MG_BULLET, 50);
+			m_initthrow(mtmp, MG_BULLET, 50);
+			m_initthrow(mtmp, MG_BULLET, 50);
+			m_initthrow(mtmp, MG_BULLET, 50);
 		}
 		if (ptr == &mons[PM_ROCKET_SPIDER]) {
 			(void)mongets(mtmp, ROCKET_LAUNCHER);
@@ -26801,6 +26842,7 @@ register int	mmflags;
 		case S_TRAPPER:
 
 			if (mndx == PM_DECEPTIVE_SPRINGY) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_SPECTRAL_BATON_GUY) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_LITTLE_VORER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_VORER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_LARGE_VORER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
