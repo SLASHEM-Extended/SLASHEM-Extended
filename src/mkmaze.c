@@ -1326,7 +1326,7 @@ int x,y;
 				levl[x][y].typ = STYXRIVER;
 
 			}
-			else levl[x][y].typ = walkableterrain();
+			else if (specialcorridor) levl[x][y].typ = walkableterrain();
 
 			move(&x, &y, dir);
 			pos++;
@@ -1619,7 +1619,7 @@ int x,y;
 				levl[x][y].typ = STYXRIVER;
 
 		}
-		else levl[x][y].typ = walkableterrain();
+		else if (specialcorridor) levl[x][y].typ = walkableterrain();
 		move(&x,&y,dir);
 		walkfrom(x,y);
 	}

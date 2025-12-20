@@ -5789,7 +5789,7 @@ dlb *fd;
     struct trap *badtrap;
     boolean has_bounds;
 
-    int specialcorridor;
+    int specialcorridor = 0; /* wtf that had been used uninitialized for years!!! --Amy */
     if (!rn2(iswarper ? 50 : 500)) specialcorridor = rnd(2);
 
     (void) memset((void *)&Map[0][0], 0, sizeof Map);
