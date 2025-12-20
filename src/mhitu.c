@@ -19885,11 +19885,11 @@ register int n;
 	if (hit_as_two(mtmp)) enchhave = 2;
 	if (hit_as_three(mtmp)) enchhave = 3;
 	if (hit_as_four(mtmp)) enchhave = 4;
-	if (MON_WEP(mtmp) && (MON_WEP(mtmp))->spe > enchhave) enchhave = MON_WEP(mtmp)->spe;
-	if (MON_WEP(mtmp) && MON_WEP(mtmp)->oartifact == ART_MAGICBANE && enchhave < 4) enchhave = 4;
-	if (MON_WEP(mtmp) && is_lightsaber(MON_WEP(mtmp)) && enchhave < 4) enchhave = 4;
-	if (MON_WEP(mtmp) && MON_WEP(mtmp)->opoisoned && enchhave < 4) enchhave = 4;
-	if (MON_WEP(mtmp) && MON_WEP(mtmp)->oartifact) enchhave += 2;
+	if (!DEADMONSTER(mtmp) && MON_WEP(mtmp) && (MON_WEP(mtmp))->spe > enchhave) enchhave = MON_WEP(mtmp)->spe;
+	if (!DEADMONSTER(mtmp) && MON_WEP(mtmp) && MON_WEP(mtmp)->oartifact == ART_MAGICBANE && enchhave < 4) enchhave = 4;
+	if (!DEADMONSTER(mtmp) && MON_WEP(mtmp) && is_lightsaber(MON_WEP(mtmp)) && enchhave < 4) enchhave = 4;
+	if (!DEADMONSTER(mtmp) && MON_WEP(mtmp) && MON_WEP(mtmp)->opoisoned && enchhave < 4) enchhave = 4;
+	if (!DEADMONSTER(mtmp) && MON_WEP(mtmp) && MON_WEP(mtmp)->oartifact) enchhave += 2;
 
 	if ((enchrequired > 0) && rn2(3) && (enchhave < enchrequired) ) {
 
@@ -22074,8 +22074,8 @@ dothepassive:
 			tmp = 0;
 		    }
 		} else tmp = 0;
-		if (!rn2(30)) erode_armor(mtmp, TRUE);
-		if (!rn2(6)) erode_obj(MON_WEP(mtmp), TRUE, TRUE);
+		if (!DEADMONSTER(mtmp) && !rn2(30)) erode_armor(mtmp, TRUE);
+		if (!DEADMONSTER(mtmp) && !rn2(6)) erode_obj(MON_WEP(mtmp), TRUE, TRUE);
 		goto assess_dmg;
 	    case AD_STON: /* cockatrice */
 	    case AD_EDGE:
@@ -22084,7 +22084,7 @@ dothepassive:
 		     wornitems = mtmp->misc_worn_check;
 
 		/* wielded weapon gives same protection as gloves here */
-		if (MON_WEP(mtmp) != 0) wornitems |= W_ARMG;
+		if (!DEADMONSTER(mtmp) && (MON_WEP(mtmp) != 0)) wornitems |= W_ARMG;
 
 		if (!resists_ston(mtmp) && !rn2(4) && (protector == 0L ||
 			(protector != ~0L &&
