@@ -893,7 +893,7 @@ struct mkroom *sroom;
 			(type == GRUEROOM) ? mkclass(S_GRUE,0) :
 		    (type == MORGUE) ? morguemon() :
 		    (type == FUNGUSFARM) ? (!rn2(4) ? mkclass(S_BLOB,0) : !rn2(3) ? mkclass(S_PUDDING,0) : !rn2(2) ? mkclass(S_JELLY,0) : mkclass(S_FUNGUS,0)) :
-		    (type == BEEHIVE) ? (sx == tx && sy == ty ? (((depthuz < 5) && !In_sokoban_real(&u.uz) && !In_mainframe(&u.uz) && (level_difficulty() < (3 + rn2(3)))) ? &mons[PM_BIG_BEE] : &mons[PM_QUEEN_BEE]) : beehivemon()) :
+		    (type == BEEHIVE) ? (sx == tx && sy == ty ? (((depthuz < 5) && !In_sokoban_real(&u.uz) && !In_mainframe(&u.uz) && !In_towndungeon(&u.uz) && (level_difficulty() < (3 + rn2(3)))) ? &mons[PM_BIG_BEE] : &mons[PM_QUEEN_BEE]) : beehivemon()) :
 		    (type == PRISONCHAMBER) ? (sx == tx && sy == ty ? prisonermon() : mkclass(S_OGRE,0) ) :
 		    (type == DOUGROOM) ? douglas_adams_mon() : 
 		    (type == LEPREHALL) ? mkclass(S_LEPRECHAUN,0) :
@@ -903,7 +903,7 @@ struct mkroom *sroom;
 		    (type == DRAGONLAIR) ? mkclass(S_DRAGON,0) :
 		    (type == LEMUREPIT)? 
 		    	(!rn2(20) ? &mons[PM_HORNED_DEVIL] : !rn2(20) ? mkclass(S_DEMON,0) : !rn2(50) ? &mons[ndemon(A_NONE)] : rn2(2) ? mkclass(S_IMP,0) : &mons[PM_LEMURE]) :
-		    (type == MIGOHIVE) ? (sx == tx && sy == ty ? (((depthuz < 10) && !In_sokoban_real(&u.uz) && !In_mainframe(&u.uz) && (level_difficulty() < (5 + rn2(5)))) ? &mons[PM_SUDO_MIGO] : &mons[PM_MIGO_QUEEN]) : migohivemon()) :
+		    (type == MIGOHIVE) ? (sx == tx && sy == ty ? (((depthuz < 10) && !In_sokoban_real(&u.uz) && !In_mainframe(&u.uz) && !In_towndungeon(&u.uz) && (level_difficulty() < (5 + rn2(5)))) ? &mons[PM_SUDO_MIGO] : &mons[PM_MIGO_QUEEN]) : migohivemon()) :
 		    (type == BADFOODSHOP) ? mkclass(S_BAD_FOOD,0) :
 		    (type == REALZOO) ? (rn2(3) ? realzoomon() : rn2(3) ? mkclass(S_QUADRUPED,0) : rn2(3) ? mkclass(S_FELINE,0) : rn2(3) ? mkclass(S_YETI,0) : rn2(3) ? mkclass(S_SNAKE,0) : mkclass(S_ZOUTHERN,0) ) :
 		    (type == GIANTCOURT) ? mkclass(S_GIANT,0) :
@@ -2806,7 +2806,7 @@ douglas_adams_mon()
 
 	/* low-mid level stuff shouldn't spawn early, but will once you're past a certain depth --Amy
 	 * higher-level stuff will use level_difficulty() to check whether it can spawn */
-	if ((depthuz < 10) && !In_sokoban_real(&u.uz) && !In_mainframe(&u.uz) && (level_difficulty() < (8 + rn2(3)))) {
+	if ((depthuz < 10) && !In_sokoban_real(&u.uz) && !In_mainframe(&u.uz) && !In_towndungeon(&u.uz) && (level_difficulty() < (8 + rn2(3)))) {
 		maxdougdiff = depthuz;
 	}
 
@@ -2915,7 +2915,7 @@ migohivemon()
 		depthuz = depth(&u.uz);
 	}
 
-	if ((depthuz < 10) && !In_sokoban_real(&u.uz) && !In_mainframe(&u.uz) && (level_difficulty() < (5 + rn2(5)))) return (&mons[PM_LITTLE_MIGO]);
+	if ((depthuz < 10) && !In_sokoban_real(&u.uz) && !In_mainframe(&u.uz) && !In_towndungeon(&u.uz) && (level_difficulty() < (5 + rn2(5)))) return (&mons[PM_LITTLE_MIGO]);
 
 	if (rn2(3)) return (!rn2(3) ? &mons[PM_MIGO_WARRIOR] : &mons[PM_MIGO_DRONE]);
 	else if (!rn2(4)) return (rn2(2) ? &mons[PM_MIGO_FORCE_DRONE] : &mons[PM_ARMED_MIGO_DRONE]);
@@ -2998,7 +2998,7 @@ realzoomon()
 		depthuz = depth(&u.uz);
 	}
 
-	if ((depthuz < 6) && !In_sokoban_real(&u.uz) && !In_mainframe(&u.uz) && (level_difficulty() < (5 + rn2(2)))) {
+	if ((depthuz < 6) && !In_sokoban_real(&u.uz) && !In_mainframe(&u.uz) && !In_towndungeon(&u.uz) && (level_difficulty() < (5 + rn2(2)))) {
 		switch (rnd(3)) {
 			case 1: return(&mons[PM_MONKEY]);
 			case 2: return(&mons[PM_ROTHE]);
@@ -3093,7 +3093,7 @@ squadmon()		/* return soldier types. */
 		depthuz = depth(&u.uz);
 	}
 
-	if ((depthuz < 8) && !In_sokoban_real(&u.uz) && !In_mainframe(&u.uz) && (level_difficulty() < (4 + rn2(2)))) {
+	if ((depthuz < 8) && !In_sokoban_real(&u.uz) && !In_mainframe(&u.uz) && !In_towndungeon(&u.uz) && (level_difficulty() < (4 + rn2(2)))) {
 		switch (rnd(5)) {
 			case 1: mndx = PM_UNARMORED_SOLDIER; break;
 			case 2: mndx = PM_WEAKISH_SOLDIER; break;
@@ -3416,7 +3416,7 @@ doomsquadmon()
 		depthuz = depth(&u.uz);
 	}
 
-	if ((depthuz < 8) && !In_sokoban_real(&u.uz) && !In_mainframe(&u.uz) && (level_difficulty() < (4 + rn2(3)))) return(&mons[PM_STUNTED_ZOMBIEMAN]);
+	if ((depthuz < 8) && !In_sokoban_real(&u.uz) && !In_mainframe(&u.uz) && !In_towndungeon(&u.uz) && (level_difficulty() < (4 + rn2(3)))) return(&mons[PM_STUNTED_ZOMBIEMAN]);
 
 	if (i > 250) return(!rn2(20) ? &mons[PM_CYBERDEMON] : &mons[PM_ZOMBIEMAN]);
 	else if (i > 220) return(!rn2(8) ? &mons[PM_HELL_KNIGHT] : &mons[PM_ZOMBIEMAN]);
