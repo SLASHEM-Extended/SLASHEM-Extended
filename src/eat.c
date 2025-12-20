@@ -5699,7 +5699,7 @@ struct obj *otmp;
 			{
 			   case 0:
 
-				if (rn2(100)) { /* make wishes much less common --Amy */
+				if (rn2(100) || (u.ulevel < 10) || (moves < 10000) ) { /* make wishes much less common --Amy */
 
 					if (rn2(2)) make_sick(rn1(15,15), "bad pill", TRUE, SICK_VOMITABLE);
 					else {

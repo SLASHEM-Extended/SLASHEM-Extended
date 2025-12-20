@@ -70,6 +70,10 @@ dowaterdemon() /* Water demon */
 			verbalize("Muahahahaha puny mortal, you are too inexperienced to receive my boon! As a consolation, have a zorkmid, but don't spend it all at once! Ha ha ha!");
 			(void) mkgold(1, u.ux, u.uy);
 			mongone(mtmp);
+		} else if (moves < 5000) {
+			verbalize("Muahahahaha puny mortal, it's too early for you to receive my boon! So I'm giving you a zorkmid instead. Ha ha ha...");
+			(void) mkgold(1, u.ux, u.uy);
+			mongone(mtmp);
 		} else {
 			pline("Grateful for %s release, %s grants you a boon!", mhis(mtmp), mhe(mtmp));
 			if (!rn2(4)) makewish(evilfriday ? FALSE : TRUE);

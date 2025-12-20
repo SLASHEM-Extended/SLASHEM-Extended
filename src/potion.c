@@ -19530,6 +19530,10 @@ int kind;
 			verbalize("I'm sorry, you seem too inexperienced to receive my boon. Please take this enchanted purse with a hundred gold pieces instead!");
 			(void) mkgold(100, u.ux, u.uy);
 			mongone(mtmp);
+		} else if (moves < 5000) {
+			verbalize("I'm sorry, it's too early for you to receive my boon. Please take this enchanted purse with a hundred gold pieces instead!");
+			(void) mkgold(100, u.ux, u.uy);
+			mongone(mtmp);
 		} else {
 			verbalize("I am in your debt.  I will grant a boon!");
 			if (!rn2(4) || (obj->oartifact == ART_KITZLE_THE_WISH_OUT) ) makewish(evilfriday ? FALSE : TRUE);
