@@ -4954,6 +4954,10 @@ const char *msg_override;
 	afternmv = 0;
 	flags.botl = 1;
 
+	/* fail safe for banishment in case the player would somehow get a turn --Amy */
+	if (u.banishmentbeam && multi >= 0) nomul(-2, "being banished", FALSE);
+	if (u.levelporting && multi >= 0) nomul(-2, "being levelported", FALSE);
+
 	/* lara trap effect: specially spawned monsters should banish themselves when you're unparalyzed --Amy */
 	for (mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
 		if (mtmp->laramonst) {
