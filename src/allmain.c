@@ -6167,23 +6167,23 @@ greasingdone:
 		}
 
 		if (AntitrainingEffect && !rn2(1000)) {
-			if (AntiTrainingXtra) skilltrainingdecrease((level_difficulty() * rnd(15)) + 1);
-			else skilltrainingdecrease((level_difficulty() * rnd(3)) + 1);
+			if (AntiTrainingXtra) skilltrainingdecrease((level_difficulty() * rnd(5)) + 1);
+			else skilltrainingdecrease(level_difficulty() + 1);
 		}
 
 		if (u.uprops[ANTI_TRAINING_EFFECT].extrinsic && !rn2(1000)) {
-			if (AntiTrainingXtra) skilltrainingdecrease((level_difficulty() * rnd(15)) + 1);
-			else skilltrainingdecrease((level_difficulty() * rnd(3)) + 1);
+			if (AntiTrainingXtra) skilltrainingdecrease((level_difficulty() * rnd(5)) + 1);
+			else skilltrainingdecrease(level_difficulty() + 1);
 		}
 
 		if (have_antitrainingstone() && !rn2(1000)) {
-			if (AntiTrainingXtra) skilltrainingdecrease((level_difficulty() * rnd(15)) + 1);
-			else skilltrainingdecrease((level_difficulty() * rnd(3)) + 1);
+			if (AntiTrainingXtra) skilltrainingdecrease((level_difficulty() * rnd(5)) + 1);
+			else skilltrainingdecrease(level_difficulty() + 1);
 		}
 
 		if (uarmh && uarmh->oartifact == ART_SAMIRA_S_EXPRESSION && !rn2(1000)) {
-			if (AntiTrainingXtra) skilltrainingdecrease((level_difficulty() * rnd(15)) + 1);
-			else skilltrainingdecrease((level_difficulty() * rnd(3)) + 1);
+			if (AntiTrainingXtra) skilltrainingdecrease((level_difficulty() * rnd(5)) + 1);
+			else skilltrainingdecrease(level_difficulty() + 1);
 		}
 
 		if (have_amateurluckstone() && !rn2(100)) {
