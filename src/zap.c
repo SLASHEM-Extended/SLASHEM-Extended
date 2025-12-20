@@ -7555,6 +7555,7 @@ boolean ordinary;
 				if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
 				else {
 					Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+					flags.botl = 1;
 					u.cnd_stoningcount++;
 					pline("You start turning to stone!");
 					sprintf(killer_buf, "their own wand of stoning");

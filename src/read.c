@@ -1002,6 +1002,7 @@ doread()
 			if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
 			else {
 				Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+				flags.botl = 1;
 				u.cnd_stoningcount++;
 				pline("Eep - you gazed at the image of Medusa that is drawn on the front side of your bra! You start turning to stone.");
 			}
@@ -10287,6 +10288,7 @@ newboss:
 				if (Hallucination && rn2(10)) pline("You are already stoned.");
 				else {
 					Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+					flags.botl = 1;
 					u.cnd_stoningcount++;
 					pline("You start turning to stone!");
 				}

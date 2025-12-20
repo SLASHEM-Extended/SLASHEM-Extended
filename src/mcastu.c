@@ -1728,6 +1728,7 @@ int spellnum;
 			else {
 				You("start turning to stone!");
 				Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+				flags.botl = 1;
 				u.cnd_stoningcount++;
 				stop_occupation();
 				delayed_killer = "petrify spell";

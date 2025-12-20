@@ -1763,6 +1763,7 @@ dogaze()
 			if (Hallucination && rn2(10)) pline("But you are already stoned.");
 			else {
 				Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+				flags.botl = 1;
 				u.cnd_stoningcount++;
 				delayed_killer = "gazing at Medusa";
 			}
@@ -3148,6 +3149,7 @@ dogaze()
 				if (Hallucination && rn2(10)) pline("But you are already stoned.");
 				else {
 					Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+					flags.botl = 1;
 					u.cnd_stoningcount++;
 					delayed_killer = "deliberately meeting Medusa's gaze";
 				}

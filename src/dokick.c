@@ -1768,6 +1768,7 @@ xchar x, y;
 			if (Hallucination && rn2(10)) pline("Good thing you are already stoned.");
 			else {
 				Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+				flags.botl = 1;
 				u.cnd_stoningcount++;
 				delayed_killer = "kicking a petrifyium bar";
 			}
@@ -1785,6 +1786,7 @@ xchar x, y;
 			if (Hallucination && rn2(10)) pline("Good thing you are already stoned.");
 			else {
 				Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+				flags.botl = 1;
 				u.cnd_stoningcount++;
 				delayed_killer = "kicking a petrifyium bra";
 			}
@@ -1812,6 +1814,7 @@ xchar x, y;
 			if (Hallucination && rn2(10)) pline("Good thing you are already stoned.");
 			else {
 				Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+				flags.botl = 1;
 				u.cnd_stoningcount++;
 				delayed_killer = killer_cxname(kickobj,TRUE);
 			}

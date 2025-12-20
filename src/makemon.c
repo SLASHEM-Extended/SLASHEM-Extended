@@ -331,7 +331,7 @@ register struct monst *mtmp;
 			case 9: (void) mongets(mtmp, FIELD_GLOVES); break;
 			case 10:
 			case 11:
-			case 12: (void) mongets(mtmp, GAUNTLETS); break;
+			case 12: (void) mongets(mtmp, ROBUST_GAUNTLETS); break;
 			case 13: (void) mongets(mtmp, SILVER_GAUNTLETS); break;
 
 		}
@@ -7705,7 +7705,7 @@ register struct monst *mtmp;
 				(void) mongets(mtmp, ORCISH_CLOAK);
 				(void) mongets(mtmp, LANCE);
 				(void) mongets(mtmp, ANTENNA);
-				(void) mongets(mtmp, GAUNTLETS);
+				(void) mongets(mtmp, ROBUST_GAUNTLETS);
 				(void) mongets(mtmp, FIELD_BOOTS);
 				(void) mongets(mtmp, BILL_GUISARME);
 			}
@@ -8669,7 +8669,7 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_VERA_THE_ICE_QUEEN]) {
 			if ((find_appearance_armor(APP_CYAN_SNEAKERS)) != -1) (void)mongets(mtmp, find_appearance_armor(APP_CYAN_SNEAKERS));
 			(void) mongets(mtmp, ATHAME);
-			(void) mongets(mtmp, GAUNTLETS);
+			(void) mongets(mtmp, ROBUST_GAUNTLETS);
 			(void) mongets(mtmp, AMULET_OF_REFLECTION);
 			(void) mongets(mtmp, HIGH_BOOTS);
 			(void) mongets(mtmp, CLOAK_OF_MAGIC_RESISTANCE);
@@ -11690,7 +11690,7 @@ loveheelover:
 		}
 		if (ptr == &mons[PM_SILVOLD]) {
 			(void) mongets(mtmp, SLING);
-			(void) mongets(mtmp, GAUNTLETS);
+			(void) mongets(mtmp, ROBUST_GAUNTLETS);
 			 m_initthrow(mtmp, SILVER_SLINGSTONE, 30);
 		}
 		if(mtmp->data == &mons[PM_SKI_FEMMY]) (void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
@@ -14307,7 +14307,7 @@ loveheelover:
 			(void) mongets(mtmp, ELVEN_CLOAK);
 			(void) mongets(mtmp, ORANGE_DRAGON_SCALE_MAIL);
 			(void) mongets(mtmp, ORCISH_HELM);
-			(void) mongets(mtmp, GAUNTLETS);
+			(void) mongets(mtmp, ROBUST_GAUNTLETS);
 			(void) mongets(mtmp, SNIPER_RIFLE);
 			m_initthrow(mtmp, SNIPER_BULLET, 50);
 			(void) mongets(mtmp, DUMMY_BOOTS_A);
@@ -25899,8 +25899,8 @@ register int	mmflags;
 	if (!rn2(3)) mtmp->telepatvisible = (rn2(2) ? 2 : 1);
 	mtmp->seeinvisble = rn2(3);
 	mtmp->infravisble = rn2(3);
-	mtmp->lisapantscolor = rnd(19);
-	mtmp->lisapantstype = rnd(18);
+	mtmp->lisapantscolor = rnd(32);
+	mtmp->lisapantstype = rnd(32);
 	mtmp->genderidentity = rnd(32);
 	mtmp->lisaseen = FALSE;
 	mtmp->spawndo = FALSE;

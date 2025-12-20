@@ -1161,7 +1161,7 @@ A("Plug And Pray",			GAUNTLETS_OF_PLUGSUIT,
 	(SPFX_RESTR|SPFX_REFLECT), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
 
-A("Gauntlets of Slaying",			GAUNTLETS, /* increase STR and DEX by enchantment +3 */
+A("Gauntlets of Slaying",			ROBUST_GAUNTLETS, /* increase STR and DEX by enchantment +3 */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
@@ -28115,7 +28115,7 @@ A("Flagellator",				SEXPLAY_WHIP, /* 1 in 5000 chance to polymorph you into a M2
 	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_EVIL), 0, 0,
 	PHYS(0, 10), NO_DFNS, NO_CARY, 0, A_NEUTRAL, PM_GENDERSTARIST, NON_PM, 2000L ),
 
-A("Major Presence",				GAUNTLETS, /* +2 to-hit and damage */
+A("Major Presence",				ROBUST_GAUNTLETS, /* +2 to-hit and damage */
 	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NEUTRAL, PM_COMBATANT, NON_PM, 4000L ),
 

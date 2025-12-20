@@ -9267,6 +9267,7 @@ register struct attack *mattk;
 			else {
 				You("start turning to stone.");
 				Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+				flags.botl = 1;
 				u.cnd_stoningcount++;
 				killer_format = KILLED_BY_AN;
 				delayed_killer = mdef->data->mname;
@@ -10150,6 +10151,7 @@ register struct attack *mattk;
 			else {
 				You("are turning to stone.");
 				Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+				flags.botl = 1;
 				u.cnd_stoningcount++;
 				killer_format = KILLED_BY_AN;
 				delayed_killer = mdef->data->mname;
@@ -12401,6 +12403,7 @@ bladeangerdone2:
 					if (Hallucination && rn2(10)) pline("But you are already stoned.");
 					else {
 						Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+						flags.botl = 1;
 						u.cnd_stoningcount++;
 						delayed_killer = "deliberately gazing at Medusa's hideous countenance";
 					}
@@ -12897,6 +12900,7 @@ boolean ranged;
 					if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
 					else {
 						Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+						flags.botl = 1;
 						u.cnd_stoningcount++;
 						sprintf(killer_buf, "being hit by a mirrored petrifying corpse");
 						delayed_killer = killer_buf;
@@ -13633,6 +13637,7 @@ boolean ranged;
 					You("start turning to stone.");
 					u.cnd_stoningcount++;
 					Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+					flags.botl = 1;
 					delayed_killer = "bashing a petrifying monster";
 				}
 			}
@@ -13679,6 +13684,7 @@ boolean ranged;
 				else {
 					You("start turning to stone.");
 					Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+					flags.botl = 1;
 					u.cnd_stoningcount++;
 					delayed_killer = "bashing a petrifying monster";
 				}

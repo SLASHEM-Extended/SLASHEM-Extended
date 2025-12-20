@@ -1011,6 +1011,7 @@ register int pm;
 			else {
 				You("start turning to stone.");
 				Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+				flags.botl = 1;
 				u.cnd_stoningcount++;
 				sprintf(killer_buf, "tasting petrifying meat (%s)", mons[pm].mname);
 				delayed_killer = killer_buf;
@@ -1400,6 +1401,7 @@ fix_petrification()
 		u.stonedchilltimer = rnz(250); /* planned to be rnz(1000) which caused amateurhour to spit out his tea */
 	}
 	Stoned = 0;
+	flags.botl = 1;
 	delayed_killer = 0;
 	if (FunnyHallu)
 	    pline("What a pity - you just ruined a future piece of %sart!",
@@ -6083,6 +6085,7 @@ struct obj *otmp;
 			else {
 				You("start turning to stone.");
 				Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+				flags.botl = 1;
 				u.cnd_stoningcount++;
 				stop_occupation();
 				delayed_killer = "eating a petrifying amulet";
@@ -7614,6 +7617,7 @@ register struct obj *otmp;
 				else {
 					You("start turning to stone.");
 					Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+					flags.botl = 1;
 					u.cnd_stoningcount++;
 					killer_format = KILLED_BY_AN;
 					sprintf(killer_buf, "petrifying egg (%s)", mons[otmp->corpsenm].mname);
@@ -9045,6 +9049,7 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 			else {
 				You("start turning to stone.");
 				Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+				flags.botl = 1;
 				u.cnd_stoningcount++;
 				stop_occupation();
 				delayed_killer = "eating a petrifying weapon";
@@ -9059,6 +9064,7 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 			else {
 				You("start turning to stone.");
 				Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+				flags.botl = 1;
 				u.cnd_stoningcount++;
 				stop_occupation();
 				delayed_killer = "eating a petrifying bra";

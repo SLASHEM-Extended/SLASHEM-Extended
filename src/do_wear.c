@@ -1812,6 +1812,7 @@ Cloak_on()
 			if (Hallucination && rn2(10)) pline("But you are already stoned.");
 			else {
 				Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+				flags.botl = 1;
 				u.cnd_stoningcount++;
 				delayed_killer = "cloak of stone";
 			}
@@ -3442,7 +3443,7 @@ Gloves_on()
 	case HARMONIUM_GAUNTLETS:
 	case ROGUES_GLOVES:
 	case FIELD_GLOVES:
-	case GAUNTLETS:
+	case ROBUST_GAUNTLETS:
 	case ELVEN_GAUNTLETS:
 	case UNKNOWN_GAUNTLETS:
 	case GAUNTLETS_OF_FREE_ACTION:
@@ -3963,7 +3964,7 @@ Gloves_off()
 	case DUMMY_GLOVES_AG:
 	case DUMMY_GLOVES_AH:
 	case DUMMY_GLOVES_AI:
-	case GAUNTLETS:
+	case ROBUST_GAUNTLETS:
 	case ELVEN_GAUNTLETS:
 	case UNKNOWN_GAUNTLETS:
 	case GAUNTLETS_OF_FREE_ACTION:
@@ -4521,6 +4522,7 @@ Shirt_on()
 			if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
 			else {
 				Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+				flags.botl = 1;
 				u.cnd_stoningcount++;
 				pline("You start turning to stone!");
 			}
@@ -5464,6 +5466,7 @@ Amulet_on()
 			if (Hallucination && rn2(10)) pline("But you are already stoned.");
 			else {
 				Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+				flags.botl = 1;
 				u.cnd_stoningcount++;
 				stop_occupation();
 				delayed_killer = "amulet of stone";

@@ -15776,7 +15776,7 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 				pline("They sure look good but unfortunately these gloves are actually rather plain."); break;
 			case FIELD_GLOVES:
 				pline("A bog-standard pair of gloves."); break;
-			case GAUNTLETS:
+			case ROBUST_GAUNTLETS:
 				pline("A standard pair of gauntlets."); break;
 			case SILVER_GAUNTLETS:
 				pline("These gauntlets may or may not be made of silver. However, regardless of their actual material, using bare-handed attacks with them will deal silver damage to enemies."); break;

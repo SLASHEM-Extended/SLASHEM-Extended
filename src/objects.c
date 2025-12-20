@@ -3197,7 +3197,7 @@ GLOVES("commander gloves", "light gloves",
 		0, 0,  0,	   20, 1, 4, 50,  9, 0, MT_CLOTH, CLR_WHITE, 1, 0),
 GLOVES("field gloves", "camouflage patterned gloves",
 		0, 0,  0,	   20, 1, 4, 50,  9, 0, MT_CLOTH, CLR_BROWN, 1, 0),
-GLOVES("gauntlets", "odd pair of gloves",
+GLOVES("robust gauntlets", "odd pair of gloves",
 		0, 1,  0,	   20, 1, 4, 50,  9, 0, MT_IRON, CLR_BROWN, 1, 0),
 GLOVES("silver gauntlets", "even pair of gloves",
 		0, 1,  0,	   20, 1, 4, 50,  9, 0, MT_SILVER, CLR_BROWN, 1, 0),
@@ -9695,6 +9695,7 @@ SCROLL((char *)0,               "JEAN ARMSTRONG OF TRES BIEN REALLY SHOULD HAVE 
 SCROLL((char *)0,               "BAD SAEGEBAER NEAR MILTENBERG HAS A LARGE ARTIFICIAL LAKE",  P_NONE,     1,   0, 100, CLR_CYAN, 1),
 SCROLL((char *)0,               "WEIRD INTERMEDIATE TACT FROM HASSLOCH TO LUXOR",  P_NONE,     1,   0, 100, CLR_BROWN, 1),
 SCROLL((char *)0,               "LISTEN TO THE ALBUM  PHANTOM ASSASSIN  BY IVE MENDES",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
+SCROLL((char *)0,               "SALTED FAITHS WITHOUT WHITE DREAMS",  P_NONE,     1,   0, 100, CLR_WHITE, 1),
 
 /* dummy for easier copypasting */
 /* SCROLL((char *)0,               "",  P_NONE,     1,   0, 100, CLR_, 1), */

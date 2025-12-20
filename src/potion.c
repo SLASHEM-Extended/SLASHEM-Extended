@@ -3317,6 +3317,7 @@ badeffect()
 			else {
 				You("start turning to stone!");
 				Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+				flags.botl = 1;
 				u.cnd_stoningcount++;
 				stop_occupation();
 				delayed_killer = "bad petrification effect";
@@ -4884,6 +4885,7 @@ reallybadeffect()
 			else {
 				You("start turning to stone!");
 				Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+				flags.botl = 1;
 				u.cnd_stoningcount++;
 				stop_occupation();
 				delayed_killer = "bad petrification effect";
@@ -18256,11 +18258,11 @@ boolean canarti;
 		case GAUNTLETS_OF_DEXTERITY:
 			obj->otyp = REGULAR_GLOVES;
 			break;
-		case GAUNTLETS:
+		case ROBUST_GAUNTLETS:
 			obj->otyp = SILVER_GAUNTLETS;
 			break;
 		case SILVER_GAUNTLETS:
-			obj->otyp = GAUNTLETS;
+			obj->otyp = ROBUST_GAUNTLETS;
 			break;
 		/* shields */
 		case ELVEN_SHIELD:

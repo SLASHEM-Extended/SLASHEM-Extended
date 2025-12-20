@@ -2168,6 +2168,45 @@ register struct monst *mtmp;
 		case 19:
 			sprintf(pantsbuf, "beige");
 			break;
+		case 20:
+			sprintf(pantsbuf, "blue-green");
+			break;
+		case 21:
+			sprintf(pantsbuf, "mint green");
+			break;
+		case 22:
+			sprintf(pantsbuf, "anthrazite");
+			break;
+		case 23:
+			sprintf(pantsbuf, "blood-red");
+			break;
+		case 24:
+			sprintf(pantsbuf, "ochre");
+			break;
+		case 25:
+			sprintf(pantsbuf, "grass green");
+			break;
+		case 26:
+			sprintf(pantsbuf, "dark green");
+			break;
+		case 27:
+			sprintf(pantsbuf, "off-white");
+			break;
+		case 28:
+			sprintf(pantsbuf, "dark gray");
+			break;
+		case 29:
+			sprintf(pantsbuf, "light gray");
+			break;
+		case 30:
+			sprintf(pantsbuf, "purple");
+			break;
+		case 31:
+			sprintf(pantsbuf, "pastel pink");
+			break;
+		case 32:
+			sprintf(pantsbuf, "rose red");
+			break;
 		default:
 			impossible("weird lisapantscolor %d", mtmp->lisapantscolor);
 			sprintf(pantsbuf, "weird");
@@ -2232,6 +2271,48 @@ register struct monst *mtmp;
 			break;
 		case 18:
 			strcat(pantsbuf, "form-fitting panties");
+			break;
+		case 19:
+			strcat(pantsbuf, "tight pants");
+			break;
+		case 20:
+			strcat(pantsbuf, "butt-stroking pants");
+			break;
+		case 21:
+			strcat(pantsbuf, "cuddle cloth pants");
+			break;
+		case 22:
+			strcat(pantsbuf, "elastic pants");
+			break;
+		case 23:
+			strcat(pantsbuf, "rubber pants");
+			break;
+		case 24:
+			strcat(pantsbuf, "soft pants");
+			break;
+		case 25:
+			strcat(pantsbuf, "sexy pants");
+			break;
+		case 26:
+			strcat(pantsbuf, "feminine pants");
+			break;
+		case 27:
+			strcat(pantsbuf, "erotic pants");
+			break;
+		case 28:
+			strcat(pantsbuf, "dirty pants");
+			break;
+		case 29:
+			strcat(pantsbuf, "palm-motif pants");
+			break;
+		case 30:
+			strcat(pantsbuf, "flower-patterned pants");
+			break;
+		case 31:
+			strcat(pantsbuf, "bloom-adorned pants");
+			break;
+		case 32:
+			strcat(pantsbuf, "striped pants");
 			break;
 		default:
 			impossible("weird lisapantstype %d", mtmp->lisapantstype);

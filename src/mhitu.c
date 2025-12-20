@@ -7517,6 +7517,7 @@ hitmu(mtmp, mattk)
 					if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
 					else {
 						Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+						flags.botl = 1;
 						u.cnd_stoningcount++;
 						pline("You start turning to stone!");
 					}
@@ -8895,6 +8896,7 @@ dopois:
 				if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
 				else {
 					Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+					flags.botl = 1;
 					u.cnd_stoningcount++;
 					delayed_killer = mtmp->data->mname;
 					if (mtmp->data->geno & G_UNIQ) {
@@ -8945,6 +8947,7 @@ dopois:
 				if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
 				else {
 					Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+					flags.botl = 1;
 					u.cnd_stoningcount++;
 					delayed_killer = mtmp->data->mname;
 					if (mtmp->data->geno & G_UNIQ) {
@@ -12383,6 +12386,7 @@ do_stone2:
 				if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
 				else {
 					Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+					flags.botl = 1;
 					u.cnd_stoningcount++;
 					delayed_killer = mtmp->data->mname;
 					if (mtmp->data->geno & G_UNIQ) {
@@ -12424,6 +12428,7 @@ do_stone2:
 				if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
 				else {
 					Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+					flags.botl = 1;
 					u.cnd_stoningcount++;
 					delayed_killer = mtmp->data->mname;
 					if (mtmp->data->geno & G_UNIQ) {
@@ -15210,6 +15215,7 @@ common:
 			if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
 			else {
 				Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+				flags.botl = 1;
 				u.cnd_stoningcount++;
 				delayed_killer = mtmp->data->mname;
 				if (mtmp->data->geno & G_UNIQ) {
@@ -15241,6 +15247,7 @@ common:
 			if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
 			else {
 				Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+				flags.botl = 1;
 				u.cnd_stoningcount++;
 				delayed_killer = mtmp->data->mname;
 				if (mtmp->data->geno & G_UNIQ) {
@@ -15507,7 +15514,8 @@ common:
 					if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
 					else {
 					    Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
-						u.cnd_stoningcount++;
+					    flags.botl = 1;
+					    u.cnd_stoningcount++;
 					    killer_format = KILLED_BY;
 					    delayed_killer = "their own petrifying corpse";
 					}
@@ -16351,6 +16359,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 				if (Hallucination && rn2(10)) pline("But you are already stoned.");
 				else {
 					Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+					flags.botl = 1;
 					u.cnd_stoningcount++;
 					delayed_killer = "petrifying gaze";
 				}
@@ -16407,6 +16416,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 				if (Hallucination && rn2(10)) pline("But you are already stoned.");
 				else {
 					Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+					flags.botl = 1;
 					u.cnd_stoningcount++;
 					delayed_killer = "petrifying gaze";
 				}
@@ -18894,6 +18904,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 					if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
 					else {
 						Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+						flags.botl = 1;
 						u.cnd_stoningcount++;
 						sprintf(killer_buf, "being hit by a mirrored petrifying corpse");
 						delayed_killer = killer_buf;
