@@ -605,9 +605,8 @@ castmu(mtmp, mattk, thinks_it_foundyou, foundyou)
 	if (!foundyou) {
 	    /*dmg = 0;*/
 	    if (spellcasttype != AD_SPEL && spellcasttype != AD_CLRC && spellcasttype != AD_CAST) {
-		impossible(
-	      "%s casting non-hand-to-hand version of hand-to-hand spell %d?",
-			   Monnam(mtmp), spellcasttype);
+		/* used to be an impossible, but the enthumesis trap can cause it to happen --Amy */
+		pline("%s casts a spell at you, but didn't guess your position correctly and so it fizzled!", Monnam(mtmp));
 		return(0);
 	    }
 	} /*else*/ if (mattk->damd)
@@ -1411,8 +1410,10 @@ newbossRLN:
 		pline("%s suddenly %s!", Monnam(mtmp), !See_invisible ? "disappears" : "becomes transparent");
 	    mon_set_minvis(mtmp);
 	    dmg = 0;
-	} else
-	    impossible("no reason for monster to cast disappear spell?");
+	} else {
+	    /* was an impossible, but might happen with the enthumesis trap --Amy */
+	    pline("But it had no effect!");
+	}
 	break;
     case MGC_NUMB_YOU:
 	if (Antimagic && rn2(StrongAntimagic ? 3 : 2)) {
@@ -2266,8 +2267,10 @@ int spellnum;
 	    make_blinded(StrongHalf_spell_damage ? 50L : Half_spell_damage ? 100L : 200L, FALSE);
 	    if (!Blind) Your("%s", vision_clears);
 	    dmg = 0;
-	} else
-	    impossible("no reason for monster to cast blindness spell?");
+	} else {
+	    /* used to be an impossible, but might happen with the enthumesis trap --Amy */
+	    pline("But you're unaffected!");
+	}
 	break;
     case CLC_PARALYZE:
 	if ((Antimagic || Free_action) && rn2((StrongAntimagic || StrongFree_action) ? 20 : 5)) {
