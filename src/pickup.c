@@ -1105,7 +1105,7 @@ int *wt_before, *wt_after;
     boolean adjust_wt = container && carried(container),
 	    is_gold = obj->oclass == COIN_CLASS;
     int wt, iw, ow, oow;
-    long qq, savequan;
+    long qq, savequan; /* the horribly named "qq" variable seems to be the amount of the item that you can actually carry, and which will be returned --Amy */
 #ifdef GOLDOBJ
     long umoney = money_cnt(invent);
 #endif
@@ -1144,8 +1144,13 @@ int *wt_before, *wt_after;
     if (wt < 0)
 	return count;
 
+    /* weightless objects should be possible to get out of a container even if you're overloaded, because it sucks if you have 20 scrolls of remove curse in your box
+     * and just can't get any of them into your main inventory where it could be used to uncurse that loadboulder --Amy */
+    if (weight(obj) < 1)
+	return count;
+
     /* see how many we can lift */
-    if (is_gold) {
+    if (is_gold) { /* object is a stack of gold pieces */
 
 	goto golddone; /* doesn't weigh anything, so... --Amy */
 
@@ -1188,7 +1193,8 @@ int *wt_before, *wt_after;
 #else
 	wt = iw + (int)GOLD_WT(umoney + qq);
 #endif
-    } else if (count > 1 || count < obj->quan) {
+    } else if (count > 1 || count < obj->quan) { /* object is not gold */
+
 	/*
 	 * Ugh. Calc num to lift by changing the quan of of the
 	 * object and calling weight.
@@ -1208,6 +1214,7 @@ int *wt_before, *wt_after;
 	}
 	--qq;
     } else {
+
 	/* there's only one, and we can't lift it */
 	qq = 0L;
     }
@@ -1255,6 +1262,7 @@ golddone:
 	prefx2 = "is too heavy for you to ";
 	suffx  = "";
     }
+    /* "There is a sumka here, but you cannot carry any more." - bullshit that you can't grep for this message! Grrrrrr! --Amy */
     There("%s %s %s, but %s%s%s%s.",
 	  otense(obj, "are"), obj_nambuf, where,
 	  prefx1, prefx2, verb, suffx);
@@ -1780,10 +1788,8 @@ doloot()	/* loot a container on the floor or loot saddle from mon. */
 		}
 	}
 
-    if (check_capacity((char *)0)) {
+    if (rn2(5) && check_capacity((char *)0)) return(1); /* 20% chance of success; a failure means you lose a turn --Amy */
 	/* "Can't do that while carrying so much stuff." */
-	return 0;
-    }
 
 	/* It used to check for hands here, but I removed that because actually looting a container already checks if your
 	 * form has hands. It was really annoying that you could have twice the failure chance when looting off the ground

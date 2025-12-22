@@ -910,7 +910,7 @@ doread()
 	strcpy(cp, readable);
 
 	known = FALSE;
-	if(check_capacity((char *)0)) return (0);
+	if (rn2(5) && check_capacity((char *)0)) return(1); /* 20% chance of success; a failure means you lose a turn --Amy */
 	scroll = getobj(class_list, "read");
 	if(!scroll) return(0);
 

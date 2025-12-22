@@ -2075,7 +2075,7 @@ dokick()
 		/* note: jump() has similar code */
 		Your("%s is in no shape for kicking.", body_part(LEG));
 		no_kick = TRUE;
-	} else if (near_capacity() > SLT_ENCUMBER) {
+	} else if (near_capacity() > MOD_ENCUMBER) { /* used to be that stressed prevented kicking; changed to strained by Amy */
 		Your("load is too heavy to balance yourself for a kick.");
 		no_kick = TRUE;
 	} else if (youmonst.data->mlet == S_LIZARD) {

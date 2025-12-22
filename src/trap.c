@@ -28752,7 +28752,7 @@ struct trap *ttmp;
 		return 0;
 	}
 	/* Do you have the necessary capacity to lift anything? */
-	if (check_capacity((char *)0)) return 1;
+	if (check_capacity((char *)0)) return 1; /* no chance to succeed anyway because this interaction is rare enough to be irrelevant :-P --Amy */
 
 	/* Will our hero succeed? */
 	if ((uprob = untrap_prob(ttmp)) && !mtmp->msleeping && mtmp->mcanmove) {

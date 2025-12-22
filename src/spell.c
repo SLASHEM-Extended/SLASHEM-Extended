@@ -7234,10 +7234,10 @@ boolean metronomespell;
 		You("lack the strength to cast spells.");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return(0);
-	} else if(check_capacity(
-		"Your concentration falters while carrying so much stuff.")) {
+	} else if(rn2(4) && check_capacity(
+		"Your concentration falters while carrying so much stuff.")) { /* 25% chance to be able to cast when overtaxed; lose a turn if it fails --Amy */
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
-	    return (1);
+		return (1);
 	} else if (!freehandX() && !(uwep && uwep->oartifact == ART_MAGE_STAFF_OF_ETERNITY) && !(Role_if(PM_CELLAR_CHILD) && uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) ) {
 		Your("arms are not free to cast!");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */

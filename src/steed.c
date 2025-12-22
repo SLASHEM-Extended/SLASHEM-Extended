@@ -497,9 +497,28 @@ mount_steed(mtmp, force)
 		}
 
 	}
-	if(!force && (near_capacity() > SLT_ENCUMBER)) {
+
+	/* used to be that stressed was enough to make riding impossible... changed to strained or worse --Amy */
+	if(!force && (near_capacity() > MOD_ENCUMBER)) {
 	    You_cant("do that while carrying so much stuff.");
 	    return (FALSE);
+	}
+
+	/* and if you're exactly stressed, it can fail */
+	if(!force && (near_capacity() == MOD_ENCUMBER)) {
+		You_cant("do that while carrying so much stuff.");
+
+		if (yn("But you can try to get on your steed anyway. Do it? Warning: this can do up to 30 points of damage!") == 'y') {
+			if (rn2(3)) {
+				losehp(rn1(10,20), "trying an illegal ride", NO_KILLER_PREFIX);
+				pline("Ouch! You slip and hurt yourself a lot!");
+				if (!rn2(20)) badeffect();
+				return(TRUE); /* failed, need to try again, and will use a turn */
+			}
+		}
+		else {
+			return(FALSE);
+		}
 	}
 
 	/* Can the player reach and see the monster? */

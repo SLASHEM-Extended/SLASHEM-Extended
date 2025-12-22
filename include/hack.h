@@ -24,11 +24,11 @@
 
 /* symbolic names for capacity levels */
 #define UNENCUMBERED	0
-#define SLT_ENCUMBER	1	/* Burdened */
-#define MOD_ENCUMBER	2	/* Stressed */
-#define HVY_ENCUMBER	3	/* Strained */
-#define EXT_ENCUMBER	4	/* Overtaxed */
-#define OVERLOADED	5	/* Overloaded */
+#define SLT_ENCUMBER	1	/* Burdened - I think it stands for "slight encumber" --Amy */
+#define MOD_ENCUMBER	2	/* Stressed - probably "moderate encumber", I always thought it meant "modified"... --Amy */
+#define HVY_ENCUMBER	3	/* Strained - "heavy encumber" --Amy */
+#define EXT_ENCUMBER	4	/* Overtaxed - probably "extreme encumber", I always thought it meant "external"... --Amy */
+#define OVERLOADED	5	/* Overloaded - apart from this one, only "unencumbered" doesn't have a misleading abbreviation :-P --Amy */
 
 /* Macros for how a rumor was delivered in outrumor() */
 #define BY_ORACLE	0

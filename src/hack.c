@@ -2063,7 +2063,9 @@ domove()
 	    || (wtcap > SLT_ENCUMBER &&
 		(Upolyd ? (u.mh < 5 && u.mh != u.mhmax)
 			: (u.uhp < 10 && u.uhp != u.uhpmax))))
-	   && !Is_airlevel(&u.uz)) {
+	   && !Is_airlevel(&u.uz)
+	   && !flags.forcefight) {
+	   /* somehow caused you to collapse or otherwise get a failure even if you didn't try to move (F command, i.e. "forcefight"), but that's just stupid! --Amy */
 	    if(wtcap < OVERLOADED) {
 		You("don't have enough stamina to move.");
 		exercise(A_CON, FALSE);
@@ -2336,7 +2338,9 @@ domove()
 	}
 
 	/* fucked up bug where we can reach here even when engulfed and waste a turn... --Amy
-	 * This could crash the game if the player is punished, which we'll prevent by just aborting the player's move */
+	 * This could crash the game if the player is punished, which we'll prevent by just aborting the player's move
+	 * I don't really know why this happens, but it used to also say "you can't take items out of an engulfer's interior" as if you had either tried to pick up
+	 * an item, or moved onto one and caused autopickup to trigger, so maybe the presence of items could cause it? Not sure though... */
 	if(u.uswallow) {
 		pline("Caution: You seem to have encountered the bug where moving into an engulfer wastes a turn. In order to attack the monster, prefix your movement with F (shift-f), please. Sorry for the inconvenience. --Amy");
 		return;
@@ -2346,8 +2350,10 @@ domove()
 	if (mtmp && (displacer || peacedisplacer || mtmp->mtame)) {
 		boolean inpool, inlava;
 
-		inpool = (is_waterypool(u.ux, u.uy) || is_watertunnel(u.ux, u.uy)) && !is_flyer(mtmp->data) && !(is_urinelake(u.ux, u.uy)) && !(is_moorland(u.ux, u.uy)) && !(is_crystalwater(u.ux, u.uy)) && (!mtmp->egotype_flying) && !is_floater(mtmp->data);
-		inlava = is_lava(u.ux, u.uy) && !is_flyer(mtmp->data) && (!mtmp->egotype_flying) && !is_floater(mtmp->data);
+		/* inpool needs to check a lot of things to see whether the monster will die in water or not --Amy */
+		inpool = (is_waterypool(u.ux, u.uy) || is_watertunnel(u.ux, u.uy)) && !is_flyer(mtmp->data) && !(mtmp->data->mlet == S_FLYFISH) && !(mtmp->data->mlet == S_EEL) && !mtmp->egotype_watersplasher && !amphibious(mtmp->data) && !is_swimmer(mtmp->data) && !is_clinger(mtmp->data)  && !(is_urinelake(u.ux, u.uy)) && !(is_moorland(u.ux, u.uy)) && !(is_crystalwater(u.ux, u.uy)) && (!mtmp->egotype_flying) && !is_floater(mtmp->data);
+		/* need to also check for a couple of monster properties to see whether it'll burn up in lava or not --Amy */
+		inlava = is_lava(u.ux, u.uy) && !is_flyer(mtmp->data) && !is_clinger(mtmp->data) && !(mtmp->data->mlet == S_FLYFISH) && !(mtmp->data == &mons[PM_UNMAGIC_FISH]) && !(mtmp->data == &mons[PM_ROXY_GRETA_S_SNEAKER]) && !likes_lava(mtmp->data) && (!mtmp->egotype_flying) && !is_floater(mtmp->data);
 
 		if (inpool || inlava) canexistonsquare = FALSE;
 	}
@@ -6120,6 +6126,9 @@ int symbiotetype;
 /*
  * Returns 0 if below normal capacity, or the number of "capacity units"
  * over the normal capacity the player is loaded.  Max is 5.
+ * Amy note: returns 0 if unburdened, 1 if burdened, 2 if stressed, 3 if strained, 4 if overtaxed, 5 if overloaded
+ * this means that 0 = UNENCUMBERED, 1 = SLT_ENCUMBER, 2 = MOD_ENCUMBER, 3 = HVY_ENCUMBER, 4 = EXT_ENCUMBER, 5 = OVERLOADED
+ * and I think "xtra_wt" is there to check whether a picked up object (with a weight of "xtra_wt") would encumber you
  */
 int
 calc_capacity(xtra_wt)
@@ -6134,6 +6143,11 @@ int xtra_wt;
     return min(cap, OVERLOADED);
 }
 
+/* apparently returns the capacity level just like calc_capacity() but with "xtra_wt" always being zero; this is me (Amy) trying to make sense of the vanilla functions
+ * it would *really* help if the devteam hadn't given such illogical names to those...
+ * returns 0 if unburdened, 1 if burdened, 2 if stressed, 3 if strained, 4 if overtaxed, 5 if overloaded
+ * i.e. 0 = UNENCUMBERED, 1 = SLT_ENCUMBER, 2 = MOD_ENCUMBER, 3 = HVY_ENCUMBER, 4 = EXT_ENCUMBER, 5 = OVERLOADED
+ */
 int
 near_capacity()
 {
@@ -6149,6 +6163,9 @@ max_capacity()
 	return (wt - (4 * wc));
 }
 
+/* apparently a function that checks whether you can perform various actions, and which goes "nope, can't do that" if you're overtaxed or worse --Amy
+ * once again a *very* weird name that the dev team gave to that function, could mean anything... who would ever guess that it specifically checks whether your
+ * current load is "overtaxed or worse"?! */
 boolean
 check_capacity(str)
 const char *str;
@@ -6157,7 +6174,7 @@ const char *str;
 	if(str)
 	    pline("%s", str);
 	else
-	    You_cant("do that while carrying so much stuff.");
+	    You("fail to do that while carrying so much stuff."); /* used to say "you can't" but I want you to usually have 20% chance of performing the action anyway --Amy */
 
 	if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 

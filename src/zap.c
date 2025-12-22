@@ -6093,7 +6093,7 @@ dozap()
 		return 0;
 	}
 
-	if(check_capacity((char *)0)) return(0);
+	if (rn2(5) && check_capacity((char *)0)) return(1); /* 20% chance of success; a failure means you lose a turn --Amy */
 	obj = getobj(zap_syms, "zap");
 	if(!obj) return(0);
 

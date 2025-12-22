@@ -588,7 +588,8 @@ boolean allow_drag;
 
 drag:
 
-	if (near_capacity() > SLT_ENCUMBER && dist2(x, y, u.ux, u.uy) <= 2) {
+	/* used to be that stressed and punished was enough to not be able to move... changed to strained by Amy */
+	if (near_capacity() > MOD_ENCUMBER && dist2(x, y, u.ux, u.uy) <= 2) {
 	    You("cannot %sdrag the heavy iron ball.",
 			    invent ? "carry all that and also " : "");
 	    nomul(0, 0, FALSE);

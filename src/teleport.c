@@ -1073,8 +1073,8 @@ boolean costly;
 	    /* unless you have double teleportitis, which will be the case very rarely, you'll be unable to control it */
 	    if (reallycostly && !StrongTeleportation) u.uprops[DEAC_TELEPORT_CONTROL].intrinsic++;
 
-	    if (check_capacity(
-			"Your concentration falters from carrying so much."))
+	    if (rn2(4) && check_capacity(
+			"Your concentration falters from carrying so much.")) /* 25% chance to be able to teleport if overtaxed, lose a turn if it fails --Amy */
 		return 1;
 
 	    if (castit) {

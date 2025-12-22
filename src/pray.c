@@ -2952,9 +2952,11 @@ dopray()
 {
     /* Confirm accidental slips of Alt-P */
 
-	if ((near_capacity() >= OVERLOADED) && !(tech_inuse(T_PRAYING_SUCCESS)) ) { /* cheater prayer by Amy, so you can save yourself from a starlightstone etc. */
+	if ((near_capacity() >= EXT_ENCUMBER) && !(tech_inuse(T_PRAYING_SUCCESS)) ) { /* cheater prayer by Amy, so you can save yourself from a starlightstone etc. */
 
-		/* the cheater prayer ALWAYS works, even if you cannot pray for whatever reason */
+		/* the cheater prayer ALWAYS works, even if you cannot pray for whatever reason
+		 * used to be available only when overloaded, but being overtaxed with no way of getting rid of your weight source can fuck you up too so allow it for
+		 * chars who are overtaxed as well --Amy */
 
 		struct obj *otmpi, *otmpii;
 		boolean cheaterprayerworked = FALSE;
@@ -3022,7 +3024,22 @@ dopray()
 
 				}
 
-				/* no such item? then, kill the player's symbiote if it's weighty */
+				/* no such item? then, try to remove the burden intrinsic, in case the char has that (can't forcibly remove the extrinsic, I'm afraid) */
+
+				if (!cheaterprayerworked) {
+					if (HBurdenedState & INTRINSIC) {
+						HBurdenedState &= ~INTRINSIC;
+						You_feel("lighter");
+						cheaterprayerworked = TRUE;
+					}
+					if (HBurdenedState & TIMEOUT) {
+						HBurdenedState &= ~TIMEOUT;
+						You_feel("lighter");
+						cheaterprayerworked = TRUE;
+					}
+				}
+
+				/* didn't have the burden intrinsic? kill the player's symbiote if it's weighty */
 
 				if (!cheaterprayerworked) {
 					if (uinsymbiosis && (symbioteweight(u.usymbiote.mnum) >= 100)) {

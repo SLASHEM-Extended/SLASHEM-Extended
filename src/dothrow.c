@@ -1127,10 +1127,12 @@ dothrow()
 				return 1;
 			}
 		}
-		else {return(0);}
+		else {
+			return(0);
+		}
 	}
 
-	if(check_capacity((char *)0)) return(0);
+	if (rn2(5) && check_capacity((char *)0)) return(1); /* 20% chance of success; a failure means you lose a turn --Amy */
 	obj = getobj(uslinging() ? bullets : toss_objs, "throw");
 	/* it is also possible to throw food */
 	/* (or jewels, or iron balls... ) */
@@ -1270,7 +1272,9 @@ dofire()
 			return 1;
 			}
 		}
-		else {return(0);}
+		else {
+			return(0);
+		}
 	}
 
 #ifdef MAIL
@@ -1286,7 +1290,7 @@ dofire()
 		return(0);
 	}
 
-	if(check_capacity((char *)0)) return(0);
+	if (rn2(5) && check_capacity((char *)0)) return(1); /* 20% chance of success; failure means you use a turn --Amy */
 	if (!uquiver) {
 		if (!flags.autoquiver) {
 			/* Don't automatically fill the quiver */

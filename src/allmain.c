@@ -4687,7 +4687,7 @@ nyssaraend:
 			howmuchistoomuch = ((inv_weight() + weight_cap()) - (weight_cap() * 5));
 
 			if (howmuchistoomuch < 0) howmuchistoomuch = 0;
-			howmuchistoomuch /= 500;
+			howmuchistoomuch /= (evilfriday ? 500 : 2000);
 			if (isfriday) howmuchistoomuch *= 2;
 			if (howmuchistoomuch > 0) {
 				Your("backpack is crushing you!");

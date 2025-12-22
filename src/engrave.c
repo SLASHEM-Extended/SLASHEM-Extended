@@ -1705,6 +1705,8 @@ doengrave()
 	if (cantwield(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
 		You_cant("even hold anything!");
 
+		/* can try anyway, just make them lose that turn if it fails. If they're surrounded by 20 killer bees and 10 large cats,
+		   losing a turn while engraving might be enough to kill them anyway. No need for further penalties. --Amy */
 		if (yn("Do you want to try engraving anyway? Warning: this can fail and cause you to lose a turn.") == 'y') {
 			if (rn2(3) && !polyskillchance()) { 		
 				pline("You failed to engrave anything.");
@@ -1713,11 +1715,11 @@ doengrave()
 			}
 		}
 
-		/* Just make them lose that turn. If they're surrounded by 20 killer bees and 10 large cats,
-		   losing a turn while engraving might be enough to kill them anyway. No need for further penalties. --Amy */
-		else {return(0);}
+		else {
+			return(0);
+		}
 	}
-	if (check_capacity((char *)0)) return (0);
+	if (rn2(5) && check_capacity((char *)0)) return(1); /* 20% chance of success; a failure means you lose a turn --Amy */
 
 	/* One may write with finger, or weapon, or wand, or..., or...
 	 * Edited by GAN 10/20/86 so as not to change weapon wielded.

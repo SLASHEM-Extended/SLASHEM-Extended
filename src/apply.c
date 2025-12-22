@@ -5721,8 +5721,7 @@ blast_him:
 	u.cnd_chemistrycount++;
 }
 
-
-
+/* player tries to apply an item: return 1 if it used a turn */
 int
 doapply()
 {
@@ -5738,7 +5737,7 @@ doapply()
 		return 0;
 	}
 
-	if(check_capacity((char *)0)) return (0);
+	if (rn2(5) && check_capacity((char *)0)) return (1); /* overtaxed, tried (20% chance of success) and failed, so you lose a turn --Amy */
 
 	if (carrying(POT_OIL) || carryingappearance(APP_POTION_VACCINE) || carryingappearance(APP_POTION_DYE) || uhave_graystone())
 		strcpy(class_list, tools_too);

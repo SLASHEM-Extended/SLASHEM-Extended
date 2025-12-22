@@ -1301,7 +1301,7 @@ register struct monst *mtmp;
 		return FALSE;
 	}
 
-	if(check_capacity("You cannot fight while so heavily loaded."))
+	if(rn2(2) && check_capacity("You fail to fight while so heavily loaded.")) /* used to be impossible; changed to fail 50% of the time when overtaxed --Amy */
 	    goto atk_done;
 
 	if (u.twoweap && !can_twoweapon())
