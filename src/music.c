@@ -478,7 +478,7 @@ hornchoice:
 
 		    break;
 		} else if (!u.dx && !u.dy && !u.dz) {
-		    if ((damage = zapyourself(instr, TRUE)) != 0) {
+		    if ((damage = zapyourself(instr, TRUE, FALSE)) != 0) {
 			char buf[BUFSZ];
 			sprintf(buf, "using a magical horn on %sself", uhim());
 			losehp(damage, buf, KILLED_BY);

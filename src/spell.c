@@ -7985,7 +7985,7 @@ magicalenergychoice:
 			    }
 			}
 			if(!u.dx && !u.dy && !u.dz) {
-			    if ((damage = zapyourself(pseudo, TRUE)) != 0) {
+			    if ((damage = zapyourself(pseudo, TRUE, FALSE)) != 0) {
 				char buf[BUFSZ];
 				sprintf(buf, "zapped %sself with a spell", uhim());
 				losehp(damage, buf, NO_KILLER_PREFIX);

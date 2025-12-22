@@ -1875,7 +1875,9 @@ armorsmashdone:
 		if (owandclass == WAND_CLASS) makeknown(otyp);
 		break;
 	default:
-		impossible("What an interesting effect (%d)", otyp);
+		pline("%s is unaffected!", Monnam(mtmp));		
+		/* used to be an impossible but several types of exploding wands can cause this --Amy */
+		/* impossible("What an interesting effect (%d)", otyp); */
 		break;
 	}
 
@@ -4237,7 +4239,8 @@ smell:
 	case SPE_MENSTRUATION: /* placeholder for natalia trap special attack */
 		break;
 	default:
-		impossible("What an interesting effect (%ld)", otmp->otyp);
+		/* nothing happens; could be caused by exploding wands so we don't want that to result in unnecessary message spam --Amy */
+		/* impossible("What an interesting effect (%ld)", otmp->otyp); */
 		break;
 	}
 	return res;
@@ -6242,7 +6245,7 @@ glowandfadechoice:
 		}
 		/* make him pay for knowing !NODIR */
 	} else if(!u.dx && !u.dy && !u.dz && !(objects[obj->otyp].oc_dir == NODIR)) {
-	    if ((damage = zapyourself(obj, TRUE)) != 0) {
+	    if ((damage = zapyourself(obj, TRUE, FALSE)) != 0) {
 		char buf[BUFSZ];
 		sprintf(buf, "zapped %sself with a wand", uhim());
 		losehp(damage, buf, NO_KILLER_PREFIX);
@@ -6381,9 +6384,10 @@ int min, range, skilldmg;
 }
 
 int
-zapyourself(obj, ordinary)
+zapyourself(obj, ordinary, weakereffect)
 struct obj *obj;
 boolean ordinary;
+boolean weakereffect;
 {
 	int	damage = 0;
 	char buf[BUFSZ];
@@ -6446,7 +6450,7 @@ boolean ordinary;
 
 			if ((multi >= 0) || u.antidreameater) { /* should always be the case --Amy */
 				pline("You are unaffected.");
-			} else { /* but I guess you could be using stuff like inertia control or spellbinder? */
+			} else { /* but I guess you could be using stuff like inertia control or spellbinder? or maybe your wand blew up while you were paralyzed */
 				pline("Your dream is eaten!");
 			      damage = d(10, 10);
 			}
@@ -6727,7 +6731,7 @@ boolean ordinary;
 			damage = d(16,6);
 		   }
 
-			{
+			if (!weakereffect) {
 			    register struct obj *objX, *objX2;
 			    for (objX = invent; objX; objX = objX2) {
 			      objX2 = objX->nobj;
@@ -6752,7 +6756,7 @@ boolean ordinary;
 		case SPE_AURORA_BEAM:
 			You("irradiate yourself!");
 			damage = d(24,8);
-		    (void) cancel_monst(&youmonst, obj, TRUE, FALSE, TRUE);
+			if (!weakereffect) (void) cancel_monst(&youmonst, obj, TRUE, FALSE, TRUE);
 		   break;
 
 		case SPE_PSYBEAM:
@@ -6989,12 +6993,14 @@ boolean ordinary;
 			  damage = d(14,7);
 			  poisoned("blast", A_DEX, "toxic blast", 15);
 			}
-			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_STR, -rnd(2), FALSE, TRUE);
-			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_DEX, -rnd(2), FALSE, TRUE);
-			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_CON, -rnd(2), FALSE, TRUE);
-			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_INT, -rnd(2), FALSE, TRUE);
-			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_WIS, -rnd(2), FALSE, TRUE);
-			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_CHA, -rnd(2), FALSE, TRUE);
+			if (!weakereffect) {
+				if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_STR, -rnd(2), FALSE, TRUE);
+				if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_DEX, -rnd(2), FALSE, TRUE);
+				if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_CON, -rnd(2), FALSE, TRUE);
+				if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_INT, -rnd(2), FALSE, TRUE);
+				if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_WIS, -rnd(2), FALSE, TRUE);
+				if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_CHA, -rnd(2), FALSE, TRUE);
+			}
 
 		   break;
 
@@ -7142,13 +7148,15 @@ boolean ordinary;
 		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 10 : 50))
 		      destroy_item(SPBOOK_CLASS, AD_FIRE);
 
-			if (Upolyd && u.mhmax > 1) {
-				u.mhmax--;
-				if (u.mh > u.mhmax) u.mh = u.mhmax;
-			}
-			else if (!Upolyd && u.uhpmax > 1) {
-				u.uhpmax--;
-				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+			if (!weakereffect) {
+				if (Upolyd && u.mhmax > 1) {
+					u.mhmax--;
+					if (u.mh > u.mhmax) u.mh = u.mhmax;
+				}
+				else if (!Upolyd && u.uhpmax > 1) {
+					u.uhpmax--;
+					if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+				}
 			}
 			make_blinded(Blinded+rnz(100),FALSE);
 
@@ -7271,13 +7279,15 @@ boolean ordinary;
 		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 10 : 50))
 		      destroy_item(SPBOOK_CLASS, AD_FIRE);
 
-			if (Upolyd && u.mhmax > 1) {
-				u.mhmax--;
-				if (u.mh > u.mhmax) u.mh = u.mhmax;
-			}
-			else if (!Upolyd && u.uhpmax > 1) {
-				u.uhpmax--;
-				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+			if (!weakereffect) {
+				if (Upolyd && u.mhmax > 1) {
+					u.mhmax--;
+					if (u.mh > u.mhmax) u.mh = u.mhmax;
+				}
+				else if (!Upolyd && u.uhpmax > 1) {
+					u.uhpmax--;
+					if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+				}
 			}
 			make_blinded(Blinded+rnz(100),FALSE);
 
@@ -7363,6 +7373,10 @@ boolean ordinary;
 		    break;
 
 		case WAN_POLYMORPH:
+
+		    /* waaaaaaaaay too evil to break your comr just because your wand blew up --Amy */
+		    if (weakereffect) break;
+
 		    if (!Unchanging) {
 		    	makeknown(WAN_POLYMORPH);
 
@@ -7404,6 +7418,9 @@ boolean ordinary;
 		    }
 		    break;
 		case WAN_MUTATION:
+
+		    if (weakereffect) break;
+
 		    if (!Unchanging) {
 		    	makeknown(WAN_MUTATION);
 		    	polyself(FALSE);
@@ -7419,6 +7436,10 @@ boolean ordinary;
 		    break;
 		case WAN_CANCELLATION:
 		case SPE_CANCELLATION:
+		    /* uggggghhhhhh it suxx0red royally to have your ENTIRE inventory, which you probably spent all game enchanting up to its current pluses, immediately be
+		     * trashed just because of one exploding wand. so, if we got here because of a wand explosion, do nothing because it might have been something that the
+		     * player couldn't control --Amy */
+		    if (weakereffect) break;
 		    (void) cancel_monst(&youmonst, obj, TRUE, FALSE, TRUE);
 		    break;
 
@@ -7486,6 +7507,8 @@ boolean ordinary;
 			if (!Free_action || !rn2(StrongFree_action ? 20 : 5)) {
 			    pline("You are frozen in place!");
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
+			    /* lower duration if it was an exploding wand --Amy */
+			    if (weakereffect) nomul(-rnd(3), "frozen by their own wand", TRUE);
 			    if (isstunfish) nomul(-rnz(20), "frozen by their own wand", TRUE);
 			    else nomul(-rnd(20), "frozen by their own wand", TRUE);
 			    nomovemsg = You_can_move_again;
@@ -7509,6 +7532,9 @@ boolean ordinary;
 		case WAN_DISINTEGRATION_BEAM:
 		case SPE_DISINTEGRATION:
 		case SPE_DISINTEGRATION_BEAM:
+
+			/* exploding wand? then just don't do anything, because waaaaaaaaaaay too evil --Amy */
+			if (weakereffect) break;
 
 			if (Disint_resistance && rn2(StrongDisint_resistance ? 1000 : 100) && !(evilfriday && (uarms || uarmc || uarm || uarmu))) {
 			    You("are not disintegrated.");
@@ -7579,6 +7605,9 @@ boolean ordinary;
 			break;
 
 		case WAN_DESLEXIFICATION:
+			/* item only exists in soviet mode normally, where you generally aren't protected from wand explosions, so no real reason to add a failsafe here...
+			 * but I'll make one anyway ;) --Amy */
+			if (weakereffect) break;
 			u.youaredead = 1;
 			makeknown(obj->otyp);
 			killer_format = KILLED_BY;
@@ -7939,6 +7968,15 @@ boolean ordinary;
 			if (obj->oclass == WAND_CLASS) makeknown(obj->otyp);
 		    break;
 		case WAN_BANISHMENT:
+
+			/* banishment can really ruin your whole run if you don't have return scrolls or end up e.g. in the void, so prevent it if we got here due to
+			 * an exploding wand; actually zapping yourself will of course banish you --Amy */
+			if (weakereffect) {
+				makeknown(obj->otyp);
+				tele();
+				break;
+			}
+
 			makeknown(obj->otyp);
 			if (((u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds_normalterrain(FALSE); break;}
 			if (playerlevelportdisabled()) {
@@ -7951,6 +7989,10 @@ boolean ordinary;
 		    break;
 		case WAN_DEATH:
 		case SPE_FINGER_OF_DEATH:
+
+		    /* wand of death doesn't actually reach this code right now but better to make sure if one day it does... --Amy */
+		    if (weakereffect) break;
+
 		    if (nonliving(youmonst.data) || is_demon(youmonst.data) || Death_resistance) {
 			pline((obj->otyp == WAN_DEATH) ?
 			  "The wand shoots an apparently harmless beam at you."
@@ -8087,9 +8129,12 @@ boolean ordinary;
 		    break;
 		case SPE_STONE_TO_FLESH:
 		case WAN_STONE_TO_FLESH:
-		    {
+		{
 		    struct obj *otemp, *onext;
 		    boolean didmerge;
+
+		    /* waaaaaaaaaaaaaaaay too evil to ruin all stone objects in player's inventory just because your wand exploded --Amy */
+		    if (weakereffect) break;
 
 		    if (u.umonnum == PM_STONE_GOLEM)
 			(void) polymon(PM_FLESHY_GOLEM);
@@ -8114,9 +8159,12 @@ boolean ordinary;
 			    		break;
 			    		}
 		    } while (didmerge);
-		    }
+		}
 		    break;
-		default: impossible("object %ld used?",obj->otyp);
+		default: 
+		    pline("You are unaffected!");
+		    /* potentially an effect of exploding wands, so don't give unneeded error messages --Amy */
+		    /* impossible("object %ld used?",obj->otyp); */
 		    break;
 	}
 	return(damage);

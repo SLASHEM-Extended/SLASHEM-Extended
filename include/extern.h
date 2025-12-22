@@ -3946,7 +3946,7 @@ E int bhitpile(struct obj *,int (*)(OBJ_P,OBJ_P),int,int);
 E int zappable(struct obj *);
 E void zapnodir(struct obj *);
 E int dozap(void);
-E int zapyourself(struct obj *,BOOLEAN_P);
+E int zapyourself(struct obj *,BOOLEAN_P,BOOLEAN_P);
 E boolean cancel_monst(struct monst *,struct obj *, BOOLEAN_P,BOOLEAN_P,BOOLEAN_P);
 E void weffects(struct obj *);
 E int spell_damage_bonus(int);

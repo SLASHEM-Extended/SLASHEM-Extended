@@ -103,7 +103,7 @@ usecameraagain:
 	if (!useagain && (nochargechange >= rnd(10))) consume_obj_charge(obj, TRUE);
 
 	if (obj->cursed && !rn2(2)) {
-		(void) zapyourself(obj, TRUE);
+		(void) zapyourself(obj, TRUE, FALSE);
 	} else if (u.uswallow) {
 		You("take a picture of %s %s.", s_suffix(mon_nam(u.ustuck)),
 		    mbodypart(u.ustuck, STOMACH));
@@ -111,7 +111,7 @@ usecameraagain:
 		You("take a picture of the %s.",
 			(u.dz > 0) ? surface(u.ux,u.uy) : ceiling(u.ux,u.uy));
 	} else if (!u.dx && !u.dy) {
-		(void) zapyourself(obj, TRUE);
+		(void) zapyourself(obj, TRUE, FALSE);
 	} else if ((mtmp = bhit(u.dx,u.dy,COLNO,FLASHED_LIGHT,
 				(int (*)(MONST_P,OBJ_P))0,
 				(int (*)(OBJ_P,OBJ_P))0,
@@ -5350,6 +5350,8 @@ wand_explode(obj, hero_broke)
 	break;
     }
 
+    /* strangely enough, all wands that use the "goto discard_broken_wand" code above WILL NOT RUN THE CODE BELOW --Amy */
+
     u.explodewandhack = 1;
 
     /* magical explosion and its visual effect occur before specific effects */
@@ -5404,7 +5406,13 @@ wand_explode(obj, hero_broke)
 		    if (flags.botl) bot();		/* potion effects */
 			/* makeknown is handled in zapyourself */
 		}
-		damage = zapyourself(obj, FALSE);
+		/* sorry SLASH'EM dev team, but getting your whole inventory cancelled when you get hit by lightning is WAAAAAAAAAAAAAY too harsh. --Amy
+		 * In Soviet Russia, the Kreml dictates how evil the laws of the country are supposed to be, and WOE to ANYONE who DARES question them. So,
+		 * they will fully support wand explosions that utterly ruin your character, and nothing can protect you other than not having a wand of
+		 * cancellation or polymorph in your open inventory at any given time unless you're absolutely 200% sure that you won't get hit by lightning.
+		 * also evil variant mode is evil too, so you get super dangerous wand explosions in that mode, too */
+		damage = zapyourself(obj, FALSE, issoviet ? FALSE : isevilvariant ? FALSE : TRUE);
+		if (issoviet) pline("KHOOOO KHE KHE KHE KHE KHE, vot kakoy ledyanoy blok tebya podlovil, potomu chto on vzorval tvoyu duratskuyu palochku i podverg tebya uzhasnym posledstviyam! MUA KHA KHA, sovetskaya pyaterka takaya klassnaya, soglasny?");
 		if (damage) {
 		    if (hero_broke) {
 		    sprintf(buf, "killed %sself by breaking a wand", uhim());

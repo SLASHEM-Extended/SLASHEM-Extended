@@ -5835,6 +5835,7 @@ static NEARDATA const char * const soviettaunts[] = {
 "Konechno, v Sovetskoy Rossii ne razreshayetsya poluchat' bol'she odnogo podarka na koronatsiyu. Eto deystvitel'no kul'minatsiya kommunizma.",
 "Sovetskiy mododel tochno znayet, chto vam zakhochetsya chitat' knigi zaklinaniy bol'she tridtsati raz, i poetomu sdelal eto nevozmozhnym! KHO-kho-kho.",
 "Tip ledyanogo bloka govorit o tom, chto vashe artefaktnoye snaryazheniye mozhet byt' polnost'yu unichtozheno letal'noy vodoy, potomu chto on KOROL' igrovogo balansa MUA KHA KHA KHA i on vsegda prav v svoikh dizaynerskikh resheniyakh! KHUA KHAR KHAR KHAR KHARRRR!",
+"Tot fakt, chto vrzyvayushchayasya volshebnaya palochka mozhet polnost'yu vas pokalechit', kak-to svyazan s ledyanym blokom. Kha-kha-kha, luchshe nadeytes', chto vasha palochka otmeny nikogda ne vzorvotsya, potomu chto yesli eto proizoydot, vam budet ochen' plokho.",
 };
 
 static NEARDATA const char * const practicantlines[] = {
