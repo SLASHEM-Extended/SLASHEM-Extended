@@ -18228,6 +18228,8 @@ past4:
 			pline("Somehow, the banishment beam doesn't do anything."); u.banishmentbeam = 0; break;
 		}
 
+		if (!Stunned) make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
+
 		(void) safe_teleds(FALSE); /* so that M2_STALK monsters near you won't follow all the time --Amy */
 		banishplayer();
 		u.banishmentbeam = 0; /* player got warped, now clear the flag even if it crashes afterwards */
