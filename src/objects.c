@@ -9696,6 +9696,8 @@ SCROLL((char *)0,               "BAD SAEGEBAER NEAR MILTENBERG HAS A LARGE ARTIF
 SCROLL((char *)0,               "WEIRD INTERMEDIATE TACT FROM HASSLOCH TO LUXOR",  P_NONE,     1,   0, 100, CLR_BROWN, 1),
 SCROLL((char *)0,               "LISTEN TO THE ALBUM  PHANTOM ASSASSIN  BY IVE MENDES",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
 SCROLL((char *)0,               "SALTED FAITHS WITHOUT WHITE DREAMS",  P_NONE,     1,   0, 100, CLR_WHITE, 1),
+SCROLL((char *)0,               "IT TAKES FOREVER TO TRAVEL FROM FUERTH TO TREBAY BY TRAIN",  P_NONE,     1,   0, 100, CLR_BROWN, 1),
+SCROLL((char *)0,               "THERE IS A TOWN NAMED VERVERT IN BREMEN",  P_NONE,     1,   0, 100, CLR_YELLOW, 1),
 
 /* dummy for easier copypasting */
 /* SCROLL((char *)0,               "",  P_NONE,     1,   0, 100, CLR_, 1), */

@@ -29705,6 +29705,10 @@ static NEARDATA const char * const fake_plines[] = {
 	"You're dripping some funny-looking liquid on the ground!",
 	"Someone seems to have built a running tap into your body!",
 	"You see some soda shooting out of your body like a graceful fountain!",
+	"You listen to Arabella saying 'Please agree to clean the dog shit from my hugging boot soles. If you don't, I'll have to hurt you terribly until you agree to do it.'",
+	"You listen to Arabella saying 'You kicked me in the back of my head repeatedly while I was unconscious. That's attempted murder, and therefore I bound you and will now force you to clean the dog shit from my hugging boot soles, as well as kick you in the shins and stomp your toes repeatedly.'",
+	"You listen to Arabella saying 'Now I'll grab your boots and forcibly push them onto a heap of dog shit.'",
+	"You listen to Arabella saying 'What, you think I'm going to bother my parents with the task of cleaning the shit from the treaded soles of my hugging boots? No, I'll have you clean them. What did you expect?'",
 
 };
 

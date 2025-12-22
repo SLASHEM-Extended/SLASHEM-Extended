@@ -1515,6 +1515,10 @@ dosounds()
 			"listen to Arabella saying 'What, you thought I stepped into dog shit because I want to clean my shoes myself? No, *you* will do that now, by hand and without tools.'",
 			"listen to Arabella saying 'If you get too close to me, I will push your shoes into a heap of shit. Then, no matter what you do to me, you'll at least have to clean the shit off your shoes again.'",
 			"listen to Arabella saying 'Now I will kick you in the shins repeatedly. Since my hugging boots have dog shit clinging to the soles, they'll deal only half the usual amount of damage, but the pain will be the same, meaning I can keep kicking you for far longer than usual. Enjoy.'",
+			"listen to Arabella saying 'Please agree to clean the dog shit from my hugging boot soles. If you don't, I'll have to hurt you terribly until you agree to do it.'",
+			"listen to Arabella saying 'You kicked me in the back of my head repeatedly while I was unconscious. That's attempted murder, and therefore I bound you and will now force you to clean the dog shit from my hugging boot soles, as well as kick you in the shins and stomp your toes repeatedly.'",
+			"listen to Arabella saying 'Now I'll grab your boots and forcibly push them onto a heap of dog shit.'",
+			"listen to Arabella saying 'What, you think I'm going to bother my parents with the task of cleaning the shit from the treaded soles of my hugging boots? No, I'll have you clean them. What did you expect?'",
 			"listen to Anastasia saying 'Thanks for cleaning the dog shit off my profiled dancing shoes. Now I'll find a new heap of shit to step into, and if you like, you may then clean my shoes again. Was it fun?'",
 			"listen to Anastasia saying 'You underestimated me. Now, my white Adidas(TM) sneakers broke your leg with a single kick. If you had agreed to clean the dog shit from my treaded soles right away, this wouldn't have had to happen.'",
 			"listen to Henrietta saying 'Because of you I stepped into dog shit with my Henrietta shoes. As a punishment you have to clean them by hand now.'",
@@ -1526,7 +1530,7 @@ dosounds()
 			"encounter the annoying bug where the game just closes with no message.",
 			"suddenly find yourself at the MS-DOS prompt. The game crashed so hard that the entire Windows 3.1 operating system just stopped running, without even giving a message or anything.",
 		};
-		You("%s", insideroom_msg[rn2(12+hallu*34)]);
+		You("%s", insideroom_msg[rn2(12+hallu*38)]);
 		return;
 	    }
 
