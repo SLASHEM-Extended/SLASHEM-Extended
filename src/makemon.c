@@ -16177,6 +16177,10 @@ loveheelover:
 			(void) mongets(mtmp, BOW);
 			 m_initthrow(mtmp, ORCISH_ARROW, 40);
 		}
+		if (ptr == &mons[PM_ARMORED_ORC_WARLORD]) {
+			(void) mongets(mtmp, ORCISH_BOW);
+			 m_initthrow(mtmp, ORCISH_ARROW, 30);
+		}
 		if (ptr == &mons[PM_HUNK_GOBLIN]) {
 			(void) mongets(mtmp, SLING);
 			 m_initthrow(mtmp, JUNK_METAL, 10);
