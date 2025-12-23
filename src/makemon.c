@@ -211,10 +211,11 @@ int otyp,oquan;
 	if (otyp == CROSSBOW_BOLT && mtmp->data == &mons[PM_ROXY]) otmp->opoisoned = TRUE;
 	if (otyp == CROSSBOW_BOLT && mtmp->data == &mons[PM_ROXANNE]) otmp->opoisoned = TRUE;
 
-	if ((u.mongetshack != 33) || u.lamefarmer || (monstersoundtype(mtmp) == MS_BULLETATOR) ) {
+	if ((u.mongetshack != 33) || u.lamefarmer || (monstersoundtype(mtmp) == MS_BULLETATOR) || (monstersoundtype(mtmp) == MS_AETHERIC) ) {
 		if (otmp->oclass == WEAPON_CLASS) otmp->mstartinventB = 1;
 		if (otmp->oclass == GEM_CLASS && !objects[otmp->otyp].oc_magic) otmp->mstartinventB = 1;
 		if (is_weptool(otmp)) otmp->mstartinventB = 1;
+		if (monstersoundtype(mtmp) == MS_AETHERIC) otmp->mstartinventX = 1;
 		if ((otmp->oclass == WEAPON_CLASS || otmp->oclass == ARMOR_CLASS) && (monstersoundtype(mtmp) == MS_BULLETATOR || u.lamefarmer || u.mongetshack == 100) ) otmp->mstartinventX = 1;
 		if (otmp->oclass == GEM_CLASS && !objects[otmp->otyp].oc_magic && (monstersoundtype(mtmp) == MS_BULLETATOR || u.lamefarmer || u.mongetshack == 100) ) otmp->mstartinventX = 1;
 		if (is_weptool(otmp) && (monstersoundtype(mtmp) == MS_BULLETATOR || u.lamefarmer || u.mongetshack == 100) ) otmp->mstartinventX = 1;
@@ -33673,7 +33674,7 @@ register int otyp;
 
 	    spe = otmp->spe;
 
-	    if ((u.mongetshack != 33) || u.lamefarmer || (monstersoundtype(mtmp) == MS_BULLETATOR) ) {
+	    if ((u.mongetshack != 33) || u.lamefarmer || (monstersoundtype(mtmp) == MS_BULLETATOR) || (monstersoundtype(mtmp) == MS_AETHERIC) ) {
 
 		    if (is_musable(otmp)) otmp->mstartinvent = 1;
 		    if (otmp->oclass == WEAPON_CLASS || otmp->oclass == ARMOR_CLASS) otmp->mstartinventB = 1;
@@ -33689,6 +33690,7 @@ register int otyp;
 		    if (otmp->otyp == LANCE && monstersoundtype(mtmp) == MS_TREESQUAD) otmp->mstartinventE = 1;
 		    if (otmp->otyp == PITCHFORK && monstersoundtype(mtmp) == MS_TREESQUAD) otmp->mstartinventE = 1;
 
+		    if (monstersoundtype(mtmp) == MS_AETHERIC) otmp->mstartinventX = 1;
 		    if ((otmp->oclass == WEAPON_CLASS || otmp->oclass == ARMOR_CLASS) && (monstersoundtype(mtmp) == MS_BULLETATOR || u.lamefarmer || u.mongetshack == 100)) otmp->mstartinventX = 1;
 		    if (otmp->oclass == GEM_CLASS && !objects[otmp->otyp].oc_magic && (monstersoundtype(mtmp) == MS_BULLETATOR || u.lamefarmer || u.mongetshack == 100)) otmp->mstartinventX = 1;
 		    if (is_musable(otmp) && (monstersoundtype(mtmp) == MS_BULLETATOR || u.lamefarmer || u.mongetshack == 100)) otmp->mstartinventX = 1;
