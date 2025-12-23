@@ -4969,6 +4969,8 @@ static const char * const noroelacommodity[] = {
 
 };
 
+/* demagogue lines: some of these are obviously inspired by Donald Trump and other RL political figures; this does not mean Amy agrees with their position,
+ * the lines are used just so that the demagogue role really feels like a demagogue */
 static NEARDATA const char * const demagoguelines[] = {
 "This country is going down the tubes, I tell you!",
 "We gotta take a tally of those agitators!",
@@ -5111,6 +5113,9 @@ static NEARDATA const char * const demagoguelines[] = {
 "The term 'lady shoes' is discriminatory, that's like saying men are unable to walk with that pair of shoes just because they have heels, despite high-heeled shoes originally being conceived as men's shoes. Which implies that in reality both genders can walk in heeled shoes just fine, so they should just be viewed as unisex and the gender attribute for shoes abolished.",
 "Did you know that there are people among us who want to destroy our hopes for peace and wealth? You don't mean nothing to those radicals. They don't care about our country. They only care about filling their own pockets! We have to take a tally of those heretics.",
 "Remember, I will rebuild this country once I'm president! And those who stand against me will be removed! Forever!",
+"What? They want war? Then they'll get war. We were planning to perform a peaceful mission but if they attack our soldiers, their lives are forfeit and we'll shoot on sight.",
+"Those so-called fisherboats? They're operated by smugglers! We have every right to attack them on sight!",
+"That was the last straw, we'll annex that country now. It is ours. But really, it always has been, they just hadn't realized it yet.",
 };
 
 static NEARDATA const char * const longinglines[] = {
@@ -5618,6 +5623,10 @@ static NEARDATA const char * const longinglines[] = {
 "You want %s to beat you up, then bludgeon you with her high-heeled lady shoes, and finally use the ground attack on you by repeatedly stomping your defenseless body underneath her very cuuuuuuute high heels.",
 "%s's nail polish is not only very colorful, but she even applied a glittery top coat with rainbow colors! <3<3<3 The colors are very fleecy!",
 "%s has such an incredibly sexy voice that just by hearing her talk, you almost have a spontaneous orgasm.",
+"You totally want %s to be your bridesmaid if you ever marry, because she is looking sooooo gorgeous in her purple high heel sandals.",
+"You'd love to play a game with %s where she is only allowed to stroke and caress your buttocks, but not hurt them.",
+"You want to totally give yourself in to %s's platform fleecies, allowing her to step on your unprotected hands with the thick platform soles again and again.",
+"You'd love to engage in a shin kick duel with %s, especially if she wears a totally lovely pair of platform girl boots because then it's so beautifully painful when she kicks you.",
 };
 
 static NEARDATA const char * const soviettaunts[] = {
@@ -5932,6 +5941,7 @@ static NEARDATA const char * const practicantlines[] = {
 "Remember, my fines are in place to ensure that you work in the lab and don't do stupid things! If I find you breaking the rules constantly, I may increase the fines because then I'll have to suspect that you've got too much money on your hands!",
 "Always know that my rules and fines are in place for your protection. They're protecting you from doing things that could harm you or others, because you'll refrain from committing forbidden actions in order to be able to keep what little money you have.",
 "If you don't get why a specific rule of mine is in place or why you have to pay money for breaking it, I suggest you re-read the statutes of laboratory work. Perhaps then you'll figure out that they exist to ensure that the working atmosphere in the lab is free of unnecessary dangers for you and other practicants.",
+"You probably know it already, or can at least guess that this is the case but I'll repeat it anyway: cheating of any kind is strictly forbidden and will result in a draconic penalty. Don't you dare pretend you didn't hear me.",
 };
 
 static NEARDATA const char * const hussylines[] = {
@@ -6598,6 +6608,15 @@ static NEARDATA const char * const noroelabuying[] = {
 "You probably can't handle money anyway, so it's good that I took it from you and made a great deal today: %s, 50 percent off! Hell, I even have enough left to buy another if I feel like it, maybe I'll do that just to taunt you because no, you can't have them!",
 "Were you saving that money to buy food? Well too bad, should have kept to the rules, then you'd still be able to do so. But now, you'll go hungry, while I just added %s to my possessions. The shopkeeper was very pleased when I handed over that big wad of cash!",
 "Were you planning on buying %s? Well too bad, now you can't, both because you had to pay the money to me and also because I just bought it, and it was the only one of its kind.",
+"Now I bought %s from your money.",
+"Thanks for all the money! I just bought %s from it.",
+"I can do whatever I want with the money I collected from you! Which is why I'm telling you straight in the face that I just spent most of it on %s!",
+"Bought %s from the many money I got.",
+"Some of the zorkmids that used to be yours have just been spent on %s.",
+"You will certainly be happy to hear that I bought %s from the money you paid to me.",
+"Yes! They had %s at the department store! And thanks to you, practicant, I also had the money to buy it!",
+"Ha! I totally splurged almost all the money on %s! Thanks for paying so many hall punishments, practicant!",
+"Normally I wouldn't be able to afford %s, but you paid so much money to me that I could actually pay the high price! Thanks a lot!",
 };
 
 static NEARDATA const char * const bosstaunts[] = {
@@ -29710,8 +29729,23 @@ static NEARDATA const char * const fake_plines[] = {
 	"You listen to Arabella saying 'You kicked me in the back of my head repeatedly while I was unconscious. That's attempted murder, and therefore I bound you and will now force you to clean the dog shit from my hugging boot soles, as well as kick you in the shins and stomp your toes repeatedly.'",
 	"You listen to Arabella saying 'Now I'll grab your boots and forcibly push them onto a heap of dog shit.'",
 	"You listen to Arabella saying 'What, you think I'm going to bother my parents with the task of cleaning the shit from the treaded soles of my hugging boots? No, I'll have you clean them. What did you expect?'",
+	"line code",
+	"Your clothes catch fire!",
+	"uninsert",
+	"The microphone is too far away from your mouth!",
+	"Your smartphone's battery is almost empty!",
+	"You want to suffer a very dear humeral head fracture.",
+	"Dorw!",
+	"Dorw! (This is the sound effect that Ostro makes when spitting an egg at Mario. By the way, his name is Ostro, because Birdo is a walking bird carrying shyguys who only appears in one specific level of the ice world.)",
+	"You feel like getting all those aetheric items and using them for yourself.",
+	"Say, how many servant girls do they have?!",
+	"You suddenly see a male bridesmaid in high heels!",
 
 };
+
+/* for the purpose of copypasting... --Amy
+	"",
+*/
 
 /* for the purpose of catching errors... --Amy
 	"message that doesn't have a comma after the closing quotation mark"

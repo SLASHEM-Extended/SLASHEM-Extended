@@ -878,6 +878,8 @@ static const char *actualshirtmessages[] = { /* Scott Bigham */
 	"Hare Krishna, Hare Krishna, Krishna Krishna, Hare Hare! Hare Rama, Hare Rama, Rama Rama, Hare Hare!",
 	"Don't get why everyone loves Miles Edgeworth, my favorite prosecutor will always be Godot!! *sips from a mug of coffee*",
 	"Mmmmmmm, Desiree DeLite is such a lovely, sweet woman and I absolutely want to hug her! <3",
+	"I don't know who Mister Spock is, but the ape with ear is certainly an asshole!",
+	"What they call 'vanilla' nowadays is actually raspberry-chili flavored, with a bit of champignon and some wasabi! Actual vanilla flavor died years ago, sadly :(",
 
 };
 
