@@ -2430,6 +2430,7 @@ register int pm;
 		break;
 
 	    case PM_WRAITH:
+	    case PM_BUTTO_WRAITH:
 	    case PM_ALU_WRAITH:
 	    case PM_ZIELUF:
 	    case PM_ROTTEN_WRAITH:

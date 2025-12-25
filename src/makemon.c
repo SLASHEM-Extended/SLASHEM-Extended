@@ -19751,7 +19751,7 @@ loveheelover:
 
 		}
 
-		if (ptr == &mons[PM_ARACHNOTRON]) {
+		if (ptr == &mons[PM_ARACHNOTRON] || ptr == &mons[PM_DEMONIC_ARACHNOTRON]) {
 
 			if (rn2(2)) {
 				(void) mongets(mtmp, RAYGUN);
@@ -26951,6 +26951,7 @@ register int	mmflags;
 
 			if (mndx == PM_NIGHT_MARAUDER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_SPIRIT_BABOON) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_SPECTRAL_PINKY) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 
 			break;
 
@@ -28069,6 +28070,7 @@ register int	mmflags;
 			if (mndx == PM_INVISIBLE_HORROR) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 			if (mndx == PM_SUPER_STEALTH_ANT) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 			if (mndx == PM_BOEOEOEOEOE_MINE) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_TRACKING_PIXEL || mndx == PM_SPYING_PIXEL) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 
 			break;
 
@@ -35059,6 +35061,16 @@ assign_sym:
 		s_sym = ARMOR_CLASS;
 		ap_type = M_AP_OBJECT;
 		appear = FEDORA;
+	}
+	if (mtmp->data == &mons[PM_FILTHY_RAG]) {
+		s_sym = ARMOR_CLASS;
+		ap_type = M_AP_OBJECT;
+		appear = ORCISH_CLOAK;
+	}
+	if (mtmp->data == &mons[PM_SEXY_SWIMSUIT]) {
+		s_sym = ARMOR_CLASS;
+		ap_type = M_AP_OBJECT;
+		appear = SWIMSUIT;
 	}
 	if (mtmp->data == &mons[PM_FOODSTUFFS_MIMIC] || mtmp->data == &mons[PM_FOODSTUFFS_PERMAMIMIC]) {
 		s_sym = FOOD_CLASS;
