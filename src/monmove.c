@@ -4095,7 +4095,7 @@ register int after;
 	    if(mtmp->mhp < 7 || (ptr == &mons[PM_SPOOPY_GHOST]) || mtmp->mpeaceful || rn2(2))
 		(void) rloc(mtmp, FALSE);
 	    else
-		mnexto(mtmp);
+		mnexto(mtmp); /* annoying random chance to port directly to the player character */
 	    mmoved = 1;
 	    goto postmov;
 	}
@@ -4106,7 +4106,8 @@ register int after;
 		goto postmov;
 	}
 
-	if ((ptr == &mons[PM_ASIMA] || ptr == &mons[PM_UTHGEN_RAPPER] || ptr == &mons[PM_YOUR_MAP_SHOWS_] || ptr == &mons[PM_HINGEFREEL] || ptr == &mons[PM_FLEETFOOT] || ptr == &mons[PM_BEARER_OF_BAD_NEWS]) && !rn2(25) && !mtmp->mcan &&
+	/* monsters that teleport completely randomly go here --Amy */
+	if ((ptr == &mons[PM_ASIMA] || ptr == &mons[PM_UTHGEN_RAPPER] || ptr == &mons[PM_HOPPER_ANT] || ptr == &mons[PM_YOUR_MAP_SHOWS_] || ptr == &mons[PM_HINGEFREEL] || ptr == &mons[PM_FLEETFOOT] || ptr == &mons[PM_BEARER_OF_BAD_NEWS]) && !rn2(25) && !mtmp->mcan &&
 	   !tele_restrict(mtmp) ) {
 		(void) rloc(mtmp, FALSE);
 		mmoved = 1;

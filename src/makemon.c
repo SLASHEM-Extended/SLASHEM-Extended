@@ -8280,6 +8280,10 @@ register struct	monst	*mtmp;
 			(void) mongets(mtmp, BOW);
 	  		m_initthrow(mtmp, ARROW, 20);
 		}
+		if (ptr == &mons[PM_BUSH_RANGER]) {
+			(void) mongets(mtmp, BOW);
+	  		m_initthrow(mtmp, ARROW, 40);
+		}
 
 		if (ptr == &mons[PM_BAZOOKER]) {
 			(void) mongets(mtmp, ROCKET_LAUNCHER);
@@ -9965,6 +9969,9 @@ register struct	monst	*mtmp;
 		}
 		if (ptr == &mons[PM_DEATH_SCYTHE]) {
 			(void) mongets(mtmp, GIANT_SCYTHE);
+		}
+		if (ptr == &mons[PM_AXE_GOLEM] || ptr == &mons[PM_SHARP_AXE_GOLEM]) {
+			(void) mongets(mtmp, SHARP_AXE);
 		}
 
 		if (ptr == &mons[PM_HOT_PLATE]) {
@@ -27862,6 +27869,7 @@ register int	mmflags;
 			if (mndx == PM_HALLUCINATION_IMAGE) set_mimic_sym(mtmp);
 			if (mndx == PM_CHEATING_BLACK_LIGHT) set_mimic_sym(mtmp);
 			if (mndx == PM_WATERSPLASH_ELEMENTAL) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_BLOODFREEZER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_WE_WON_AND_YOU_LOST) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_THAT_WAS_THE_JUSTIFIED_PUNISHMENT) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_WE_DONT_CARE_ABOUT_FAIRNESS) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
