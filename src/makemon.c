@@ -8160,7 +8160,22 @@ register struct	monst	*mtmp;
 			(void) mongets(mtmp, HAND_BLASTER);
 	  		m_initthrow(mtmp, BLASTER_BOLT, 30);
 	  		m_initthrow(mtmp, FRAG_GRENADE, 10);
-
+		}
+		if (ptr == &mons[PM_NASTY_RANGER]) {
+			(void) mongets(mtmp, BOW);
+	  		m_initthrow(mtmp, ARROW, 15);
+		}
+		if (ptr == &mons[PM_BAD_ARCHER]) {
+			(void) mongets(mtmp, BOW);
+	  		m_initthrow(mtmp, ARROW, 30);
+		}
+		if (ptr == &mons[PM_ZKAC_ARCHER]) {
+			(void) mongets(mtmp, YUMI);
+	  		m_initthrow(mtmp, ARROW, 35);
+		}
+		if (ptr == &mons[PM_WOOD_ELF_ARCHER]) {
+			(void) mongets(mtmp, ELVEN_BOW);
+	  		m_initthrow(mtmp, ELVEN_ARROW, 40);
 		}
 		if (ptr == &mons[PM_MAGRATHEAN]) {
 			(void) mongets(mtmp, randartmeleeweaponX());
@@ -8182,6 +8197,7 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_WHITE_KNIGHT]) (void) mongets(mtmp, PLATE_MAIL);
 		if (ptr == &mons[PM_STREET_RACQUET]) (void) mongets(mtmp, BRASS_KNUCKLES);
 		if (ptr == &mons[PM_GANXTA]) (void) mongets(mtmp, BRASS_KNUCKLES);
+		if (ptr == &mons[PM_KNIFE_ASSASSIN]) (void) mongets(mtmp, KNIFE);
 		if (ptr == &mons[PM_LASSY]) (void) mongets(mtmp, BASIC_SHOES); /* M4_BLOCKHEELBOOTS */
 		if (ptr == &mons[PM_NORMAL_WOMAN]) (void) mongets(mtmp, BASIC_SHOES); /* M4_BLOCKHEELBOOTS */
 		if (ptr == &mons[PM_CROSSDRESSING_MAN]) (void) mongets(mtmp, BASIC_SHOES); /* M4_BLOCKHEELBOOTS */
@@ -19104,6 +19120,7 @@ loveheelover:
 		if (ptr == &mons[PM_RELIGIOUS_DIRT_BIRTH]) (void) mongets(mtmp, KNIFE);
 		if (ptr == &mons[PM_GENUINE_ASTERISKER]) (void) mongets(mtmp, ASTERISK);
 		if (ptr == &mons[PM_DWARF_SPEARFIGHTER]) (void) mongets(mtmp, DWARVISH_SPEAR);
+		if (ptr == &mons[PM_DWARF_AXELASS]) (void) mongets(mtmp, AXE);
 		if (ptr == &mons[PM_DWARF_SPEARLORD]) (void) mongets(mtmp, DWARVISH_SPEAR);
 		if (ptr == &mons[PM_MYSTERY_DWARF]) (void) mongets(mtmp, MYSTERY_PICK);
 		if (ptr == &mons[PM_ITALIAN_PASTAMANCER]) (void) mongets(mtmp, PASTA);
@@ -19140,6 +19157,10 @@ loveheelover:
 		if (ptr == &mons[PM_MIDGET_STAR]) {
 			(void) mongets(mtmp, THROWAWAY_ARMOR);
 			 m_initthrow(mtmp, LIGHT_STAR, 50);
+		}
+		if (ptr == &mons[PM_DWARVEN_ARCHER]) {
+			(void) mongets(mtmp, BOW);
+			 m_initthrow(mtmp, ARROW, 30);
 		}
 		if (ptr == &mons[PM_THRALL_GUARD]) {
 			(void) mongets(mtmp, MACE);

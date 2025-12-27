@@ -2998,7 +2998,7 @@ convertdone:
 
 	/* monsters with MS_WEATHER and certain other traits can force a specific weather, but only once --Amy */
 	if (monstersoundtype(mtmp) == MS_WEATHER && !mtmp->madeweatherchange && m_canseeu(mtmp) ) {
-		if (mtmp->m_lev >= 18 && ( attackdamagetype(mtmp->data, AT_BREA, AD_DARK) || attackdamagetype(mtmp->data, AT_BEAM, AD_DARK) ) ) {
+		if ((mtmp->m_lev >= 18 && ( attackdamagetype(mtmp->data, AT_BREA, AD_DARK) || attackdamagetype(mtmp->data, AT_BEAM, AD_DARK) ) ) || mdat == &mons[PM_FULL_ECLIPSE_GOBLIN] || mdat == &mons[PM_FULL_ECLIPSE_ORC] ) {
 			mtmp->madeweatherchange = TRUE;
 			pline("%s used Noctem!", Monnam(mtmp));
 			u.currentweather = WEATHER_ECLIPSE;
