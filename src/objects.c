@@ -531,7 +531,7 @@ WEAPON("log", (char *)0,
 /* Good to-hit and small damage, but low large damage */
 /* fly swatter has to be first */
 WEAPON("fly swatter", (char *)0,
-	1, 0, 0,  449, 4,  3, 12,  2, 2, B,   P_PADDLE, MT_PLASTIC, CLR_GREEN, 1),
+	1, 0, 0,  249, 4,  3, 12,  2, 2, B,   P_PADDLE, MT_PLASTIC, CLR_GREEN, 1),
 WEAPON("vermin swatter", (char *)0,
 	1, 0, 0,   50, 4,  3, 12,  2, 5, B,   P_PADDLE, MT_INKA, CLR_BROWN, 4),
 WEAPON("insect squasher", (char *)0,
@@ -542,6 +542,10 @@ WEAPON("breaking wheel", "wagon wheel", /* +3 AC when wielded */
 	0, 0, 0,  10, 80, 50, 6,  3, 0, B,   P_PADDLE, MT_BAMBOO, HI_WOOD, 1),
 WEAPON("cane", (char *)0,
 	1, 0, 0,  200, 2,  2, 4,  4, 3, B,   P_PADDLE, MT_ALUMEN, CLR_GRAY, 1),
+WEAPON("billard queue", (char *)0,
+	1, 0, 1,  150, 2,  2, 5, 5, 10, B,   P_PADDLE, MT_BAMBOO, CLR_BROWN, 1),
+WEAPON("rolling pin", "noodle wood",
+	0, 0, 0,  50, 3,  2, 8, 4, 3, B,   P_PADDLE, MT_WOOD, CLR_BROWN, 1),
 
 WEAPON("broom", (char *)0,
 	1, 0, 1,  20, 4,  3, 6, 5, 1, B,   P_PADDLE, MT_WOOD, CLR_YELLOW, 1),
@@ -634,7 +638,7 @@ WEAPON("silver mace", (char *)0,
 	1, 0, 0, 289, 12, 65,  6,  7, 0, B,   P_MACE, MT_SILVER, HI_SILVER, 15),
 	/* STEPHEN WHITE'S NEW CODE */
 WEAPON("mace", (char *)0,
-	1, 0, 0, 1000, 12,  5,  6,  7, 0, B,   P_MACE, MT_IRON, HI_METAL, 2),
+	1, 0, 0, 950, 12,  5,  6,  7, 0, B,   P_MACE, MT_IRON, HI_METAL, 2),
 	/* +1 small */
 WEAPON("ornate mace", (char *)0,
 	1, 0, 0, 100,  12,  5,  6,  6, 0, B,   P_MACE, MT_GOLD, HI_METAL, 6),
@@ -664,6 +668,8 @@ WEAPON("kamerel vajra", (char *)0,
 	1, 0, 0, 50, 12, 20,  6,  6, 0, B,   P_MACE, MT_CELESTIUM, HI_GOLD, 6),
 WEAPON("spray box", (char *)0, /* 1 in 3 to blind enemies who fail a resistance roll */
 	1, 0, 0, 100, 8, 25,  2,  2, 0, B,   P_MACE, MT_PLASTIC, CLR_MAGENTA, 30),
+WEAPON("lead pipe", (char *)0,
+	1, 0, 0, 50, 80,  10,  9,  6, 0, B,   P_MACE, MT_LEAD, CLR_GRAY, 7),
 
 WEAPON("flanged mace", (char *)0,
 	1, 0, 0, 280, 12, 15,  8,  9, 0, B,   P_MACE, MT_IRON, HI_METAL, 13),
@@ -714,7 +720,7 @@ WEAPON("yesterday star", (char *)0,
 
 /* Flails - regular has to be first */
 WEAPON("flail", (char *)0,
-	1, 0, 0, 1200, 7,  4,  6,  4, 1, B,   P_FLAIL, MT_IRON, HI_METAL, 1),
+	1, 0, 0, 1000, 7,  4,  6,  4, 1, B,   P_FLAIL, MT_IRON, HI_METAL, 1),
 	/* +1 small, +1d4 large */
 WEAPON("flogger", (char *)0,
 	1, 0, 0, 385, 7,  4,  6,  4, 1, B,   P_FLAIL, MT_LEATHER, CLR_BROWN, 1),
@@ -726,6 +732,8 @@ WEAPON("weighted flail", (char *)0,
 	1, 0, 0, 500, 7,  4,  7,  7, 1, B,   P_FLAIL, MT_IRON, CLR_GRAY, 1),
 WEAPON("three piece rod", (char *)0,
 	1, 0, 0, 1, 100, 30, 12, 6, 3, B,   P_FLAIL, MT_WOOD, CLR_BROWN, 30),
+WEAPON("tire iron", "four-way rim wrench",
+	0, 0, 0, 200, 4,  2,  6,  7, 2, B,   P_FLAIL, MT_ALLOY, CLR_BLACK, 2),
 
 WEAPON("chain and sickle", (char *)0,
 	1, 0, 0,  20, 6, 10, 4, 6, 0, B|P|S, P_FLAIL, MT_IRON, HI_METAL, 1),
@@ -747,7 +755,7 @@ WEAPON("obsid", (char *)0,
 
 /* Hammers - war hammer has to be first */
 WEAPON("war hammer", (char *)0,
-	1, 0, 0, 782, 20,  5,  7,  7, 0, B,   P_HAMMER, MT_IRON, HI_METAL, 1),
+	1, 0, 0, 781, 20,  5,  7,  7, 0, B,   P_HAMMER, MT_IRON, HI_METAL, 1),
 	/* +1 small */
 WEAPON("ballpeen hammer", (char *)0, /* +1 small */
 	1, 0, 0, 100, 4,  2,  4,  4, 0, B,   P_HAMMER, MT_SCRAP, CLR_BLUE, 1),
@@ -771,6 +779,8 @@ WEAPON("thunder hammer", (char *)0,
 	1, 0, 1,  1, 100, 20, 20, 20, 0, B, P_HAMMER, MT_VIVA, CLR_ORANGE, 90),
 WEAPON("heavy war hammer", (char *)0,
 	1, 0, 0,  10, 30, 10,  9, 10, 0, B,   P_HAMMER, MT_COBALT, HI_METAL, 9),
+WEAPON("fire hydrant", (char *)0, /* disables speed when wielded and halves your movement speed */
+	1, 0, 1,  1, 5000, 500, 32, 32, 0, B, P_HAMMER, MT_CONUNDRUM, CLR_GRAY, 99),
 
 WEAPON("mallet", (char *)0,
 	1, 0, 0,  90, 20,500, 14, 14, 0, B,   P_HAMMER, MT_WOOD, HI_WOOD, 24),

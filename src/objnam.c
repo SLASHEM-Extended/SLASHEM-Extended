@@ -4993,6 +4993,12 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ ANTIMATTER_GLOVES, "todo" },
 	{ ANTIMATTER_STONE, "todo" },
 
+	{ TIRE_IRON, "todo" },
+	{ LEAD_PIPE, "todo" },
+	{ BILLARD_QUEUE, "todo" },
+	{ FIRE_HYDRANT, "todo" },
+	{ ROLLING_PIN, "todo" },
+
 	{0, "" }
 };
 
@@ -8702,6 +8708,12 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 
 	{ ANTIMATTER_GLOVES, "todo" },
 	{ ANTIMATTER_STONE, "todo" },
+
+	{ TIRE_IRON, "todo" },
+	{ LEAD_PIPE, "todo" },
+	{ BILLARD_QUEUE, "todo" },
+	{ FIRE_HYDRANT, "todo" },
+	{ ROLLING_PIN, "todo" },
 
 	{0, "" }
 };

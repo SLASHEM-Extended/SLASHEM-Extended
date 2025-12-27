@@ -1745,6 +1745,13 @@ E void bagotricks(struct obj *);
 E boolean propagate(int, BOOLEAN_P,BOOLEAN_P);
 E boolean jonaspecialspawn(struct permonst *);
 E boolean jonalatespawn(struct permonst *);
+E void monster_weapon_talon(struct monst *, BOOLEAN_P);
+E void monster_weapon_regulator(struct monst *, BOOLEAN_P);
+E void monster_weapon_raider(struct monst *, BOOLEAN_P);
+E void monster_weapon_enclave(struct monst *, BOOLEAN_P);
+E void monster_weapon_supermutant(struct monst *, BOOLEAN_P);
+E void monster_weapon_bos(struct monst *, BOOLEAN_P);
+E void monster_weapon_outcast(struct monst *, BOOLEAN_P);
 
 /* ### mapglyph.c ### */
 

@@ -12555,6 +12555,8 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 				pline("This two-handed paddle is fairly useless."); break;
 			case SPECIAL_MOP:
 				pline("Better than an ordinary mop. It's two-handed and uses the paddle skill."); break;
+			case BILLARD_QUEUE:
+				pline("A two-handed paddle with bad damage output but very good to-hit. Yes, I know, it's called 'pool cue', but I prefer the German name ;)"); break;
 			case BOAT_OAR:
 				pline("Looking for a reason to use the paddle skill? Then this two-handed weapon might be your first choice."); break;
 			case MAGICAL_PAINTBRUSH:
@@ -12625,6 +12627,8 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 				pline("A mace made of wood. It's slightly better than a standard mace."); break;
 			case FLANGED_MACE:
 				pline("This mace does moderate damage but it's nothing to get excited about."); break;
+			case LEAD_PIPE:
+				pline("A rather heavy mace."); break;
 			case REINFORCED_MACE:
 				pline("If you want a mace that does respectable damage, use this one."); break;
 			case MORNING_STAR:
@@ -12655,6 +12659,8 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 				pline("This flail does mediocre damage and has a to-hit bonus, but is made of ether and will slowly contaminate you."); break;
 			case SPIKERACK:
 				pline("A flail that does quite a bit more damage than a regular flail and also has good to-hit, but is likely to degrade when used repeatedly."); break;
+			case TIRE_IRON:
+				pline("This flail-class weapon isn't particularly strong, but has a to-hit bonus."); break;
 			case CHAIN_AND_SICKLE:
 				pline("You might as well forget using this weapon in melee because even a regular flail is better, but you can apply it to hit monsters standing two tiles away, with your skill determining the actual maximum range."); break;
 			case TWO_HANDED_FLAIL:
@@ -12773,6 +12779,8 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 				pline("Very damaging claw-class weapon, it's actually top notch for a one-hander."); break;
 			case BREAKING_WHEEL:
 				pline("This paddle-class weapon is rather weak, like most weapons of that class, but slightly improves your armor class when wielded. It can be applied to bash iron bars."); break;
+			case ROLLING_PIN:
+				pline("Wooden paddle-class weapon with mediocre damage output against small targets and sucky damage versus large ones, and some to-hit bonus."); break;
 			case CARCOSAN_STING:
 				pline("Well... it's a gun. However, not only does it require specific 'carcosan bolts' to fire, it also deals crap all for damage. Even a sling deals more when using proper ammo."); break;
 			case LEAD_UNLOADER:
@@ -13125,6 +13133,8 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 				pline("It's a total piece of crap weapon that weighs a ton."); break;
 			case THUNDER_HAMMER:
 				pline("This hammer requires both hands to use, but it does very high amounts of damage and even more if the target is a golem."); break;
+			case FIRE_HYDRANT:
+				pline("If you can actually wield this hammer-class weapon, you'll deal great damage to everything. It's really heavy and requires both hands to wield, plus it disables speed and makes you move much more slowly than normal."); break;
 			case BRIDGE_MUZZLE:
 				pline("A one-handed hammer that does rather high damage. It can be applied to bash iron bars."); break;
 			case AIR_PRESSURE_HAMMER:
@@ -35956,6 +35966,24 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
 				case ART_ROSINE_S_RAISE:
 					pline("Artifact specs: full nutrients when worn and prevents food from randomly being rotten, double antimatter trap effect and while wearing it, there is a very small chance per turn to unlock the petkeeping skill or increase its cap."); break;
+				case ART_BERTONE_S_AUTOSERVICE:
+					pline("Artifact specs: +10 to-hit and +20 damage versus golems."); break;
+				case ART_HIGHWAYMAN_S_FRIEND:
+					pline("Artifact specs: +4 damage."); break;
+				case ART_CARAMBOLAGE:
+					pline("Artifact specs: double damage. In the English original version of Fallout 3, this weapon was called 'The Break', which sounds rather lame by comparison."); break;
+				case ART_BREAK:
+					pline("Artifact specs: +5 to-hit and +5 damage. In the German version of Fallout 3, this weapon was called 'Carambolage', which sounds way cooler."); break;
+				case ART_MILLICENT_S_REVENGE:
+					pline("Artifact specs: +8 to-hit and +24 damage versus monsters which are always male. Because Millicent wants to KILL her husband Edgar for betraying her (he had sex with Susan)."); break;
+				case ART_JANET_S_WRATH:
+					pline("Artifact specs: +30 damage versus monsters which are always male. Because Janet wants to KILL Martha, who fucked around with Janet's husband Roger."); break;
+				case ART_CORROSEN_CANAL:
+					pline("Artifact specs: +2 to-hit and +12 acid damage."); break;
+				case ART_BLOODGIFTED_VENOM:
+					pline("Artifact specs: deals poison and bleeding damage to the target."); break;
+				case ART_GRUN_S_SWAN:
+					pline("Artifact specs: +12 damage."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

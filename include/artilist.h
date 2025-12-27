@@ -27171,6 +27171,42 @@ A("Rosine's Raise",				AMULET_OF_ESP, /* randart amulet, full nutrients, prevent
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 15000L ),
 
+A("Bertone's autoservice",				TIRE_IRON,
+	(SPFX_RESTR|SPFX_DCLAS), 0, (S_GOLEM),
+	PHYS(10, 20), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Highwayman's Friend",				TIRE_IRON,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Carambolage",				BILLARD_QUEUE, /* to-hit h@ck */
+	(SPFX_RESTR), 0, 0,
+	PHYS(1, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("The Break",				BILLARD_QUEUE,
+	(SPFX_RESTR), 0, 0,
+	PHYS(5, 5), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Millicent's Revenge",				ROLLING_PIN,
+	(SPFX_RESTR|SPFX_DFLAG2), 0, (M2_MALE),
+	PHYS(8, 24), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 700L ),
+
+A("Janet's Wrath",				ROLLING_PIN,
+	(SPFX_RESTR|SPFX_DFLAG2), 0, (M2_FEMALE),
+	PHYS(0, 30), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Corrosen canal",				LEAD_PIPE,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	ACID(2, 12), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Bloodgifted Venom",				LEAD_PIPE, /* deals poison damage like dirge and d8 bleeding damage */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Grun's Swan",				FIRE_HYDRANT,
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0, 12), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

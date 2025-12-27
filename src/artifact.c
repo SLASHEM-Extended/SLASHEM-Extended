@@ -5540,6 +5540,7 @@ struct monst *mon;
 			case ART_POST_OFFICE_COURSE:
 			case ART_ROOMMATE_S_SPECIAL_IDEA:
 			case ART_MR__AHLBLOW_S_SIGNAGE:
+			case ART_CARAMBOLAGE:
 			case ART_DO_YOU_EVEN_LIFT:
 			case ART_MARINE_THREAT_NEUTERED:
 			case ART_WILD_HEAVY_SWINGS:
@@ -6355,8 +6356,8 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	 }
 	}
 
-	/* STEPHEN WHITE'S NEW CODE */
-	if (otmp->oartifact == ART_SERPENT_S_TONGUE || otmp->oartifact == ART_GIVE_US_A_NAME || otmp->oartifact == ART_DIRGE || otmp->oartifact == ART_IRON_SERPENT || otmp->oartifact == ART_IRON_LOTUS || otmp->oartifact == ART_VENOMLASH || otmp->oartifact == ART_ROLLROLLROLL___ || otmp->oartifact == ART_HOH_LEVEL_GREENITY || otmp->oartifact == ART_CAPSULITH || otmp->oartifact == ART_TOXIC_PINK || otmp->oartifact == ART_BIBLICAL_PLAGUE || otmp->oartifact == ART_THORNS || otmp->oartifact == ART_DEVIOUS_DILJER || otmp->oartifact == ART_NECMEASURE || otmp->oartifact == ART_VENOREAL || otmp->oartifact == ART_TWISTED_TURN || otmp->oartifact == ART_VERYGRIMTOOTH || otmp->oartifact == ART_SHIZUGAMI_S_MIZUCHI || otmp->oartifact == ART_SCHOSCHO_BARBITUER || otmp->oartifact == ART_WONDERLIGHT || otmp->oartifact == ART_WAR_DECLARATION || otmp->oartifact == ART_GREENLINGS_LASH || otmp->oartifact == ART_EGRI_DUEU || otmp->oartifact == ART_WRONG_GREEN || otmp->oartifact == ART_POISON_BURST || otmp->oartifact == ART_THOSE_LAZY_PROGRAMMERS || otmp->oartifact == ART_HALLOW_MOONFALL || otmp->oartifact == ART_QUEUE_STAFF || otmp->oartifact == ART_SNAKELASH || otmp->oartifact == ART_SWORD_OF_BHELEU) {
+	/* STEPHEN WHITE'S NEW CODE - note by Amy: this is for weapons which can poison the enemy */
+	if (otmp->oartifact == ART_SERPENT_S_TONGUE || otmp->oartifact == ART_GIVE_US_A_NAME || otmp->oartifact == ART_DIRGE || otmp->oartifact == ART_BLOODGIFTED_VENOM || otmp->oartifact == ART_IRON_SERPENT || otmp->oartifact == ART_IRON_LOTUS || otmp->oartifact == ART_VENOMLASH || otmp->oartifact == ART_ROLLROLLROLL___ || otmp->oartifact == ART_HOH_LEVEL_GREENITY || otmp->oartifact == ART_CAPSULITH || otmp->oartifact == ART_TOXIC_PINK || otmp->oartifact == ART_BIBLICAL_PLAGUE || otmp->oartifact == ART_THORNS || otmp->oartifact == ART_DEVIOUS_DILJER || otmp->oartifact == ART_NECMEASURE || otmp->oartifact == ART_VENOREAL || otmp->oartifact == ART_TWISTED_TURN || otmp->oartifact == ART_VERYGRIMTOOTH || otmp->oartifact == ART_SHIZUGAMI_S_MIZUCHI || otmp->oartifact == ART_SCHOSCHO_BARBITUER || otmp->oartifact == ART_WONDERLIGHT || otmp->oartifact == ART_WAR_DECLARATION || otmp->oartifact == ART_GREENLINGS_LASH || otmp->oartifact == ART_EGRI_DUEU || otmp->oartifact == ART_WRONG_GREEN || otmp->oartifact == ART_POISON_BURST || otmp->oartifact == ART_THOSE_LAZY_PROGRAMMERS || otmp->oartifact == ART_HALLOW_MOONFALL || otmp->oartifact == ART_QUEUE_STAFF || otmp->oartifact == ART_SNAKELASH || otmp->oartifact == ART_SWORD_OF_BHELEU) {
 	    otmp->dknown = TRUE;
 	    pline_The("twisted weapon poisons %s!",
 		    youdefend ? "you" : mon_nam(mdef));

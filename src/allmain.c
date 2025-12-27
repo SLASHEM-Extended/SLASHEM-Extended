@@ -1256,6 +1256,10 @@ moveloop()
 				if (PlayerInStilettoHeels && !FemtrapActiveNaomi && !(uimplant && uimplant->oartifact == ART_TORSTEN_S_FEMININENESS && powerfulimplants()) && !(uarmu && uarmu->oartifact == ART_MODELWALK) && (rnd(u.ulevel) < 11) && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && (P_MAX_SKILL(P_STILETTO_HEELS) == P_ISRESTRICTED) && !rn2(flags.female ? 24 : 20) && moveamt > 1)
 					moveamt /= 2;
 
+				if ((uwep && uwep->otyp == FIRE_HYDRANT) || (u.twoweap && uswapwep && uswapwep->otyp == FIRE_HYDRANT)) {
+					if (moveamt > 1) moveamt /= 2;
+				}
+
 				if (uwep && uwep->otyp == FALCHION && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
@@ -1800,6 +1804,11 @@ moveloop()
 
 			if (PlayerInStilettoHeels && !FemtrapActiveNaomi && !(uimplant && uimplant->oartifact == ART_TORSTEN_S_FEMININENESS && powerfulimplants()) && !(uarmu && uarmu->oartifact == ART_MODELWALK) && (rnd(u.ulevel) < 11) && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && (P_MAX_SKILL(P_STILETTO_HEELS) == P_ISRESTRICTED) && !rn2(flags.female ? 24 : 20) && moveamt > 1)
 				moveamt /= 2;
+
+			/* fire hydrant is reeeeeeeeeeally heavy, so you'll be slowed down greatly --Amy */
+			if ((uwep && uwep->otyp == FIRE_HYDRANT) || (u.twoweap && uswapwep && uswapwep->otyp == FIRE_HYDRANT)) {
+				if (u.umoved && (moveamt > 1)) moveamt /= 2;
+			}
 
 			if (uwep && uwep->otyp == FALCHION && !rn2(8) && moveamt > 1)
 				moveamt /= 2;
@@ -20473,6 +20482,8 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "flatform sandals")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "strap-on stilettos")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "gambling gloves")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "noodle wood")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "four-way rim wrench")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}
@@ -22028,6 +22039,8 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "flatform sandals")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "strap-on stilettos")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "gambling gloves")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "noodle wood")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "four-way rim wrench")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}

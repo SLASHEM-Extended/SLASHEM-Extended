@@ -5234,6 +5234,10 @@ armorsmashdone:
 			mon->bleedout += 5;
 			pline("%s is bleeding!", Monnam(mon));
 		}
+		if (wep && wep->oartifact == ART_BLOODGIFTED_VENOM) {
+			mon->bleedout += rnd(8);
+			pline("%s is bleeding!", Monnam(mon));
+		}
 		if (wep && wep->oartifact == ART_SEA_ANGERANCHOR) {
 			mon->bleedout += rnd(10);
 			pline("%s is bleeding!", Monnam(mon));
