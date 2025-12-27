@@ -2029,7 +2029,8 @@ newbossSING:
 		mtmp->mfleetim = 0;
 	}
 
-	if (mdat == &mons[PM_SERPENT_S_CHOSEN]) {
+	/* for some monsters, fear times out immediately --Amy */
+	if ((mdat == &mons[PM_SERPENT_S_CHOSEN]) || mdat == &mons[PM_FIRE_ANT_NEST_GUARD]) {
 		mtmp->mflee = 0;
 		mtmp->mfleetim = 0;
 	}
@@ -4528,7 +4529,7 @@ altarfound:
 	       nidist > (couldsee(nix,niy) ? 144 : 36) && appr == 1) appr = 0;
 
 		/* special coding for "homing" giant wasps from the hunger games --Amy */
-		if ((ptr == &mons[PM_TRACKER_JACKER] || (uarmf && uarmf->oartifact == ART_OTMAR_S_PHANTOM_STEPS && (ptr->mlet == S_GHOST)) || ptr == &mons[PM_FIGHTING_ENTITY] || ptr == &mons[PM_PERSON_WHO_IS_REALLY_AFTER_YOU__NO__YOU_RE_NOT_PARANOID_] || autismweaponcheck(ART_EMERALD_SWORD) || ptr == &mons[PM_TRACKBAG] || ptr == &mons[PM_BLACK_SUN_BASS] || ptr == &mons[PM_LINDEN_BASS] || (FemtrapActiveElla && mtmp->female && humanoid(mtmp->data) && (mtmp->mhp < (mtmp->mhpmax * 9 / 10) )) || ptr == &mons[PM_ASSHOLE_WHO_CANNOT_ENJOY_ANYTHING__NOT_EVEN_A_PAIR_OF_CUDDLE_HEELS] || ptr == &mons[PM_KILLER_GIANT_RAT] || ptr == &mons[PM_POLICE_DOG] || ptr == &mons[PM_MANBOO] || ptr == &mons[PM_SOLARFISH] || ptr == &mons[PM_POLICE_HUSKY] || ptr == &mons[PM_BIG_POLICE_DOG] || ptr == &mons[PM_CURSED____LEFTHANDED_FARTING_ELEPHANT] || ptr == &mons[PM_VERONA_MARBLE] || ptr == &mons[PM_CHASE_BIRD] || ptr == &mons[PM_JAYCEE] || ptr == &mons[PM_OOGABOOGAGOBILITGOOK_SEEKER_AREHETYPE_FUCKING_RETARD_ASS_SHIT_FLINGING_MONKEY_MONSTER] || ptr == &mons[PM_FULL_REFUGE] || ptr == &mons[PM_DRIVE_TRAIN] || ptr == &mons[PM_XTREME_TRACKER] || ptr == &mons[PM_REFUGE_UHLERT] || ptr == &mons[PM_THE_ULTIMATE_REFUGE]) && !mtmp->mpeaceful) appr = 1;
+		if ((ptr == &mons[PM_TRACKER_JACKER] || (uarmf && uarmf->oartifact == ART_OTMAR_S_PHANTOM_STEPS && (ptr->mlet == S_GHOST)) || ptr == &mons[PM_FIGHTING_ENTITY] || ptr == &mons[PM_PERSON_WHO_IS_REALLY_AFTER_YOU__NO__YOU_RE_NOT_PARANOID_] || autismweaponcheck(ART_EMERALD_SWORD) || ptr == &mons[PM_TRACKBAG] || ptr == &mons[PM_BLACK_SUN_BASS] || ptr == &mons[PM_LINDEN_BASS] || ptr == &mons[PM_FIRE_ANT_NEST_GUARD] || (FemtrapActiveElla && mtmp->female && humanoid(mtmp->data) && (mtmp->mhp < (mtmp->mhpmax * 9 / 10) )) || ptr == &mons[PM_ASSHOLE_WHO_CANNOT_ENJOY_ANYTHING__NOT_EVEN_A_PAIR_OF_CUDDLE_HEELS] || ptr == &mons[PM_KILLER_GIANT_RAT] || ptr == &mons[PM_POLICE_DOG] || ptr == &mons[PM_MANBOO] || ptr == &mons[PM_SOLARFISH] || ptr == &mons[PM_POLICE_HUSKY] || ptr == &mons[PM_BIG_POLICE_DOG] || ptr == &mons[PM_CURSED____LEFTHANDED_FARTING_ELEPHANT] || ptr == &mons[PM_VERONA_MARBLE] || ptr == &mons[PM_CHASE_BIRD] || ptr == &mons[PM_JAYCEE] || ptr == &mons[PM_OOGABOOGAGOBILITGOOK_SEEKER_AREHETYPE_FUCKING_RETARD_ASS_SHIT_FLINGING_MONKEY_MONSTER] || ptr == &mons[PM_FULL_REFUGE] || ptr == &mons[PM_DRIVE_TRAIN] || ptr == &mons[PM_XTREME_TRACKER] || ptr == &mons[PM_REFUGE_UHLERT] || ptr == &mons[PM_THE_ULTIMATE_REFUGE]) && !mtmp->mpeaceful) appr = 1;
 
 	if (uarmh && itemhasappearance(uarmh, APP_BUG_TRACKING_HELMET) && !rn2(3) ) appr = 1; 
 

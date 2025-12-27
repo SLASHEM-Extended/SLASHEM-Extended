@@ -3719,6 +3719,14 @@ register int pm;
 		pline(FunnyHallu ? "You feel like ripping out some trees!" : "You feel stronger!");
 		break;
 
+	    case PM_YAO_GAUI:
+		if (CannotGetIntrinsics) break;
+		if (!rn2(4)) {
+			gainstr((struct obj *)0, 0);
+			pline(FunnyHallu ? "You feel like ripping out some trees!" : "You feel stronger!");
+		}
+		break;
+
 	    case PM_LILY_FLOWER:
 		pline("Contrary to popular belief, the lily tasted pretty good and wasn't poisonous!");
 		decontaminate(10);

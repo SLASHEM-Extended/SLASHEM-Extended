@@ -305,6 +305,7 @@
 				 ((ptr) == &mons[PM_CORONA_SENTAI]) ? 2 : \
 				 ((ptr) == &mons[PM_LAMP_GOLEM]) ? 2 : \
 				 ((ptr) == &mons[PM_POFF_LICH]) ? 2 : \
+				 ((ptr) == &mons[PM_GLOWING_ONE]) ? 2 : \
 				 ((ptr) == &mons[PM_PILE_OF_LIGHT_RADIUS_COINS]) ? 2 : \
 				 ((ptr) == &mons[PM_GREATER_FIRE_ELEMENTAL]) ? 3 : \
 				 ((ptr) == &mons[PM_RADIANT_ARCHON]) ? 3 : \

@@ -6616,6 +6616,7 @@ static const char *epitaphs[] = {
 	"Amy that item didn't work the way I thought it would, that's gotta be a bug! You gotta fix it!",
 	"Amy that reward is way suckier than I thought, you said it gave one point of skill training for every skill but I got that reward and still can't enhance anything, why is that? Are you even aware of that bug, and when will you finally fix it and/or can you retroactively fix it for my ongoing char?", /* there was a player who *really* misread "one point" as "one skill level"... unbelievable... If I wanted to say "one skill level", I'd say "one skill level" :P When I say something, every word is important, every letter. As in, I mean exactly what I say and those who somehow think they have to misinterpret it, well, their loss. Sorry. */
 	"Amy I can't defeat the geneworm, every time I try to fight him I seem to be doing no damage with my melee weapon and in turn he kills me very quickly, even if I try to spam healing items or spells! What the hell am I supposed to do to beat him?!", /* uhh, use ranged attacks maybe? (protip to anyone reading this: it's exactly what you should do, ideally highly enchanted venoms or fire spells) */
+	"go back to losing my dumplogs and stop writing nethack code. I'm gonna play the one true nethack, 343nao. the guy that wrote that would never make changes like this and if he found out nethack was being ruined like this would never stand for it. I hope he shows up and does something about this", /* by Demo */
 
 };
 

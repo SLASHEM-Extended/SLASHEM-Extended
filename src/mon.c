@@ -5279,6 +5279,16 @@ register struct monst *mtmp;
 
 	}
 
+	if (tmp == PM_ENCLAVE_VERTIBIRD_EYEBOT) {
+		int enclavespawns = rn1(3,3);
+		while (enclavespawns > 0) {
+			enclavespawns--;
+			(void) makemon(specialtensmon(442), mtmp->mx, mtmp->my, MM_ADJACENTOK); /* MS_ENCLAVE */
+		}
+		(void) makemon(specialtensmon(406), mtmp->mx, mtmp->my, MM_ADJACENTOK); /* MS_BOT */
+		pline("Uh-oh... a vertibird dropped off a bunch of enclave soldiers!");
+	}
+
 	if (tmp == PM_SHEER_SPACER) {
 		make_frozen(HFrozen + rnz(1000),FALSE);
 		if (HFrozen > 0) set_itimeout(&HeavyFrozen, HFrozen);
