@@ -15275,7 +15275,7 @@ loveheelover:
 			 (void) mongets(mtmp, SOFT_GIRL_SNEAKER);
 		}
 
-		if (ptr == &mons[PM_OFFICER_ALINA]) {
+		if (ptr == &mons[PM_OFFICER_ALINA] || ptr == &mons[PM_SHORT_SLEEVED_OFFICER_ALINA]) {
 			 (void) mongets(mtmp, SOFT_GIRL_SNEAKER);
 			 (void) mongets(mtmp, SOFT_SNEAKERS); /* M4_SNEAKERS */
 		}

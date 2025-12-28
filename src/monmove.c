@@ -3004,7 +3004,11 @@ convertdone:
 			pline("%s used Noctem!", Monnam(mtmp));
 			u.currentweather = WEATHER_ECLIPSE;
 			tell_main_weather();
-		/* TODO: if a sandshrew pokemon is added, it should have the sandstorm ability */
+		} else if (mdat == &mons[PM_SANDSHREW] || mdat == &mons[PM_SANDSLASH] ) {
+			mtmp->madeweatherchange = TRUE;
+			pline("%s used Sandstorm!", Monnam(mtmp));
+			u.currentweather = WEATHER_SANDSTORM;
+			tell_main_weather();
 		} else if (attackdamagetype(mtmp->data, AT_BREA, AD_MALK) || attackdamagetype(mtmp->data, AT_BEAM, AD_MALK) ) {
 			mtmp->madeweatherchange = TRUE;
 			pline("%s used Thunderstorm!", Monnam(mtmp));
