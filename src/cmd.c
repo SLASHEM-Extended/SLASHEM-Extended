@@ -15855,29 +15855,29 @@ walkwalkwalk:
 		 * set up the controls properly because you'll probably have moved 50 times by that time :-P */
 
 		if (moves < 50 && !(iflags.num_pad) && iflags.numpadmessage) {
-			if (yn("Invalid command, possibly you tried to use the number pad to move? You might want to turn on the number pad, which is done by opening the options with shift-O and navigating to the number_pad entry (it's not between null and perm_invent, you have to scroll further down to the compound options). Toggle that with the appropriate letter key and hit spacebar (not escape!) until the number_pad dialog comes up, and set it to 2. Alternatively, you can also turn on the number pad by adding this line to your options file: OPTIONS=number_pad:2 (probably requires you to start a new game). (Press y to disable this message)") == 'y') {
+			if (yn("Invalid command, possibly you tried to use the number pad to move? The current control scheme is vikeys (hjklyubn), you might want to turn on the number pad, which is done by opening the options with shift-O and navigating to the number_pad entry (follow the help text if you cannot find it), and set it to 2 to turn the number pad on. Alternatively, you can also turn on the number pad by adding this line to your options file: OPTIONS=number_pad:2 (probably requires you to start a new game). (If you want to play with vikeys instead, press y to disable this message)") == 'y') {
 				iflags.numpadmessage = FALSE;
-				pline("In order to turn the message off for all subsequent games too, add OPTIONS=nonumpadmessage to your configuration file.");
+				pline("Reminder message turned off. In order to turn the message off for all subsequent games too, add OPTIONS=nonumpadmessage to your configuration file.");
 			} else {
 				if (yn("Turn the number pad on?") == 'y') {
 					iflags.num_pad = 2;
 					iflags.num_pad_mode = 1;
 					iflags.numpadmessage = FALSE;
-					pline("Number pad is ON now. You should add the following line to your configuration file to have it be turned on by default: OPTIONS=number_pad:2");
+					pline("Number pad is ON now. Use the number pad keys to move your character. You should add the following line to your configuration file to have it be turned on by default: OPTIONS=number_pad:2");
 				}
 			}
 			if (u.annoyingmessages++ > 5) iflags.numpadmessage = FALSE;
 		}
 		else if (moves < 50 && iflags.num_pad && iflags.numpadmessage) {
-			if (yn("Invalid command, possibly you tried to use vikeys to move? The number pad is currently on. If for some reason you want to turn it off and use vikeys instead, open the options with shift-O and navigate to the number_pad entry (it's not between null and perm_invent, you have to scroll further down to the compound options). Toggle that with the appropriate letter key and hit spacebar (not escape!) until the number_pad dialog comes up, and set it to 0. Alternatively, you can also turn off the number pad by adding this line to your options file: OPTIONS=number_pad:0 (probably requires you to start a new game). (Press y to disable this message)") == 'y') {
+			if (yn("Invalid command, possibly you tried to use vikeys (hjklyubn) to move? The number pad is currently on. If for some reason you want to turn it off and use vikeys instead, open the options with shift-O and navigate to the number_pad entry (follow the help text if you cannot find it), and set it to 0 to turn the number pad off. Alternatively, you can also turn off the number pad by adding this line to your options file: OPTIONS=number_pad:0 (probably requires you to start a new game). (If you want to keep playing with the number pad, press y to disable this message)") == 'y') {
 				iflags.numpadmessage = FALSE;
-				pline("In order to turn the message off for all subsequent games too, add OPTIONS=nonumpadmessage to your configuration file.");
+				pline("Reminder message turned off. In order to turn the message off for all subsequent games too, add OPTIONS=nonumpadmessage to your configuration file.");
 			} else {
 				if (yn("Turn the number pad off?") == 'y') {
 					iflags.num_pad = 0;
 					iflags.num_pad_mode = 0;
 					iflags.numpadmessage = FALSE;
-					pline("Number pad is OFF now. You should add the following line to your configuration file to have it be turned on by default: OPTIONS=number_pad:0");
+					pline("Number pad is OFF now. Use the hjklyubn keys to move your character. You should add the following line to your configuration file to have it be turned on by default: OPTIONS=number_pad:0");
 				}
 			}
 			if (u.annoyingmessages++ > 5) iflags.numpadmessage = FALSE;

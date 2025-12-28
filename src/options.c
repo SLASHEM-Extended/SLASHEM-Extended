@@ -3649,25 +3649,27 @@ doset()
 	if (moves < 50 && iflags.numpadmessage) {
 
 		if (!(iflags.num_pad)) {
-			if (yn("Do you want to turn on the number pad?") == 'y') {
+			if (yn("The number pad is currently off. Do you want to turn on the number pad? (if you answer no, the movement keys are hjklyubn, aka vikeys)") == 'y') {
 				iflags.num_pad = 2;
 				iflags.num_pad_mode = 1;
 				iflags.numpadmessage = FALSE;
+				pline("Number pad turned on. You can now move your character with the number pad keys.");
 			} else if (yn("Do you want to turn this annoying message off?") == 'y') {
 				iflags.numpadmessage = FALSE;
-				pline("In order to turn the message off for all subsequent games too, add OPTIONS=nonumpadmessage to your configuration file.");
+				pline("Reminder message turned off. In order to turn the message off for all subsequent games too, add OPTIONS=nonumpadmessage to your configuration file.");
 			}
 			if (u.annoyingmessages++ > 5) iflags.numpadmessage = FALSE;
 		}
 
 		else if (iflags.num_pad) {
-			if (yn("Do you want to turn off the number pad?") == 'y') {
+			if (yn("The number pad is currently on. Do you want to turn off the number pad? (if you answer yes, the movement keys become hjklyubn, aka vikeys)") == 'y') {
 				iflags.num_pad = 0;
 				iflags.num_pad_mode = 0;
 				iflags.numpadmessage = FALSE;
+				pline("Number pad turned off. You can now move your character with the hjklyubn keys.");
 			} else if (yn("Do you want to turn this annoying message off?") == 'y') {
 				iflags.numpadmessage = FALSE;
-				pline("In order to turn the message off for all subsequent games too, add OPTIONS=nonumpadmessage to your configuration file.");
+				pline("Reminder message turned off. In order to turn the message off for all subsequent games too, add OPTIONS=nonumpadmessage to your configuration file.");
 			}
 			if (u.annoyingmessages++ > 5) iflags.numpadmessage = FALSE;
 		}
@@ -3685,8 +3687,24 @@ doset()
 		 "IMPORTANT: The number_pad option is all the way down at the compound options,", MENU_UNSELECTED);
  add_menu(tmpwin, NO_GLYPH, &any, 0, 0, iflags.menu_headings,
 		 "so scroll down there if you want to turn the number pad on!!!", MENU_UNSELECTED);
+
+ add_menu(tmpwin, NO_GLYPH, &any, 0, 0, ATR_NONE,
+		 " ", MENU_UNSELECTED);
+
+ add_menu(tmpwin, NO_GLYPH, &any, 0, 0, iflags.menu_headings,
+		 "Graphics looking weird? Set the IBMgraphics or DECgraphics option, or you", MENU_UNSELECTED);
+ add_menu(tmpwin, NO_GLYPH, &any, 0, 0, iflags.menu_headings,
+		 "can also set both of them to 'false' to get 'default' graphics.", MENU_UNSELECTED);
+
+ add_menu(tmpwin, NO_GLYPH, &any, 0, 0, ATR_NONE,
+		 " ", MENU_UNSELECTED);
+
  add_menu(tmpwin, NO_GLYPH, &any, 0, 0, iflags.menu_headings,
 		 "Scroll with the space bar or the > key, NOT the arrow keys!", MENU_UNSELECTED);
+ add_menu(tmpwin, NO_GLYPH, &any, 0, 0, iflags.menu_headings,
+		 "DO NOT press ESC in this menu or you'll cancel your changes!", MENU_UNSELECTED);
+ add_menu(tmpwin, NO_GLYPH, &any, 0, 0, iflags.menu_headings,
+		 "If you want to save your changes and return to the game, press Enter.", MENU_UNSELECTED);
 
  add_menu(tmpwin, NO_GLYPH, &any, 0, 0, ATR_NONE,
 		 " ", MENU_UNSELECTED);
@@ -3721,6 +3739,23 @@ doset()
 			    boolopt[i].name, *bool_p ? "true" : "false");
 		    add_menu(tmpwin, NO_GLYPH, &any, 0, 0,
 			     ATR_NONE, buf, MENU_UNSELECTED);
+
+		    if (boolopt[i].name == "DECgraphics") {
+			any.a_void = 0;
+			add_menu(tmpwin, NO_GLYPH, &any, 0, 0, iflags.menu_headings,
+			"You can turn DECgraphics on or off to change the graphics mode.", MENU_UNSELECTED);
+		    }
+		    if (boolopt[i].name == "IBMgraphics") {
+			any.a_void = 0;
+			add_menu(tmpwin, NO_GLYPH, &any, 0, 0, iflags.menu_headings,
+			"IBMgraphics is another graphics mode that you can turn on or off.", MENU_UNSELECTED);
+		    }
+
+		    if (boolopt[i].name == "null") {
+			any.a_void = 0;
+			add_menu(tmpwin, NO_GLYPH, &any, 0, 0, iflags.menu_headings,
+			"The number pad option isn't here, please scroll further down to find it!", MENU_UNSELECTED);
+		    }
 		}
 
 	boolcount = i;
@@ -3768,6 +3803,15 @@ doset()
 		    	else
 				doset_add_menu(tmpwin, compopt[i].name,
 					(pass == DISP_IN_GAME) ? 0 : indexoffset);
+
+			if (compopt[i].name == "number_pad") {
+				any.a_void = 0;
+				add_menu(tmpwin, NO_GLYPH, &any, 0, 0, iflags.menu_headings,
+				"This is the number_pad option to turn the number pad on or off!", MENU_UNSELECTED);
+				add_menu(tmpwin, NO_GLYPH, &any, 0, 0, iflags.menu_headings,
+				"Set this option to 2 to use the number pad or 0 to turn it off.", MENU_UNSELECTED);
+			}
+
 		}
 #ifdef AUTOPICKUP_EXCEPTIONS
 	any.a_int = -1;

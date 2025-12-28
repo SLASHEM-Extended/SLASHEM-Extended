@@ -18917,17 +18917,17 @@ boolean new_game;	/* false => restoring an old game */
 #endif /* BIGSLEX */
 
 	if (new_game && !(iflags.num_pad) && iflags.numpadmessage) {
-		pline("IMPORTANT ADVICE FOR NEWBIES: The default control scheme on this server is vikeys (hjklyubn), which is borderline unplayable :-P You may want to switch to the *number pad*. I've created an easy way to achieve that: press Shift-O during the first 50 game turns to get a dialogue that allows you to switch, then you no longer need to wonder why the number pad keys only display 'Count: 22222' or some such garbage, but will be able to actually move. Seasoned players may add OPTIONS=number_pad:2 to their config file to turn the number pad on by default, or OPTIONS=nonumpadmessage to turn this reminder message off.");
+		pline("IMPORTANT ADVICE FOR NEWBIES: The default control scheme on this server is vikeys (hjklyubn), which is borderline unplayable :-P You may want to switch to the *number pad*. I've created an easy way to achieve that: press Shift-O during the first 50 game turns to get a dialogue that allows you to switch, then you no longer need to wonder why the number pad keys only display 'Count: 22222' or some such garbage, but will be able to actually move (if you actually want to play with vikeys, you can obviously ignore this message). Seasoned players may add OPTIONS=number_pad:2 to their config file to turn the number pad on by default, or OPTIONS=nonumpadmessage to turn this reminder message off.");
 	}
 
 	/* MOTD for public server */
 
 #ifdef BIGSLEX
 
-	if (new_game) pline("Message of the day: The #monster command has been improved considerably and is now a menu that presents all the available abilities. Feel free to use it and tell me what you think.");
+	if (new_game) pline("Message of the day: If the game is looking funky, with dungeon features being displayed as random ASCII gibberish and some features not rendering at all, you need to set the correct graphics mode and/or adjust your terminal settings. PuTTY in particular needs to be set to CP437 in the Window->Translation options, other emulators that default to UTF-8 may suffer from the same problem. You can also experiment with the in-game graphics settings: the options allow you to set IBMgraphics, DECgraphics or 'no graphics' (by setting both of the previous options to FALSE). Make sure you use settings that render all features and monsters properly to get a playable game!");
 
 #else
-	if (new_game) pline("Message of the day: The #monster command has been improved considerably and is now a menu that presents all the available abilities. Feel free to use it and tell me what you think.");
+	if (new_game) pline("Message of the day: If the game is looking funky, with dungeon features being displayed as random ASCII gibberish and some features not rendering at all, you need to set the correct graphics mode and/or adjust your terminal settings. PuTTY in particular needs to be set to CP437 in the Window->Translation options, other emulators that default to UTF-8 may suffer from the same problem. You can also experiment with the in-game graphics settings: the options allow you to set IBMgraphics, DECgraphics or 'no graphics' (by setting both of the previous options to FALSE). Make sure you use settings that render all features and monsters properly to get a playable game!");
 
 #endif
 

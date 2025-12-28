@@ -31,6 +31,21 @@ Important hints:
   https://www.reddit.com/r/slashemextended
   Or use the #em.slashem.me IRC channel on Libera.
 
+- Is the game looking weird, tiles being displayed as random gibberish, and
+  some features or monsters aren't being shown at all? You might need to set
+  the proper graphics mode. Available options are DECgraphics, IBMgraphics
+  or "no graphics" (by setting both DECgraphics and IBMgraphics to false).
+  Press Shift-O to open the options menu and set the desired graphics.
+  If that doesn't help, your terminal emulator might be set to the wrong
+  encoding. PuTTY for example seems to default to UTF-8; you need to
+  manually set that to CP437 (in the PuTTY settings, go to Window ->
+  Translation, and set the remote character set; this setting is likely
+  named differently on other terminal emulators so you might need to
+  experiment to ensure that things are displayed properly).
+  Be aware that playing with incorrect settings can be highly dangerous,
+  as you might get killed by monsters you couldn't see if your settings
+  don't display their glyphs correctly!
+
 - There is no "dig" command. In order to dig, equip and 'a'pply a pick-axe.
 
 - Press s to search for secret doors and corridors.
