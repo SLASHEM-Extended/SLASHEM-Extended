@@ -4366,3 +4366,10 @@ If you play a race that has no hands, you should just #quit because they're unpl
 If you're playing a crashy version of the game, you don't need to save any more often than normal because the game will always recover to the exact turn on which you got the crash. Amy also doesn't need to be told about such bugs because she'll probably figure them out by herself.
 If your character dies, it probably means that the game is buggy and Amy has to fix it.
 If you die to a monster that you didn't expect to be as strong as it turned out to be, it's a certain sign that the game is unbalanced. Notify Amy so she can fix it!
+Wearing matching sets of power armor improves your chance to avoid projectiles depending on your dexterity. If it's tesla power armor, it can also reflect the projectiles back at the one who fired them.
+Wearing matching sets of brotherhood or especially full power armor boosts your Pw regeneration rate.
+Wearing matching sets of enclave or tesla power armor causes your alignment record to go up slowly over time, or more quickly if your alignment is chaotic.
+Wearing matching sets of outcast power armor allows you to occasionally deal double damage with your attacks.
+The buhurt martial arts style can only be used if you know how to use power armor, and means your slashing melee weapons don't dull at all but only if you're actually wearing power armor.
+While using the buhurt martial arts style, your power helmet gains enchantment over time and grants ESP, and your power armor automatically blesses itself whenever it's not blessed and causes thorns damage to things that attack you in melee. However, your power armor and helmet will break whenever you polymorph, even if it's a small form or one that can actually wear them.
+The downsides of the buhurt martial arts style are greatly lowered ranged to-hit, lower intelligence and a slightly slower rate of gaining max alignment over time.

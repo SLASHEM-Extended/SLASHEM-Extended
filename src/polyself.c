@@ -1311,7 +1311,7 @@ break_armor()
 	if (uarmu && uarmu->stckcurse) shirtkeep = 1;
 
     if (breakarm(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
-	if (((otmp = uarm) != 0) && !(uarm && uarm->otyp == OSFA_CHAIN_MAIL) && !(uarm && uarm->oartifact == ART_WRONG_TURN) && !armorkeep) {
+	if (((otmp = uarm) != 0) && !(uarm && uarm->otyp == OSFA_CHAIN_MAIL) && !(u.martialstyle == MARTIALSTYLE_BUHURT && uarm && is_power_armor(uarm)) && !(uarm && uarm->oartifact == ART_WRONG_TURN) && !armorkeep) {
 	    if(otmp->oartifact || facelesskeep || (uarmf && uarmf->oartifact == ART_MALENA_S_LADYNESS) || autismringcheck(ART_FRAIDLOSE) || (otmp->fakeartifact && rn2(2)) ) {
 		if (donning(otmp)) cancel_don();
 		Your("armor falls off!");
@@ -1382,7 +1382,7 @@ break_armor()
 		useup(uarmu);
 	    }
 	}
-    } else if (sliparm(youmonst.data) && !(uarm && uarm->oartifact == ART_GRADIATING_WORK) && !(uarm && uarm->otyp == OSFA_CHAIN_MAIL) && !(uarm && uarm->oartifact == ART_WRONG_TURN) && !Race_if(PM_TRANSFORMER) ) {
+    } else if (sliparm(youmonst.data) && !(uarm && uarm->oartifact == ART_GRADIATING_WORK) && !(uarm && uarm->otyp == OSFA_CHAIN_MAIL) && !(u.martialstyle == MARTIALSTYLE_BUHURT && uarm && is_power_armor(uarm)) && !(uarm && uarm->oartifact == ART_WRONG_TURN) && !Race_if(PM_TRANSFORMER) ) {
 	if (((otmp = uarm) != 0) && !armorkeep && (racial_exception(&youmonst, otmp) < 1)) {
 		if (donning(otmp)) cancel_don();
 		Your("armor falls around you!");
@@ -1404,7 +1404,7 @@ break_armor()
 		dropx(otmp);
 	}
     }
-    if (has_horns(youmonst.data) && !(uarmh && uarmh->oartifact == ART_FIT_THE_FAT_SCHWELLES) && !Race_if(PM_TRANSFORMER) ) {
+    if (has_horns(youmonst.data) && !(u.martialstyle == MARTIALSTYLE_BUHURT && uarmh && is_power_helm(uarmh)) && !(uarmh && uarmh->oartifact == ART_FIT_THE_FAT_SCHWELLES) && !Race_if(PM_TRANSFORMER) ) {
 	if (((otmp = uarmh) != 0) && !uarmh->stckcurse) {
 	    if (is_flimsy(otmp) && !donning(otmp)) {
 		char hornbuf[BUFSZ], yourbuf[BUFSZ];
@@ -1421,7 +1421,7 @@ break_armor()
 	    }
 	}
     }
-    if ((otmp = uarmh) != 0 && !(uarmh && uarmh->oartifact == ART_FIT_THE_FAT_SCHWELLES) && !uarmh->stckcurse && !Race_if(PM_TRANSFORMER) && (is_mind_flayer(youmonst.data))) {
+    if ((otmp = uarmh) != 0 && !(uarmh && uarmh->oartifact == ART_FIT_THE_FAT_SCHWELLES) && !(u.martialstyle == MARTIALSTYLE_BUHURT && uarmh && is_power_helm(uarmh)) && !uarmh->stckcurse && !Race_if(PM_TRANSFORMER) && (is_mind_flayer(youmonst.data))) {
 	    if (!otmp->cursed || facelesskeep) {
 	      pline_The("%s is pushed from your head by your tentacles.", xname(otmp));
 	      (void) Helmet_off();
@@ -1477,7 +1477,7 @@ shielddone:
 
 	}
 
-	if ((otmp = uarmh) != 0 && !(uarmh && uarmh->oartifact == ART_FIT_THE_FAT_SCHWELLES) && !uarmh->stckcurse) {
+	if ((otmp = uarmh) != 0 && !(uarmh && uarmh->oartifact == ART_FIT_THE_FAT_SCHWELLES) && !(u.martialstyle == MARTIALSTYLE_BUHURT && uarmh && is_power_helm(uarmh)) && !uarmh->stckcurse) {
 	    if (donning(otmp)) cancel_don();
 	    Your("helmet falls to the %s!", surface(u.ux, u.uy));
 	    (void) Helmet_off();

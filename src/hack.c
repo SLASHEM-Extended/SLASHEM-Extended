@@ -5353,6 +5353,14 @@ int k_format; /* WAC k_format is an int */
 		n -= rnd(4);
 		if (n < 1) n = 1;
 	}
+	if (uarm && uarm->otyp == BROTHERHOOD_POWER_ARMOR && uarmh && uarmh->otyp == BROTHERHOOD_POWER_HELM && n > 0) {
+		n--;
+		if (n < 1) n = 1;
+	}
+	if (uarm && uarm->otyp == FULL_POWER_ARMOR && uarmh && uarmh->otyp == FULL_POWER_HELM && n > 0) {
+		n -= 2;
+		if (n < 1) n = 1;
+	}
 	if (uarmg && uarmg->oartifact == ART_MILLION_HIT_POINT && n > 0) {
 		if (u.uhp < (u.uhpmax / 2)) n--;
 		if (u.uhp < (u.uhpmax * 2 / 5)) n--;
@@ -5541,6 +5549,9 @@ int k_format; /* WAC k_format is an int */
 	} else if (uarms && uarms->otyp == NULLIFICATION_SHIELD && !rn2(20) ) {
 	    	n = 0;
 		Your("shield nullifies the damage!");
+	} else if (uarm && uarm->otyp == OUTCAST_POWER_ARMOR && uarmh && uarmh->otyp == OUTCAST_POWER_HELM && !rn2(30)) {
+		n = 0;
+		Your("armor nullifies the damage!");
 	} else if (uimplant && uimplant->oartifact == ART_GLEN_HOSPITAL && !rn2(10)) {
 		n = 0;
 		Your("implant nullifies the damage!");
@@ -5797,11 +5808,16 @@ max_carr_cap() /* your absolute maximum carry cap (the actual one is lower, see 
 
 	}
 
+	if (u.martialstyle == MARTIALSTYLE_BUHURT) maxcarrcap -= 1000;
+
 	if (uwep && uwep->oartifact == ART_SYLVIE_S_EASY_MODE) maxcarrcap *= 10;
 
 	if (uarmh && uarmh->oartifact == ART_LIVIN__IT_UP) maxcarrcap *= 2;
 
 	if (uamul && uamul->oartifact == ART_RICK_S_WEIGHT_SYSTEM) maxcarrcap /= 2;
+
+	/* absolute minimum value = 500 --Amy */
+	if (maxcarrcap < 500) maxcarrcap = 500;
 
 	return maxcarrcap;
 }
@@ -5948,6 +5964,8 @@ weight_cap() /* your current max carry cap (the one displayed on the bottom stat
 	}
 
 	if (have_clonedyke()) carrcap -= 750;
+
+	if (u.martialstyle == MARTIALSTYLE_BUHURT) carrcap -= 1000;
 
 	/* multipliers go here */
 

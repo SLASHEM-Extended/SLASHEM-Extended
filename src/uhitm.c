@@ -845,6 +845,7 @@ register struct monst *mtmp;
 	if (Race_if(PM_INHERITOR)) tmp -= 5;
 	if (RngeUnnethack) tmp -= 10;
 	if (u.twoweap && RngeNethackFourk) tmp -= rn1(10, 10);
+	if (u.martialstyle == MARTIALSTYLE_BUHURT) tmp -= rnd(10);
 
 	if (!uwep && !PlayerCannotUseSkills && (P_SKILL(P_MARTIAL_ARTS) >= P_UNSKILLED) && uarmc && itemhasappearance(uarmc, APP_BOXING_GOWN)) tmp += 4;
 	/* the P_UNSKILLED is not an error; it means that you have the skill, and are therefore eligible for a bonus --Amy */
@@ -1675,6 +1676,7 @@ martial_dmg()
 	}
 
 	if (uarmg && uarmg->oartifact == ART_BOX_FIST) damage += 5;
+	if (u.martialstyle == MARTIALSTYLE_BUHURT && uarm && is_power_armor(uarm)) damage += rnd(15);
 	if (uarmg && uarmg->oartifact == ART_BOXING_LESSON) damage += 5;
 	if (uarmg && uarmg->oartifact == ART_FIFTY_SHADES_OF_FUCKED_UP) damage += 5;
 	if (uarm && uarm->oartifact == ART_GRANDMASTER_S_ROBE) damage += 10;
@@ -1949,6 +1951,7 @@ int dieroll;
 			}
 
 			if (uarmg && uarmg->oartifact == ART_BOX_FIST) tmp += 5;
+			if (u.martialstyle == MARTIALSTYLE_BUHURT && uarm && is_power_armor(uarm)) tmp += rnd(15);
 			if (uarmg && uarmg->oartifact == ART_BOXING_LESSON) tmp += 5;
 			if (uarmg && uarmg->oartifact == ART_FIFTY_SHADES_OF_FUCKED_UP) tmp += 5;
 			if (uarm && uarm->oartifact == ART_GRANDMASTER_S_ROBE) tmp += 10;

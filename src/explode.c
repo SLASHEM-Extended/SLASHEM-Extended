@@ -602,6 +602,14 @@ boolean yours; /* is it your fault (for killing monsters) */
 			damu -= rnd(4);
 			if (damu < 1) damu = 1;
 		}
+		if (uarm && uarm->otyp == BROTHERHOOD_POWER_ARMOR && uarmh && uarmh->otyp == BROTHERHOOD_POWER_HELM && damu > 0) {
+			damu--;
+			if (damu < 1) damu = 1;
+		}
+		if (uarm && uarm->otyp == FULL_POWER_ARMOR && uarmh && uarmh->otyp == FULL_POWER_HELM && damu > 0) {
+			damu -= 2;
+			if (damu < 1) damu = 1;
+		}
 		if (uarms && uarms->oartifact == ART_VOID_CHANT && damu > 0) {
 			damu -= rnd(2);
 			if (damu < 1) damu = 1;
@@ -789,6 +797,9 @@ boolean yours; /* is it your fault (for killing monsters) */
 		} else if (uarms && uarms->otyp == NULLIFICATION_SHIELD && !rn2(20) ) {
 		    damu = 0;
 		    Your("shield nullifies the damage!");
+		} else if (uarm && uarm->otyp == OUTCAST_POWER_ARMOR && uarmh && uarmh->otyp == OUTCAST_POWER_HELM && !rn2(30)) {
+		    damu = 0;
+		    Your("armor nullifies the damage!");
 		} else if (uimplant && uimplant->oartifact == ART_GLEN_HOSPITAL && !rn2(10)) {
 		    damu = 0;
 		    Your("implant nullifies the damage!");

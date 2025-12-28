@@ -19575,6 +19575,14 @@ register int n;
 		n -= rnd(4);
 		if (n < 1) n = 1;
 	}
+	if (uarm && uarm->otyp == BROTHERHOOD_POWER_ARMOR && uarmh && uarmh->otyp == BROTHERHOOD_POWER_HELM && n > 0) {
+		n--;
+		if (n < 1) n = 1;
+	}
+	if (uarm && uarm->otyp == FULL_POWER_ARMOR && uarmh && uarmh->otyp == FULL_POWER_HELM && n > 0) {
+		n -= 2;
+		if (n < 1) n = 1;
+	}
 	if (uarmg && uarmg->oartifact == ART_MILLION_HIT_POINT && n > 0) {
 		if (u.uhp < (u.uhpmax / 2)) n--;
 		if (u.uhp < (u.uhpmax * 2 / 5)) n--;
@@ -19767,6 +19775,12 @@ register int n;
 	if (uarms && uarms->otyp == NULLIFICATION_SHIELD && n > 0 && !rn2(20) ) {
 	    	n = 0;
 		Your("shield nullifies the damage!");
+		return;
+	}
+
+	if (uarm && uarm->otyp == OUTCAST_POWER_ARMOR && uarmh && uarmh->otyp == OUTCAST_POWER_HELM && n > 0 && !rn2(30)) {
+		n = 0;
+		Your("armor nullifies the damage!");
 		return;
 	}
 

@@ -11416,6 +11416,8 @@ repairitemchoice:
 						madechoice = 1; u.martialstyle = MARTIALSTYLE_BOOYAKASHA;
 					} else if (P_SKILL(P_SQUEAKING) >= P_BASIC && yn("Switch to the 'kinamutay' style (fists can blind female enemies, kick can paralyze male enemies, these special attacks deal more damage but also reduce alignment and occasionally increase the sin counter)?")=='y') {
 						madechoice = 1; u.martialstyle = MARTIALSTYLE_KINAMUTAY;
+					} else if (u.powerarmortraining && yn("Switch to the 'buhurt' style (power armor greatly boosts unarmed damage and gives more stat bonus to kick damage, power helmet gives extra AC and resistance to beheading, power armor doesn't fall off when you polymorph, blunt weapons dull much less often, lower ranged and especially melee to-hit, lower carry cap, mana regenerates a bit more slowly)?")=='y') {
+						madechoice = 1; u.martialstyle = MARTIALSTYLE_BUHURT;
 					} else if (yn("Do you choose to not switch your style after all?")=='y') {
 						madechoice = 1;
 					}

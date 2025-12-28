@@ -88,10 +88,10 @@ NEARDATA struct objclass objects[] = {
 /* Note: for weapons that don't do an even die of damage (ex. 2-7 or 3-18)
  * the extra damage is added on in weapon.c, not here! */
 
-#define P PIERCE
-#define S SLASH
-#define B WHACK
-#define E EXPLOSION
+#define P PIERCE /* 1 */
+#define S SLASH /* 2 */
+#define B WHACK /* 0 */
+#define E EXPLOSION /* 4 */
 
 /* Daggers */
 /* orcish dagger must be the first weapon defined, many pieces of code depend on it --Amy */

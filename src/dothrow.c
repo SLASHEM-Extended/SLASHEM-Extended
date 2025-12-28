@@ -2937,6 +2937,7 @@ boolean polearming;
 		if (P_SKILL(P_FIREARM) == P_SUPREME_MASTER) tmp -= 6;
 	}
 
+	if (u.martialstyle == MARTIALSTYLE_BUHURT) tmp -= rnd(5);
 	if (u.martialstyle == MARTIALSTYLE_KARATE) tmp -= 5;
 	if (obj && obj->oartifact == ART_WASHINGTON_S_CAPPER) tmp -= 5;
 	if (uwep && uwep->oartifact == ART_LONGLOSS) tmp -= rnd(10);

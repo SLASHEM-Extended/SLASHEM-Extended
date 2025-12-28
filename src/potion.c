@@ -2778,6 +2778,9 @@ currentmartialstyle()
 		case MARTIALSTYLE_KOBUDO:
 			sprintf(martialbuf, "kobudo");
 			break;
+		case MARTIALSTYLE_BUHURT:
+			sprintf(martialbuf, "buhurt");
+			break;
 		case MARTIALSTYLE_BOOYAKASHA:
 			sprintf(martialbuf, "booyakasha");
 			break;
@@ -8817,6 +8820,9 @@ register struct obj *dwpn;
 	if (objects[dwpn->otyp].oc_material == MT_ADAMANTIUM) dullchance *= 4;
 	if (objects[dwpn->otyp].oc_material == MT_ALIMATHIUM) dullchance *= 10;
 
+	/* buhurt means "blunt" weapons dull much less often; this specifically means ones with oc_dir == WHACK, or B in objects.c --Amy */
+	if (u.martialstyle == MARTIALSTYLE_BUHURT && (objects[dwpn->otyp].oc_dir == 0) ) dullchance *= 10;
+
 	if (dwpn->otyp >= WEDGED_LITTLE_GIRL_SANDAL && dwpn->otyp <= PROSTITUTE_SHOE && !Role_if(PM_TRANSVESTITE) && !Role_if(PM_TRANSSYLVANIAN) && !Role_if(PM_SHOE_FETISHIST)) dullchance /= 2;
 	if (dwpn->oartifact == ART_VINTAGE_MEMORY) dullchance /= 5;
 
@@ -9210,6 +9216,8 @@ choosemartialstyle()
 			madechoice = 1; u.martialstyle = MARTIALSTYLE_BOOYAKASHA;
 		} else if (yn("Switch to the 'kinamutay' style (fists can blind female enemies, kick can paralyze male enemies, these special attacks deal more damage but also reduce alignment and occasionally increase the sin counter)?")=='y') {
 			madechoice = 1; u.martialstyle = MARTIALSTYLE_KINAMUTAY;
+		} else if (yn("Switch to the 'buhurt' style (power armor greatly boosts unarmed damage and gives more stat bonus to kick damage, power helmet gives extra AC and resistance to beheading, power armor doesn't fall off when you polymorph, blunt weapons dull much less often, lower ranged and especially melee to-hit, lower carry cap, mana regenerates a bit more slowly)?")=='y') {
+			madechoice = 1; u.martialstyle = MARTIALSTYLE_BUHURT;
 		} else if (yn("Do you choose to not switch your style after all?")=='y') {
 			madechoice = 1;
 		}
@@ -9223,7 +9231,7 @@ choosemartialstyle()
 void
 randommartialstyle()
 {
-	switch (rnd(17)) {
+	switch (rnd(18)) {
 		default:
 		case 1:
 			u.martialstyle = MARTIALSTYLE_BRAWLING;
@@ -9275,6 +9283,9 @@ randommartialstyle()
 			break;
 		case 17:
 			u.martialstyle = MARTIALSTYLE_BOXING;
+			break;
+		case 18:
+			u.martialstyle = MARTIALSTYLE_BUHURT;
 			break;
 	}
 

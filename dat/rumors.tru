@@ -2752,3 +2752,10 @@ If you play a race that has no hands, you need a lot of patience and should also
 If you're playing a crashy version of the game, you should probably save your game frequently to ensure you don't get thrown back too far in case it does crash. But ideally, you should also tell Amy about the crash bugs so she can fix them!
 If your character dies, you probably weren't playing good enough and should try to improve your playing skill.
 If you die to a monster that you didn't expect to be as strong as it turned out to be, you should have paid more attention.
+Wearing matching sets of power armor improves your AC depending on your body armor skill. If it's full power armor, the bonus is greater.
+Wearing matching sets of brotherhood or especially full power armor slightly reduces any damage you take.
+Wearing matching sets of enclave or tesla power armor allows you to occasionally deflect projectiles.
+Wearing matching sets of outcast power armor allows you to occasionally nullify incoming damage.
+The buhurt martial arts style can only be used if you know how to use power armor, but it means your blunt weapons dull much less often even if you aren't actually wearing power armor.
+While using the buhurt martial arts style, your power helmet gives extra AC and beheading resistance, and your power armor improves your unarmed melee damage and kick damage. Also, your power armor and helmet will never fall off when polymorphing into something that normally cannot wear them.
+The downsides of the buhurt martial arts style are lower to-hit (especially for melee weapons), a lower carry capacity and slightly slower Pw regeneration rate.

@@ -8035,6 +8035,7 @@ find_ac()
 	if (uarmh && uarmh->oartifact == ART_ALLER_MOME) uac -= 5;
 	if (uarms && uarms->oartifact == ART_HEAVE_FIELD) uac -= 6;
 	if (uarm && uarm->oartifact == ART_SHRINK_S_AID) uac -= 7;
+	if (u.martialstyle == MARTIALSTYLE_BUHURT && uarmh && is_power_helm(uarmh)) uac -= 5;
 	if (uarmf && uarmf->oartifact == ART_SUSCHEL_KUNA) uac -= 3;
 	if (uarmc && uarmc->oartifact == ART_DES_MIRREN) uac -= 3;
 	if (uarmc && uarmc->oartifact == ART_BORINGPAD) uac -= 3;
@@ -8046,7 +8047,31 @@ find_ac()
 	if (uarm && uarm->oartifact == ART_BLASWON) uac -= 1;
 	if (uarm && uarm->oartifact == ART_TANKSTA_S_SUIT) uac -= 6;
 	if (uarmc && uarmc->oartifact == ART_NIMER_AGAIN) uac -= 10;
-	if (uarm && uarm->otyp == FULL_POWER_ARMOR && uarmh && uarmh->otyp == FULL_POWER_HELM) uac -= 5;
+	if (uarm && uarm->otyp == FULL_POWER_ARMOR && uarmh && uarmh->otyp == FULL_POWER_HELM) {
+		uac -= 5;
+		if (!PlayerCannotUseSkills) {
+			switch (P_SKILL(P_BODY_ARMOR)) {
+				case P_BASIC: uac -= 1; break;
+				case P_SKILLED: uac -= 3; break;
+				case P_EXPERT: uac -= 5; break;
+				case P_MASTER: uac -= 6; break;
+				case P_GRAND_MASTER: uac -= 8; break;
+				case P_SUPREME_MASTER: uac -= 10; break;
+			}
+		}
+	}
+	if ((uarm && uarm->otyp == BROTHERHOOD_POWER_ARMOR && uarmh && uarmh->otyp == BROTHERHOOD_POWER_HELM) || (uarm && uarm->otyp == OUTCAST_POWER_ARMOR && uarmh && uarmh->otyp == OUTCAST_POWER_HELM) || (uarm && uarm->otyp == ENCLAVE_POWER_ARMOR && uarmh && uarmh->otyp == ENCLAVE_POWER_HELM) || (uarm && uarm->otyp == TESLA_POWER_ARMOR && uarmh && uarmh->otyp == TESLA_POWER_HELM)) {
+		if (!PlayerCannotUseSkills) {
+			switch (P_SKILL(P_BODY_ARMOR)) {
+				case P_BASIC: uac -= 1; break;
+				case P_SKILLED: uac -= 2; break;
+				case P_EXPERT: uac -= 3; break;
+				case P_MASTER: uac -= 4; break;
+				case P_GRAND_MASTER: uac -= 5; break;
+				case P_SUPREME_MASTER: uac -= 6; break;
+			}
+		}
+	}
 	if (uarm && uarm->oartifact == ART_WOOHOO_AMATEURHOUR_) uac -= 5;
 	if (uarm && uarm->oartifact == ART_COME_ON_AMMY) uac -= 5;
 	if (uarm && uarm->oartifact == ART_HANDSOME_THREESOME) uac -= 3;

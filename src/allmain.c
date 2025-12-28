@@ -23042,6 +23042,7 @@ int conttype; /* 1 = HP, 2 = Pw */
 	if (uimplant && uimplant->oartifact == ART_BONE_PLUG_OF_MORVANE_THE_H && (conttype == 1) && rn2(2)) return TRUE;
 	if (uimplant && uimplant->oartifact == ART_CRANIAL_PRISM_OF_MERLIN && (conttype == 2) && !rn2(4)) return TRUE;
 	if (uimplant && uimplant->oartifact == ART_BLOODPUMP_OF_HARKON_BLOODR && (conttype == 1) && rn2(10)) return TRUE;
+	if (u.martialstyle == MARTIALSTYLE_BUHURT && (conttype == 2) && !rn2(4)) return TRUE;
 
 	/* piercer only regenerates when hidden */
 	if (Race_if(PM_PIERCER) && !u.uundetected) return TRUE;

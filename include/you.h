@@ -672,6 +672,7 @@ struct you {
 #define MARTIALSTYLE_BOOYAKASHA 14
 #define MARTIALSTYLE_KINAMUTAY 15
 #define MARTIALSTYLE_BOXING 16
+#define MARTIALSTYLE_BUHURT 17
 
 	int rangedreload;	/* for jumping flamer etc. */
 

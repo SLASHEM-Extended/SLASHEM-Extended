@@ -30,7 +30,11 @@ register struct monst *mon;
 register boolean clumsy;
 {
 	register int mdx, mdy;
+	/* calculate base kick damage: this uses STR, DEX and CON; if using the buhurt martial arts style and wearing power armor, the multiplier is bigger --Amy */
 	int dmg = ( ACURRSTR + ACURR(A_DEX) + ACURR(A_CON) ) / 15;
+	if (u.martialstyle == MARTIALSTYLE_BUHURT && uarm && is_power_armor(uarm)) {
+		dmg = ( ACURRSTR + ACURR(A_DEX) + ACURR(A_CON) ) / 10;
+	}
 	int kick_skill = P_NONE;
 	int blessed_foot_damage = 0;
 	boolean trapkilled = FALSE;

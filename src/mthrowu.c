@@ -574,6 +574,10 @@ shieldblockboo:
 			pline_The("bulletproof vest deflects the projectile.");
 			return(0);
 
+	} else if (((uarm && uarm->otyp == ENCLAVE_POWER_ARMOR && uarmh && uarmh->otyp == ENCLAVE_POWER_HELM) || (uarm && uarm->otyp == TESLA_POWER_ARMOR && uarmh && uarmh->otyp == TESLA_POWER_HELM)) && !rn2(20)) {
+			pline_The("power armor deflects the projectile.");
+			return(0);
+
 	} else if (uarmf && uarmf->otyp == FLECHETTE_BOOTS && !rn2(5) ) {
 			if(Blind || !flags.verbose) You("sidestep a projectile.");
 			else You("sidestep %s.", onm);

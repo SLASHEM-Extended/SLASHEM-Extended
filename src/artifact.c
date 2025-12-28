@@ -6619,7 +6619,20 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 				willreturntrue = 1;
 				goto beheadingdone;
 			}
+			/* buhurt means 95% chance to not be beheaded, but tesla power helm already prevents it...
+			 * so, since you still take the regular damage, buhurt makes it so that the tesla helm completely prevents the attack from hitting you --Amy */
+			if (u.martialstyle == MARTIALSTYLE_BUHURT && uarmh && uarmh->otyp == TESLA_POWER_HELM && rn2(20)) {
+				pline("Somehow, %s misses you wildly.", magr ? mon_nam(magr) : wepdesc);
+				*dmgptr = 0;
+				willreturntrue = 1;
+				goto beheadingdone;
+			}
 
+			if (u.martialstyle == MARTIALSTYLE_BUHURT && uarmh && is_power_helm(uarmh) && rn2(20)) {
+				pline("%s slices into your %s.", wepdesc, body_part(NECK));
+				willreturntrue = 1;
+				goto beheadingdone;
+			}
 			if (uarmh && uarmh->otyp == TESLA_POWER_HELM) {
 				pline("%s slices into your %s.", wepdesc, body_part(NECK));
 				willreturntrue = 1;
