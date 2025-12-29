@@ -11157,6 +11157,8 @@ struct alt_spellings {
 	{ "bazooka", ROCKET_LAUNCHER },
 	{ "hand grenade", FRAG_GRENADE },
 	{ "dynamite", STICK_OF_DYNAMITE },
+	{ "unihorn", UNICORN_HORN },
+	{ "ice block", ICE_BLOCK },
 #ifdef ZOUTHERN
 	{ "kiwifruit", APPLE },
 	{ "kiwi fruit", APPLE },

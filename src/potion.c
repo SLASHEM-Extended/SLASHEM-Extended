@@ -9379,6 +9379,9 @@ nivellate()
 	int upperceiling = 1;
 	int reduceamount = 1;
 
+	/* note by Amy: upnivel() is the counter to this, and uses a different calculation for the HP/Pw caps. in particular, that one shouldn't have so many
+	 * multipliers, since otherwise it becomes trivial to get high max HP/Pw values with pretty much any lategame character */
+
 	if (StrongDeath_resistance && rn2(5)) {
 		Your("body just shakes off the covid-19 pathogens.");
 		return;
@@ -10068,6 +10071,8 @@ boolean guaranteed;
 		nivellate();
 	}
 
+	/* note by Amy: the cap for this effect is significantly lower than the one from the nivellate() function; this is by design and not a bug */
+
 	if (issoviet && !guaranteed) return; /* lol */
 	if (evilfriday && !guaranteed && rn2(3)) return; /* tough luck */
 	if (u.ulevel < 4) return; /* not available yet */
@@ -10089,9 +10094,11 @@ boolean guaranteed;
 		if (ACURR(A_CON) < 7) {
 			ceiling /= 2;
 		}
+
+		/* _very_ small percentage boost if your CON stat is really high */
 		if (ACURR(A_CON) > 19) {
-			ceiling *= 5;
-			ceiling /= 4;
+			ceiling *= 21;
+			ceiling /= 20;
 		}
 
 		if (Role_if(PM_ASTRONAUT)) {
@@ -10285,8 +10292,8 @@ boolean guaranteed;
 			if (boost_power_value() > 0) boostingpower += boost_power_value();
 			if (u.ulevel > 19) boostingpower += (u.ulevel - 19);
 
-			ceiling *= (100 + (boostingpower * 3) );
-			ceiling /= 100;
+			ceiling *= (500 + boostingpower);
+			ceiling /= 500;
 		}
 
 		ceiling += u.cnd_trophiesobtained;
@@ -10297,6 +10304,18 @@ boolean guaranteed;
 		if (u.uhpmax < ceiling) {
 			int actualincrease = 1;
 			increaseamount = (ceiling / 10);
+
+			/* the increase should be smaller if you're closer to the cap --Amy
+			 * if your current max is 40% of the cap or lower, get the full amount, otherwise the increase can be reduced depending on how close
+			 * to the cap you are; worst case you'll only get one third of the amount */
+			if (u.uhpmax > (ceiling * 4 / 10)) {
+				int ceilingxtravar;
+				ceilingxtravar = (u.uhpmax * 100 / ceiling); /* a percentage from 40 to 100 */
+				ceilingxtravar -= 40; /* a value from 0 to 60 */
+				increaseamount *= 30;
+				increaseamount /= (30 + ceilingxtravar); /* divide by something from 30 to 90 */
+			}
+
 			actualincrease = u.uhpmax;
 			if (increaseamount < 1) increaseamount = 1; /* fail safe */
 			u.uhpmax += increaseamount;
@@ -10312,6 +10331,18 @@ boolean guaranteed;
 			if (u.mhmax < ceiling) {
 				int actualincrease = 1;
 				increaseamount = (ceiling / 10);
+
+				/* the increase should be smaller if you're closer to the cap --Amy
+				 * if your current max is 40% of the cap or lower, get the full amount, otherwise the increase can be reduced depending on how close
+				 * to the cap you are; worst case you'll only get one third of the amount */
+				if (u.mhmax > (ceiling * 4 / 10)) {
+					int ceilingxtravar;
+					ceilingxtravar = (u.mhmax * 100 / ceiling); /* a percentage from 40 to 100 */
+					ceilingxtravar -= 40; /* a value from 0 to 60 */
+					increaseamount *= 30;
+					increaseamount /= (30 + ceilingxtravar); /* divide by something from 30 to 90 */
+				}
+
 				actualincrease = u.mhmax;
 				if (increaseamount < 1) increaseamount = 1; /* fail safe */
 				u.mhmax += increaseamount;
@@ -10336,9 +10367,11 @@ boolean guaranteed;
 		if (ACURR(A_WIS) < 7) {
 			ceiling /= 2;
 		}
+
+		/* _very_ small percentage boost if your WIS stat is really high */
 		if (ACURR(A_WIS) > 19) {
-			ceiling *= 5;
-			ceiling /= 4;
+			ceiling *= 21;
+			ceiling /= 20;
 		}
 
 		if (Role_if(PM_ALTMER)) {
@@ -10462,8 +10495,8 @@ boolean guaranteed;
 		}
 
 		if (boost_power_value() > 0) {
-			ceiling *= (100 + (boost_power_value() * 3) );
-			ceiling /= 100;
+			ceiling *= (500 + boost_power_value());
+			ceiling /= 500;
 		}
 
 		ceiling += u.cnd_trophiesobtained;
@@ -10474,6 +10507,18 @@ boolean guaranteed;
 		if (u.uenmax < ceiling) {
 			int actualincrease = 1;
 			increaseamount = (ceiling / 10);
+
+			/* the increase should be smaller if you're closer to the cap --Amy
+			 * if your current max is 40% of the cap or lower, get the full amount, otherwise the increase can be reduced depending on how close
+			 * to the cap you are; worst case you'll only get one third of the amount */
+			if (u.uenmax > (ceiling * 4 / 10)) {
+				int ceilingxtravar;
+				ceilingxtravar = (u.uenmax * 100 / ceiling); /* a percentage from 40 to 100 */
+				ceilingxtravar -= 40; /* a value from 0 to 60 */
+				increaseamount *= 30;
+				increaseamount /= (30 + ceilingxtravar); /* divide by something from 30 to 90 */
+			}
+
 			if (increaseamount < 1) increaseamount = 1; /* fail safe */
 			actualincrease = u.uenmax;
 			u.uenmax += increaseamount;
@@ -10520,6 +10565,18 @@ boolean guaranteed;
 		if (u.usymbiote.mhpmax < ceiling) {
 			int actualincrease = 1;
 			increaseamount = (ceiling / 5);
+
+			/* the increase should be smaller if you're closer to the cap --Amy
+			 * if your current max is 40% of the cap or lower, get the full amount, otherwise the increase can be reduced depending on how close
+			 * to the cap you are; worst case you'll only get one third of the amount */
+			if (u.usymbiote.mhpmax > (ceiling * 4 / 10)) {
+				int ceilingxtravar;
+				ceilingxtravar = (u.usymbiote.mhpmax * 100 / ceiling); /* a percentage from 40 to 100 */
+				ceilingxtravar -= 40; /* a value from 0 to 60 */
+				increaseamount *= 30;
+				increaseamount /= (30 + ceilingxtravar); /* divide by something from 30 to 90 */
+			}
+
 			if (increaseamount < 1) increaseamount = 1; /* fail safe */
 			actualincrease = u.usymbiote.mhpmax;
 			u.usymbiote.mhpmax += increaseamount;
@@ -13144,13 +13201,15 @@ dodrink()
 		if (!rn2(isfriday ? 5 : 10)) {
 			levl[u.ux][u.uy].typ = POISONEDWELL;
 			pline("Suddenly the well becomes poisoned...");
+			/* if players are playing fast, they may accidentally quaff again, so force a --More--... --Amy */
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		} else if (!rn2(100)) {
 			levl[u.ux][u.uy].typ = CORR;
 			pline("The well dries up!");
 		}
 		more_experienced(1 * (deepest_lev_reached(FALSE) + 1), 0);
 		newexplevel();
-		upnivel(FALSE);
+		if (!rn2(5)) upnivel(FALSE);
 		return 1;
 	    }
 	    else if (IS_POISONEDWELL(levl[u.ux][u.uy].typ)) {
