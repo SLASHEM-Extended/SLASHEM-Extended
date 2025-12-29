@@ -9286,12 +9286,71 @@ register struct	monst	*mtmp;
 		if (monsndx(ptr) == PM_HUMAN_WEREPEEPTOE) (void)mongets(mtmp, LEATHER_PEEP_TOES);
 		if (monsndx(ptr) == PM_HUMAN_WERECOMBATSTILETTO) (void)mongets(mtmp, COMBAT_STILETTOS);
 		if (monsndx(ptr) == PM_HUMAN_WERESTILETTOSANDAL) (void)mongets(mtmp, HIGH_STILETTOS);
+		if (monsndx(ptr) == PM_TYPE_OF_PLANETARIUM) (void)mongets(mtmp, CHAIN_MAIL);
+
+		if (monsndx(ptr) == PM_BROTHERHOOD_KNIGHT || monsndx(ptr) == PM_BROTHERHOOD_PALADIN) monster_weapon_bos(mtmp, TRUE);
+		if (monsndx(ptr) == PM_OUTCAST_PROTECTOR || monsndx(ptr) == PM_OUTCAST_SPECIALIST) monster_weapon_outcast(mtmp, TRUE);
+		if (monsndx(ptr) == PM_ENCLAVE_PRIVATE || monsndx(ptr) == PM_ENCLAVE_LOOKOUT || monsndx(ptr) == PM_ENCLAVE_MAJOR || monsndx(ptr) == PM_ENCLAVE_CORPORAL || monsndx(ptr) == PM_ENCLAVE_FODDER) monster_weapon_enclave(mtmp, TRUE);
+
+		if (ptr == &mons[PM_ENCLAVE_SCIENTIST]) {
+			monster_weapon_enclave(mtmp, FALSE);
+			(void) mongets(mtmp, LAB_COAT);
+		}
+
+		if (ptr == &mons[PM_OUTCAST_DEFENDER]) {
+			(void) mongets(mtmp, SPLINT_MAIL);
+			(void) mongets(mtmp, PISTOL);
+	  		m_initthrow(mtmp, PISTOL_BULLET, 20);
+		}
+
+		if (ptr == &mons[PM_ENCLAVE_BRIGADIER] || ptr == &mons[PM_ENCLAVE_SPECIAL_WEAPON_FODDER]) {
+			monster_weapon_enclave(mtmp, TRUE);
+			monster_weapon_enclave(mtmp, FALSE);
+		}
+
+		if (ptr == &mons[PM_ENCLAVE_TESLA_SOLDIER]) {
+			monster_weapon_enclave(mtmp, FALSE);
+			monster_weapon_enclave(mtmp, FALSE);
+			(void) mongets(mtmp, TESLA_POWER_ARMOR);
+			(void) mongets(mtmp, TESLA_POWER_HELM);
+		}
+
+		if (ptr == &mons[PM_ENCLAVE_SUB_OFFICER] || ptr == &mons[PM_ENCLAVE_OFFICER_LOOKOUT]) {
+			monster_weapon_enclave(mtmp, FALSE);
+			monster_weapon_enclave(mtmp, FALSE);
+			(void) mongets(mtmp, STUDDED_LEATHER_ARMOR);
+			(void) mongets(mtmp, ELVEN_LEATHER_HELM);
+		}
+
+		if (ptr == &mons[PM_ENCLAVE_PRIME_SHOOTER]) {
+			(void) mongets(mtmp, ENCLAVE_POWER_ARMOR);
+			(void) mongets(mtmp, ENCLAVE_POWER_HELM);
+			(void) mongets(mtmp, PROCESS_CARD);
+	  		m_initthrow(mtmp, RADIO, 50);
+		}
+
+		if (ptr == &mons[PM_JACK_OFFICER]) {
+			(void) mongets(mtmp, GRINDER);
+			(void) mongets(mtmp, ELVEN_LEATHER_HELM);
+			(void) mongets(mtmp, STUDDED_LEATHER_ARMOR);
+		}
 
 		if (ptr == &mons[PM_PALADIN_GUNNY]) {
 			(void) mongets(mtmp, BROTHERHOOD_POWER_ARMOR);
 			(void) mongets(mtmp, HAND_BLASTER);
 	  		m_initthrow(mtmp, BLASTER_BOLT, 30);
 	  		m_initthrow(mtmp, FRAG_GRENADE, 10);
+		}
+		if (ptr == &mons[PM_BROTHERHOOD_SCRIBE]) {
+			(void) mongets(mtmp, PLAIN_ROBE);
+			(void) mongets(mtmp, PISTOL);
+	  		m_initthrow(mtmp, PISTOL_BULLET, 20);
+		}
+		if (ptr == &mons[PM_INTRO_BROTHERHOOD]) {
+			(void) mongets(mtmp, FULL_POWER_ARMOR);
+			(void) mongets(mtmp, FULL_POWER_HELM);
+			(void) mongets(mtmp, ASSAULT_RIFLE);
+	  		m_initthrow(mtmp, ASSAULT_RIFLE_BULLET, 20);
 		}
 		if (ptr == &mons[PM_NASTY_RANGER]) {
 			(void) mongets(mtmp, BOW);
@@ -11643,6 +11702,39 @@ loveheelover:
 		if (mtmp->data == &mons[PM_ROBOT_TERMINATOR_ZOMBIE]) {
 			 (void) mongets(mtmp, RED_LIGHTSABER);
 		}
+		if (mtmp->data == &mons[PM_CHINESE_REMNANT_SOLDIER]) {
+			 (void) mongets(mtmp, LEATHER_CLOAK);
+			 (void) mongets(mtmp, FLINTLOCK);
+			 m_initthrow(mtmp, PISTOL_BULLET, 10);
+		}
+		if (mtmp->data == &mons[PM_CHINESE_REMNANT_UFFICER]) {
+			 (void) mongets(mtmp, LEATHER_CLOAK);
+			 (void) mongets(mtmp, SUBMACHINE_GUN);
+			 m_initthrow(mtmp, SMG_BULLET, 15);
+		}
+		if (mtmp->data == &mons[PM_CHINESE_REMNANT_OFFICER]) {
+			 (void) mongets(mtmp, LEATHER_CLOAK);
+			 (void) mongets(mtmp, ASSAULT_RIFLE);
+			 m_initthrow(mtmp, ASSAULT_RIFLE_BULLET, 20);
+		}
+		if (mtmp->data == &mons[PM_CHINESE_GHOUL_CAPTAIN]) {
+			 (void) mongets(mtmp, LEATHER_CLOAK);
+			 (void) mongets(mtmp, ASSAULT_RIFLE);
+			 (void) mongets(mtmp, KATANA);
+			 m_initthrow(mtmp, ASSAULT_RIFLE_BULLET, 30);
+		}
+		if (mtmp->data == &mons[PM_TRANQUILITY_COMMANDO]) {
+			 (void) mongets(mtmp, LEATHER_CLOAK);
+			 (void) mongets(mtmp, FLINTLOCK);
+			 (void) mongets(mtmp, WAR_HAT);
+			 m_initthrow(mtmp, PISTOL_BULLET, 10);
+		}
+		if (mtmp->data == &mons[PM_CHINESE_COMMANDO]) {
+			 (void) mongets(mtmp, LEATHER_CLOAK);
+			 (void) mongets(mtmp, FLINTLOCK);
+			 (void) mongets(mtmp, KATANA);
+			 m_initthrow(mtmp, PISTOL_BULLET, 10);
+		}
 		if (mtmp->data == &mons[PM_SCREAM_IN_THE_DARK]) {
 			 (void) mongets(mtmp, BLADE_OF_GRACE);
 			 (void) mongets(mtmp, MUMMY_WRAPPING);
@@ -12402,6 +12494,8 @@ loveheelover:
 		if (mtmp->data == &mons[PM_SPACKMATICIAN]) (void) mongets(mtmp, KNIFE);
 		if (mtmp->data == &mons[PM_MICHELLE]) (void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		if (mtmp->data == &mons[PM_EIGHTY_POWER_RUBBER]) (void) mongets(mtmp, UNICORN_HORN);
+
+		if (mtmp->data == &mons[PM_REGULATOR] || mtmp->data == &mons[PM_WASTELAND_REGULATOR] || mtmp->data == &mons[PM_POLICE_REGULATOR]) monster_weapon_regulator(mtmp, TRUE);
 
 		if (ptr == &mons[PM_LASER_SHARCHON]) {
 			(void) mongets(mtmp, HAND_BLASTER);
@@ -17376,6 +17470,28 @@ loveheelover:
 		if (mtmp->data == &mons[PM_COBBLE_GOBLIN]) (void) mongets(mtmp, UNWIELDY_PICK);
 		if (mtmp->data == &mons[PM_ORC_DIGGER]) (void) mongets(mtmp, PICK_AXE);
 
+		if (mtmp->data == &mons[PM_RAIDER] || mtmp->data == &mons[PM_RAIDER_WASTEHOUND] || mtmp->data == &mons[PM_RAIDER_SADIST]) monster_weapon_raider(mtmp, TRUE);
+
+		if (ptr == &mons[PM_RAIDER_BASEBALL_BATTER]) {
+			(void) mongets(mtmp, BASEBALL_BAT);
+			(void) mongets(mtmp, LEATHER_ARMOR);
+			(void) mongets(mtmp, ORCISH_HELM);
+		}
+		if (ptr == &mons[PM_STABHAPPY_RAIDER]) {
+			(void) mongets(mtmp, LEATHER_ARMOR);
+			(void) mongets(mtmp, ORCISH_HELM);
+			(void) mongets(mtmp, STEEL_KNIFE);
+			 m_initthrow(mtmp, FRAG_GRENADE, 5);
+		}
+		if (ptr == &mons[PM_RAIDER_DAYTIME_SNIPER]) {
+			(void) mongets(mtmp, LEATHER_ARMOR);
+			(void) mongets(mtmp, ORCISH_HELM);
+			(void) mongets(mtmp, PISTOL);
+			(void) mongets(mtmp, SNIPER_RIFLE);
+			 m_initthrow(mtmp, PISTOL_BULLET, 20);
+			 m_initthrow(mtmp, SNIPER_BULLET, 20);
+		}
+
 		if (ptr == &mons[PM_DARKLAND_ORC]) {
 			(void) mongets(mtmp, BOW);
 			 m_initthrow(mtmp, ORCISH_ARROW, 40);
@@ -18185,6 +18301,9 @@ loveheelover:
 		if (monsndx(ptr) == PM_OGRE_YARDSTICK) (void) mongets(mtmp, PIKE);
 		if (monsndx(ptr) == PM_BOOGRE_GUARD) (void) mongets(mtmp, SPEAR);
 		if (monsndx(ptr) == PM_OGRE_WARRIOR) (void) mongets(mtmp, SPLINT_MAIL);
+
+		if (mtmp->data == &mons[PM_LUCKLESS_TALON_MERC] || mtmp->data == &mons[PM_TALON_MERC]  || mtmp->data == &mons[PM_ARMED_TALON_SOLDIER]|| mtmp->data == &mons[PM_MERCENARY_OF_THE_TALON_COMPANY] || mtmp->data == &mons[PM_TALON_COMPANY_MERC]) monster_weapon_talon(mtmp, TRUE);
+
 		if (ptr == &mons[PM_OGRE_WOARER]) {
 			(void) mongets(mtmp, rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1) );
 		}
@@ -19171,6 +19290,8 @@ loveheelover:
 		if(ptr == &mons[PM_FLAILER_DEMON]) (void) mongets(mtmp, SPIKED_CHAIN);
 		if(ptr == &mons[PM_JANELITH]) (void) mongets(mtmp, SEXY_MARY_JANE);
 		if(ptr == &mons[PM_CLUBBER_DEMON]) (void) mongets(mtmp, rnd_class(CLUB, LOG));
+
+		if (ptr == &mons[PM_PITT_RAIDER] || ptr == &mons[PM_ADVANCED_PITT_RAIDER] || ptr == &mons[PM_SPECIAL_PITT_RAIDER]) monster_weapon_raider(mtmp, TRUE);
 
 		if (ptr == &mons[PM_NEAU_PHARAO]) {
 			if (rn2(2)) {
