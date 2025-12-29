@@ -83,6 +83,7 @@ dosounds()
 		"hear muffled hissing.", /* the water mocassins */
 		"hear some watery tart beckoning you near.", /* the lady of the lake */
 		"feel that you could dip your gear into fountain water.",
+
 		"hear a soda fountain!",
 		"hear a vampire complaining about the architecture!", /* they don't like running water */
 		"hear someone offering three wishes to a lucky person!", /* water demon being generous */
@@ -103,6 +104,7 @@ dosounds()
 		"hear a toilet flush!",
 		"hear a dripping tap.",
 		"hear dripping water.",
+
 		"hear dishes being washed!",
 		"hear a neverending dripping sound that is driving you crazy!",
 		"hear someone getting in on the action with a hot foocubus!",
@@ -123,6 +125,7 @@ dosounds()
 		"hear a pipe organ playing music.",
 		"feel the presence of several nobles.",
 		"notice a doorwarden standing guard at an important-looking door.", /* Hama of the Golden Hall */
+
 		"hear Queen Beruthiel's cats!",
 		"hear a royal coronation/culmination taking place!",
 		"hear the king scolding his most trusted advisor for failing a task!",
@@ -153,6 +156,7 @@ dosounds()
 		"smell mushrooms.",
 		"smell fish.",
 		"feel that something smells moldy.",
+
 		"hear Donald Duck!",
 		"inhale a vile stench that reminds you of what kissing a frog is probably like!",
 		"hear someone falling in the water and losing a life.",
@@ -186,6 +190,7 @@ dosounds()
 		"just stepped on something squishy.",
 		"get the feeling that the ceiling is constantly being lowered in an attempt to slowly crush you.",
 		"hear a banshee screaming in the distance.",
+
 		"hear a strong voice pronouncing: \"There can only be one!\"",
 		"hear a voice booming all around you: \"Warning: self-destruction sequence activated!\"",
 		"smell your mother-in-law's cooking!",
@@ -361,6 +366,7 @@ dosounds()
 		"hear someone inserting a clip into an assault rifle.",
 		"hear someone singing 'Woooo-uoooou, you're in the army...",
 		"overhear a military radiogram, interfered by static noise.",
+
 		"hear General MacArthur!",
 		"hear the senior drill instructor shouting at you for being a lazy fatass!",
 		"hear someone sneer 'Where you from, soldier? Texas?? Holy shit, you know what comes from Texas!'", /* Half Life: Opposing Forceses */
@@ -382,14 +388,19 @@ dosounds()
 			"hear the sound of an ambulance.",
 			"listen to patients screaming while the doctor is conducting the sectio.",
 			"hear a doctor prepping the injection.",
+			"hear somebody being called to the triage chamber.",
+			"hear a paraplegic patient calling for the nurse.",
+
 			"seem to hear Doctor Frankenstein.",
 			"hear someone scream 'NOOOOOO! Get away from my teeth! Dentists are TERRIBLE people!!!'",
 			"suddenly have a flashback to your last OP!",
 			"do not want to get another covid shot, the last one already caused your body to react all strangely and, most annoyingly, you endured a covid-19 infection anyway! So you have every right to believe that the vaccination does in fact do nothing at all!",
 			"hear a pained woman scream 'WHERE ARE THE DAMN PAINKILLERS YOU FAT BITCH!!'", /* woman trying to give birth to a child */
 			"realize that the first injection will be the Soporil, which will put you into a deep sleep, and then the turbocurarine will be injected, which is a muscle relaxant.",
+			"feel that the hospital beds are soooooo uncomfortable! You absolutely don't want to spend even one night in the clinic, since your own bed is much cuddlier and fleecier.",
+			"suddenly see a guy in a wheelchair, and he has a huge, full urine flask attached to his penis! Aaaaaaargh, you wish you had seen Nyarlathotep instead, which would've been a less disturbing sight...",
 		};
-		You("%s", hospital_msg[rn2(6+hallu*6)]);
+		You("%s", hospital_msg[rn2(8+hallu*8)]);
 		return;
 	    }
 	    if (level.flags.has_pokemonroom && !rn2(200)) {
@@ -406,6 +417,7 @@ dosounds()
 			"feel like training your pokemon in anticipation of the next gym leader battle.",
 			"wonder whether you'll meet the cute Officer Jenny today?",
 			"wonder where you can find an ice pokemon, as those seem to be pretty rare.",
+
 			"suddenly meet the gaze of a bug catcher, who announces 'I am the son of wind, the child of spirit.'!",
 			"suddenly meet the gaze of a bug catcher, who announces 'I like shorts! They're comfy and easy to wear!'!",
 			"encounter a wild Tyranitar, and you only have a Totodile! Oh no!",
@@ -432,6 +444,7 @@ dosounds()
 			"sense a delightful scent.",
 			"enjoy the trees' juicy green color.",
 			"feel like looking at your reflection in a mirror.",
+
 			"hear grass growing!",
 			"hear wind in the willows!",
 			"seem mesmerized.",
@@ -453,6 +466,7 @@ dosounds()
 			"hear cries of repentance!",
 			"hear futile pleas for mercy!",
 			"hear Franziska von Karma torturing a hapless detective!",
+
 			"hear screams of lust!",
 			"hear the crack of your mistress's whip!",
 			"hear a weeping willow!",
@@ -473,15 +487,18 @@ dosounds()
 			"see lots of little spiders crawling over the walls.",
 			"seem to make out some small eggs in the corner.",
 			"suddenly notice a spider dangling from a web at the ceiling.",
+			"are slightly afraid of seeing some creepy crawlies.",
+
 			"trip over a broken spider egg.",
 			"see a giant tarantula squittering around!",
-			"have to fight Arich, the old cheater, while listening to a dramatic music that is unfortunately too quiet.",
+			"have to fight Arich, the old cheater, while listening to a dramatic music that is unfortunately too quiet.", /* DKC3 */
 			"must get past Barbos' Barrier!",
 			"suddenly get an irrational fear of glowflies, since you just know they'll wait until you sleep, spin a thick cocoon around you, and then very slowly start feasting on your exposed flesh until the only thing that remains of you is a grisly-looking skeleton!", /* based on a crime thriller Amy read once; while she knows that glowflies don't actually do that IRL, she still has to relive the horrible experience of reading that book every time she sees such a glowing, flying bug */
 			"feel that Eveline composed some rather catchy soundtracks!", /* the composer of the Donkey Kong 3 soundtrack */
 			"feel like strutting your missys, which are a pair of sneaker high heels and supposedly 'the most comfortable high heels ever!'.",
+			"absolutely don't know how to defeat Kaos, since he doesn't seem to have any weaknesses! He always tries to slit you with those razorblades and if you jump on them, you just get hurt and fall back down!",
 		};
-		You("%s", spiderhall_msg[rn2(7+hallu*7)]);
+		You("%s", spiderhall_msg[rn2(8+hallu*8)]);
 		return;
 	    }
 	    if (level.flags.has_trollhall && !rn2(200)) {
@@ -494,6 +511,7 @@ dosounds()
 			"feel that you'll have to kill your opponents repeatedly.",
 			"feel that something stinks.", /* was for green slimes in the variant that calls itself 3.7, but fits so much better for trolls :-P --Amy */
 			"hear a vaguely humanoid voice mumbling. You seem to make out the word 'polearms'.",
+
 			"trip over a stinking pile of shit!",
 			"suddenly see a huge monster appearing right in front of you!",
 			"hear some usenetter spouting radical bullshit!",
@@ -516,6 +534,7 @@ dosounds()
 			"hear the constant tones of people in a big meeting.",
 			"smell body odor.",
 			"notice that there's unusually many people around here.",
+
 			"sense that you are not alone...",
 			"hear a glass of wine breaking!",
 			"listen to a radio broadcast: For the next five days, the dungeon's estimated temperature high is 96 degrees. Now, is that in Fahrenheit or Kelvin?",
@@ -538,6 +557,7 @@ dosounds()
 			"feel that someone has been practicing black magic here.",
 			"see a small construct that seems to be moving around on its own will.",
 			"see a robot.",
+
 			"hear the deafening noise of a metal object breaking apart!",
 			"see a warmech appearing before you! If this were a Pokemon game, it would say: A wild WARMECH appeared!",
 			"will certainly never catch a Regigigas, because your pokeball isn't good enough!",
@@ -561,6 +581,7 @@ dosounds()
 			"feel that the dark crypts are nearby.",
 			"see a bunch of sarcophaguses.",
 			"notice an open coffin.",
+
 			"feel that you're near death!",
 			"don't have much longer to live...",
 			"listen to a tune that gets ever more dissonant...", /* crypt music from Robin Hood, Prince of Thieves */
@@ -586,6 +607,7 @@ dosounds()
 			"feel vexed.",
 			"suddenly remember all the problems you have to deal with.",
 			"hear the stair turning.",
+
 			"have to count to three, and if you fail, you can forget about your game!", /* this and the next few are from the obscure Trouble Zone game for the Nintendo Gameboy */
 			"are way in over your head!",
 			"must sort the blocks according to the numbers, and pronto!",
@@ -611,6 +633,7 @@ dosounds()
 			"hear some people sparring with cheap weapons.",
 			"listen to someone comparing the stats of different types of weapon.",
 			"hear someone cackling about the huge amount of weapons available.",
+
 			"are ambushed by shadowy figures with gleaming swords!",
 			"should impale yourself on your weapon while you still can...",
 			"absolutely want a polearm, because you love polearms.",
@@ -634,6 +657,7 @@ dosounds()
 			"see that the ceiling has turned red-hot!", /* Oblivion gate, but you're presumably in a dungeon and not the outskirts, so instead of the sky changing colors, the ceiling does so */
 			"hear the sound of a gate opening.",
 			"feel that it's quite hot around here.",
+
 			"feel that Mehrunes Dagon will open the Great Gate of Oblivion soon!",
 			"realize that the hellspawn invasion has already begun...",
 			"sense the presence of a gate to Oblivion.",
@@ -657,6 +681,7 @@ dosounds()
 			"hear the laugh of a robber bragging about the latest heist.",
 			"regret not wearing a pair of trousers with zipper pockets today.",
 			"feel that in this area, you need to be concerned about having your money stolen.",
+
 			"hear a male voice announce: 'Hundred one hundred!'", /* robbers playing cards */
 			"want to watch when the robbers assault the motherfuckers' ship, because it will be like a second Pearl Harbor!",
 			"know that the bitches are not the rulers of the world, even if they want to view themselves as such just because they have money.",
@@ -681,6 +706,7 @@ dosounds()
 			"hear someone complaining about the Forelli and Sindacco competitors.",
 			"feel like playing some cards.",
 			"hear someone using the video poker machine.",
+
 			"hear someone announce 'FISHING! FISHING! WIN! WIN!'",
 			"see someone passing by who definitely has to be a high roller!",
 			"suddenly realize that there are ever more security full refuges coming, and they'll whittle down your health if you don't manage to escape!",
@@ -705,6 +731,7 @@ dosounds()
 			"are sure that you're bound to encounter a Lovecraftian horror.",
 			"feel that you have to keep a sound mind at all times.",
 			"feel that in this game, it's probably a good idea to keep your sanity as low as possible.",
+
 			"start perceiving the world as the terrible place it really is, and go mad from the revelation!",
 			"suddenly have over 9000 sanity! Oh no! Now every sanity increase will paralyze you!",
 			"have to ask Amy what in-game sanity does, because you have no idea!",
@@ -729,6 +756,7 @@ dosounds()
 			"hear strange rumbling noises.", /* farting noise */
 			"think you just heard very faint air current noises.", /* farting noise */
 			"feel that there should be a sound, but all you can perceive is a horrible asphyxiating smell.", /* farting, but without a noise */
+
 			"fear that some stupid woman is gonna slap you silly!",
 			"can't resist thinking of a pair of brown leather boots with black block heels, and start wanking off to the thought.",
 			"hear very beautiful farting noises!",
@@ -753,6 +781,7 @@ dosounds()
 			"sense that someone else is on an adventure too.",
 			"feel that some well-armed adventurers are around on this level.",
 			"need to be very careful.",
+
 			"are afraid that everyone on this dungeon level is infected with covid-19!",
 			"just know that there's someone around who should be quarantined, but isn't!",
 			"hear someone sneezing constantly! Why isn't that corona-infected fucker staying at home?!",
@@ -776,6 +805,7 @@ dosounds()
 			"admire the endlessly stretching prairie.",
 			"notice a bovine smell.",
 			"take a look at the evergreen grasslands.",
+
 			"hear someone sing 'Old Mac Donald had a farm...'",
 			"can't help it but feel that something that looks normal is terribly amiss.",
 			"listen to the palomita, which is Spanish for parrot.", /* or at least the Amy always thought that's what it meant */
@@ -800,6 +830,7 @@ dosounds()
 			"feel the freezing cold.",
 			"are afraid that this particular winter is going to be really bitter, due to the extremely low temperatures.",
 			"wonder whether you're in Russian Siberia, as it feels really fucking cold around here.",
+
 			"fear that you're gonna develop a lung inflammation.",
 			"hear someone calling you to the iceblock shooting.", /* reference to GNTM, where the models had to do a photo shooting in an ice chamber once */
 			"can smell the mildew on the walls.",
@@ -824,6 +855,7 @@ dosounds()
 			"hear audible silence.",
 			"notice that this area is disturbingly quiet.",
 			"hear the absence of nosie.", /* sic by AntiGulp, and deemed too funny to fix */
+
 			"hear Galadriel whispering 'It is very likely that you die on your journey, but you must go anyway...'",
 			"realize that the atmosphere does not contain oxygen! If you stay around you'll suffocate!",
 			"hear Melkor laughing at your puny attempts to reach him.",
@@ -846,6 +878,7 @@ dosounds()
 			"hear chains clinking.",
 			"smell a lot of rust.",
 			"hear a gun clank.",
+
 			"hear iron oxidize.",
 			"hear a military contractor making out like a bandit.",
 			"fear that your +7 artifact weapon might get eaten!",
@@ -868,6 +901,7 @@ dosounds()
 			"thank your godparents for raising you in a peaceful environment.",
 			"wonder what the weird round part in the middle of the village is supposed to be.", /* a well */
 			"feel like playing hide-and-seek with the other children, and hide in the wagon.",
+
 			"feel like returning to your burned home... wait, is there really a reason for doing so?", /* the hallu sounds in particular are inspired by the storyline of Castle of the Winds */
 			"hope that you don't have to master the fleeing mine...",
 			"gaze once more at the ruins of what used to be your father's farm.",
@@ -890,6 +924,7 @@ dosounds()
 			"hear an officer giving commands hectically.",
 			"realize that this place is bustling with police.",
 			"hear someone eating a cream pie.",
+
 			"realize that your cop wanted level is 6, and the forces of law are coming to bust you!",
 			"are chased by a speeding police car!",
 			"feel that the safest place in existence is right in the middle of the enemies' base camp.", /* a joke from one of Amy's fanfics where the robbers were discussing where to hide and one of them sarcastically suggested hiding in the cop station */
@@ -929,6 +964,7 @@ dosounds()
 			"just know that you'll be having a legendary battle.",
 			"feel that you'll end up deep in the woods, having to battle enemies whose power is beyond your imagination.",
 			"feel that you'll be in a constant challenge, where you'll have to fight a long, strained battle that you can lose at any time.",
+
 			"will not be able to defeat Whitney's Miltank, because the fleecy Whitney will mop the floor with you wimp!",
 			"are not going to get past Pryce, since his ice pokemon can crash the game at will.",
 			"have to fight Lance and his Dragonite, but with your uselessly weak pokemon you don't stand a chance.",
@@ -952,6 +988,7 @@ dosounds()
 			"don't really know what monsters to expect on this dungeon level.",
 			"feel that the dice rolls can be highly variable.",
 			"wonder which edition of D&D this game is based on.",
+
 			"just know that the monsters on this level have the most evil and unbalanced attacks possible.",
 			"test your d20 several times, only to realize in shock that it always rolls 1!",
 			"are invited to a game of Dungeons & Dragons by the game master!",
@@ -975,6 +1012,7 @@ dosounds()
 			"smell a dragon!",
 			"need to prepare a counter to the wizard's spells.",
 			"wonder what purpose the bed and mattress types of furniture are really serving.",
+
 			"are hit by the 1st tailspike! You are hit by the 2nd tailspike! Warning: HP low! You are hit by the 3rd tailspike! You die. Do you want your possessions identified? DYWYPI? [ynq] (n) _",
 			"want to do wizard farming like in the old days, since it's more profitable than pudding farming.", /* in Castle of the Winds, that was actually one of the easiest ways to get lots of items */
 			"listen to someone ushering his pets to attack you!", /* the wizard ordering his manticores to kill you */
@@ -998,6 +1036,7 @@ dosounds()
 			"hear an elevator sound.",
 			"hear a demon shout 'RUUUUUUU!'", /* hell knight */
 			"hear an unnerving sound that reminds you of someone firing a BFG!", /* cacodemon; really annoying that their "ZIEIEIE!" sound sounds exactly like part of the BFG shooting sound */
+
 			"hear a deep voice chanting the name 'Jason'...", /* from a Doom 2 wad */
 			"hear someone shout 'Neau!'", /* from a different Doom 2 wad */
 			"are no longer invulnerable even though you used the IDDQD code!",
@@ -1021,6 +1060,7 @@ dosounds()
 			"wonder where the denizens of the dungeon came from.",
 			"sense a foul stench that makes you feel a little nauseated.",
 			"swear that you'll ensure the goblin patrol will never loot against orders.",
+
 			"listen to a soothing melody and a chant that sounds like 'Sleep-bundle-wing!'", /* Elona sleeping music */
 			"suddenly fall asleep. (Hopefully no monster decides to feast on your exposed flesh before you wake up.)",
 			"decide to stop at nothing until the threat is removed.",
@@ -1044,6 +1084,7 @@ dosounds()
 			"briefly catch a glimpse of a swimmer heading to the beach.",
 			"need to check whether you remembered to take your swimming trunks along.",
 			"have to be careful not to slip on the wet floor near the pool.",
+
 			"hear a 'splash splash' noise!",
 			"hear someone announce 'The entrance to Diver's Paradise is free today! Come on over and enjoy the most beautiful terrain in this dungeon - water!'",
 			"suddenly see a swimmer in bathing shorts run past you, and my god, does he have an absolutely UGLY tattoo on his leg!",
@@ -1067,6 +1108,7 @@ dosounds()
 			"hear an animal munching on some food.",
 			"notice a dog smell.",
 			"detect a strong odor reminiscent of a stable.",
+
 			"hear a hissing sound, and it's right behind you!",
 			"look behind you and see a three-headed monkey!",
 			"hear an announcement: 'WARNING: The tiger's cage has been broken! There might be a tiger on the loose!'",
@@ -1090,6 +1132,7 @@ dosounds()
 			"feel that you should put on your sunglasses.",
 			"suddenly have a vision of a deadly sandhole.",
 			"see a pyramid in the distance.",
+
 			"seem to sink into the floor!",
 			"encounter a sweet asian girl, but as you move to greet her, she suddenly thrusts you into quicksand! You die. Do you want your possessions identified? DYWYPI? [ynq] (n) _",
 			"hear the top of the pyramid crackling and breaking off!", /* Super Mario 64 */
@@ -1113,6 +1156,7 @@ dosounds()
 			"have a rather exotic feeling for some reason.",
 			"see a little animal, and recognize it as an endangered species.",
 			"feel like exploring the outback.",
+
 			"know that you'll see something not meant for mortal eyes.",
 			"hear Pale Night tempting you to remove her veil and look at what's underneath...",
 			"know that you can beat the impossible odds!",
@@ -1136,6 +1180,7 @@ dosounds()
 			"hear the chant of a group of ogres.",
 			"hear the scream of a prisoner.",
 			"feel compelled to free the prisoner.",
+
 			"were too slow and now the prisoner is dead. You failure!",
 			"really have to hurry - if you don't free the prisoner in 10 turns, he will be killed!",
 			"were so stupid and accidentally attacked the prisoner, causing him to die! Now you'll never get the reward for freeing him!",
@@ -1159,6 +1204,7 @@ dosounds()
 			"can smell a nearby waste processing plant.",
 			"suddenly see a sign that says 'WARNING: No trespassing beyond this point, lethal radiation dose may be reached within 5 seconds!'.",
 			"see a rusty barrel filled with nuclear waste.",
+
 			"feel the presence of the ether generator!",
 			"can overhear the president saying 'That was the last straw! I'll bomb that fucking country now! I just need to get the code and press the big red button!'",
 			"are in the extended hazardous course and will have to beat it without cheats, which is very difficult!", /* Hazardous Course 2, also known as Super Kaizo Half-Life */
@@ -1182,6 +1228,7 @@ dosounds()
 			"feel that someone coded a bunch of rather evil monsters.", /* evil variant */
 			"feel that most weapons around here are made of brass for some reason.", /* nethack brass */
 			"feel that a bunch of nonsensical code changes have been implemented.", /* nethack 3.7 */
+
 			"receive a stamped scroll from the mail demon! It reads: 'Muahahahaha, I kidnapped Princess Peach again. Sincerely, Bowser.'",
 			"start eating the hill giant corpse. Ulch - that meat was tainted! You die from your illness. Do you want your possessions identified? DYWYPI? [ynq] (n) _", /* Grunthack */
 			"suddenly realize that the elder priest stands right before you, and unfortunately, it's his turn now. Say goodbye to your cloak of magic resistance!",
@@ -1205,6 +1252,7 @@ dosounds()
 			"see some differently-colored dollars.", /* the monsters in this room aren't always yellow, unlike regular zorkmids */
 			"hear a coin dropping on the ground.",
 			"hear a 'ka-ching!' sound.",
+
 			"hear Scrooge McDuck taking a bath in his money!",
 			"hear the sound of a shower and then... coins???", /* Scrooge's gold coin shower */
 			"don't know why purple rain is so popular, because gold rain is much better...",
@@ -1227,6 +1275,7 @@ dosounds()
 			"suddenly feel an itching sensation inside your brain.",
 			"hear the elegant flapping of wings.",
 			"hear a divine voice.",
+
 			"think you just heard God speaking to you!",
 			"notice that the stupid little angel is always flying in a circle.",
 			"forgot your golden spirit gel that you could use to clip the angel's wings.",
@@ -1251,6 +1300,7 @@ dosounds()
 			"smell steam.",
 			"suddenly perceive the high-pitched creaking of ice blocks.",
 			"sense a dust storm brewing.",
+
 			"get the impression that the laws of Nature itself are conspiring against you!",
 			"suffer from severe inundation!",
 			"realize that you're on a hot plate that was just turned on! Step off or you'll get the tip of your toes burned!",
@@ -1277,6 +1327,7 @@ dosounds()
 			"somehow feel that the default rules are not valid here.",
 			"are afraid that this place will be rather unfair to you.",
 			"can tell from the sounds that the monsters on this level are spectacularly unforgiving.",
+
 			"know that you won't make it through this level alive...",
 			"will die, but not before you've witnessed the evil perpetrators taking your beloved toys and breaking them into pieces.",
 			"are going to get disintegrated even if you are resistant.", /* Nethack Fourk */
@@ -1300,6 +1351,7 @@ dosounds()
 			"sense a cultural clash.", /* sadly, some religions do not get along very well with each other */
 			"hear someone call for the elimination of infidels.",
 			"hear a dangerous-sounding, raspy voice.",
+
 			"hear a frightening 'Hola-hola!' call!",
 			"hear someone shout 'Allahu Akbar!'",
 			"have to resist the urge to vomit from the terrible smell.",
@@ -1322,6 +1374,7 @@ dosounds()
 			"smell some sweetly balm.", /* ointment used for embalming a mummy */
 			"hear a graverobber laughing.", /* someone who tries to steal the items that were put in the mummy's grave */
 			"hear a dangerous-sounding curse.",
+
 			"hear the frightening sounds of something you do NOT, EVER, want to anger.", /* Elona big daddy */
 			"realize that you've trespassed in the tomb of an ancient pharao.",
 			"are afraid of accidentally equipping cursed items.",
@@ -1344,6 +1397,7 @@ dosounds()
 			"feel that the air is getting thin.",
 			"hear the strained shouts of a mountain climber.",
 			"feel that all the countless hours you've spent weight lifting are finally going to pay off now.",
+
 			"must contest the harder part of the Adventurer Zone!", /* Mushroom Kingdom Fusion */
 			"feel that in the name of Caesar, Carthage MUST be destroyed!",
 			"switch out your lamp for a climbing set.", /* ToME has climbing tools for scaling mountains but sadly they use the same slot that light sources occupy */
@@ -1356,6 +1410,29 @@ dosounds()
 		You("%s", arduousmountain_msg[rn2(8+hallu*8)]);
 		return;
 	    }
+	    if (level.flags.has_enclaveroom && u.enclaveactive && !rn2(200)) {
+		static const char *enclaveroom_msg[] = { /* obviously, these are all inspired by Fallout 3 --Amy */
+			"listen to the radio. Currently, they're playing a cheerful, catchy military march.",
+			"listen to the radio. President Eden is talking about your favorite national sport: baseball! Cool! You decide to just listen for a while.",
+			"listen to the radio. President Eden is talking about how the Enclave is going to rebuild the world. What a noble cause, you feel that they definitely need to be supported.",
+			"listen to the radio. It seems that President Eden is trying to tell the world that he was lawfully elected, but somehow, you have your doubts...",
+			"listen to the radio. President Eden is talking about the adventures he had with his dog when he was a child - how heartwarming! You feel cheerful just from listening to his speech.",
+			"listen to the radio. President Eden is explaining that the Enclave is the government of the Land of Yendor, with him as the President who will ensure that the country will be made to flourish once more. What an inspiring speech; you're glad that a man like Eden is the current President.",
+			"wonder whether the Radio Enclave station is a real radio station, as it's just repeating the same songs and speeches over and over. Maybe it's just a pre-war recording.",
+			"see a large billboard, but whatever advertisement was posted there is no longer legible. Instead, a giant pamphlet was glued on top of it, and it shows soldiers in black power armor with a huge Enclave logo emblazoned in the center.",
+
+			"listen to the radio. President Eden is talking martial language, saying: 'Did you know that in our country there are people who want to crush our hopes for order and security? You don't mean anything to these radicals. Those people don't care about America. All they really care about is filling their own pockets. We gotta take a tally of those heretics.'",
+			"listen to the radio. President Eden is giving a speech: 'Are you thirsty or not? And I don't mean for knowledge or power, nope, you're thirsty for clean, fresh water! After all, water is the fundamental building block of life. But here, in the Capital Wasteland, the water is contaminated! Irradiated! DEADLY! Maybe you have an auxiliary purifier for one glass of water per day, or you're quaffing from a toilet in an abandoned subway station! But that ain't no quality of life, is it?'",
+			"turn on your radio, and immediately, President Eden's angry voice blurts out: 'The Enclave is back, America, and not just on the radio! Right now, Enclave troops are patrolling the Capital Wasteland. These courageous men and women were sent to restore order under the control of Colonel B. Astard! But let's hear what he himself has to say!'",
+			"turn on your radio, and shockedly, you hear the voice of the dreaded Colonel B. Astard. He snorts: 'People of the Capital Wasteland, I am Colonel B. Astard! Meanwhile you've met the Enclave troops in your towns and settlements! When you see the Enclave, you see the government of the United States. We have been sent to restore order and security - by all means! Don't stand in our way, and let us do our work! If you try to obstruct the work of the Enclave, you can expect drastic consequences!'",
+			"find out that your radio is now repeating the President's speech in an endless loop. Eden is saying: 'We stand now, at the precipice. Our great nation is threatening to collapse once more and sink in the sea of lawlessness and despair, just like two hundred years ago!'",
+			"try to listen to your radio, but it's just President Eden's lies about how the Brotherhood of Steel is supposedly trying to steal the Enclave's water and that the Enclave troops will win blah blah blah. You vow to avenge your father's and Janice's death and kill that cold-blooded Colonel B. Astard butcher. Yes, his head will be trepanned by your assault rifle bullets.",
+			"remember that the Brotherhood of Steel met the Enclave once already, a bunch of years ago. Back then, the Enclave were led by a guy named Richardson. Now, they have this Eden figure, but it seems their plans are just as sinister as they were back then.",
+			"feel like hunting the Enclave troops to the end of the world and beyond if you have to. Yes, they will all have to die for the Colonel's actions. Murdering your father is inexcusable!!!",
+		};
+		You("%s", enclaveroom_msg[rn2(8+hallu*8)]);
+		return;
+	    }
 	    if (level.flags.has_changingroom && !rn2(200)) {
 		static const char *changingroom_msg[] = {
 			"hear women talking about clothing.",
@@ -1366,6 +1443,7 @@ dosounds()
 			"feel that someone around here is unusually busy.",
 			"hear a woman asking 'Do you have these in pink?",
 			"hear a businesslike voice saying 'I want these in black. Only in black.",
+
 			"dream of a little black dress, even though you don't have any reason for bereavement.",
 			"absolutely want a pair of leather boots with bright green block heels!",
 			"look forward to buying several pairs of 'Janina' underwear.",
@@ -1389,6 +1467,7 @@ dosounds()
 			"wonder whether teleportation will work on this floor.",
 			"wonder whether shooting the percents will make it go away.",
 			"encounter statues in town, which don't really belong there.",
+
 			"have the urge to click on that gray tile!",
 			"get a NTLL - Not a valid save file!",
 			"suddenly notice the superdeep type over there!",
@@ -1413,6 +1492,7 @@ dosounds()
 			"feel that there's extraordinarily many houseflies buzzing around here.",
 			"notice that there's lots of blood bugs sitting on a stone.",
 			"detect an odor reminiscent of an animal's den.",
+
 			"fell into an open sewer hole!",
 			"think that it must be raining outside, judging by the ratty smell.", /* canal lids on the ground sometimes emit a horrific smell when it's raining... */
 			"suddenly bear witness to a huge invasion of ants, rats, cockroaches and other vermin!",
@@ -1436,6 +1516,7 @@ dosounds()
 			"feel that the quest leader is looking at you with *the eye*, waiting for you to finally complete that quest.",
 			"wonder whether that cute secretary girl will flirt back today.",
 			"are bored from the thought of having to work in the same office every day for several decades until you can finally retire.",
+
 			"are late for work! Now your boss will give you a final written warning!",
 			"find out that while you didn't lose your job yet, you have to continue working at 20%% reduced pay, and if you make one more mistake it'll get lowered even more.", /* inspired by jonadab */
 			"feel extremely nauseated all of a sudden. Maybe it was a mistake after all to eat canteen calls-itself-food.",
@@ -1458,6 +1539,7 @@ dosounds()
 			"see a sign telling you about the nearby curing bath.",
 			"hear Mira beckoning you to come closer.",
 			"wonder whether you should get the spa's special treatment.",
+
 			"encounter Mira, and she asks: 'Do you want to bathe in my urine? Only 20 zorkmids for one hour of pure fun!'",
 			"suddenly see the skeletons of people who died in a most painful way!",
 			"can't wrap the head around Mira's fantasies.",
@@ -1480,6 +1562,7 @@ dosounds()
 			"hear the track bed being gravelled.",
 			"see a large chimney with smoke coming out of it.",
 			"hear the rhythmic sounds of a blast furnace.",
+
 			"hear the taunts of the motherfucking Glass Golem!",
 			"listen to the sound of a truck rolling over a road.",
 			"wonder how long the industrial highway is, it seems to be endless?!",
@@ -1510,6 +1593,7 @@ dosounds()
 			"hear a thunderous rumble.",
 			"feel that someone's wasting a lot of water here.",
 			"want to take a bath in a bunch of fleecy-colored balls.",
+
 			"listen to the emergency service trying to repair a broken water pipe.",
 			"hear someone scream 'HELP! I can't swim! Save me please, I'm drowning!!!",
 			"realize that the sorcery adept doesn't know how to stop the water...", /* some poem that I forgot the name off, maybe "the mage adept"? the poor sap wants to fill the bathtub with water by using a spell but forgot how to stop the helpers he summoned */
@@ -1532,6 +1616,7 @@ dosounds()
 			"listen to the villagers' conversations.",
 			"want to check whether the secret path is open.",
 			"wonder how much equipment you could buy with only 1500 zorkmids.",
+
 			"inhale the sharp smell of burning thatch!",
 			"suddenly see the hill giant lord throwing enormous rocks on the shops! And he's killing the shopkeeper with a giant club! Ack!",
 			"must be in a town that's not very easy to reach.",
@@ -1557,6 +1642,7 @@ dosounds()
 			"feel that the darkness might actually help you remain undetected.",
 			"listen to the announcer telling you about the final track.",
 			"feel that you will come in first.",
+
 			"hear an orchestral melody that goes 'Daaaaa... daaaaaa... DAAAAAAAAAAAAAAA!!!'",
 			"notice a sound: 'Ooeoeoeoep! ... Ooeoeoeoep!' Suddenly someone shouts 'Ey, that's not called 'Ooeoeoeoep', that's a church bell, didn't you know that!'",
 			"remember the bible saying that you should do unto others what you want others to do unto you.",
@@ -1584,6 +1670,7 @@ dosounds()
 			"have to click OK on the shareware notice.",
 			"see the accursed crashy graphics card logo.",
 			"wonder whether this game has control stick support.",
+
 			"hear a speedrunner curse at Super Kaizo Mario because the game is too damn hard!",
 			"suddenly feel that you're really playing GTA! A cop car appears! The cop wields a shotgun! The cop fires a shotgun shell!--More--",
 			"lost your last hitpoint and jump out of the picture!",
@@ -1609,6 +1696,7 @@ dosounds()
 			"have a confusing feeling, like there was something in the background focusing on your mind.",
 			"realize that some of the walls aren't real, and can be walked through.",
 			"have to keep a sound mind, lest you get consumed by the horrors that lurk here.",
+
 			"notice that your weapon has no effect! Get a shield!",
 			"can't think about difficult things or your brain will asplode!",
 			"forgot that you were suffering from amnesia! Oh no!",
@@ -1633,6 +1721,7 @@ dosounds()
 			"hear an eerie curse.",
 			"hear a powerful, hulk-like roar.",
 			"feel that you're about to see something confusing.",
+
 			"think you're seeing white rabbits!",
 			"feel totally down, like you're on a bad trip!",
 			"feel reminded of the am shop notice!",
@@ -1660,6 +1749,7 @@ dosounds()
 			"listen to Henrietta saying 'You won't get away from me this time.'",
 			"listen to Katrin saying 'Why don't you come over here and have some fun with me?'",
 			"listen to Jana saying 'I'm well hidden, you won't even find me.'",
+
 			"see an error message pop up: NETHACK.EXE caused a General Protection Fault at address 000D:001D.",
 			"see an error message pop up: Warning: Low Local Memory. Freeing description strings.",
 			"see an error message pop up: nt|| - Not a valid save file",
@@ -1717,6 +1807,7 @@ dosounds()
 			"stumble upon a fountain that looked like a wall tile.",
 			"can't help it, the underground rivers with farmland and fountains really seem like a game bug to you.",
 			"take a sip from one of the fountains but only feel refreshed, which indicates that the fountain is out of charges.",
+
 			"hear a fountain crash through solid rock with a mighty roar!",
 			"admire the beautiful mountains around here. Strange, how can mountains be in an underground dungeon?",
 			"return to your hiding place, only to find a cursed called. Shit.",
@@ -1743,6 +1834,7 @@ dosounds()
 			"feel a certain tension.",
 			"feel a certain tension. This message was stolen from ADOM.",
 			"sense a certain tension.",
+
 			"suddenly see nightmarish images with Thomas Biskup in your mind!", /* ADOM creator */
 			"sense a certain tension. Perhaps you should head for the nearest toilet...",
 			"sense a certain tension. That dreaded Dungeon Master probably filled the next room with arch-liches, disenchanters and master mind flayers.",
@@ -1764,6 +1856,7 @@ dosounds()
 		"hear someone talking to a lion.",
 		"feel that you're about to meet some interesting animals.",
 		"hear the roar of a giraffe.",
+
 		"hear Doctor Doolittle!",
 		"hear someone asking 'Who the fuck is David?'",
 		"hear a kid ask 'Ohh, look at all the cute zoo animals! May I feed them? May I pet them? Would you mind if I incinerate them?'",
@@ -1894,6 +1987,7 @@ dosounds()
         "You hear someone complaining about the prices.",
         "Somebody whispers: \"Food rations? Only 900 zorkmids.\"",
 	  "Somebody whispers: \"For one million zorkmids you can buy the legendary one-of-a-kind Excalibur!\"",
+
         "You feel like searching for more gold.",
         "Somebody whispers: \"Dawg, I got quality shit around here.\"",
 	  "Somebody whispers: \"I have that old playboy magazine issue that has naked pics of several dozen celebrities. I'll sell it to you for 10000 zorkmids.\"",
@@ -1909,6 +2003,7 @@ dosounds()
         "There seems to be something special about this place.",
 	  "You detect the presence of an alignment quest portal!",
 	  "You hear an evil figure taunting you to step through the magic portal!",
+
         "You hear someone say: \"Force field activated!\"",
         "You hear someone say: \"Warp panel test sequence is starting in three... two... one...\"",
 	  "You see Diablo 2, the boss from the game with the same name, and he's holding your mother hostage!",
@@ -1925,6 +2020,7 @@ dosounds()
 	  "A lot of force seems to be in the air.",
 	  "You listen to the taunts of your nemesis who wants a rematch!",
 	  "You get the feeling that an important magic portal is on this floor!",
+
 	  "You suddenly fear that you'll face your nemesis again and lose!",
 	  "You have a vision of your home being burned to the ground by the person you despise the most!",
 	  "Something tells you that the only thing you can depend on is your family, and even that not always!",

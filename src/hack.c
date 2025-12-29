@@ -4066,6 +4066,15 @@ register boolean newlev;
 			pline(FunnyHallu ? "You encounter an underground mountain. Wait, why the hell is there a mountain in the dungeon???" : "You encounter an underground mountain.");
 		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
 		    break;
+		case ENCLAVEROOM:
+		    if (!u.enclaveactive && !wizard) {
+			break;
+		    }
+			pline(FunnyHallu ? "Ah, you see the soldiers of the United States! You're safe here. They will assist you in any way they can, by giving you supplies and, if needed, medical aid." : "Oh damn, the Enclave took over this room!");
+		    if (!u.enclaveactive) break;
+
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
+		    break;
 		case THE_AREA_ROOM:
 			pline(FunnyHallu ? "Boah, it's THE area! And there's a pentagram in the center!" : "This room reminds you of your heritage.");
 		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();

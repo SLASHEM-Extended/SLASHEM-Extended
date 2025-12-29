@@ -11152,6 +11152,15 @@ register struct	monst	*mtmp;
 			(void) mongets(mtmp, HAND_BLASTER);
 			 m_initthrow(mtmp, BLASTER_BOLT, 35);
 		}
+		if (mtmp->data == &mons[PM_ENCLAVE_VERTIBIRD] || mtmp->data == &mons[PM_LOOPING_ENCLAVE_VERTIBIRD]) {
+			if (rn2(5)) {
+				(void) mongets(mtmp, ARM_BLASTER);
+				 m_initthrow(mtmp, HEAVY_BLASTER_BOLT, 50);
+			} else {
+				(void) mongets(mtmp, ROCKET_LAUNCHER);
+				 m_initthrow(mtmp, ROCKET, 10);
+			}
+		}
 		if (ptr == &mons[PM_LIBERTY_PRIME]) {
 			 m_initthrow(mtmp, FRAG_GRENADE, 50);
 		}
@@ -27301,6 +27310,10 @@ register int	mmflags;
 		if ((!(u.uhave.amulet && !u.freeplaymode && u.amuletcompletelyimbued)) || !rn2(5)) mtmp->msleeping = 1;
 	}
 
+	if ((mmflags & MM_LIKELYSLEEP) && rn2(10) && !issoviet) {
+		if ((!(u.uhave.amulet && !u.freeplaymode && u.amuletcompletelyimbued)) || !rn2(5)) mtmp->msleeping = 1;
+	}
+
 	if (ptr == &mons[PM_CAKE_MONSTER]) mtmp->msleeping = 1;
 	if (ptr == &mons[PM_SLEEPING_GIANT]) mtmp->msleeping = 1;
 	if (ptr == &mons[PM_SLEEPY_GIRL]) mtmp->msleeping = 1;
@@ -28919,6 +28932,20 @@ register int	mmflags;
 				while (spawnnumber > 0) {
 					spawnnumber--;
 					(void) makemon(machineroommon(), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+				}
+			}
+			if (mtmp->data == &mons[PM_ENCLAVE_VERTIBIRD] || mtmp->data == &mons[PM_LOOPING_ENCLAVE_VERTIBIRD]) {
+				int spawnnumber = rn1(6, 6);
+				while (spawnnumber > 0) {
+					spawnnumber--;
+					(void) makemon(specialtensmon(442), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY); /* MS_ENCLAVE */
+				}
+				if (!rn2(5)) {
+					spawnnumber = rnd(3);
+					while (spawnnumber > 0) {
+						spawnnumber--;
+						(void) makemon(specialtensmon(406), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY); /* MS_BOT */
+					}
 				}
 			}
 

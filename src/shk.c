@@ -4459,6 +4459,7 @@ boolean catchup;	/* restoring a level */
 				&& ttmp->ttyp != SOUND_EFFECT_TRAP
 				&& ttmp->ttyp != CONTAMINATION_TRAP
 				&& ttmp->ttyp != BOSS_SPAWNER
+				&& ttmp->ttyp != ENCLAVE_SPAWNER
 				&& ttmp->ttyp != KOP_CUBE
 
 				&& (ttmp->ttyp != DEATH_TRAP ||

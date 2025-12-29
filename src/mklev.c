@@ -147,11 +147,12 @@ const void * vy;
 #endif /* LINT */
 }
 
+/* roll a random room type - is this function even used anywhere??? --Amy */
 STATIC_OVL int
 findrandtype()
 {
 retryrandtype:
-	switch (rnd(92)) {
+	switch (rnd(93)) {
 		case 1: return COURT;
 		case 2: return SWAMP;
 		case 3: return BEEHIVE;
@@ -247,6 +248,7 @@ retryrandtype:
 		case 90: return BLOCKEDROOM;
 		case 91: return FUNGALMARSHROOM;
 		case 92: return POKEMONROOM;
+		case 93: return ENCLAVEROOM;
 	}
 
 	return EMPTYNEST;
@@ -595,6 +597,7 @@ do_room_or_subroom(croom, lowx, lowy, hix, hiy, lit, rtype, special, is_room, ca
 	if (/*!special && */rtype == RAMPAGEROOM) croom->colouur = CLR_GRAY;
 	if (/*!special && */rtype == GAMECORNER) croom->colouur = CLR_BRIGHT_BLUE;
 	if (/*!special && */rtype == ILLUSIONROOM) croom->colouur = 23; /* white, gray or cyan */
+	if (/*!special && */(rtype == ENCLAVEROOM) && u.enclaveactive) croom->colouur = CLR_BLACK;
 
 	/* locations might bump level edges in wall-less rooms */
 	/* add/subtract 1 to allow for edge locations */
@@ -2225,6 +2228,7 @@ clear_level_structures()
 	level.flags.has_religioncenter = 0;
 	level.flags.has_cursedmummyroom = 0;
 	level.flags.has_arduousmountain = 0;
+	level.flags.has_enclaveroom = 0;
 	level.flags.has_changingroom = 0;
 	level.flags.has_questorroom = 0;
 	level.flags.has_levelffroom = 0;
@@ -11612,7 +11616,8 @@ gehennomxtra:
         else if (depth(&u.uz) > (issoviet ? 22 : 10) && (ishaxor ? !rn2(20) : !rn2(40))) mkroom(TROLLHALL);
         else if (depth(&u.uz) > (issoviet ? 27 : 1) && (ishaxor ? !rn2(48) : !rn2(96))) mkroom(LEVELFFROOM);
         else if (depth(&u.uz) > (issoviet ? 14 : 5) && (ishaxor ? !rn2(33) : !rn2(66))) mkroom(RNGCENTER);
- 	else if(depth(&u.uz) > (issoviet ? 20 : 10) && (ishaxor ? !rn2(8) : !rn2(16))) mkroom(DOUGROOM);
+ 	else if(depth(&u.uz) > (issoviet ? 15 : 1) && (ishaxor ? !rn2(16) : !rn2(32))) mkroom(ENCLAVEROOM);
+ 	else if(depth(&u.uz) > (issoviet ? 20 : 10) && (ishaxor ? !rn2(16) : !rn2(32))) mkroom(DOUGROOM);
 	else if (u_depth > (issoviet ? 8 : 1) && (ishaxor ? !rn2(13) : !rn2(25))) mkroom(TENSHALL);
 	else if (u_depth > (issoviet ? 25 : 1) && (Role_if(PM_CAMPERSTRIKER) ? !rn2(10) : (ishaxor && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (ishaxor || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(INSIDEROOM);
 	else if (u_depth > (issoviet ? 15 : 1) && (Role_if(PM_CAMPERSTRIKER) ? !rn2(10) : Role_if(PM_GANG_SCHOLAR) ? !rn2(10) : (ishaxor && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (ishaxor || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(RIVERROOM);

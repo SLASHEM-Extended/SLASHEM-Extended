@@ -99,7 +99,7 @@ moveloop()
     char buf[BUFSZ];
 	char ebuf[BUFSZ];
     boolean didmove = FALSE, monscanmove = FALSE;
-	register struct trap *ttmp;
+	register struct trap *ttmp, *ttmp2;
     /* don't make it obvious when monsters will start speeding up */
     int monclock;
     int xtraclock;
@@ -5179,7 +5179,9 @@ newbossKTA:
 			}
 		}
 
-		for(ttmp = ftrap; ttmp; ttmp = ttmp->ntrap) { /* this function is probably expensive... --Amy */
+		for(ttmp = ftrap; ttmp; ttmp = ttmp2) { /* this function is probably expensive... --Amy */
+
+			ttmp2 = ttmp->ntrap; /* because ttmp can be freed by deltrap */
 
 			if (ttmp && (ttmp->ttyp == PERSISTENT_FART_TRAP || ttmp->ttyp == ATTACKING_HEEL_TRAP)) {
 
@@ -5220,6 +5222,19 @@ newbossKTA:
 				}
 			}
 
+			if (u.enclaveactive && ttmp && ttmp->ttyp == ENCLAVE_SPAWNER) {
+
+				if (ttmp->launch_otyp == 666) { /* set in trap.c if the trap got generated when the enclave was already active */
+					deltrap(ttmp);
+					continue; /* we check for ttmp below, but just to be on the safe side... --Amy */
+				}
+
+				(void) makemon(specialtensmon(442), ttmp->tx, ttmp->ty, MM_ADJACENTOK|MM_ANGRY|MM_LIKELYSLEEP); /* MS_ENCLAVE */
+				if (!rn2(10)) (void) makemon(specialtensmon(406), ttmp->tx, ttmp->ty, MM_ADJACENTOK|MM_ANGRY|MM_LIKELYSLEEP); /* MS_BOT */
+				deltrap(ttmp);
+				continue; /* we check for ttmp below, but just to be on the safe side... --Amy */
+			}
+
 			if (ttmp && ttmp->ttyp == KOP_CUBE && !rn2(2000) && !(m_at(ttmp->tx, ttmp->ty)) ) {
 
 				u.aggravation = 1;
@@ -5228,7 +5243,7 @@ newbossKTA:
 				u.aggravation = 0;
 				if (!rn2(20)) {
 					deltrap(ttmp);
-					goto trapsdone; /* we check for ttmp below, but just to be on the safe side... --Amy */
+					continue; /* we check for ttmp below, but just to be on the safe side... --Amy */
 				}
 
 			}
@@ -5341,7 +5356,7 @@ newbossS:
 						u.aggravation = 0;
 						u.mondiffhack = 0;
 						deltrap(ttmp);
-						goto trapsdone;
+						continue;
 					} 
 				}
 
@@ -5613,10 +5628,9 @@ newbossS:
 				if (!rn2(50)) ttmp->ttyp = SUMMON_UNDEAD_TRAP;
 			}
 
-		}
+		} /* traps code end */
 
-		/* put things that don't have anything to do with traps below the trapsdone mark --Amy */
-trapsdone:
+		/* put things that don't have anything to do with traps below this line; used to be a "trapsdone" mark --Amy */
 
 		if (quest_status.touched_artifact) { /* using the artifact a lot improves alignment --Amy */
 

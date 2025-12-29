@@ -4098,7 +4098,7 @@ boolean prefilled;
 	if (croom && croom->rtype == OROOM && !rn2( ((isironman || RngeIronmanMode || In_netherrealm(&u.uz)) && (depth(&u.uz) > 1 && !(u.preversionmode && In_greencross(&u.uz) && (dunlev(&u.uz) == 1)) && !(iszapem && In_spacebase(&u.uz) && (dunlev(&u.uz) == 1))) ) ? 1 : ((isironman || RngeIronmanMode || In_netherrealm(&u.uz)) && depth(&u.uz) < 2) ? 10 : Role_if(PM_CAMPERSTRIKER) ? 50 : 5000) ) {
 
 retryrandtype:
-		switch (rnd(112)) {
+		switch (rnd(113)) {
 
 			case 1: croom->rtype = COURT; break;
 			case 2: croom->rtype = SWAMP; break;
@@ -4216,6 +4216,7 @@ retryrandtype:
 			case 110: croom->rtype = BLOCKEDROOM; break;
 			case 111: croom->rtype = FUNGALMARSHROOM; break;
 			case 112: croom->rtype = POKEMONROOM; break;
+			case 113: croom->rtype = ENCLAVEROOM; break;
 
 		}
 
@@ -4357,7 +4358,7 @@ retryrandtype:
 
 	if (croom->rtype == RANDOMROOM) {
 
-		switch (rnd(92)) {
+		switch (rnd(93)) {
 
 			case 1: croom->rtype = COURT; break;
 			case 2: croom->rtype = SWAMP; break;
@@ -4451,6 +4452,7 @@ retryrandtype:
 			case 90: croom->rtype = BLOCKEDROOM; break;
 			case 91: croom->rtype = FUNGALMARSHROOM; break;
 			case 92: croom->rtype = POKEMONROOM; break;
+			case 93: croom->rtype = ENCLAVEROOM; break;
 
 		}
 
@@ -4579,6 +4581,7 @@ retryrandtype:
 	case RELIGIONCENTER:
 	case CURSEDMUMMYROOM:
 	case ARDUOUSMOUNTAIN:
+	case ENCLAVEROOM:
 	case LETTERSALADROOM:
 	case THE_AREA_ROOM:
 	case CHANGINGROOM:
@@ -5154,6 +5157,9 @@ retryrandtype:
 		break;
 	    case ARDUOUSMOUNTAIN:
 		level.flags.has_arduousmountain = TRUE;
+		break;
+	    case ENCLAVEROOM:
+		level.flags.has_enclaveroom = TRUE;
 		break;
 	    case QUESTORROOM:
 		level.flags.has_questorroom = TRUE;

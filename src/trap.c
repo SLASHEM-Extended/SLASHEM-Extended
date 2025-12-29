@@ -2391,6 +2391,19 @@ newbossING:
 
 	switch(typ) {
 
+	    case ENCLAVE_SPAWNER:
+
+		/* if these are generated when the enclave is already active, spawn enclave soldiers immediately
+		 * in order to make sure that allmain.c doesn't try to spawn soldiers again, set a launch_otyp
+		 * the code in allmain.c will then check for that and just dissipate the trap if the launch_otyp is set --Amy */
+		if (u.enclaveactive) {
+			(void) makemon(specialtensmon(442), ttmp->tx, ttmp->ty, MM_ADJACENTOK|MM_ANGRY|MM_LIKELYSLEEP); /* MS_ENCLAVE */
+			if (!rn2(10)) (void) makemon(specialtensmon(406), ttmp->tx, ttmp->ty, MM_ADJACENTOK|MM_ANGRY|MM_LIKELYSLEEP); /* MS_BOT */
+			ttmp->launch_otyp = 666;
+		}
+
+		break;
+
 	    case INSTAFEMINISM_TRAP:
 		ttmp->ttyp = UNKNOWN_TRAP;
 		if (!FemtrapActiveRuth) pline("Ha ha ha...");
@@ -2888,6 +2901,7 @@ newbossING:
 	if (ttmp->ttyp == NOWNSIBLE_TRAP) ttmp->hiddentrap = 1;
 	if (ttmp->ttyp == KOP_CUBE) ttmp->hiddentrap = 1;
 	if (ttmp->ttyp == BOSS_SPAWNER) ttmp->hiddentrap = 1;
+	if (ttmp->ttyp == ENCLAVE_SPAWNER) ttmp->hiddentrap = 1;
 
 	/* can the trap give max HP when untrapped? make sure it's not farmable --Amy */
 	ttmp->giveshp = 0;
@@ -4017,7 +4031,7 @@ unsigned trflags;
 	/* Players could deduce the position of a nasty trap by running in a corridor. This would probably come into effect
 	 * rarely, but the fact that it was possible at all was unintentional, so I'm closing this loophole just to cover
 	 * my butt. Nasty traps are supposed to be really difficult to spot! --Amy */
-	if (!is_nasty_trap(ttype) && ttype != AUTOMATIC_SWITCHER && ttype != ACTIVE_SUPERSCROLLER_TRAP && ttype != PET_TRAP && ttype != SPREADING_TRAP && ttype != ADJACENT_TRAP && ttype != SUPERTHING_TRAP && ttype != ONLY_TRAP && ttype != NTLL_TRAP && ttype != LOUDSPEAKER && ttype != ARABELLA_SPEAKER && ttype != KOP_CUBE && ttype != BOSS_SPAWNER)
+	if (!is_nasty_trap(ttype) && ttype != AUTOMATIC_SWITCHER && ttype != ACTIVE_SUPERSCROLLER_TRAP && ttype != PET_TRAP && ttype != SPREADING_TRAP && ttype != ADJACENT_TRAP && ttype != SUPERTHING_TRAP && ttype != ONLY_TRAP && ttype != NTLL_TRAP && ttype != LOUDSPEAKER && ttype != ARABELLA_SPEAKER && ttype != KOP_CUBE && ttype != BOSS_SPAWNER && ttype != ENCLAVE_SPAWNER)
 		nomul(0, 0, FALSE);
 
 	if (NownsibleEffect || u.uprops[NOWNSIBLE_EFFECT].extrinsic || have_nownsiblestone() || (uarmh && uarmh->oartifact == ART_MASK_OF_TLALOC) ) {
@@ -10002,9 +10016,10 @@ madnesseffect:
 
 	    case ADJACENT_TRAP:
 	    case SPREADING_TRAP:
-	    case SUPERTHING_TRAP: /* these three don't do anything if you trigger them */
+	    case SUPERTHING_TRAP: /* these don't do anything if you trigger them */
 	    case KOP_CUBE:
 	    case BOSS_SPAWNER:
+	    case ENCLAVE_SPAWNER:
 
 		break;
 
@@ -23593,6 +23608,7 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		case FUMAROLE:
 		case KOP_CUBE:
 		case BOSS_SPAWNER:
+		case ENCLAVE_SPAWNER:
 		case CONTAMINATION_TRAP:
 
 			break;

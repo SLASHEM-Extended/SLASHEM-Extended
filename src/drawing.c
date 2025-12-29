@@ -1139,6 +1139,7 @@ const struct symdef defsyms[MAXPCHARS] = {
 	{'^', "johanetta trap", C(CLR_BRIGHT_MAGENTA)},	/* trap */
 
 	{'^', "antimatter trap", C(CLR_BLACK)},	/* trap */
+	{'^', "enclave spawner", C(CLR_BLACK)},	/* trap */
 
 	{'^', "timerun trap", C(CLR_BRIGHT_CYAN)},	/* trap */
 	{'|', "wall",		C(CLR_GRAY)},	/* vbeam */
@@ -2111,6 +2112,7 @@ static uchar ibm_graphics[MAXPCHARS] = {
 	g_FILLER(S_johanetta_trap),
 
 	g_FILLER(S_antimatter_trap),
+	g_FILLER(S_enclave_spawner),
 
 	g_FILLER(S_timerun_trap),
 	0xb3,	/* S_vbeam:	meta-3, vertical rule */
@@ -3071,6 +3073,7 @@ static uchar dec_graphics[MAXPCHARS] = {
 	g_FILLER(S_johanetta_trap),
 
 	g_FILLER(S_antimatter_trap),
+	g_FILLER(S_enclave_spawner),
 
 	g_FILLER(S_timerun_trap),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
@@ -4028,6 +4031,7 @@ static uchar wing_graphics[MAXPCHARS] = {
 	g_FILLER(S_johanetta_trap),
 
 	g_FILLER(S_antimatter_trap),
+	g_FILLER(S_enclave_spawner),
 
 	g_FILLER(S_timerun_trap),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
@@ -4986,6 +4990,7 @@ static uchar mac_graphics[MAXPCHARS] = {
 	g_FILLER(S_johanetta_trap),
 
 	g_FILLER(S_antimatter_trap),
+	g_FILLER(S_enclave_spawner),
 
 	g_FILLER(S_timerun_trap),
 
@@ -6153,6 +6158,7 @@ boolean is_rlevel;
 	    showsyms[S_johanetta_trap] = 0x04;
 
 	    showsyms[S_antimatter_trap] = 0x04;
+	    showsyms[S_enclave_spawner] = 0x04;
 
  	    showsyms[S_timerun_trap] = 0x04;
 

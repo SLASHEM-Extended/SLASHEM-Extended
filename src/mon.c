@@ -4397,6 +4397,7 @@ impossible("A monster looked at a very strange trap of type %d.", ttmp->ttyp);
 
 				&& ttmp->ttyp != KOP_CUBE
 				&& ttmp->ttyp != BOSS_SPAWNER
+				&& ttmp->ttyp != ENCLAVE_SPAWNER
 				&& ttmp->ttyp != CONTAMINATION_TRAP
 
 				&& ((ttmp->ttyp != PIT
@@ -5287,6 +5288,10 @@ register struct monst *mtmp;
 		}
 		(void) makemon(specialtensmon(406), mtmp->mx, mtmp->my, MM_ADJACENTOK); /* MS_BOT */
 		pline("Uh-oh... a vertibird dropped off a bunch of enclave soldiers!");
+	}
+
+	if (tmp == PM_LOOPING_ENCLAVE_VERTIBIRD && rn2(10)) {
+		(void) makemon(&mons[PM_LOOPING_ENCLAVE_VERTIBIRD], 0, 0, MM_ADJACENTOK);
 	}
 
 	if (tmp == PM_SHEER_SPACER) {

@@ -729,6 +729,8 @@ struct you {
 	int greencrosschance;
 	boolean greencrossopen;
 
+	boolean enclaveactive;	/* if true, enclave spawners will spawn enclave soldiers and dissipate, and MS_ENCLAVE also generally spawn more often */
+
 	boolean prematuresubquest;
 	boolean prematureyendortower;
 

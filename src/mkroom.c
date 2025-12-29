@@ -198,6 +198,7 @@ int	roomtype;
 	case CURSEDMUMMYROOM: mkzoo(CURSEDMUMMYROOM); break;
 	case MIXEDPOOL: mkmixedpool(); break;
 	case ARDUOUSMOUNTAIN: mkzoo(ARDUOUSMOUNTAIN); break;
+	case ENCLAVEROOM: mkzoo(ENCLAVEROOM); break;
 	case LETTERSALADROOM : mkzoo(LETTERSALADROOM ); break;
 	case THE_AREA_ROOM: mkzoo(THE_AREA_ROOM); break;
 	case CHANGINGROOM: mkzoo(CHANGINGROOM); break;
@@ -222,7 +223,7 @@ int	roomtype;
 	case RANDOMROOM: {
 
 retryrandtype:
-		switch (rnd(92)) {
+		switch (rnd(93)) {
 
 			case 1: mkzoo(COURT); break;
 			case 2: mkswamp(); break;
@@ -320,6 +321,7 @@ retryrandtype:
 			case 90: mkblockedroom(); break;
 			case 91: mkzoo(FUNGALMARSHROOM); break;
 			case 92: mkzoo(POKEMONROOM); break;
+			case 93: mkzoo(ENCLAVEROOM); break;
 
 		}
 		break;
@@ -539,6 +541,7 @@ struct mkroom *sroom;
 	int fullroomitem = rn1(10, 10);
 	int fullroomtrap = rn1(20, 8);
 	int poketerrain = GRASSLAND;
+	int enclavefullness = 29 + rnd(51);
 	if (!rn2(10)) {
 		specialzoo = 1; /* extra items! */
 		specialzoochance = 50 + rnd(50);
@@ -829,7 +832,7 @@ struct mkroom *sroom;
 			}
 		}
 
-		if ( ((rnd(100) <= moreorless) || (rn2(5) && sx == tx && sy == ty)) && (type != EMPTYNEST) ) mon = makemon(
+		if ( ((rnd(100) <= moreorless) || (rn2(5) && sx == tx && sy == ty)) && (type != EMPTYNEST) && (type != ENCLAVEROOM) ) mon = makemon(
 		    (type == COURT) ? (rn2(5) ? courtmon() : mkclass(S_ORC,0) ) :
 
 		    (type == INSIDEROOM) ? (rn2(Role_if(PM_CAMPERSTRIKER) ? 20 : 40) ? insidemon() : (struct permonst *) 0 ) :
@@ -1416,6 +1419,14 @@ cgrfinished:
 			if(!rn2(3))
 			    (void) mksobj_at(EGG,sx,sy,TRUE,FALSE, FALSE);
 			break;
+		    case ENCLAVEROOM:
+			if ((rnd(100) < enclavefullness) && !t_at(sx, sy)) {
+				(void) maketrap(sx, sy, ENCLAVE_SPAWNER, 100, FALSE);
+			}
+			if (sx == tx && sy == ty && !t_at(sx, sy)) {
+				(void) maketrap(sx, sy, ENCLAVE_SPAWNER, 100, FALSE);
+			}
+			break;
 		    case EMPTYNEST:
 		      (void) mksobj_at(EGG,sx,sy,TRUE,FALSE, FALSE);
 			break;
@@ -1694,6 +1705,9 @@ cgrfinished:
               break;
             case QUESTORROOM:
               level.flags.has_questorroom = 1;
+              break;
+            case ENCLAVEROOM:
+              level.flags.has_enclaveroom = 1;
               break;
             case ARDUOUSMOUNTAIN:
 		  if (!rn2(50)) {

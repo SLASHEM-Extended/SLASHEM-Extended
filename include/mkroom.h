@@ -152,10 +152,16 @@ extern NEARDATA struct door doors[DOORMAX];
 #define BLOCKEDROOM 93	/* walls, some of which are secret corridors */
 #define FUNGALMARSHROOM 94	/* moorland, fungi and stuff */
 #define POKEMONROOM 95	/* pokemon, some type of terrain */
+#define ENCLAVEROOM 96	/* enclave spawners; doesn't do anything obvious unless enclave is active */
+#define QUESTTEMPROOMA 97	/* these are for easier implementation of quest targets */
+#define QUESTTEMPROOMB 98
+#define QUESTTEMPROOMC 99
+#define QUESTTEMPROOMD 100
+#define QUESTTEMPROOME 101
 
-#define RANDOMROOM 96	/* supposed to select one from an array of other special rooms, for use in .des files */
+#define RANDOMROOM 102	/* supposed to select one from an array of other special rooms, for use in .des files */
 
-#define SHOPBASE        97     	/* everything above this is a shop */
+#define SHOPBASE        103     	/* everything above this is a shop */
 #define ARMORSHOP       (SHOPBASE+ 1)   /* specific shop defines for level compiler */
 #define SCROLLSHOP      (SHOPBASE+ 2)
 #define POTIONSHOP      (SHOPBASE+ 3)

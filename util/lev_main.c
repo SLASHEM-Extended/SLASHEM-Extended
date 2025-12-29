@@ -964,6 +964,8 @@ static struct {
 
 	{ "antimatter", ANTIMATTER_TRAP },
 
+	{ "enclave spawner", ENCLAVE_SPAWNER },
+
 	{ "timerun", TIMERUN_TRAP },
 	{ 0, 0 }
 };
@@ -1069,6 +1071,13 @@ static struct {
 	{ "blockedroom", BLOCKEDROOM },
 	{ "fungalmarsh", FUNGALMARSHROOM },
 	{ "pokemonroom", POKEMONROOM },
+
+	{ "enclaveroom", ENCLAVEROOM },
+	{ "questtemp a", QUESTTEMPROOMA },
+	{ "questtemp b", QUESTTEMPROOMB },
+	{ "questtemp c", QUESTTEMPROOMC },
+	{ "questtemp d", QUESTTEMPROOMD },
+	{ "questtemp e", QUESTTEMPROOME },
 
 	{ "variantroom",  VARIANTROOM },
 	{ "playercentral", PLAYERCENTRAL },

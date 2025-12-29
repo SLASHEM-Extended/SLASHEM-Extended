@@ -2885,6 +2885,7 @@ dospinweb()
 		case SOUND_EFFECT_TRAP:
 		case KOP_CUBE:
 		case BOSS_SPAWNER:
+		case ENCLAVE_SPAWNER:
 		case SANITY_TREBLE_TRAP:
 		case STAT_DECREASE_TRAP:
 		case SIMEOUT_TRAP:
