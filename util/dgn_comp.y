@@ -124,8 +124,8 @@ dungeondesc	: entry
 
 entry		: ENTRY ':' INTEGER
 		  {
-			/* tmpdungeon[n_dgns].entry_lev = $3; */
-                        yyerror("ENTRY is obsolete!");
+			tmpdungeon[n_dgns].entry_lev = $3;
+                        /*yyerror("ENTRY is obsolete!");*/
 		  }
 		;
 

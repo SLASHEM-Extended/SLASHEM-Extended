@@ -4040,7 +4040,7 @@ set_trap()
 	ttyp = (otmp->otyp == LAND_MINE) ? LANDMINE : BEAR_TRAP;
 
 	if (otmp && otmp->oartifact == ART_PLACE_ON_TOP_OF_SNARE && (ttsnare = t_at(u.ux, u.uy)) ) {
-		if (ttsnare->ttyp == MAGIC_PORTAL) {
+		if (ttsnare->ttyp == MAGIC_PORTAL || ttsnare->ttyp == ONE_WAY_PORTAL) {
 			pline("Somehow, setting the trap failed.");
 			return 0;
 		}

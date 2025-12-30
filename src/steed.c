@@ -480,6 +480,7 @@ mount_steed(mtmp, force)
 	    else return (FALSE);
 	}
 
+	/* in your natural form, you generally fit on a saddle even when playing a beast race; this is by design --Amy */
 	if (Upolyd && !Race_if(PM_TRANSFORMER) && ( (!humanoid(youmonst.data) && rathersmall(youmonst.data)) || verysmall(youmonst.data) ||
 			bigmonst(youmonst.data) || slithy(youmonst.data))) {
 		You("won't fit on a saddle.");

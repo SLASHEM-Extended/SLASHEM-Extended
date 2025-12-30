@@ -2095,7 +2095,7 @@ random_banishment_level()
 		dtmp.dnum = dname_to_dnum("Gehennom");
 	} else if (rn2(4)) {
 upperdungeonagain:
-		switch (rnd(32)) {
+		switch (rnd(33)) {
 			case 1:
 				dtmp.dnum = dname_to_dnum("The Gnomish Mines");
 				break;
@@ -2195,6 +2195,9 @@ upperdungeonagain:
 				break;
 			case 32:
 				dtmp.dnum = dname_to_dnum("The Ice Queen's Realm");
+				break;
+			case 33:
+				dtmp.dnum = dname_to_dnum("Jefferson Memorial");
 				break;
 		}
 	} else {

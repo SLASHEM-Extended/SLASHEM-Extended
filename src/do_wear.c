@@ -7210,7 +7210,8 @@ boolean noisy;
 	if (uarmf) {
 	    if (noisy) already_wearing(c_boots);
 	    err++;
-	} else if (Upolyd && slithy(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
+	} else if (slithy(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
+	    /* used to only apply if you were polyd?! what an inconsistency, dokick.c doesn't do that! --Amy */
 	    if (noisy) You("have no feet...");	/* not body_part(FOOT) */
 	    err++;
 	} else if (Upolyd && youmonst.data->mlet == S_CENTAUR) {

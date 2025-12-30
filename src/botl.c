@@ -663,6 +663,8 @@ int verbose;
 		sprintf(buf, flags.showlongstats ? "Gamma Caves:%d " : "Gam:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Mainframe"))
 		sprintf(buf, flags.showlongstats ? "Mainframe:%d " : "Mai:%d ", depth(&u.uz));
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Jefferson Memorial"))
+		sprintf(buf, flags.showlongstats ? "Jefferson:%d " : "Jef:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Pool Challenge"))
 		sprintf(buf, flags.showlongstats ? "Pool:%d " : "Poo:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Digdug Challenge"))

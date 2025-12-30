@@ -2080,6 +2080,7 @@ dospinweb()
 		case LEVEL_BEAMER:
 		case NEXUS_TRAP:
 		case MAGIC_PORTAL:
+		case ONE_WAY_PORTAL:
 			Your("webbing vanishes!");
 			return(0);
 		case WEB: You("make the web thicker.");

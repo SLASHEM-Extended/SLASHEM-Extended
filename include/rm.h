@@ -1101,54 +1101,56 @@
 
 #define S_enclave_spawner		865
 
-#define S_timerun_trap		866
+#define S_one_way_portal		866
+
+#define S_timerun_trap		867
 
 /* end traps, begin special effects */
 
-#define S_vbeam		867	/* The 4 zap beam symbols.  Do NOT separate. */
-#define S_hbeam		868	/* To change order or add, see function     */
-#define S_lslant	869	/* zapdir_to_glyph() in display.c.	    */
-#define S_rslant	870
-#define S_digbeam	871	/* dig beam symbol */
-#define S_rain_particle	872	/* rainy weather effect */
-#define S_snow_particle	873	/* snowy weather effect */
-#define S_hail_particle	874	/* hail weather effect */
-#define S_sand_particle	875	/* sandstorm weather effect */
-#define S_ether_particle	876	/* etherwind weather effect */
-#define S_flashbeam	877	/* camera flash symbol */
-#define S_boomleft	878	/* thrown boomerang, open left, e.g ')'    */
-#define S_boomright	879	/* thrown boomerand, open right, e.g. '('  */
-#define S_ss1		880	/* 4 magic shield glyphs */
-#define S_ss2		881
-#define S_ss3		882 
-#define S_ss4		883
+#define S_vbeam		868	/* The 4 zap beam symbols.  Do NOT separate. */
+#define S_hbeam		869	/* To change order or add, see function     */
+#define S_lslant	870	/* zapdir_to_glyph() in display.c.	    */
+#define S_rslant	871
+#define S_digbeam	872	/* dig beam symbol */
+#define S_rain_particle	873	/* rainy weather effect */
+#define S_snow_particle	874	/* snowy weather effect */
+#define S_hail_particle	875	/* hail weather effect */
+#define S_sand_particle	876	/* sandstorm weather effect */
+#define S_ether_particle	877	/* etherwind weather effect */
+#define S_flashbeam	878	/* camera flash symbol */
+#define S_boomleft	879	/* thrown boomerang, open left, e.g ')'    */
+#define S_boomright	880	/* thrown boomerand, open right, e.g. '('  */
+#define S_ss1		881	/* 4 magic shield glyphs */
+#define S_ss2		882
+#define S_ss3		883 
+#define S_ss4		884
 
 /* The 8 swallow symbols.  Do NOT separate.  To change order or add, see */
 /* the function swallow_to_glyph() in display.c.			 */
-#define S_sw_tl		884	/* swallow top left [1]			*/
-#define S_sw_tc		885	/* swallow top center [2]	Order:	*/
-#define S_sw_tr		886	/* swallow top right [3]		*/
-#define S_sw_ml		887	/* swallow middle left [4]	1 2 3	*/
-#define S_sw_mr		888	/* swallow middle right [6]	4 5 6	*/
-#define S_sw_bl		889	/* swallow bottom left [7]	7 8 9	*/
-#define S_sw_bc		890	/* swallow bottom center [8]		*/
-#define S_sw_br		891	/* swallow bottom right [9]		*/
+#define S_sw_tl		885	/* swallow top left [1]			*/
+#define S_sw_tc		886	/* swallow top center [2]	Order:	*/
+#define S_sw_tr		887	/* swallow top right [3]		*/
+#define S_sw_ml		888	/* swallow middle left [4]	1 2 3	*/
+#define S_sw_mr		889	/* swallow middle right [6]	4 5 6	*/
+#define S_sw_bl		890	/* swallow bottom left [7]	7 8 9	*/
+#define S_sw_bc		891	/* swallow bottom center [8]		*/
+#define S_sw_br		892	/* swallow bottom right [9]		*/
 
-#define S_explode1	892	/* explosion top left			*/
-#define S_explode2	893	/* explosion top center			*/
-#define S_explode3	894	/* explosion top right		 Ex.	*/
-#define S_explode4	895	/* explosion middle left		*/
-#define S_explode5	896	/* explosion middle center	 /-\	*/
-#define S_explode6	897	/* explosion middle right	 |@|	*/
-#define S_explode7	898	/* explosion bottom left	 \-/	*/
-#define S_explode8	899	/* explosion bottom center		*/
-#define S_explode9	900	/* explosion bottom right		*/
+#define S_explode1	893	/* explosion top left			*/
+#define S_explode2	894	/* explosion top center			*/
+#define S_explode3	895	/* explosion top right		 Ex.	*/
+#define S_explode4	896	/* explosion middle left		*/
+#define S_explode5	897	/* explosion middle center	 /-\	*/
+#define S_explode6	898	/* explosion middle right	 |@|	*/
+#define S_explode7	899	/* explosion bottom left	 \-/	*/
+#define S_explode8	900	/* explosion bottom center		*/
+#define S_explode9	901	/* explosion bottom right		*/
   
 /* end effects */
   
-#define MAXPCHARS	901 	/* maximum number of mapped characters */
+#define MAXPCHARS	902 	/* maximum number of mapped characters */
 #define MAXDCHARS	75	/* maximum of mapped dungeon characters */
-#define MAXTCHARS	792	/* maximum of mapped trap characters */
+#define MAXTCHARS	793	/* maximum of mapped trap characters */
 #define MAXECHARS       34      /* maximum of mapped effects characters */
 #define MAXEXPCHARS	9	/* number of explosion characters */
 

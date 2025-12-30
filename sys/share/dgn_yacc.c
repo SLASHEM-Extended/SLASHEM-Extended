@@ -809,8 +809,8 @@ case 11:
 break;
 case 15:
 {
-			/* tmpdungeon[n_dgns].entry_lev = $3; */
-                        yyerror("ENTRY is obsolete!");
+			tmpdungeon[n_dgns].entry_lev = yyvsp[0].i;
+                        /*yyerror("ENTRY is obsolete!");*/
 		  }
 break;
 case 17:

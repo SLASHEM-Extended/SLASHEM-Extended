@@ -680,6 +680,7 @@ E boolean In_spacebase(d_level *);
 E boolean In_sewerplant(d_level *);
 E boolean In_gammacaves(d_level *);
 E boolean In_mainframe(d_level *);
+E boolean In_jefferson(d_level *);
 E boolean In_poolchallenge(d_level *);
 E boolean In_joustchallenge(d_level *);
 E boolean In_digdugchallenge(d_level *);

@@ -908,6 +908,8 @@ extern struct trap *ftrap;
 
 #define ENCLAVE_SPAWNER 791
 
+#define ONE_WAY_PORTAL 792
+
 /* todo area
 
 normal ones:
@@ -988,9 +990,9 @@ special ones that don't spawn randomly:
 
 */
 
-#define TIMERUN_TRAP	792
+#define TIMERUN_TRAP	793
 
-#define TRAPNUM 793
+#define TRAPNUM 794
 
 /* "newtraps" in particular, but also timerun and vulnerate may be targets for grepping --Amy */
 

@@ -966,6 +966,8 @@ static struct {
 
 	{ "enclave spawner", ENCLAVE_SPAWNER },
 
+	{ "one way portal",   ONE_WAY_PORTAL },
+
 	{ "timerun", TIMERUN_TRAP },
 	{ 0, 0 }
 };

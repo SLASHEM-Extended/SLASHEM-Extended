@@ -30721,6 +30721,9 @@ loopback:
 		if (ct > 0 && (In_mainframe(&u.uz) && (ptr->mlet == S_DEMON) )) ct += 25;
 		if (ct > 0 && (In_mainframe(&u.uz) && is_demon(ptr) )) ct += 25;
 		if (ct > 0 && (In_mainframe(&u.uz) && attacktype(ptr, AT_BREA) )) ct += 10;
+		if (ct > 0 && (In_jefferson(&u.uz) && is_elderscrollsmonster(ptr) )) ct += 5;
+		if (ct > 0 && (In_jefferson(&u.uz) && u.enclaveactive && (ptr->msound == MS_ENCLAVE) )) ct += 5;
+		if (ct > 0 && (u.enclaveactive && (ptr->msound == MS_ENCLAVE) )) ct += 3;
 
 		if (ct > 0 && (uarmh && uarmh->oartifact == ART_WERKAUF && (ptr->mlet == S_ZOMBIE) )) ct += 20;
 		if (ct > 0 && (Race_if(PM_DICTIONARY_ATTACK) && (ptr->mlet >= S_ANT && ptr->mlet <= S_ZOMBIE) )) ct += 5;
@@ -32360,6 +32363,9 @@ int     spc;
 		if ((In_gammacaves(&u.uz) && dmgtype(&mons[last], AD_CONT) )) num += 7;
 		if ((In_mainframe(&u.uz) && is_demon(&mons[last]) )) num += 25;
 		if ((In_mainframe(&u.uz) && attacktype(&mons[last], AT_BREA) )) num += 10;
+		if ((In_jefferson(&u.uz) && is_elderscrollsmonster(&mons[last]) )) num += 5;
+		if ((In_jefferson(&u.uz) && u.enclaveactive && (mons[last].msound == MS_ENCLAVE) )) num += 5;
+		if ((u.enclaveactive && (mons[last].msound == MS_ENCLAVE) )) num += 3;
 
 		if ((Role_if(PM_ACTIVISTOR) && always_hostile(&mons[last]))) num += 5;
 		if ((Role_if(PM_ALTMER) && is_reflector(&mons[last]))) num += 3;
@@ -33635,6 +33641,9 @@ int     spc;
 		if ((In_gammacaves(&u.uz) && dmgtype(&mons[first], AD_CONT) )) num -= 7;
 		if ((In_mainframe(&u.uz) && is_demon(&mons[first]) )) num -= 25;
 		if ((In_mainframe(&u.uz) && attacktype(&mons[first], AT_BREA) )) num -= 10;
+		if ((In_jefferson(&u.uz) && is_elderscrollsmonster(&mons[first]) )) num -= 5;
+		if ((In_jefferson(&u.uz) && u.enclaveactive && (mons[first].msound == MS_ENCLAVE) )) num -= 5;
+		if ((u.enclaveactive && (mons[first].msound == MS_ENCLAVE) )) num -= 3;
 
 		if ((Role_if(PM_ACTIVISTOR) && always_hostile(&mons[first]))) num -= 5;
 		if ((Role_if(PM_ALTMER) && is_reflector(&mons[first]))) num -= 3;

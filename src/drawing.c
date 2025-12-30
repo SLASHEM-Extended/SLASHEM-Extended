@@ -1141,6 +1141,8 @@ const struct symdef defsyms[MAXPCHARS] = {
 	{'^', "antimatter trap", C(CLR_BLACK)},	/* trap */
 	{'^', "enclave spawner", C(CLR_BLACK)},	/* trap */
 
+	{'^', "one-way portal", C(CLR_BRIGHT_MAGENTA)},	/* trap */
+
 	{'^', "timerun trap", C(CLR_BRIGHT_CYAN)},	/* trap */
 	{'|', "wall",		C(CLR_GRAY)},	/* vbeam */
 	{'-', "wall",		C(CLR_GRAY)},	/* hbeam */
@@ -2114,6 +2116,8 @@ static uchar ibm_graphics[MAXPCHARS] = {
 	g_FILLER(S_antimatter_trap),
 	g_FILLER(S_enclave_spawner),
 
+	g_FILLER(S_one_way_portal),
+
 	g_FILLER(S_timerun_trap),
 	0xb3,	/* S_vbeam:	meta-3, vertical rule */
 	0xc4,	/* S_hbeam:	meta-D, horizontal rule */
@@ -3075,6 +3079,8 @@ static uchar dec_graphics[MAXPCHARS] = {
 	g_FILLER(S_antimatter_trap),
 	g_FILLER(S_enclave_spawner),
 
+	g_FILLER(S_one_way_portal),
+
 	g_FILLER(S_timerun_trap),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
 	0xf1,	/* S_hbeam:	meta-q, horizontal rule */
@@ -4032,6 +4038,8 @@ static uchar wing_graphics[MAXPCHARS] = {
 
 	g_FILLER(S_antimatter_trap),
 	g_FILLER(S_enclave_spawner),
+
+	g_FILLER(S_one_way_portal),
 
 	g_FILLER(S_timerun_trap),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
@@ -4991,6 +4999,8 @@ static uchar mac_graphics[MAXPCHARS] = {
 
 	g_FILLER(S_antimatter_trap),
 	g_FILLER(S_enclave_spawner),
+
+	g_FILLER(S_one_way_portal),
 
 	g_FILLER(S_timerun_trap),
 
@@ -6159,6 +6169,8 @@ boolean is_rlevel;
 
 	    showsyms[S_antimatter_trap] = 0x04;
 	    showsyms[S_enclave_spawner] = 0x04;
+
+	    showsyms[S_one_way_portal] = 0x04;
 
  	    showsyms[S_timerun_trap] = 0x04;
 

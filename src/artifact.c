@@ -10223,6 +10223,7 @@ greenchoice:
 
 				if (isok(i, j) && ((ttmp = t_at(i, j)) != 0) ) {
 				    if (ttmp->ttyp == MAGIC_PORTAL) continue;
+				    if (ttmp->ttyp == ONE_WAY_PORTAL) continue;
 					deltrap(ttmp);
 				}
 

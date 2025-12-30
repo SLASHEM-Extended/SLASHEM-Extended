@@ -3692,6 +3692,9 @@ mk_dgl_extrainfo()
         } else if (In_mainframe(&u.uz)) {
             sprintf(tmpdng, "%i|Mai%i", sortval, depth(&u.uz));
 		sortval = 1100 + depth(&u.uz);
+        } else if (In_jefferson(&u.uz)) {
+            sprintf(tmpdng, "%i|Jef%i", sortval, depth(&u.uz));
+		sortval = 1100 + depth(&u.uz);
         } else if (In_poolchallenge(&u.uz)) {
             sprintf(tmpdng, "%i|Poo%i", sortval, depth(&u.uz));
 		sortval = 1100 + depth(&u.uz);

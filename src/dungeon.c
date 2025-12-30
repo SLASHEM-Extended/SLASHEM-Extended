@@ -1034,6 +1034,7 @@ init_dungeons()
 	sewerplant_dnum = dname_to_dnum("Sewer Plant");
 	gammacaves_dnum = dname_to_dnum("Gamma Caves");
 	mainframe_dnum = dname_to_dnum("Mainframe");
+	jefferson_dnum = dname_to_dnum("Jefferson Memorial");
 	joustchallenge_dnum = dname_to_dnum("Joust Challenge");
 	pacmanchallenge_dnum = dname_to_dnum("Pacman Challenge");
 	digdugchallenge_dnum = dname_to_dnum("Digdug Challenge");
@@ -1797,6 +1798,13 @@ In_mainframe(lev)	/* are you in the mainframe dungeon? */
 d_level	*lev;
 {
 	return((boolean)(lev->dnum == mainframe_dnum));
+}
+
+boolean
+In_jefferson(lev)	/* are you in the jefferson memorial? */
+d_level	*lev;
+{
+	return((boolean)(lev->dnum == jefferson_dnum));
 }
 
 boolean

@@ -307,6 +307,8 @@ xchar dnum;
 		strcpy(buf, "LAB");
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Mainframe"))
 		strcpy(buf, "MAI");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Jefferson Memorial"))
+		strcpy(buf, "JEF");
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Minotaur Maze"))
 		strcpy(buf, "MIN");
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Minus World"))

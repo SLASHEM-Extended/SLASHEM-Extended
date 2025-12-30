@@ -6205,6 +6205,7 @@ newbossDAM:
 
 			if ((ttmp = t_at(u.ux + i, u.uy + j)) != 0) {
 			    if (ttmp->ttyp == MAGIC_PORTAL) continue;
+			    if (ttmp->ttyp == ONE_WAY_PORTAL) continue;
 				deltrap(ttmp);
 			}
 
@@ -11665,6 +11666,7 @@ whisperchoice:
 
 				if ((ttmp = t_at(u.ux + i, u.uy + j)) != 0) {
 				    if (ttmp->ttyp == MAGIC_PORTAL) continue;
+				    if (ttmp->ttyp == ONE_WAY_PORTAL) continue;
 					deltrap(ttmp);
 				}
 

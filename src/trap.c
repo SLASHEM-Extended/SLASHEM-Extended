@@ -2301,9 +2301,10 @@ boolean givehp;
 	register struct rm *lev;
 	register boolean oldplace;
 
-	if (typ != MAGIC_PORTAL && (rn2(100) < replacechance) && (rnd(u.freqtrapbonus + 1000) > 1000)) {
+	if ((typ != MAGIC_PORTAL) && (typ != ONE_WAY_PORTAL) && (rn2(100) < replacechance) && (rnd(u.freqtrapbonus + 1000) > 1000)) {
 		typ = u.frequenttrap;
 		if (typ == MAGIC_PORTAL) typ = ROCKTRAP;
+		if (typ == ONE_WAY_PORTAL) typ = ROCKTRAP;
 		if (typ == S_PRESSING_TRAP) typ = ROCKTRAP;
 		if (typ == WISHING_TRAP) typ = BLINDNESS_TRAP;
 		if (In_sokoban(&u.uz) && rn2(10) && (typ == HOLE || typ == TRAPDOOR || typ == SHAFT_TRAP || typ == CURRENT_SHAFT || typ == PIT || typ == SPIKED_PIT || typ == GIANT_CHASM || typ == SHIT_PIT || typ == MANA_PIT || typ == ANOXIC_PIT || typ == HYPOXIC_PIT || typ == ACID_PIT)) typ = ROCKTRAP;
@@ -2325,12 +2326,12 @@ boolean givehp;
 		if ((typ == TRAPDOOR || typ == HOLE || typ == SHAFT_TRAP || typ == CURRENT_SHAFT) && !Can_fall_thru(&u.uz) && !Is_stronghold(&u.uz) ) typ = ROCKTRAP;
 		if (typ == ACTIVE_SUPERSCROLLER_TRAP) typ = SUPERSCROLLER_TRAP;
 		
-	} else if (typ != MAGIC_PORTAL && (rn2(100) < replacechance) && !rn2(u.traprandomizing)) {
+	} else if ((typ != MAGIC_PORTAL) && (typ != ONE_WAY_PORTAL) && (rn2(100) < replacechance) && !rn2(u.traprandomizing)) {
 		typ = rnd(TRAPNUM-1);
 		if (In_sokoban(&u.uz) && rn2(10) && (typ == HOLE || typ == TRAPDOOR || typ == SHAFT_TRAP || typ == CURRENT_SHAFT || typ == PIT || typ == SPIKED_PIT || typ == GIANT_CHASM || typ == SHIT_PIT || typ == MANA_PIT || typ == ANOXIC_PIT || typ == HYPOXIC_PIT || typ == ACID_PIT)) typ = ROCKTRAP;
 		if (In_sokoban(&u.uz) && rn2(100) && typ == NUPESELL_TRAP) typ = FIRE_TRAP;
-		while (typ == MAGIC_PORTAL || typ == ACTIVE_SUPERSCROLLER_TRAP || typ == WISHING_TRAP || typ == S_PRESSING_TRAP || typ == DATA_DELETE_TRAP || typ == ELDER_TENTACLING_TRAP || typ == ARTIFACT_JACKPOT_TRAP || typ == GOOD_ARTIFACT_TRAP || typ == BOON_TRAP) typ = rnd(TRAPNUM-1);
-	} else if (typ != MAGIC_PORTAL && (rn2(100) < replacechance) && uarmh && uarmh->oartifact == ART_BOMB_BLOW && !rn2(100)) {
+		while (typ == MAGIC_PORTAL || typ == ONE_WAY_PORTAL || typ == ACTIVE_SUPERSCROLLER_TRAP || typ == WISHING_TRAP || typ == S_PRESSING_TRAP || typ == DATA_DELETE_TRAP || typ == ELDER_TENTACLING_TRAP || typ == ARTIFACT_JACKPOT_TRAP || typ == GOOD_ARTIFACT_TRAP || typ == BOON_TRAP) typ = rnd(TRAPNUM-1);
+	} else if ((typ != MAGIC_PORTAL) && (typ != ONE_WAY_PORTAL) && (rn2(100) < replacechance) && uarmh && uarmh->oartifact == ART_BOMB_BLOW && !rn2(100)) {
 		typ = CATACLYSM_TRAP;
 	}
 
@@ -2339,6 +2340,7 @@ boolean givehp;
 
 	if ((ttmp = t_at(x,y)) != 0) {
 	    if (ttmp->ttyp == MAGIC_PORTAL) return (struct trap *)0;
+	    if (ttmp->ttyp == ONE_WAY_PORTAL) return (struct trap *)0;
 	    oldplace = TRUE;
 	    if (u.utrap && (x == u.ux) && (y == u.uy) &&
 	      ((u.utraptype == TT_BEARTRAP && typ != BEAR_TRAP && typ != LEG_TRAP) ||
@@ -2909,6 +2911,7 @@ newbossING:
 
 	if (ttmp->ttyp == HOLE && !In_sokoban(&u.uz) && !ttmp->hiddentrap ) ttmp->tseen = 1;  /* You can't hide a hole */
 	else if (ttmp->ttyp == SUPERTHING_TRAP && !ttmp->hiddentrap ) ttmp->tseen = 1;
+	else if (ttmp->ttyp == ONE_WAY_PORTAL && !ttmp->hiddentrap ) ttmp->tseen = 1;
 	else if (ttmp->ttyp == ARABELLA_SPEAKER && !ttmp->hiddentrap ) ttmp->tseen = 1;
 	else if (ttmp->ttyp == WRONG_STAIRS && !ttmp->hiddentrap ) ttmp->tseen = 1;
 	else ttmp->tseen = 0;
@@ -2916,7 +2919,7 @@ newbossING:
 	ttmp->artionce = 0;
 	ttmp->tdetected = 0;
 	ttmp->trapdiff = 0; /* difficulty: higher values make it less likely for you to find it */
-	if (ttmp->ttyp != MAGIC_PORTAL) {
+	if (ttmp->ttyp != MAGIC_PORTAL && ttmp->ttyp != ONE_WAY_PORTAL) {
 		ttmp->trapdiff = level_difficulty();
 		if (u.trapxtradiff) ttmp->trapdiff += rnd(u.trapxtradiff);
 		if (u.xdifftrapchance > rn2(100)) {
@@ -4014,16 +4017,16 @@ unsigned trflags;
 	if (trap && Yawming) u.yawmtime = 0;
 
 	/* Traps are 50% more likely to fail for a pickpocket */
-	if (!In_sokoban(&u.uz) && Role_if(PM_PICKPOCKET) && ttype != MAGIC_PORTAL && rn2(2)) return;
+	if (!In_sokoban(&u.uz) && Role_if(PM_PICKPOCKET) && ttype != MAGIC_PORTAL && ttype != ONE_WAY_PORTAL && rn2(2)) return;
 
-	if (!In_sokoban(&u.uz) && uarmf && uarmf->oartifact == ART_OTMAR_S_PHANTOM_STEPS && ttype != MAGIC_PORTAL && rn2(2)) return;
+	if (!In_sokoban(&u.uz) && uarmf && uarmf->oartifact == ART_OTMAR_S_PHANTOM_STEPS && ttype != MAGIC_PORTAL && ttype != ONE_WAY_PORTAL && rn2(2)) return;
 
-	if (!In_sokoban(&u.uz) && uarmf && uarmf->oartifact == ART_TRAPAVOIDER && !rn2(5) && ttype != MAGIC_PORTAL) {
+	if (!In_sokoban(&u.uz) && uarmf && uarmf->oartifact == ART_TRAPAVOIDER && !rn2(5) && ttype != MAGIC_PORTAL && ttype != ONE_WAY_PORTAL) {
 		You("avoid a trap!");
 		return;
 	}
 
-	if (!In_sokoban(&u.uz) && uwep && uwep->oartifact == ART_CUTE_JAPANESE_FEET && rn2(2) && ttype != MAGIC_PORTAL) {
+	if (!In_sokoban(&u.uz) && uwep && uwep->oartifact == ART_CUTE_JAPANESE_FEET && rn2(2) && ttype != MAGIC_PORTAL && ttype != ONE_WAY_PORTAL) {
 		if ((trap && trap->tseen) || rn2(4)) You("avoid a trap!");
 		return;
 	}
@@ -4072,7 +4075,7 @@ unsigned trflags;
 		    defsyms[trap_to_defsym(ttype)].explanation);
 		return;
 	    }
-	    if(!Fumbling && !is_nasty_trap(ttype) && ttype != MAGIC_PORTAL && ttype != AUTOMATIC_SWITCHER && ttype != ACTIVE_SUPERSCROLLER_TRAP && ttype != PET_TRAP && ttype != SPREADING_TRAP && ttype != ADJACENT_TRAP && ttype != ONLY_TRAP && ttype != NTLL_TRAP && ttype != LOUDSPEAKER && ttype != ARABELLA_SPEAKER && !forcebungle &&
+	    if(!Fumbling && !is_nasty_trap(ttype) && ttype != MAGIC_PORTAL && ttype != ONE_WAY_PORTAL && ttype != AUTOMATIC_SWITCHER && ttype != ACTIVE_SUPERSCROLLER_TRAP && ttype != PET_TRAP && ttype != SPREADING_TRAP && ttype != ADJACENT_TRAP && ttype != ONLY_TRAP && ttype != NTLL_TRAP && ttype != LOUDSPEAKER && ttype != ARABELLA_SPEAKER && !forcebungle &&
 		(!rn2(5) ||
 	    ((ttype == PIT || ttype == SPIKED_PIT || ttype == GIANT_CHASM || ttype == SHIT_PIT || ttype == MANA_PIT || ttype == ANOXIC_PIT || ttype == HYPOXIC_PIT || ttype == ACID_PIT) && is_clinger(youmonst.data)))) {
 		You("escape %s %s.",
@@ -10483,6 +10486,13 @@ madnesseffect:
 		}
 		break;
 	    }
+	    case ONE_WAY_PORTAL:
+		/* portal that leads to a specific place; needs to be special-cased for every single one --Amy */
+
+		/* catchall just in case one appears in a place where it shouldn't */
+		pline("It seems that this one-way portal doesn't lead anywhere.");
+		break;
+
 	    case MAGIC_PORTAL:
 
 		{
@@ -14213,6 +14223,7 @@ skillmultiplyagain:
 
 			for(twlk = ftrap; twlk; twlk = twlk->ntrap) {
 				if (twlk->ttyp == MAGIC_PORTAL) continue;
+				if (twlk->ttyp == ONE_WAY_PORTAL) continue;
 				wantx = twlk->tx;
 				wanty = twlk->ty;
 				switch (rnd(8)) {
@@ -15388,6 +15399,7 @@ callingoutdone:
 
 			for(twlk = ftrap; twlk; twlk = twlk->ntrap) {
 				if (twlk->ttyp == MAGIC_PORTAL) continue;
+				if (twlk->ttyp == ONE_WAY_PORTAL) continue;
 				wantx = rn1(COLNO-3,2);
 				wanty = rn2(ROWNO);
 				if (!isok(wantx, wanty)) continue;
@@ -23077,6 +23089,7 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 			}
 			break;
 
+		case ONE_WAY_PORTAL:
 		case STATUE_TRAP:
 		case ANIMATION_TRAP:
 		case GLYPH_OF_WARDING:

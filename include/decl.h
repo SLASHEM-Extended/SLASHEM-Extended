@@ -118,6 +118,7 @@ E struct dgn_topology {		/* special dungeon levels for speed */
     xchar   d_sewerplant_dnum;
     xchar   d_gammacaves_dnum;
     xchar   d_mainframe_dnum;
+    xchar   d_jefferson_dnum;
     xchar   d_joustchallenge_dnum;
     xchar   d_pacmanchallenge_dnum;
     xchar   d_digdugchallenge_dnum;
@@ -215,6 +216,7 @@ E struct dgn_topology {		/* special dungeon levels for speed */
 #define sewerplant_dnum		(dungeon_topology.d_sewerplant_dnum)
 #define gammacaves_dnum		(dungeon_topology.d_gammacaves_dnum)
 #define mainframe_dnum		(dungeon_topology.d_mainframe_dnum)
+#define jefferson_dnum		(dungeon_topology.d_jefferson_dnum)
 #define joustchallenge_dnum	(dungeon_topology.d_joustchallenge_dnum)
 #define pacmanchallenge_dnum	(dungeon_topology.d_pacmanchallenge_dnum)
 #define digdugchallenge_dnum	(dungeon_topology.d_digdugchallenge_dnum)

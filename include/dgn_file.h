@@ -24,7 +24,8 @@ struct tmpdungeon {
 	int	flags,
 		chance,
 		levels,
-		branches;
+		branches,
+		entry_lev;		/* entry level for this dungeon */
 	char	boneschar;
 };
 

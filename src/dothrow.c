@@ -1551,7 +1551,7 @@ hurtle_step(arg, x, y)
      * ones that we have not yet tested.
      */
     if ((ttmp = t_at(x, y)) != 0) {
-    	if (ttmp->ttyp == MAGIC_PORTAL) {
+    	if (ttmp->ttyp == MAGIC_PORTAL || ttmp->ttyp == ONE_WAY_PORTAL) {
     		dotrap(ttmp,0);
     		return FALSE;
 	} else if (ttmp->ttyp == FIRE_TRAP) {

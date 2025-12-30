@@ -686,6 +686,7 @@ selecttrap:
 	    switch (rtrap) {
 	     case S_PRESSING_TRAP:
 	     case MAGIC_PORTAL:
+	     case ONE_WAY_PORTAL:
 			goto selecttrap;
 			break;
 	     case NUPESELL_TRAP:

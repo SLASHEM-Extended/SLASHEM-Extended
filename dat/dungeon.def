@@ -377,10 +377,22 @@ DESCRIPTION:    mazelike
 LEVEL:          "spiders" "S" @ (1, 0) 20
 
 ### The Sunless Sea ###
-DUNGEON:        "The Sunless Sea" "W" (1, 0)
+DUNGEON:        "The Sunless Sea" "W" (2, 0)
 ALIGNMENT:      chaotic
 DESCRIPTION:    mazelike
 LEVEL:          "sea" "S" @ (1, 0) 20
+BRANCH:	    "Jefferson Memorial" @ (2, 0) down -4
+
+### Jefferson Memorial ###
+DUNGEON:        "Jefferson Memorial" "I" (5, 0)
+DESCRIPTION:    mazelike
+ALIGNMENT:      unaligned
+ENTRY:          2
+LEVEL:          "jfmai" "none" @ (1, 0)
+LEVEL:          "jfmid" "none" @ (2, 0)
+LEVEL:          "jfsub" "none" @ (3, 0)
+LEVEL:          "jftfa" "none" @ (4, 0)
+LEVEL:          "jftfb" "none" @ (5, 0)
 
 ### The Temple of Moloch ###
 DUNGEON:        "The Temple of Moloch" "W" (1, 0)

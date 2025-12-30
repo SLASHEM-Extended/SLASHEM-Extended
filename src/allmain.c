@@ -4075,6 +4075,7 @@ nyssaraend:
 		if ((TrapwarpingBug || u.uprops[TRAPWARPING].extrinsic || have_trapwarpstone() || (uarmu && uarmu->oartifact == ART_COVER_THE_SEXY_BUTT) || (uarm && uarm->oartifact == ART_EVERYTHING_COMES_WITH_A_CO) ) && !rn2(100)) {
 			for(ttmp = ftrap; ttmp; ttmp = ttmp->ntrap) {
 				if (ttmp->ttyp == MAGIC_PORTAL) continue;
+				if (ttmp->ttyp == ONE_WAY_PORTAL) continue;
 				if (rn2(100)) continue;
 				int cc = ttmp->tx;
 				int dd = ttmp->ty;
@@ -13043,6 +13044,7 @@ newbossB:
 
 					hussytraptype = rnd(TRAPNUM-1);
 					if (hussytraptype == MAGIC_PORTAL) hussytraptype = ROCKTRAP;
+					if (hussytraptype == ONE_WAY_PORTAL) hussytraptype = ROCKTRAP;
 					if (hussytraptype == WISHING_TRAP) hussytraptype = BLINDNESS_TRAP;
 					if (hussytraptype == S_PRESSING_TRAP) hussytraptype = ROCKTRAP;
 					if (In_sokoban(&u.uz) && rn2(10) && (hussytraptype == HOLE || hussytraptype == TRAPDOOR || hussytraptype == SHAFT_TRAP || hussytraptype == CURRENT_SHAFT || hussytraptype == PIT || hussytraptype == SPIKED_PIT || hussytraptype == GIANT_CHASM || hussytraptype == SHIT_PIT || hussytraptype == MANA_PIT || hussytraptype == ANOXIC_PIT || hussytraptype == HYPOXIC_PIT || hussytraptype == ACID_PIT)) hussytraptype = ROCKTRAP;
