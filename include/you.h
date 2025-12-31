@@ -705,6 +705,7 @@ struct you {
 	int emynluincomplete;
 	int minotaurmazecomplete;
 	int katiaremoved;
+	int jeffersoncomplete;
 	int sewerplantcomplete;
 	int gammacavescomplete;
 	int bofhremoved;
@@ -730,6 +731,20 @@ struct you {
 	boolean greencrossopen;
 
 	boolean enclaveactive;	/* if true, enclave spawners will spawn enclave soldiers and dissipate, and MS_ENCLAVE also generally spawn more often */
+	boolean intakewallopened; /* to open up the path that got previously blocked */
+
+	int jeffersonquestvar;	/* for waters of life quest: track where the player is in the quest */
+	/* 0 = not been to the memorial yet
+	 * 1 = entered memorial, need to go to the control room to meet dad
+	 * 2 = received task to turn on the flood control pumps, need to get to the pump controls in the sub basement
+	 * 3 = flood control pumps on, need to return to the control room and talk to dad
+	 * 4 = received fuses, need to get to the fuse box in the sub basement
+	 * 5 = repaired the fuse box, need to boot up the mainframe in the sub basement
+	 * 6 = turned the mainframe on, need to drain the intake pipes in the maintenance area
+	 * 7 = standing at the maintenance entrance, need to enter to get to the valve
+	 * 8 = intake pipes drained, need to get back to the control room. The Enclave activates at this point, i.e. u.enclaveactive is set to TRUE!
+	 * 9 = dad and janice dead, need to escape via taffeta tunnel
+	 * 10 = escaped; quest complete! */
 
 	boolean prematuresubquest;
 	boolean prematureyendortower;

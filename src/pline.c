@@ -339,6 +339,59 @@ pline VA_DECL(const char *, line)
                 } /* endif old piece */
         }  /* endif role_if(PM_PIRATE),etc. */
 
+	/* Fallout has caps; shopkeepers and stuff will also use that term, so no check for direct speech --Amy */
+	  if (In_jefferson(&u.uz) && (strlen(line)<(BUFSZ-5))
+		 &&(!program_state.in_impossible)
+             &&(strlen(line)>9)) {
+                if(strstr(line,"orkmid") )
+                {
+                 line = replace(line,"zorkmids ","caps ", FALSE);
+                 line = replace(line,"Zorkmids ","Caps ", FALSE);
+                 line = replace(line,"zorkmids.","caps.", FALSE);
+                 line = replace(line,"Zorkmids.","Caps.", FALSE);
+                 line = replace(line,"zorkmids,","caps,", FALSE);
+                 line = replace(line,"Zorkmids,","Caps,", FALSE);
+                 line = replace(line,"zorkmids)","caps)", FALSE);
+                 line = replace(line,"Zorkmids)","Caps)", FALSE);
+                 line = replace(line,"zorkmid ","cap ", FALSE);
+                 line = replace(line,"Zorkmid ","Cap ", FALSE);
+                 line = replace(line,"zorkmid.","cap.", FALSE);
+                 line = replace(line,"Zorkmid.","Cap.", FALSE);
+                 line = replace(line,"zorkmid,","cap,", FALSE);
+                 line = replace(line,"Zorkmid,","Cap,", FALSE);
+                 line = replace(line,"zorkmid)","cap)", FALSE);
+                 line = replace(line,"Zorkmid)","Cap)", FALSE);
+                } /* endif orkmid */
+                /* If old coin isn't contained, save some time -CK */
+                if(strstr(line,"old coin") )
+                {
+                 line = replace(line,"gold coins","caps", FALSE);
+                 line = replace(line,"Gold coins","Caps", FALSE);
+                 line = replace(line,"gold coin","caps", FALSE);
+                 line = replace(line,"Gold coin","Caps", FALSE);
+                }
+                /* If old piece isn't contained, save some time -CK */
+                if(strstr(line,"old piece") )
+                {
+                 line = replace(line,"gold pieces.","caps.", FALSE);
+                 line = replace(line,"Gold pieces.","Caps.", FALSE);
+                 line = replace(line,"gold pieces,","caps,", FALSE);
+                 line = replace(line,"Gold pieces,","Caps,", FALSE);
+                 line = replace(line,"gold pieces ","caps ", FALSE);
+                 line = replace(line,"Gold pieces ","Caps ", FALSE);
+                 line = replace(line,"gold pieces","caps", FALSE);
+                 line = replace(line,"Gold pieces","Caps", FALSE);
+                 line = replace(line,"gold piece.","cap.", FALSE);
+                 line = replace(line,"Gold piece.","Cap.", FALSE);
+                 line = replace(line,"gold piece,","cap,", FALSE);
+                 line = replace(line,"Gold piece,","Cap,", FALSE);
+                 line = replace(line,"gold piece ","cap ", FALSE);
+                 line = replace(line,"Gold piece ","Cap ", FALSE);
+                 line = replace(line,"gold piece","cap", FALSE);
+                 line = replace(line,"Gold piece","Cap", FALSE);
+                } /* endif old piece */
+	  } /* endif ZAPM etc. */
+
 	/* ZAPM has buckazoids; shopkeepers and stuff will also use that term, so no check for direct speech --Amy */
 	  if (zapmrename() && (strlen(line)<(BUFSZ-5))
 		 &&(!program_state.in_impossible)

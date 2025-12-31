@@ -40,6 +40,8 @@ RANDOM_PLACES:(40,06),(49,05),(46,10),(30,07)
 RANDOM_MONSTERS: ';',':'
 REGION:(00,00,66,15),unlit,"ordinary"
 STAIR:(05,12),up
+# this branch has two levels now because we can't place the branch on the first one... --Amy
+STAIR:random,down
 BRANCH:(05,12,05,12),(0,0,0,0)
 # the treasure island!
 OBJECT:'(',"chest",(45,6)
@@ -268,16 +270,16 @@ MAP
 8.......}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}                              
 9..}}}}}}}}}}}}}}}}}             FFF                                         
 0}}}}}}}}}}}}}}}                 ...                                         
-1}}}}}}}}}}}}}}}            ....+...+......                                  
-2}}}}}}}}}}}}}}}      ..... .    ...      .                                  
+1}}}}}}}}}}}}}}}            ....+.i.+......                                  
+2}}}}}}}}}}}}}}}      ..... .    .i.      .                                  
 3}}}}}}}}}}}}}}}      .   ...             ... ...                            
 4}}}}}}}}}}}}}}}      .                     . . .                            
 5}}}}}}}}}}}}}}}      .                     ... ......                       
 6}}}}}}}}}}}}}}}      +                              .                       
 7}}}}}}}}}}}}}}}      .                              +                       
-8}}}}}}}}}}}}}}}F...............................   .............             
-9}}}}}}}}}}}}}}}F...............................   .............             
-0}}}}}}}}}}}}}}}F...............................   .............             
+8}}}}}}}}}}}}}}}F...........................B...   .............             
+9}}}}}}}}}}}}}}}F...........................B.ii   .............             
+0}}}}}}}}}}}}}}}F...........................B...   .............             
 ENDMAP
 
 # Dungeon Description
@@ -288,7 +290,12 @@ REGION:(16,10,75,20),unlit,"ordinary"
 NON_DIGGABLE:(00,00,75,20)
 
 # intake valve
-REGION:(32,10,34,12),lit,"questtemp a"
+REGION:(32,10,34,12),lit,"ordinary"
+REGION:(33,11,33,12),lit,"questtemp a"
+
+# for opening the path back up
+REGION:(44,18,46,20),lit,"ordinary"
+REGION:(45,19,46,19),lit,"questtemp b"
 
 STAIR:(61,19),down
 
@@ -324,7 +331,7 @@ MAP
 5                  ..........                     .......                    
 6                                                   ...                      
 7                              ...                  ...               ....   
-8                              ...........................................   
+8                              ...B.......................................   
 9                              ...                  ...               ....   
 0                                                                            
 ENDMAP
@@ -339,6 +346,9 @@ NON_DIGGABLE:(00,00,75,20)
 
 # control room
 REGION:(24,05,24,05),lit,"questtemp a"
+
+# maintenance area entrance
+REGION:(30,17,32,19),lit,"questtemp b"
 
 STAIR:(31,18),up
 STAIR:(54,02),down
@@ -531,6 +541,9 @@ NON_DIGGABLE:(00,00,75,20)
 
 STAIR:(00,09),up
 
+DOOR:closed,(08,09)
+DOOR:closed,(46,04)
+
 MONSTER: '@',"brotherhood knight",(56,17),peaceful,asleep
 MONSTER: '±',random,(54,17),hostile
 MONSTER: 'Z',random,(17,05),hostile
@@ -547,3 +560,590 @@ MONSTER: 'Z',random,(45,18),hostile
 
 # escape route, leads to lower level of sunless sea
 TRAP:"one way portal", (64,17)
+
+MAZE: "hjf01",' '
+FLAGS: noteleport,hardfloor
+
+GEOMETRY:center,center
+#          1         2         3         4         5         6         7
+#0123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+0}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}....}}}}}                      
+1}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}....}}}}}                       
+2}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}.......}}}}}                        
+3}}}}}}}}}}}}}}}}}}}}}}}.......................}}}}}                         
+4}}}}}}}}}}}}}}}}.............................}}}}}                          
+5}}}}}}}.................................}}}}}}}}}                           
+6}}.....................}}}}}}}}}}}}}}}}}}}}}}}}}                            
+7................}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}                             
+8.......}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}                              
+9..}}}}}}}}}}}}}}}}}             FFF                                         
+0}}}}}}}}}}}}}}}                 ...                                         
+1}}}}}}}}}}}}}}}            ....+.i.+......                                  
+2}}}}}}}}}}}}}}}      ..... .    .i.      .                                  
+3}}}}}}}}}}}}}}}      .   ...             ... ...                            
+4}}}}}}}}}}}}}}}      .                     . . .                            
+5}}}}}}}}}}}}}}}      .                     ... ......                       
+6}}}}}}}}}}}}}}}      +                              .                       
+7}}}}}}}}}}}}}}}      .                              +                       
+8}}}}}}}}}}}}}}}F...........................B...................             
+9}}}}}}}}}}}}}}}F...........................B.ii................             
+0}}}}}}}}}}}}}}}F...........................B...................             
+ENDMAP
+
+# Dungeon Description
+REGION:(00,00,75,09),lit,"ordinary"
+REGION:(00,00,15,20),lit,"ordinary"
+REGION:(16,10,75,20),unlit,"ordinary"
+# Non diggable walls
+NON_DIGGABLE:(00,00,75,20)
+
+# intake valve
+REGION:(32,10,34,12),lit,"ordinary"
+
+# for opening the path back up
+REGION:(44,18,46,20),lit,"ordinary"
+
+STAIR:(61,19),down
+STAIR:random,up
+
+MONSTER: 'a',"radroach",(45,14),hostile
+
+DOOR:closed,(21,16)
+DOOR:locked,(31,11)
+DOOR:closed,(35,11)
+DOOR:closed,(52,17)
+
+MAZE: "hjf02",' '
+FLAGS: noteleport,hardfloor
+
+GEOMETRY:center,center
+#          1         2         3         4         5         6         7
+#0123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+0                  ............                ...............               
+1                 ..............         .....+...............               
+2                ................      ...     ..      .    ..               
+3               ....    ..    ....   ...       ..           ..               
+4              ....     BB     ....+..         ..           ..               
+5             ....   ........   ...            ...............               
+6            ....    .      .   ...+..........+...............               
+7            ...     .      .   ...                 ...                      
+8            ...     .      .   ...                 ...                      
+9            .....   ........  ....               .......                    
+0             .....           ....               .........                   
+1              .....         ....           ...  ...........  ...            
+2               .....       ....            .................+...            
+3                ..............             ...  ...........  ...            
+4                 ............                   .........                   
+5                  ..........                     .......                    
+6                                                   ...                      
+7                              ...                  ...               ....   
+8                              ...B.......................................   
+9                              ...                  ...               ....   
+0                                                                            
+ENDMAP
+
+# Dungeon Description
+REGION:(00,00,75,20),lit,"ordinary"
+# Branch stair (entrance)
+BRANCH:(72,18,72,18),(0,0,0,0)
+
+# Non diggable walls
+NON_DIGGABLE:(00,00,75,20)
+
+STAIR:(31,18),up
+STAIR:(54,02),down
+
+TRAP:"enclave spawner", (52,15)
+TRAP:"enclave spawner", (52,06)
+TRAP:"enclave spawner", (40,02)
+TRAP:"enclave spawner", (40,06)
+TRAP:"enclave spawner", (60,00)
+
+MONSTER: 'U',"super mutant",(52,18),hostile
+MONSTER: 'U',"super mutant",(49,12),hostile
+MONSTER: 'U',"super mutant",(57,06),hostile
+MONSTER: 'U',"super mutant",(32,08),hostile
+MONSTER: 'U',"super mutant beast",(22,01),hostile
+MONSTER: 'U',"super mutant beast",(58,00),hostile
+MONSTER: '±',random,(52,12),hostile
+
+DOOR:closed,(34,04)
+DOOR:closed,(34,06)
+DOOR:closed,(60,12)
+DOOR:closed,(45,01)
+DOOR:closed,(45,06)
+
+MAZE: "hjf03",' '
+FLAGS: noteleport,hardfloor
+
+GEOMETRY:center,center
+#          1         2         3         4         5         6         7
+#0123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+0       ........         ...        ...                                      
+1       ........         ...        ...                                      
+2       ........         ...        ...                                      
+3       ........+.......+...        ...                                      
+4       ........         ...        ...                                      
+5       ........         ..............                .. ...c               
+6       ........         ..............                ..+....               
+7                        ..............                .. ...c               
+8                              ...                     ..                    
+9                              ...                     ..  ....              
+0  .......                     ...                     ..+.....              
+1  ....... .......................             ...     ..  ....              
+2  .......+.......................             ..........     .              
+3  ....... .......................             ..........     +              
+4  .......                     ...             ...           ...             
+5                              ...................           ...             
+6                              ...................           ...             
+7                              ...................                           
+8                                     .....                                  
+9                                     .....                                  
+0                                     .....                                  
+ENDMAP
+
+# Dungeon Description
+REGION:(00,00,75,20),lit,"ordinary"
+# Non diggable walls
+NON_DIGGABLE:(00,00,75,20)
+
+TRAP:"enclave spawner", (34,16)
+TRAP:"enclave spawner", (54,07)
+TRAP:"enclave spawner", (36,06)
+TRAP:"enclave spawner", (25,01)
+TRAP:"enclave spawner", (55,13)
+
+MONSTER: 'U',"super mutant",(47,12),hostile
+MONSTER: 'U',"super mutant",(16,12),hostile
+MONSTER: 'U',"super mutant beast",(60,10),hostile
+MONSTER: 'U',"super mutant beast",(36,01),hostile
+MONSTER: '±',random,(31,05),hostile
+
+STAIR:(39,19),up
+STAIR:(36,00),down
+
+DOOR:closed,(15,03)
+DOOR:closed,(23,03)
+DOOR:closed,(09,12)
+DOOR:closed,(56,10)
+DOOR:closed,(56,06)
+DOOR:closed,(61,13)
+
+MAZE: "hjf04",' '
+FLAGS: noteleport,hardfloor
+
+GEOMETRY:center,center      
+#          1         2         3         4         5         6         7
+#0123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+0...               ...                                                       
+1.....             .p.                                                       
+2... .             ...                         .....                         
+3    .              .                          .....                         
+4    .              ....................F........F........    ...            
+5    .              ....................F........F........+......            
+6    .                   FFFFFFF      FFF........F........    ...            
+7    .                   rrrrrrr      .....    .....           .             
+8    .                   .......      .....    .....           .             
+9    .  ........         .......      ...                      .             
+0    .  ........         .......      ...                      .             
+1    ...........         .......      +                        .             
+2       ........           ...        .                        .             
+3       ........           ...        .                        .             
+4             .       .............   .                        .             
+5             .       .............   .                        .             
+6             .....................++..                                      
+7                     .............                                          
+8                                                                            
+9                                                                            
+0                                                                            
+ENDMAP
+
+# Dungeon Description
+REGION:(00,00,75,20),unlit,"ordinary"
+# Non diggable walls
+NON_DIGGABLE:(00,00,75,20)
+
+STAIR:(01,01),up
+STAIR:(62,15),down
+
+MONSTER: 'e',"enclave eyebot",(13,12),hostile
+MONSTER: 'e',"enclave eyebot",(32,16),hostile
+MONSTER: '±',"mark II turret",(33,14),hostile
+MONSTER: '±',"mark II turret",(33,17),hostile
+
+TRAP:"enclave spawner", (25,05)
+TRAP:"enclave spawner", (29,05)
+TRAP:"enclave spawner", (37,05)
+TRAP:"enclave spawner", (38,05)
+TRAP:"enclave spawner", (62,05)
+TRAP:"enclave spawner", (63,05)
+TRAP:"nupesell", (39,06)
+TRAP:"nupesell", (37,06)
+TRAP:"nupesell", (38,06)
+TRAP:"nupesell", (39,04)
+TRAP:"nupesell", (39,05)
+TRAP:"nupesell", (24,07)
+TRAP:"nupesell", (25,07)
+TRAP:"nupesell", (26,07)
+TRAP:"nupesell", (27,07)
+TRAP:"nupesell", (28,07)
+TRAP:"nupesell", (29,07)
+TRAP:"nupesell", (30,07)
+
+DOOR:locked,(34,16)
+DOOR:locked,(35,16)
+DOOR:locked,(37,11)
+DOOR:locked,(57,05)
+
+MAZE: "hjf05",' '
+FLAGS: noteleport,hardfloor
+
+GEOMETRY:center,center
+#          1         2         3         4         5         6         7
+#0123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+0                               .....                                        
+1                               .....         ...                            
+2                               .....         ...                            
+3                                 .           ...                            
+4                                 .            +                             
+5               ....  ......      .            .                             
+6               ....FF......FF.......          .                             
+7   .....    ....FF......FF......................                            
+8   .....    .. ....FF......FF.......        ....                            
+9........+..... ....  ......                 ....                            
+0   .....                                    ....                            
+1   .....                                    ....                            
+2                                            ....                            
+3                                            ....                            
+4                                            ....                            
+5                                            ....                            
+6                                            ....    ......     ...          
+7                                            ...........F..........          
+8                                            ....    ......     ...          
+9                                                                            
+0                                                                            
+ENDMAP
+
+# Dungeon Description
+REGION:(00,00,75,20),unlit,"ordinary"
+# Non diggable walls
+NON_DIGGABLE:(00,00,75,20)
+
+STAIR:(00,09),up
+STAIR:(64,17),down
+
+DOOR:closed,(08,09)
+DOOR:closed,(46,04)
+
+MONSTER: '@',"brotherhood knight",(56,17),peaceful,asleep
+MONSTER: '±',random,(54,17),hostile
+MONSTER: 'Z',random,(17,05),hostile
+MONSTER: 'Z',random,(17,09),hostile
+MONSTER: 'Z',random,(22,07),hostile
+MONSTER: 'Z',random,(33,07),hostile
+MONSTER: 'Z',random,(32,01),hostile
+MONSTER: 'Z',random,(34,01),hostile
+MONSTER: 'Z',random,(45,13),hostile
+MONSTER: 'Z',random,(46,13),hostile
+MONSTER: 'Z',random,(45,14),hostile
+MONSTER: 'Z',random,(46,14),hostile
+MONSTER: 'Z',random,(45,18),hostile
+
+MAZE: "ejf01",' '
+FLAGS: noteleport,hardfloor
+
+GEOMETRY:center,center
+#          1         2         3         4         5         6         7
+#0123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+0}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}....}}}}}                      
+1}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}....}}}}}                       
+2}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}.......}}}}}                        
+3}}}}}}}}}}}}}}}}}}}}}}}.......................}}}}}                         
+4}}}}}}}}}}}}}}}}.............................}}}}}                          
+5}}}}}}}.................................}}}}}}}}}                           
+6}}.....................}}}}}}}}}}}}}}}}}}}}}}}}}                            
+7................}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}                             
+8.......}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}                              
+9..}}}}}}}}}}}}}}}}}             FFF                                         
+0}}}}}}}}}}}}}}}                 ...                                         
+1}}}}}}}}}}}}}}}            ....+.i.+......                                  
+2}}}}}}}}}}}}}}}      ..... .    .i.      .                                  
+3}}}}}}}}}}}}}}}      .   ...             ... ...                            
+4}}}}}}}}}}}}}}}      .                     . . .                            
+5}}}}}}}}}}}}}}}      .                     ... ......                       
+6}}}}}}}}}}}}}}}      +                              .                       
+7}}}}}}}}}}}}}}}      .                              +                       
+8}}}}}}}}}}}}}}}F...........................B...................             
+9}}}}}}}}}}}}}}}F...........................B.ii................             
+0}}}}}}}}}}}}}}}F...........................B...................             
+ENDMAP
+
+# Dungeon Description
+REGION:(00,00,75,09),lit,"ordinary"
+REGION:(00,00,15,20),lit,"ordinary"
+REGION:(16,10,75,20),unlit,"ordinary"
+# Non diggable walls
+NON_DIGGABLE:(00,00,75,20)
+
+# intake valve
+REGION:(32,10,34,12),lit,"ordinary"
+
+# for opening the path back up
+REGION:(44,18,46,20),lit,"ordinary"
+
+STAIR:(61,19),down
+STAIR:random,up
+
+MONSTER: 'a',"radroach",(45,14),hostile
+
+DOOR:closed,(21,16)
+DOOR:locked,(31,11)
+DOOR:closed,(35,11)
+DOOR:closed,(52,17)
+
+MAZE: "ejf02",' '
+FLAGS: noteleport,hardfloor
+
+GEOMETRY:center,center
+#          1         2         3         4         5         6         7
+#0123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+0                  ............                ...............               
+1                 ..............         .....+...............               
+2                ................      ...     ..      .    ..               
+3               ....    ..    ....   ...       ..           ..               
+4              ....     BB     ....+..         ..           ..               
+5             ....   ........   ...            ...............               
+6            ....    .      .   ...+..........+...............               
+7            ...     .      .   ...                 ...                      
+8            ...     .      .   ...                 ...                      
+9            .....   ........  ....               .......                    
+0             .....           ....               .........                   
+1              .....         ....           ...  ...........  ...            
+2               .....       ....            .................+...            
+3                ..............             ...  ...........  ...            
+4                 ............                   .........                   
+5                  ..........                     .......                    
+6                                                   ...                      
+7                              ...                  ...               ....   
+8                              ...B.......................................   
+9                              ...                  ...               ....   
+0                                                                            
+ENDMAP
+
+# Dungeon Description
+REGION:(00,00,75,20),lit,"ordinary"
+# Branch stair (entrance)
+BRANCH:(72,18,72,18),(0,0,0,0)
+
+# Non diggable walls
+NON_DIGGABLE:(00,00,75,20)
+
+STAIR:(31,18),up
+STAIR:(54,02),down
+
+TRAP:"enclave spawner", (52,15)
+TRAP:"enclave spawner", (52,06)
+TRAP:"enclave spawner", (40,02)
+TRAP:"enclave spawner", (40,06)
+TRAP:"enclave spawner", (60,00)
+
+MONSTER: 'U',"super mutant",(52,18),hostile
+MONSTER: 'U',"super mutant",(49,12),hostile
+MONSTER: 'U',"super mutant",(57,06),hostile
+MONSTER: 'U',"super mutant",(32,08),hostile
+MONSTER: 'U',random,(22,01),hostile
+MONSTER: 'U',random,(58,00),hostile
+MONSTER: '±',random,(52,12),hostile
+
+DOOR:closed,(34,04)
+DOOR:closed,(34,06)
+DOOR:closed,(60,12)
+DOOR:closed,(45,01)
+DOOR:closed,(45,06)
+
+MAZE: "ejf03",' '
+FLAGS: noteleport,hardfloor
+
+GEOMETRY:center,center
+#          1         2         3         4         5         6         7
+#0123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+0       ........         ...        ...                                      
+1       ........         ...        ...                                      
+2       ........         ...        ...                                      
+3       ........+.......+...        ...                                      
+4       ........         ...        ...                                      
+5       ........         ..............                .. ...c               
+6       ........         ..............                ..+....               
+7                        ..............                .. ...c               
+8                              ...                     ..                    
+9                              ...                     ..  ....              
+0  .......                     ...                     ..+.....              
+1  ....... .......................             ...     ..  ....              
+2  .......+.......................             ..........     .              
+3  ....... .......................             ..........     +              
+4  .......                     ...             ...           ...             
+5                              ...................           ...             
+6                              ...................           ...             
+7                              ...................                           
+8                                     .....                                  
+9                                     .....                                  
+0                                     .....                                  
+ENDMAP
+
+# Dungeon Description
+REGION:(00,00,75,20),lit,"ordinary"
+# Non diggable walls
+NON_DIGGABLE:(00,00,75,20)
+
+TRAP:"enclave spawner", (34,16)
+TRAP:"enclave spawner", (54,07)
+TRAP:"enclave spawner", (36,06)
+TRAP:"enclave spawner", (25,01)
+TRAP:"enclave spawner", (55,13)
+
+MONSTER: 'U',"super mutant",(47,12),hostile
+MONSTER: 'U',"super mutant",(16,12),hostile
+MONSTER: 'U',random,(60,10),hostile
+MONSTER: 'U',random,(36,01),hostile
+MONSTER: '±',random,(31,05),hostile
+
+STAIR:(39,19),up
+STAIR:(36,00),down
+
+DOOR:closed,(15,03)
+DOOR:closed,(23,03)
+DOOR:closed,(09,12)
+DOOR:closed,(56,10)
+DOOR:closed,(56,06)
+DOOR:closed,(61,13)
+
+MAZE: "ejf04",' '
+FLAGS: noteleport,hardfloor
+
+GEOMETRY:center,center      
+#          1         2         3         4         5         6         7
+#0123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+0...               ...                                                       
+1.....             .p.                                                       
+2... .             ...                         .....                         
+3    .              .                          .....                         
+4    .              ....................F........F........    ...            
+5    .              ....................F........F........+......            
+6    .                   FFFFFFF      FFF........F........    ...            
+7    .                   rrrrrrr      .....    .....           .             
+8    .                   .......      .....    .....           .             
+9    .  ........         .......      ...                      .             
+0    .  ........         .......      ...                      .             
+1    ...........         .......      +                        .             
+2       ........           ...        .                        .             
+3       ........           ...        .                        .             
+4             .       .............   .                        .             
+5             .       .............   .                        .             
+6             .....................++..                                      
+7                     .............                                          
+8                                                                            
+9                                                                            
+0                                                                            
+ENDMAP
+
+# Dungeon Description
+REGION:(00,00,75,20),unlit,"ordinary"
+# Non diggable walls
+NON_DIGGABLE:(00,00,75,20)
+
+STAIR:(01,01),up
+STAIR:(62,15),down
+
+MONSTER: 'e',"enclave eyebot",(13,12),hostile
+MONSTER: 'e',"enclave eyebot",(32,16),hostile
+MONSTER: '±',"mark II turret",(33,14),hostile
+MONSTER: '±',"mark II turret",(33,17),hostile
+
+TRAP:"enclave spawner", (25,05)
+TRAP:"enclave spawner", (29,05)
+TRAP:"enclave spawner", (37,05)
+TRAP:"enclave spawner", (38,05)
+TRAP:"enclave spawner", (62,05)
+TRAP:"enclave spawner", (63,05)
+TRAP:"nupesell", (39,06)
+TRAP:"nupesell", (37,06)
+TRAP:"nupesell", (38,06)
+TRAP:"nupesell", (39,04)
+TRAP:"nupesell", (39,05)
+TRAP:"nupesell", (24,07)
+TRAP:"nupesell", (25,07)
+TRAP:"nupesell", (26,07)
+TRAP:"nupesell", (27,07)
+TRAP:"nupesell", (28,07)
+TRAP:"nupesell", (29,07)
+TRAP:"nupesell", (30,07)
+
+DOOR:locked,(34,16)
+DOOR:locked,(35,16)
+DOOR:locked,(37,11)
+DOOR:locked,(57,05)
+
+MAZE: "ejf05",' '
+FLAGS: noteleport,hardfloor
+
+GEOMETRY:center,center
+#          1         2         3         4         5         6         7
+#0123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+0                               .....                                        
+1                               .....         ...                            
+2                               .....         ...                            
+3                                 .           ...                            
+4                                 .            +                             
+5               ....  ......      .            .                             
+6               ....FF......FF.......          .                             
+7   .....    ....FF......FF......................                            
+8   .....    .. ....FF......FF.......        ....                            
+9........+..... ....  ......                 ....                            
+0   .....                                    ....                            
+1   .....                                    ....                            
+2                                            ....                            
+3                                            ....                            
+4                                            ....                            
+5                                            ....                            
+6                                            ....    ......     ...          
+7                                            ...........F..........          
+8                                            ....    ......     ...          
+9                                                                            
+0                                                                            
+ENDMAP
+
+# Dungeon Description
+REGION:(00,00,75,20),unlit,"ordinary"
+# Non diggable walls
+NON_DIGGABLE:(00,00,75,20)
+
+STAIR:(00,09),up
+STAIR:(64,17),down
+
+DOOR:closed,(08,09)
+DOOR:closed,(46,04)
+
+MONSTER: '@',"brotherhood knight",(56,17),peaceful,asleep
+MONSTER: '±',random,(54,17),hostile
+MONSTER: 'Z',random,(17,05),hostile
+MONSTER: 'Z',random,(17,09),hostile
+MONSTER: 'Z',random,(22,07),hostile
+MONSTER: 'Z',random,(33,07),hostile
+MONSTER: 'Z',random,(32,01),hostile
+MONSTER: 'Z',random,(34,01),hostile
+MONSTER: 'Z',random,(45,13),hostile
+MONSTER: 'Z',random,(46,13),hostile
+MONSTER: 'Z',random,(45,14),hostile
+MONSTER: 'Z',random,(46,14),hostile
+MONSTER: 'Z',random,(45,18),hostile
+

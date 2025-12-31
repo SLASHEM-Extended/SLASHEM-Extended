@@ -1122,6 +1122,9 @@ long amount;
 	if (rublerename()) {
 		if (amount == 1L) return "ruble";
 		else return "rubles";
+	} else if (In_jefferson(&u.uz)) {
+		if (amount == 1L) return "cap";
+		else return "caps";
 	} else if (zapmrename()) {
 		if (amount == 1L) return "buckazoid";
 		else return "buckazoids";

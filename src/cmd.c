@@ -13502,6 +13502,9 @@ int final;
 	if (achieveX.killed_katia) {
 		you_have_X("killed Erogenous Katia");
 	}
+	if (achieveX.jefferson_done) {
+		you_have_X("escaped from the Enclave via Taffeta Tunnel");
+	}
 	if (achieveX.killed_witchking) {
 		you_have_X("killed the Witch-King of Angmar");
 	}
@@ -14293,6 +14296,9 @@ int final;
 	}
 	if (achieveX.killed_katia) {
 		dump("", "  You killed Erogenous Katia");
+	}
+	if (achieveX.jefferson_done) {
+		dump("", "  You escaped from the Enclave via Taffeta Tunnel");
 	}
 	if (achieveX.killed_witchking) {
 		dump("", "  You killed the Witch-King of Angmar");

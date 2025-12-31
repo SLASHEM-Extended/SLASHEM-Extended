@@ -80,6 +80,11 @@ E struct dgn_topology {		/* special dungeon levels for speed */
     d_level	d_fire_level;
     d_level	d_air_level;
     d_level	d_astral_level;
+    d_level	d_jefferson1_level;
+    d_level	d_jefferson2_level;
+    d_level	d_jefferson3_level;
+    d_level	d_jefferson4_level;
+    d_level	d_jefferson5_level;
     xchar	d_tower_dnum;
     xchar	d_sokoban_dnum;
     xchar	d_mines_dnum, d_quest_dnum;
@@ -165,6 +170,11 @@ E struct dgn_topology {		/* special dungeon levels for speed */
 #define rogue_level		(dungeon_topology.d_rogue_level)
 #endif
 #define medusa_level		(dungeon_topology.d_medusa_level)
+#define jefferson1_level		(dungeon_topology.d_jefferson1_level)
+#define jefferson2_level		(dungeon_topology.d_jefferson2_level)
+#define jefferson3_level		(dungeon_topology.d_jefferson3_level)
+#define jefferson4_level		(dungeon_topology.d_jefferson4_level)
+#define jefferson5_level		(dungeon_topology.d_jefferson5_level)
 #define elderpriest_level	(dungeon_topology.d_elderpriest_level)
 #define stronghold_level	(dungeon_topology.d_stronghold_level)
 #define valley_level		(dungeon_topology.d_valley_level)
@@ -722,6 +732,7 @@ struct u_achieveX {
 	  Bitfield(completed_minusworld,1); /* You completed the Minus World */
 	  Bitfield(killed_vera,1);	/* You killed Vera */
 	  Bitfield(killed_elaine,1);	/* You killed Elaine */
+	  Bitfield(jefferson_done,1);	/* You completed the Jefferson Memorial questline */
 
 };
 

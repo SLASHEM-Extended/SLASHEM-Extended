@@ -2397,10 +2397,18 @@ newbossING:
 
 		/* if these are generated when the enclave is already active, spawn enclave soldiers immediately
 		 * in order to make sure that allmain.c doesn't try to spawn soldiers again, set a launch_otyp
-		 * the code in allmain.c will then check for that and just dissipate the trap if the launch_otyp is set --Amy */
+		 * the code in allmain.c will then check for that and just dissipate the trap if the launch_otyp is set --Amy
+		 * in the Jefferson Memorial, they will spawn awake, otherwise they're likely to be asleep */
 		if (u.enclaveactive) {
-			(void) makemon(specialtensmon(442), ttmp->tx, ttmp->ty, MM_ADJACENTOK|MM_ANGRY|MM_LIKELYSLEEP); /* MS_ENCLAVE */
-			if (!rn2(10)) (void) makemon(specialtensmon(406), ttmp->tx, ttmp->ty, MM_ADJACENTOK|MM_ANGRY|MM_LIKELYSLEEP); /* MS_BOT */
+
+			if (In_jefferson(&u.uz)) {
+				(void) makemon(specialtensmon(442), ttmp->tx, ttmp->ty, MM_ADJACENTOK|MM_ANGRY); /* MS_ENCLAVE */
+				if (!rn2(10)) (void) makemon(specialtensmon(406), ttmp->tx, ttmp->ty, MM_ADJACENTOK|MM_ANGRY); /* MS_BOT */
+			} else {
+				(void) makemon(specialtensmon(442), ttmp->tx, ttmp->ty, MM_ADJACENTOK|MM_ANGRY|MM_LIKELYSLEEP); /* MS_ENCLAVE */
+				if (!rn2(10)) (void) makemon(specialtensmon(406), ttmp->tx, ttmp->ty, MM_ADJACENTOK|MM_ANGRY|MM_LIKELYSLEEP); /* MS_BOT */
+			}
+
 			ttmp->launch_otyp = 666;
 		}
 
@@ -10487,7 +10495,57 @@ madnesseffect:
 		break;
 	    }
 	    case ONE_WAY_PORTAL:
+	    {
+		d_level dtmp;
+
+		You("activated a one-way portal!");
+
 		/* portal that leads to a specific place; needs to be special-cased for every single one --Amy */
+
+		if (Is_jefferson_taf2(&u.uz)) {
+			dtmp.dnum = dname_to_dnum("The Sunless Sea");
+			dtmp.dlevel = 2;
+			schedule_goto(&dtmp, FALSE, FALSE, 0, (char *)0, (char *)0);
+
+			if (u.jeffersonquestvar == 9) {
+				int expgain = 20;
+				u.jeffersonquestvar = 10;
+
+				pline("Exhausted, you and Doctor Madison Li reach the Citadel. Li magically manages to get the gates to open, and Elder Lyons gives you permission to get power armor training.");
+
+				if (!u.powerarmortraining) {
+					u.powerarmortraining = TRUE;
+					pline("Paladin Gunny isn't very delighted to have to train you, but he still agrees to show you how to use power armor. Congratulations! You've received power armor training and are now capable of wearing all suits of power armor and the accompanying helmets!");
+				}
+
+				/* gain 20x 5k EXP: we're doing it this way to ensure you can gain more than one XL from this reward --Amy */
+				while (expgain > 0) {
+					expgain--;
+					more_experienced(5000, 0);
+					newexplevel();
+				}
+
+#ifdef RECORD_ACHIEVE
+
+				if (!achieveX.jefferson_done) {
+
+					achieveX.jefferson_done = TRUE;
+					trophy_get();
+				}
+
+#ifdef LIVELOGFILE
+				livelog_achieve_update();
+				livelog_report_trophy("escaped the Enclave via Taffeta Tunnel");
+#endif
+#endif
+				pline("The Brotherhood of Steel scientists tell you that they need to conduct a bunch of research before a plan can be formulated to take the purifier back from the Enclave. So for now, that particular storyline ends here.");
+				pline("If you want to experience the quest you've just completed with full HD graphics and sound, please buy Fallout 3, a game created by Bethesda Softworks(TM). It contains plenty of additional missions in the Capital Wasteland, too, including the exciting conclusion of the Lone Wanderer's attempt to activate Project Purity!");
+
+			}
+
+			break;
+		}
+	    }
 
 		/* catchall just in case one appears in a place where it shouldn't */
 		pline("It seems that this one-way portal doesn't lead anywhere.");
@@ -10501,6 +10559,7 @@ madnesseffect:
 		seetrap(trap);
 
 		if (u.stairscumslowing && !(u.uhave.amulet && In_endgame(&u.uz))) {
+			pline("You trigger a magic portal.");
 			pline("This portal is currently deactivated and will become active in %d turn%s.", u.stairscumslowing, u.stairscumslowing > 1 ? "s" : "");
 			break;
 		}

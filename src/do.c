@@ -1812,7 +1812,13 @@ dodown()
 		return(0);
 	}
 
-	if (Role_if(PM_GNOME) && on_level(&mineend_level,&u.uz)) {
+	if (Is_jefferson_sub(&u.uz) && stairs_down && !(u.ux == sstairs.sx && u.uy == sstairs.sy) && (u.jeffersonquestvar < 9) ) {
+		pline("You can't access this area yet.");
+		return(0);
+	}
+
+	/* old gnome role code, which isn't actually used because gnome is a race now; nope, we won't re-enable it --Amy */
+	if (Role_if(PM_GNOME) && stairs_down && on_level(&mineend_level,&u.uz)) {
 		pline("The staircase is filled with tons of rubble and debris.");
 		pline("Poor Ruggo!");
 		return (0);
@@ -2058,6 +2064,16 @@ doup()
 
 	if ((iszapem && !(u.zapemescape)) && u.ux == sstairs.sx && u.uy == sstairs.sy && In_spacebase(&u.uz) && (dunlev(&u.uz) == 1) && !u.sewerplantcomplete) {
 		pline("Since you've not finished the Sewer Plant yet, you cannot leave the Space Base.");
+		return(0);
+	}
+
+	if (Is_jefferson_mid(&u.uz) && u.ux == sstairs.sx && u.uy == sstairs.sy && (u.jeffersonquestvar >= 8 && u.jeffersonquestvar < 10) ) {
+		pline("Someone has locked the exit.");
+		return(0);
+	}
+
+	if (Is_jefferson_mid(&u.uz) && !(u.ux == sstairs.sx && u.uy == sstairs.sy) && (u.jeffersonquestvar < 7) ) {
+		pline("You can't access this area yet.");
 		return(0);
 	}
 

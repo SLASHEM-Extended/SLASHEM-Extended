@@ -4166,6 +4166,308 @@ register boolean newlev;
 		case CENTRALTEDIUM:
 			pline(FunnyHallu ? "It's the Straight Road! In order to get through this room, you need to stay on the road at all times and be fast or the Straight Road will weaken and ultimately be destroyed!" : "You encounter a highway to the left.");
 		    break;
+		case QUESTTEMPROOMA:
+			if (wizard) pline("quest temp room A entered");
+			if ((u.jeffersonquestvar == 1) && Is_jefferson_mid(&u.uz)) {
+				u.jeffersonquestvar = 2;
+				You("meet your dad in the control room. He is eager to get to work.");
+				Your("dad speaks to you: 'My %s, it is good that you have come here. It'll be nice to work alongside you.'", flags.female ? "daughter" : "son");
+				pline("'Don't you understand? This is the meaning of the Waters of Life! Remember the bible, Revelation 21, verse 6? I am Alpha and Omega, the beginning and the end. I shall give unto him who is athirst from the Waters of Life freely.'");
+				pline("'There is a lot of work to do in order to make the great purifier operational. First, you need to turn on the flood control pumps. You can find them in the sub basement, head northeast from the entrance and then enter the first door to your east.'");
+
+				winid tmpwin;
+				anything any;
+				menu_item *selected;
+				int n;
+
+				any.a_void = 0;         /* zero out all bits */
+				tmpwin = create_nhwindow(NHW_MENU);
+				start_menu(tmpwin);
+				any.a_int = 1;
+				add_menu(tmpwin, NO_GLYPH, &any , 'a', 0, ATR_NONE, "Alright, I'm on my way.", MENU_UNSELECTED);
+				any.a_int = 2;
+				add_menu(tmpwin, NO_GLYPH, &any , 'b', 0, ATR_NONE, "Why do I have to do that?", MENU_UNSELECTED);
+
+				end_menu(tmpwin, "Your answer:");
+				n = select_menu(tmpwin, PICK_ONE, &selected);
+				destroy_nhwindow(tmpwin);
+
+				if (n > 0) {
+					switch (selected[0].item.a_int) {
+						case 1:
+							pline("Your dad says 'Alright, my %s, that's the spirit! Once you've turned on the pumps, contact me via the intercom and we'll discuss our next step.'", flags.female ? "daughter" : "son");
+							break;
+						case 2:
+							pline("Your dad says 'Sorry, but all the other scientists have to perform specific tasks once the pumps are running. We can't have them leave their posts. My %s, I want you to understand this: our project is very important for the Capital Wasteland, as we'll be able to rescue thousands of lives by providing fresh, clean water to everyone!'", flags.female ? "daughter" : "son");
+							pline("Please, go to the sub basement and turn on the flood pumps. You can then contact me via the intercom and I'll tell you what we have to do next.");
+							break;
+					}
+				} else pline("Your dad says 'Well, I take that as a 'yes'. Make sure you contact me via the intercom once you've turned on the pumps.'");
+			}
+
+			if ((u.jeffersonquestvar == 2) && Is_jefferson_sub(&u.uz)) {
+				u.jeffersonquestvar = 3;
+				You("pull the latch, and can hear the flood control pumps coming to life. They seem to be working fine.");
+				pline("Remembering the words of your dad, you decide to use the nearby intercom.");
+				pline("Your dad speaks 'Well done, my %s. Now, Garza just told me that the auxiliary tank has no power; it seems that the power to that part of the facility has been cut. Quickly, come back to the control room and I'll give you the fuses you need.'", flags.female ? "daughter" : "son");
+			}
+
+			if ((u.jeffersonquestvar == 8) && Is_jefferson_mid(&u.uz)) {
+				u.jeffersonquestvar = 9;
+				pline("As you rush up the stairs to the control room, you see your dad and Janice in there, as well as a man in a beige uniform and two troopers in black armor. The troopers have their laser guns in hand.");
+				pline("Your attempts to open the airlock aren't successful. Doctor Li is standing outside, and bewildered, she asks you: 'What's that guy doing in there?!'");
+				pline("The man in the uniform speaks to your dad: 'Hereby, the Enclave seizes control of this facility. Will the person responsible for this project please step forward.'");
+				pline("Your dad answers, 'I'm afraid that this is a private project, outside of the Enclave's responsibility. So I have to ask you to leave at once.'");
+				pline("But the other man repeats, 'I said, this facility is now under control of the Enclave. You will hand over all documents and help the Enclave's scientists to get the project up and running.'");
+				pline("As your dad tries to interrupt him again, the man asks: 'Am I right in assuming that you are responsible here?' Your dad confirms that yes, he is.");
+				pline("When the man presses your dad to step down and give control of the facility to the Enclave, your dad says 'Colonel... You're a Colonel, right? I'm afraid that this project won't work. The systems are offline, you won't be able to purify any water with these machines.', but the Colonel shouts: 'I'm running out of patience! Step down NOW and give us full control over this facility!'");
+				pline("Your dad responds by saying, 'I assure you that you're just wasting your time here! We weren't able to confirm our test results...', when the Colonel suddenly pulls a 9mm pistol and shoots Janice in the head. Doctor Li, who has to watch the spectacle via the airlock window, screams 'AIIIIIIIIEEEEEAAAAARGHHHHH!!!'");
+				pline("The Colonel shouts 'I suggest you cooperate at once in order to prevent any more incidents! Did I make myself clear?' Shocked, your dad pants, 'Yes... sir. You don't need to exert any more violence. Just give me a few minutes to turn the systems on.'");
+				pline("As the Colonel grows more and more impatient, suddenly there's an explosion in the chamber. Immediately, the alarm starts sounding, and your Geiger counter tells you that radiation is leaking from somewhere.");
+				pline("Your dad stumbles up to the airlock, looks in your %s and bellows: 'Run. Quickly! Run!' Then he slumps over, and with his dying breath, he screams 'Aaaaaahhhhhhrrrrrrrrgggggggghhhhhhhhhhh...'", body_part(FACE));
+				pline("Meanwhile, the Colonel has jammed a mysterious syringe into his lower arm, but now he also drops to the ground. The only thing he can utter is a defiant 'Nah!', then he also lies still. You assume that he and everyone else in the chamber is dead.");
+				pline("Suddenly, Doctor Li turns to you and screams: 'James... he's gone. We gotta get out of here!'");
+
+				winid tmpwin;
+				anything any;
+				menu_item *selected;
+				int n;
+
+				any.a_void = 0;         /* zero out all bits */
+				tmpwin = create_nhwindow(NHW_MENU);
+				start_menu(tmpwin);
+				any.a_int = 1;
+				add_menu(tmpwin, NO_GLYPH, &any , 'a', 0, ATR_NONE, "I'm not leaving my dad in there!", MENU_UNSELECTED);
+				any.a_int = 2;
+				add_menu(tmpwin, NO_GLYPH, &any , 'b', 0, ATR_NONE, "What the hell just happened?", MENU_UNSELECTED);
+
+				end_menu(tmpwin, "Your answer:");
+				n = select_menu(tmpwin, PICK_ONE, &selected);
+				destroy_nhwindow(tmpwin);
+
+				if (n > 0) {
+					switch (selected[0].item.a_int) {
+						case 1:
+							pline("Doctor Li remarks: 'No one can do anything for him now. The amount of radiation in that chamber is lethal. We need to escape from here. There's an old tunnel, accessed by a hatch in the northern part of the sub basement. We can escape that way... if we can make it.'");
+							break;
+						case 2:
+							pline("Doctor Li explains: 'Your dad caused a radiation spike to ensure that the Enclave won't get the purifier, and to buy us some time. Now we have to make sure his sacrifice wasn't in vain. There's an old tunnel, accessed by a hatch in the northern part of the sub basement. We can escape that way... if we can make it.'");
+							break;
+					}
+				} else pline("Doctor Li says: 'There's an old tunnel, accessed by a hatch in the northern part of the sub basement. We can escape that way... if we can make it.'");
+
+				You("wonder what she means with 'if' we can make it. Doctor Li responds: 'Taffeta Tunnel hasn't been used in many years. I have no idea who - or what - is in there. But I know that it leads to the Citadel. We'll be safe once we reach it.'");
+			}
+
+			if ((u.jeffersonquestvar == 3) && Is_jefferson_mid(&u.uz)) {
+				u.jeffersonquestvar = 4;
+				int dadspeech = 0; /* neutral */
+				if (u.ualign.record < 0) dadspeech = -1; /* chaotic */
+				else if (u.ualign.record > 0) dadspeech = 1; /* lawful */
+				else {
+					if (u.ualign.type == A_CHAOTIC) dadspeech = -1;
+					else if (u.ualign.type == A_LAWFUL) dadspeech = 1;
+					/* it is not a mistake that the true neutral speech can only be heard by neutral characters with an alignment record of exactly 0 --Amy */
+				}
+
+				You("once again meet your dad in the control room. %s", (dadspeech == -1) ? "He seems concerned, and you can see a frown on his handsome face." : (dadspeech == 1) ? "He's looking happy, making you feel proud." : "He seems to be all business.");
+
+				if (dadspeech == -1) {
+					pline("Your dad's voice takes on a serious tone. 'My %s, we need to talk.'", flags.female ? "daughter" : "son");
+					pline("'I have heard things about you. Can it be true... did you really kill those people?!'");
+				} else if (dadspeech == 1) {
+					pline("Your dad speaks in a soft voice. 'My %s, I know we have lots of things to do, but I want to take the time to tell you something.'", flags.female ? "daughter" : "son");
+					pline("'As I can clearly see, you are a good person. It's obvious just from looking at you. And I wanted to tell you... I'm glad you turned out to be a good, upstanding citizen. Your mother would be so happy if she was still around...'");
+					pline("'Anyway, I am very proud of you. And I hope that you can forgive me for running off; I just really wanted to turn this project into a reality.'");
+
+				} else {
+					pline("Your dad gives you a speech. 'My %s, I'm not sure where your future will lead you, but I sure hope you're going to make the right decisions.'", flags.female ? "daughter" : "son");
+					pline("'Only you can decide whether you're going to be a good person. Please, promise me that you'll give it your best.'");
+
+				}
+
+				winid tmpwin;
+				anything any;
+				menu_item *selected;
+				int n;
+
+				any.a_void = 0;         /* zero out all bits */
+				tmpwin = create_nhwindow(NHW_MENU);
+				start_menu(tmpwin);
+				any.a_int = 1;
+				add_menu(tmpwin, NO_GLYPH, &any , 'a', 0, ATR_NONE, (dadspeech == -1) ? "I'm sorry, Dad. I promise to make up for my mistakes." : (dadspeech == 1) ? "Thanks, Dad. That means very much to me." : "I promise. I'll do my best to be a good citizen.", MENU_UNSELECTED);
+				any.a_int = 2;
+				add_menu(tmpwin, NO_GLYPH, &any , 'b', 0, ATR_NONE, (dadspeech == -1) ? "Why does that matter to you, anyway?" : (dadspeech == 1) ? "I just hope that all that work will be worth it." : "I'm not so sure. This world, it feels so complicated...", MENU_UNSELECTED);
+				any.a_int = 3;
+				add_menu(tmpwin, NO_GLYPH, &any , 'c', 0, ATR_NONE, (dadspeech == -1) ? "You know what, Dad? Fuck you." : (dadspeech == 1) ? "Despite everything you put me through, I'm trying to make the best of it." : "What I do is my own damn business.", MENU_UNSELECTED);
+
+				end_menu(tmpwin, "Your answer:");
+				n = select_menu(tmpwin, PICK_ONE, &selected);
+				destroy_nhwindow(tmpwin);
+
+				if (n > 0) {
+					switch (selected[0].item.a_int) {
+						case 1:
+							if (dadspeech == -1) {
+								pline("Your dad answers, 'I hope you actually mean it when you say that. All those people... That's not like you. I know deep down in my heart that you will see the error of your ways and start doing the right thing.'");
+							} else if (dadspeech == 1) {
+								pline("Your dad says, 'When we've finished this project, I'll make up to you for all the years you missed me. I promise that I'll be a good dad to you and not run off again. We just need to do the finishing touches to get the purifier operational.'");
+							} else {
+								pline("Your dad answers, 'That's a relief to hear. You know, your mother wouldn't want you to turn into a criminal either.'");
+							}
+							break;
+						case 2:
+							if (dadspeech == -1) {
+								pline("Your dad remarks, 'Out there you may be a free %s, but here with me, you're still my %s. And all I can say is... what you've done contradicts everything I've taught you. I can't even begin to tell you how disappointed I am.'", flags.female ? "woman" : "man", flags.female ? "daughter" : "son");
+							} else if (dadspeech == 1) {
+								pline("Your dad explains, 'When the purifier is up and running, we can leave these difficult times behind ourselves and start living a happy life at last. I promise you, it will be worth it.'", flags.female ? "daughter" : "son");
+							} else {
+								pline("Your dad remarks, 'I know that these are hard times, but listen to me, please. You will feel better if you're a good and upstanding citizen. I don't want my only %s to live with the burden of guilt for the rest of your life.'", flags.female ? "daughter" : "son");
+							}
+							break;
+						case 3:
+							if (dadspeech == -1) {
+								pline("Your dad says with a frustrated voice, 'It is very sad that you think like this. I really don't understand what I've done wrong in your education...'");
+							} else if (dadspeech == 1) {
+								pline("Your dad answers sadly, 'I'm so sorry, my %s. I know it was wrong of me to just run away, I should've at least left you a message. But I promise, I did all that to improve your future, too. You will be the first person to drink a glass of refreshing, pure water, I guarantee you that.'", flags.female ? "daughter" : "son");
+							} else {
+								pline("Your dad speaks up, 'My %s, as your dad, what you do is certainly my business. And I will not allow you to turn into a criminal. We have too much work to do right now but you can be sure we will talk about this some more when we're done...'", flags.female ? "daughter" : "son");
+							}
+							break;
+					}
+				} else {
+					if (dadspeech == -1) {
+						pline("Your dad says in a hard voice, 'My %s, listen to me. You can't just get away by saying nothing. I am your dad, and I will not let you be an evil person. You will make amends for your past misdeeds and abide the law from now on, do you hear me?'", flags.female ? "daughter" : "son");
+					} else if (dadspeech == 1) {
+						pline("Your dad says, 'Look, I'm sorry if I hurt you by running off. All I can hope for is that one day you can forgive me; perhaps, when we've finished our project and got the purifier up and running...'");
+					} else {
+						pline("Your dad says, 'I see you don't want to talk about it right now. Very well. But be aware that you can't run away from your responsibility forever. Alright?'");
+					}
+				}
+
+				pline("Your dad continues: 'Alright, we should get back to our work. Here, I give you the fuses you need to repair the fuse box. When you go to the basement, keep west, walk along the long corridor and enter the room on the far side. You can insert the fuses in the box on the wall there.'");
+			}
+
+			if ((u.jeffersonquestvar == 7) && Is_jefferson_maint(&u.uz)) {
+				int i, j, bd = 1;
+
+				for(i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+					if (!isok(u.ux + i + 3, u.uy + j)) continue;
+
+					if (levl[u.ux + i + 3][u.uy + j].typ != STAIRS && levl[u.ux + i + 3][u.uy + j].typ != LADDER && levl[u.ux + i + 3][u.uy + j].typ != ALTAR) {
+						levl[u.ux + i + 3][u.uy + j].typ = CROSSWALL;
+						levl[u.ux + i + 3][u.uy + j].wall_info |= W_NONDIGGABLE;
+						newsym(u.ux + i + 3, u.uy + j);
+					}
+				}
+
+				if (isok(u.ux - 1, u.uy - 7)) makemon(&mons[PM_ENCLAVE_OFFICER_LOOKOUT], u.ux - 1, u.uy - 7, MM_ADJACENTOK);
+				if (isok(u.ux, u.uy - 7)) makemon(&mons[PM_ENCLAVE_LOOKOUT], u.ux, u.uy - 7, MM_ADJACENTOK);
+				if (isok(u.ux + 1, u.uy - 7)) makemon(&mons[PM_ENCLAVE_LOOKOUT], u.ux + 1, u.uy - 7, MM_ADJACENTOK);
+
+				u.enclaveactive = TRUE;
+				u.jeffersonquestvar = 8;
+				You("pull the valve. It seems to have worked; somehow, the way you came from seems to have locked itself.");
+				pline("Suddenly, you hear a rapid flapping sound... It sounds like an approaching helicopter?!");
+				pline("You can hear your dad speaking over the intercom. 'Attention: We seem to be having uninvited guests. We don't know who they are or what they want...'");
+				pline("'The Enclave??? What do they want here? Where are they? Madison! Lock the door!'");
+				pline("With a bad feeling in your %s, you feel that you should head back to the control room...", body_part(STOMACH));
+			}
+		    break;
+		case QUESTTEMPROOMB:
+			if (wizard) pline("quest temp room B entered");
+
+			if ((u.jeffersonquestvar == 4) && Is_jefferson_sub(&u.uz)) {
+				u.jeffersonquestvar = 5;
+				You("insert the fuses into the nearby box in the wall. They seem to fit perfectly.");
+				pline("Once again, you use the intercom to talk to your dad.");
+				pline("Your dad speaks 'Alright, the power is restored. Doctor Li just reports that the transmitter still isn't working, though; it seems that the mainframe computer is not on. It should be on the same floor you're just on, in the room to the north of you. We need you to turn the main computer on. You don't have to return to the control room, but can head there directly.'");
+			}
+
+			if ((u.jeffersonquestvar >= 7) && !u.intakewallopened && Is_jefferson_maint(&u.uz)) {
+
+				int i, j, bd = 1, be = 2;
+
+				for(i = -be; i <= be; i++) for(j = -bd; j <= bd; j++) {
+					if (!isok(u.ux + i + 3, u.uy + j)) continue;
+
+					if (levl[u.ux + i + 3][u.uy + j].typ != STAIRS && levl[u.ux + i + 3][u.uy + j].typ != LADDER && levl[u.ux + i + 3][u.uy + j].typ != ALTAR) {
+						levl[u.ux + i + 3][u.uy + j].typ = ROOM;
+						levl[u.ux + i + 3][u.uy + j].wall_info &= ~W_NONDIGGABLE;
+						newsym(u.ux + i + 3, u.uy + j);
+					}
+				}
+
+				for(i = -be; i <= be; i++) for(j = -bd; j <= bd; j++) {
+					if (!isok(u.ux + i - 8, u.uy + j - 8)) continue;
+
+					if (levl[u.ux + i - 8][u.uy + j - 8].typ != STAIRS && levl[u.ux + i + 3][u.uy + j].typ != LADDER && levl[u.ux + i + 3][u.uy + j].typ != ALTAR) {
+						levl[u.ux + i - 8][u.uy + j - 8].typ = ROOM;
+						levl[u.ux + i - 8][u.uy + j - 8].wall_info &= ~W_NONDIGGABLE;
+						newsym(u.ux + i - 8, u.uy + j - 8);
+					}
+				}
+
+				u.intakewallopened = TRUE;
+				You("feel like heading for the exit...");
+			}
+
+			if ((u.jeffersonquestvar == 6) && Is_jefferson_mid(&u.uz)) {
+				u.jeffersonquestvar = 7;
+				You("are standing at the entrance to the maintenance area. A slight shiver seems to shake your body for a moment.");
+				pline("Seeing the nearby intercom, you decide to talk to your dad once more.");
+				pline("Your dad speaks 'I see you're standing at the maintenance entrance. Don't worry, it's perfectly safe. Just go in and turn the valve, it'll allow the intake pipe to drain automatically.'");
+
+				winid tmpwin;
+				anything any;
+				menu_item *selected;
+				int n;
+
+				any.a_void = 0;         /* zero out all bits */
+				tmpwin = create_nhwindow(NHW_MENU);
+				start_menu(tmpwin);
+				any.a_int = 1;
+				add_menu(tmpwin, NO_GLYPH, &any , 'a', 0, ATR_NONE, "I'm going in.", MENU_UNSELECTED);
+				any.a_int = 2;
+				add_menu(tmpwin, NO_GLYPH, &any , 'b', 0, ATR_NONE, "Is it dangerous?", MENU_UNSELECTED);
+
+				end_menu(tmpwin, "Your answer:");
+				n = select_menu(tmpwin, PICK_ONE, &selected);
+				destroy_nhwindow(tmpwin);
+
+				if (n > 0) {
+					switch (selected[0].item.a_int) {
+						case 1:
+							pline("Your dad says 'Alright. Once you're in there, I can't contact you anymore. You'll come out near the cisterns and can then contact me again.'");
+							break;
+						case 2:
+							pline("Your dad says 'No, it's not dangerous at all. I'd not send you on this mission if it was. But be aware that I won't be able to contact you while you're in there. Once you've pressed the valve, you can continue to the cisterns where you can contact me again.'");
+							break;
+					}
+				} else pline("Your dad says 'Be careful, my %s, as I won't be able to reach you in the maintenance area. Go in there, turn the valve and then head to the cisterns; you will be able to contact me from there.'", flags.female ? "daughter" : "son");
+			}
+
+		    break;
+		case QUESTTEMPROOMC:
+			if (wizard) pline("quest temp room C entered");
+
+			if ((u.jeffersonquestvar == 5) && Is_jefferson_sub(&u.uz)) {
+				u.jeffersonquestvar = 6;
+				You("boot up the mainframe PC. With a loud 'BEEPBEEPBEEP-*BIP!*', the machine starts up.");
+				pline("Like always, you talk to your dad via the nearby intercom.");
+				pline("Your dad speaks 'Excellent work, my %s. We should be able to access all the necessary data in a minute.'", flags.female ? "daughter" : "son");
+				pline("'Yes, this is looking fine. We will be ready to start up the purifier in a - Wait... Janice, what is it now?'");
+				pline("'Oh... My %s, I'm afraid to say this, but there's still one slight problem that we have to solve.'", flags.female ? "daughter" : "son");
+				pline("'Janice says that the main intake pipe is clogged. The only way to clear it is by operating the drain manually. Get back up to the top floor and head to the maintenance area in the southwest, directly opposite of the main entrance.'");
+			}
+
+		    break;
+		case QUESTTEMPROOMD:
+			if (wizard) pline("quest temp room D entered");
+		    break;
+		case QUESTTEMPROOME:
+			if (wizard) pline("quest temp room E entered");
+		    break;
 		case TEMPLE:
 		    intemple(roomno + ROOMOFFSET);
 		    /* fall through */

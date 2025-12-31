@@ -2661,7 +2661,7 @@ ghnhom1:
 		|| (In_mines(&u.uz) && rn2(1000) /* check moved upwards */ ) || (In_sokoban(&u.uz) && !issokosolver && rn2(iswarper ? 5 : 2)) || (In_towndungeon(&u.uz) && !rn2(iswarper ? 3 : 20)) || (In_deepmines(&u.uz) && rn2(2)) || (In_illusorycastle(&u.uz) && !rn2(iswarper ? 3 : 20)) || (In_sewerplant(&u.uz) && !rn2(iswarper ? 20 : 50)) || (In_spacebase(&u.uz) && !rn2(iswarper ? 4 : 30)) || (In_gammacaves(&u.uz) && !rn2(iswarper ? 20 : 50)) || (In_greencross(&u.uz) && !rn2(iswarper ? 10 : 100)) || (In_mainframe(&u.uz) && !rn2(iswarper ? 3 : 20)) || (rn2(5) && (!strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold") || !strcmp(dungeons[u.uz.dnum].dname, "The Ice Queen's Realm") || In_Devnull(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "The Temple of Moloch") || !strcmp(dungeons[u.uz.dnum].dname, "The Giant Caverns") || !strcmp(dungeons[u.uz.dnum].dname, "The Sunless Sea") || !strcmp(dungeons[u.uz.dnum].dname, "The Spider Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "Bell Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Forging Chamber") || !strcmp(dungeons[u.uz.dnum].dname, "Dead Grounds") || !strcmp(dungeons[u.uz.dnum].dname, "Ordered Chaos") || !strcmp(dungeons[u.uz.dnum].dname, "The Lost Tomb") || !strcmp(dungeons[u.uz.dnum].dname, "The Wyrm Caves") || !strcmp(dungeons[u.uz.dnum].dname, "One-eyed Sam's Market") || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") || In_restingzone(&u.uz) ) ) ) {
 
 ghnhom2:
-	    switch (rnd(117)) {
+	    switch (rnd(118)) {
 
 	    case 1:
 	    case 2:
@@ -3446,7 +3446,6 @@ ghnhom2:
 			case 3: makemaz("eknox-3"); return;
 
 		}
-
 		break;
 
 	    case 66:
@@ -4590,6 +4589,7 @@ ghnhom2:
 			case 95: makemaz("levgn-95"); return;
 
 		}
+		break;
 
 	    case 106:
 
@@ -4628,7 +4628,6 @@ ghnhom2:
 			case 8: makemaz("cowlh"); return;
 
 		}
-
 		break;
 
 	    case 111:
@@ -4648,9 +4647,7 @@ ghnhom2:
 			case 13: makemaz("deepfilm"); return;
 			case 14: makemaz("deepfiln"); return;
 			case 15: makemaz("deepfilo"); return;
-
 		}
-
 		break;
 
 	    case 112:
@@ -4665,9 +4662,7 @@ ghnhom2:
 			case 8: makemaz("deptn-8"); return;
 			case 9: makemaz("deptn-9"); return;
 			case 10: makemaz("deptn-10"); return;
-
 		}
-
 		break;
 
 	    case 113:
@@ -4678,9 +4673,7 @@ ghnhom2:
 			case 4: makemaz("depeE-4"); return;
 			case 5: makemaz("depeE-5"); return;
 			case 6: makemaz("depeE-6"); return;
-
 		}
-
 		break;
 
 	    case 114:
@@ -4690,9 +4683,7 @@ ghnhom2:
 			case 3: makemaz("pmazeX"); return;
 			case 4: makemaz("poolhalX"); return;
 			case 5: makemaz("dmazeX"); return;
-
 		}
-
 		break;
 
 	    case 115:
@@ -4708,7 +4699,6 @@ ghnhom2:
 			case 6: makemaz("grcrf"); return;
 			case 7: makemaz("grcrg"); return;
 			case 8: makemaz("grcrh"); return;
-
 		}
 		break;
 
@@ -4717,11 +4707,17 @@ ghnhom2:
 			case 1: makemaz("eiceqa"); return;
 			case 2: makemaz("eiceqb"); return;
 			case 3: makemaz("eiceqc"); return;
-
 		}
-
 		break;
 
+	    case 118:
+		switch (rnd(5)) {
+			case 1: makemaz("ejf01"); return;
+			case 2: makemaz("ejf02"); return;
+			case 3: makemaz("ejf03"); return;
+			case 4: makemaz("ejf04"); return;
+			case 5: makemaz("ejf05"); return;
+		}
 		break;
 
           }
@@ -4734,7 +4730,7 @@ ghnhom2:
 
 		if (rn2(3)) goto ghnhom2;
 
-	    switch (rnd(117)) {
+	    switch (rnd(118)) {
 
 	    case 1:
 	    case 2:
@@ -4923,7 +4919,6 @@ ghnhom2:
 			case 95: makemaz("heck-95"); return;
 			case 96: makemaz("heck-96"); return;
 			case 97: makemaz("minusw"); return;
-
 		}
 		break;
 
@@ -4936,7 +4931,6 @@ ghnhom2:
 			case 3: makemaz("intplx-3"); return;
 			case 4: makemaz("intplx-4"); return;
 			case 5: makemaz("intplx-5"); return;
-
 		}
 		break;
 
@@ -4960,7 +4954,6 @@ ghnhom2:
 			case 12: makemaz("hellfill"); return;
 			case 13: makemaz("hellfill"); return;
 			case 14: makemaz("hellfill"); return;
-
 		}
 		break;
 
@@ -4993,7 +4986,6 @@ ghnhom2:
 			case 19: makemaz("hmint-19"); return;
 			case 20: makemaz("hmint-20"); return;
 			case 21: makemaz("hmint-21"); return;
-
 		}
 		break;
 
@@ -5012,7 +5004,6 @@ ghnhom2:
 			case 8: makemaz("hmnen-8"); return;
 			case 9: makemaz("hmnen-9"); return;
 			case 10: makemaz("hmnen-10"); return;
-
 		}
 		break;
 
@@ -5039,7 +5030,6 @@ ghnhom2:
 			case 16: makemaz("hking-16"); return;
 			case 17: makemaz("hking-17"); return;
 			case 18: makemaz("hking-18"); return;
-
 		}
 		break;
 
@@ -5215,7 +5205,6 @@ ghnhom2:
 			case 153: makemaz("soko8-45"); return;
 
 			case 154: makemaz("soko0-52"); return;
-
 		}
 		break;
 
@@ -5234,7 +5223,6 @@ ghnhom2:
 			case 8: makemaz("hllma-8"); return;
 			case 9: makemaz("hllma-9"); return;
 			case 10: makemaz("hllma-10"); return;
-
 		}
 		break;
 
@@ -5251,7 +5239,6 @@ ghnhom2:
 			case 2: makemaz("hrats-2"); return;
 			case 3: makemaz("hrats-3"); return;
 			case 4: makemaz("hrats-4"); return;
-
 		}
 		break;
 
@@ -5265,7 +5252,6 @@ ghnhom2:
 			case 4: makemaz("hkobol-4"); return;
 			case 5: makemaz("hkobol-5"); return;
 			case 6: makemaz("hkobol-6"); return;
-
 		}
 		break;
 
@@ -5278,7 +5264,6 @@ ghnhom2:
 			case 3: makemaz("hnymp-3"); return;
 			case 4: makemaz("hnymp-4"); return;
 			case 5: makemaz("hnymp-5"); return;
-
 		}
 		break;
 
@@ -5295,7 +5280,6 @@ ghnhom2:
 			case 7: makemaz("hstor-7"); return;
 			case 8: makemaz("hstor-8"); return;
 			case 9: makemaz("hstor-9"); return;
-
 		}
 		break;
 
@@ -5311,7 +5295,6 @@ ghnhom2:
 			case 6: makemaz("guild-6"); return;
 			case 7: makemaz("guild-7"); return;
 			case 8: makemaz("guild-8"); return;
-
 		}
 		break;
 
@@ -5328,7 +5311,6 @@ ghnhom2:
 			case 7: makemaz("machnH"); return;
 			case 8: makemaz("orcbaH"); return;
 			case 9: makemaz("sewplH"); return;
-
 		}
 		break;
 
@@ -5349,7 +5331,6 @@ ghnhom2:
 			case 10: makemaz("hmedu-10"); return;
 			case 11: makemaz("hmedu-11"); return;
 			case 12: makemaz("hmedu-12"); return;
-
 		}
 		break;
 
@@ -5373,7 +5354,6 @@ ghnhom2:
 			case 13: makemaz("hcstl-13"); return;
 			case 14: makemaz("hcstl-14"); return;
 			case 15: makemaz("hcstl-15"); return;
-
 		}
 		break;
 
@@ -5473,7 +5453,6 @@ ghnhom2:
 			case 86: makemaz("hgehn-86"); return;
 			case 87: makemaz("hgehn-87"); return;
 			case 88: makemaz("hgehn-88"); return;
-
 		}
 		break;
 
@@ -5490,7 +5469,6 @@ ghnhom2:
 			case 2: makemaz("htown-2"); return;
 			case 3: makemaz("htown-3"); return;
 			case 4: makemaz("htown-4"); return;
-
 		}
 		break;
 
@@ -5501,7 +5479,6 @@ ghnhom2:
 			case 1: makemaz("hgrund-1"); return;
 			case 2: makemaz("hgrund-2"); return;
 			case 3: makemaz("hgrund-3"); return;
-
 		}
 		break;
 
@@ -5512,7 +5489,6 @@ ghnhom2:
 			case 1: makemaz("hknox-1"); return;
 			case 2: makemaz("hknox-2"); return;
 			case 3: makemaz("hknox-3"); return;
-
 		}
 		break;
 
@@ -5569,7 +5545,6 @@ ghnhom2:
 			case 20: makemaz("hsheo-20"); return;
 			case 21: makemaz("hsheo-21"); return;
 			case 22: makemaz("hsheo-22"); return;
-
 		}
 		break;
 
@@ -6548,7 +6523,6 @@ ghnhom2:
 			case 67: makemaz("mazes-67"); return;
 			case 68: makemaz("mazes-68"); return;
 			case 69: makemaz("mazes-69"); return;
-
 		}
 		break;
 
@@ -6656,6 +6630,8 @@ ghnhom2:
 			case 94: makemaz("levgx-94"); return;
 			case 95: makemaz("levgx-95"); return;
 		}
+		break;
+
 	    case 106:
 
 		makemaz("hcav2"); return;
@@ -6693,7 +6669,6 @@ ghnhom2:
 			case 8: makemaz("cowlh"); return;
 
 		}
-
 		break;
 
 	    case 111:
@@ -6715,7 +6690,6 @@ ghnhom2:
 			case 15: makemaz("deehfilo"); return;
 
 		}
-
 		break;
 
 	    case 112:
@@ -6732,7 +6706,6 @@ ghnhom2:
 			case 10: makemaz("deptX-10"); return;
 
 		}
-
 		break;
 
 	    case 113:
@@ -6745,7 +6718,6 @@ ghnhom2:
 			case 6: makemaz("depeX-6"); return;
 
 		}
-
 		break;
 
 	    case 114:
@@ -6757,7 +6729,6 @@ ghnhom2:
 			case 5: makemaz("dmazeX"); return;
 
 		}
-
 		break;
 
 	    case 115:
@@ -6773,7 +6744,6 @@ ghnhom2:
 			case 6: makemaz("grcrf"); return;
 			case 7: makemaz("grcrg"); return;
 			case 8: makemaz("grcrh"); return;
-
 		}
 		break;
 
@@ -6782,10 +6752,17 @@ ghnhom2:
 			case 1: makemaz("hiceqa"); return;
 			case 2: makemaz("hiceqb"); return;
 			case 3: makemaz("hiceqc"); return;
-
 		}
+		break;
 
-
+	    case 118:
+		switch (rnd(5)) {
+			case 1: makemaz("hjf01"); return;
+			case 2: makemaz("hjf02"); return;
+			case 3: makemaz("hjf03"); return;
+			case 4: makemaz("hjf04"); return;
+			case 5: makemaz("hjf05"); return;
+		}
 		break;
 
           }
@@ -7235,7 +7212,7 @@ ghnhom3:
 		if (In_dod(&u.uz) || In_mines(&u.uz) || In_sokoban(&u.uz) || In_towndungeon(&u.uz) || In_illusorycastle(&u.uz) || In_deepmines(&u.uz) || In_ZAPM(&u.uz) || In_Devnull(&u.uz) || In_greencross(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold") || !strcmp(dungeons[u.uz.dnum].dname, "The Ice Queen's Realm") || !strcmp(dungeons[u.uz.dnum].dname, "The Temple of Moloch") || !strcmp(dungeons[u.uz.dnum].dname, "The Giant Caverns") || !strcmp(dungeons[u.uz.dnum].dname, "The Sunless Sea") || !strcmp(dungeons[u.uz.dnum].dname, "The Spider Caves") || !strcmp(dungeons[u.uz.dnum].dname, "The Lost Tomb") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "Bell Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Forging Chamber") || !strcmp(dungeons[u.uz.dnum].dname, "Dead Grounds") || !strcmp(dungeons[u.uz.dnum].dname, "Ordered Chaos") || !strcmp(dungeons[u.uz.dnum].dname, "The Wyrm Caves") || !strcmp(dungeons[u.uz.dnum].dname, "One-eyed Sam's Market") || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") || In_restingzone(&u.uz)) {
 
 ghnhom4:
-	    switch (rnd(117)) {
+	    switch (rnd(118)) {
 
 	    case 1:
 	    case 2:
@@ -7310,7 +7287,6 @@ ghnhom4:
 			case 58: makemaz("bigrm-58"); return;
 			case 59: makemaz("bigrm-59"); return;
 			case 60: makemaz("bigrm-60"); return;
-
 		}
 		break;
 
@@ -7424,7 +7400,6 @@ ghnhom4:
 			case 95: makemaz("unhck-95"); return;
 			case 96: makemaz("unhck-96"); return;
 			case 97: makemaz("minusw"); return;
-
 		}
 		break;
 
@@ -7437,7 +7412,6 @@ ghnhom4:
 			case 3: makemaz("intpla-3"); return;
 			case 4: makemaz("intpla-4"); return;
 			case 5: makemaz("intpla-5"); return;
-
 		}
 		break;
 
@@ -7461,7 +7435,6 @@ ghnhom4:
 			case 12: makemaz("minefill"); return;
 			case 13: makemaz("minefill"); return;
 			case 14: makemaz("minefill"); return;
-
 		}
 		break;
 
@@ -7494,7 +7467,6 @@ ghnhom4:
 			case 19: makemaz("mintn-19"); return;
 			case 20: makemaz("mintn-20"); return;
 			case 21: makemaz("mintn-21"); return;
-
 		}
 		break;
 
@@ -7513,7 +7485,6 @@ ghnhom4:
 			case 8: makemaz("mnend-8"); return;
 			case 9: makemaz("mnend-9"); return;
 			case 10: makemaz("mnend-10"); return;
-
 		}
 		break;
 
@@ -7540,7 +7511,6 @@ ghnhom4:
 			case 16: makemaz("eking-16"); return;
 			case 17: makemaz("eking-17"); return;
 			case 18: makemaz("eking-18"); return;
-
 		}
 		break;
 
@@ -7716,7 +7686,6 @@ ghnhom4:
 			case 153: makemaz("soko2-45"); return;
 
 			case 154: makemaz("soko6-52"); return;
-
 		}
 		break;
 
@@ -7740,7 +7709,6 @@ ghnhom4:
 			case 13: makemaz("exmall-7"); return;
 			case 14: makemaz("exmall-8"); return;
 			case 15: makemaz("exmall-9"); return;
-
 		}
 		break;
 
@@ -7757,7 +7725,6 @@ ghnhom4:
 			case 2: makemaz("erats-2"); return;
 			case 3: makemaz("erats-3"); return;
 			case 4: makemaz("erats-4"); return;
-
 		}
 		break;
 
@@ -7771,7 +7738,6 @@ ghnhom4:
 			case 4: makemaz("ekobol-4"); return;
 			case 5: makemaz("ekobol-5"); return;
 			case 6: makemaz("ekobol-6"); return;
-
 		}
 		break;
 
@@ -7784,7 +7750,6 @@ ghnhom4:
 			case 3: makemaz("enymp-3"); return;
 			case 4: makemaz("enymp-4"); return;
 			case 5: makemaz("enymp-5"); return;
-
 		}
 		break;
 
@@ -7801,7 +7766,6 @@ ghnhom4:
 			case 7: makemaz("stor-7"); return;
 			case 8: makemaz("stor-8"); return;
 			case 9: makemaz("stor-9"); return;
-
 		}
 		break;
 
@@ -7817,7 +7781,6 @@ ghnhom4:
 			case 6: makemaz("guild-6"); return;
 			case 7: makemaz("guild-7"); return;
 			case 8: makemaz("guild-8"); return;
-
 		}
 		break;
 
@@ -7834,7 +7797,6 @@ ghnhom4:
 			case 7: makemaz("machnE"); return;
 			case 8: makemaz("orcbaE"); return;
 			case 9: makemaz("sewpl"); return;
-
 		}
 		break;
 
@@ -7855,7 +7817,6 @@ ghnhom4:
 			case 10: makemaz("emedu-10"); return;
 			case 11: makemaz("emedu-11"); return;
 			case 12: makemaz("emedu-12"); return;
-
 		}
 		break;
 
@@ -7879,7 +7840,6 @@ ghnhom4:
 			case 13: makemaz("ecstl-13"); return;
 			case 14: makemaz("ecstl-14"); return;
 			case 15: makemaz("ecstl-15"); return;
-
 		}
 		break;
 
@@ -7979,7 +7939,6 @@ ghnhom4:
 			case 86: makemaz("egehn-86"); return;
 			case 87: makemaz("egehn-87"); return;
 			case 88: makemaz("egehn-88"); return;
-
 		}
 		break;
 
@@ -7991,34 +7950,28 @@ ghnhom4:
 	    case 63:
 
 		switch (rnd(4)) {
-
 			case 1: makemaz("etown-1"); return;
 			case 2: makemaz("etown-2"); return;
 			case 3: makemaz("etown-3"); return;
 			case 4: makemaz("etown-4"); return;
-
 		}
 		break;
 
 	    case 64:
 
 		switch (rnd(3)) {
-
 			case 1: makemaz("egrund-1"); return;
 			case 2: makemaz("egrund-2"); return;
 			case 3: makemaz("egrund-3"); return;
-
 		}
 		break;
 
 	    case 65:
 
 		switch (rnd(3)) {
-
 			case 1: makemaz("eknox-1"); return;
 			case 2: makemaz("eknox-2"); return;
 			case 3: makemaz("eknox-3"); return;
-
 		}
 		break;
 
@@ -8075,7 +8028,6 @@ ghnhom4:
 			case 20: makemaz("esheo-20"); return;
 			case 21: makemaz("esheo-21"); return;
 			case 22: makemaz("esheo-22"); return;
-
 		}
 		break;
 
@@ -9054,7 +9006,6 @@ ghnhom4:
 			case 67: makemaz("mazes-67"); return;
 			case 68: makemaz("mazes-68"); return;
 			case 69: makemaz("mazes-69"); return;
-
 		}
 		break;
 
@@ -9160,8 +9111,9 @@ ghnhom4:
 			case 93: makemaz("levgn-93"); return;
 			case 94: makemaz("levgn-94"); return;
 			case 95: makemaz("levgn-95"); return;
-
 		}
+		break;
+
 	    case 106:
 
 		makemaz("ecav2"); return;
@@ -9177,7 +9129,6 @@ ghnhom4:
 	    case 110:
 
 		switch (rnd(8)) {
-
 			case 1: {
 				switch (rnd(5)) {
 
@@ -9197,9 +9148,7 @@ ghnhom4:
 			case 6: makemaz("cowlf"); return;
 			case 7: makemaz("cowlg"); return;
 			case 8: makemaz("cowlh"); return;
-
 		}
-
 		break;
 
 	    case 111:
@@ -9219,9 +9168,7 @@ ghnhom4:
 			case 13: makemaz("deepfilm"); return;
 			case 14: makemaz("deepfiln"); return;
 			case 15: makemaz("deepfilo"); return;
-
 		}
-
 		break;
 
 	    case 112:
@@ -9236,9 +9183,7 @@ ghnhom4:
 			case 8: makemaz("deptn-8"); return;
 			case 9: makemaz("deptn-9"); return;
 			case 10: makemaz("deptn-10"); return;
-
 		}
-
 		break;
 
 	    case 113:
@@ -9249,9 +9194,7 @@ ghnhom4:
 			case 4: makemaz("depeE-4"); return;
 			case 5: makemaz("depeE-5"); return;
 			case 6: makemaz("depeE-6"); return;
-
 		}
-
 		break;
 
 	    case 114:
@@ -9261,9 +9204,7 @@ ghnhom4:
 			case 3: makemaz("pmazeX"); return;
 			case 4: makemaz("poolhalX"); return;
 			case 5: makemaz("dmazeX"); return;
-
 		}
-
 		break;
 
 	    case 115:
@@ -9279,7 +9220,6 @@ ghnhom4:
 			case 6: makemaz("grcrf"); return;
 			case 7: makemaz("grcrg"); return;
 			case 8: makemaz("grcrh"); return;
-
 		}
 		break;
 
@@ -9288,18 +9228,25 @@ ghnhom4:
 			case 1: makemaz("eiceqa"); return;
 			case 2: makemaz("eiceqb"); return;
 			case 3: makemaz("eiceqc"); return;
-
 		}
-
 		break;
 	
+	    case 118:
+		switch (rnd(5)) {
+			case 1: makemaz("ejf01"); return;
+			case 2: makemaz("ejf02"); return;
+			case 3: makemaz("ejf03"); return;
+			case 4: makemaz("ejf04"); return;
+			case 5: makemaz("ejf05"); return;
+		}
+		break;
           }
 
 		} else if (In_gehennom(&u.uz) || In_sheol(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz) || In_angmar(&u.uz) || In_emynluin(&u.uz) || In_swimmingpool(&u.uz) || In_hellbathroom(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Frankenstein's Lab")) {
 
 		if (rn2(3)) goto ghnhom4;
 
-	    switch (rnd(117)) {
+	    switch (rnd(118)) {
 
 	    case 1:
 	    case 2:
@@ -9374,7 +9321,6 @@ ghnhom4:
 			case 58: makemaz("ghbgr-58"); return;
 			case 59: makemaz("ghbgr-59"); return;
 			case 60: makemaz("ghbgr-60"); return;
-
 		}
 		break;
 
@@ -9488,7 +9434,6 @@ ghnhom4:
 			case 95: makemaz("heck-95"); return;
 			case 96: makemaz("heck-96"); return;
 			case 97: makemaz("minusw"); return;
-
 		}
 		break;
 
@@ -9501,7 +9446,6 @@ ghnhom4:
 			case 3: makemaz("intplx-3"); return;
 			case 4: makemaz("intplx-4"); return;
 			case 5: makemaz("intplx-5"); return;
-
 		}
 		break;
 
@@ -9525,7 +9469,6 @@ ghnhom4:
 			case 12: makemaz("hellfill"); return;
 			case 13: makemaz("hellfill"); return;
 			case 14: makemaz("hellfill"); return;
-
 		}
 		break;
 
@@ -9558,7 +9501,6 @@ ghnhom4:
 			case 19: makemaz("hmint-19"); return;
 			case 20: makemaz("hmint-20"); return;
 			case 21: makemaz("hmint-21"); return;
-
 		}
 		break;
 
@@ -9577,7 +9519,6 @@ ghnhom4:
 			case 8: makemaz("hmnen-8"); return;
 			case 9: makemaz("hmnen-9"); return;
 			case 10: makemaz("hmnen-10"); return;
-
 		}
 		break;
 
@@ -9604,7 +9545,6 @@ ghnhom4:
 			case 16: makemaz("hking-16"); return;
 			case 17: makemaz("hking-17"); return;
 			case 18: makemaz("hking-18"); return;
-
 		}
 		break;
 
@@ -9780,7 +9720,6 @@ ghnhom4:
 			case 153: makemaz("soko8-45"); return;
 
 			case 154: makemaz("soko0-52"); return;
-
 		}
 		break;
 
@@ -9799,7 +9738,6 @@ ghnhom4:
 			case 8: makemaz("hllma-8"); return;
 			case 9: makemaz("hllma-9"); return;
 			case 10: makemaz("hllma-10"); return;
-
 		}
 		break;
 
@@ -9816,7 +9754,6 @@ ghnhom4:
 			case 2: makemaz("hrats-2"); return;
 			case 3: makemaz("hrats-3"); return;
 			case 4: makemaz("hrats-4"); return;
-
 		}
 		break;
 
@@ -9830,7 +9767,6 @@ ghnhom4:
 			case 4: makemaz("hkobol-4"); return;
 			case 5: makemaz("hkobol-5"); return;
 			case 6: makemaz("hkobol-6"); return;
-
 		}
 		break;
 
@@ -9843,7 +9779,6 @@ ghnhom4:
 			case 3: makemaz("hnymp-3"); return;
 			case 4: makemaz("hnymp-4"); return;
 			case 5: makemaz("hnymp-5"); return;
-
 		}
 		break;
 
@@ -9860,7 +9795,6 @@ ghnhom4:
 			case 7: makemaz("hstor-7"); return;
 			case 8: makemaz("hstor-8"); return;
 			case 9: makemaz("hstor-9"); return;
-
 		}
 		break;
 
@@ -9876,7 +9810,6 @@ ghnhom4:
 			case 6: makemaz("guild-6"); return;
 			case 7: makemaz("guild-7"); return;
 			case 8: makemaz("guild-8"); return;
-
 		}
 		break;
 
@@ -9893,7 +9826,6 @@ ghnhom4:
 			case 7: makemaz("machnH"); return;
 			case 8: makemaz("orcbaH"); return;
 			case 9: makemaz("sewplH"); return;
-
 		}
 		break;
 
@@ -9914,7 +9846,6 @@ ghnhom4:
 			case 10: makemaz("hmedu-10"); return;
 			case 11: makemaz("hmedu-11"); return;
 			case 12: makemaz("hmedu-12"); return;
-
 		}
 		break;
 
@@ -9938,7 +9869,6 @@ ghnhom4:
 			case 13: makemaz("hcstl-13"); return;
 			case 14: makemaz("hcstl-14"); return;
 			case 15: makemaz("hcstl-15"); return;
-
 		}
 		break;
 
@@ -10038,7 +9968,6 @@ ghnhom4:
 			case 86: makemaz("hgehn-86"); return;
 			case 87: makemaz("hgehn-87"); return;
 			case 88: makemaz("hgehn-88"); return;
-
 		}
 		break;
 
@@ -10055,7 +9984,6 @@ ghnhom4:
 			case 2: makemaz("htown-2"); return;
 			case 3: makemaz("htown-3"); return;
 			case 4: makemaz("htown-4"); return;
-
 		}
 		break;
 
@@ -10066,7 +9994,6 @@ ghnhom4:
 			case 1: makemaz("hgrund-1"); return;
 			case 2: makemaz("hgrund-2"); return;
 			case 3: makemaz("hgrund-3"); return;
-
 		}
 		break;
 
@@ -10077,7 +10004,6 @@ ghnhom4:
 			case 1: makemaz("hknox-1"); return;
 			case 2: makemaz("hknox-2"); return;
 			case 3: makemaz("hknox-3"); return;
-
 		}
 		break;
 
@@ -10134,7 +10060,6 @@ ghnhom4:
 			case 20: makemaz("hsheo-20"); return;
 			case 21: makemaz("hsheo-21"); return;
 			case 22: makemaz("hsheo-22"); return;
-
 		}
 		break;
 
@@ -11113,7 +11038,6 @@ ghnhom4:
 			case 67: makemaz("mazes-67"); return;
 			case 68: makemaz("mazes-68"); return;
 			case 69: makemaz("mazes-69"); return;
-
 		}
 		break;
 
@@ -11221,6 +11145,8 @@ ghnhom4:
 			case 94: makemaz("levgx-94"); return;
 			case 95: makemaz("levgx-95"); return;
 		}
+		break;
+
 	    case 106:
 
 		makemaz("hcav2"); return;
@@ -11256,9 +11182,7 @@ ghnhom4:
 			case 6: makemaz("cowlf"); return;
 			case 7: makemaz("cowlg"); return;
 			case 8: makemaz("cowlh"); return;
-
 		}
-
 		break;
 
 	    case 111:
@@ -11278,9 +11202,7 @@ ghnhom4:
 			case 13: makemaz("deehfilm"); return;
 			case 14: makemaz("deehfiln"); return;
 			case 15: makemaz("deehfilo"); return;
-
 		}
-
 		break;
 
 	    case 112:
@@ -11295,9 +11217,7 @@ ghnhom4:
 			case 8: makemaz("deptX-8"); return;
 			case 9: makemaz("deptX-9"); return;
 			case 10: makemaz("deptX-10"); return;
-
 		}
-
 		break;
 
 	    case 113:
@@ -11308,9 +11228,7 @@ ghnhom4:
 			case 4: makemaz("depeX-4"); return;
 			case 5: makemaz("depeX-5"); return;
 			case 6: makemaz("depeX-6"); return;
-
 		}
-
 		break;
 
 	    case 114:
@@ -11320,9 +11238,7 @@ ghnhom4:
 			case 3: makemaz("pmazeX"); return;
 			case 4: makemaz("poolhalX"); return;
 			case 5: makemaz("dmazeX"); return;
-
 		}
-
 		break;
 
 	    case 115:
@@ -11338,7 +11254,6 @@ ghnhom4:
 			case 6: makemaz("grcrf"); return;
 			case 7: makemaz("grcrg"); return;
 			case 8: makemaz("grcrh"); return;
-
 		}
 		break;
 
@@ -11347,12 +11262,19 @@ ghnhom4:
 			case 1: makemaz("hiceqa"); return;
 			case 2: makemaz("hiceqb"); return;
 			case 3: makemaz("hiceqc"); return;
-
 		}
-
-
 		break;
 	
+	    case 118:
+		switch (rnd(5)) {
+			case 1: makemaz("hjf01"); return;
+			case 2: makemaz("hjf02"); return;
+			case 3: makemaz("hjf03"); return;
+			case 4: makemaz("hjf04"); return;
+			case 5: makemaz("hjf05"); return;
+		}
+		break;
+
           }
 
 		}

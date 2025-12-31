@@ -77,7 +77,8 @@ encodeachieve(void)
   return r;
 }
 
-/* Encodes the current xlog "achieveX" status to an integer */
+/* Encodes the current xlog "achieveX" status to an integer
+ * this is only needed when running a server that tracks achievements --Amy */
 long
 encodeachieveX(void)
 {
@@ -100,6 +101,7 @@ encodeachieveX(void)
    *  14  completed Minus World
    *  15  killed Vera
    *  16  killed Elaine
+   *  17  completed Jefferson Memorial
    */
 
   long r;
@@ -123,6 +125,7 @@ encodeachieveX(void)
   if(achieveX.completed_minusworld) r |= 1L << 14;
   if(achieveX.killed_vera)          r |= 1L << 15;
   if(achieveX.killed_elaine)        r |= 1L << 16;
+  if(achieveX.jefferson_done)       r |= 1L << 17;
 
   return r;
 }

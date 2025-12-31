@@ -5230,8 +5230,13 @@ newbossKTA:
 					continue; /* we check for ttmp below, but just to be on the safe side... --Amy */
 				}
 
-				(void) makemon(specialtensmon(442), ttmp->tx, ttmp->ty, MM_ADJACENTOK|MM_ANGRY|MM_LIKELYSLEEP); /* MS_ENCLAVE */
-				if (!rn2(10)) (void) makemon(specialtensmon(406), ttmp->tx, ttmp->ty, MM_ADJACENTOK|MM_ANGRY|MM_LIKELYSLEEP); /* MS_BOT */
+				if (In_jefferson(&u.uz)) {
+					(void) makemon(specialtensmon(442), ttmp->tx, ttmp->ty, MM_ADJACENTOK|MM_ANGRY); /* MS_ENCLAVE */
+					if (!rn2(10)) (void) makemon(specialtensmon(406), ttmp->tx, ttmp->ty, MM_ADJACENTOK|MM_ANGRY); /* MS_BOT */
+				} else {
+					(void) makemon(specialtensmon(442), ttmp->tx, ttmp->ty, MM_ADJACENTOK|MM_ANGRY|MM_LIKELYSLEEP); /* MS_ENCLAVE */
+					if (!rn2(10)) (void) makemon(specialtensmon(406), ttmp->tx, ttmp->ty, MM_ADJACENTOK|MM_ANGRY|MM_LIKELYSLEEP); /* MS_BOT */
+				}
 				deltrap(ttmp);
 				continue; /* we check for ttmp below, but just to be on the safe side... --Amy */
 			}
@@ -17372,6 +17377,12 @@ past4:
 	if (In_greencross(&u.uz) && !u.greencrossopen) u.greencrossopen = TRUE;
 	if (In_subquest(&u.uz) && !u.prematuresubquest) u.prematuresubquest = TRUE;
 	if (In_yendorian(&u.uz) && !u.prematureyendortower) u.prematureyendortower = TRUE;
+
+	if (In_jefferson(&u.uz) && u.jeffersonquestvar == 0) {
+		u.jeffersonquestvar = 1;
+		pline("This is the Jefferson Memorial, the place where your father's work of life is meant to become a reality. Project Purity, the attempt to get the huge water purifier up and running in order to purify all the irradiated water...");
+		pline("You should clear the area of all super mutants and other threats so that the science team can move in, and then meet your dad in the control room. Head northwest through the set of doors and head up the rotunda stairs to reach it.");
+	}
 
 	if (uwep && uwep->oartifact == ART_SEE_THE_REST_OF_THE_WORLD && Underwater && !uwep->cursed) curse(uwep);
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SEE_THE_REST_OF_THE_WORLD && Underwater && !uswapwep->cursed) curse(uswapwep);
