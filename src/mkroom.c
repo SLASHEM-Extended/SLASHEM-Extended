@@ -2933,7 +2933,7 @@ migohivemon()
 
 	if (rn2(3)) return (!rn2(3) ? &mons[PM_MIGO_WARRIOR] : &mons[PM_MIGO_DRONE]);
 	else if (!rn2(4)) return (rn2(2) ? &mons[PM_MIGO_FORCE_DRONE] : &mons[PM_ARMED_MIGO_DRONE]);
-	else switch (rnd(18)) {
+	else switch (rnd(20)) {
 
 		case 1:
 			return &mons[PM_MIGO_DRONE];
@@ -2975,6 +2975,11 @@ migohivemon()
 			return &mons[PM_MIGO_WORRIORTYPE];
 		case 18:
 			if (level_difficulty() > 14) return &mons[PM_MIGO_BARONESS];
+			else return &mons[PM_MIGO_WARRIOR];
+		case 19:
+			return &mons[PM_INCISION_MIGO];
+		case 20:
+			if ((level_difficulty() > 14) && !rn2(20)) return &mons[PM_MIGO_BRAINCOLLECTOR];
 			else return &mons[PM_MIGO_WARRIOR];
 		default:
 			return &mons[PM_MIGO_DRONE];

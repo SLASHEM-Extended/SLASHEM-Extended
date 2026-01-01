@@ -642,6 +642,13 @@ register boolean clumsy;
 
 	if (dmg > 0) {
 		mon->mhp -= dmg;
+
+		/* wuot why isn't this here, the monster took damage so there should be a message ffs! --Amy */
+		if (mon->mhp > 0) {
+			monster_pain(mon);
+			wounds_message(mon);
+		}
+
 #ifdef SHOW_DMG
 		showdmg(dmg);
 #endif
