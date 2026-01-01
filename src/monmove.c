@@ -2827,6 +2827,46 @@ convertdone:
 		pline("%s stabilizes the space around.", Monnam(mtmp)); /* message is sic from Elona */
 	}
 
+	if ( (monstersoundtype(mtmp) == MS_BAN) && !rn2(1000)) {
+		if (canseemon(mtmp)) pline("%s warps away!", Monnam(mtmp));
+		u_teleport_monD(mtmp, FALSE); /* banish the monster --Amy */
+		return 1;
+	}
+
+	if (monstersoundtype(mtmp) == MS_ANOREXIA) { /* slowly starves to death, doesn't happen while not on the same level as you (intentional) --Amy */
+		mtmp->anorexiatimer++;
+		if (mtmp->anorexiatimer >= 5000) {
+			mtmp->mconf = 1;
+			if (mtmp->anorexiatimer == 5000) verbalize("Ugghhhh... I... I feel so dizzy...");
+		}
+		if (mtmp->anorexiatimer >= 10000) {
+			if (mtmp->anorexiatimer == 10000) verbalize("I... I feel... faint...");
+			if (!rn2(100)) {
+				if (mtmp->mhpmax > 1) {
+					mtmp->mhpmax--;
+					if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = mtmp->mhpmax;
+				} else {
+					verbalize("No... I am leaving... this... world...");
+					monkilled(mtmp, "", AD_PHYS);
+					return 1;
+				}
+			}
+		}
+	}
+
+	if (monstersoundtype(mtmp) == MS_AMNESIA) { /* shroud the monster's square and the eight surrounding ones --Amy */
+		int i, j, bd = 1;
+
+		for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+			if (isok(mtmp->mx + i, mtmp->my + j)) {
+				/* Zonk all memory of this location. */
+				levl[mtmp->mx + i][mtmp->my + j].seenv = 0;
+				levl[mtmp->mx + i][mtmp->my + j].waslit = 0;
+				clear_memory_glyph(mtmp->mx + i, mtmp->my + j, S_stone);
+			}
+		}
+	}
+
 	if ( ((monstersoundtype(mtmp) == MS_ESCAPE) || (mtmp->egotype_escaper)) && (mtmp->mhp < (mtmp->mhpmax / 4)) ) {
 		pline("%s vanishs.", Monnam(mtmp)); /* message is sic from Elona */
 		mongone(mtmp);

@@ -2089,6 +2089,7 @@ boolean revived;
 		mtmp2->ogrethief = 0;
 		mtmp2->bleedout = 0;
 		mtmp2->healblock = 0;
+		mtmp2->anorexiatimer = 0;
 		mtmp2->inertia = 0;
 		replmon(mtmp,mtmp2);
 		newsym(mtmp2->mx, mtmp2->my);	/* Might now be invisible */

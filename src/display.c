@@ -139,8 +139,6 @@ STATIC_DCL int back_to_cmap(XCHAR_P, XCHAR_P);
 
 STATIC_VAR boolean transp;    /* cached transparency flag for current tileset */
 
-STATIC_DCL int randomglyph(void);
-
 /*
  * vobj_at()
  *
@@ -470,6 +468,10 @@ unmap_object(x, y)
 	show_glyph(x, y, randomglyph() );			\
 	return;								\
 	}								\
+	if (grakabugok(x,y)) { 	\
+	show_glyph(x, y, randomglyph() );			\
+	return;								\
+	}								\
 	if (SpellColorBlue && !rn2(10)) { 	\
 	show_glyph(x, y, cmap_to_glyph(S_room));			\
 	return;								\
@@ -559,6 +561,10 @@ int memory_glyph(x, y)
 	if (Yawming && (distu(x,y) > yawm_distance())) { return cmap_to_glyph(S_stone); }
 
 	if (StupidMojibake && !rn2(MojibakeXtra ? 3 : 10)) {
+	return randomglyph();
+	}
+
+	if (grakabugok(x,y)) {
 	return randomglyph();
 	}
 
@@ -1136,6 +1142,11 @@ newsym(x,y)
 	return;
 	}
 
+	if (grakabugok(x,y)) {
+	show_glyph(x, y, randomglyph());
+	return;
+	}
+
 	if (SpellColorBlue && !rn2(10)) {
 	show_glyph(x, y, cmap_to_glyph(S_room));
 	return;
@@ -1610,6 +1621,11 @@ newsymX(x,y)
 	}
 
 	if (StupidMojibake && !rn2(MojibakeXtra ? 3 : 10)) {
+	show_glyph(x, y, randomglyph());
+	return;
+	}
+
+	if (grakabugok(x,y)) {
 	show_glyph(x, y, randomglyph());
 	return;
 	}

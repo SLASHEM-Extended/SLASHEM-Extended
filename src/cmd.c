@@ -13369,6 +13369,10 @@ int final;
 		sprintf(buf, "%d time%s", u.cnd_ritatrapcnt, plur(u.cnd_ritatrapcnt));
 		enl_msg(You_, "had monsters trigger feminism traps for you ", "had monsters trigger feminism traps for you ", buf);
 	}
+	if (u.cnd_monnastycount && final) {
+		sprintf(buf, "%d time%s", u.cnd_monnastycount, plur(u.cnd_monnastycount));
+		enl_msg(You_, "had monsters trigger nasty traps for you ", "had monsters trigger nasty traps for you ", buf);
+	}
 	if (u.cnd_klaratrapcnt && final) {
 		sprintf(buf, "%d time%s", u.cnd_klaratrapcnt, plur(u.cnd_klaratrapcnt));
 		enl_msg(You_, "heard clacking high heel noises ", "heard clacking high heel noises ", buf);
@@ -14173,6 +14177,9 @@ int final;
 
 	sprintf(buf, "%d time%s", u.cnd_ritatrapcnt, plur(u.cnd_ritatrapcnt));
 	dump("  You had monsters trigger feminism traps for you ", buf);
+
+	sprintf(buf, "%d time%s", u.cnd_monnastycount, plur(u.cnd_monnastycount));
+	dump("  You had monsters trigger nasty traps for you ", buf);
 
 	sprintf(buf, "%d time%s", u.cnd_klaratrapcnt, plur(u.cnd_klaratrapcnt));
 	dump("  You heard clacking high heel noises ", buf);

@@ -2568,6 +2568,14 @@ movemon()
 		set_mimic_sym(mtmp);
 	}
 
+	/* whenever a MS_GRAKA moves, display a mojibake glyph at a random location --Amy */
+	if ((monstersoundtype(mtmp) == MS_GRAKA) && isok(mtmp->mx, mtmp->my)) {
+		int grakax, grakay;
+		grakax = rn1(COLNO-3,2);
+		grakay = rn2(ROWNO);
+		show_glyph(grakax, grakay, randomglyph());
+	}
+
 	if (is_hider(mtmp->data) || mtmp->egotype_hide || mtmp->egotype_mimic) {
 	    /* unwatched mimics and piercers may hide again  [MRS] */
 	    if(restrap(mtmp) && issoviet) continue;
@@ -2650,6 +2658,10 @@ meatmetal(mtmp)
 	struct permonst *ptr;
 	int poly, grow, heal, mstone;
 
+	if (monstersoundtype(mtmp) == MS_ANOREXIA) { /* anorexic monsters cannot eat --Amy */
+		return 0;
+	}
+
 	/* If a pet, eating is handled separately, in dog.c */
 	if (mtmp->mtame) return 0;
 
@@ -2672,9 +2684,15 @@ meatmetal(mtmp)
 		    } else if (flags.soundok && flags.verbose && !(monstersoundtype(mtmp) == MS_METALMAFIA)) {
 			You_hear("a crunching sound.");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Ochen' tsennyy element metalla tol'ko chto poyel i vy budete pinat' sebya, yesli ya skazhu vam, chto eto bylo." : "Gruum!");
-			}
+		    }
 
 		    u.cnd_moneatmetal++;
+
+		    if (monstersoundtype(mtmp) == MS_BULIMIA) { /* bulimic monsters vomit when they eat, and become confused/stunned --Amy */
+			mtmp->mconf = mtmp->mstun = TRUE;
+			if (canseemon(mtmp)) pline("%s vomits.", Monnam(mtmp));
+		    }
+
 		    mtmp->meating = otmp->owt/2 + 1;
 		    if (mtmp->meating > 10) mtmp->meating = 10; /* arbitrary --Amy */
 		    if (monstersoundtype(mtmp) == MS_METALMAFIA && mtmp->meating > 1) mtmp->meating = 1; /* not really eating it */
@@ -2760,6 +2778,10 @@ meatlithic(mtmp)
 	struct permonst *ptr;
 	int poly, grow, heal, mstone;
 
+	if (monstersoundtype(mtmp) == MS_ANOREXIA) { /* anorexic monsters cannot eat --Amy */
+		return 0;
+	}
+
 	/* If a pet, eating is handled separately, in dog.c */
 	if (mtmp->mtame) return 0;
 
@@ -2778,7 +2800,13 @@ meatlithic(mtmp)
 		    else if (flags.soundok && flags.verbose) {
 			You_hear("a grating sound.");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Luchshe nadeyat'sya, chto etot punkt kamennyy ne bylo chem-to vazhnym, potomu chto teper' poteryana navsegda." : "Wuoeing!");
-			}
+		    }
+
+		    if (monstersoundtype(mtmp) == MS_BULIMIA) { /* bulimic monsters vomit when they eat, and become confused/stunned --Amy */
+			mtmp->mconf = mtmp->mstun = TRUE;
+			if (canseemon(mtmp)) pline("%s vomits.", Monnam(mtmp));
+		    }
+
 		    u.cnd_moneatstone++;
 		    mtmp->meating = otmp->owt/2 + 1;
 		    if (mtmp->meating > 10) mtmp->meating = 10; /* arbitrary --Amy */
@@ -2855,6 +2883,10 @@ meatanything(mtmp)
 	struct permonst *ptr;
 	int poly, grow, heal, mstone;
 
+	if (monstersoundtype(mtmp) == MS_ANOREXIA) { /* anorexic monsters cannot eat --Amy */
+		return 0;
+	}
+
 	/* If a pet, eating is handled separately, in dog.c */
 	if (mtmp->mtame) return 0;
 
@@ -2871,7 +2903,13 @@ meatanything(mtmp)
 		    else if (flags.soundok && flags.verbose) {
 			You_hear("a chewing sound.");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Ochen' tsennyy element metalla tol'ko chto poyel i vy budete pinat' sebya, yesli ya skazhu vam, chto eto bylo." : "Gruum!");
-			}
+		    }
+
+		    if (monstersoundtype(mtmp) == MS_BULIMIA) { /* bulimic monsters vomit when they eat, and become confused/stunned --Amy */
+			mtmp->mconf = mtmp->mstun = TRUE;
+			if (canseemon(mtmp)) pline("%s vomits.", Monnam(mtmp));
+		    }
+
 		    u.cnd_moneatall++;
 		    mtmp->meating = otmp->owt/2 + 1;
 		    if (mtmp->meating > 10) mtmp->meating = 10; /* arbitrary --Amy */
@@ -2945,6 +2983,10 @@ meatcorpse(mtmp)
 {
 	register struct obj *otmp, *otmpB;
 
+	if (monstersoundtype(mtmp) == MS_ANOREXIA) { /* anorexic monsters cannot eat --Amy */
+		return;
+	}
+
 	/* If a pet, eating is handled separately, in dog.c */
 	if (mtmp->mtame) return;
 
@@ -2959,7 +3001,13 @@ meatcorpse(mtmp)
 		    else if (flags.soundok && flags.verbose) {
 			You(FunnyHallu ? "hear an alien's noises!" : "hear an awful gobbling noise!");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vy boites' ne meneye, vy malen'kiy rebenok? Postaraytes', chtoby ne ispachkat' sebya, kha-kha!" : "Kwololololo lololololo!");
-			}
+		    }
+
+		    if (monstersoundtype(mtmp) == MS_BULIMIA) { /* bulimic monsters vomit when they eat, and become confused/stunned --Amy */
+			mtmp->mconf = mtmp->mstun = TRUE;
+			if (canseemon(mtmp)) pline("%s vomits.", Monnam(mtmp));
+		    }
+
 		    mtmp->meating = 2;
 
 			if (otmp->otyp == MEDICAL_KIT)
@@ -3016,6 +3064,10 @@ meatobj(mtmp)		/* for gelatinous cubes */
 	int poly, grow, heal, count = 0, ecount = 0;
 	char buf[BUFSZ];
 
+	if (monstersoundtype(mtmp) == MS_ANOREXIA) { /* anorexic monsters cannot eat --Amy */
+		return 0;
+	}
+
 	buf[0] = '\0';
 	/* If a pet, eating is handled separately, in dog.c */
 	if (mtmp->mtame) return 0;
@@ -3041,6 +3093,12 @@ meatobj(mtmp)		/* for gelatinous cubes */
 		    You_hear("a slurping sound.");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Skoreye vsego, eto bylo chto-to, chto vy, vozmozhno, khoteli ispol'zovat', ili, mozhet byt', dazhe vash taynik! Razve eto ne veselo?" : "Chllp!");
 		}
+
+		if (monstersoundtype(mtmp) == MS_BULIMIA) { /* bulimic monsters vomit when they eat, and become confused/stunned --Amy */
+			mtmp->mconf = mtmp->mstun = TRUE;
+			if (canseemon(mtmp)) pline("%s vomits.", Monnam(mtmp));
+		}
+
 		u.cnd_moneatorganic++;
 		/* Heal up to the object's weight in hp */
 		if (mtmp->mhp < mtmp->mhpmax) {

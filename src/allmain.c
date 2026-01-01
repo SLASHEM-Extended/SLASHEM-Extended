@@ -17340,6 +17340,8 @@ past4:
 	u.wollohhack = 0;
 	u.oehack = 0;
 	if (uarmf && uarmf->oartifact == ART_OLTROHOEVY) u.oehack = TRUE;
+	if (!program_state.gameover && youmonst.data->msound == MS_WOLLOH) u.wollohhack = TRUE;
+	if (!program_state.gameover && youmonst.data->msound == MS_OE) u.oehack = TRUE;
 	u.polyattackhack = 0;
 	u.mongetshack = 0;
 	u.dynamitehack = 0;
@@ -23119,6 +23121,25 @@ int x, y;
 	for (i = -1; i <= 1; i++) for(j = -1; j <= 1; j++) {
 		if (!isok(x + i, y + j)) continue;
 		if (MON_AT(x + i, y + j)) return TRUE;
+	}
+
+	return FALSE;
+
+}
+
+/* MS_GRAKA: tiles that have a monster with this effect look like mojibake glyphs --Amy */
+boolean
+grakabugok(x, y)
+int x, y;
+{
+	register struct monst *grakamon;
+
+	if (!isok(x, y)) return FALSE;
+
+	if (MON_AT(x, y)) {
+		if ((grakamon = level.monsters[x][y]) != (struct monst *)0) {
+			if (monstersoundtype(grakamon) == MS_GRAKA) return TRUE;
+		}
 	}
 
 	return FALSE;

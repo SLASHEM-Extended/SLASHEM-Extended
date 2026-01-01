@@ -1194,7 +1194,7 @@ migrate_to_level(mtmp, tolev, xyloc, cc)
 	mtmp->mx = mtmp->my = 0;	/* this implies migration */
 }
 
-/* function that makes your pet more hungry, e.g. because it got hit by a famine attack */
+/* function that makes your pet more hungry, e.g. because it got hit by a famine attack --Amy */
 void
 makedoghungry(mon, amount)
 struct monst *mon;
@@ -1226,6 +1226,10 @@ register struct obj *obj;
 	struct permonst *fptr = &mons[obj->corpsenm];
 	boolean starving;
 	struct monst *potentialpet;
+
+	if (monstersoundtype(mon) == MS_ANOREXIA) { /* anorexic monsters cannot eat --Amy */
+		return TABU;
+	}
 
 	if (is_quest_artifact(obj) || obj_resists(obj, 0, 95))
 	    return (obj->cursed ? TABU : APPORT);

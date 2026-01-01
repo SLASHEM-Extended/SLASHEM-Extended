@@ -260,6 +260,12 @@ boolean devour;
 	    if (nutrit > 1) nutrit = (nutrit * 3) / 4;
 	}
 
+	if (monstersoundtype(mtmp) == MS_BULIMIA) { /* bulimic pets vomit when they eat, losing nutrition, and become confused/stunned --Amy */
+		mtmp->mconf = mtmp->mstun = TRUE;
+		makedoghungry(mtmp, 50);
+		if (canseemon(mtmp)) pline("%s vomits.", Monnam(mtmp));
+	}
+
 	if (growpoints >= 5) {
 		int linechance = 0;
 		int hownum = growpoints;
@@ -297,6 +303,7 @@ boolean devour;
 	
 	edog->hungrytime += nutrit;
 	mtmp->mconf = 0;
+	if (monstersoundtype(mtmp) == MS_BULIMIA) mtmp->mconf = TRUE;
 	if (edog->mhpmax_penalty) {
 	    /* no longer starving */
 	    mtmp->mhpmax += edog->mhpmax_penalty;

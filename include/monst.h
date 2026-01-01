@@ -474,6 +474,7 @@ struct monst {
 	int repaircredit;	/* for MS_REPAIR, used to pay for their service */
 	boolean singability;	/* for MS_SING */
 	boolean ruinedshoe;	/* for MS_SHOE if you used meltee */
+	int anorexiatimer;	/* for MS_ANOREXIA */
 
 	struct obj *mw;
 	long misc_worn_check;

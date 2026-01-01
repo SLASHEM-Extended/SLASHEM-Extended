@@ -819,7 +819,7 @@ stupidsegfault:
 	    return buf;
 	}
 
-	if (Role_if(PM_GENDERSTARIST) || autismweaponcheck(ART_DAEMEL)) {
+	if (Role_if(PM_GENDERSTARIST) || (monstersoundtype(mtmp) == MS_GENDER) || autismweaponcheck(ART_DAEMEL)) {
 		if (is_neuter(mtmp->data)) strcat(buf, "male or female or neuter ");
 		else if (mtmp->female) strcat(buf, "female ");
 		else strcat(buf, "male ");

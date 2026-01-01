@@ -9300,6 +9300,11 @@ register struct	monst	*mtmp;
 			(void) mongets(mtmp, T_SHIRT);
 			(void) mongets(mtmp, LOW_BOOTS);
 		}
+		if (ptr == &mons[PM_SHOCKSOLDIER]) {
+			(void) mongets(mtmp, HAND_BLASTER);
+	  		m_initthrow(mtmp, BLASTER_BOLT, 20);
+			(void) mongets(mtmp, rn2(2) ? SHORT_SWORD : RAPIER);
+		}
 
 		if (ptr == &mons[PM_OUTCAST_DEFENDER]) {
 			(void) mongets(mtmp, SPLINT_MAIL);
@@ -27349,6 +27354,7 @@ register int	mmflags;
 	mtmp->handyfirst = 0;
 	mtmp->phototaken = 0;
 	mtmp->ruinedshoe = 0;
+	mtmp->anorexiatimer = 0;
 	mtmp->repaircredit = 0;
 	mtmp->singability = 0;
 	mtmp->hominglazer = 0;
