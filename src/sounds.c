@@ -4771,7 +4771,48 @@ repairitemchoice:
 		else verbl_msg = "GRR!";
 		break;
 	case MS_BLANKER:
-		/* todo */
+		verbalize("I'll remove an egotype from a piece of equipment for 1000 zorkmids.");
+		if (u.ugold < 1000) {
+			verbalize("But you don't have enough money.");
+		} else if (yn("Pay?") == 'y') {
+				struct obj *blankotmp;
+				verbalize("Thanks! You may now select an item and I'll remove the egotype from it.");
+				u.ugold -= 1000;
+				mtmp->mfrenzied = FALSE;
+				mtmp->mpeaceful = TRUE;
+
+				if (CannotSelectItemsInPrompts) break;
+blankerchoice:
+				blankotmp = getobj(allnoncount, "blank");
+
+				if(!blankotmp) {
+					if (yn("Really exit with no object selected?") == 'y') {
+						pline("You just wasted the opportunity to blank your gear.");
+						break;
+					} else goto blankerchoice;
+				}
+
+				if (blankotmp) {
+					if (!blankotmp->enchantment) {
+						verbalize("Huh? There was no enchantment on that item to begin with! Here, you can have your money back, minus the service fee of 100 zorkmids.");
+						u.ugold += 900;
+						break;
+					}
+
+					if (!blankotmp->owornmask) blankotmp->enchantment = 0;
+					else {
+						long savewornmask;
+						savewornmask = blankotmp->owornmask;
+						setworn((struct obj *)0, blankotmp->owornmask);
+						blankotmp->enchantment = 0;
+						setworn(blankotmp, savewornmask);
+					}
+					verbalize("All right, done. Good luck in your travels, friend!");
+				}
+
+			} else {
+				verbalize("Chat me up again if you change your mind.");
+			}
 		break;
 	case MS_CONDESCEND:
 		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {

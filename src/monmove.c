@@ -2833,6 +2833,13 @@ convertdone:
 		return 1;
 	}
 
+	if ((monstersoundtype(mtmp) == MS_TEMPER) && !mtmp->mfrenzied && (mtmp->mhp < (mtmp->mhpmax / 2)) && !mtmp->mtame) {
+		mtmp->mpeaceful = FALSE;
+		mtmp->mfrenzied = TRUE;
+		if (canseemon(mtmp)) pline("%s is engulfed in fury!", Monnam(mtmp));
+		else You_hear("an angry grunt.");
+	}
+
 	if (monstersoundtype(mtmp) == MS_ANOREXIA) { /* slowly starves to death, doesn't happen while not on the same level as you (intentional) --Amy */
 		mtmp->anorexiatimer++;
 		if (mtmp->anorexiatimer >= 5000) {
@@ -3723,6 +3730,68 @@ toofar:
 
 	    if(inrange && monstersoundtype(mtmp) == MS_GIBBERISH && !mtmp->mpeaceful && !rn2(5)) {
 		pline("%s", generate_garbage_string());
+	    }
+
+	    if(inrange && monstersoundtype(mtmp) == MS_CONDESCEND && !rn2(50)) {
+		pline("%s makes fun of your attire.", Monnam(mtmp));
+		switch (rnd(8)) {
+			case 1:
+				if (uwep) {
+					verbalize("Heh heh heh, can't afford a better weapon? Plinging away with a %s? How funny.", playerweaponname());
+				} else {
+					verbalize("Are you going to try punching me with your bare fists? Ha ha ha! Without a weapon, you'll never even dent me!");
+				}
+				break;
+			case 2:
+				if (uarm) {
+					verbalize("Oh, what's that %s you're wearing? Isn't such a shiny piece a waste on a body as ugly as yours?", xname(uarm));
+				} else {
+					verbalize("So you can't even afford any armor? Pathetic!");
+				}
+				break;
+			case 3:
+				if (uarms) {
+					verbalize("What, you think your dinky little %s can protect you? Ha, ha, ha, ha, ha, ha, ha!", xname(uarms));
+				} else {
+					verbalize("You really should invest in a shield, or this battle will be very short!");
+				}
+				break;
+			case 4:
+				if (uarmh) {
+					verbalize("Boah, you look butt ugly with that %s on your %s... if you don't take it off, you're never gonna find a spouse!", xname(uarmh), body_part(HEAD));
+				} else {
+					verbalize("I'd wear a helmet if I were you, but since you don't, ah well, I'll just hack your little %s off now.", body_part(HEAD));
+				}
+				break;
+			case 5:
+				if (uarmg) {
+					verbalize("Aren't those %s on your %s a little too unwieldy? Do you think you can even hit anything while wearing them?", xname(uarmg), makeplural(body_part(HAND)));
+				} else {
+					verbalize("Ha, ha, ha, it seems you can't afford gloves!");
+				}
+				break;
+			case 6:
+				if (uarmf) {
+					verbalize("Lol are you serious, wearing a %s?! Do you want *everyone* to make fun of you?", xname(uarmf));
+				} else {
+					verbalize("Ewwwwww, look at your %s! All those blisters and warts! Are you a beggar or what, or why can't you even afford a pair of shoes?", makeplural(body_part(FOOT)));
+				}
+				break;
+			case 7:
+				if (uarmu) {
+					verbalize("What a goofy %s you're wearing.", xname(uarmu));
+				} else {
+					verbalize("Boah %s, wear a shirt, goddammit! Nobody wants to have to look at your %s!", flags.female ? "lady" : "dude", flags.female ? "skinny belly" : "hairy belly");
+				}
+				break;
+			case 8:
+				if (uarmc) {
+					verbalize("Now that %s of yours is really out of fashion. Last time I saw someone wear such an old, gritty cloak was five years ago.", xname(uarmc));
+				} else {
+					verbalize("Heh heh heh, you're not wearing a cloak, I see? Very good, that means you'll not have any protection from my magical attacks.");
+				}
+				break;
+		}
 	    }
 
 	    if (inrange && (uarmf && uarmf->oartifact == ART_THICK_PLATFORM_CRAZE) && !mtmp->mpeaceful && mtmp->female && humanoid(mtmp->data) && !rn2(25)) {

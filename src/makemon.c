@@ -9292,6 +9292,22 @@ register struct	monst	*mtmp;
 		if (monsndx(ptr) == PM_OUTCAST_PROTECTOR || monsndx(ptr) == PM_OUTCAST_SPECIALIST) monster_weapon_outcast(mtmp, TRUE);
 		if (monsndx(ptr) == PM_ENCLAVE_PRIVATE || monsndx(ptr) == PM_ENCLAVE_LOOKOUT || monsndx(ptr) == PM_ENCLAVE_MAJOR || monsndx(ptr) == PM_ENCLAVE_CORPORAL || monsndx(ptr) == PM_ENCLAVE_FODDER) monster_weapon_enclave(mtmp, TRUE);
 
+		if (ptr == &mons[PM_CHRYSAOR]) {
+
+			otmp = mksobj(MIRROR_SHIELD, FALSE, Race_if(PM_ARTIFINDER) ? TRUE : FALSE, FALSE);
+			if (otmp) {
+				otmp->mstartinventX = TRUE;
+				otmp->spe += 10;
+				(void) mpickobj(mtmp, otmp, TRUE);
+			}
+			otmp = mksobj(ISAMUSEI, FALSE, Race_if(PM_ARTIFINDER) ? TRUE : FALSE, FALSE);
+			if (otmp) {
+				otmp->mstartinventX = TRUE;
+				otmp->spe += 10;
+				(void) mpickobj(mtmp, otmp, TRUE);
+			}
+		}
+
 		if (ptr == &mons[PM_ENCLAVE_SCIENTIST]) {
 			monster_weapon_enclave(mtmp, FALSE);
 			(void) mongets(mtmp, LAB_COAT);
@@ -17498,8 +17514,25 @@ loveheelover:
 		if (mtmp->data == &mons[PM_COBBLE_GOBLIN]) (void) mongets(mtmp, UNWIELDY_PICK);
 		if (mtmp->data == &mons[PM_ORC_DIGGER]) (void) mongets(mtmp, PICK_AXE);
 
-		if (mtmp->data == &mons[PM_RAIDER] || mtmp->data == &mons[PM_RAIDER_WASTEHOUND] || mtmp->data == &mons[PM_RAIDER_SADIST]) monster_weapon_raider(mtmp, TRUE);
+		if (mtmp->data == &mons[PM_RAIDER] || mtmp->data == &mons[PM_PSYCHO_TIC_RAIDER] || mtmp->data == &mons[PM_RAIDER_WASTEHOUND] || mtmp->data == &mons[PM_RAIDER_SADIST] || mtmp->data == &mons[PM_RAIDER_PAINSPIKE]) monster_weapon_raider(mtmp, TRUE);
+		if (mtmp->data == &mons[PM_RAIDER_WELDER]) {
+			monster_weapon_raider(mtmp, TRUE);
+			(void) mongets(mtmp, STANDARD_HELMET);
+		}
+		if (mtmp->data == &mons[PM_RAIDER_BLASTMASTER]) {
+			monster_weapon_raider(mtmp, TRUE);
+			(void) mongets(mtmp, BRONZE_PLATE_MAIL);
+		}
+		if (mtmp->data == &mons[PM_ARCLIGHT_RAIDER]) {
+			monster_weapon_raider(mtmp, TRUE);
+			(void) mongets(mtmp, DWARVISH_IRON_HELM);
+		}
 
+		if (ptr == &mons[PM_TRUE_OSEQUIP]) {
+			(void) mongets(mtmp, ORCISH_SCIMITAR);
+			(void) mongets(mtmp, rn2(2) ? ORCISH_RING_MAIL : ORCISH_CHAIN_MAIL);
+			(void) mongets(mtmp, ORCISH_HELM);
+		}
 		if (ptr == &mons[PM_RAIDER_BASEBALL_BATTER]) {
 			(void) mongets(mtmp, BASEBALL_BAT);
 			(void) mongets(mtmp, LEATHER_ARMOR);
@@ -19340,6 +19373,7 @@ loveheelover:
 		if(ptr == &mons[PM_WHIP_DEMON]) (void) mongets(mtmp, CHITIN_WHIP);
 		if(ptr == &mons[PM_FLAILER_DEMON]) (void) mongets(mtmp, SPIKED_CHAIN);
 		if(ptr == &mons[PM_JANELITH]) (void) mongets(mtmp, SEXY_MARY_JANE);
+		if(ptr == &mons[PM_GROLLA]) (void) mongets(mtmp, CRYPTIC_SABER);
 		if(ptr == &mons[PM_CLUBBER_DEMON]) (void) mongets(mtmp, rnd_class(CLUB, LOG));
 
 		if (ptr == &mons[PM_PITT_RAIDER] || ptr == &mons[PM_ADVANCED_PITT_RAIDER] || ptr == &mons[PM_SPECIAL_PITT_RAIDER]) monster_weapon_raider(mtmp, TRUE);
@@ -27277,7 +27311,7 @@ register int	mmflags;
 	if (mmflags & MM_XFRENZIED) {
 		mtmp->mfrenzied = TRUE;
 	}
-	if (ptr == &mons[PM_ROTATING_THROUGH_UNICORN] || ptr == &mons[PM_SILASTIC_ARMOURFIEND]) {
+	if (ptr == &mons[PM_ROTATING_THROUGH_UNICORN] || ptr == &mons[PM_PSYCHO_TIC_RAIDER] || ptr == &mons[PM_SILASTIC_ARMOURFIEND]) {
 		mtmp->mpeaceful = mtmp->mtame = FALSE;
 		mtmp->mfrenzied = TRUE;
 	}
