@@ -3435,11 +3435,20 @@ doomsquadmon()
 
 	if ((depthuz < 8) && !In_sokoban_real(&u.uz) && !In_mainframe(&u.uz) && !In_towndungeon(&u.uz) && (level_difficulty() < (4 + rn2(3)))) return(&mons[PM_STUNTED_ZOMBIEMAN]);
 
-	if (rn2(3)) return(&mons[PM_ZOMBIEMAN]); 
+	if (rn2(3)) {
+		switch (rnd(3)) {
+			case 1:
+				return(&mons[PM_ZOMBIEMAN]);
+			case 2:
+				return(&mons[PM_PINKY_DEMON]);
+			case 3:
+				return(&mons[PM_MARS_IMP]);
+		}
+	}
 	else if (!rn2(4)) return(&mons[PM_FORMER_SERGEANT]); 
 
 	else {
-		int i = rnd(15);
+		int i = rnd(16);
 
 		switch (i) {
 			case 1: return (rn2(5) ? &mons[PM_PINKY_DEMON] : !rn2(5) ? &mons[PM_SPECTRAL_PINKY] : rn2(5) ? &mons[PM_BATON_GUY] : &mons[PM_SPECTRAL_BATON_GUY]);
@@ -3463,6 +3472,7 @@ doomsquadmon()
 			case 13: return ((level_difficulty() > 35 && !rn2(30)) ? &mons[PM_SPIDERDEMON] : &mons[PM_PINKY_DEMON]);
 			case 14: return ((level_difficulty() > 50) ? &mons[PM_HELL_KNIGHT] : &mons[PM_CHAINGUNNER]);
 			case 15: return ((level_difficulty() > 75 && !rn2(20)) ? &mons[PM_CYBERDEMON] : &mons[PM_FORMER_SERGEANT]);
+			case 16: return (&mons[PM_MARS_IMP]);
 			default: return(&mons[PM_ZOMBIEMAN]); /* fail safe */
 		}
 	}

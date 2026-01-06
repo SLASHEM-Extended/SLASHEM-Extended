@@ -28221,7 +28221,7 @@ register int	mmflags;
 				int spawnnumber = rn1(10, 3);
 				while (spawnnumber > 0) {
 					spawnnumber--;
-					(void) makemon(specialtensmon(326), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+					(void) makemon(specialtensmon(326), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY); /* M5_ANIMEBAND */
 				}
 			}
 			break;
@@ -28253,7 +28253,7 @@ register int	mmflags;
 				int spawnnumber = rn1(10, 3);
 				while (spawnnumber > 0) {
 					spawnnumber--;
-					(void) makemon(specialtensmon(333), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+					(void) makemon(specialtensmon(333), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY); /* MS_STENCH */
 				}
 			}
 
@@ -28272,7 +28272,7 @@ register int	mmflags;
 				int spawnnumber = rn1(10, 3);
 				while (spawnnumber > 0) {
 					spawnnumber--;
-					(void) makemon(specialtensmon(427), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+					(void) makemon(specialtensmon(427), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY); /* M5_ELDERSCROLLS */
 				}
 			}
 
@@ -28285,14 +28285,14 @@ register int	mmflags;
 				int spawnnumber = rn1(8, 3);
 				while (spawnnumber > 0) {
 					spawnnumber--;
-					(void) makemon(specialtensmon(323), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+					(void) makemon(specialtensmon(323), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY); /* M5_JOKE */
 				}
 			}
 			if (mtmp->data == &mons[PM_TWISTED_JOKER]) {
 				int spawnnumber = rn1(10, 3);
 				while (spawnnumber > 0) {
 					spawnnumber--;
-					(void) makemon(specialtensmon(323), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+					(void) makemon(specialtensmon(323), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY); /* M5_JOKE */
 				}
 			}
 			break;
@@ -28320,7 +28320,7 @@ register int	mmflags;
 				int spawnnumber = rn1(10, 3);
 				while (spawnnumber > 0) {
 					spawnnumber--;
-					(void) makemon(specialtensmon(328), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+					(void) makemon(specialtensmon(328), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY); /* M5_DLORDS */
 				}
 			}
 
@@ -28356,7 +28356,7 @@ register int	mmflags;
 				int spawnnumber = rn1(12, 4);
 				while (spawnnumber > 0) {
 					spawnnumber--;
-					(void) makemon(specialtensmon(331), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+					(void) makemon(specialtensmon(331), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY); /* M5_RANDOMIZED */
 				}
 			}
 
@@ -28683,14 +28683,14 @@ register int	mmflags;
 				int spawnnumber = rn1(10, 3);
 				while (spawnnumber > 0) {
 					spawnnumber--;
-					(void) makemon(specialtensmon(426), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+					(void) makemon(specialtensmon(426), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY); /* M5_AOE */
 				}
 			}
 			if (mtmp->data == &mons[PM_ELONA_PLAYER]) {
 				int spawnnumber = rn1(10, 3);
 				while (spawnnumber > 0) {
 					spawnnumber--;
-					(void) makemon(specialtensmon(361), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+					(void) makemon(specialtensmon(361), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY); /* M5_ELONA */
 				}
 			}
 			if (mtmp->data == &mons[PM_COURT_FOLLOWER]) {
@@ -28704,7 +28704,7 @@ register int	mmflags;
 				int spawnnumber = rn1(15, 3);
 				while (spawnnumber > 0) {
 					spawnnumber--;
-					(void) makemon(specialtensmon(347), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+					(void) makemon(specialtensmon(347), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY); /* MS_CONVERT */
 				}
 			}
 
@@ -29012,7 +29012,7 @@ register int	mmflags;
 				int spawnnumber = rn1(10, 3);
 				while (spawnnumber > 0) {
 					spawnnumber--;
-					(void) makemon(specialtensmon(322), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+					(void) makemon(specialtensmon(322), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY); /* M5_SPACEWARS */
 				}
 			}
 
@@ -29066,7 +29066,7 @@ register int	mmflags;
 				int spawnnumber = rn1(10, 3);
 				while (spawnnumber > 0) {
 					spawnnumber--;
-					(void) makemon(specialtensmon(325), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+					(void) makemon(specialtensmon(325), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY); /* M5_STEAMBAND */
 				}
 			}
 			break;
@@ -29079,7 +29079,7 @@ register int	mmflags;
 				int spawnnumber = rn1(7, 3);
 				while (spawnnumber > 0) {
 					spawnnumber--;
-					(void) makemon(specialtensmon(348), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+					(void) makemon(specialtensmon(348), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY); /* MS_HCALIEN */
 				}
 			}
 
@@ -29095,6 +29095,13 @@ register int	mmflags;
 				while (spawnnumber > 0) {
 					spawnnumber--;
 					(void) makemon(machineroommon(), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+				}
+			}
+			if (mtmp->data == &mons[PM_PRISON_TRANSPORTER]) {
+				int spawnnumber = rn1(6, 6);
+				while (spawnnumber > 0) {
+					spawnnumber--;
+					(void) makemon(specialtensmon(402), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY); /* MS_SISSY */
 				}
 			}
 			if (mtmp->data == &mons[PM_ENCLAVE_VERTIBIRD] || mtmp->data == &mons[PM_LOOPING_ENCLAVE_VERTIBIRD]) {
@@ -29160,49 +29167,49 @@ register int	mmflags;
 				int spawnnumber = rn1(8, 3);
 				while (spawnnumber > 0) {
 					spawnnumber--;
-					(void) makemon(specialtensmon(39), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+					(void) makemon(specialtensmon(39), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY); /* MS_FART_NORMAL */
 				}
 			}
 			if (mtmp->data == &mons[PM_PFFFF_LADY]) {
 				int spawnnumber = rn1(8, 3);
 				while (spawnnumber > 0) {
 					spawnnumber--;
-					(void) makemon(specialtensmon(38), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+					(void) makemon(specialtensmon(38), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY); /* MS_FART_QUIET */
 				}
 			}
 			if (mtmp->data == &mons[PM_RUMBLE_HUSSY]) {
 				int spawnnumber = rn1(8, 3);
 				while (spawnnumber > 0) {
 					spawnnumber--;
-					(void) makemon(specialtensmon(40), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+					(void) makemon(specialtensmon(40), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY); /* MS_FART_LOUD */
 				}
 			}
 			if (mtmp->data == &mons[PM_ANGBAND_PLAYER]) {
 				int spawnnumber = rn1(10, 3);
 				while (spawnnumber > 0) {
 					spawnnumber--;
-					(void) makemon(specialtensmon(324), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+					(void) makemon(specialtensmon(324), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY); /* M5_ANGBAND */
 				}
 			}
 			if (mtmp->data == &mons[PM_DNETHACK_MODDER]) {
 				int spawnnumber = rn1(10, 3);
 				while (spawnnumber > 0) {
 					spawnnumber--;
-					(void) makemon(specialtensmon(330), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+					(void) makemon(specialtensmon(330), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY); /* M5_DNETHACK */
 				}
 			}
 			if (mtmp->data == &mons[PM_EVILVARIANT_PLAYER]) {
 				int spawnnumber = rn1(10, 3);
 				while (spawnnumber > 0) {
 					spawnnumber--;
-					(void) makemon(specialtensmon(341), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+					(void) makemon(specialtensmon(341), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY); /* M5_EVIL */
 				}
 			}
 			if (mtmp->data == &mons[PM_SHOE_LOVER]) {
 				int spawnnumber = rn1(10, 3);
 				while (spawnnumber > 0) {
 					spawnnumber--;
-					(void) makemon(specialtensmon(332), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+					(void) makemon(specialtensmon(332), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY); /* MS_SHOE */
 				}
 			}
 			if (mtmp->data == &mons[PM_ARABELLA_AGENT]) {
@@ -29636,7 +29643,7 @@ register int	mmflags;
 				int spawnnumber = rn1(10, 3);
 				while (spawnnumber > 0) {
 					spawnnumber--;
-					(void) makemon(specialtensmon(327), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+					(void) makemon(specialtensmon(327), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY); /* M5_DIABLO */
 				}
 			}
 			break;
