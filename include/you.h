@@ -448,6 +448,8 @@ struct you {
 
 	int antidreameater;	/* temporary protection from dream eater attacks */
 
+	int molestinggrudge;	/* if nonzero, peaceful monsters have a grudge against hostile MS_MOLEST */
+
 	/* amy keyword: "newdungeons";   dungeons of doom, level 1 is always available */
 	boolean returndest_dod14;	/* dungeons of doom, level 14 */
 	boolean returndest_dod29;	/* dungeons of doom, level 29 */
@@ -2417,6 +2419,8 @@ struct you {
 	int cnd_judithwins;	/* how many times you defeated heels for the judith trap */
 	int cnd_judithnutkicks;	/* how many times the heels kicked you in the nuts during the judith trap minigame */
 	int cnd_monnastycount;	/* how many times a monster triggered nasty traps for you */
+	int cnd_molestcount;	/* how many times you got molested */
+	int cnd_modalshopcount;	/* how many times you bought something in a modal shop */
 
 	struct symbiotemon usymbiote;	/* for the symbiosis skill */
 	int symbioteaggressivity;	/* how often your symbiote attacks or takes damage */

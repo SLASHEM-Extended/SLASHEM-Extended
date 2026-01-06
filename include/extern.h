@@ -3246,6 +3246,7 @@ E void principaltaunt(void);
 E void pupiltaunt(void);
 E void teachertaunt(void);
 E void monster_pain(struct monst *);
+E int get_modalshop_item(struct monst *);
 
 E int monstersoundtype(struct monst *);
 

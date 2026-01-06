@@ -3791,7 +3791,30 @@ toofar:
 					verbalize("Heh heh heh, you're not wearing a cloak, I see? Very good, that means you'll not have any protection from my magical attacks.");
 				}
 				break;
+		} /* end random choice of thing to make fun of */
+
+		armpro = magic_negation(&youmonst);
+		armprolimit = 75;
+		if (!(PlayerCannotUseSkills)) {
+
+			switch (P_SKILL(P_SPIRITUALITY)) {
+				default: armprolimit = 75; break;
+				case P_BASIC: armprolimit = 78; break;
+				case P_SKILLED: armprolimit = 81; break;
+				case P_EXPERT: armprolimit = 84; break;
+				case P_MASTER: armprolimit = 87; break;
+				case P_GRAND_MASTER: armprolimit = 90; break;
+				case P_SUPREME_MASTER: armprolimit = 93; break;
+			}
 		}
+
+		if ((rn2(3) >= armpro) || ((rnd(100) > armprolimit) && ((armpro < 4) || (rnd(armpro) < 4) ) ) ) {
+			if (!(uamul && uamul->otyp == AMULET_VERSUS_NAGGING && rn2(uamul->oartifact == ART_NAG_ME__FUCK_ME_ ? 20 : 4)) ) {
+				make_dimmed(HDimmed + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
+				if (Role_if(PM_CELLAR_CHILD)) losehp(monster_difficulty(),"being made fun of",KILLED_BY);
+			}
+		}
+
 	    }
 
 	    if (inrange && (uarmf && uarmf->oartifact == ART_THICK_PLATFORM_CRAZE) && !mtmp->mpeaceful && mtmp->female && humanoid(mtmp->data) && !rn2(25)) {

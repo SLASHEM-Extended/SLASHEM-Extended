@@ -475,6 +475,15 @@ struct monst {
 	boolean singability;	/* for MS_SING */
 	boolean ruinedshoe;	/* for MS_SHOE if you used meltee */
 	int anorexiatimer;	/* for MS_ANOREXIA */
+	int modalshoptimer;	/* for MS_MODALSHOP; if -1, it means the first time you try to access the service the items are initialized */
+	int modalshoptype;	/* which type of items the shop will stock */
+	int modalshopitem1;
+	int modalshopitem1bought;	/* is the item in question still available? TRUE means you bought it and so it's gone now */
+	int modalshopitem2;
+	int modalshopitem2bought;
+	int modalshopitem3;
+	int modalshopitem3bought;
+	int modalshopmarkup;	/* how much you have to pay for the items (multiplier) */
 
 	struct obj *mw;
 	long misc_worn_check;

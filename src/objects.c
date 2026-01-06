@@ -4688,6 +4688,7 @@ RING((char *)0, 0,  "juraitis", 0, 0, 0, 0, 5, MT_CORAL, CLR_ORANGE, 1),
 #define AMULET(name,desc,power,prob,metal,color,minlvl) OBJECT( \
 		OBJ(name,desc), BITS(0,0,0,0,1,0,0,0,0,0,0,0,metal), power, \
 		AMULET_CLASS, prob, 0, 0, 150, 0, 0, 0, 0, 20, color, minlvl, 0 )
+/* amulet of change is first */
 AMULET("amulet of change",        "square",     0,          8744,	MT_IRON,	CLR_BLACK, 1),
 AMULET("amulet of peace",        "inka",     PEACEVISION,   1300,	MT_INKA,	CLR_ORANGE, 20),
 AMULET("amulet of polymorph",      "wired",     0,          100,	MT_METAL,	CLR_BLACK, 15),
@@ -5334,16 +5335,16 @@ IMPLANT("implant of swallowing",        "hair",	1,     0,     10,     975,	MT_PL
 IMPLANT("implant of menstrating",        "moaning",	1,     0,     10,     975,	MT_GLASS,	CLR_WHITE, 1),
 IMPLANT("implant of enforcing",        "underwhelming",	1,     0,     10,     975,	MT_GEMSTONE,	CLR_BROWN, 1),
 
-/* sixth batch: gives up to 9 points of AC and a random feminism trap effect; autocurses */
-IMPLANT("implant of legend",        "death",	1,     0,     10,     250,	MT_DRAGON_HIDE,	CLR_YELLOW, 1),
-IMPLANT("implant of virtue",        "unlimited",	1,     0,     10,     250,	MT_IRON,	CLR_ORANGE, 1),
-/* virtue must be last */
-
 /* seventh batch: gives up to 8 points of AC and random amounts of MC */
 IMPLANT("implant of sorrow",        "fallout decay",	1,     0,     10,     250,	MT_BAMBOO,	CLR_GRAY, 1),
 IMPLANT("implant of clear-thinking",        "green fog",	1,     0,     10,     250,	MT_COBALT,	CLR_BRIGHT_GREEN, 1),
 IMPLANT("implant of mind-blasting",        "mountainous",	1,     0,     10,     250,	MT_CORAL,	CLR_GREEN, 1),
 IMPLANT("implant of the octopus",        "rainy weather",	1,     0,     10,     250,	MT_SINNUM,	CLR_CYAN, 1),
+
+/* sixth batch: gives up to 9 points of AC and a random feminism trap effect; autocurses */
+IMPLANT("implant of legend",        "death",	1,     0,     10,     250,	MT_DRAGON_HIDE,	CLR_YELLOW, 1),
+IMPLANT("implant of virtue",        "unlimited",	1,     0,     10,     250,	MT_IRON,	CLR_ORANGE, 1),
+/* virtue must be last!!! this also applies if new batches are added! */
 
 /* new materials, to ensure that the # of appearances is the same for every material */
 IMPLANT((char *)0, 	"ecumenical", 0, 0, 0, 0, MT_SAND,   CLR_GRAY, 1),
@@ -6635,6 +6636,7 @@ OBJECT(OBJ("bandage", (char *)0),
 OBJECT(OBJ("phial", (char *)0),
 		BITS(1,1,0,0,0,0,0,1,0,0,0,P_NONE,MT_GLASS), 0,
 		TOOL_CLASS, 100, 0, 0, 1, 0, 0, 0, 0, 1, HI_GLASS, 1, 0),
+/* phial is last normal tool */
 
 /* Two special unique artifact "tools" */
 OBJECT(OBJ("Candelabrum of Invocation", "candelabrum"),
@@ -10656,7 +10658,7 @@ WAND("fireball",       "octagonal", 500, 150, 1, RAY,       MT_IRON,     HI_META
 WAND("acid",		"measured",	400, 150, 1, RAY,       MT_METAL,	 HI_METAL, 1),
 WAND("solar beam",	"beaming",	400, 150, 1, RAY,       MT_METAL,	 CLR_BRIGHT_CYAN, 1),
 WAND("psybeam",		"avada kedavra",	80, 150, 1, RAY,  MT_WOOD,	 CLR_MAGENTA, 1),
-/* if the last wand changes, update wand mimics in makemon.c and golems in mon.c accordingly --Amy */
+/* last wand should be psybeam, but if the last wand changes, update wand mimics in makemon.c and golems in mon.c accordingly --Amy */
 WAND((char *)0,        "forked",    0, 150, 1, 0,         MT_WOOD,     HI_WOOD, 1),
 WAND((char *)0,        "spiked",    0, 150, 1, 0,         MT_IRON,     HI_METAL, 1),
 WAND((char *)0,        "jeweled",   0, 150, 1, 0,         MT_IRON,     HI_MINERAL, 1),
@@ -11643,6 +11645,7 @@ ROCK("sling ammo", "gray",			0, 4000, 0,  10, 9, 9, 0, 10, 7, MT_MINERAL, CLR_GR
 /* sling ammo = last random gray stone, for e.g. shk.c --Amy */
 
 ROCK("rock", (char *)0,				1,35639, 0,    0, 5, 5, 0, 10, 7, MT_MINERAL, CLR_GRAY, 1),
+/* rock is absolute last gem-class item --Amy */
 #undef GEM
 #undef ROCK
 
@@ -11656,6 +11659,8 @@ OBJECT(OBJ("boulder",(char *)0), BITS(1,0,0,0,0,0,0,0,1,0,0,P_NONE,MT_MINERAL), 
 		ROCK_CLASS,   10000, 0, 15000,  0, 20, 20, 0, 0, 1000, HI_MINERAL, 1, 0),
 OBJECT(OBJ("statue", (char *)0), BITS(1,0,0,1,0,0,0,0,0,0,0,P_NONE,MT_MINERAL), 0,
 		ROCK_CLASS,  90000, 0, 2500,  0, 20, 20, 0, 0, 200, CLR_WHITE, 1, 0),
+
+/* heavy iron balls */
 
 /* heavy iron ball must be first */
 OBJECT(OBJ("heavy iron ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_IRON), 0,
@@ -11816,6 +11821,8 @@ OBJECT(OBJ("green steel ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAI
 OBJECT(OBJ("liquid ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_LIQUID), 0,
 		BALL_CLASS,  1000, 0,  3600, 10, 35, 35, 0, 0,  200, CLR_BRIGHT_GREEN, 10, 0),
 /* liquid ball must be last */
+
+/* iron chains */
 
 /* iron chain must be first */
 OBJECT(OBJ("iron chain", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_IRON), 0,
@@ -11981,6 +11988,8 @@ OBJECT(OBJ("liquid chain", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT
 
 /* extra balls and chains for convict mainly (he can advance flail skill by swinging them) --Amy
  * that said, all other roles can too, as long as they have the flail skill :P */
+
+/* venoms */
 
 /* blinding venom = first venom */
 OBJECT(OBJ("blinding venom", "splash of venom"),

@@ -13409,6 +13409,14 @@ int final;
 		sprintf(buf, "%d time%s", u.cnd_cheaterprayer, plur(u.cnd_cheaterprayer));
 		enl_msg(You_, "used the cheater prayer ", "used the cheater prayer ", buf);
 	}
+	if (u.cnd_molestcount) {
+		sprintf(buf, "%d time%s", u.cnd_molestcount, plur(u.cnd_molestcount));
+		enl_msg(You_, "got molested ", "got molested ", buf);
+	}
+	if (u.cnd_modalshopcount) {
+		sprintf(buf, "%d time%s", u.cnd_modalshopcount, plur(u.cnd_modalshopcount));
+		enl_msg(You_, "bought items from modal shops ", "bought items from modal shops ", buf);
+	}
 
 	if (achieve.get_bell) {
 		you_have_X("obtained the silver bell");
@@ -14207,6 +14215,12 @@ int final;
 
 	sprintf(buf, "%d time%s", u.cnd_cheaterprayer, plur(u.cnd_cheaterprayer));
 	dump("  You used the cheater prayer ", buf);
+
+	sprintf(buf, "%d time%s", u.cnd_molestcount, plur(u.cnd_molestcount));
+	dump("  You got molested ", buf);
+
+	sprintf(buf, "%d time%s", u.cnd_modalshopcount, plur(u.cnd_modalshopcount));
+	dump("  You bought items from modal shops ", buf);
 
 	if (achieve.get_bell) {
 		dump("", "  You obtained the silver bell");

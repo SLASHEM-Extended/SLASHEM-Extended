@@ -5284,7 +5284,123 @@ blankerchoice:
 		} else if (!mtmp->mpeaceful && !mtmp->mtame) {
 			verbl_msg = "Estas arruinando el ambiente.";
 		} else {
-			verbl_msg = "Hola, ?quieres ver lo que tengo en venta?";
+			register struct objclass *ocl;
+			struct obj *usaddling;
+			int modalcost;
+
+			verbalize("Hola, ?quieres ver lo que tengo en venta?");
+
+			if (mtmp->modalshoptimer > 0 && ((moves - mtmp->modalshoptimer) > 10000) ) {
+				if (rnd(moves - mtmp->modalshoptimer) < 10000) mtmp->modalshoptimer = moves;
+			}
+
+			/* did enough time pass? if yes, stock some new stuff */
+			if ((mtmp->modalshoptimer == -1) || ((moves - mtmp->modalshoptimer) > 10000) ) {
+				mtmp->modalshopmarkup++;
+				mtmp->modalshoptimer = moves;
+				mtmp->modalshopitem1 = get_modalshop_item(mtmp);
+				mtmp->modalshopitem1bought = FALSE;
+				mtmp->modalshopitem2 = get_modalshop_item(mtmp);
+				mtmp->modalshopitem2bought = FALSE;
+				mtmp->modalshopitem3 = get_modalshop_item(mtmp);
+				mtmp->modalshopitem3bought = FALSE;
+			}
+
+			if (mtmp->modalshopitem1bought && mtmp->modalshopitem2bought && mtmp->modalshopitem3bought) verbalize("Lo siento, no tengo existencias. !Vuelve mas tarde y tendre algo bueno!");
+
+			if (!mtmp->modalshopitem1bought) {
+				ocl = &objects[mtmp->modalshopitem1];
+				modalcost = objects[mtmp->modalshopitem1].oc_cost;
+				if (modalcost < 10) modalcost = 10;
+				modalcost *= 10;
+				modalcost *= (9 + mtmp->modalshopmarkup);
+				modalcost /= 10;
+				if (modalcost < 100) modalcost = 100;
+				if (ocl->oc_name_known) {
+					verbalize("!Tengo %s (%s) a la venta! !Cuesta solo %d de pesos!", obj_descr[mtmp->modalshopitem1].oc_name, objtypenames[objects[mtmp->modalshopitem1].oc_class], modalcost);
+				} else {
+					verbalize("!Tengo %s (%s) a la venta! !Cuesta solo %d de pesos!", OBJ_DESCR(*ocl), objtypenames[objects[mtmp->modalshopitem1].oc_class], modalcost);
+				}
+				if (yn("?Quieres comprarlo?") == 'y') {
+					if (u.ugold < modalcost) {
+						verbalize("!Lo siento amigo! !Pero no tienes suficientes pesos!");
+					} else {
+						u.ugold -= modalcost;
+						u.cnd_modalshopcount++;
+						mtmp->modalshopitem1bought = TRUE;
+						usaddling = mksobj(mtmp->modalshopitem1, TRUE, FALSE, FALSE);
+						if (usaddling) {
+							usaddling->quan = 1;
+							usaddling->owt = weight(usaddling);
+							dropy(usaddling);
+							stackobj(usaddling);
+							verbalize("!Aqui tienes, amigo! Ya lo puse en el suelo. !Muchas gracias!");
+						} else verbalize("!Oh, parece que lo rompiste sin querer! !Que pena!");
+					}
+				}
+			}
+			if (!mtmp->modalshopitem2bought) {
+				ocl = &objects[mtmp->modalshopitem2];
+				modalcost = objects[mtmp->modalshopitem2].oc_cost;
+				if (modalcost < 10) modalcost = 10;
+				modalcost *= 10;
+				modalcost *= (9 + mtmp->modalshopmarkup);
+				modalcost /= 10;
+				if (modalcost < 100) modalcost = 100;
+				if (ocl->oc_name_known) {
+					verbalize("!Tengo %s (%s) a la venta! !Cuesta solo %d de pesos!", obj_descr[mtmp->modalshopitem2].oc_name, objtypenames[objects[mtmp->modalshopitem2].oc_class], modalcost);
+				} else {
+					verbalize("!Tengo %s (%s) a la venta! !Cuesta solo %d de pesos!", OBJ_DESCR(*ocl), objtypenames[objects[mtmp->modalshopitem2].oc_class], modalcost);
+				}
+				if (yn("?Quieres comprarlo?") == 'y') {
+					if (u.ugold < modalcost) {
+						verbalize("!Lo siento amigo! !Pero no tienes suficientes pesos!");
+					} else {
+						u.ugold -= modalcost;
+						u.cnd_modalshopcount++;
+						mtmp->modalshopitem2bought = TRUE;
+						usaddling = mksobj(mtmp->modalshopitem2, TRUE, FALSE, FALSE);
+						if (usaddling) {
+							usaddling->quan = 1;
+							usaddling->owt = weight(usaddling);
+							dropy(usaddling);
+							stackobj(usaddling);
+							verbalize("!Aqui tienes, amigo! Ya lo puse en el suelo. !Muchas gracias!");
+						} else verbalize("!Oh, parece que lo rompiste sin querer! !Que pena!");
+					}
+				}
+			}
+			if (!mtmp->modalshopitem3bought) {
+				ocl = &objects[mtmp->modalshopitem3];
+				modalcost = objects[mtmp->modalshopitem3].oc_cost;
+				if (modalcost < 10) modalcost = 10;
+				modalcost *= 10;
+				modalcost *= (9 + mtmp->modalshopmarkup);
+				modalcost /= 10;
+				if (modalcost < 100) modalcost = 100;
+				if (ocl->oc_name_known) {
+					verbalize("!Tengo %s (%s) a la venta! !Cuesta solo %d de pesos!", obj_descr[mtmp->modalshopitem3].oc_name, objtypenames[objects[mtmp->modalshopitem3].oc_class], modalcost);
+				} else {
+					verbalize("!Tengo %s (%s) a la venta! !Cuesta solo %d de pesos!", OBJ_DESCR(*ocl), objtypenames[objects[mtmp->modalshopitem3].oc_class], modalcost);
+				}
+				if (yn("?Quieres comprarlo?") == 'y') {
+					if (u.ugold < modalcost) {
+						verbalize("!Lo siento amigo! !Pero no tienes suficientes pesos!");
+					} else {
+						u.ugold -= modalcost;
+						u.cnd_modalshopcount++;
+						mtmp->modalshopitem3bought = TRUE;
+						usaddling = mksobj(mtmp->modalshopitem3, TRUE, FALSE, FALSE);
+						if (usaddling) {
+							usaddling->quan = 1;
+							usaddling->owt = weight(usaddling);
+							dropy(usaddling);
+							stackobj(usaddling);
+							verbalize("!Aqui tienes, amigo! Ya lo puse en el suelo. !Muchas gracias!");
+						} else verbalize("!Oh, parece que lo rompiste sin querer! !Que pena!");
+					}
+				}
+			}
 		}
 		break;
 
@@ -9593,6 +9709,123 @@ register struct monst *mtmp;
 	return mtmp->data->msound;
 
 	return MS_SILENT; /* fail safe */
+}
+
+/* make a random item for %s's modal shop, using the monster's item types that were rolled when it got generated --Amy */
+int
+get_modalshop_item(mtmp)
+register struct monst *mtmp;
+{
+	int modalshopitemtype = 1;
+
+	switch (mtmp->modalshoptype) {
+		case RANDOM_CLASS:
+		default:
+			modalshopitemtype = 1 + rnd(16);
+			break;
+		case WEAPON_CLASS:
+			modalshopitemtype = 2;
+			break;
+		case ARMOR_CLASS:
+			modalshopitemtype = 3;
+			break;
+		case RING_CLASS:
+			modalshopitemtype = 4;
+			break;
+		case AMULET_CLASS:
+			modalshopitemtype = 5;
+			break;
+		case WAND_CLASS:
+			modalshopitemtype = 6;
+			break;
+		case SPBOOK_CLASS:
+			modalshopitemtype = 7;
+			break;
+		case SCROLL_CLASS:
+			modalshopitemtype = 8;
+			break;
+		case POTION_CLASS:
+			modalshopitemtype = 9;
+			break;
+		case TOOL_CLASS:
+			modalshopitemtype = 10;
+			break;
+		case FOOD_CLASS:
+			modalshopitemtype = 11;
+			break;
+		case GEM_CLASS:
+			modalshopitemtype = 12;
+			break;
+		case BALL_CLASS:
+			modalshopitemtype = 13;
+			break;
+		case CHAIN_CLASS:
+			modalshopitemtype = 14;
+			break;
+		case VENOM_CLASS:
+			modalshopitemtype = 15;
+			break;
+		case ROCK_CLASS:
+			modalshopitemtype = 16;
+			break;
+		case IMPLANT_CLASS:
+			modalshopitemtype = 17;
+			break;
+	}
+
+	switch (modalshopitemtype) {
+		case 2:
+		default:
+			return (rnd_class(ORCISH_DAGGER, SECRET_WHIP));
+			break;
+		case 3:
+			return (rnd_class(HAWAIIAN_SHIRT, LEVITATION_BOOTS));
+			break;
+		case 4:
+			return (rnd_class(RIN_ADORNMENT, RIN_TELEPORT_CONTROL));
+			break;
+		case 5:
+			return (rnd_class(AMULET_OF_CHANGE, AMULET_OF_VULNERABILITY));
+			break;
+		case 6:
+			return (rnd_class(WAN_LIGHT, WAN_PSYBEAM));
+			break;
+		case 7:
+			return (rnd_class(SPE_FORCE_BOLT, SPE_BLANK_PAPER));
+			break;
+		case 8:
+			return (rnd_class(SCR_CREATE_MONSTER, SCR_BLANK_PAPER));
+			break;
+		case 9:
+			return (rnd_class(POT_BOOZE, POT_AMNESIA));
+			break;
+		case 10:
+			return (rnd_class(LARGE_BOX, PHIAL));
+			break;
+		case 11:
+			return (rnd_class(TRIPE_RATION, TIN));
+			break;
+		case 12:
+			return (rnd_class(DILITHIUM_CRYSTAL, ROCK));
+			break;
+		case 13:
+			return (rnd_class(HEAVY_IRON_BALL, LIQUID_BALL));
+			break;
+		case 14:
+			return (rnd_class(IRON_CHAIN, LIQUID_CHAIN));
+			break;
+		case 15:
+			return (rnd_class(BLINDING_VENOM, SEGFAULT_VENOM));
+			break;
+		case 16:
+			return (rnd_class(BOULDER, STATUE));
+			break;
+		case 17:
+			return (rnd_class(IMPLANT_OF_ABSORPTION, IMPLANT_OF_THE_OCTOPUS));
+			break;
+	}
+
+	return LEATHER_ARMOR; /* fail safe */
 }
 
 #endif /* OVLB */

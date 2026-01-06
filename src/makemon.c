@@ -27389,6 +27389,68 @@ register int	mmflags;
 	mtmp->phototaken = 0;
 	mtmp->ruinedshoe = 0;
 	mtmp->anorexiatimer = 0;
+	mtmp->modalshoptimer = -1;
+	switch (rnd(17)) {
+		case 1:
+			mtmp->modalshoptype = WEAPON_CLASS;
+			break;
+		case 2:
+			mtmp->modalshoptype = ARMOR_CLASS;
+			break;
+		case 3:
+			mtmp->modalshoptype = RING_CLASS;
+			break;
+		case 4:
+			mtmp->modalshoptype = AMULET_CLASS;
+			break;
+		case 5:
+			mtmp->modalshoptype = WAND_CLASS;
+			break;
+		case 6:
+			mtmp->modalshoptype = SPBOOK_CLASS;
+			break;
+		case 7:
+			mtmp->modalshoptype = SCROLL_CLASS;
+			break;
+		case 8:
+			mtmp->modalshoptype = POTION_CLASS;
+			break;
+		case 9:
+			mtmp->modalshoptype = TOOL_CLASS;
+			break;
+		case 10:
+			mtmp->modalshoptype = FOOD_CLASS;
+			break;
+		case 11:
+			mtmp->modalshoptype = GEM_CLASS;
+			break;
+		case 12:
+		default:
+			mtmp->modalshoptype = RANDOM_CLASS;
+			break;
+		case 13:
+			mtmp->modalshoptype = (!rn2(1000) ? BALL_CLASS : RANDOM_CLASS);
+			break;
+		case 14:
+			mtmp->modalshoptype = (!rn2(2000) ? CHAIN_CLASS : RANDOM_CLASS);
+			break;
+		case 15:
+			mtmp->modalshoptype = (!rn2(1000) ? VENOM_CLASS : RANDOM_CLASS);
+			break;
+		case 16:
+			mtmp->modalshoptype = (!rn2(1000) ? ROCK_CLASS : RANDOM_CLASS);
+			break;
+		case 17:
+			mtmp->modalshoptype = (!rn2(1000) ? IMPLANT_CLASS : RANDOM_CLASS);
+			break;
+	}
+	mtmp->modalshopitem1 = -1;
+	mtmp->modalshopitem2 = -1;
+	mtmp->modalshopitem3 = -1;
+	mtmp->modalshopitem1bought = TRUE;
+	mtmp->modalshopitem2bought = TRUE;
+	mtmp->modalshopitem3bought = TRUE;
+	mtmp->modalshopmarkup = 0;
 	mtmp->repaircredit = 0;
 	mtmp->singability = 0;
 	mtmp->hominglazer = 0;

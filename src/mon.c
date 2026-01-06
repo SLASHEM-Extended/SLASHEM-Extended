@@ -4623,6 +4623,14 @@ struct monst *magr,	/* monster that is currently deciding where to move */
 	if(magr->data->msound == MS_REGULATOR && mdef->data->msound == MS_TALONCOMPANY)
 		return ALLOW_M|ALLOW_TM;
 
+	/* peaceful monsters versus hostile molesters, by Amy */
+	if (u.molestinggrudge) {
+		if (magr->mpeaceful && !mdef->mpeaceful && (mdef->data->msound == MS_MOLEST))
+			return ALLOW_M|ALLOW_TM;
+		if (!magr->mpeaceful && (magr->data->msound == MS_MOLEST) && mdef->mpeaceful)
+			return ALLOW_M|ALLOW_TM;
+	}
+
 	/* Stormtroopers vs. Padawans */
 	if(magr->data == &mons[PM_STORMTROOPER] && mdef->data == &mons[PM_PADAWAN])
 		return ALLOW_M|ALLOW_TM;

@@ -348,6 +348,11 @@ nh_timeout()
 		if (!u.tempuninterapprf) You("can once again be interrupted, and monsters no longer automatically flee.");
 	}
 
+	if (u.molestinggrudge) {
+		u.molestinggrudge--;
+		if (u.molestinggrudge < 0) u.molestinggrudge = 0; /* fail safe */
+	}
+
 	if (u.tempspiderspawns) {
 		u.tempspiderspawns--;
 		if (u.tempspiderspawns < 0) u.tempspiderspawns = 0; /* fail safe */

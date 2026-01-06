@@ -9415,7 +9415,7 @@ revid_end:
 				objects[wearimplant->otyp].a_ac = rnd(5);
 				objects[wearimplant->otyp].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
 			}
-			if (wearimplant->otyp >= IMPLANT_OF_TEN_THOUSAND_THINGS && wearimplant->otyp <= IMPLANT_OF_VIRTUE) {
+			if (wearimplant->otyp >= IMPLANT_OF_TEN_THOUSAND_THINGS && wearimplant->otyp <= IMPLANT_OF_ENFORCING) {
 				objects[wearimplant->otyp].a_ac = rnd(5);
 				objects[wearimplant->otyp].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
 			}
