@@ -631,6 +631,7 @@ init_randarts()
 	artilist[ART_RNG_S_EMBRACE].otyp = randartcloak();
 	artilist[ART_RNG_S_GRIMACE].otyp = randarthelm();
 	artilist[ART_JUBELJUBIJEEAH].otyp = randartspellbook();
+	artilist[ART_LEVALA_STING_LOVE].otyp = randartspellbook();
 	artilist[ART_I_PONSER_TO_MAKE_STINGER_B].otyp = randartspellbook();
 	artilist[ART_SCARS_ETCHED_BY_FLAME].otyp = randartspellbook();
 	artilist[ART_O_SACCADO].otyp = randartspellbook();
@@ -855,6 +856,8 @@ init_randarts()
 	artilist[ART_SPECIAL_LACK].otyp = randartmeleeweaponX();
 	artilist[ART_WING_WING].otyp = randartmeleeweaponX();
 	artilist[ART_CARMOUFALSCH].otyp = randartspellbookX();
+	artilist[ART_WHEN_THE_CITY_SWEEPS].otyp = randartspellbookX();
+	artilist[ART_YOU_SMELL_GEESH_MAMA].otyp = randartspellbookX();
 	artilist[ART_ARMANDO_S_DRIVING_FORCE].otyp = randartspellbookX();
 	artilist[ART_WIE_ES_AUCH_SEI].otyp = randartspellbookX();
 	artilist[ART_MORTON_THEIRS_OF_RAVEL_RAD].otyp = randartspellbookX();
@@ -2895,6 +2898,13 @@ register boolean mod;
 
 		    if (otmp && otmp->oartifact == ART_NINER) {
 			otmp->spe += 9;
+		    }
+
+		    if (otmp && otmp->oartifact == ART_WHEN_THE_CITY_SWEEPS) {
+			u.monstermultiplier = 190;
+			u.currentweather = WEATHER_SANDSTORM;
+			pline("There's a storm sweeping into the dungeon...");
+			tell_main_weather();
 		    }
 
 		    if (otmp && otmp->oartifact == ART_MARLSUIT_OF_THE_DANGEROUS_) {
@@ -5545,6 +5555,7 @@ struct monst *mon;
 			case ART_MARINE_THREAT_NEUTERED:
 			case ART_WILD_HEAVY_SWINGS:
 			case ART_MILL_SHOVEL:
+			case ART_SWORD_OF_SPITE:
 			case ART_CRUELTY_OF_EVISCERATION:
 			case ART_COMPLETELY_OFF:
 				return 0; /* no to-hit bonus */
@@ -5665,6 +5676,9 @@ int tmp;
 			return rnd(max(tmp * 2, 1)); /* triple damage!! */
 	    }
 	    if (otmp && otmp->oartifact == ART_MOTORCYCLE_DRIVE && u.usteed) {
+			return rnd(max(tmp * 2, 1)); /* triple damage!! */
+	    }
+	    if (otmp && otmp->oartifact == ART_SWORD_OF_SPITE && ((uwep && (otmp == uwep)) || (u.twoweap && uswapwep && (otmp == uswapwep)) ) && ( (!Upolyd && (u.uhp < (u.uhpmax / 2))) || (Upolyd && (u.mh < (u.mhmax / 2))) ) ) {
 			return rnd(max(tmp * 2, 1)); /* triple damage!! */
 	    }
 

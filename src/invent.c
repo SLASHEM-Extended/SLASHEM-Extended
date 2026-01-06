@@ -35987,6 +35987,16 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: deals poison and bleeding damage to the target."); break;
 				case ART_GRUN_S_SWAN:
 					pline("Artifact specs: +12 damage."); break;
+				case ART_LEVALA_STING_LOVE:
+					pline("Artifact specs: reading it improves your charisma and gives you the sandra trap effect for a while."); break;
+				case ART_WHEN_THE_CITY_SWEEPS:
+					pline("Artifact specs: uhh, don't you feel it's stormy around here? My guess is that reading it would make it stormy again..."); break;
+				case ART_YOU_SMELL_GEESH_MAMA:
+					pline("Artifact specs: reading it causes the weather to become very cold."); break;
+				case ART_HELIOKOPIS_S_RAGEQUIT:
+					pline("Artifact specs: autocurses and doesn't fall off when you polymorph into a form that cannot normally wear armor, significantly improves your spellcasting chances and suppresses the burn, wince and invert effects. While wearing it, shapeshifters spawn much more often and are much more likely to transform into something dangerous, which may cause you to ragequit if the resulting monsters kill you."); break;
+				case ART_SWORD_OF_SPITE:
+					pline("Artifact specs: double damage, or if you're below half health it deals triple damage. This sword is colored purple and makes it so that you take double damage while wielding it."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

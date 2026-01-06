@@ -188,6 +188,11 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 		Your("wielded shoe is painted black!");
 	}
 
+	if (uwep && uwep->oartifact == ART_SWORD_OF_SPITE && objects[uwep->otyp].oc_color != CLR_MAGENTA) {
+		objects[uwep->otyp].oc_color = CLR_MAGENTA;
+		Your("sword paints itself magenta!");
+	}
+
 	if (uwep && uwep->oartifact == ART_LOVE_THE_COLOR_PURPLE && objects[uwep->otyp].oc_color != CLR_BRIGHT_MAGENTA) {
 		objects[uwep->otyp].oc_color = CLR_BRIGHT_MAGENTA;
 		Your("cuuuuute girl sandal is pink now! Awwww <3 <3 <3 So lovely!");

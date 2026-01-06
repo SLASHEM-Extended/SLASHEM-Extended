@@ -4867,6 +4867,11 @@ Armor_on()
 		pline("Heh heh heh, now you're stuck playing Porkman's old version of this game.");
 	}
 
+	if (uarm && uarm->oartifact == ART_HELIOKOPIS_S_RAGEQUIT && !uarm->cursed) {
+		curse(uarm);
+		pline("Get ready to ragequit this game.");
+	}
+
 	if (uarm && uarm->oartifact == ART_ROSTINE_S_OVERCAST) {
 		register struct obj *rostine;
 

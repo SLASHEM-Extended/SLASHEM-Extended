@@ -3376,6 +3376,26 @@ struct obj *book2;
 
 	*/
 
+	if (book2->oartifact == ART_LEVALA_STING_LOVE) {
+		if (!FemtrapActiveRuth) pline("You just know that your legs are going to be ripped open by very sharp-edged combat boot heels.");
+		FemaleTrapSandra += 10000;
+		(void) adjattrib(A_CHA, 1, FALSE, TRUE);
+	}
+
+	if (book2->oartifact == ART_WHEN_THE_CITY_SWEEPS) {
+		u.monstermultiplier = 190;
+		u.currentweather = WEATHER_SANDSTORM;
+		pline("There's a storm sweeping into the dungeon...");
+		tell_main_weather();
+	}
+
+	if (book2->oartifact == ART_YOU_SMELL_GEESH_MAMA) {
+		u.monstermultiplier = 10;
+		u.currentweather = WEATHER_HAIL;
+		pline("Suddenly, the dungeon feels really icy...");
+		tell_main_weather();
+	}
+
 	if (book2->oartifact == ART_MEMORABLE_READ) {
 		use_skill(P_MEMORIZATION, 20);
 	}
@@ -16404,6 +16424,7 @@ int spell;
 	if (uarmh && uarmh->oartifact == ART_ZERO_PERCENT_FAILURE) chance += 10;
 	if (uarmf && uarmf->oartifact == ART_SPELLBOOTS) chance += 10;
 	if (uarmc && uarmc->oartifact == ART_HENRIETTA_S_HEAVY_CASTER) chance += 15;
+	if (uarm && uarm->oartifact == ART_HELIOKOPIS_S_RAGEQUIT) chance += 20;
 	if (have_albiestone()) chance += 100;
 	if (uarmf && uarmf->oartifact == ART_ROWALLAN_S_BALLING) chance += 10;
 	if (uarmg && uarmg->oartifact == ART_ERASMUS__SCRIPTED_GAUNTLET) chance += 30;

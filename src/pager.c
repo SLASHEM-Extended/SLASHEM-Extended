@@ -30152,6 +30152,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"You try to listen to your radio, but it's just President Eden's lies about how the Brotherhood of Steel is supposedly trying to steal the Enclave's water and that the Enclave troops will win blah blah blah. You vow to avenge your father's and Janice's death and kill that cold-blooded Colonel B. Astard butcher. Yes, his head will be trepanned by your assault rifle bullets.",
 	"You remember that the Brotherhood of Steel met the Enclave once already, a bunch of years ago. Back then, the Enclave were led by a guy named Richardson. Now, they have this Eden figure, but it seems their plans are just as sinister as they were back then.",
 	"You feel like hunting the Enclave troops to the end of the world and beyond if you have to. Yes, they will all have to die for the Colonel's actions. Murdering your father is inexcusable!!!",
+	"Suddenly, the dungeon feels really icy...",
+	"There's a storm sweeping into the dungeon...",
 
 };
 

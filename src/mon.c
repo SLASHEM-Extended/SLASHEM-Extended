@@ -9398,6 +9398,8 @@ struct monst *mon;
 sandestinchoice:
 			mndx = pick_nasty();
 			pm = &mons[mndx];
+
+			if (uarm && uarm->oartifact == ART_HELIOKOPIS_S_RAGEQUIT) break;
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto sandestinchoice;
 			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto sandestinchoice;
 			if (uncommon2(pm) && !rn2(4)) goto sandestinchoice;
@@ -9413,6 +9415,8 @@ sandestinchoice:
 warperchoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
+
+			if (uarm && uarm->oartifact == ART_HELIOKOPIS_S_RAGEQUIT) break;
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto warperchoice;
 			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto warperchoice;
 			if (uncommon2(pm) && !rn2(4)) goto warperchoice;
@@ -9427,6 +9431,9 @@ warperchoice:
 sandwichchoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
+			if (rn2(10000) && !(pm->mlet == S_BLOB || pm->mlet == S_PUDDING || pm->mlet == S_JELLY) ) goto sandwichchoice;
+
+			if (uarm && uarm->oartifact == ART_HELIOKOPIS_S_RAGEQUIT) break;
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto sandwichchoice;
 			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto sandwichchoice;
 			if (uncommon2(pm) && !rn2(4)) goto sandwichchoice;
@@ -9435,12 +9442,14 @@ sandwichchoice:
 			if (uncommon7(pm) && rn2(3)) goto sandwichchoice;
 			if (uncommon10(pm) && rn2(5)) goto sandwichchoice;
 			if (is_jonadabmonster(pm) && rn2(20)) goto sandwichchoice;
-			if (rn2(10000) && !(pm->mlet == S_BLOB || pm->mlet == S_PUDDING || pm->mlet == S_JELLY) ) goto sandwichchoice;
 		break;
 	    case CHAM_JUNOW_TRICE:
 junowchoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
+			if (rn2(10000) && !(pm->mlet == S_COCKATRICE) ) goto junowchoice;
+
+			if (uarm && uarm->oartifact == ART_HELIOKOPIS_S_RAGEQUIT) break;
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto junowchoice;
 			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto junowchoice;
 			if (uncommon2(pm) && !rn2(4)) goto junowchoice;
@@ -9449,12 +9458,14 @@ junowchoice:
 			if (uncommon7(pm) && rn2(3)) goto junowchoice;
 			if (uncommon10(pm) && rn2(5)) goto junowchoice;
 			if (is_jonadabmonster(pm) && rn2(20)) goto junowchoice;
-			if (rn2(10000) && !(pm->mlet == S_COCKATRICE) ) goto junowchoice;
 		break;
 	    case CHAM_POLY_FLAYER:
 flayerchoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
+			if (rn2(10000) && !(dmgtype(pm, AD_DRIN)) ) goto flayerchoice;
+
+			if (uarm && uarm->oartifact == ART_HELIOKOPIS_S_RAGEQUIT) break;
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto flayerchoice;
 			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto flayerchoice;
 			if (uncommon2(pm) && !rn2(4)) goto flayerchoice;
@@ -9463,13 +9474,15 @@ flayerchoice:
 			if (uncommon7(pm) && rn2(3)) goto flayerchoice;
 			if (uncommon10(pm) && rn2(5)) goto flayerchoice;
 			if (is_jonadabmonster(pm) && rn2(20)) goto flayerchoice;
-			if (rn2(10000) && !(dmgtype(pm, AD_DRIN)) ) goto flayerchoice;
 		break;
 	    case CHAM_WILD_CHANGE_NYMPH:
 	    case CHAM_VERY_POLY_NYMPH:
 nymphchoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
+			if (rn2(10000) && !(pm->mlet == S_NYMPH) ) goto nymphchoice;
+
+			if (uarm && uarm->oartifact == ART_HELIOKOPIS_S_RAGEQUIT) break;
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto nymphchoice;
 			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto nymphchoice;
 			if (uncommon2(pm) && !rn2(4)) goto nymphchoice;
@@ -9478,12 +9491,14 @@ nymphchoice:
 			if (uncommon7(pm) && rn2(3)) goto nymphchoice;
 			if (uncommon10(pm) && rn2(5)) goto nymphchoice;
 			if (is_jonadabmonster(pm) && rn2(20)) goto nymphchoice;
-			if (rn2(10000) && !(pm->mlet == S_NYMPH) ) goto nymphchoice;
 		break;
 	    case CHAM_CORTEGEX:
 vortexchoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
+			if (rn2(10000) && !(pm->mlet == S_VORTEX) ) goto vortexchoice;
+
+			if (uarm && uarm->oartifact == ART_HELIOKOPIS_S_RAGEQUIT) break;
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto vortexchoice;
 			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto vortexchoice;
 			if (uncommon2(pm) && !rn2(4)) goto vortexchoice;
@@ -9492,12 +9507,14 @@ vortexchoice:
 			if (uncommon7(pm) && rn2(3)) goto vortexchoice;
 			if (uncommon10(pm) && rn2(5)) goto vortexchoice;
 			if (is_jonadabmonster(pm) && rn2(20)) goto vortexchoice;
-			if (rn2(10000) && !(pm->mlet == S_VORTEX) ) goto vortexchoice;
 		break;
 	    case CHAM_CHANGE_EXPLODER:
 lightchoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
+			if (rn2(10000) && !(pm->mlet == S_LIGHT) ) goto lightchoice;
+
+			if (uarm && uarm->oartifact == ART_HELIOKOPIS_S_RAGEQUIT) break;
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto lightchoice;
 			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto lightchoice;
 			if (uncommon2(pm) && !rn2(4)) goto lightchoice;
@@ -9506,12 +9523,14 @@ lightchoice:
 			if (uncommon7(pm) && rn2(3)) goto lightchoice;
 			if (uncommon10(pm) && rn2(5)) goto lightchoice;
 			if (is_jonadabmonster(pm) && rn2(20)) goto lightchoice;
-			if (rn2(10000) && !(pm->mlet == S_LIGHT) ) goto lightchoice;
 		break;
 	    case CHAM_BAM_CHAM:
 dragonchoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
+			if (rn2(10000) && !(pm->mlet == S_DRAGON) ) goto dragonchoice;
+
+			if (uarm && uarm->oartifact == ART_HELIOKOPIS_S_RAGEQUIT) break;
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto dragonchoice;
 			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto dragonchoice;
 			if (uncommon2(pm) && !rn2(4)) goto dragonchoice;
@@ -9520,13 +9539,15 @@ dragonchoice:
 			if (uncommon7(pm) && rn2(3)) goto dragonchoice;
 			if (uncommon10(pm) && rn2(5)) goto dragonchoice;
 			if (is_jonadabmonster(pm) && rn2(20)) goto dragonchoice;
-			if (rn2(10000) && !(pm->mlet == S_DRAGON) ) goto dragonchoice;
 		break;
 	    case CHAM_LAURA_S_PARLOR_TRICK:
 	    case CHAM_LAURA_S_MASTERPIECE:
 elementalchoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
+			if (rn2(10000) && !(pm->mlet == S_ELEMENTAL) ) goto elementalchoice;
+
+			if (uarm && uarm->oartifact == ART_HELIOKOPIS_S_RAGEQUIT) break;
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto elementalchoice;
 			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto elementalchoice;
 			if (uncommon2(pm) && !rn2(4)) goto elementalchoice;
@@ -9535,7 +9556,6 @@ elementalchoice:
 			if (uncommon7(pm) && rn2(3)) goto elementalchoice;
 			if (uncommon10(pm) && rn2(5)) goto elementalchoice;
 			if (is_jonadabmonster(pm) && rn2(20)) goto elementalchoice;
-			if (rn2(10000) && !(pm->mlet == S_ELEMENTAL) ) goto elementalchoice;
 		break;
 	    case CHAM_TSCHANG_SEPHIRAH:
 	    case CHAM_GLONK_SEPHIRAH:
@@ -9543,6 +9563,9 @@ elementalchoice:
 kopchoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
+			if (rn2(10000) && !(pm->mlet == S_KOP) ) goto kopchoice;
+
+			if (uarm && uarm->oartifact == ART_HELIOKOPIS_S_RAGEQUIT) break;
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto kopchoice;
 			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto kopchoice;
 			if (uncommon2(pm) && !rn2(4)) goto kopchoice;
@@ -9551,13 +9574,15 @@ kopchoice:
 			if (uncommon7(pm) && rn2(3)) goto kopchoice;
 			if (uncommon10(pm) && rn2(5)) goto kopchoice;
 			if (is_jonadabmonster(pm) && rn2(20)) goto kopchoice;
-			if (rn2(10000) && !(pm->mlet == S_KOP) ) goto kopchoice;
 		break;
 	    case CHAM_ULTRA_DESTRUCTIVE_MONSTER:
 	    case CHAM_PURPLE_R:
 rustmonsterchoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
+			if (rn2(10000) && !(pm->mlet == S_RUSTMONST) ) goto rustmonsterchoice;
+
+			if (uarm && uarm->oartifact == ART_HELIOKOPIS_S_RAGEQUIT) break;
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto rustmonsterchoice;
 			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto rustmonsterchoice;
 			if (uncommon2(pm) && !rn2(4)) goto rustmonsterchoice;
@@ -9566,13 +9591,15 @@ rustmonsterchoice:
 			if (uncommon7(pm) && rn2(3)) goto rustmonsterchoice;
 			if (uncommon10(pm) && rn2(5)) goto rustmonsterchoice;
 			if (is_jonadabmonster(pm) && rn2(20)) goto rustmonsterchoice;
-			if (rn2(10000) && !(pm->mlet == S_RUSTMONST) ) goto rustmonsterchoice;
 		break;
 	    case CHAM_UNGENOCIDABLE_VAMPSHIFTER:
 	    case CHAM_VAMPSHIFTER:
 vampirechoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
+			if (rn2(10000) && !(pm->mlet == S_VAMPIRE) ) goto vampirechoice;
+
+			if (uarm && uarm->oartifact == ART_HELIOKOPIS_S_RAGEQUIT) break;
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto vampirechoice;
 			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto vampirechoice;
 			if (uncommon2(pm) && !rn2(4)) goto vampirechoice;
@@ -9581,12 +9608,14 @@ vampirechoice:
 			if (uncommon7(pm) && rn2(3)) goto vampirechoice;
 			if (uncommon10(pm) && rn2(5)) goto vampirechoice;
 			if (is_jonadabmonster(pm) && rn2(20)) goto vampirechoice;
-			if (rn2(10000) && !(pm->mlet == S_VAMPIRE) ) goto vampirechoice;
 		break;
 	    case CHAM_DARN_DEMENTOR:
 ghostchoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
+			if (rn2(10000) && !(pm->mlet == S_GHOST) ) goto ghostchoice;
+
+			if (uarm && uarm->oartifact == ART_HELIOKOPIS_S_RAGEQUIT) break;
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto ghostchoice;
 			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto ghostchoice;
 			if (uncommon2(pm) && !rn2(4)) goto ghostchoice;
@@ -9595,12 +9624,14 @@ ghostchoice:
 			if (uncommon7(pm) && rn2(3)) goto ghostchoice;
 			if (uncommon10(pm) && rn2(5)) goto ghostchoice;
 			if (is_jonadabmonster(pm) && rn2(20)) goto ghostchoice;
-			if (rn2(10000) && !(pm->mlet == S_GHOST) ) goto ghostchoice;
 		break;
 	    case CHAM_CHAMELON:
 chamelonchoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
+			if (rn2(10000) && !(pm->mlet == S_BAD_FOOD) ) goto chamelonchoice;
+
+			if (uarm && uarm->oartifact == ART_HELIOKOPIS_S_RAGEQUIT) break;
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto chamelonchoice;
 			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto chamelonchoice;
 			if (uncommon2(pm) && !rn2(4)) goto chamelonchoice;
@@ -9609,12 +9640,14 @@ chamelonchoice:
 			if (uncommon7(pm) && rn2(3)) goto chamelonchoice;
 			if (uncommon10(pm) && rn2(5)) goto chamelonchoice;
 			if (is_jonadabmonster(pm) && rn2(20)) goto chamelonchoice;
-			if (rn2(10000) && !(pm->mlet == S_BAD_FOOD) ) goto chamelonchoice;
 		break;
 	    case CHAM_SHOEMELEON:
 shoechoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
+			if (rn2(10000) && !(pm->msound == MS_SHOE) ) goto shoechoice;
+
+			if (uarm && uarm->oartifact == ART_HELIOKOPIS_S_RAGEQUIT) break;
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto shoechoice;
 			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto shoechoice;
 			if (uncommon2(pm) && !rn2(4)) goto shoechoice;
@@ -9623,12 +9656,14 @@ shoechoice:
 			if (uncommon7(pm) && rn2(3)) goto shoechoice;
 			if (uncommon10(pm) && rn2(5)) goto shoechoice;
 			if (is_jonadabmonster(pm) && rn2(20)) goto shoechoice;
-			if (rn2(10000) && !(pm->msound == MS_SHOE) ) goto shoechoice;
 		break;
 	    case CHAM_POLYFESHNEE:
 demonchoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
+			if (rn2(10000) && !(is_demon(pm)) ) goto demonchoice;
+
+			if (uarm && uarm->oartifact == ART_HELIOKOPIS_S_RAGEQUIT) break;
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto demonchoice;
 			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto demonchoice;
 			if (uncommon2(pm) && !rn2(4)) goto demonchoice;
@@ -9637,12 +9672,14 @@ demonchoice:
 			if (uncommon7(pm) && rn2(3)) goto demonchoice;
 			if (uncommon10(pm) && rn2(5)) goto demonchoice;
 			if (is_jonadabmonster(pm) && rn2(20)) goto demonchoice;
-			if (rn2(10000) && !(is_demon(pm)) ) goto demonchoice;
 		break;
 	    case CHAM_COVETOUSLEON:
 covetouschoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
+			if (rn2(10000) && !(is_covetous(pm)) ) goto covetouschoice;
+
+			if (uarm && uarm->oartifact == ART_HELIOKOPIS_S_RAGEQUIT) break;
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto covetouschoice;
 			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto covetouschoice;
 			if (uncommon2(pm) && !rn2(4)) goto covetouschoice;
@@ -9651,12 +9688,14 @@ covetouschoice:
 			if (uncommon7(pm) && rn2(3)) goto covetouschoice;
 			if (uncommon10(pm) && rn2(5)) goto covetouschoice;
 			if (is_jonadabmonster(pm) && rn2(20)) goto covetouschoice;
-			if (rn2(10000) && !(is_covetous(pm)) ) goto covetouschoice;
 		break;
 	    case CHAM_WHORED_HORE:
 whorechoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
+			if (rn2(10000) && !(pm->msound == MS_WHORE) ) goto whorechoice;
+
+			if (uarm && uarm->oartifact == ART_HELIOKOPIS_S_RAGEQUIT) break;
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto whorechoice;
 			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto whorechoice;
 			if (uncommon2(pm) && !rn2(4)) goto whorechoice;
@@ -9665,12 +9704,14 @@ whorechoice:
 			if (uncommon7(pm) && rn2(3)) goto whorechoice;
 			if (uncommon10(pm) && rn2(5)) goto whorechoice;
 			if (is_jonadabmonster(pm) && rn2(20)) goto whorechoice;
-			if (rn2(10000) && !(pm->msound == MS_WHORE) ) goto whorechoice;
 		break;
 	    case CHAM_LULU_ASS:
 fartloudchoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
+			if (rn2(10000) && !(pm->msound == MS_FART_LOUD) ) goto fartloudchoice;
+
+			if (uarm && uarm->oartifact == ART_HELIOKOPIS_S_RAGEQUIT) break;
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto fartloudchoice;
 			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto fartloudchoice;
 			if (uncommon2(pm) && !rn2(4)) goto fartloudchoice;
@@ -9679,12 +9720,14 @@ fartloudchoice:
 			if (uncommon7(pm) && rn2(3)) goto fartloudchoice;
 			if (uncommon10(pm) && rn2(5)) goto fartloudchoice;
 			if (is_jonadabmonster(pm) && rn2(20)) goto fartloudchoice;
-			if (rn2(10000) && !(pm->msound == MS_FART_LOUD) ) goto fartloudchoice;
 		break;
 	    case CHAM_TENDER_JESSE:
 fartquietchoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
+			if (rn2(10000) && !(pm->msound == MS_FART_QUIET) ) goto fartquietchoice;
+
+			if (uarm && uarm->oartifact == ART_HELIOKOPIS_S_RAGEQUIT) break;
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto fartquietchoice;
 			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto fartquietchoice;
 			if (uncommon2(pm) && !rn2(4)) goto fartquietchoice;
@@ -9693,12 +9736,14 @@ fartquietchoice:
 			if (uncommon7(pm) && rn2(3)) goto fartquietchoice;
 			if (uncommon10(pm) && rn2(5)) goto fartquietchoice;
 			if (is_jonadabmonster(pm) && rn2(20)) goto fartquietchoice;
-			if (rn2(10000) && !(pm->msound == MS_FART_QUIET) ) goto fartquietchoice;
 		break;
 	    case CHAM_ELEROTIC_DREAM_WOMAN:
 fartnormalchoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
+			if (rn2(10000) && !(pm->msound == MS_FART_NORMAL) ) goto fartnormalchoice;
+
+			if (uarm && uarm->oartifact == ART_HELIOKOPIS_S_RAGEQUIT) break;
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto fartnormalchoice;
 			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto fartnormalchoice;
 			if (uncommon2(pm) && !rn2(4)) goto fartnormalchoice;
@@ -9707,12 +9752,14 @@ fartnormalchoice:
 			if (uncommon7(pm) && rn2(3)) goto fartnormalchoice;
 			if (uncommon10(pm) && rn2(5)) goto fartnormalchoice;
 			if (is_jonadabmonster(pm) && rn2(20)) goto fartnormalchoice;
-			if (rn2(10000) && !(pm->msound == MS_FART_NORMAL) ) goto fartnormalchoice;
 		break;
 	    case CHAM_MARTIIN:
 scentchoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
+			if (rn2(10000) && !(pm->msound == MS_STENCH) ) goto scentchoice;
+
+			if (uarm && uarm->oartifact == ART_HELIOKOPIS_S_RAGEQUIT) break;
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto scentchoice;
 			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto scentchoice;
 			if (uncommon2(pm) && !rn2(4)) goto scentchoice;
@@ -9721,12 +9768,14 @@ scentchoice:
 			if (uncommon7(pm) && rn2(3)) goto scentchoice;
 			if (uncommon10(pm) && rn2(5)) goto scentchoice;
 			if (is_jonadabmonster(pm) && rn2(20)) goto scentchoice;
-			if (rn2(10000) && !(pm->msound == MS_STENCH) ) goto scentchoice;
 		break;
 	    case CHAM_FOREPREACHER_CONVERTER:
 convertchoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
+			if (rn2(10000) && !(pm->msound == MS_CONVERT) ) goto convertchoice;
+
+			if (uarm && uarm->oartifact == ART_HELIOKOPIS_S_RAGEQUIT) break;
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto convertchoice;
 			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto convertchoice;
 			if (uncommon2(pm) && !rn2(4)) goto convertchoice;
@@ -9735,12 +9784,14 @@ convertchoice:
 			if (uncommon7(pm) && rn2(3)) goto convertchoice;
 			if (uncommon10(pm) && rn2(5)) goto convertchoice;
 			if (is_jonadabmonster(pm) && rn2(20)) goto convertchoice;
-			if (rn2(10000) && !(pm->msound == MS_CONVERT) ) goto convertchoice;
 		break;
 	    case CHAM_RICTIM_TERRORIZER:
 hcalienchoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
+			if (rn2(10000) && !(pm->msound == MS_HCALIEN) ) goto hcalienchoice;
+
+			if (uarm && uarm->oartifact == ART_HELIOKOPIS_S_RAGEQUIT) break;
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto hcalienchoice;
 			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto hcalienchoice;
 			if (uncommon2(pm) && !rn2(4)) goto hcalienchoice;
@@ -9749,12 +9800,14 @@ hcalienchoice:
 			if (uncommon7(pm) && rn2(3)) goto hcalienchoice;
 			if (uncommon10(pm) && rn2(5)) goto hcalienchoice;
 			if (is_jonadabmonster(pm) && rn2(20)) goto hcalienchoice;
-			if (rn2(10000) && !(pm->msound == MS_HCALIEN) ) goto hcalienchoice;
 		break;
 	    case CHAM_POLYMORPHITIC_WOLF:
 spacewarschoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
+			if (rn2(10000) && !(is_cowmonster(pm)) ) goto spacewarschoice;
+
+			if (uarm && uarm->oartifact == ART_HELIOKOPIS_S_RAGEQUIT) break;
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto spacewarschoice;
 			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto spacewarschoice;
 			if (uncommon2(pm) && !rn2(4)) goto spacewarschoice;
@@ -9763,12 +9816,14 @@ spacewarschoice:
 			if (uncommon7(pm) && rn2(3)) goto spacewarschoice;
 			if (uncommon10(pm) && rn2(5)) goto spacewarschoice;
 			if (is_jonadabmonster(pm) && rn2(20)) goto spacewarschoice;
-			if (rn2(10000) && !(is_cowmonster(pm)) ) goto spacewarschoice;
 		break;
 	    case CHAM_DITTO:
 dittochoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
+			if (rn2(10000) && !(is_pokemon(pm)) ) goto dittochoice;
+
+			if (uarm && uarm->oartifact == ART_HELIOKOPIS_S_RAGEQUIT) break;
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto dittochoice;
 			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto dittochoice;
 			if (uncommon2(pm) && !rn2(4)) goto dittochoice;
@@ -9777,12 +9832,14 @@ dittochoice:
 			if (uncommon7(pm) && rn2(3)) goto dittochoice;
 			if (uncommon10(pm) && rn2(5)) goto dittochoice;
 			if (is_jonadabmonster(pm) && rn2(20)) goto dittochoice;
-			if (rn2(10000) && !(is_pokemon(pm)) ) goto dittochoice;
 		break;
 	    case CHAM_OFFDIVER:
 jokechoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
+			if (rn2(10000) && !(is_jokemonster(pm)) ) goto jokechoice;
+
+			if (uarm && uarm->oartifact == ART_HELIOKOPIS_S_RAGEQUIT) break;
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto jokechoice;
 			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto jokechoice;
 			if (uncommon2(pm) && !rn2(4)) goto jokechoice;
@@ -9791,12 +9848,14 @@ jokechoice:
 			if (uncommon7(pm) && rn2(3)) goto jokechoice;
 			if (uncommon10(pm) && rn2(5)) goto jokechoice;
 			if (is_jonadabmonster(pm) && rn2(20)) goto jokechoice;
-			if (rn2(10000) && !(is_jokemonster(pm)) ) goto jokechoice;
 		break;
 	    case CHAM_SLUMBER_HULK:
 randomizedchoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
+			if (rn2(10000) && !(is_randomizedmonster(pm)) ) goto randomizedchoice;
+
+			if (uarm && uarm->oartifact == ART_HELIOKOPIS_S_RAGEQUIT) break;
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto randomizedchoice;
 			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto randomizedchoice;
 			if (uncommon2(pm) && !rn2(4)) goto randomizedchoice;
@@ -9805,12 +9864,14 @@ randomizedchoice:
 			if (uncommon7(pm) && rn2(3)) goto randomizedchoice;
 			if (uncommon10(pm) && rn2(5)) goto randomizedchoice;
 			if (is_jonadabmonster(pm) && rn2(20)) goto randomizedchoice;
-			if (rn2(10000) && !(is_randomizedmonster(pm)) ) goto randomizedchoice;
 		break;
 	    case CHAM_IVEL_WUXTINA:
 evilchoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
+			if (rn2(10000) && !(is_evilpatchmonster(pm)) ) goto evilchoice;
+
+			if (uarm && uarm->oartifact == ART_HELIOKOPIS_S_RAGEQUIT) break;
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto evilchoice;
 			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto evilchoice;
 			if (uncommon2(pm) && !rn2(4)) goto evilchoice;
@@ -9819,13 +9880,15 @@ evilchoice:
 			if (uncommon7(pm) && rn2(3)) goto evilchoice;
 			if (uncommon10(pm) && rn2(5)) goto evilchoice;
 			if (is_jonadabmonster(pm) && rn2(20)) goto evilchoice;
-			if (rn2(10000) && !(is_evilpatchmonster(pm)) ) goto evilchoice;
 		break;
 	    case CHAM_ZRUTINATOR:
 
 zevilchoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
+			if (rn2(10000) && !(is_evilpatchmonster(pm)) ) goto zevilchoice;
+
+			if (uarm && uarm->oartifact == ART_HELIOKOPIS_S_RAGEQUIT) break;
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto zevilchoice;
 			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto zevilchoice;
 			if (uncommon2(pm) && !rn2(4)) goto zevilchoice;
@@ -9834,12 +9897,14 @@ zevilchoice:
 			if (uncommon7(pm) && rn2(3)) goto zevilchoice;
 			if (uncommon10(pm) && rn2(5)) goto zevilchoice;
 			if (is_jonadabmonster(pm) && rn2(20)) goto zevilchoice;
-			if (rn2(10000) && !(is_evilpatchmonster(pm)) ) goto zevilchoice;
 		break;
 	    case CHAM_GREEN_SLAAD:
 slaadchoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
+			if (rn2(10000) && !(humanoid(pm)) ) goto slaadchoice;
+
+			if (uarm && uarm->oartifact == ART_HELIOKOPIS_S_RAGEQUIT) break;
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto slaadchoice;
 			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto slaadchoice;
 			if (uncommon2(pm) && !rn2(4)) goto slaadchoice;
@@ -9848,12 +9913,14 @@ slaadchoice:
 			if (uncommon7(pm) && rn2(3)) goto slaadchoice;
 			if (uncommon10(pm) && rn2(5)) goto slaadchoice;
 			if (is_jonadabmonster(pm) && rn2(20)) goto slaadchoice;
-			if (rn2(10000) && !(humanoid(pm)) ) goto slaadchoice;
 		break;
 	    case CHAM_EARLY_LEON:
 earlyleonchoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
+			if (rn2(10000) && (pm->mlevel > 5)) goto earlyleonchoice;
+
+			if (uarm && uarm->oartifact == ART_HELIOKOPIS_S_RAGEQUIT) break;
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto earlyleonchoice;
 			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto earlyleonchoice;
 			if (uncommon2(pm) && !rn2(4)) goto earlyleonchoice;
@@ -9862,13 +9929,14 @@ earlyleonchoice:
 			if (uncommon7(pm) && rn2(3)) goto earlyleonchoice;
 			if (uncommon10(pm) && rn2(5)) goto earlyleonchoice;
 			if (is_jonadabmonster(pm) && rn2(20)) goto earlyleonchoice;
-			if (rn2(10000) && (pm->mlevel > 5)) goto earlyleonchoice;
 		break;
 	    case CHAM_METAMORPHOSE:
 	    case CHAM_SHAPESHIFTING_EXPERTISE:
 metamorphchoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
+
+			if (uarm && uarm->oartifact == ART_HELIOKOPIS_S_RAGEQUIT) break;
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto metamorphchoice;
 			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto metamorphchoice;
 			if (uncommon2(pm) && !rn2(4)) goto metamorphchoice;
@@ -9882,6 +9950,9 @@ metamorphchoice:
 uniqueshiftchoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
+			if (rn2(10000) && !(pm->geno & G_UNIQ)) goto uniqueshiftchoice;
+
+			if (uarm && uarm->oartifact == ART_HELIOKOPIS_S_RAGEQUIT) break;
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto uniqueshiftchoice;
 			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto uniqueshiftchoice;
 			if (uncommon2(pm) && !rn2(4)) goto uniqueshiftchoice;
@@ -9891,7 +9962,6 @@ uniqueshiftchoice:
 			if (uncommon10(pm) && rn2(5)) goto uniqueshiftchoice;
 			if (is_jonadabmonster(pm) && rn2(20)) goto uniqueshiftchoice;
 			if ((pm->geno & G_FREQ) < 1) goto uniqueshiftchoice;
-			if (rn2(10000) && !(pm->geno & G_UNIQ)) goto uniqueshiftchoice;
 		break;
 
 	    case CHAM_DOPPELGANGER:
@@ -9909,6 +9979,9 @@ uniqueshiftchoice:
 edotochoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
+			if (rn2(10000) && !(pm->mlet == S_ARCHFIEND) ) goto edotochoice;
+
+			if (uarm && uarm->oartifact == ART_HELIOKOPIS_S_RAGEQUIT) break;
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto edotochoice;
 			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto edotochoice;
 			if (uncommon2(pm) && !rn2(4)) goto edotochoice;
@@ -9917,12 +9990,14 @@ edotochoice:
 			if (uncommon7(pm) && rn2(3)) goto edotochoice;
 			if (uncommon10(pm) && rn2(5)) goto edotochoice;
 			if (is_jonadabmonster(pm) && rn2(20)) goto edotochoice;
-			if (rn2(10000) && !(pm->mlet == S_ARCHFIEND) ) goto edotochoice;
 		break;
 	    case CHAM_RAINBOW_SPHERE:
 rainbowchoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
+			if (rn2(10000) && !(attacktype(pm, AT_EXPL) ) ) goto rainbowchoice;
+
+			if (uarm && uarm->oartifact == ART_HELIOKOPIS_S_RAGEQUIT) break;
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto rainbowchoice;
 			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto rainbowchoice;
 			if (uncommon2(pm) && !rn2(4)) goto rainbowchoice;
@@ -9931,7 +10006,6 @@ rainbowchoice:
 			if (uncommon7(pm) && rn2(3)) goto rainbowchoice;
 			if (uncommon10(pm) && rn2(5)) goto rainbowchoice;
 			if (is_jonadabmonster(pm) && rn2(20)) goto rainbowchoice;
-			if (rn2(10000) && !(attacktype(pm, AT_EXPL) ) ) goto rainbowchoice;
 		break;
 	    case CHAM_CHAMELEON:
 	    case CHAM_CHAMELEON_LORD:
@@ -9955,6 +10029,8 @@ rainbowchoice:
 chameleonchoice:
 			mndx = pick_animal();
 			pm = &mons[mndx];
+
+			if (uarm && uarm->oartifact == ART_HELIOKOPIS_S_RAGEQUIT) break;
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto chameleonchoice;
 			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto chameleonchoice;
 			if (uncommon2(pm) && !rn2(4)) goto chameleonchoice;

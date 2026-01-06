@@ -27207,6 +27207,26 @@ A("Grun's Swan",				FIRE_HYDRANT,
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	PHYS(0, 12), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
 
+A("Levala Sting Love",				SPE_MAGICTORCH, /* randart spellbook, reading gives +1 CHA and 10k turns of sandra trap effect */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("When The City Sweeps",				SPE_MAGICTORCH, /* randart2 spellbook, upon reading and also upon generating sets u.monstermultiplier to 190 and weather to sandstorm */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("You Smell Geesh Mama",				SPE_MAGICTORCH, /* randart2 spellbook, reading sets u.monstermultiplier to 10 and weather to hail */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Heliokopis's Ragequit",				CRYSTAL_PLATE_MAIL, /* autocurses, doesn't fall off when polying into a bad form, 20% better spellcasting chances, suppresses the burn, wince and invert effects, M4_SHAPESHIFT have +20 spawn freq and all shapeshifters turn into rare and/or high-level monsters much more often */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Sword of Spite",				CRYPTIC_SABER, /* to-hit h@ck, if you're below half health it deals triple damage, becomes CLR_MAGENTA when equipped and hard mode effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(1, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

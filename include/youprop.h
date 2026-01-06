@@ -469,7 +469,7 @@
 #define Burned		((HBurned || EBurned || HeavyBurned || Race_if(PM_BURNINATOR) || (uimplant && uimplant->oartifact == ART_BURN_BABY_BURN) || autismweaponcheck(ART_BURN_FASTER) || (uarmc && uarmc->oartifact == ART_TERMINALLY_BEYOND_HELP) || (uarms && uarms->oartifact == ART_BURNING_DISK) ) && !(CannotBeBurned && !Race_if(PM_BURNINATOR)) )
 #define HeavyBurned		u.uprops[HEAVY_BURNED].intrinsic
 
-#define CannotBeBurned	(u.suppress_burn)
+#define CannotBeBurned	(u.suppress_burn || (uarm && uarm->oartifact == ART_HELIOKOPIS_S_RAGEQUIT))
 
 #define HDimmed		u.uprops[DIMMED].intrinsic
 #define EDimmed		u.uprops[DIMMED].extrinsic
@@ -2010,15 +2010,19 @@
 #define EInvertedState		u.uprops[INVERT_STATE].extrinsic
 #define IntInvertedState	(HInvertedState || Role_if(PM_ALLTECHER) || u.alltecherpersist || (Race_if(PM_RETICULAN) && (u.uhp < (u.uhpmax / 5)) ) || (Race_if(PM_RETICULAN) && Upolyd && (u.mh < (u.mhmax / 5)) ) )
 #define ExtInvertedState	(EInvertedState || autismweaponcheck(ART_AK_____) )
-#define InvertedState		((IntInvertedState || ExtInvertedState) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_ARABELLA_S_EXCHANGER) )
+#define InvertedState		((IntInvertedState || ExtInvertedState) && !CannotBeInverted)
 #define StrongInvertedState		(IntInvertedState && ExtInvertedState && InvertedState)
+
+#define CannotBeInverted	((uarm && uarm->oartifact == ART_HELIOKOPIS_S_RAGEQUIT) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_ARABELLA_S_EXCHANGER) )
 
 #define HWinceState		u.uprops[WINCE_STATE].intrinsic
 #define EWinceState		u.uprops[WINCE_STATE].extrinsic
 #define IntWinceState		(HWinceState || Role_if(PM_ALLTECHER) || u.alltecherpersist || (Race_if(PM_RETICULAN) && (u.uhp < (u.uhpmax / 2)) ) || (Race_if(PM_RETICULAN) && Upolyd && (u.mh < (u.mhmax / 2)) ) )
 #define ExtWinceState		(EWinceState || (uarm && uarm->oartifact == ART_AMMY_S_WAIL) )
-#define WinceState		(IntWinceState || ExtWinceState )
+#define WinceState		((IntWinceState || ExtWinceState) && !CannotBeWince)
 #define StrongWinceState		(IntWinceState && ExtWinceState && WinceState)
+
+#define CannotBeWince		((uarm && uarm->oartifact == ART_HELIOKOPIS_S_RAGEQUIT))
 
 #define HDefusing		u.uprops[DEFUSING].intrinsic
 #define EDefusing		u.uprops[DEFUSING].extrinsic
