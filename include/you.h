@@ -450,6 +450,8 @@ struct you {
 
 	int molestinggrudge;	/* if nonzero, peaceful monsters have a grudge against hostile MS_MOLEST */
 
+	int jammingactive;	/* 50% of the time, this variable is true; if it's the case, MS_JAM cannot move */
+
 	/* amy keyword: "newdungeons";   dungeons of doom, level 1 is always available */
 	boolean returndest_dod14;	/* dungeons of doom, level 14 */
 	boolean returndest_dod29;	/* dungeons of doom, level 29 */

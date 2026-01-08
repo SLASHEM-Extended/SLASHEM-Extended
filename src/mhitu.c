@@ -5903,172 +5903,186 @@ newboss:
 
 	}
 
-	/* molestation, by Amy; this is *very* icky, and probably doubly so because it only works against female chars */
+	/* molestation, by Amy; this is *very* icky, and probably doubly so because it only works against female chars
+	 * we explicitly assume that the player character isn't underage, since she can get pregnant and everything */
 	if ((monstersoundtype(mtmp) == MS_MOLEST) && !range2 && foundyou && flags.female) {
+
+		boolean willmolest = TRUE;
+
+		/* mystery resistance can magically protect you some of the time */
+		if (MysteryResist && rn2(StrongMysteryResist ? 3 : 2)) willmolest = FALSE;
+		/* if you're butt ugly, the sexual predator might be less interested, but you're still a woman so he might try to grope you anyway */
+		if (ACURR(A_CHA) < rnd(8)) willmolest = FALSE;
+		/* if you're polymorphed into a non-humanoid, the sexual predator usually isn't interested; however, if you're an animal, it may still occasionally
+		 * happen since those bastards aren't necessarily above sodomy; it's intentional that this check doesn't happen if you're in your natural form, even
+		 * when you're playing an animal race (e.g. sheep) or something completely weird (e.g. mould), because it'd make those races too powerful */
+		if (Upolyd && !humanoid(youmonst.data) && (!is_animal(youmonst.data) || rn2(5)) ) willmolest = FALSE;
 
 		struct monst *witnessmon;
 
-		if ((multi < 0) && !mtmp->mspec_used && !mtmp->female && !rn2(10)) {
-			if (uarm) {
-				pline("%s grins evilly, and pulls down your suit!", Monnam(mtmp));
-				remove_worn_item(uarm, TRUE);
-			} else {
-				if (ublindf && (ublindf->otyp == CONDOME || ublindf->otyp == SOFT_CHASTITY_BELT)) {
-					pline("%s tries to thrust %s penis into your vagina, but is stopped by your protective gear. Thank God.", Monnam(mtmp), mhis(mtmp));
-				} else { /* uh-oh... */
-					pline("%s abuses the fact that you cannot defend yourself, and powerfully thrusts %s penis into your vagina.", Monnam(mtmp), mhis(mtmp));
+		if (willmolest) {
 
-					if (!u.uconduct.celibacy) You("lost your virginity!");
-					u.uconduct.celibacy++;
-					u.pervertsex = 0;
-					if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if ((multi < 0) && !mtmp->mspec_used && !mtmp->female && !rn2(10)) {
+				if (uarm) {
+					pline("%s grins evilly, and pulls down your suit!", Monnam(mtmp));
+					remove_worn_item(uarm, TRUE);
+				} else {
+					if (ublindf && (ublindf->otyp == CONDOME || ublindf->otyp == SOFT_CHASTITY_BELT)) {
+						pline("%s tries to thrust %s penis into your vagina, but is stopped by your protective gear. Thank God.", Monnam(mtmp), mhis(mtmp));
+					} else { /* uh-oh... */
+						pline("%s abuses the fact that you cannot defend yourself, and powerfully thrusts %s penis into your vagina.", Monnam(mtmp), mhis(mtmp));
 
-					contaminate(rnz(500), TRUE);
-					increasesanity(rnz(250));
+						if (!u.uconduct.celibacy) You("lost your virginity!");
+						u.uconduct.celibacy++;
+						u.pervertsex = 0;
+						if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 
-					/* have some mercy: put that extremely devastating monster ability on a timer --Amy */
-					mtmp->mspec_used += rn1(20,20);
+						contaminate(rnz(500), TRUE);
+						increasesanity(rnz(250));
 
-					if (!rn2(50)) {
+						/* have some mercy: put that extremely devastating monster ability on a timer --Amy */
+						mtmp->mspec_used += rn1(20,20);
 
-						struct obj *uegg;
+						if (!rn2(50)) {
 
-						if (flags.female) {
-							pline("Uh-oh - you're pregnant!"); verbalize("Be a good mother, sweetheart!");
-						}
-						else {
-							pline("Oh! %s is pregnant!", noit_Monnam(mtmp)); verbalize("Please take good care of my baby, %s!",playeraliasname);
-						}
+							struct obj *uegg;
 
-						uegg = mksobj(EGG, FALSE, FALSE, FALSE);
-						if (uegg) {
-							uegg->spe = (flags.female ? 1 : 0);
-							uegg->quan = 1;
-							uegg->owt = weight(uegg);
-							if (!rn2(2)) uegg->corpsenm = mtmp->mnum;
-							else if (Upolyd) uegg->corpsenm = u.umonnum;
-							else if (urole.femalenum != NON_PM && !rn2(2)) uegg->corpsenm = urole.femalenum;
-							else uegg->corpsenm = urole.malenum;
-							uegg->known = uegg->dknown = 1;
-							attach_egg_hatch_timeout(uegg);
-							(void) start_timer(0, TIMER_OBJECT, HATCH_EGG, (void *)uegg);
-							pickup_object(uegg, 1, FALSE, TRUE);
-							run_timers();
-						}
+							if (flags.female) {
+								pline("Uh-oh - you're pregnant!"); verbalize("Be a good mother, sweetheart!");
+							}
+							else {
+								pline("Oh! %s is pregnant!", noit_Monnam(mtmp)); verbalize("Please take good care of my baby, %s!",playeraliasname);
+							}
 
-						if (HardcoreAlienMode) {
+							uegg = mksobj(EGG, FALSE, FALSE, FALSE);
+							if (uegg) {
+								uegg->spe = (flags.female ? 1 : 0);
+								uegg->quan = 1;
+								uegg->owt = weight(uegg);
+								if (!rn2(2)) uegg->corpsenm = mtmp->mnum;
+								else if (Upolyd) uegg->corpsenm = u.umonnum;
+								else if (urole.femalenum != NON_PM && !rn2(2)) uegg->corpsenm = urole.femalenum;
+								else uegg->corpsenm = urole.malenum;
+								uegg->known = uegg->dknown = 1;
+								attach_egg_hatch_timeout(uegg);
+								(void) start_timer(0, TIMER_OBJECT, HATCH_EGG, (void *)uegg);
+								pickup_object(uegg, 1, FALSE, TRUE);
+								run_timers();
+							}
 
-							u.ugangr += 3;
-							pline("Becoming pregnant before you're married is a grave sin, and the gods are really angry.");
-							adjalign(-250);
-							change_luck(-5);
-							prayer_done();
-						}
+							if (HardcoreAlienMode) {
 
-						if (uarmc && uarmc->oartifact == ART_CATHERINE_S_SEXUALITY) {
-							u.youaredead = 1;
-							pline("Oh no... your %s... it's... getting... unsteady...", body_part(HEART));
-							pline("BEEPBEEP BEEPBEEP BEEP BEEP BEEEEEEEEEEEEEEEEEEEEP!");
-							pline("You die from a %s failure.", body_part(HEART));
-							killer_format = KILLED_BY;
-							killer = "complications from childbirth";
-							done(DIED);
-							u.youaredead = 0;
+								u.ugangr += 3;
+								pline("Becoming pregnant before you're married is a grave sin, and the gods are really angry.");
+								adjalign(-250);
+								change_luck(-5);
+								prayer_done();
+							}
+
+							if (uarmc && uarmc->oartifact == ART_CATHERINE_S_SEXUALITY) {
+								u.youaredead = 1;
+								pline("Oh no... your %s... it's... getting... unsteady...", body_part(HEART));
+								pline("BEEPBEEP BEEPBEEP BEEP BEEP BEEEEEEEEEEEEEEEEEEEEP!");
+								pline("You die from a %s failure.", body_part(HEART));
+								killer_format = KILLED_BY;
+								killer = "complications from childbirth";
+								done(DIED);
+								u.youaredead = 0;
+							}
 						}
 					}
 				}
+			} else {
+				switch (rnd(11)) {
+					case 1:
+						pline("%s gropes and massages your breasts!", Monnam(mtmp));
+						make_feared(HFeared + rnz(200), TRUE);
+						break;
+					case 2:
+						pline("%s kisses you on the cheek!", Monnam(mtmp));
+						make_confused(HConfusion + rnz(100), TRUE);
+						break;
+					case 3:
+						pline("%s massages your tender buttocks!", Monnam(mtmp));
+						HFumbling = FROMOUTSIDE | rnd(5);
+						incr_itimeout(&HFumbling, rnd(20));
+						u.fumbleduration += rnz(200);
+						You("feel a little unsteady!");
+						break;
+					case 4:
+						pline("%s fingers you between the %s!", Monnam(mtmp), makeplural(body_part(LEG)));
+						u.negativeprotection++;
+						if (evilfriday && u.ublessed > 0) {
+							u.ublessed -= 1;
+							if (u.ublessed < 0) u.ublessed = 0;
+						}
+						You_feel("less protected!");
+						break;
+					case 5:
+						pline("%s puts a %s on yours!", Monnam(mtmp), mbodypart(mtmp, HAND));
+						if (FunnyHallu) You_feel("like you have dementia tremor!"); /* not a real name --Amy */
+						else pline("Your hands start trembling violently!");
+						incr_itimeout(&Glib, rnz(100) );
+						flags.botl = TRUE;
+						break;
+					case 6:
+						pline("%s licks you with %s tongue!", Monnam(mtmp), mhis(mtmp));
+						make_stunned(HStun + rnz(100), TRUE);
+						break;
+					case 7:
+						pline("%s blows some air at your %s!", Monnam(mtmp), body_part(EAR));
+						make_frozen(HFrozen + rnz(200), TRUE);
+						break;
+					case 8:
+						pline("%s briefly grabs your knee!", Monnam(mtmp));
+						pline("Your %s are trembling!", makeplural(body_part(HAND)));
+						u.tremblingamount++;
+						break;
+					case 9:
+						pline("%s's %s try to pull off your clothes!", Monnam(mtmp), makeplural(mbodypart(mtmp, HAND)));
+						shank_player();
+						break;
+					case 10:
+						pline("%s's %s touch your %sline, and try to wander downwards!", Monnam(mtmp), makeplural(mbodypart(mtmp, FINGER)), body_part(NECK));
+						You("are shaking, and your knapsack is juggling back and forth wildly!");
+						dropitemattack();
+						break;
+					case 11:
+						if (mtmp->female) pline("%s makes a disturbing gesture at your vagina!", Monnam(mtmp));
+						else pline("%s shows you %s penis, and repeatedly pulls %s foreskin back and forth!", Monnam(mtmp), mhis(mtmp), mhis(mtmp));
+						if (!u.berserktime) {
+							u.berserktime = 25;
+							You("are infuriated!");
+						}
+						break;
+
+				}
+				increasesanity(rnz(5));
+			} /* end molest choice */
+
+			u.cnd_molestcount++;
+
+			/* if you're not incapacitated, you may scream for help, which means all peacefuls will have a grudge against molesters for a while */
+			if (multi >= 0) {
+				if (!rn2(5)) {
+					wake_nearby(); /* but it also makes noise */
+					You("scream 'Help! HEEEEELP!'");
+					u.molestinggrudge += rnz(100);
+				}
 			}
-		} else {
-			switch (rnd(11)) {
-				case 1:
-					pline("%s gropes and massages your breasts!", Monnam(mtmp));
-					make_feared(HFeared + rnz(200), TRUE);
+			/* did some peaceful monster witness you being molested? if so, all peacefuls will have a grudge against molesters for a while
+			 * this is based on code from the turbogay feature of the variant that calls itself 3.6 where hitting a peaceful monster makes all peacefuls hostile */
+			for (witnessmon = fmon; witnessmon; witnessmon = witnessmon->nmon) {
+				if (DEADMONSTER(witnessmon)) continue;
+				if (witnessmon == mtmp) continue;
+				if (witnessmon->mpeaceful && couldsee(witnessmon->mx, witnessmon->my)) { /* finding one is enough */
+					if (!u.molestinggrudge) pline("%s responds 'What?! An innocent woman is being harassed? STOP THE PERPETRATOR!! GET HIM!'", Monnam(witnessmon));
+					else pline("%s shouts 'You! Leave her alone at once!'", Monnam(witnessmon));
+					u.molestinggrudge += rnz(100);
 					break;
-				case 2:
-					pline("%s kisses you on the cheek!", Monnam(mtmp));
-					make_confused(HConfusion + rnz(100), TRUE);
-					break;
-				case 3:
-					pline("%s massages your tender buttocks!", Monnam(mtmp));
-					HFumbling = FROMOUTSIDE | rnd(5);
-					incr_itimeout(&HFumbling, rnd(20));
-					u.fumbleduration += rnz(200);
-					You("feel a little unsteady!");
-					break;
-				case 4:
-					pline("%s fingers you between the %s!", Monnam(mtmp), makeplural(body_part(LEG)));
-					u.negativeprotection++;
-					if (evilfriday && u.ublessed > 0) {
-						u.ublessed -= 1;
-						if (u.ublessed < 0) u.ublessed = 0;
-					}
-					You_feel("less protected!");
-					break;
-				case 5:
-					pline("%s puts a %s on yours!", Monnam(mtmp), mbodypart(mtmp, HAND));
-					if (FunnyHallu) You_feel("like you have dementia tremor!"); /* not a real name --Amy */
-					else pline("Your hands start trembling violently!");
-					incr_itimeout(&Glib, rnz(100) );
-					flags.botl = TRUE;
-					break;
-				case 6:
-					pline("%s licks you with %s tongue!", Monnam(mtmp), mhis(mtmp));
-					make_stunned(HStun + rnz(100), TRUE);
-					break;
-				case 7:
-					pline("%s blows some air at your %s!", Monnam(mtmp), body_part(EAR));
-					make_frozen(HFrozen + rnz(200), TRUE);
-					break;
-				case 8:
-					pline("%s briefly grabs your knee!", Monnam(mtmp));
-					pline("Your %s are trembling!", makeplural(body_part(HAND)));
-					u.tremblingamount++;
-					break;
-				case 9:
-					pline("%s's %s try to pull off your clothes!", Monnam(mtmp), makeplural(mbodypart(mtmp, HAND)));
-					shank_player();
-					break;
-				case 10:
-					pline("%s's %s touch your %sline, and try to wander downwards!", Monnam(mtmp), makeplural(mbodypart(mtmp, FINGER)), body_part(NECK));
-					You("are shaking, and your knapsack is juggling back and forth wildly!");
-					dropitemattack();
-					break;
-				case 11:
-					if (mtmp->female) pline("%s makes a disturbing gesture at your vagina!", Monnam(mtmp));
-					else pline("%s shows you %s penis, and repeatedly pulls %s foreskin back and forth!", Monnam(mtmp), mhis(mtmp), mhis(mtmp));
-					if (!u.berserktime) {
-						u.berserktime = 25;
-						You("are infuriated!");
-					}
-					break;
-
-			}
-			increasesanity(rnz(5));
-		} /* end molest choice */
-
-		u.cnd_molestcount++;
-
-		/* if you're not incapacitated, you may scream for help, which means all peacefuls will have a grudge against molesters for a while */
-		if (multi >= 0) {
-			if (!rn2(5)) {
-				wake_nearby(); /* but it also makes noise */
-				You("scream 'Help! HEEEEELP!'");
-				u.molestinggrudge += rnz(100);
+				}
 			}
 		}
-		/* did some peaceful monster witness you being molested? if so, all peacefuls will have a grudge against molesters for a while
-		 * this is based on code from the turbogay feature of the variant that calls itself 3.6 where hitting a peaceful monster makes all peacefuls hostile */
-		for (witnessmon = fmon; witnessmon; witnessmon = witnessmon->nmon) {
-			if (DEADMONSTER(witnessmon)) continue;
-			if (witnessmon == mtmp) continue;
-			if (witnessmon->mpeaceful && couldsee(witnessmon->mx, witnessmon->my)) { /* finding one is enough */
-				if (!u.molestinggrudge) pline("%s responds 'What?! An innocent woman is being harassed? STOP THE PERPETRATOR!! GET HIM!'", Monnam(witnessmon));
-				else pline("%s shouts 'You! Leave her alone at once!'", Monnam(witnessmon));
-				u.molestinggrudge += rnz(100);
-				break;
-			}
-		}
-
 	}
 
 	if ((monstersoundtype(mtmp) == MS_METALMAFIA) || (mtmp->egotype_metalmafioso)) {

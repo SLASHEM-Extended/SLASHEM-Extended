@@ -2330,6 +2330,31 @@ struct monst *mon;
 		mmove /= 2;
 	}
 
+	/* armorer: speeds up when low on health, slowed if near max health --Amy
+	 * I *swear* I came up with this idea myself when I was little, back then I didn't know about Diablo 2 and the The Smith/Hephasto who have EXACTLY this ability.
+	 * And I also swear that I called the monster I made up back then "armorer" without knowing that Hephasto is literally called the Armorer. */
+	if ((monstersoundtype(mon) == MS_ARMORER) && (mmove > 0) && mon->mhpmax > 1) {
+		int monsterspeedmult = 100;
+		int halfnumber = (mon->mhpmax / 2);
+		int differencevar;
+		if (mon->mhp > (mon->mhpmax / 2)) { /* speed is lowered if HP is above half of the maximum */
+			differencevar = (mon->mhp - halfnumber);
+
+			/* reduce speed; lowest possible value is half the nominal value */
+			mmove *= (mon->mhpmax - differencevar);
+			mmove /= mon->mhpmax;
+			if (mmove < 1) mmove = 1; /* don't become immobile if it's a speed 1 monster at full health! */
+
+		} else if (mon->mhp < (mon->mhpmax / 2)) { /* speed is raised if HP is below half of the maximum */
+			differencevar = ((halfnumber - mon->mhp) * 2) + mon->mhpmax;
+
+			/* increase speed; highest possible value is (close to, because actual HP has to be at least 1) twice the nominal value */
+			mmove *= differencevar;
+			mmove /= mon->mhpmax;
+
+		}
+	}
+
 	if (u.currentweather == WEATHER_RAIN && is_swimmer(mon->data) && !rn2(2) && (mmove > 0)) {
 		mmove *= 3;
 		if (mmove == 3) mmove = 4;
@@ -2584,7 +2609,7 @@ movemon()
 	}
 
 	/* continue if the monster died fighting */
-	if ((Conflict || (mtmp->mnum == PM_FRENZY_KANGAROO) ) && !TimeStopped && !mtmp->iswiz && mtmp->mcansee && haseyes(mtmp->data) ) {
+	if ((Conflict || (mtmp->mnum == PM_FRENZY_KANGAROO) ) && !TimeStopped && lowpriorityok(mtmp) && !((u.jammingactive == TRUE) && (monstersoundtype(mtmp) == MS_JAM)) && !mtmp->iswiz && mtmp->mcansee && haseyes(mtmp->data) ) {
 	    /* Note:
 	     *  Conflict does not take effect in the first round.
 	     *  Therefore, A monster when stepping into the area will
@@ -2599,7 +2624,7 @@ movemon()
 							fightm(mtmp))
 		continue;	/* mon might have died */
 	}
-	if ((StrongConflict || (mtmp->mnum == PM_FRENZY_KANGAROO)) && !TimeStopped && !mtmp->iswiz && mtmp->mcansee && haseyes(mtmp->data) ) {
+	if ((StrongConflict || (mtmp->mnum == PM_FRENZY_KANGAROO)) && !TimeStopped && lowpriorityok(mtmp) && !((u.jammingactive == TRUE) && (monstersoundtype(mtmp) == MS_JAM)) && !mtmp->iswiz && mtmp->mcansee && haseyes(mtmp->data) ) {
 	    /* Note:
 	     *  Conflict does not take effect in the first round.
 	     *  Therefore, A monster when stepping into the area will
@@ -4554,6 +4579,8 @@ struct monst *magr,	/* monster that is currently deciding where to move */
 {
 
 	if (TimeStopped && !immune_timestop(magr->data) && !immune_timestop(mdef->data) ) return 0L; /* turned out they were still able to bash each other during time stop! */
+	if ((u.jammingactive == TRUE) && (monstersoundtype(magr) == MS_JAM)) return 0L;
+	if (!lowpriorityok(magr)) return 0L;
 
 	if (!magr || !mdef) return 0L; /* error - shouldn't happen */
 	if (DEADMONSTER(magr) || DEADMONSTER(mdef)) return 0L; /* bugfix */
@@ -11356,6 +11383,30 @@ maybe_evolve_symbiote()
 			u.usymbiote.mnum = newtype;
 		}
 	}
+}
+
+/* is a MS_LOWPRIORITY monster capable of moving this turn? --Amy */
+boolean
+lowpriorityok(mtmp)
+struct monst *mtmp;
+{
+	struct monst *mtmp2;
+
+	if (monstersoundtype(mtmp) != MS_LOWPRIORITY) return TRUE;
+
+	/* check whether there's an adjacent monster of the same peaceful/hostile/tame status which doesn't also have low priority */
+	for (mtmp2 = fmon; mtmp2; mtmp2 = mtmp2->nmon) {
+		if (dist2(mtmp->mx, mtmp->my, mtmp2->mx, mtmp2->my) > 2) continue;
+		if (mtmp->mpeaceful && !mtmp->mtame && (!mtmp2->mpeaceful || mtmp2->mtame)) continue;
+		if (mtmp->mtame && !mtmp2->mtame) continue;
+		if (!mtmp->mpeaceful && mtmp2->mpeaceful) continue;
+		if (monstersoundtype(mtmp2) == MS_LOWPRIORITY) continue;
+
+		/* if we're here, we found a monster that qualifies, so the MS_LOWPRIORITY one is not allowed to act */
+		return FALSE;
+	}
+
+	return TRUE;
 }
 
 #endif /* OVLB */

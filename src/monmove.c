@@ -637,6 +637,8 @@ register struct monst *mtmp;
 	if (FemtrapActiveKatharina && mtmp->crapbonus) fartdistance = (SuperFemtrapKatharina ? 26 : 15);
 
 	if (TimeStopped && !immune_timestop(mtmp->data)) return 0;	/* time stop completely prevents monsters from doing anything, but some are immune --Amy */
+	if ((u.jammingactive == TRUE) && (monstersoundtype(mtmp) == MS_JAM)) return 0;
+	if (!lowpriorityok(mtmp)) return 0;
 	if (u.stasistime) return 0;	/* stasis does the same --Amy */
 	if (uarmf && uarmf->oartifact == ART_ELEVECULT && !rn2(3)) return 0;
 
@@ -2827,6 +2829,14 @@ convertdone:
 		pline("%s stabilizes the space around.", Monnam(mtmp)); /* message is sic from Elona */
 	}
 
+	if ( (monstersoundtype(mtmp) == MS_OMEN) && !rn2(1000)) {
+		badeffect();
+	}
+
+	if ( (monstersoundtype(mtmp) == MS_TRIP) && !rn2(10000)) {
+		randomnastytrapeffect(rnz(100 + level_difficulty()), 1000);
+	}
+
 	if ( (monstersoundtype(mtmp) == MS_BAN) && !rn2(1000)) {
 		if (canseemon(mtmp)) pline("%s warps away!", Monnam(mtmp));
 		u_teleport_monD(mtmp, FALSE); /* banish the monster --Amy */
@@ -3730,6 +3740,10 @@ toofar:
 
 	    if(inrange && monstersoundtype(mtmp) == MS_GIBBERISH && !mtmp->mpeaceful && !rn2(5)) {
 		pline("%s", generate_garbage_string());
+	    }
+
+	    if(inrange && monstersoundtype(mtmp) == MS_NEWS && !rn2(100)) {
+		newsflash();
 	    }
 
 	    if(inrange && monstersoundtype(mtmp) == MS_CONDESCEND && !rn2(50)) {

@@ -1755,6 +1755,7 @@ E void monster_weapon_enclave(struct monst *, BOOLEAN_P);
 E void monster_weapon_supermutant(struct monst *, BOOLEAN_P);
 E void monster_weapon_bos(struct monst *, BOOLEAN_P);
 E void monster_weapon_outcast(struct monst *, BOOLEAN_P);
+E boolean lowpriorityok(struct monst *);
 
 /* ### mapglyph.c ### */
 
@@ -2555,6 +2556,7 @@ E void allbadpeteffects(struct monst *);
 E void add_monster_egotype(struct monst *);
 E void ragnarok(BOOLEAN_P);
 E void moorlandragnarok(void);
+E void newsflash(void);
 E void shoeragnarok(void);
 E void bloomragnarokweak(void);
 E void fountainstorm(void);

@@ -13043,6 +13043,316 @@ int bonusamount;
 	u.alla += bonusamount;
 }
 
+/* MS_NEWS: can randomly say something about vanquished monsters or player's trophies --Amy */
+void
+newsflash()
+{
+	int attempts;
+	int helpervar;
+
+	if (!rn2(2)) {
+		/* vanquished monsters */
+
+		attempts = 100000;
+
+		while (attempts > 0) {
+			attempts--;
+
+			helpervar = rn2(NUMMONS);
+
+			/* if we find one, print a message and return */
+			if (mvitals[helpervar].born && (rn2(2) || !(mvitals[helpervar].died)) ) {
+				verbalize("The monster named %s has been created %d times already!", mons[helpervar].mname, mvitals[helpervar].born);
+				return;
+			}
+
+			if (mvitals[helpervar].died) {
+				verbalize("The monster named %s has been killed %d times already!", mons[helpervar].mname, mvitals[helpervar].died);
+				return;
+			}
+		}
+
+	} else {
+		/* trophies */
+
+		attempts = 1000;
+
+		while (attempts > 0) {
+			attempts--;
+
+			/* if we roll one that the player has obtained, print a message and return */
+			switch (rnd(44)) {
+				case 1:
+					if (achieve.get_bell) {
+						verbalize("The intrepid adventurer obtained the legendary silver bell from their nemesis!");
+						return;
+					}
+					break;
+				case 2:
+					if (achieve.killed_beholder) {
+						verbalize("It seems that the Beholder isn't going to behold anything soon, as it was brutally murdered by some cold-blooded adventurer...");
+						return;
+					}
+					break;
+				case 3:
+					if (achieve.killed_ruggo) {
+						verbalize("Poor Ruggo! Some adventurer entered his domain and killed the Gnome King!");
+						return;
+					}
+					break;
+				case 4:
+					if (achieve.killed_kroo) {
+						verbalize("The kobolds mourn the loss of their leader, Kroo. Meanwhile, an adventurer with a blood-smeared sword keeps cutting their way through the monster hordes...");
+						return;
+					}
+					break;
+				case 5:
+					if (achieve.killed_grund) {
+						verbalize("Grund's orc stronghold has fallen. A resourceful adventurer stormed his fort, and killed the Orc King.");
+						return;
+					}
+					break;
+				case 6:
+					if (achieve.killed_largestgiant) {
+						verbalize("The Largest Giant was just a slightly stronger giant, really, and didn't stand a chance against the furious adventurer who probably ate a lot of giant corpses and became much stronger in the process!");
+						return;
+					}
+					break;
+				case 7:
+					if (achieve.killed_shelob) {
+						verbalize("Shelob, the Spider of Darkness, is no more. Some adventurer wreaked havoc in the spider lair.");
+						return;
+					}
+					break;
+				case 8:
+					if (achieve.killed_girtab) {
+						verbalize("A powerful adventurer has managed to cut a path through the monstrous spiders, and managed to slay Girtab, one of their leaders!");
+						return;
+					}
+					break;
+				case 9:
+					if (achieve.killed_aphrodite) {
+						verbalize("It seems that the adventurer roaming about this dungeon managed to resist Aphrodite's charms, and bashed her head in. Now, the nymph queen will never seduce anyone ever again.");
+						return;
+					}
+					break;
+				case 10:
+					if (achieve.killed_frankenstein) {
+						verbalize("Poor Doctor Frankenstein, it seems that a mean-spirited adventurer broke into his lab and killed him in cold blood! We have to stop this murderer!");
+						return;
+					}
+					break;
+				case 11:
+					if (achieve.killed_croesus) {
+						verbalize("Croesus is dead! The security guards who were called to defend his fort report that they saw an adventurer fleeing at high speed; how that adventurer was capable of maintaining a running pace with all that gold weighing them down remains a mystery...");
+						return;
+					}
+					break;
+				case 12:
+					if (achieve.killed_dagon) {
+						verbalize("The dreaded Father Dagon is dead. A courageous adventurer managed to beat him in a duel.");
+						return;
+					}
+					break;
+				case 13:
+					if (achieve.killed_hydra) {
+						verbalize("That adventurer... they're simply unstoppable! They managed to battle Mother Hydra and won!");
+						return;
+					}
+					break;
+				case 14:
+					if (achieve.imbued_bell) {
+						verbalize("We can be rather certain that this particular adventurer is well on their way to becoming a champion; after all, they imbued the silver bell, one of the tools required for performing the invocation ritual!");
+						return;
+					}
+					break;
+				case 15:
+					if (achieve.imbued_amulet) {
+						verbalize("Whoa, you're not going to believe this, but that adventurer who retrieved the Amulet of Yendor? They actually managed to fully imbue it!! I'm certain that they'll ascend to demigodhood soon, if they haven't already!");
+						return;
+					}
+					break;
+				case 16:
+					if (achieve.killed_vecna) {
+						verbalize("Vecna lives!!! ...err, actually he doesn't anymore. Some highly skilled adventurer slew the dreaded lich prince, and then vaporized what remained of his body. I'm sure we'll never see Vecna again now.");
+						return;
+					}
+					break;
+				case 17:
+					if (achieve.get_luckstone) {
+						verbalize("Reports say that the luckstone in Mines End has been stolen by someone! Could this be the work of an adventurer?");
+						return;
+					}
+					break;
+				case 18:
+					if (achieve.get_amulet) {
+						verbalize("It's amazing! There is an adventurer who actually managed to retrieve the Amulet of Yendor!!! Will they succeed in offering the Amulet to their deity, and obtain immortality?");
+						return;
+					}
+					break;
+				case 19:
+					if (achieve.perform_invocation) {
+						verbalize("Did you hear it yet? Someone performed the invocation ritual! The deepest level of Gehennom, Moloch's Sanctum, has been opened and is accessible now!");
+						return;
+					}
+					break;
+				case 20:
+					if (achieve.ascended) {
+						verbalize("There is a new entity in the eternal pantheon of gods: %s! They have achieved the impossible and ascended with the Amulet of Yendor!!! All hail the new champion of the Dungeons of Doom!", playeraliasname);
+						return;
+					}
+					break;
+				case 21:
+					if (achieve.finish_sokoban) {
+						verbalize("Someone (probably an adventurer) went and solved the Sokoban puzzles, retrieving the hidden prize at the top. Will that item bring good luck to them?");
+						return;
+					}
+					break;
+				case 22:
+					if (achieve.killed_medusa) {
+						verbalize("The dread Medusa has been killed! Photographers have footage of a well-armored adventurer leaving the scene...");
+						return;
+					}
+					break;
+				case 23:
+					if (achieve.killed_nightmare) {
+						verbalize("The dreaded Nightmare is no longer living. Battered and badly bruised, the adventurer eventually stood victorious over the corpse of the once-mighty beast.");
+						return;
+					}
+					break;
+				case 24:
+					if (achieve.get_book) {
+						verbalize("Some adventurer actually managed to steal the Book of the Dead from the Wizard of Yendor himself! Oh man, Rodney's gonna be furious...");
+						return;
+					}
+					break;
+				case 25:
+					if (achieve.get_candelabrum) {
+						verbalize("Vlad the Impaler is reported to not have his candelabrum anymore. He failed to defend it from the clutches of a ravenous adventurer.");
+						return;
+					}
+					break;
+				case 26:
+					if (achieve.enter_gehennom) {
+						verbalize("There is a fearless adventurer who actually dared to set foot in Gehennom!");
+						return;
+					}
+					break;
+				case 27:
+					if (achieveX.killed_elderpriest) {
+						verbalize("It's impossible, but somehow, an elder priest got killed. Who is the invincible adventurer that managed to pull off such a stunt???");
+						return;
+					}
+					break;
+				case 28:
+					if (achieveX.killed_glassgolem) {
+						verbalize("Holy hell, get this: an adventurer snuck their way into the Illusory Castle, and somehow managed to take out the motherfucking Glass Golem! That's quite an achievement if you ask me; I couldn't have done it myself!");
+						return;
+					}
+					break;
+				case 29:
+					if (achieveX.killed_tiksrvzllat) {
+						verbalize("We'll forever be free of the evil god's schemes. Rejoice, for the shining paragon of justice has ventured into the Void and slain Tiksrvzllat! The adventurer is simply unstoppable!");
+						return;
+					}
+					break;
+				case 30:
+					if (achieveX.killed_bofh) {
+						verbalize("We've received reports that some adventurer battled their way through the Space Base and eventually wrecked the shit of the Bastard Operator From Hell. Well done!");
+						return;
+					}
+					break;
+				case 31:
+					if (achieveX.swimmingpool_cleared) {
+						verbalize("It seems that some adventurer found a lot of treasure in the Swimming Pools of Hell. May these items prove to be useful.");
+						return;
+					}
+					break;
+				case 32:
+					if (achieveX.killed_katia) {
+						verbalize("There used to be a really naughty girl named Katia. No toilet was safe from her, but thankfully, an intrepid adventurer mopped the floor with that little bitch.");
+						return;
+					}
+					break;
+				case 33:
+					if (achieveX.jefferson_done) {
+						verbalize("We're still receiving reports of Project Purity scientists gone missing. All that we know at present is that an adventurer escaped from the Enclave, whose soldiers took over the Jefferson Memorial; the adventurer was escorting Doctor Madison Li and a few other scientists. They've certainly arrived safely at the Citadel. Blessed be Jesus Christ! We can only hope that the remaining scientists are alive and well, too...");
+						return;
+					}
+					break;
+				case 34:
+					if (achieveX.killed_witchking) {
+						verbalize("Ding-dong, the witch-king is dead! He was fated to never be killed by the hand of a mortal, but that adventurer didn't care and just smashed the Lord of the Nazguls to bits anyway. It seems that in the process, the horrible Curse of Amber has also be broken, meaning we can now kill those pesky Amberites as well! Woohoo!");
+						return;
+					}
+					break;
+				case 35:
+					if (achieveX.get_magresstone) {
+						verbalize("Residents of the Deep Mines reported the theft of their important stone. Could it be that some adventurer went to the bottom and stole it?");
+						return;
+					}
+					break;
+				case 36:
+					if (achieveX.devnull_complete) {
+						verbalize("I don't know why they even bothered, but an adventurer has completed all of the Devnull challenges. Man, I'd never waste my time like that, there's better things to do in the dungeon.");
+						return;
+					}
+					break;
+				case 37:
+					if (achieveX.killed_minotaur) {
+						verbalize("It seems that the Minotaur of the Maze is very butthurt, because an adventurer managed to reach and kill him. How they managed to keep their sanity traversing all those mazes without the map even remembering where they've been, I don't know.");
+						return;
+					}
+					break;
+				case 38:
+					if (achieveX.killed_kalwina) {
+						verbalize("Emyn Luin, the Blue Mountain, is free from its spell and has regained its natural color! It seems that it happened when that well-armed adventurer made their way to Kalwina, the lady who guarded the mountain, and had some nice talk with her... or maybe they applied 'shotgun diplomacy' instead?");
+						return;
+					}
+					break;
+				case 39:
+					if (achieveX.killed_stahngnir) {
+						verbalize("Somehow, an adventurer managed to duel Stahngnir, the Steel Giant Lord, and won. We still don't know how they managed that, but it happened.");
+						return;
+					}
+					break;
+				case 40:
+					if (achieveX.killed_ariane) {
+						verbalize("Breaking news! Somehow, an extremely powerful adventurer managed to defeat Ariane, Lady of the Elements! She was considered impossible to defeat, and we have no effing clue how it was possible for her to lose a battle anyway, but it seems that she's been dethroned! Who will take her place now?");
+						return;
+					}
+					break;
+				case 41:
+					if (achieveX.completed_rivalquest) {
+						verbalize("That adventurer seems to have managed to defeat their rival, and retrieved some sort of artifact in the process. Whether they're actually using said artifact, I cannot tell.");
+						return;
+					}
+					break;
+				case 42:
+					if (achieveX.completed_minusworld) {
+						verbalize("Reliable sources say they saw an adventurer exit the Minus World. How the heck did they even get in there???");
+						return;
+					}
+					break;
+				case 43:
+					if (achieveX.killed_vera) {
+						verbalize("The lovely ice queen, Vera, has been killed. Such a shame, I always liked her cute cyan girl sneakers, as they looked so lovely...");
+						return;
+					}
+					break;
+				case 44:
+					if (achieveX.killed_elaine) {
+						verbalize("Some asshole killed Elaine the Enchantress. That's a heinous crime, as she just wanted to live a peaceful life and her beautiful yellow girl sneakers wouldn't do any harm to anyone, ever. I wish she had broken that filthy adventurer's legs with her most beautiful shoes in the world, but sadly, it was not to be...");
+						return;
+					}
+					break;
+			}
+
+		}
+
+	}
+}
+
 void
 drain_alla(drainamount)
 int drainamount;

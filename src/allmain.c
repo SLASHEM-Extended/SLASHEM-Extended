@@ -2939,6 +2939,9 @@ nyssaraend:
 			}
 		}
 
+		/* 50% chance that MS_JAM cannot move this turn --Amy */
+		u.jammingactive = rn2(2);
+
 		if (u.temprumormessages) {
 			if (!rn2(100)) {
 				const char *line;
