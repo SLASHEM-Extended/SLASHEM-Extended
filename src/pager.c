@@ -5116,6 +5116,21 @@ static NEARDATA const char * const demagoguelines[] = {
 "What? They want war? Then they'll get war. We were planning to perform a peaceful mission but if they attack our soldiers, their lives are forfeit and we'll shoot on sight.",
 "Those so-called fisherboats? They're operated by smugglers! We have every right to attack them on sight!",
 "That was the last straw, we'll annex that country now. It is ours. But really, it always has been, they just hadn't realized it yet.",
+"Our officers are doing important work for the government and their commands have to be obeyed! If you try to obstruct our officers, you will be dealt with!",
+"If you try to obstruct our officers' work in a way that puts their life in danger, they are authorized to use lethal force! So, people, if they give you an order, you do what you're told and don't try to play the hero!",
+"We apprehended the president of that country because he supports drug trafficking! No matter how much he pleads not guilty, our jury, judges and executioners have all been briefed that he is to be found guilty no matter what, and will summarily be guillotined!",
+"Remember, if I decide to accuse someone of a crime, any of my witnesses' statements will be treated as the absolute truth by the judges and prosecutors I've bought. We will get our guilty verdict. Guaranteed.", /* inspired by the Ace Attorney calls-itself-"justice"-(haahahahaha)-system */
+"Anyone who is caught dealing with illegal drugs will be executed. No matter who it is. An elderly man? A pregnant woman? A teenager? I don't care. If I state that in my country there is no drug abuse, then there *is no drug abuse* in my country and anyone who violates that law is considered an error in the matrix, and therefore gets terminated.",
+"We will not use the word 'slaves'. Let's call them workers, as that's better for their morale and reminds them of the fact that they can be rewarded with freedom eventually.", /* Ashur from Fallout 3 addon "The Pitt" */
+"Laying down flowers for the deceased opposition leader is considered a crime, especially if you do it in public and doubly especially if you do it on that person's birthday or death anniversary. Anyone who is caught engaging in such disruptive behavior will be put in the detention center for an indeterminate amount of time.",
+"I don't need international law. The only thing that can stop me is my morality.", /* something to that effect was said by Trump sometime in January 2026 */
+"It is about time that the new world order is shaped by capable people like me, because then the natural order of things will be restored! Finally, the strong will once again rule over the weak, and we'll no longer have the current stupid system where the weak rule over the strong!",
+"Nowadays, humankind has circumvented one of the fundamental laws of nature, namely the one that says the strong will rule over the weak. Instead, what we have now is a dumpster fire of a civilization, one where it's not the strongest who are in power, but rather the whiniest! But rest assured, we will overcome that crisis and things will go back to how they're supposed to be!",
+"It's really dumb that with the advent of (a)social media, one just needs to whine-whine-whine a lot and stir up a hate mob to get their way! People who would rightfully DIE if this were still the bronze age, ones who can do nothing but complain about petty things, now set the tone of discussion and use their power to shut down and cancel all those who would really bring our country forward, and therefore we will issue an immediate BAN on media like Whatsquaak, Instadoof, Snaphobbylos and Tiktok-toktoktok!",
+"No ass is going to riot in MY country! Anyone who is caught doing so may be shot on sight!",
+"If those demonstrants think they can just break the law and block important roads, causing our ambulances to not reach their destinations in time and therefore causing the deaths of innocent people, I'm going to send in the tank squad and just roll over the culprits. They will be dealt with. All of them. We will restore law and order, by any means necessary.",
+"Anyone who participates in an unauthorized demonstration on my streets will feel the full force of our water cannons and tear gas canisters. If they want to demonstrate, they have to kindly ask for permission, and we'll grant that permission only if we can be absolutely certain that no violent people or other lawbreakers will join their protest!",
+"Our officers are protected by absolute immunity! If they have to kill someone on their job, they can be assumed to have done so for a reason and therefore cannot be held accountable!", /* I think it was Vance in January 2026 who said something like that? */
 };
 
 static NEARDATA const char * const longinglines[] = {
@@ -30176,6 +30191,28 @@ static NEARDATA const char * const fake_plines[] = {
 	"The naked asshole shows you his penis, and repeatedly pulls his foreskin back and forth!",
 	"You scream 'Help! HEEEEELP!'",
 	"The watchman responds 'What?! An innocent woman is being harassed? STOP THE PERPETRATOR!! GET HIM!'",
+	"No... it cannot be... your genital area has been mutilated forever... Those evil, evil people, they ruined your body for the rest of the life and now you'll never be free of pain again...",
+	"Emergency! Your genital area has been almost completely circumcised! You realize that you just HAVE to fight off the doctor and run, or you'll lose something that you'll never be able to get back!",
+	"Warning! Your genital area is in critical condition! If you don't protect it, you'll be irreversibly circumcised and then you have to live for the rest of your life with that horrible mutilation!",
+	"The sight of blood dripping from your genitals makes you feel nauseous. You realize that you can't allow the process of circumcision to proceed any further, for the sake of your health!",
+	"Your genital area has been violated! It is in your own best interest to not allow this to happen again!",
+	"Ah shit, there goes the last bit of your foreskin. You've officially been circumcised now. Goddammit, you get the feeling that your penis will forever be hurting now until the end of all time.",
+	"Shit! All the blood! You're feeling almost faint, and get the feeling that your foreskin is moments away from being cut off forever!",
+	"Owwwww! Ow! How that ever hurts! You have to protect what's left of your foreskin!",
+	"Ah! That tickles! You get the urge to protect your penis from that evil doctor!",
+	"Your genital area is still moments away from being completely circumcised! Apply more healing, NOW!!!",
+	"Your genital area is still in critical condition! Apply more healing to ensure you won't get irreversibly circumcised!",
+	"Your genital area feels a bit better, but still far from well, and you feel that more healing is required!",
+	"Your genital area feels better, but isn't completely restored yet. If possible, you should apply more healing.",
+	"Phew, your genital area has been fully restored. What a relief.",
+	"Your foreskin has been healed a little bit, but it's still very vulnerable! Apply more healing, NOW!!!",
+	"Your penis is still hurting, but at least it's feeling better than before. However, you wouldn't mind more healing.",
+	"Your penis feels pretty good again, but there's a minor laceration left. It might be possible to heal that bit, too.",
+	"Whew, your foreskin is fully intact again. You let out a heavy sigh of relief.",
+	"You experience incredibly agonizing pain as the circumcision nurse applies the dorsal slit to your genital area and - *SWISH-ZZZIPP!* - mutilates your skin!",
+	"Oh no!!! The circumcision nurse applied the dorsal slit to your foreskin and... *snap* - applies a painful cut!",
+	"The hanging semen ejaculator's penis shoots some semen at you!",
+	"The hanging semen ejaculator's penis shoots some semen at you! This is really icky and you feel like notifying the server administrator about the gross content in this game.",
 
 };
 

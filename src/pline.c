@@ -1052,7 +1052,7 @@ generate_garbage_string()
 	int stringlength = rnd(25);
 	if (!rn2(10)) stringlength += rnd(25);
 
-	while (stringlength --> 0) {
+	while (stringlength-- > 0) {
 #ifdef UNIX
 		/* Sadly, terminals can be screwed up if we use "unsafe" glyphs. Sure, this is SLEX, interface screws
 		 * are meant to be a part of the game, but we don't want to fuck up the player's actual terminal session.
@@ -1098,6 +1098,490 @@ generate_garbage_char()
 	sprintf(eos(string), "%s", tmpstr);
 
 	return string;
+}
+
+/* MS_CRYTHROAT: generate garbage strings made up of only uppercase letters --Amy
+ * more common letters in the alphabet are more common in these strings */
+const char *
+generate_crythroat_string()
+{
+	static char string[BUFSZ];
+	string[0] = '\0';
+
+	char tmpstr[2] = {0, 0};
+
+	int stringlength = rnd(25);
+	if (!rn2(10)) stringlength += rnd(25);
+
+	int stringsdo = 0;
+
+	while (stringlength-- > 0) {
+
+		/* separate long strings with some blank spaces, please */
+		stringsdo++;
+		if (stringsdo > rn1(8, 2)) {
+			sprintf(eos(string), " ", tmpstr);
+			stringsdo = 0;
+		}
+
+		switch (rnd(173)) {
+			default:
+			case 1:
+			case 2:
+			case 3:
+			case 4:
+			case 5:
+			case 6:
+			case 7:
+			case 8:
+			case 9:
+			case 10:
+				tmpstr[0] = 'A';
+				break;
+			case 11:
+			case 12:
+			case 13:
+			case 14:
+			case 15:
+				tmpstr[0] = 'B';
+				break;
+			case 16:
+			case 17:
+			case 18:
+			case 19:
+			case 20:
+				tmpstr[0] = 'C';
+				break;
+			case 21:
+			case 22:
+			case 23:
+			case 24:
+			case 25:
+			case 26:
+			case 27:
+				tmpstr[0] = 'D';
+				break;
+			case 28:
+			case 29:
+			case 30:
+			case 31:
+			case 32:
+			case 33:
+			case 34:
+			case 35:
+			case 36:
+			case 37:
+				tmpstr[0] = 'E';
+				break;
+			case 38:
+			case 39:
+			case 40:
+			case 41:
+				tmpstr[0] = 'F';
+				break;
+			case 42:
+			case 43:
+			case 44:
+			case 45:
+			case 46:
+			case 47:
+			case 48:
+				tmpstr[0] = 'G';
+				break;
+			case 49:
+			case 50:
+			case 51:
+			case 52:
+				tmpstr[0] = 'H';
+				break;
+			case 53:
+			case 54:
+			case 55:
+			case 56:
+			case 57:
+			case 58:
+			case 59:
+			case 60:
+			case 61:
+			case 62:
+				tmpstr[0] = 'I';
+				break;
+			case 63:
+			case 64:
+				tmpstr[0] = 'J';
+				break;
+			case 65:
+			case 66:
+			case 67:
+				tmpstr[0] = 'K';
+				break;
+			case 68:
+			case 69:
+			case 70:
+			case 71:
+			case 72:
+			case 73:
+			case 74:
+			case 75:
+			case 76:
+			case 77:
+				tmpstr[0] = 'L';
+				break;
+			case 78:
+			case 79:
+			case 80:
+			case 81:
+			case 82:
+				tmpstr[0] = 'M';
+				break;
+			case 83:
+			case 84:
+			case 85:
+			case 86:
+			case 87:
+			case 88:
+			case 89:
+			case 90:
+			case 91:
+			case 92:
+				tmpstr[0] = 'N';
+				break;
+			case 93:
+			case 94:
+			case 95:
+			case 96:
+			case 97:
+			case 98:
+			case 99:
+			case 100:
+			case 101:
+			case 102:
+				tmpstr[0] = 'O';
+				break;
+			case 103:
+			case 104:
+			case 105:
+			case 106:
+			case 107:
+				tmpstr[0] = 'P';
+				break;
+			case 108:
+				tmpstr[0] = 'Q';
+				break;
+			case 109:
+			case 110:
+			case 111:
+			case 112:
+			case 113:
+			case 114:
+			case 115:
+			case 116:
+			case 117:
+			case 118:
+				tmpstr[0] = 'R';
+				break;
+			case 119:
+			case 120:
+			case 121:
+			case 122:
+			case 123:
+			case 124:
+			case 125:
+			case 126:
+			case 127:
+			case 128:
+				tmpstr[0] = 'S';
+				break;
+			case 129:
+			case 130:
+			case 131:
+			case 132:
+			case 133:
+			case 134:
+			case 135:
+			case 136:
+			case 137:
+			case 138:
+				tmpstr[0] = 'T';
+				break;
+			case 139:
+			case 140:
+			case 141:
+			case 142:
+			case 143:
+			case 144:
+			case 145:
+			case 146:
+			case 147:
+			case 148:
+				tmpstr[0] = 'U';
+				break;
+			case 149:
+			case 150:
+			case 151:
+			case 152:
+				tmpstr[0] = 'V';
+				break;
+			case 153:
+			case 154:
+			case 155:
+			case 156:
+				tmpstr[0] = 'W';
+				break;
+			case 157:
+			case 158:
+				tmpstr[0] = 'X';
+				break;
+			case 159:
+			case 160:
+			case 161:
+			case 162:
+				tmpstr[0] = 'Y';
+				break;
+			case 163:
+				tmpstr[0] = 'Z';
+				break;
+		}
+
+		sprintf(eos(string), "%s", tmpstr);
+	}
+
+	return string;
+}
+
+const char *
+generate_crythroat_char()
+{
+	static char string[BUFSZ];
+	string[0] = '\0';
+
+	char tmpstr[2] = {0, 0};
+
+	switch (rnd(163)) {
+		default:
+		case 1:
+		case 2:
+		case 3:
+		case 4:
+		case 5:
+		case 6:
+		case 7:
+		case 8:
+		case 9:
+		case 10:
+			tmpstr[0] = 'A';
+			break;
+		case 11:
+		case 12:
+		case 13:
+		case 14:
+		case 15:
+			tmpstr[0] = 'B';
+			break;
+		case 16:
+		case 17:
+		case 18:
+		case 19:
+		case 20:
+			tmpstr[0] = 'C';
+			break;
+		case 21:
+		case 22:
+		case 23:
+		case 24:
+		case 25:
+		case 26:
+		case 27:
+			tmpstr[0] = 'D';
+			break;
+		case 28:
+		case 29:
+		case 30:
+		case 31:
+		case 32:
+		case 33:
+		case 34:
+		case 35:
+		case 36:
+		case 37:
+			tmpstr[0] = 'E';
+			break;
+		case 38:
+		case 39:
+		case 40:
+		case 41:
+			tmpstr[0] = 'F';
+			break;
+		case 42:
+		case 43:
+		case 44:
+		case 45:
+		case 46:
+		case 47:
+		case 48:
+			tmpstr[0] = 'G';
+			break;
+		case 49:
+		case 50:
+		case 51:
+		case 52:
+			tmpstr[0] = 'H';
+			break;
+		case 53:
+		case 54:
+		case 55:
+		case 56:
+		case 57:
+		case 58:
+		case 59:
+		case 60:
+		case 61:
+		case 62:
+			tmpstr[0] = 'I';
+			break;
+		case 63:
+		case 64:
+			tmpstr[0] = 'J';
+			break;
+		case 65:
+		case 66:
+		case 67:
+			tmpstr[0] = 'K';
+			break;
+		case 68:
+		case 69:
+		case 70:
+		case 71:
+		case 72:
+		case 73:
+		case 74:
+		case 75:
+		case 76:
+		case 77:
+			tmpstr[0] = 'L';
+			break;
+		case 78:
+		case 79:
+		case 80:
+		case 81:
+		case 82:
+			tmpstr[0] = 'M';
+			break;
+		case 83:
+		case 84:
+		case 85:
+		case 86:
+		case 87:
+		case 88:
+		case 89:
+		case 90:
+		case 91:
+		case 92:
+			tmpstr[0] = 'N';
+			break;
+		case 93:
+		case 94:
+		case 95:
+		case 96:
+		case 97:
+		case 98:
+		case 99:
+		case 100:
+		case 101:
+		case 102:
+			tmpstr[0] = 'O';
+			break;
+		case 103:
+		case 104:
+		case 105:
+		case 106:
+		case 107:
+			tmpstr[0] = 'P';
+			break;
+		case 108:
+			tmpstr[0] = 'Q';
+			break;
+		case 109:
+		case 110:
+		case 111:
+		case 112:
+		case 113:
+		case 114:
+		case 115:
+		case 116:
+		case 117:
+		case 118:
+			tmpstr[0] = 'R';
+			break;
+		case 119:
+		case 120:
+		case 121:
+		case 122:
+		case 123:
+		case 124:
+		case 125:
+		case 126:
+		case 127:
+		case 128:
+			tmpstr[0] = 'S';
+			break;
+		case 129:
+		case 130:
+		case 131:
+		case 132:
+		case 133:
+		case 134:
+		case 135:
+		case 136:
+		case 137:
+		case 138:
+			tmpstr[0] = 'T';
+			break;
+		case 139:
+		case 140:
+		case 141:
+		case 142:
+		case 143:
+		case 144:
+		case 145:
+		case 146:
+		case 147:
+		case 148:
+			tmpstr[0] = 'U';
+			break;
+		case 149:
+		case 150:
+		case 151:
+		case 152:
+			tmpstr[0] = 'V';
+			break;
+		case 153:
+		case 154:
+		case 155:
+		case 156:
+			tmpstr[0] = 'W';
+			break;
+		case 157:
+		case 158:
+			tmpstr[0] = 'X';
+			break;
+		case 159:
+		case 160:
+		case 161:
+		case 162:
+			tmpstr[0] = 'Y';
+			break;
+		case 163:
+			tmpstr[0] = 'Z';
+			break;
+	}
+
+	tmpstr[1] = '\0';
+
+	sprintf(eos(string), "%s", tmpstr);
+
+	return string;
+
 }
 
 void

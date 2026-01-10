@@ -1389,7 +1389,7 @@ boolean guaranteed;
 		return((struct monst *)0);
 	}
 
-	if (u.uprops[HATE_TRAP_EFFECT].extrinsic || HateTrapEffect || (uarms && uarms->oartifact == ART_REAL_PSYCHOS_WEAR_PURPLE) || (uarms && uarms->oartifact == ART_REAL_MEN_WEAR_PSYCHOS) || (uarmf && uarmf->oartifact == ART_TOO_MUCH_BRAVERY) || have_hatestone() || autismweaponcheck(ART_POST_OFFICE_COURSE) || (uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS) || Role_if(PM_GANG_SCHOLAR) ) {
+	if (u.uprops[HATE_TRAP_EFFECT].extrinsic || HateTrapEffect || (uarms && uarms->oartifact == ART_REAL_PSYCHOS_WEAR_PURPLE) || (uarms && uarms->oartifact == ART_REAL_MEN_WEAR_PSYCHOS) || (uarmf && uarmf->oartifact == ART_TOO_MUCH_BRAVERY) || have_hatestone() || (flags.female && (u.genitalhealth_f > 1) && (u.genitalhealth_m < 1)) || (!flags.female && (u.genitalhealth_m > 1) && (u.genitalhealth_f < 1)) || autismweaponcheck(ART_POST_OFFICE_COURSE) || (uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS) || Role_if(PM_GANG_SCHOLAR) ) {
         	pline("%s hates you too much!", Monnam(mtmp));
 		return((struct monst *)0);
 	}

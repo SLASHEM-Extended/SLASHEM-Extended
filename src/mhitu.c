@@ -6095,6 +6095,155 @@ newboss:
 
 	}
 
+	if (monstersoundtype(mtmp) == MS_INCISION) {
+		if (!range2 && (tmp > (rnd(20+i))) ) {
+			if (foundyou) {
+				boolean willslit = TRUE;
+				if (flags.female && (u.genitalhealth_f > 0)) {
+					switch (rnd(3)) {
+						case 1:
+							if (uarm && rn2(4)) {
+								willslit = FALSE;
+								if (!rn2(2)) {
+									pline("%s says 'Don't be afraid, girl. It won't hurt too much. Just let me take off that suit of yours first...'", Monnam(mtmp));
+									remove_worn_item(uarm, TRUE);
+								}
+							}
+							break;
+						case 2:
+							if (uarmc && rn2(2)) {
+								willslit = FALSE;
+								if (rn2(3)) {
+									pline("%s says 'That cloak of yours, I fear it's in the way. Let me take it off for you.'", Monnam(mtmp));
+									remove_worn_item(uarmc, TRUE);
+								}
+							}
+							break;
+						case 3:
+							if (uarmu && !rn2(3)) {
+								willslit = FALSE;
+								if (rn2(5)) {
+									pline("%s says 'Sorry, but I can't circumcise you very well if you're wearing that shirt. Relax, my girl, I'm not going to do anything bad to you, just please cooperate and take it off.'", Monnam(mtmp));
+									remove_worn_item(uarmu, TRUE);
+								}
+							}
+							break;
+					}
+
+					if (willslit) {
+						You("experience incredibly agonizing pain as %s applies the dorsal slit to your genital area and - *SWISH-ZZZIPP!* - mutilates your skin!", mon_nam(mtmp));
+						if (!rn2(5)) {
+							u.genitalhealth_f -= rnz(3);
+						} else {
+							u.genitalhealth_f -= 1;
+						}
+						genitalhealth(FALSE);
+					}
+				} else if (!flags.female && (u.genitalhealth_m > 0)) {
+					switch (rnd(3)) {
+						case 1:
+							if (uarm && rn2(3)) {
+								willslit = FALSE;
+								if (rn2(3)) {
+									pline("%s says 'Dude! You can't hide your foreskin under that suit! Wait, I'll take it off from you so I can do my work on you.'", Monnam(mtmp));
+									remove_worn_item(uarm, TRUE);
+								}
+							}
+							break;
+						case 2:
+							if (uarmc && !rn2(3)) {
+								willslit = FALSE;
+								if (rn2(4)) {
+									pline("%s says 'Hey, your cloak is annoying, it keeps dangling over your penis! I'll just take it off your back real quick and then I can treat you properly!'", Monnam(mtmp));
+									remove_worn_item(uarmc, TRUE);
+								}
+							}
+							break;
+						case 3:
+							if (uarmu && !rn2(5)) {
+								willslit = FALSE;
+								if (rn2(20)) {
+									pline("%s says 'Can you just take off that stupid shirt? I need free access to your foreskin so I can do the circumcision!'", Monnam(mtmp));
+									remove_worn_item(uarmu, TRUE);
+								}
+							}
+							break;
+					}
+
+					if (willslit) {
+						pline("Oh no!!! %s applied the dorsal slit to your foreskin and... *snap* - applies a painful cut!", Monnam(mtmp));
+						if (!rn2(3)) {
+							u.genitalhealth_m -= rnd(10);
+						} else {
+							u.genitalhealth_m -= 10;
+						}
+						genitalhealth(FALSE);
+					}
+				}
+			}
+		}
+	}
+
+	if ((monstersoundtype(mtmp) == MS_SEMEN) && flags.female) {
+		if(lined_up(mtmp) && ((dist2(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy) <= BOLT_LIM*BOLT_LIM) || (elongation_monster(mtmp->data) || ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) ) && (tmp > (rnd(20+i))) && !rn2(10) ) {  
+			if (foundyou) {
+				pline("%s's %spenis shoots some semen at you!", Monnam(mtmp), mtmp->female ? "imaginary " : "");
+				contaminate(rnd(10 + mtmp->m_lev), TRUE);
+				if (!rn2(5)) increasesanity(rnd(5));
+
+				if (!rn2(500)) {
+
+					struct obj *uegg;
+
+					if (flags.female) {
+						pline("Uh-oh - you're pregnant!"); verbalize("Be a good mother, sweetheart!");
+					}
+					else {
+						pline("Oh! %s is pregnant!", noit_Monnam(mtmp)); verbalize("Please take good care of my baby, %s!",playeraliasname);
+					}
+					increasesanity(rnz(500));
+
+					uegg = mksobj(EGG, FALSE, FALSE, FALSE);
+					if (uegg) {
+						uegg->spe = (flags.female ? 1 : 0);
+						uegg->quan = 1;
+						uegg->owt = weight(uegg);
+						if (!rn2(2)) uegg->corpsenm = mtmp->mnum;
+						else if (Upolyd) uegg->corpsenm = u.umonnum;
+						else if (urole.femalenum != NON_PM && !rn2(2)) uegg->corpsenm = urole.femalenum;
+						else uegg->corpsenm = urole.malenum;
+						uegg->known = uegg->dknown = 1;
+						attach_egg_hatch_timeout(uegg);
+						(void) start_timer(0, TIMER_OBJECT, HATCH_EGG, (void *)uegg);
+						pickup_object(uegg, 1, FALSE, TRUE);
+						run_timers();
+					}
+
+					if (HardcoreAlienMode) {
+
+						u.ugangr += 3;
+						pline("Becoming pregnant before you're married is a grave sin, and the gods are really angry.");
+						adjalign(-250);
+						change_luck(-5);
+						prayer_done();
+					}
+
+					if (uarmc && uarmc->oartifact == ART_CATHERINE_S_SEXUALITY) {
+						u.youaredead = 1;
+						pline("Oh no... your %s... it's... getting... unsteady...", body_part(HEART));
+						pline("BEEPBEEP BEEPBEEP BEEP BEEP BEEEEEEEEEEEEEEEEEEEEP!");
+						pline("You die from a %s failure.", body_part(HEART));
+						killer_format = KILLED_BY;
+						killer = "complications from childbirth";
+						done(DIED);
+						u.youaredead = 0;
+					}
+				}
+
+			}
+		}
+	}
+
 	if (evilfriday && mtmp->data->mlet == S_GIANT) { /* evil patch idea by jonadab */
 		mdat2 = &mons[PM_CAST_DUMMY];
 		a = &mdat2->mattk[3];
@@ -19840,6 +19989,14 @@ register int n;
 	if (Race_if(PM_VIKING) && n > 0) {
 		n *= 5;
 		n /= 4;
+	}
+
+	if (monstersoundtype(mtmp) == MS_HERCULES) {
+		if (mtmp->herculesboost > 0) {
+			n *= (20 + mtmp->herculesboost);
+			n /= 20;
+		}
+		mtmp->herculesboost++;
 	}
 
 	if (Race_if(PM_JAVA) && n > 0) {

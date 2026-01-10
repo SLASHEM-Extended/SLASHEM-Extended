@@ -450,6 +450,9 @@ struct you {
 
 	int molestinggrudge;	/* if nonzero, peaceful monsters have a grudge against hostile MS_MOLEST */
 
+	int genitalhealth_m;	/* for MS_INCISION: how much health you have left for your foreskin (yes I know this is really uncomfortable) */
+	int genitalhealth_f;	/* one variable for male and one for female chars */
+
 	int jammingactive;	/* 50% of the time, this variable is true; if it's the case, MS_JAM cannot move */
 
 	/* amy keyword: "newdungeons";   dungeons of doom, level 1 is always available */

@@ -2813,6 +2813,17 @@ nyssarachoice:
 
 nyssaraend:
 
+		/* genital health (for MS_INCISION) heals very slowly over time; for females it's even slower, but effects that damage it will damage it by less,
+		 * so it's probably still more likely for you to run out when playing a male char --Amy */
+		if (flags.female && !rn2(25000) && (u.genitalhealth_f > 0) && (u.genitalhealth_f < 100)) {
+			u.genitalhealth_f++;
+			genitalhealth(TRUE);
+		}
+		if (!flags.female && !rn2(10000) && (u.genitalhealth_m > 0) && (u.genitalhealth_m < 100)) {
+			u.genitalhealth_m++;
+			genitalhealth(TRUE);
+		}
+
 		if (u.tempwwwww && !rn2(10000)) {
 			pline("W-w-w-w-w-w-w-w-w-w-w!");
 			register struct monst *wwmtmp;
@@ -3585,6 +3596,32 @@ nyssaraend:
 
 		}
 
+		if (flags.female && (u.genitalhealth_f > 1) && (u.genitalhealth_m < 1)) {
+			register struct monst *screwmon;
+
+			for(screwmon = fmon; screwmon; screwmon = screwmon->nmon) {
+				if (DEADMONSTER(screwmon)) continue;
+				if (!screwmon->mtame) continue;
+				if (rn2(1000)) continue;
+
+				if (screwmon->mtame) badpeteffect(screwmon);
+			}
+
+		}
+
+		if (!flags.female && (u.genitalhealth_m > 1) && (u.genitalhealth_f < 1)) {
+			register struct monst *screwmon;
+
+			for(screwmon = fmon; screwmon; screwmon = screwmon->nmon) {
+				if (DEADMONSTER(screwmon)) continue;
+				if (!screwmon->mtame) continue;
+				if (rn2(1000)) continue;
+
+				if (screwmon->mtame) badpeteffect(screwmon);
+			}
+
+		}
+
 		if (uleft && uleft->oartifact == ART_IT_MAKES_EH_WHAT_IT_WANTS) {
 			register struct monst *screwmon;
 
@@ -3804,6 +3841,13 @@ nyssaraend:
 			pline("UGH - you inhaled too much of your own repulsive body odor, and can no longer think straight!");
 			make_confused(HConfusion + d(10,10), TRUE);
 			turn_allmonsters();
+		}
+
+		if (flags.female && (u.genitalhealth_f < 20)) {
+			if (!rn2(150)) playerbleed(rnd(2 + (level_difficulty() * rnd(2))));
+			if (!rn2(125) && (u.genitalhealth_f < 10) ) playerbleed(rnd(2 + (level_difficulty() * rnd(3))));
+			if (!rn2(100) && (u.genitalhealth_f < 1) ) playerbleed(rnd(2 + (level_difficulty() * rnd(4))));
+			if (!rn2(500) && (u.genitalhealth_f < 10) ) increasesanity(rnz(10));
 		}
 
 		if (!rn2(20) && FemtrapActiveNatalia && flags.female && (u.nataliacycletimer >= u.nataliafollicularend) && (u.nataliacycletimer < (u.nataliafollicularend + u.natalialutealstart)) ) {

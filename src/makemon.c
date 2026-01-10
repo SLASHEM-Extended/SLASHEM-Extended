@@ -27375,6 +27375,8 @@ register int	mmflags;
 	mtmp->nurse_restoration = !rn2(5);
 	mtmp->nurse_vaccine = !rn2(10);
 	mtmp->nurse_alla = !rn2(20);
+	mtmp->nurse_genitalhealing = !rn2(10);
+	mtmp->nurse_incision = !rn2(50);
 
 	mtmp->sagesvisible = !rn2(10);
 	mtmp->internetvisible = !rn2(9);
@@ -27451,6 +27453,7 @@ register int	mmflags;
 	mtmp->modalshopitem2bought = TRUE;
 	mtmp->modalshopitem3bought = TRUE;
 	mtmp->modalshopmarkup = 0;
+	mtmp->herculesboost = FALSE;
 	mtmp->repaircredit = 0;
 	mtmp->singability = 0;
 	mtmp->hominglazer = 0;
@@ -30957,6 +30960,10 @@ loopback:
 		if (ct > 0 && (In_jefferson(&u.uz) && is_elderscrollsmonster(ptr) )) ct += 5;
 		if (ct > 0 && (In_jefferson(&u.uz) && u.enclaveactive && (ptr->msound == MS_ENCLAVE) )) ct += 5;
 		if (ct > 0 && (u.enclaveactive && (ptr->msound == MS_ENCLAVE) )) ct += 3;
+		if (ct > 0 && (flags.female && (u.genitalhealth_f > 1) && (u.genitalhealth_m < 100) && (ptr->msound == MS_INCISION) )) ct += 1;
+		if (ct > 0 && (!flags.female && (u.genitalhealth_m > 1) && (u.genitalhealth_f < 100) && (ptr->msound == MS_INCISION) )) ct += 1;
+		if (ct > 0 && (flags.female && (u.genitalhealth_f > 1) && (u.genitalhealth_m < 1) && (ptr->msound == MS_INCISION) )) ct += 20;
+		if (ct > 0 && (!flags.female && (u.genitalhealth_m > 1) && (u.genitalhealth_f < 1) && (ptr->msound == MS_INCISION) )) ct += 20;
 
 		if (ct > 0 && (uarmh && uarmh->oartifact == ART_WERKAUF && (ptr->mlet == S_ZOMBIE) )) ct += 20;
 		if (ct > 0 && (Race_if(PM_DICTIONARY_ATTACK) && (ptr->mlet >= S_ANT && ptr->mlet <= S_ZOMBIE) )) ct += 5;
@@ -32600,6 +32607,10 @@ int     spc;
 		if ((In_jefferson(&u.uz) && is_elderscrollsmonster(&mons[last]) )) num += 5;
 		if ((In_jefferson(&u.uz) && u.enclaveactive && (mons[last].msound == MS_ENCLAVE) )) num += 5;
 		if ((u.enclaveactive && (mons[last].msound == MS_ENCLAVE) )) num += 3;
+		if ((flags.female && (u.genitalhealth_f > 1) && (u.genitalhealth_m < 100) && (mons[last].msound == MS_INCISION) )) num += 1;
+		if ((!flags.female && (u.genitalhealth_m > 1) && (u.genitalhealth_f < 100) && (mons[last].msound == MS_INCISION) )) num += 1;
+		if ((flags.female && (u.genitalhealth_f > 1) && (u.genitalhealth_m < 1) && (mons[last].msound == MS_INCISION) )) num += 20;
+		if ((!flags.female && (u.genitalhealth_m > 1) && (u.genitalhealth_f < 1) && (mons[last].msound == MS_INCISION) )) num += 20;
 
 		if ((Role_if(PM_ACTIVISTOR) && always_hostile(&mons[last]))) num += 5;
 		if ((Role_if(PM_ALTMER) && is_reflector(&mons[last]))) num += 3;
@@ -33879,6 +33890,10 @@ int     spc;
 		if ((In_jefferson(&u.uz) && is_elderscrollsmonster(&mons[first]) )) num -= 5;
 		if ((In_jefferson(&u.uz) && u.enclaveactive && (mons[first].msound == MS_ENCLAVE) )) num -= 5;
 		if ((u.enclaveactive && (mons[first].msound == MS_ENCLAVE) )) num -= 3;
+		if ((flags.female && (u.genitalhealth_f > 1) && (u.genitalhealth_m < 100) && (mons[first].msound == MS_INCISION) )) num -= 1;
+		if ((!flags.female && (u.genitalhealth_m > 1) && (u.genitalhealth_f < 100) && (mons[first].msound == MS_INCISION) )) num -= 1;
+		if ((flags.female && (u.genitalhealth_f > 1) && (u.genitalhealth_m < 1) && (mons[first].msound == MS_INCISION) )) num -= 20;
+		if ((!flags.female && (u.genitalhealth_m > 1) && (u.genitalhealth_f < 1) && (mons[first].msound == MS_INCISION) )) num -= 20;
 
 		if ((Role_if(PM_ACTIVISTOR) && always_hostile(&mons[first]))) num -= 5;
 		if ((Role_if(PM_ALTMER) && is_reflector(&mons[first]))) num -= 3;
@@ -35916,7 +35931,7 @@ register struct permonst *ptr;
 	/* demon princes have 90% unconditional chance of being generated hostile */
 	if (ptr >= &mons[PM_ORCUS] && ptr <= &mons[PM_DEMOGORGON] && rn2(10)) return FALSE;
 
-	if (EnmityBug || u.uprops[ENMITY_BUG].extrinsic || autismweaponcheck(ART_POST_OFFICE_COURSE) || u.startscummerpersist || Race_if(PM_STARTSCUMMER) || autismweaponcheck(ART_EMERALD_SWORD) || have_inimicalstone() || (uarmf && uarmf->oartifact == ART_HERSAY_PRICE) || (uarmc && uarmc->oartifact == ART_MOST_SCRAPPED_PERSON_IN_EX) || (uarm && uarm->oartifact == ART_ALTADOON_HERMA_MORA) || autismweaponcheck(ART_DRAMA_STAFF) || autismweaponcheck(ART_TOMMY_S_DEFERRED_HEEL)) return FALSE;
+	if (EnmityBug || (flags.female && (u.genitalhealth_f > 1) && (u.genitalhealth_m < 1)) || (!flags.female && (u.genitalhealth_m > 1) && (u.genitalhealth_f < 1)) || u.uprops[ENMITY_BUG].extrinsic || autismweaponcheck(ART_POST_OFFICE_COURSE) || u.startscummerpersist || Race_if(PM_STARTSCUMMER) || autismweaponcheck(ART_EMERALD_SWORD) || have_inimicalstone() || (uarmf && uarmf->oartifact == ART_HERSAY_PRICE) || (uarmc && uarmc->oartifact == ART_MOST_SCRAPPED_PERSON_IN_EX) || (uarm && uarm->oartifact == ART_ALTADOON_HERMA_MORA) || autismweaponcheck(ART_DRAMA_STAFF) || autismweaponcheck(ART_TOMMY_S_DEFERRED_HEEL)) return FALSE;
 
 	if (Race_if(PM_DUTHOL) && !rn2(2)) return FALSE;
 	if (uarmc && uarmc->oartifact == ART_RAMMING_SUPPORT_RIPPAGE && !rn2(2)) return FALSE;

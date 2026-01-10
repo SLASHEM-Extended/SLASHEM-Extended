@@ -6563,7 +6563,11 @@ metalmafiaagain:
 			any.a_int = 13;
 			if (mtmp->nurse_vaccine) add_menu(tmpwin, NO_GLYPH, &any , 'v', 0, ATR_NONE, "COVID-19 Vaccine", MENU_UNSELECTED);
 			any.a_int = 14;
-			if (mtmp->nurse_alla) add_menu(tmpwin, NO_GLYPH, &any , 'v', 0, ATR_NONE, "Gain Alla", MENU_UNSELECTED);
+			if (mtmp->nurse_alla) add_menu(tmpwin, NO_GLYPH, &any , 'y', 0, ATR_NONE, "Gain Alla", MENU_UNSELECTED);
+			any.a_int = 15;
+			if (mtmp->nurse_genitalhealing) add_menu(tmpwin, NO_GLYPH, &any , 'z', 0, ATR_NONE, "Genital Healing", MENU_UNSELECTED);
+			any.a_int = 16;
+			if (mtmp->nurse_genitalhealing) add_menu(tmpwin, NO_GLYPH, &any , 'j', 0, ATR_NONE, "Circumcision", MENU_UNSELECTED);
 
 			end_menu(tmpwin, "Services Available:");
 			n = select_menu(tmpwin, PICK_ONE, &selected);
@@ -6935,6 +6939,104 @@ metalmafiaagain:
 								u.cnd_nurseserviceamount++;
 								maybegaincha();
 								gain_alla(1);
+							}
+						}
+
+						break;
+					case 15:
+						if (flags.female) {
+							if (u.genitalhealth_f > 99) {
+								verbalize("Huh? You don't need to do that.");
+								break;
+							} else if (u.genitalhealth_f < 1) {
+								verbalize("Oh... I'm sorry... There is nothing that I can do for you, as you've been circumcised...");
+								break;
+							} else if (u.ugold < 5000) {
+								verbalize("Sorry, that costs 5000 dollars.");
+								break;
+							} else if (u.ugold >= 5000) {
+								verbalize("I can heal your genitals a bit for 5000 dollars.");
+								if (yn("Accept the offer?") == 'y') {
+									verbalize("Okay, hold still while I puncture you with this long, pointy needle...");
+									u.ugold -= 5000;
+									if (!rn2(100)) mtmp->nurse_genitalhealing = 0;
+									if (u.ualign.type == A_NEUTRAL) adjalign(1);
+									u.cnd_nurseserviceamount++;
+									maybegaincha();
+									u.genitalhealth_f += rn1(6,6);
+									if (u.genitalhealth_f > 100) u.genitalhealth_f = 100;
+									genitalhealth(TRUE);
+								}
+							}
+						} else {
+							if (u.genitalhealth_m > 99) {
+								verbalize("Huh? You don't need to do that.");
+								break;
+							} else if (u.genitalhealth_m < 1) {
+								verbalize("That's not possible, since your foreskin has been circumcised. There's no way for me to bring it back.");
+								break;
+							} else if (u.ugold < 2000) {
+								verbalize("Sorry, that costs 2000 dollars.");
+								break;
+							} else if (u.ugold >= 2000) {
+								verbalize("I can heal your foreskin a bit for 2000 dollars.");
+								if (yn("Accept the offer?") == 'y') {
+									verbalize("Okay, hold still while I puncture you with this long, pointy needle...");
+									u.ugold -= 2000;
+									if (!rn2(50)) mtmp->nurse_genitalhealing = 0;
+									if (u.ualign.type == A_NEUTRAL) adjalign(1);
+									u.cnd_nurseserviceamount++;
+									maybegaincha();
+									u.genitalhealth_m += rn1(11,11);
+									if (u.genitalhealth_m > 100) u.genitalhealth_m = 100;
+									genitalhealth(TRUE);
+								}
+							}
+						}
+						break;
+					case 16:
+						if (flags.female) {
+							if (u.genitalhealth_f < 1) {
+								verbalize("Oh, you poor girl... it seems you have already been circumcised... I can't do anything for you, I'm afraid.");
+								break;
+							} else if (!Race_if(PM_HC_ALIEN) && !Race_if(PM_IRAHA) && !Race_if(PM_PERVERT) && !Race_if(PM_SLYER_ALIEN)) {
+								verbalize("No! That's mutilation! I'm not going to do that to an innocent girl, I adhere to ethics, you know!");
+								break;
+							} else if (u.ugold < 10000) {
+								verbalize("Oh, you brave girl... due to all the medications and equipment I'll need for this complicated procedure, I require at least 10000 dollars.");
+								break;
+							} else {
+								verbalize("Oh, you brave girl... Normally I'd never do this, but I can see that you're serious. Please understand that this will leave a scar on your body that will NEVER heal again, and due to all the medications and equipment I'll need for this complicated procedure, I require at least 10000 dollars. Are you SURE you REALLY want me to do this to you?");
+								if (yn("Accept the offer?") == 'y') {
+									verbalize("You poor, poor girl... Alright, I'll try to make this OP as painless as possible for you. First I'll inject you with the Soporil, which will make you drowsy. Next is the turbocurarine, a muscle relaxant that makes sure your genital area won't cramp while I'm working on it. Are you ready? Then I'll begin now.");
+									u.ugold -= 10000;
+									u.genitalhealth_f = 0;
+									/* no need to remove this service since it can only be purchased once per game --Amy */
+									if (u.ualign.type == A_NEUTRAL) adjalign(1);
+									u.cnd_nurseserviceamount++;
+									maybegaincha();
+									Your("genital area has been circumcised. It seems that the doctor managed to work as cleanly as possible.");
+								}
+							}
+						} else {
+							if (u.genitalhealth_m < 1) {
+								verbalize("You have already been circumcised. There's no point in circumcising you again.");
+								break;
+							} else if (u.ugold < 2000) {
+								verbalize("This OP requires 2000 dollars to cover for my expenses. Come back when you have that many.");
+								break;
+							} else {
+								verbalize("So you're here to have your foreskin removed. I'm legally obligated to inform you that this process cannot be reversed; once it's done, your foreskin will be gone forever. It'll also cost you 2000 dollars. Are you sure you want me to do this?");
+								if (yn("Accept the offer?") == 'y') {
+									verbalize("Alright, I'll try to make this OP as painless as possible for you. First I'll inject you with the Soporil, which will make you drowsy. Next is the turbocurarine, a muscle relaxant that makes sure your penis won't cramp while I'm working on it. Are you ready? Then I'll begin now.");
+									u.ugold -= 2000;
+									u.genitalhealth_m = 0;
+									/* no need to remove this service since it can only be purchased once per game --Amy */
+									if (u.ualign.type == A_NEUTRAL) adjalign(1);
+									u.cnd_nurseserviceamount++;
+									maybegaincha();
+									Your("foreskin is gone. The doctor apparently worked pretty cleanly, and the scar should heal in a few months.");
+								}
 							}
 						}
 

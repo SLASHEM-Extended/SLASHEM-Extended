@@ -2290,6 +2290,9 @@ struct monst *mon;
     else if (mon->mspeed == MFAST)
 	mmove = (4 * mmove + 2) / 3;
 
+    /* MS_SPEEDBUG: their speed is randomized to a value from 1 to 2*speed (inclusive) --Amy */
+    if ((monstersoundtype(mon) == MS_SPEEDBUG) && mmove > 1) mmove = rnd(mmove * 2);
+
     if (mon == u.usteed) {
 	if ( (u.ugallop || (uarmf && uarmf->oartifact == ART_LIGHT_DAL_I_THALION)) && flags.mv) {
 	    /* average movement is 1.50 times normal */

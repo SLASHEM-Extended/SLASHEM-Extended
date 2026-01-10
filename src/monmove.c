@@ -3349,9 +3349,10 @@ toofar:
 			     * same time -dlc
 			     */
 			    return(mattacku(mtmp));
-			} else
+			} else {
 				return(0);
-			/*NOTREACHED*/
+			}
+			/* seems like this is where the monster moves next to you?! currently NOTREACHED */
 			break;
 		    case 2:	/* monster died */
 			return(1);
@@ -3740,6 +3741,9 @@ toofar:
 
 	    if(inrange && monstersoundtype(mtmp) == MS_GIBBERISH && !mtmp->mpeaceful && !rn2(5)) {
 		pline("%s", generate_garbage_string());
+	    }
+	    if(inrange && monstersoundtype(mtmp) == MS_CRYTHROAT) { /* spams its messages every turn, this is intentional --Amy */
+		pline("%s", generate_crythroat_string());
 	    }
 
 	    if(inrange && monstersoundtype(mtmp) == MS_NEWS && !rn2(100)) {

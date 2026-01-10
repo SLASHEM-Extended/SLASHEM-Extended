@@ -439,6 +439,8 @@ struct monst {
 	Bitfield(nurse_restoration,1);
 	Bitfield(nurse_vaccine,1);
 	Bitfield(nurse_alla,1);
+	Bitfield(nurse_genitalhealing,1);
+	Bitfield(nurse_incision,1);
 
 	Bitfield(butthurt,6);
 	Bitfield(fartbonus,6); /* actually, max should be 9 */
@@ -484,6 +486,7 @@ struct monst {
 	int modalshopitem3;
 	int modalshopitem3bought;
 	int modalshopmarkup;	/* how much you have to pay for the items (multiplier) */
+	int herculesboost;	/* goes up by one whenever a MS_HERCULES hits you in melee and boosts its damage output */
 
 	struct obj *mw;
 	long misc_worn_check;

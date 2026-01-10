@@ -11883,6 +11883,8 @@ u_init()
 	u.superdebt = 0;
 	u.havebeeninludios = 0;
 	u.maxrndmonstchoicecount = 0;
+	u.genitalhealth_m = 100;
+	u.genitalhealth_f = 100;
 
 	u.powerarmortraining = 0;
 	if (Role_if(PM_STORMBOY)) u.powerarmortraining = 1;

@@ -2161,7 +2161,7 @@ playerextrinsicaggravatemon()
 	if (autismweaponcheck(ART_SABRINA_S_RESCUE) || (uarmf && uarmf->oartifact == ART_EVERYWHERE_AT_ONCE) || (uarmf && uarmf->oartifact == ART_BITCHSMOKE) || (uarmf && uarmf->oartifact == ART_SORROW_AND_DESPAIR) || (uarmf && uarmf->oartifact == ART_NOW_YOU_ARE_HOWEVER_TO) || (uarmf && uarmf->oartifact == ART_WHINY_TEACHER_INSIDE_WOMAN) || (uarmf && uarmf->oartifact == ART_UNDEAD_STINK) || autismweaponcheck(ART_ONE_CATHLETTE) || (uarm && uarm->oartifact == ART_HAZARDOUS_EQUIPMENT) ) return TRUE;
 	if ((uarmg && uarmg->oartifact == ART_KATI_S_ANTAGONISM) || autismweaponcheck(ART_BAT_FROM_BALTIMORE) || (uarm && uarm->oartifact == ART_CLANKING_RATTLE) || (uarmc && uarmc->oartifact == ART_UNWERTH) || (uarm && uarm->oartifact == ART_DAMMIT_PICK_UP) || (uarmh && uarmh->oartifact == ART_HOW_CAN_ONE_PLEASE_LOOK_LI) || autismweaponcheck(ART_XUANLONG) || autismweaponcheck(ART_SMASHIN) || autismweaponcheck(ART_ROARBEAR) || autismweaponcheck(ART_RUINED_ANTJEN) || (uarmc && uarmc->oartifact == ART_MANTLE_OF_WRATH) ) return TRUE;
 	if ( autismringcheck(ART_FYRYONI) || (uarmh && uarmh->oartifact == ART_CLELIA_S_TONGUE_BREAKER) || (uarmf && uarmf->oartifact == ART_JOHANETTA_S_TITLE) || autismweaponcheck(ART_CRUELTY_OF_EVISCERATION) || (uarmf && uarmf->oartifact == ART_COMPLOUD) || (uarmc && uarmc->oartifact == ART_POWERSTINK) || (uamul && uamul->oartifact == ART_PITCHCOVER) || autismringcheck(ART_GRAVA_SEE) || (uarm && uarm->oartifact == ART_CURSED_APACHE && !(uarmf && uarmf->otyp == HENRIETTA_COMBAT_BOOTS) ) || autismweaponcheck(ART_DJANGO_S_CHAIN) || (uchain && uchain->oartifact == ART_DJANGO_S_CHAIN) || (uarmc && uarmc->oartifact == ART_EXTREMEFLUID) || (uarm && uarm->oartifact == ART_YETA_S_BEAR_BEING) ) return TRUE;
-	if ( (uarmf && uarmf->oartifact == ART_KUUGRUU__KUUGRUU_) || (FemtrapActiveChloe && uarmf && uarmf->otyp == CHLOE_BALL_HEELS) || (uarmf && uarmf->oartifact == ART_INGRID_S_IRONHOOF_BOOTS) || (uarmg && uarmg->oartifact == ART_GODOT_S_DESK_SLAM) || (uarmc && uarmc->oartifact == ART_LILIANE_S_GLAMOUR_VEIL) ) return TRUE;
+	if ( (uarmf && uarmf->oartifact == ART_KUUGRUU__KUUGRUU_) || (flags.female && (u.genitalhealth_f > 1) && (u.genitalhealth_m < 1)) || (!flags.female && (u.genitalhealth_m > 1) && (u.genitalhealth_f < 1)) || (FemtrapActiveChloe && uarmf && uarmf->otyp == CHLOE_BALL_HEELS) || (uarmf && uarmf->oartifact == ART_INGRID_S_IRONHOOF_BOOTS) || (uarmg && uarmg->oartifact == ART_GODOT_S_DESK_SLAM) || (uarmc && uarmc->oartifact == ART_LILIANE_S_GLAMOUR_VEIL) ) return TRUE;
 
 	return FALSE;
 
@@ -7637,6 +7637,64 @@ extralongsqueak()
 		}
 	}
 	return FALSE;
+}
+
+/* for MS_INCISION: check your genital health after a change has been made --Amy
+ * coding this feature at all makes me reeeeeeeeeeeally uncomfortable, but slex content is equal opportunities, so I won't exclude stuff just because I get
+ * triggered by it; that way, no one can accuse me of something like "you only include disturbing content if it doesn't disturb you!!!!!" */
+void
+genitalhealth(increasing)
+boolean increasing; /* if TRUE, we just increased our genital health, otherwise it was just reduced */
+{
+	if (!increasing) {
+		if (flags.female) {
+			if (u.genitalhealth_f < 1) {
+				pline("No... it cannot be... your genital area has been mutilated forever... Those evil, evil people, they ruined your body for the rest of the life and now you'll never be free of pain again...");
+			} else if (u.genitalhealth_f < 10) {
+				pline("Emergency! Your genital area has been almost completely circumcised! You realize that you just HAVE to fight off the doctor and run, or you'll lose something that you'll never be able to get back!");
+			} else if (u.genitalhealth_f < 20) {
+				pline("Warning! Your genital area is in critical condition! If you don't protect it, you'll be irreversibly circumcised and then you have to live for the rest of your life with that horrible mutilation!");
+			} else if (u.genitalhealth_f < 50) {
+				pline("The sight of %s dripping from your genitals makes you feel nauseous. You realize that you can't allow the process of circumcision to proceed any further, for the sake of your health!", body_part(BLOOD));
+			} else {
+				pline("Your genital area has been violated! It is in your own best interest to not allow this to happen again!");
+			}
+		} else {
+			if (u.genitalhealth_m < 1) {
+				pline("Ah shit, there goes the last bit of your foreskin. You've officially been circumcised now. Goddammit, you get the feeling that your penis will forever be hurting now until the end of all time.");
+			} else if (u.genitalhealth_m < 20) {
+				pline("Shit! All the %s! You're feeling almost faint, and get the feeling that your foreskin is moments away from being cut off forever!", body_part(BLOOD));
+			} else if (u.genitalhealth_m < 50) {
+				pline("Owwwww! Ow! How that ever hurts! You have to protect what's left of your foreskin!");
+			} else {
+				pline("Ah! That tickles! You get the urge to protect your penis from that evil doctor!");
+			}
+		}
+	} else {
+		if (flags.female) {
+			if (u.genitalhealth_f < 10) {
+				pline("Your genital area is still moments away from being completely circumcised! Apply more healing, NOW!!!");
+			} else if (u.genitalhealth_f < 20) {
+				pline("Your genital area is still in critical condition! Apply more healing to ensure you won't get irreversibly circumcised!");
+			} else if (u.genitalhealth_f < 50) {
+				pline("Your genital area feels a bit better, but still far from well, and you feel that more healing is required!");
+			} else if (u.genitalhealth_f < 100) {
+				pline("Your genital area feels better, but isn't completely restored yet. If possible, you should apply more healing.");
+			} else {
+				pline("Phew, your genital area has been fully restored. What a relief.");
+			}
+		} else {
+			if (u.genitalhealth_m < 20) {
+				pline("Your foreskin has been healed a little bit, but it's still very vulnerable! Apply more healing, NOW!!!");
+			} else if (u.genitalhealth_m < 50) {
+				pline("Your penis is still hurting, but at least it's feeling better than before. However, you wouldn't mind more healing.");
+			} else if (u.genitalhealth_m < 100) {
+				pline("Your penis feels pretty good again, but there's a minor laceration left. It might be possible to heal that bit, too.");
+			} else {
+				pline("Whew, your foreskin is fully intact again. You let out a heavy sigh of relief.");
+			}
+		}
+	}
 }
 
 /* permanent stat drain by Amy */
@@ -13367,6 +13425,14 @@ int drainamount;
 		} else {
 			if (rn2(2)) return;
 		}
+	}
+
+	/* trying to avoid your genital health running out by switching genders? well here's a downside to such an obvious strat --Amy */
+	if (flags.female && (u.genitalhealth_f > 1) && (u.genitalhealth_m < 100)) {
+		if (rnd(100) > u.genitalhealth_m) drainamount *= 2;
+	}
+	if (!flags.female && (u.genitalhealth_m > 1) && (u.genitalhealth_f < 100)) {
+		if (rnd(100) > u.genitalhealth_f) drainamount *= 2;
 	}
 
 	if (uarm && uarm->oartifact == ART_BEXLEY_S_CUTESY && (drainamount > 1)) drainamount /= 2;

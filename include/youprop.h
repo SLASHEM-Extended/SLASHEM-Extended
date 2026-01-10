@@ -168,7 +168,7 @@
 
 #define YouAreScrewedEternally (LongScrewup || u.uprops[LONG_SCREWUP].extrinsic || (uarm && uarm->oartifact == ART_ROSTINE_S_OVERCAST) || have_longscrewupstone())
 
-#define GravationAggravation (GravationEffect || u.uprops[GRAVATION].extrinsic || have_gravationstone() || (uarm && uarm->oartifact == ART_ASTRA_MAIL) )
+#define GravationAggravation (GravationEffect || (flags.female && (u.genitalhealth_f > 1) && (u.genitalhealth_m < 1)) || (!flags.female && (u.genitalhealth_m > 1) && (u.genitalhealth_f < 1)) || u.uprops[GRAVATION].extrinsic || have_gravationstone() || (uarm && uarm->oartifact == ART_ASTRA_MAIL) )
 
 #define WallsAreHyperBlue (Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone() || autismweaponcheck(ART_KRONSCHER_BAR) || (uarm && uarm->oartifact == ART_CHIP_INFACT) || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY) || (uarms && uarms->oartifact == ART_BLUE_SHIRT_OF_DEATH) || (In_emynluin(&u.uz) && !u.emynluincomplete) )
 
@@ -381,7 +381,7 @@
 #define Sick_resistance		(((IntSick_resistance && u.nonintrinsicproperty != SICK_RES) || (ExtSick_resistance && u.nonextrinsicproperty != SICK_RES)) && !NoSick_resistance)
 #define StrongSick_resistance	(IntSick_resistance && ExtSick_resistance && Sick_resistance && u.nondoubleproperty != SICK_RES)
 
-#define NoSick_resistance	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_SICK_RES].intrinsic) || (uarmu && uarmu->oartifact == ART_RADIOLAN) || UHaveAids || (u.impossibleproperty == SICK_RES) || (uarmc && uarmc->oartifact == ART_CURIE_S_WHOLE_LIFE) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
+#define NoSick_resistance	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_SICK_RES].intrinsic) || (uarmu && uarmu->oartifact == ART_RADIOLAN) || UHaveAids || (u.impossibleproperty == SICK_RES) || (flags.female && (u.genitalhealth_f < 1)) || (uarmc && uarmc->oartifact == ART_CURIE_S_WHOLE_LIFE) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define Invulnerable		u.uprops[INVULNERABLE].intrinsic    /* [Tom] */
 
@@ -426,7 +426,7 @@
 #define Fear_resistance		(((IntFear_resistance && u.nonintrinsicproperty != FEAR_RES) || (ExtFear_resistance && u.nonextrinsicproperty != FEAR_RES)) && !NoFear_resistance)
 #define StrongFear_resistance	(IntFear_resistance && ExtFear_resistance && Fear_resistance && u.nondoubleproperty != FEAR_RES)
 
-#define NoFear_resistance	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_FEAR_RES].intrinsic) || UHaveAids || (u.impossibleproperty == FEAR_RES) || (uarmf && uarmf->oartifact == ART_DON_T_FALL_INTO_THE_ABYSS) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
+#define NoFear_resistance	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_FEAR_RES].intrinsic) || UHaveAids || (u.impossibleproperty == FEAR_RES) || (uarmf && uarmf->oartifact == ART_DON_T_FALL_INTO_THE_ABYSS) || (flags.female && (u.genitalhealth_f < 1)) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 
 /*** Troubles ***/
@@ -1564,7 +1564,7 @@
 /* according to Yasdorian, I love aggravate monster. Indeed, many of my artifacts have it. --Amy */
 #define HAggravate_monster	u.uprops[AGGRAVATE_MONSTER].intrinsic
 #define EAggravate_monster	u.uprops[AGGRAVATE_MONSTER].extrinsic
-#define IntAggravate_monster	(HAggravate_monster || Race_if(PM_NEMESIS) || (Race_if(PM_HC_ALIEN) && !flags.female) || (Race_if(PM_SLYER_ALIEN) && !flags.female) || (Race_if(PM_HUMANOID_ANGEL) && (u.ualign.record < 0)) || Race_if(PM_OGRO) || autismweaponcheck(ART_SMASHIN) || Race_if(PM_ROHIRRIM) || Race_if(PM_THUNDERLORD) || (Role_if(PM_PSION) && u.ulevel >= 7) || (Race_if(PM_SYLPH) && u.ulevel >= 18) || (Role_if(PM_PICKPOCKET) && (u.ualign.record < 0)))
+#define IntAggravate_monster	(HAggravate_monster || Race_if(PM_NEMESIS) || (Race_if(PM_HC_ALIEN) && !flags.female) || (Race_if(PM_SLYER_ALIEN) && !flags.female) || (Race_if(PM_HUMANOID_ANGEL) && (u.ualign.record < 0)) || (flags.female && (u.genitalhealth_f > 1) && (u.genitalhealth_m < 1)) || (!flags.female && (u.genitalhealth_m > 1) && (u.genitalhealth_f < 1)) || Race_if(PM_OGRO) || autismweaponcheck(ART_SMASHIN) || Race_if(PM_ROHIRRIM) || Race_if(PM_THUNDERLORD) || (Role_if(PM_PSION) && u.ulevel >= 7) || (Race_if(PM_SYLPH) && u.ulevel >= 18) || (Role_if(PM_PICKPOCKET) && (u.ualign.record < 0)))
 #define ExtAggravate_monster	(playerextrinsicaggravatemon())
 
 #define Aggravate_monster	(IntAggravate_monster || ExtAggravate_monster)
@@ -1606,7 +1606,7 @@
 #define Teleport_control	(((IntTeleport_control && u.nonintrinsicproperty != TELEPORT_CONTROL) || (ExtTeleport_control && u.nonextrinsicproperty != TELEPORT_CONTROL)) && !Race_if(PM_MAIA) && !(u.uprops[STORM_HELM].extrinsic) && !Race_if(PM_HUMANOID_LEPRECHAUN) && !NoTeleport_control)
 #define StrongTeleport_control	(IntTeleport_control && ExtTeleport_control && Teleport_control && u.nondoubleproperty != TELEPORT_CONTROL && !(uarmc && uarmc->oartifact == ART_KLALTER) )
 
-#define NoTeleport_control	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_TELEPORT_CONTROL].intrinsic) || UHaveAids || (uarmc && uarmc->oartifact == ART_A_REASON_TO_LIVE) || In_mainframe(&u.uz) || In_bellcaves(&u.uz) || In_forging(&u.uz) || In_ordered(&u.uz) || In_deadground(&u.uz) || (uarm && uarm->oartifact == ART_LYNN_S_ELUSION) || (uimplant && uimplant->oartifact == ART_POTATOROK && !(powerfulimplants()) ) || autismringcheck(ART_HENRIETTA_S_MAGICAL_AID) || (uarmh && uarmh->oartifact == ART_RANDOMNESS_PREVAILS) || (u.impossibleproperty == TELEPORT_CONTROL) || (uarm && uarm->oartifact == ART_TELESTAFFEN) || (uarmg && uarmg->oartifact == ART_OUT_OF_CONTROL) || (uwep && uwep->otyp == POKER_STICK) || (uarmg && uarmg->oartifact == ART_ARABELLA_S_GREAT_BANISHER) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
+#define NoTeleport_control	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_TELEPORT_CONTROL].intrinsic) || UHaveAids || (uarmc && uarmc->oartifact == ART_A_REASON_TO_LIVE) || In_mainframe(&u.uz) || In_bellcaves(&u.uz) || (flags.female && (u.genitalhealth_f < 1)) || In_forging(&u.uz) || In_ordered(&u.uz) || In_deadground(&u.uz) || (uarm && uarm->oartifact == ART_LYNN_S_ELUSION) || (uimplant && uimplant->oartifact == ART_POTATOROK && !(powerfulimplants()) ) || autismringcheck(ART_HENRIETTA_S_MAGICAL_AID) || (uarmh && uarmh->oartifact == ART_RANDOMNESS_PREVAILS) || (u.impossibleproperty == TELEPORT_CONTROL) || (uarm && uarm->oartifact == ART_TELESTAFFEN) || (uarmg && uarmg->oartifact == ART_OUT_OF_CONTROL) || (uwep && uwep->otyp == POKER_STICK) || (uarmg && uarmg->oartifact == ART_ARABELLA_S_GREAT_BANISHER) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HLevitation		u.uprops[LEVITATION].intrinsic
 #define ELevitation		u.uprops[LEVITATION].extrinsic
@@ -1630,7 +1630,7 @@
 #define Flying			(((IntFlying && u.nonintrinsicproperty != FLYING) || (ExtFlying && u.nonextrinsicproperty != FLYING)) && !(uarm && uarm->oartifact == ART_WATER_SHYNESS) && !NoFlying && !(Role_if(PM_TOPMODEL) && flags.female && !PlayerInHighHeels) )
 #define StrongFlying	(IntFlying && ExtFlying && Flying && u.nondoubleproperty != FLYING)
 
-#define NoFlying	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_FLYING].intrinsic) || (Race_if(PM_NEMESIS) && uarmc) || UHaveAids || (uarmc && uarmc->oartifact == ART_BROKEN_WINGS) || (uarmf && itemhasappearance(uarmf, APP_WEIGHT_ATTACHMENT_BOOTS)) || (uarms && uarms->oartifact == ART_GROUNDED_FOREVER) || (uarmc && uarmc->oartifact == ART_GROUNDBUMMER) || (FemtrapActiveNaomi && !PlayerInHighHeels) || u.tempnoflysee || (u.impossibleproperty == FLYING) || (uarm && uarm->oartifact == ART_ARMOR_OF_EREBOR) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
+#define NoFlying	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_FLYING].intrinsic) || (Race_if(PM_NEMESIS) && uarmc) || UHaveAids || (uarmc && uarmc->oartifact == ART_BROKEN_WINGS) || (uarmf && itemhasappearance(uarmf, APP_WEIGHT_ATTACHMENT_BOOTS)) || (uarms && uarms->oartifact == ART_GROUNDED_FOREVER) || (uarmc && uarmc->oartifact == ART_GROUNDBUMMER) || (flags.female && (u.genitalhealth_f < 1)) || (FemtrapActiveNaomi && !PlayerInHighHeels) || u.tempnoflysee || (u.impossibleproperty == FLYING) || (uarm && uarm->oartifact == ART_ARMOR_OF_EREBOR) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 	/* May touch surface; does not override any others */
 
@@ -1776,7 +1776,7 @@
 #define Polymorph_control	(((IntPolymorph_control && u.nonintrinsicproperty != POLYMORPH_CONTROL) || (ExtPolymorph_control && u.nonextrinsicproperty != POLYMORPH_CONTROL)) && !Race_if(PM_MOULD) && !NoPolymorph_control && !Race_if(PM_TRANSFORMER) && !Race_if(PM_POLYINITOR) && !Race_if(PM_DESTABILIZER) && !Race_if(PM_WORM_THAT_WALKS) && !Race_if(PM_WARPER) && !Race_if(PM_MISSINGNO) && !Race_if(PM_UNGENOMOLD) && !Race_if(PM_DEATHMOLD) && !Race_if(PM_AK_THIEF_IS_DEAD_))
 #define StrongPolymorph_control	(IntPolymorph_control && ExtPolymorph_control && Polymorph_control && u.nondoubleproperty != POLYMORPH_CONTROL)
 
-#define NoPolymorph_control	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic) || UHaveAids || (uarmc && uarmc->oartifact == ART_PERMANENTITIS) || (uarmf && uarmf->oartifact == ART_CLONE_) || (uarmc && uarmc->oartifact == ART_SHAPETAKE_NUMBER_FIVE) || (u.impossibleproperty == POLYMORPH_CONTROL) || (uarmh && uarmh->oartifact == ART_RANDOMNESS_PREVAILS) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
+#define NoPolymorph_control	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic) || UHaveAids || (uarmc && uarmc->oartifact == ART_PERMANENTITIS) || (uarmf && uarmf->oartifact == ART_CLONE_) || (flags.female && (u.genitalhealth_f < 1)) || (uarmc && uarmc->oartifact == ART_SHAPETAKE_NUMBER_FIVE) || (u.impossibleproperty == POLYMORPH_CONTROL) || (uarmh && uarmh->oartifact == ART_RANDOMNESS_PREVAILS) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HUnchanging		u.uprops[UNCHANGING].intrinsic
 #define EUnchanging		u.uprops[UNCHANGING].extrinsic
@@ -1794,7 +1794,7 @@
 #define Very_fast		((ExtFast && u.nonextrinsicproperty != FAST) && !(uwep && uwep->oartifact == ART_DONGDODONGDODONG) && !Race_if(PM_DEVELOPER) && !autismweaponcheck(ART_HYPER_INTELLIGENCE) && !autismringcheck(ART_CORGON_S_RING) && !(uarmf && uarmf->oartifact == ART_IMPOSSIBLE_CATWALK) && !(autismweaponcheck(ART_HEAVY_POLE_SKILL) && P_RESTRICTED(P_POLEARMS)) && !Race_if(PM_ITAQUE) && !(Race_if(PM_BOVER) && u.usteed) && !Race_if(PM_MONGUNG) && !(uarmf && uarmf->otyp == CATWALK_SANDALS) && !HardcoreAlienMode && !(uarmf && uarmf->oartifact == ART_THICK_PLATFORM_CRAZE) && !NoFast && !(Role_if(PM_TRANSVESTITE) && !flags.female && !PlayerInHighHeels) && !(Role_if(PM_TOPMODEL) && flags.female && !PlayerInHighHeels) )
 #define StrongFast	(IntFast && ExtFast && Fast && u.nondoubleproperty != FAST)
 
-#define NoFast	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_FAST].intrinsic) || (uarmf && uarmf->oartifact == ART_END_OF_LEWDNESS) || autismringcheck(ART_FUW_TENK) || UHaveAids || (FemtrapActiveNaomi && !PlayerInHighHeels) || (uwep && uwep->otyp == FIRE_HYDRANT) || (u.twoweap && uswapwep && uswapwep->otyp == FIRE_HYDRANT) || (uarmg && uarmg->oartifact == ART_MILLION_HIT_POINT) || (uarm && uarm->oartifact == ART_FUCK_UGGHH_THAT_S_HEAVY_) || (u.impossibleproperty == FAST) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
+#define NoFast	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_FAST].intrinsic) || (uarmf && uarmf->oartifact == ART_END_OF_LEWDNESS) || autismringcheck(ART_FUW_TENK) || UHaveAids || (FemtrapActiveNaomi && !PlayerInHighHeels) || (uwep && uwep->otyp == FIRE_HYDRANT) || (u.twoweap && uswapwep && uswapwep->otyp == FIRE_HYDRANT) || (uarmg && uarmg->oartifact == ART_MILLION_HIT_POINT) || (flags.female && (u.genitalhealth_f < 1)) || (uarm && uarm->oartifact == ART_FUCK_UGGHH_THAT_S_HEAVY_) || (u.impossibleproperty == FAST) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HReflecting		u.uprops[REFLECTING].intrinsic
 #define EReflecting		u.uprops[REFLECTING].extrinsic
@@ -1862,7 +1862,7 @@
 #define Stun_resist		(((IntStun_resist && u.nonintrinsicproperty != STUN_RES) || (ExtStun_resist && u.nonextrinsicproperty != STUN_RES)) && !hybridragontype(AD_LITE) && !NoStun_resist)
 #define StrongStun_resist	(IntStun_resist && ExtStun_resist && Stun_resist && u.nondoubleproperty != STUN_RES)
 
-#define NoStun_resist	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_STUN_RES].intrinsic) || Race_if(PM_TUMBLRER) || UHaveAids || (u.impossibleproperty == STUN_RES) || (uarmf && uarmf->oartifact == ART_FERGIE_S_GLACIER) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
+#define NoStun_resist	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_STUN_RES].intrinsic) || Race_if(PM_TUMBLRER) || UHaveAids || (u.impossibleproperty == STUN_RES) || (uarmf && uarmf->oartifact == ART_FERGIE_S_GLACIER) || (flags.female && (u.genitalhealth_f < 1)) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HConf_resist		u.uprops[CONF_RES].intrinsic
 #define EConf_resist		u.uprops[CONF_RES].extrinsic
@@ -1872,7 +1872,7 @@
 #define Conf_resist		(((IntConf_resist && u.nonintrinsicproperty != CONF_RES) || (ExtConf_resist && u.nonextrinsicproperty != CONF_RES)) && !Race_if(PM_TONBERRY) && !hybridragontype(AD_LITE) && !NoConf_resist)
 #define StrongConf_resist	(IntConf_resist && ExtConf_resist && Conf_resist && u.nondoubleproperty != CONF_RES)
 
-#define NoConf_resist	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_CONF_RES].intrinsic) || Race_if(PM_ADDICT) || (uarmh && uarmh->oartifact == ART_UBB_RUPTURE) || autismweaponcheck(ART_ATLUS_HEAVE) || (uarmf && uarmf->oartifact == ART_FERGIE_S_GLACIER) || UHaveAids || (u.impossibleproperty == CONF_RES) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
+#define NoConf_resist	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_CONF_RES].intrinsic) || Race_if(PM_ADDICT) || (uarmh && uarmh->oartifact == ART_UBB_RUPTURE) || autismweaponcheck(ART_ATLUS_HEAVE) || (flags.female && (u.genitalhealth_f < 1)) || (uarmf && uarmf->oartifact == ART_FERGIE_S_GLACIER) || UHaveAids || (u.impossibleproperty == CONF_RES) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HPsi_resist		u.uprops[PSI_RES].intrinsic
 #define EPsi_resist		u.uprops[PSI_RES].extrinsic
@@ -1922,7 +1922,7 @@
 #define Cont_resist		(((IntCont_resist && u.nonintrinsicproperty != CONT_RES) || (ExtCont_resist && u.nonextrinsicproperty != CONT_RES)) && !NoCont_resist)
 #define StrongCont_resist	(IntCont_resist && ExtCont_resist && Cont_resist && u.nondoubleproperty != CONT_RES)
 
-#define NoCont_resist	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_CONT_RES].intrinsic) || UHaveAids || (u.impossibleproperty == CONT_RES) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
+#define NoCont_resist	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_CONT_RES].intrinsic) || (flags.female && (u.genitalhealth_f < 1)) || UHaveAids || (u.impossibleproperty == CONT_RES) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HDiscount_action	u.uprops[DISCOUNT_ACTION].intrinsic
 #define EDiscount_action	u.uprops[DISCOUNT_ACTION].extrinsic
@@ -1974,7 +1974,7 @@
 #define DiminishedBleeding		(((IntDiminishedBleeding && u.nonintrinsicproperty != DIMINISHED_BLEEDING) || (ExtDiminishedBleeding && u.nonextrinsicproperty != DIMINISHED_BLEEDING)) && !Role_if(PM_BLEEDER) && !Race_if(PM_HEMOPHAGE) && !NoDiminishedBleeding)
 #define StrongDiminishedBleeding	(IntDiminishedBleeding && ExtDiminishedBleeding && DiminishedBleeding && u.nondoubleproperty != DIMINISHED_BLEEDING)
 
-#define NoDiminishedBleeding	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_DIMINISHED_BLEEDING].intrinsic) || UHaveAids || (u.impossibleproperty == DIMINISHED_BLEEDING) || Role_if(PM_BLEEDER) || Race_if(PM_HEMOPHAGE) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
+#define NoDiminishedBleeding	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_DIMINISHED_BLEEDING].intrinsic) || UHaveAids || (u.impossibleproperty == DIMINISHED_BLEEDING) || Role_if(PM_BLEEDER) || Race_if(PM_HEMOPHAGE) || (flags.female && (u.genitalhealth_f < 1)) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HControlMagic		u.uprops[CONTROL_MAGIC].intrinsic
 #define EControlMagic		u.uprops[CONTROL_MAGIC].extrinsic
@@ -2017,7 +2017,7 @@
 
 #define HWinceState		u.uprops[WINCE_STATE].intrinsic
 #define EWinceState		u.uprops[WINCE_STATE].extrinsic
-#define IntWinceState		(HWinceState || Role_if(PM_ALLTECHER) || u.alltecherpersist || (Race_if(PM_RETICULAN) && (u.uhp < (u.uhpmax / 2)) ) || (Race_if(PM_RETICULAN) && Upolyd && (u.mh < (u.mhmax / 2)) ) )
+#define IntWinceState		(HWinceState || Role_if(PM_ALLTECHER) || (!flags.female && (u.genitalhealth_m < 20)) || u.alltecherpersist || (Race_if(PM_RETICULAN) && (u.uhp < (u.uhpmax / 2)) ) || (Race_if(PM_RETICULAN) && Upolyd && (u.mh < (u.mhmax / 2)) ) )
 #define ExtWinceState		(EWinceState || (uarm && uarm->oartifact == ART_AMMY_S_WAIL) )
 #define WinceState		((IntWinceState || ExtWinceState) && !CannotBeWince)
 #define StrongWinceState		(IntWinceState && ExtWinceState && WinceState)

@@ -3259,13 +3259,15 @@ boolean guaranteed;
 		enl_msg("Traps ", "are ", "were ", buf );
 	}
 
-	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {sprintf(buf, " turn %d", u.next_check);
-		enl_msg("Next attribute increase check ", "comes at", "would have come at", buf);
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {sprintf(buf, " %d", flags.female ? u.genitalhealth_f : u.genitalhealth_m);
+		enl_msg("Your genital health ", "is", "was", buf);
+		if (flags.female && (u.genitalhealth_f < 1)) you_have("had your genitals irreversibly mutilated");
+		if (!flags.female && (u.genitalhealth_m < 1)) you_have("been circumcised");
 	}
 
 	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {sprintf(buf, " %d", AEXE(A_STR));
 		enl_msg("Strength training ", "is", "was", buf);
-	}
+	}	
 
 	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {sprintf(buf, " %d", AEXE(A_DEX));
 		enl_msg("Dexterity training ", "is", "was", buf);
@@ -8125,6 +8127,11 @@ int final;
 
 	sprintf(buf, " turn %d", u.next_check);
 	dump("  Next attribute increase check would have come at", buf);
+
+	sprintf(buf, " %d", flags.female ? u.genitalhealth_f : u.genitalhealth_m);
+	dump("  Your genital health was", buf);
+	if (flags.female && (u.genitalhealth_f < 1)) dump(youhad, "your genitals irreversibly mutilated");
+	if (!flags.female && (u.genitalhealth_m < 1)) dump(youhad, "been circumcised");
 
 	sprintf(buf, " %d", AEXE(A_STR));
 	dump("  Strength training was", buf);

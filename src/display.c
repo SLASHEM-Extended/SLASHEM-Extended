@@ -1266,6 +1266,7 @@ newsym(x,y)
 		(autismringcheck(ART_SUCKDISUCK) && dmgtype(mon->data, AD_DRIN)) ||
 		(StrongNumbopathy && Numbed && (dmgtype(mon->data, AD_NUMB) || dmgtype(mon->data, AD_PLYS) ) ) ||
 		(StrongDimmopathy && Dimmed && (dmgtype(mon->data, AD_DIMN) || monstersoundtype(mon) == MS_CUSS ) ) ||
+		(monstersoundtype(mon) == MS_CRYTHROAT) ||
 		(StrongFreezopathy && Frozen && (dmgtype(mon->data, AD_FRZE) || dmgtype(mon->data, AD_ICEB) ) ) ||
 		(StrongCorrosivity && Slimed && acidic(mon->data) && distu(mon->mx, mon->my) < 226 ) ||
 		(StrongBurnopathy && Burned && (dmgtype(mon->data, AD_BURN) || dmgtype(mon->data, AD_FLAM) ) ) ||
@@ -1420,6 +1421,7 @@ newsym(x,y)
 		(autismringcheck(ART_SUCKDISUCK) && dmgtype(mon->data, AD_DRIN)) ||
 		(StrongNumbopathy && Numbed && (dmgtype(mon->data, AD_NUMB) || dmgtype(mon->data, AD_PLYS) ) ) ||
 		(StrongDimmopathy && Dimmed && (dmgtype(mon->data, AD_DIMN) || monstersoundtype(mon) == MS_CUSS ) ) ||
+		(monstersoundtype(mon) == MS_CRYTHROAT) ||
 		(StrongFreezopathy && Frozen && (dmgtype(mon->data, AD_FRZE) || dmgtype(mon->data, AD_ICEB) ) ) ||
 		(StrongCorrosivity && Slimed && acidic(mon->data) && distu(mon->mx, mon->my) < 226 ) ||
 		(StrongBurnopathy && Burned && (dmgtype(mon->data, AD_BURN) || dmgtype(mon->data, AD_FLAM) ) ) ||
@@ -1749,6 +1751,7 @@ newsymX(x,y)
 		(autismringcheck(ART_SUCKDISUCK) && dmgtype(mon->data, AD_DRIN)) ||
 		(StrongNumbopathy && Numbed && (dmgtype(mon->data, AD_NUMB) || dmgtype(mon->data, AD_PLYS) ) ) ||
 		(StrongDimmopathy && Dimmed && (dmgtype(mon->data, AD_DIMN) || monstersoundtype(mon) == MS_CUSS ) ) ||
+		(monstersoundtype(mon) == MS_CRYTHROAT) ||
 		(StrongFreezopathy && Frozen && (dmgtype(mon->data, AD_FRZE) || dmgtype(mon->data, AD_ICEB) ) ) ||
 		(StrongCorrosivity && Slimed && acidic(mon->data) && distu(mon->mx, mon->my) < 226 ) ||
 		(StrongBurnopathy && Burned && (dmgtype(mon->data, AD_BURN) || dmgtype(mon->data, AD_FLAM) ) ) ||
@@ -1903,6 +1906,7 @@ newsymX(x,y)
 		(autismringcheck(ART_SUCKDISUCK) && dmgtype(mon->data, AD_DRIN)) ||
 		(StrongNumbopathy && Numbed && (dmgtype(mon->data, AD_NUMB) || dmgtype(mon->data, AD_PLYS) ) ) ||
 		(StrongDimmopathy && Dimmed && (dmgtype(mon->data, AD_DIMN) || monstersoundtype(mon) == MS_CUSS ) ) ||
+		(monstersoundtype(mon) == MS_CRYTHROAT) ||
 		(StrongFreezopathy && Frozen && (dmgtype(mon->data, AD_FRZE) || dmgtype(mon->data, AD_ICEB) ) ) ||
 		(StrongCorrosivity && Slimed && acidic(mon->data) && distu(mon->mx, mon->my) < 226 ) ||
 		(StrongBurnopathy && Burned && (dmgtype(mon->data, AD_BURN) || dmgtype(mon->data, AD_FLAM) ) ) ||
@@ -3924,6 +3928,7 @@ struct monst *mon;
 	if (autismringcheck(ART_SUCKDISUCK) && dmgtype(mon->data, AD_DRIN)) return TRUE;
 	if (StrongNumbopathy && Numbed && (dmgtype(mon->data, AD_NUMB) || dmgtype(mon->data, AD_PLYS) ) ) return TRUE;
 	if (StrongDimmopathy && Dimmed && (dmgtype(mon->data, AD_DIMN) || monstersoundtype(mon) == MS_CUSS ) ) return TRUE;
+	if (monstersoundtype(mon) == MS_CRYTHROAT) return TRUE;
 	if (StrongFreezopathy && Frozen && (dmgtype(mon->data, AD_FRZE) || dmgtype(mon->data, AD_ICEB) ) ) return TRUE;
 	if (StrongCorrosivity && Slimed && acidic(mon->data) && distu(mon->mx, mon->my) < 226 ) return TRUE;
 	if (StrongBurnopathy && Burned && (dmgtype(mon->data, AD_BURN) || dmgtype(mon->data, AD_FLAM) ) ) return TRUE;

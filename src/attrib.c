@@ -3344,6 +3344,13 @@ int x;
 		if (uleft && uleft->oartifact == ART_FIRST_EXCHANGE) tmp -= 5;
 		if (uright && uright->oartifact == ART_FIRST_EXCHANGE) tmp -= 5;
 		if (u.uhs >= WEAK) tmp--;
+		if (!flags.female && (u.genitalhealth_m < 50)) tmp--;
+		if (!flags.female && (u.genitalhealth_m < 20)) tmp--;
+		if (!flags.female && (u.genitalhealth_m < 1)) tmp -= 2;
+		if (flags.female && (u.genitalhealth_f < 50)) tmp--;
+		if (flags.female && (u.genitalhealth_f < 20)) tmp -= 2;
+		if (flags.female && (u.genitalhealth_f < 10)) tmp -= 5;
+		if (flags.female && (u.genitalhealth_f < 1)) tmp -= 10;
 
 		if (PlayerBleeds > 50) tmp--;
 		if (PlayerBleeds > 100) tmp -= 2;
@@ -4290,6 +4297,13 @@ int x;
 		if (u.martialstyle == MARTIALSTYLE_BOOYAKASHA) tmp -= 5;
 		if (uleft && uleft->oartifact == ART_ADELISA_S_HIDING_GAME) tmp -= 2;
 		if (uright && uright->oartifact == ART_ADELISA_S_HIDING_GAME) tmp -= 2;
+		if (!flags.female && (u.genitalhealth_m < 50)) tmp--;
+		if (!flags.female && (u.genitalhealth_m < 20)) tmp--;
+		if (!flags.female && (u.genitalhealth_m < 1)) tmp -= 2;
+		if (flags.female && (u.genitalhealth_f < 50)) tmp--;
+		if (flags.female && (u.genitalhealth_f < 20)) tmp -= 2;
+		if (flags.female && (u.genitalhealth_f < 10)) tmp -= 5;
+		if (flags.female && (u.genitalhealth_f < 1)) tmp -= 10;
 
 		if (AllStatsAreLower) tmp -= min(tmp - 3, 10);
 		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= min(tmp - 3, 10);
