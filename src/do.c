@@ -2132,7 +2132,13 @@ doup()
 			return 0;
 		}
 
+		/* for easier testing in wizard mode, allow us to imbue the amulet --Amy */
+		if (u.uhave.amulet && !u.amuletcompletelyimbued && wizard && yn("Imbue the amulet?") == 'y') {
+			u.amuletcompletelyimbued = u.amuletimbued1 = u.amuletimbued2 = u.amuletimbued3 = TRUE;
+		}
+
 		if (u.uhave.amulet && !u.amuletcompletelyimbued) {
+
 			/* You were such a n00b and ignored all the messages telling you about the Yendorian Tower. */
 			com_pager(197);
 			return 0;

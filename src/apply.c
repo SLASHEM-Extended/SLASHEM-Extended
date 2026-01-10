@@ -1435,8 +1435,14 @@ struct obj **optr;
 	if (PlayerHearsSoundEffects) pline(issoviet ? "Tip bloka l'da net doma pryamo seychas!" : "Bimmelimm!");
 
 	if (obj->otyp == BELL_OF_OPENING && !u.bellimbued) {
-		pline("But nothing happens because you didn't imbue the bell yet. Look for a magic portal in the Quest, which will lead to the Subquest. In that Subquest, find the staircase to the Bell Caves in order to imbue the bell.");
-		return FALSE;
+
+		/* in wizard mode we're capable of just magically imbuing the bell for easier testing --Amy */
+		if (wizard && yn("Imbue the bell?") == 'y') {
+			u.bellimbued = TRUE;
+		} else {
+			pline("But nothing happens because you didn't imbue the bell yet. Look for a magic portal in the Quest, which will lead to the Subquest. In that Subquest, find the staircase to the Bell Caves in order to imbue the bell.");
+			return FALSE;
+		}
 	}
 
 	if (obj && obj->oartifact == ART_BIMMEL_BIMMEL && !obj->cursed) {
