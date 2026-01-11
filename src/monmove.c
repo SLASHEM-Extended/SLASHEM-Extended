@@ -667,7 +667,7 @@ register struct monst *mtmp;
 	/* croupiers are meant to mostly stay in their casinos */
 	if ((mdat == &mons[PM_CROUPIER] || mdat == &mons[PM_MASTER_CROUPIER] || mdat == &mons[PM_EXPERIENCED_CROUPIER] || mdat == &mons[PM_EXCEPTIONAL_CROUPIER] || mdat == &mons[PM_ELITE_CROUPIER]) && mtmp->mpeaceful && !mtmp->mtame && rn2(20) && levl[mtmp->mx][mtmp->my].typ == ROOM) return 0;
 
-	if ((mdat == &mons[PM_BUGBEAM_CUBE] || mdat == &mons[PM_HANGFISH] || mdat == &mons[PM_JOHNNY_SINDACCO] || mdat == &mons[PM_BOXIT_CUBE] || mdat == &mons[PM_IRMGARD] || mdat == &mons[PM_WORM_THAT_WANKS] || mdat == &mons[PM_METH_HEAD] || mdat == &mons[PM_TORSTINA] || mdat == &mons[PM_MARINERV] || mdat == &mons[PM_BLINKLE_BEE] || mdat == &mons[PM_MARISTIN] || mdat == &mons[PM_HUNCHBACKED_LITTLE_MAN] || mdat == &mons[PM_MARIVERT] || mdat == &mons[PM_MARISISTER] || mdat == &mons[PM_OUTER_ONE_NO] || mdat == &mons[PM_FUNNY_ITALIAN] || mdat == &mons[PM_EAR_FIG_MACHINE] || mdat == &mons[PM_POLEPOKER] || mdat == &mons[PM_DISTURBMENT_HEAD]) && !rn2(4)) return 0; /* can sometimes not move; this is by design */
+	if ((mdat == &mons[PM_BUGBEAM_CUBE] || mdat == &mons[PM_TRIPBEAM_CUBE] || mdat == &mons[PM_HANGFISH] || mdat == &mons[PM_JOHNNY_SINDACCO] || mdat == &mons[PM_BOXIT_CUBE] || mdat == &mons[PM_IRMGARD] || mdat == &mons[PM_WORM_THAT_WANKS] || mdat == &mons[PM_METH_HEAD] || mdat == &mons[PM_TORSTINA] || mdat == &mons[PM_MARINERV] || mdat == &mons[PM_BLINKLE_BEE] || mdat == &mons[PM_MARISTIN] || mdat == &mons[PM_HUNCHBACKED_LITTLE_MAN] || mdat == &mons[PM_MARIVERT] || mdat == &mons[PM_MARISISTER] || mdat == &mons[PM_OUTER_ONE_NO] || mdat == &mons[PM_FUNNY_ITALIAN] || mdat == &mons[PM_EAR_FIG_MACHINE] || mdat == &mons[PM_POLEPOKER] || mdat == &mons[PM_DISTURBMENT_HEAD]) && !rn2(4)) return 0; /* can sometimes not move; this is by design */
 	if ((mdat == &mons[PM_SARAH_S_AIRTIGHT_PANTS]) && rn2(5)) return 0;
 
 	if (uarmf && uarmf->oartifact == ART_ELIZAH_S_SINKER && (mtmp->data->mlet == S_EEL || mtmp->data->mlet == S_FLYFISH) && rn2(2)) return 0;
@@ -2729,6 +2729,11 @@ convertdone:
 		if (isstunfish) nomul(-(rnz(5)), "unconscious from the stink homer's stench", TRUE);
 		else nomul(-(rnd(5)), "unconscious from the stink homer's stench", TRUE);
 	}
+	if (mdat == &mons[PM_STINKING_SEXIST] && multi >= 0 && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2(50)) {
+		pline("Urrrrrgh, some really stinky person seems to be nearby! You pass out from the vile stench.");
+		if (isstunfish) nomul(-(rnz(3)), "unconscious from the stink homer's stench", TRUE);
+		else nomul(-(rnd(3)), "unconscious from the stink homer's stench", TRUE);
+	}
 	if (mdat == &mons[PM_HUEPPOGREIFSCH] && multi >= 0 && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2(10)) {
 		pline("Oh, damn hueppogreifsch...");
 		if (isstunfish) nomul(-(rnz(5)), "unconscious from the hueppogreifsch", TRUE);
@@ -4277,7 +4282,7 @@ register int after;
 	}
 
 	/* monsters that teleport completely randomly go here --Amy */
-	if ((ptr == &mons[PM_ASIMA] || ptr == &mons[PM_UTHGEN_RAPPER] || ptr == &mons[PM_HOPPER_ANT] || ptr == &mons[PM_YOUR_MAP_SHOWS_] || ptr == &mons[PM_HINGEFREEL] || ptr == &mons[PM_FLEETFOOT] || ptr == &mons[PM_BEARER_OF_BAD_NEWS]) && !rn2(25) && !mtmp->mcan &&
+	if ((ptr == &mons[PM_ASIMA] || ptr == &mons[PM_TRIPPORT_TROLL] || ptr == &mons[PM_UTHGEN_RAPPER] || ptr == &mons[PM_HOPPER_ANT] || ptr == &mons[PM_YOUR_MAP_SHOWS_] || ptr == &mons[PM_HINGEFREEL] || ptr == &mons[PM_FLEETFOOT] || ptr == &mons[PM_BEARER_OF_BAD_NEWS]) && !rn2(25) && !mtmp->mcan &&
 	   !tele_restrict(mtmp) ) {
 		(void) rloc(mtmp, FALSE);
 		mmoved = 1;

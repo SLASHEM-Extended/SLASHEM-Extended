@@ -1092,6 +1092,7 @@ register int pm;
 	    case PM_CHAOS_LIZARD:
 	    case PM_CHAOTIC_LIZARD:
 	    case PM_HUGE_LIZARD:
+	    case PM_CONTACT_LIZARD:
 	    case PM_CORK_ESPADRILLE:
 	    case PM_PACKED_LIZARD:
 	    case PM_SILILIZARD:
@@ -1320,6 +1321,7 @@ struct monst *mon;
     case PM_CLINGING_LIZARD:
     case PM_DEFORMED_LIZARD:
 	case PM_HUGE_LIZARD:
+	case PM_CONTACT_LIZARD:
 	    case PM_CORK_ESPADRILLE:
 	    case PM_PACKED_LIZARD:
 	    case PM_SILILIZARD:
@@ -2452,6 +2454,7 @@ register int pm;
 	    case PM_GIGANTIC_WRAITH:
 	    case PM_WRAITH_SHAMAN:
 	    case PM_NASTY_WRAITH:
+	    case PM_SHINE_WRAITH:
 	    case PM_TURBO_CHICKEN:
 	    case PM_GREATER_BASILISK:
 	    case PM_ETHEREAL_TROVE:
@@ -3439,6 +3442,7 @@ register int pm;
 		break;
 
 	    case PM_HUGE_LIZARD:
+	    case PM_CONTACT_LIZARD:
 	    case PM_CORK_ESPADRILLE:
 	    case PM_PACKED_LIZARD:
 	    case PM_VERY_SLOW_HUGE_LIZARD:

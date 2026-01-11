@@ -9287,10 +9287,17 @@ register struct	monst	*mtmp;
 		if (monsndx(ptr) == PM_HUMAN_WERECOMBATSTILETTO) (void)mongets(mtmp, COMBAT_STILETTOS);
 		if (monsndx(ptr) == PM_HUMAN_WERESTILETTOSANDAL) (void)mongets(mtmp, HIGH_STILETTOS);
 		if (monsndx(ptr) == PM_TYPE_OF_PLANETARIUM) (void)mongets(mtmp, CHAIN_MAIL);
+		if (monsndx(ptr) == PM_CONTACT_JEDI) (void) mongets(mtmp, RED_LIGHTSABER);
 
 		if (monsndx(ptr) == PM_BROTHERHOOD_KNIGHT || monsndx(ptr) == PM_BROTHERHOOD_PALADIN) monster_weapon_bos(mtmp, TRUE);
 		if (monsndx(ptr) == PM_OUTCAST_PROTECTOR || monsndx(ptr) == PM_OUTCAST_SPECIALIST) monster_weapon_outcast(mtmp, TRUE);
 		if (monsndx(ptr) == PM_ENCLAVE_PRIVATE || monsndx(ptr) == PM_ENCLAVE_LOOKOUT || monsndx(ptr) == PM_ENCLAVE_MAJOR || monsndx(ptr) == PM_ENCLAVE_CORPORAL || monsndx(ptr) == PM_ENCLAVE_FODDER) monster_weapon_enclave(mtmp, TRUE);
+
+		if (ptr == &mons[PM_PORTENTOUS_TROOPER]) {
+			(void) mongets(mtmp, RIFLE);
+			(void) mongets(mtmp, CHAIN_MAIL);
+	  		m_initthrow(mtmp, RIFLE_BULLET, 30);
+		}
 
 		if (ptr == &mons[PM_CHRYSAOR]) {
 
@@ -13808,6 +13815,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_UNDERPANTS_GNOME]) (void) mongets(mtmp, VICTORIAN_UNDERWEAR);
 		if (mtmp->data == &mons[PM_HC_BEARDFREAK]) m_initthrow(mtmp, FRAG_GRENADE, 8);
 		if (mtmp->data == &mons[PM_BOMB_THROWER]) m_initthrow(mtmp, FRAG_GRENADE, 10);
+		if (mtmp->data == &mons[PM_EVERYTHING_NEGATIVE]) m_initthrow(mtmp, FRAG_GRENADE, 10);
 		if (mtmp->data == &mons[PM_ROCK_THROWER]) m_initthrow(mtmp, ROCK, 10);
 		if (mtmp->data == &mons[PM_GWAWOL]) (void) mongets(mtmp, WAN_LIGHTNING);
 		if (mtmp->data == &mons[PM_CLOCKWORK_CLAW]) (void) mongets(mtmp, QATAR);
@@ -15549,6 +15557,7 @@ loveheelover:
 		if (ptr == &mons[PM_CELESTIAL_POKER]) (void) mongets(mtmp, CELESTIAL_POLE);
 		if (ptr == &mons[PM_ALIEN_POKER]) (void) mongets(mtmp, ZEBES_POLE);
 		if (ptr == &mons[PM_BATON_GUY] || ptr == &mons[PM_SPECTRAL_BATON_GUY]) (void) mongets(mtmp, CLUB);
+		if (ptr == &mons[PM_TRIPPITY_TRAPPER]) (void) mongets(mtmp, WAN_TRAP_CREATION);
 
 		if (mtmp->data == &mons[PM_EVELYN_S_CALF_LEATHER_SANDAL]) (void) mongets(mtmp, WEDGE_SANDALS); /* M4_SANDALS */
 		if (mtmp->data == &mons[PM_EVELYN_S_WALKING_PUMP]) (void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
