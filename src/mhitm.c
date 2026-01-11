@@ -438,6 +438,9 @@ mattackm(magr, mdef)
     boolean egotypeengulfer = magr->egotype_engulfer;
     boolean egotypecameraclicker = magr->egotype_cameraclicker;
     boolean egotypealladrainer = magr->egotype_alladrainer;
+    boolean egotypemolester = magr->egotype_molester;
+    boolean egotypesemen = magr->egotype_inseminator;
+    boolean egotypeincision = magr->egotype_incisor;
 
     /* To-hit based on the monster's level. Nerf by Amy: high-level monsters shouldn't autohit. */
     magrlev = magr->m_lev;
@@ -3265,7 +3268,7 @@ meleeattack:
 		badpeteffect(mdef);
 	}
 
-	if (monstersoundtype(magr) == MS_CUSS && !rn2(5) && monnear(magr, mdef->mx, mdef->my)) {
+	if ((monstersoundtype(magr) == MS_CUSS || monstersoundtype(magr) == MS_CONDESCEND) && !rn2(5) && monnear(magr, mdef->mx, mdef->my)) {
 
 		/* STUPID bug where the game displays the same name twice for some inexplicable reason --Amy */
 		strcpy(buf, mon_nam(mdef));
@@ -3278,6 +3281,27 @@ meleeattack:
 			mdef->healblock += (1 + magr->m_lev);
 			if (vis) pline("%s is dimmed.", Monnam(mdef));
 		}
+	}
+
+	if ( ((monstersoundtype(magr) == MS_MOLEST) || egotypemolester) && monnear(magr, mdef->mx, mdef->my) && mdef->female) {
+		/* STUPID bug where the game displays the same name twice for some inexplicable reason --Amy */
+		strcpy(buf, mon_nam(mdef));
+		if (vis) pline("%s does nasty things to %s!", Monnam(magr), buf);
+		badpeteffect(mdef);
+	}
+
+	if ( ((monstersoundtype(magr) == MS_SEMEN) || egotypesemen) && monnear(magr, mdef->mx, mdef->my) && !rn2(5) && mdef->female) {
+		/* STUPID bug where the game displays the same name twice for some inexplicable reason --Amy */
+		strcpy(buf, mon_nam(mdef));
+		if (vis) pline("%s shoots some semen at %s!", Monnam(magr), buf);
+		badpeteffect(mdef);
+	}
+
+	if ( ((monstersoundtype(magr) == MS_INCISION) || egotypeincision) && !rn2(3) && monnear(magr, mdef->mx, mdef->my)) {
+		/* STUPID bug where the game displays the same name twice for some inexplicable reason --Amy */
+		strcpy(buf, mon_nam(mdef));
+		if (vis) pline("%s applies a dorsal slit to %s's genitals!", Monnam(magr), buf);
+		mdef->bleedout += rnd(10 + magr->m_lev);
 	}
 
 	if (monstersoundtype(magr) == MS_WHORE && !rn2(5) && monnear(magr, mdef->mx, mdef->my)) {
@@ -4255,6 +4279,13 @@ mdamagem(magr, mdef, mattk)
 			tmp /= 100;
 		}
 
+		if ((monstersoundtype(magr) == MS_HERCULES) || magr->egotype_hercules) {
+			if (magr->herculesboost > 0) {
+				tmp *= (20 + magr->herculesboost);
+				tmp /= 20;
+			}
+			magr->herculesboost++;
+		}
 	}
 
 	atttyp = mattk->adtyp;

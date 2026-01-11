@@ -2829,15 +2829,15 @@ convertdone:
 		pline("%s stabilizes the space around.", Monnam(mtmp)); /* message is sic from Elona */
 	}
 
-	if ( (monstersoundtype(mtmp) == MS_OMEN) && !rn2(1000)) {
+	if ( ((monstersoundtype(mtmp) == MS_OMEN) || mtmp->egotype_omenenacter) && !rn2(1000)) {
 		badeffect();
 	}
 
-	if ( (monstersoundtype(mtmp) == MS_TRIP) && !rn2(10000)) {
+	if ( ((monstersoundtype(mtmp) == MS_TRIP) || mtmp->egotype_nastytripper) && !rn2(10000)) {
 		randomnastytrapeffect(rnz(100 + level_difficulty()), 1000);
 	}
 
-	if ( (monstersoundtype(mtmp) == MS_BAN) && !rn2(1000)) {
+	if ( ((monstersoundtype(mtmp) == MS_BAN) || mtmp->egotype_selfbanner) && !rn2(1000)) {
 		if (canseemon(mtmp)) pline("%s warps away!", Monnam(mtmp));
 		u_teleport_monD(mtmp, FALSE); /* banish the monster --Amy */
 		return 1;
@@ -2871,7 +2871,7 @@ convertdone:
 		}
 	}
 
-	if (monstersoundtype(mtmp) == MS_AMNESIA) { /* shroud the monster's square and the eight surrounding ones --Amy */
+	if ((monstersoundtype(mtmp) == MS_AMNESIA) || mtmp->egotype_gpsscrambler) { /* shroud the monster's square and the eight surrounding ones --Amy */
 		int i, j, bd = 1;
 
 		for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
@@ -3055,8 +3055,22 @@ convertdone:
 	}
 
 	/* monsters with MS_WEATHER and certain other traits can force a specific weather, but only once --Amy */
-	if (monstersoundtype(mtmp) == MS_WEATHER && !mtmp->madeweatherchange && m_canseeu(mtmp) ) {
-		if ((mtmp->m_lev >= 18 && ( attackdamagetype(mtmp->data, AT_BREA, AD_DARK) || attackdamagetype(mtmp->data, AT_BEAM, AD_DARK) ) ) || mdat == &mons[PM_FULL_ECLIPSE_GOBLIN] || mdat == &mons[PM_FULL_ECLIPSE_ORC] ) {
+	if ( ((monstersoundtype(mtmp) == MS_WEATHER) || mtmp->egotype_weathermaster) && !mtmp->madeweatherchange && m_canseeu(mtmp) ) {
+		if (mtmp->egotype_weathermaster) {
+			mtmp->madeweatherchange = TRUE;
+			pline("%s changes the weather!", Monnam(mtmp));
+			if (!rn2(5)) u.currentweather = WEATHER_OVERCAST;
+			else if (!rn2(50)) u.currentweather = WEATHER_ETHERWIND;
+			else if (!rn2(50)) u.currentweather = WEATHER_ECLIPSE;
+			else if (!rn2(20)) u.currentweather = WEATHER_FOG;
+			else if (!rn2(20)) u.currentweather = WEATHER_SANDSTORM;
+			else if (!rn2(10)) u.currentweather = WEATHER_HAIL;
+			else if (!rn2(10)) u.currentweather = WEATHER_THUNDERSTORM;
+			else if (!rn2(5)) u.currentweather = WEATHER_SNOW;
+			else if (!rn2(2)) u.currentweather = WEATHER_RAIN;
+			else u.currentweather = WEATHER_SUNNY;
+			tell_main_weather();
+		} else if ((mtmp->m_lev >= 18 && ( attackdamagetype(mtmp->data, AT_BREA, AD_DARK) || attackdamagetype(mtmp->data, AT_BEAM, AD_DARK) ) ) || mdat == &mons[PM_FULL_ECLIPSE_GOBLIN] || mdat == &mons[PM_FULL_ECLIPSE_ORC] ) {
 			mtmp->madeweatherchange = TRUE;
 			pline("%s used Noctem!", Monnam(mtmp));
 			u.currentweather = WEATHER_ECLIPSE;

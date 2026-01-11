@@ -5905,7 +5905,7 @@ newboss:
 
 	/* molestation, by Amy; this is *very* icky, and probably doubly so because it only works against female chars
 	 * we explicitly assume that the player character isn't underage, since she can get pregnant and everything */
-	if ((monstersoundtype(mtmp) == MS_MOLEST) && !range2 && foundyou && flags.female) {
+	if ( ((monstersoundtype(mtmp) == MS_MOLEST) || mtmp->egotype_molester) && !range2 && foundyou && flags.female) {
 
 		boolean willmolest = TRUE;
 
@@ -6095,7 +6095,7 @@ newboss:
 
 	}
 
-	if (monstersoundtype(mtmp) == MS_INCISION) {
+	if ((monstersoundtype(mtmp) == MS_INCISION) || mtmp->egotype_incisor) {
 		if (!range2 && (tmp > (rnd(20+i))) ) {
 			if (foundyou) {
 				boolean willslit = TRUE;
@@ -6184,7 +6184,7 @@ newboss:
 		}
 	}
 
-	if ((monstersoundtype(mtmp) == MS_SEMEN) && flags.female) {
+	if ( ((monstersoundtype(mtmp) == MS_SEMEN) || mtmp->egotype_inseminator) && flags.female) {
 		if(lined_up(mtmp) && ((dist2(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy) <= BOLT_LIM*BOLT_LIM) || (elongation_monster(mtmp->data) || ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) ) && (tmp > (rnd(20+i))) && !rn2(10) ) {  
 			if (foundyou) {
 				pline("%s's %spenis shoots some semen at you!", Monnam(mtmp), mtmp->female ? "imaginary " : "");
@@ -19991,7 +19991,7 @@ register int n;
 		n /= 4;
 	}
 
-	if (monstersoundtype(mtmp) == MS_HERCULES) {
+	if ((monstersoundtype(mtmp) == MS_HERCULES) || mtmp->egotype_hercules) {
 		if (mtmp->herculesboost > 0) {
 			n *= (20 + mtmp->herculesboost);
 			n /= 20;

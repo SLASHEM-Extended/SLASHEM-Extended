@@ -23186,6 +23186,7 @@ int x, y;
 	if (MON_AT(x, y)) {
 		if ((grakamon = level.monsters[x][y]) != (struct monst *)0) {
 			if (monstersoundtype(grakamon) == MS_GRAKA) return TRUE;
+			if (grakamon->egotype_grakabug) return TRUE;
 		}
 	}
 

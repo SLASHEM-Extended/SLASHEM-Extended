@@ -2291,7 +2291,7 @@ struct monst *mon;
 	mmove = (4 * mmove + 2) / 3;
 
     /* MS_SPEEDBUG: their speed is randomized to a value from 1 to 2*speed (inclusive) --Amy */
-    if ((monstersoundtype(mon) == MS_SPEEDBUG) && mmove > 1) mmove = rnd(mmove * 2);
+    if ( ((monstersoundtype(mon) == MS_SPEEDBUG) || mon->egotype_speedbugger) && mmove > 1) mmove = rnd(mmove * 2);
 
     if (mon == u.usteed) {
 	if ( (u.ugallop || (uarmf && uarmf->oartifact == ART_LIGHT_DAL_I_THALION)) && flags.mv) {
@@ -2336,7 +2336,7 @@ struct monst *mon;
 	/* armorer: speeds up when low on health, slowed if near max health --Amy
 	 * I *swear* I came up with this idea myself when I was little, back then I didn't know about Diablo 2 and the The Smith/Hephasto who have EXACTLY this ability.
 	 * And I also swear that I called the monster I made up back then "armorer" without knowing that Hephasto is literally called the Armorer. */
-	if ((monstersoundtype(mon) == MS_ARMORER) && (mmove > 0) && mon->mhpmax > 1) {
+	if ( ((monstersoundtype(mon) == MS_ARMORER) || mon->egotype_realarmorer) && (mmove > 0) && mon->mhpmax > 1) {
 		int monsterspeedmult = 100;
 		int halfnumber = (mon->mhpmax / 2);
 		int differencevar;
@@ -2597,7 +2597,7 @@ movemon()
 	}
 
 	/* whenever a MS_GRAKA moves, display a mojibake glyph at a random location --Amy */
-	if ((monstersoundtype(mtmp) == MS_GRAKA) && isok(mtmp->mx, mtmp->my)) {
+	if ( ((monstersoundtype(mtmp) == MS_GRAKA) || mtmp->egotype_grakabug) && isok(mtmp->mx, mtmp->my)) {
 		int grakax, grakay;
 		grakax = rn1(COLNO-3,2);
 		grakay = rn2(ROWNO);
@@ -4655,9 +4655,9 @@ struct monst *magr,	/* monster that is currently deciding where to move */
 
 	/* peaceful monsters versus hostile molesters, by Amy */
 	if (u.molestinggrudge) {
-		if (magr->mpeaceful && !mdef->mpeaceful && (mdef->data->msound == MS_MOLEST))
+		if (magr->mpeaceful && !mdef->mpeaceful && ((mdef->data->msound == MS_MOLEST) || mdef->egotype_molester))
 			return ALLOW_M|ALLOW_TM;
-		if (!magr->mpeaceful && (magr->data->msound == MS_MOLEST) && mdef->mpeaceful)
+		if (!magr->mpeaceful && ((magr->data->msound == MS_MOLEST) || magr->egotype_molester) && mdef->mpeaceful)
 			return ALLOW_M|ALLOW_TM;
 	}
 

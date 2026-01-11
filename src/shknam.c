@@ -822,6 +822,22 @@ const char * const *nlp;
 		}
 		if (!rn2(20)) {
 			shk->isegotype = 1;
+			shk->egotype_molester = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_hercules = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_inseminator = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_incisor = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
 			shk->egotype_spoilerproofer = TRUE;
 		}
 		if (!rn2(20)) {
@@ -1160,6 +1176,22 @@ const char * const *nlp;
 		if (!rn2(10)) {
 			shk->isegotype = 1;
 			shk->egotype_stabilizer = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_molester = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_hercules = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_inseminator = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_incisor = TRUE;
 		}
 		if (!rn2(10)) {
 			shk->isegotype = 1;

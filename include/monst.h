@@ -425,6 +425,21 @@ struct monst {
 
 	Bitfield(egotype_tracker,1); /* always knows where you are */
 
+	Bitfield(egotype_nastytrapper,1); /* MS_NASTYTRAP */
+	Bitfield(egotype_femitrapper,1); /* MS_FEMI */
+	Bitfield(egotype_selfbanner,1); /* MS_BAN */
+	Bitfield(egotype_gpsscrambler,1); /* MS_AMNESIA */
+	Bitfield(egotype_grakabug,1); /* MS_GRAKA */
+	Bitfield(egotype_molester,1); /* MS_MOLEST */
+	Bitfield(egotype_nastytripper,1); /* MS_TRIP */
+	Bitfield(egotype_realarmorer,1); /* MS_ARMORER */
+	Bitfield(egotype_omenenacter,1); /* MS_OMEN */
+	Bitfield(egotype_hercules,1); /* MS_HERCULES */
+	Bitfield(egotype_speedbugger,1); /* MS_SPEEDBUG */
+	Bitfield(egotype_inseminator,1); /* MS_SEMEN */
+	Bitfield(egotype_incisor,1); /* MS_INCISION */
+	Bitfield(egotype_weathermaster,1); /* MS_WEATHER; always changes the weather to a random one */
+
 	Bitfield(nurse_extrahealth,1); /* to control which services a nurse will offer */
 	Bitfield(nurse_decontaminate,1);
 	Bitfield(nurse_healing,1);

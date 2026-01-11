@@ -1147,6 +1147,20 @@ stupidsegfault:
 	    if (mtmp->egotype_deepstatemember && (++egotypeamount < 21) ) sprintf(eos(buf), " DeepStateMember");
 	    if (mtmp->egotype_inverter && (++egotypeamount < 21) ) sprintf(eos(buf), " Inverter");
 	    if (mtmp->egotype_debtor && (++egotypeamount < 21) ) sprintf(eos(buf), " Debtor");
+	    if (mtmp->egotype_nastytrapper && (++egotypeamount < 21) ) sprintf(eos(buf), " NastyTrapTriggerer");
+	    if (mtmp->egotype_femitrapper && (++egotypeamount < 21) ) sprintf(eos(buf), " FemiTrapTriggerer");
+	    if (mtmp->egotype_selfbanner && (++egotypeamount < 21) ) sprintf(eos(buf), " Self-Banisher");
+	    if (mtmp->egotype_gpsscrambler && (++egotypeamount < 21) ) sprintf(eos(buf), " GPS-Scrambler");
+	    if (mtmp->egotype_grakabug && (++egotypeamount < 21) ) sprintf(eos(buf), " GrakaBugger");
+	    if (mtmp->egotype_molester && (++egotypeamount < 21) ) sprintf(eos(buf), " Molester");
+	    if (mtmp->egotype_nastytripper && (++egotypeamount < 21) ) sprintf(eos(buf), " Nastycauser");
+	    if (mtmp->egotype_realarmorer && (++egotypeamount < 21) ) sprintf(eos(buf), " SpeedupArmorer");
+	    if (mtmp->egotype_omenenacter && (++egotypeamount < 21) ) sprintf(eos(buf), " Omen-Enacter");
+	    if (mtmp->egotype_hercules && (++egotypeamount < 21) ) sprintf(eos(buf), " Hercules");
+	    if (mtmp->egotype_speedbugger && (++egotypeamount < 21) ) sprintf(eos(buf), " Speedbugger");
+	    if (mtmp->egotype_inseminator && (++egotypeamount < 21) ) sprintf(eos(buf), " Inseminator");
+	    if (mtmp->egotype_incisor && (++egotypeamount < 21) ) sprintf(eos(buf), " Incisor");
+	    if (mtmp->egotype_weathermaster && (++egotypeamount < 21) ) sprintf(eos(buf), " WeatherMaster");
 	    if (egotypeamount > 20) sprintf(eos(buf), " (%d egotypes)", egotypeamount);
 
 	}

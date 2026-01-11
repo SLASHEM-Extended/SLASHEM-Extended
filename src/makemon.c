@@ -28143,6 +28143,22 @@ register int	mmflags;
 		}
 		if (!rn2(100)) {
 			mtmp->isegotype = 1;
+			mtmp->egotype_molester = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_hercules = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_inseminator = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_incisor = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
 			mtmp->egotype_spoilerproofer = TRUE;
 		}
 		if (!rn2(100)) {

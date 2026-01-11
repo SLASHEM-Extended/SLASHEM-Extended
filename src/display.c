@@ -1282,7 +1282,7 @@ newsym(x,y)
 		(ScentView && distu(mon->mx, mon->my) < 101 && mon->scentvisible && (is_animal(mon->data) || monstersoundtype(mon) == MS_STENCH) ) ||
 		(uwep && uwep->oartifact == ART_SWISS_AMY_KNIFE && monstersoundtype(mon) == MS_SHOE) ||
 		(uarmh && uarmh->oartifact == ART_MORE_SPECIFICER && (mon->m_lev % 5 == 0)) ||
-		(uwep && uwep->oartifact == ART_JENNY_S_PROTECTER && uwep->lamplit && monstersoundtype(mon) == MS_MOLEST) ||
+		(uwep && uwep->oartifact == ART_JENNY_S_PROTECTER && uwep->lamplit && ((monstersoundtype(mon) == MS_MOLEST) || mon->egotype_molester) ) ||
 		(EcholocationActive && distu(mon->mx, mon->my) < 626 && mon->echolocatevisible && (dmgtype(mon->data, AD_SOUN) || monstersoundtype(mon) == MS_SOUND || monstersoundtype(mon) == MS_SHRIEK || monstersoundtype(mon) == MS_FART_NORMAL || monstersoundtype(mon) == MS_FART_LOUD || monstersoundtype(mon) == MS_FART_QUIET ) ) ||
 		(Race_if(PM_RODNEYAN) && mon_has_amulet(mon)) ||
 		(Race_if(PM_RODNEYAN) && mon_has_special(mon)) ||
@@ -1437,7 +1437,7 @@ newsym(x,y)
 		(ScentView && distu(mon->mx, mon->my) < 101 && mon->scentvisible && (is_animal(mon->data) || monstersoundtype(mon) == MS_STENCH) ) ||
 		(uwep && uwep->oartifact == ART_SWISS_AMY_KNIFE && monstersoundtype(mon) == MS_SHOE) ||
 		(uarmh && uarmh->oartifact == ART_MORE_SPECIFICER && (mon->m_lev % 5 == 0)) ||
-		(uwep && uwep->oartifact == ART_JENNY_S_PROTECTER && uwep->lamplit && monstersoundtype(mon) == MS_MOLEST) ||
+		(uwep && uwep->oartifact == ART_JENNY_S_PROTECTER && uwep->lamplit && ((monstersoundtype(mon) == MS_MOLEST) || mon->egotype_molester) ) ||
 		(EcholocationActive && distu(mon->mx, mon->my) < 626 && mon->echolocatevisible && (dmgtype(mon->data, AD_SOUN) || monstersoundtype(mon) == MS_SOUND || monstersoundtype(mon) == MS_SHRIEK || monstersoundtype(mon) == MS_FART_NORMAL || monstersoundtype(mon) == MS_FART_LOUD || monstersoundtype(mon) == MS_FART_QUIET ) ) ||
 		(Race_if(PM_RODNEYAN) && mon_has_amulet(mon)) ||
 		(Race_if(PM_RODNEYAN) && mon_has_special(mon)) ||
@@ -1767,7 +1767,7 @@ newsymX(x,y)
 		(ScentView && distu(mon->mx, mon->my) < 101 && mon->scentvisible && (is_animal(mon->data) || monstersoundtype(mon) == MS_STENCH) ) ||
 		(uwep && uwep->oartifact == ART_SWISS_AMY_KNIFE && monstersoundtype(mon) == MS_SHOE) ||
 		(uarmh && uarmh->oartifact == ART_MORE_SPECIFICER && (mon->m_lev % 5 == 0)) ||
-		(uwep && uwep->oartifact == ART_JENNY_S_PROTECTER && uwep->lamplit && monstersoundtype(mon) == MS_MOLEST) ||
+		(uwep && uwep->oartifact == ART_JENNY_S_PROTECTER && uwep->lamplit && ((monstersoundtype(mon) == MS_MOLEST) || mon->egotype_molester) ) ||
 		(EcholocationActive && distu(mon->mx, mon->my) < 626 && mon->echolocatevisible && (dmgtype(mon->data, AD_SOUN) || monstersoundtype(mon) == MS_SOUND || monstersoundtype(mon) == MS_SHRIEK || monstersoundtype(mon) == MS_FART_NORMAL || monstersoundtype(mon) == MS_FART_LOUD || monstersoundtype(mon) == MS_FART_QUIET ) ) ||
 		(Race_if(PM_RODNEYAN) && mon_has_amulet(mon)) ||
 		(Race_if(PM_RODNEYAN) && mon_has_special(mon)) ||
@@ -1922,7 +1922,7 @@ newsymX(x,y)
 		(ScentView && distu(mon->mx, mon->my) < 101 && mon->scentvisible && (is_animal(mon->data) || monstersoundtype(mon) == MS_STENCH) ) ||
 		(uwep && uwep->oartifact == ART_SWISS_AMY_KNIFE && monstersoundtype(mon) == MS_SHOE) ||
 		(uarmh && uarmh->oartifact == ART_MORE_SPECIFICER && (mon->m_lev % 5 == 0)) ||
-		(uwep && uwep->oartifact == ART_JENNY_S_PROTECTER && uwep->lamplit && monstersoundtype(mon) == MS_MOLEST) ||
+		(uwep && uwep->oartifact == ART_JENNY_S_PROTECTER && uwep->lamplit && ((monstersoundtype(mon) == MS_MOLEST) || mon->egotype_molester) ) ||
 		(EcholocationActive && distu(mon->mx, mon->my) < 626 && mon->echolocatevisible && (dmgtype(mon->data, AD_SOUN) || monstersoundtype(mon) == MS_SOUND || monstersoundtype(mon) == MS_SHRIEK || monstersoundtype(mon) == MS_FART_NORMAL || monstersoundtype(mon) == MS_FART_LOUD || monstersoundtype(mon) == MS_FART_QUIET ) ) ||
 		(Race_if(PM_RODNEYAN) && mon_has_amulet(mon)) ||
 		(Race_if(PM_RODNEYAN) && mon_has_special(mon)) ||
@@ -3937,7 +3937,7 @@ struct monst *mon;
 	if (ScentView && distu(mon->mx, mon->my) < 101 && mon->scentvisible && (is_animal(mon->data) || monstersoundtype(mon) == MS_STENCH) ) return TRUE;
 	if (uwep && uwep->oartifact == ART_SWISS_AMY_KNIFE && monstersoundtype(mon) == MS_SHOE) return TRUE;
 	if (uarmh && uarmh->oartifact == ART_MORE_SPECIFICER && (mon->m_lev % 5 == 0)) return TRUE;
-	if (uwep && uwep->oartifact == ART_JENNY_S_PROTECTER && uwep->lamplit && monstersoundtype(mon) == MS_MOLEST) return TRUE;
+	if (uwep && uwep->oartifact == ART_JENNY_S_PROTECTER && uwep->lamplit && ((monstersoundtype(mon) == MS_MOLEST) || mon->egotype_molester) ) return TRUE;
 	if (EcholocationActive && distu(mon->mx, mon->my) < 626 && mon->echolocatevisible && (dmgtype(mon->data, AD_SOUN) || monstersoundtype(mon) == MS_SOUND || monstersoundtype(mon) == MS_SHRIEK || monstersoundtype(mon) == MS_FART_NORMAL || monstersoundtype(mon) == MS_FART_LOUD || monstersoundtype(mon) == MS_FART_QUIET ) ) return TRUE;
 	if (uarmh && uarmh->otyp == HELM_OF_UNLIVING_ESP && mon->data->mlet == S_GOLEM && distu(mon->mx, mon->my) < 626) return TRUE;
 	if (uarmh && uarmh->otyp == HELM_OF_UNLIVING_ESP && mindless(mon->data) && distu(mon->mx, mon->my) < 26) return TRUE;

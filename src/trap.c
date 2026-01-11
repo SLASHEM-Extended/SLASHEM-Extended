@@ -23791,28 +23791,28 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		case DIABLO_TRAP:
 
 			/* this is used for all traps that don't affect monsters, but only if the trap is a nasty trap type will it be triggered by MS_NASTYTRAP --Amy */
-			if ((monstersoundtype(mtmp) == MS_NASTYTRAP) && is_nasty_trap(tt) ) {
+			if ( ((monstersoundtype(mtmp) == MS_NASTYTRAP) || mtmp->egotype_nastytrapper) && is_nasty_trap(tt) ) {
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_monnastycount++;
 			}
 			break;
 
 		case FEMMY_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapFemmy) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapFemmy) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case MADELEINE_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapMadeleine) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapMadeleine) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case RUTH_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapRuth) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapRuth) {
 				/* no message
 				 * if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!"); */
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
@@ -23820,714 +23820,714 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 			}
 			break;
 		case MAGDALENA_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapMagdalena) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapMagdalena) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case MARLEEN_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapMarleen) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapMarleen) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case KLARA_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapKlara) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapKlara) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case FRIEDERIKE_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapFriederike) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapFriederike) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case NAOMI_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapNaomi) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapNaomi) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case UTE_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapUte) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapUte) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case JASIEEN_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapJasieen) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapJasieen) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case YASAMAN_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapYasaman) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapYasaman) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case MAY_BRITT_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapMayBritt) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapMayBritt) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case MARLENA_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapMarlena) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapMarlena) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case JOHANETTA_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapJohanetta) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapJohanetta) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case CHLOE_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapChloe) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapChloe) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case ANJA_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapAnja) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapAnja) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case CELIA_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapCelia) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapCelia) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case JUDITH_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapJudith) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapJudith) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case SABINE_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapSabine) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapSabine) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case JANET_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapJanet) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapJanet) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case SABRINA_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapSabrina) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapSabrina) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case TANJA_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapTanja) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapTanja) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case SONJA_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapSonja) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapSonja) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case RHEA_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapRhea) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapRhea) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case LARA_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapLara) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapLara) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case NADINE_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapNadine) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapNadine) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case LUISA_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapLuisa) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapLuisa) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case IRINA_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapIrina) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapIrina) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case LISELOTTE_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapLiselotte) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapLiselotte) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case GRETA_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapGreta) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapGreta) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case JANE_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapJane) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapJane) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case SUE_LYN_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapSueLyn) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapSueLyn) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case CHARLOTTE_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapCharlotte) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapCharlotte) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case HANNAH_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapHannah) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapHannah) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case LITTLE_MARIE_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapLittleMarie) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapLittleMarie) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case KSENIA_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapKsenia) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapKsenia) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case LYDIA_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapLydia) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapLydia) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case CONNY_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapConny) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapConny) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case KATIA_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapKatia) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapKatia) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case MARIYA_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapMariya) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapMariya) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case ELISE_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapElise) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapElise) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case RONJA_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapRonja) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapRonja) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case ARIANE_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapAriane) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapAriane) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case JOHANNA_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapJohanna) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapJohanna) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case INGE_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapInge) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapInge) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case ROSA_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapRosa) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapRosa) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case JANINA_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapJanina) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapJanina) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case KRISTIN_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapKristin) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapKristin) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case ANNA_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapAnna) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapAnna) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case RUEA_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapRuea) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapRuea) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case DORA_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapDora) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapDora) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case MARIKE_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapMarike) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapMarike) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case JETTE_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapJette) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapJette) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case INA_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapIna) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapIna) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case SING_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapSing) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapSing) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case VICTORIA_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapVictoria) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapVictoria) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case MELISSA_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapMelissa) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapMelissa) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case ANITA_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapAnita) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapAnita) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case HENRIETTA_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapHenrietta) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapHenrietta) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case VERENA_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapVerena) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapVerena) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case ARABELLA_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapArabella) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapArabella) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case NELLY_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapNelly) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapNelly) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case EVELINE_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapEveline) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapEveline) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case KARIN_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapKarin) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapKarin) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case JUEN_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapJuen) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapJuen) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case KRISTINA_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapKristina) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapKristina) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case ALMUT_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapAlmut) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapAlmut) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case JULIETTA_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapJulietta) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapJulietta) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case LOU_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapLou) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapLou) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case ANASTASIA_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapAnastasia) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapAnastasia) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case JESSICA_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapJessica) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapJessica) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case SOLVEJG_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapSolvejg) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapSolvejg) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case WENDY_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapWendy) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapWendy) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case KATHARINA_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapKatharina) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapKatharina) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case ELENA_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapElena) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapElena) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case THAI_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapThai) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapThai) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case ELIF_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapElif) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapElif) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case NADJA_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapNadja) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapNadja) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case SANDRA_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapSandra) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapSandra) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case NATALJE_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapNatalje) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapNatalje) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case JEANETTA_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapJeanetta) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapJeanetta) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case YVONNE_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapYvonne) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapYvonne) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case MAURAH_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapMaurah) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapMaurah) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case MELTEM_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapMeltem) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapMeltem) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case ANNEMARIE_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapAnnemarie) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapAnnemarie) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case JIL_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapJil) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapJil) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case JANA_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapJana) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapJana) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case KATRIN_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapKatrin) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapKatrin) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case GUDRUN_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapGudrun) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapGudrun) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case ELLA_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapElla) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapElla) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case MANUELA_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapManuela) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapManuela) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case JENNIFER_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapJennifer) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapJennifer) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case PATRICIA_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapPatricia) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapPatricia) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case ANTJE_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapAntje) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapAntje) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case ANTJE_TRAP_X:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapAntjeX) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapAntjeX) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case KERSTIN_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapKerstin) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapKerstin) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case LAURA_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapLaura) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapLaura) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case LARISSA_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapLarissa) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapLarissa) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case NORA_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapNora) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapNora) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case NATALIA_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapNatalia) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapNatalia) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case SUSANNE_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapSusanne) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapSusanne) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case LISA_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapLisa) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapLisa) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case BRIDGHITTE_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapBridghitte) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapBridghitte) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case JULIA_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapJulia) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapJulia) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case NICOLE_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapNicole) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapNicole) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
@@ -24541,28 +24541,28 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 			}
 			break;
 		case SARAH_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapSarah) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapSarah) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case CLAUDIA_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapClaudia) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapClaudia) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case LUDGERA_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapLudgera) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapLudgera) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case KATI_TRAP:
-			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) ) && !FemaleTrapKati) {
+			if ((FemtrapActiveRita || (monstersoundtype(mtmp) == MS_FEMI) || mtmp->egotype_femitrapper ) && !FemaleTrapKati) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 				u.cnd_ritatrapcnt++;

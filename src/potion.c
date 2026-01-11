@@ -11490,7 +11490,7 @@ add_monster_egotype(mtmp)
 register struct monst *mtmp;
 {
 	mtmp->isegotype = 1;
-	switch (rnd(244)) {
+	switch (rnd(264)) {
 		case 1:
 		case 2:
 		case 3: mtmp->egotype_thief = 1; break;
@@ -11750,7 +11750,26 @@ register struct monst *mtmp;
 		case 242: mtmp->egotype_debtor = 1; break;
 		case 243:
 		case 244: mtmp->egotype_tracker = 1; break;
-
+		case 245: mtmp->egotype_nastytrapper = 1; break;
+		case 246: mtmp->egotype_femitrapper = 1; break;
+		case 247: mtmp->egotype_selfbanner = 1; break;
+		case 248:
+		case 249: mtmp->egotype_gpsscrambler = 1; break;
+		case 250: mtmp->egotype_grakabug = 1; break;
+		case 251:
+		case 252: mtmp->egotype_molester = 1; break;
+		case 253: mtmp->egotype_nastytripper = 1; break;
+		case 254: mtmp->egotype_realarmorer = 1; break;
+		case 255:
+		case 256: mtmp->egotype_omenenacter = 1; break;
+		case 257:
+		case 258:
+		case 259: mtmp->egotype_hercules = 1; break;
+		case 260:
+		case 261: mtmp->egotype_speedbugger = 1; break;
+		case 262: mtmp->egotype_inseminator = 1; break;
+		case 263: mtmp->egotype_incisor = 1; break;
+		case 264: mtmp->egotype_weathermaster = 1; break;
 	}
 
 }
