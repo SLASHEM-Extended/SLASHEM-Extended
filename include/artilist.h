@@ -27227,6 +27227,118 @@ A("Sword of Spite",				CRYPTIC_SABER, /* to-hit h@ck, if you're below half healt
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	PHYS(1, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
 
+A("I, gonna suck up the sun...",				SPE_MAGICTORCH, /* randart spellbook, reading sets the weather to "sunny" */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("In the bed gewicked",				SPE_MAGICTORCH, /* randart spellbook, reading gives 10k turns of resist sleep and +5 spawn freq for AD_SSEX */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Bad Bey",				SPE_MAGICTORCH, /* randart spellbook, reading gives 10k turns of magical breathing */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("My Crude Distortion",				SPE_MAGICTORCH, /* randart2 spellbook, upon generating you get rnz(1000) turns of anti-teleportation and reading it gives rnz(5000) more */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("change change change change liebea to 6 20 20 20 20",				SPE_MAGICTORCH, /* randart2 spellbook, upon generating you get rnz(25k) turns of wild weather, reading it randomly changes weather to either rain or thunderstorm */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Love is a great story, loven is two more",				SPE_MAGICTORCH, /* randart2 spellbook, reading spawns d7 random M2_PEACEFUL and one M4_TAME around you */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3500L ),
+
+A("Purple rain, purple rain...",				SPE_MAGICTORCH, /* randart spellbook, reading spawns rn1(3,2) purple worms on random squares and tames them */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Gronja's Falsification",				RONJA_S_JEWEL, /* female monsters regenerate even more quickly */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Kerstin's Wild Ride",				LEATHER_SADDLE, /* randart saddle, kerstin trap effect, +20 spawn freq for M5_ELDERSCROLLS, training the riding skill to 10x the threshold of the next skill level unlocks it and sets the skill back to your previous skill cap threshold */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 15000L ),
+
+A("Regulator Duster",				LEATHER_JACKET, /* +1 AC, MS_REGULATOR spawn peaceful 99% of the time */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Raider Blastmaster Armor",				RING_MAIL, /* MS_RAIDER spawn peaceful 90% of the time */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2300L ),
+
+A("Talon Combat Coat",				CHAIN_MAIL, /* +2 AC, MS_TALONCOMPANY spawn peaceful 80% of the time */
+	(SPFX_RESTR|SPFX_HPHDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Trip! Trip!",				SYMBIOTE, /* upon generating, 100 MS_OMEN and 100 MS_TRIP spawn and all get banished randomly */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Poett Roeodoer Choengoe",				SCALE_MAIL, /* MS_OE have +10 spawn freq and spawn peaceful 95% of the time, body armor skill trains twice as fast */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Arabella's Leverage",				HALBERD, /* randart2 polearm, can be used effectively in melee even when not riding, autocurses, doesn't make your hands unusable, can be invoked to perform the star digging technique, +50 spawn freq for MS_NASTYTRAP */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0, 10), NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Rita's Cute Cheat",				LEATHER_CLOAK, /* randart2 cloak, heavily autocurses with no message (and the description only says "It looks very cute!") and becomes +12 if it was lower, jette trap effect, +100 spawn freq for MS_FEMI */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Dremer Hammer",				WAR_HAMMER, /* randart2 hammer, +100 spawn freq for MS_DREMORA and +10 for M2_DEMON, prime autocurses, uncurse() fails 75% of the time if not guaranteed, unchanging, -20 increase accuracy for both melee and ranged, 1 in 5000 chance per turn to get a cursed multitrapping stone put into your inventory */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0, 50), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 50000L ),
+
+A("Bolwing's Rags",				RIPPED_CLOAK, /* +25 spawn freq for MS_SHIVERINGESLES, heavily autocurses, resist poison and sickness, prevents slowing effects */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_DRLI), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Ina's Tears",				LOW_BOOTS, /* initialized to always be hugging boots, autocurses, if u.alignlim goes up in timeout.c it goes up by d5 instead of one, MS_ANOREXIA have +20 spawn freq, 10% chance to spawn peaceful and 33% of peaceful ones are tame */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0, 12), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Ella's Vengeance",				ELLA_WEDGE_SANDALS, /* +50 spawn freq for MS_BULIMIA and they always spawn hostile, seeing a non-tame one vomit frenzies you, double resist fear, your kick deals d10 bleeding damage to targets and you have +10 melee to-hit, can be invoked to create either a throne or pentagram on your square but doing so puts a sticky black breath curse on the sandals (evil curse if already a black breath curse, AMC if both) */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0, 5), NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Oar super graphics card bug!",				BANDED_MAIL, /* 1 in 1000 chance per turn that a MS_GRAKA spawns and they have +20 spawn freq, colorshift trap effect, +10 AC, +2 MC, +15% spellcasting chances, double magic find, mystery resistance, 50% chance to resist bad effects and 33% to resist really bad ones */
+	(SPFX_RESTR|SPFX_DEFN|SPFX_EVIL), 0, 0,
+	NO_ATTK, DFNS(AD_DRLI), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
+
+A("Guroshivetu!",				LEATHER_SABER, /* randart2 saber, you become frenzied whenever something reduces you below half health if you're not already frenzied and a MS_TEMPER spawns somewhere when it happens */
+	(SPFX_RESTR|SPFX_ATTK|SPFX_EVIL), 0, 0,
+	STUN(3, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Thilo's Assholery",				NATALJE_S_JEWEL, /* +100 spawn freq for MS_MOLEST and they have 1 in 20 chance of spawning with a potion of paralysis; whenever a MS_MOLEST throws one, your free action is disabled for rnz(100) turns */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Tango Alpha Bravo",				RIN_HUNGER, /* randart2 ring, heavily autocurses, +200 spawn freq for MS_MIDI, very fast speed, +40 STR, +5 boost_power_value */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Ronja's Z-Push",				LOW_BOOTS, /* initialized to always be cuddle cloth boots, ronja trap effect, +50 spawn freq for MS_SILLY */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_DFLAG2), 0, (M2_UNDEAD),
+	PHYS(0, 20), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Cassle Height Storm",				PIZZA, /* eating it boosts your strength like a giant corpse and gives +20 spawn freq for MS_HERCULES for rnz(10k) turns */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 600L ),
+
+A("Climxian Worship",				NATALIA_S_JEWEL, /* lara trap effect, +50 spawn freq for MS_SEMEN, jumping, invoke boosts your gun control skill cap by one but that works only if you don't currently have a ragnarok timer and causes you to receive one */
+	(SPFX_RESTR|SPFX_NOWISH|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 50000L ),
+
+A("They come from Mecklenburg-Vorpommern",				BRONZE_PLATE_MAIL, /* monster sound effect, sticky autocurses, +10 AC, +50 spawn freq for MS_INCISION but all your weapons have +rn1(20,20) damage bonus against them and +rn1(5,5) against MS_CONVERT as well as +rn1(10,10) against MS_HCALIEN; if you're chaotic, 80% chance that alignment-reducing effects don't reduce it, 90% chance that increasesincounter doesn't affect you and 1 in 20000 chance per turn that divine anger times out by one */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 7000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

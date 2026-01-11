@@ -894,12 +894,15 @@ register struct monst *mtmp;
 	if (uleft && uleft->oartifact == ART_ACTUAL_CAVE_DWELLING) tmp += 2;
 	if (uright && uright->oartifact == ART_ACTUAL_CAVE_DWELLING) tmp += 2;
 	if (uright && uright->oartifact == ART_CERBERUS_BAND) tmp += 3;
+	if (uarmf && uarmf->oartifact == ART_ELLA_S_VENGEANCE) tmp += 10;
 	if (uarmh && uarmh->oartifact == ART_SENOBIA_S_CROWN) tmp += 3;
 	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_IMANI_S_POINT) tmp += 5;
 	if (ublindf && ublindf->oartifact == ART_MEANINGFUL_CHALLENGE) tmp += 2;
 	if (uleft && uleft->oartifact == ART_CHERRYTAPPER) tmp += 10;
 	if (uright && uright->oartifact == ART_CHERRYTAPPER) tmp += 10;
 	if (uarm && uarm->oartifact == ART_ARMOR_PIERCE) tmp += 50;
+	if (uwep && uwep->oartifact == ART_DREMER_HAMMER) tmp -= 20;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_DREMER_HAMMER) tmp -= 20;
 	if (uwep && uwep->oartifact == ART_DOUBLE_BESTARD) tmp -= rnd(20);
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_DOUBLE_BESTARD) tmp -= rnd(20);
 	if (uwep && uwep->oartifact == ART_DESANN_S_WRATH) tmp -= 8;
@@ -2478,7 +2481,7 @@ int dieroll;
 		    /* or strike with a missile in your hand... */
 		    (!thrown && (is_missile(obj) || is_ammo(obj))) ||
 		    /* or use a pole at short range and not mounted... */
-		    (!thrown && !u.usteed && !(tech_inuse(T_POLE_MELEE)) && is_pole(obj)) ||
+		    (!thrown && !u.usteed && !(obj->oartifact == ART_ARABELLA_S_LEVERAGE) && !(tech_inuse(T_POLE_MELEE)) && is_pole(obj)) ||
 		    /* lightsaber that isn't lit ;) */
 		    (is_lightsaber(obj) && !obj->lamplit) ||
 		    /* or throw a missile without the proper bow... */
@@ -2506,7 +2509,7 @@ int dieroll;
 
 		/* Bashing with bows, darts, ranseurs or inactive lightsabers might not be completely useless... --Amy */
 
-		    if (( (is_launcher(obj) && obj->otyp != WEAPON_SIGN && !(obj->otyp == LASERXBOW && obj->lamplit) && !(obj->otyp == KLIUSLING && obj->lamplit)) || is_missile(obj) || is_ammo(obj) || (is_pole(obj) && !(tech_inuse(T_POLE_MELEE)) && !u.usteed) || (is_lightsaber(obj) && !obj->lamplit) ) && !thrown) {
+		    if (( (is_launcher(obj) && obj->otyp != WEAPON_SIGN && !(obj->otyp == LASERXBOW && obj->lamplit) && !(obj->otyp == KLIUSLING && obj->lamplit)) || is_missile(obj) || is_ammo(obj) || (is_pole(obj) && !(obj->oartifact == ART_ARABELLA_S_LEVERAGE) && !(tech_inuse(T_POLE_MELEE)) && !u.usteed) || (is_lightsaber(obj) && !obj->lamplit) ) && !thrown) {
 
 
 			if (!(PlayerCannotUseSkills) && !rn2(2)) {
@@ -4754,9 +4757,9 @@ int dieroll;
 	    }
 
 		/* bashing with launchers or other "bad" weapons shouldn't give insane bonuses --Amy */
-		if (wep && !(( (is_launcher(wep) && !(wep->otyp == LASERXBOW && wep->lamplit) && !(wep->otyp == KLIUSLING && wep->lamplit)) || is_missile(wep) || is_ammo(wep) || (is_pole(wep) && !(tech_inuse(T_POLE_MELEE)) && !u.usteed) || (is_lightsaber(wep) && !wep->lamplit) ) && !thrown)) tmp += weapon_dam_bonus(wep, FALSE);
+		if (wep && !(( (is_launcher(wep) && !(wep->otyp == LASERXBOW && wep->lamplit) && !(wep->otyp == KLIUSLING && wep->lamplit)) || is_missile(wep) || is_ammo(wep) || (is_pole(wep) && !(wep->oartifact == ART_ARABELLA_S_LEVERAGE) && !(tech_inuse(T_POLE_MELEE)) && !u.usteed) || (is_lightsaber(wep) && !wep->lamplit) ) && !thrown)) tmp += weapon_dam_bonus(wep, FALSE);
 
-		if (wep && !thrown && !(( (is_launcher(wep) && !(wep->otyp == LASERXBOW && wep->lamplit) && !(wep->otyp == KLIUSLING && wep->lamplit)) || is_missile(wep) || is_ammo(wep) || (is_pole(wep) && !(tech_inuse(T_POLE_MELEE)) && !u.usteed) || (is_lightsaber(wep) && !wep->lamplit) )) ) tmp += melee_dam_bonus(wep);	/* extra damage bonus added by Amy */
+		if (wep && !thrown && !(( (is_launcher(wep) && !(wep->otyp == LASERXBOW && wep->lamplit) && !(wep->otyp == KLIUSLING && wep->lamplit)) || is_missile(wep) || is_ammo(wep) || (is_pole(wep) && !(wep->oartifact == ART_ARABELLA_S_LEVERAGE) && !(tech_inuse(T_POLE_MELEE)) && !u.usteed) || (is_lightsaber(wep) && !wep->lamplit) )) ) tmp += melee_dam_bonus(wep);	/* extra damage bonus added by Amy */
 
 		if (wep && thrown) tmp += ranged_dam_bonus(wep);	/* ditto */
 
@@ -4854,6 +4857,12 @@ int dieroll;
 
 		if (bmwride(ART_MARLOWE_S_CAMEL) && (mon->data->mlet == S_CENTAUR || mon->data->mlet == S_UNICORN) ) {
 			tmp += rn1(8,8);
+		}
+
+		if (obj && uarm && uarm->oartifact == ART_THEY_COME_FROM_MECKLENBURG) {
+			if (monstersoundtype(mon) == MS_INCISION) tmp += rn1(20,20);
+			if (monstersoundtype(mon) == MS_HCALIEN) tmp += rn1(10,10);
+			if (monstersoundtype(mon) == MS_CONVERT) tmp += rn1(5,5);
 		}
 
 		if (thrown && obj && obj->oartifact == ART_MESHERABANE && is_elonamonster(mon->data)) {
@@ -6021,7 +6030,7 @@ melatechoice:
 				} /* end lightsaber-specific code */
 
 				/* For some reason, "wep" isn't always defined, yet the checks above don't crash... --Amy */
-				if (wep && !uarms && !is_missile(wep) && !is_ammo(wep) && !(is_launcher(wep) && !(wep->otyp == LASERXBOW && wep->lamplit) && !(wep->otyp == KLIUSLING && wep->lamplit)) && !(is_pole(wep) && !(tech_inuse(T_POLE_MELEE)) && !u.usteed) && bimanual(wep)) {
+				if (wep && !uarms && !is_missile(wep) && !is_ammo(wep) && !(is_launcher(wep) && !(wep->otyp == LASERXBOW && wep->lamplit) && !(wep->otyp == KLIUSLING && wep->lamplit)) && !(is_pole(wep) && !(wep->oartifact == ART_ARABELLA_S_LEVERAGE) && !(tech_inuse(T_POLE_MELEE)) && !u.usteed) && bimanual(wep)) {
 					u.utwohandedcombatturns++;
 					if (u.utwohandedcombatturns >= 3) {
 						u.utwohandedcombatturns = 0;

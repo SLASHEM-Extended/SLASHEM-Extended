@@ -2718,7 +2718,13 @@ meatmetal(mtmp)
 
 		    if (monstersoundtype(mtmp) == MS_BULIMIA) { /* bulimic monsters vomit when they eat, and become confused/stunned --Amy */
 			mtmp->mconf = mtmp->mstun = TRUE;
-			if (canseemon(mtmp)) pline("%s vomits.", Monnam(mtmp));
+			if (canseemon(mtmp)) {
+				pline("%s vomits.", Monnam(mtmp));
+				if (uarmf && uarmf->oartifact == ART_ELLA_S_VENGEANCE && !u.berserktime) {
+					u.berserktime = 25;
+					You("are engulfed in fury!");
+				}
+			}
 		    }
 
 		    mtmp->meating = otmp->owt/2 + 1;
@@ -2832,7 +2838,13 @@ meatlithic(mtmp)
 
 		    if (monstersoundtype(mtmp) == MS_BULIMIA) { /* bulimic monsters vomit when they eat, and become confused/stunned --Amy */
 			mtmp->mconf = mtmp->mstun = TRUE;
-			if (canseemon(mtmp)) pline("%s vomits.", Monnam(mtmp));
+			if (canseemon(mtmp)) {
+				pline("%s vomits.", Monnam(mtmp));
+				if (uarmf && uarmf->oartifact == ART_ELLA_S_VENGEANCE && !u.berserktime) {
+					u.berserktime = 25;
+					You("are engulfed in fury!");
+				}
+			}
 		    }
 
 		    u.cnd_moneatstone++;
@@ -2935,7 +2947,13 @@ meatanything(mtmp)
 
 		    if (monstersoundtype(mtmp) == MS_BULIMIA) { /* bulimic monsters vomit when they eat, and become confused/stunned --Amy */
 			mtmp->mconf = mtmp->mstun = TRUE;
-			if (canseemon(mtmp)) pline("%s vomits.", Monnam(mtmp));
+			if (canseemon(mtmp)) {
+				pline("%s vomits.", Monnam(mtmp));
+				if (uarmf && uarmf->oartifact == ART_ELLA_S_VENGEANCE && !u.berserktime) {
+					u.berserktime = 25;
+					You("are engulfed in fury!");
+				}
+			}
 		    }
 
 		    u.cnd_moneatall++;
@@ -3033,7 +3051,13 @@ meatcorpse(mtmp)
 
 		    if (monstersoundtype(mtmp) == MS_BULIMIA) { /* bulimic monsters vomit when they eat, and become confused/stunned --Amy */
 			mtmp->mconf = mtmp->mstun = TRUE;
-			if (canseemon(mtmp)) pline("%s vomits.", Monnam(mtmp));
+			if (canseemon(mtmp)) {
+				pline("%s vomits.", Monnam(mtmp));
+				if (uarmf && uarmf->oartifact == ART_ELLA_S_VENGEANCE && !u.berserktime) {
+					u.berserktime = 25;
+					You("are engulfed in fury!");
+				}
+			}
 		    }
 
 		    mtmp->meating = 2;
@@ -3124,7 +3148,13 @@ meatobj(mtmp)		/* for gelatinous cubes */
 
 		if (monstersoundtype(mtmp) == MS_BULIMIA) { /* bulimic monsters vomit when they eat, and become confused/stunned --Amy */
 			mtmp->mconf = mtmp->mstun = TRUE;
-			if (canseemon(mtmp)) pline("%s vomits.", Monnam(mtmp));
+			if (canseemon(mtmp)) {
+				pline("%s vomits.", Monnam(mtmp));
+				if (uarmf && uarmf->oartifact == ART_ELLA_S_VENGEANCE && !u.berserktime) {
+					u.berserktime = 25;
+					You("are engulfed in fury!");
+				}
+			}
 		}
 
 		u.cnd_moneatorganic++;

@@ -564,6 +564,11 @@ Boots_on()
 	Your("boots became cursed.");
     }
 
+    if (uarmf && uarmf->oartifact == ART_INA_S_TEARS && !uarmf->cursed) {
+	curse(uarmf);
+	pline("Tears run down your cheeks as you put on these boots and realize they've become cursed.");
+    }
+
     if (uarmf && uarmf->oartifact == ART_NINA_S_NONCOOPERATION) {
 	uarmf->oerodeproof = TRUE;
 	uarmf->rknown = TRUE;
@@ -1977,6 +1982,12 @@ Cloak_on()
 		curse(uarmc);
 	}
 
+	if (uarmc && !(uarmc->hvycurse) && uarmc->oartifact == ART_BOLWING_S_RAGS) {
+		pline("Your cloak becomes heavily cursed.");
+		curse(uarmc);
+		uarmc->hvycurse = TRUE;
+	}
+
 	if (uarmc && !(uarmc->cursed) && uarmc->oartifact == ART_INA_S_APPRENTICESHIP) {
 		pline("Bad for you - you just cursed yourself with Ina's anorexia. :-(");
 		curse(uarmc);
@@ -2104,6 +2115,13 @@ Cloak_on()
 		 * open your inventory 1000 turns later and discover what happened! :-P --Amy
 		 * To clarify: Rita does not actually WEAR this thing.	
 		 * She made it to lure in unsuspecting victims of course! */
+	}
+
+	if (uarmc && uarmc->oartifact == ART_RITA_S_CUTE_CHEAT) {
+		curse(uarmc);
+		uarmc->hvycurse = TRUE;
+		if (uarmc->spe < 12) uarmc->spe = 12;
+		/* like the other Rita artifacts, there is no message --Amy */
 	}
 
 	if (uarmc && uarmc->oartifact == ART_RITA_S_LOVELY_OVERGARMENT) {
@@ -4828,6 +4846,11 @@ Armor_on()
 		makeknown(uarm->otyp);
 	}
 
+	if (uarm && uarm->oartifact == ART_THEY_COME_FROM_MECKLENBURG) {
+		curse(uarm);
+		uarm->stckcurse = TRUE;
+	}
+
 	if (uarm && uarm->oartifact == ART_HENRIETTA_S_BOMB_SUIT && !(uarmf && uarmf->otyp == HENRIETTA_COMBAT_BOOTS) ) {
 		curse(uarm);
 	}
@@ -6212,6 +6235,12 @@ register struct obj *obj;
     if (obj->oartifact == ART_PRAEFAME && !obj->cursed) {
 		curse(obj);
 		Your("ring seems to have cursed itself.");
+    }
+
+    if (obj->oartifact == ART_TANGO_ALPHA_BRAVO) {
+		curse(obj);
+		obj->hvycurse = TRUE;
+		Your("ring is heavily cursed.");
     }
 
     if (obj->oartifact == ART_SECOND_EXCHANGE && !obj->cursed) {
@@ -8044,12 +8073,15 @@ find_ac()
 	if (u.martialstyle == MARTIALSTYLE_BUHURT && uarmh && is_power_helm(uarmh)) uac -= 5;
 	if (uarmf && uarmf->oartifact == ART_SUSCHEL_KUNA) uac -= 3;
 	if (uarmc && uarmc->oartifact == ART_DES_MIRREN) uac -= 3;
+	if (uarm && uarm->oartifact == ART_REGULATOR_DUSTER) uac -= 1;
+	if (uarm && uarm->oartifact == ART_TALON_COMBAT_COAT) uac -= 2;
 	if (uarmc && uarmc->oartifact == ART_BORINGPAD) uac -= 3;
 	if (uarm && uarm->oartifact == ART_HARDUP) uac -= 2;
 	if (uarm && uarm->oartifact == ART_JUST_A_HUNK_OF_AC) uac -= 7;
 	if (uarm && uarm->oartifact == ART_FOKING_TENK) uac -= 7;
 	if (uarm && uarm->oartifact == ART_SOFT_GIRL) uac -= 5;
 	if (uarm && uarm->oartifact == ART_NOPPED_SUIT) uac -= 3;
+	if (uarm && uarm->oartifact == ART_THEY_COME_FROM_MECKLENBURG) uac -= 10;
 	if (uarm && uarm->oartifact == ART_BLASWON) uac -= 1;
 	if (uarm && uarm->oartifact == ART_TANKSTA_S_SUIT) uac -= 6;
 	if (uarmc && uarmc->oartifact == ART_NIMER_AGAIN) uac -= 10;
@@ -8092,6 +8124,7 @@ find_ac()
 	if (uarm && uarm->oartifact == ART_ERDRICK_S_ARMOR) uac -= 5;
 	if (uarmc && uarmc->oartifact == ART_SPACEWASTE) uac -= 3;
 	if (uarmh && uarmh->oartifact == ART_NOSED_BUG) uac -= 7;
+	if (uarm && uarm->oartifact == ART_OAR_SUPER_GRAPHICS_CARD_BU) uac -= 10;
 	if (uarmh && uarmh->oartifact == ART_NO_MIND_DECAY) uac -= 5;
 	if (uarmf && uarmf->oartifact == ART_PORCELAIN_ELEPHANT) uac -= 5;
 	if (uarmg && uarmg->oartifact == ART_EXTREMOPLAS) uac -= 10;

@@ -852,6 +852,8 @@ struct you {
 	int tempburntbooks;	/* temporarily cause all spellbooks to spawn burnt */
 	int tempnastystonefreq;	/* temporary +200 spawn chance for gray snipers and the like, and nasty stones aren't less likely to spawn */
 	int tempwwwww;		/* temporary 1 in 10000 chance per turn that all monsters on the level have their HP reduced to 10% of the previous value */
+	int tempssex5;		/* temporary +5 spawn freq for AD_SSEX */
+	int temphercules20;	/* temporary +20 spawn freq for MS_HERCULES */
 
 	int tempnukaeffect;	/* temporary feminism trap effect that corresponds to a bottle of Nuka Cola */
 	int tempnukaefftype;	/* the type of temporary feminism trap effect for the above */

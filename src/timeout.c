@@ -358,6 +358,11 @@ nh_timeout()
 		if (u.tempspiderspawns < 0) u.tempspiderspawns = 0; /* fail safe */
 	}
 
+	if (u.tempssex5) {
+		u.tempssex5--;
+		if (u.tempssex5 < 0) u.tempssex5 = 0; /* fail safe */
+	}
+
 	if (u.tempcritical10) {
 		u.tempcritical10--;
 		if (u.tempcritical10 < 0) u.tempcritical10 = 0; /* fail safe */
@@ -397,6 +402,11 @@ nh_timeout()
 		u.tempmorepokemon--;
 		if (u.tempmorepokemon < 0) u.tempmorepokemon = 0; /* fail safe */
 		if (!u.tempmorepokemon) You("feel that pokemon are no longer more likely to spawn.");
+	}
+
+	if (u.temphercules20) {
+		u.temphercules20--;
+		if (u.temphercules20 < 0) u.temphercules20 = 0; /* fail safe */
 	}
 
 	if (u.temprandospawnfreq) {
@@ -4173,8 +4183,10 @@ nh_timeout()
 
 	/* Max alignment record moved from align.h, so we can make it into a dynamic function --Amy */
 
-	if (!HaveTheAlignmentProblem && !rn2(Race_if(PM_UNALIGNMENT_THING) ? 50 : 200) && ((u.alignlim < 20) ? (TRUE) : (rnd(u.alignlim) < 20) ) )
+	if (!HaveTheAlignmentProblem && !rn2(Race_if(PM_UNALIGNMENT_THING) ? 50 : 200) && ((u.alignlim < 20) ? (TRUE) : (rnd(u.alignlim) < 20) ) ) {
+		if (uarmf && uarmf->oartifact == ART_INA_S_TEARS) u.alignlim += rn2(4);
 		u.alignlim++;
+	}
 
 	if (HaveTheAlignmentProblem && !rn2(Race_if(PM_UNALIGNMENT_THING) ? 50 : 200) ) {
 		u.alignlim--;

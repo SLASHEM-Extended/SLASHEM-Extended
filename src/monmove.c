@@ -247,6 +247,7 @@ boolean digest_meal;
 	    (!rn2(regenrate) || (FemtrapActiveGudrun && mon->female && humanoid(mon->data)) || regenerates(mon->data) || mercedesride(ART_AGAINCHEWER, mon) || mon->egotype_regeneration )) mon->mhp++;
 
 	if ((mon->mhp < mon->mhpmax) && FemtrapActiveRonja && mon->female) mon->mhp++;
+	if ((mon->mhp < mon->mhpmax) && have_gronjajewel() && mon->female) mon->mhp++;
 
 	if (mon->data == &mons[PM_GROGGY_GUY]) {
 		mon->mhp += rnd(5);
@@ -2142,7 +2143,7 @@ newbossSING:
 	}
 
 	/* monster noise trap: some of these noises have effects, might add others in future --Amy */
-	if ((MonnoiseEffect || (uarmf && uarmf->oartifact == ART_IS_THERE_A_SOUND_) || (uarm && uarm->oartifact == ART_JACINTA_S_PRECIOUS) || (uarm && uarm->oartifact == ART_ZURA_S_DRESSCODE) || u.uprops[MONNOISE_EFFECT].extrinsic || have_monnoisestone()) && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !rn2(MonNoiseXtra ? 50 : 250) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) ) {
+	if ((MonnoiseEffect || (uarmf && uarmf->oartifact == ART_IS_THERE_A_SOUND_) || (uarm && uarm->oartifact == ART_THEY_COME_FROM_MECKLENBURG) || (uarm && uarm->oartifact == ART_JACINTA_S_PRECIOUS) || (uarm && uarm->oartifact == ART_ZURA_S_DRESSCODE) || u.uprops[MONNOISE_EFFECT].extrinsic || have_monnoisestone()) && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !rn2(MonNoiseXtra ? 50 : 250) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) ) {
 		switch (monstersoundtype(mtmp)) {
 
 			case MS_PRIEST:

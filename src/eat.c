@@ -8368,6 +8368,12 @@ register struct obj *otmp;
 		}
 	}
 
+	if (otmp && otmp->oartifact == ART_CASSLE_HEIGHT_STORM) {
+		gainstr((struct obj *)0, 0);
+		pline(FunnyHallu ? "You feel like ripping out some trees!" : "You feel stronger!");
+		u.temphercules20 += rnz(10000);
+	}
+
 	if (otmp && otmp->oartifact == ART_COLORVISION) {
 		if(!(HPoison_resistance & FROMOUTSIDE)) {
 			You_feel(Poison_resistance ? "especially healthy." : "healthy.");

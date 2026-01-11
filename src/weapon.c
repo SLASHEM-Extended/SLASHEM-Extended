@@ -7220,6 +7220,7 @@ int degree;
 	if (uarmc && uarmc->oartifact == ART_INA_S_APPRENTICESHIP && skill == P_HEALING_SPELL) degree *= 3;
 	if (uarmf && uarmf->oartifact == ART_INGRID_S_SECRETARY_OFFICE && skill == P_CONE_HEELS) degree *= 3;
 	if (uarmg && uarmg->oartifact == ART_NIA_S_NEAR_MISS && skill == P_MISSILE_WEAPONS) degree *= 2;
+	if (uarm && uarm->oartifact == ART_POETT_ROEODOER_CHOENGOE && skill == P_BODY_ARMOR) degree *= 2;
 	if (Race_if(PM_AZTPOK) && skill == P_SPIRITUALITY) {
 		if (P_ADVANCE(skill) >= 4320) degree *= 7;
 		else if (P_ADVANCE(skill) >= 2500) degree *= 6;
@@ -7425,6 +7426,39 @@ screwupsdone:
 			pline("You can now become grand master in riding!");
 		} else if (P_MAX_SKILL(P_RIDING) == P_GRAND_MASTER && P_ADVANCE(P_RIDING) >= 43200) {
 			P_ADVANCE(P_RIDING) = 0;
+			skill_sanity_check(P_RIDING);
+			P_MAX_SKILL(P_RIDING) = P_SUPREME_MASTER;
+			pline("You can now become supreme master in riding!");
+		}
+	}
+
+	if (bmwride(ART_KERSTIN_S_WILD_RIDE) && skill == P_RIDING && (P_MAX_SKILL(skill) < P_SUPREME_MASTER) ) {
+		if (P_RESTRICTED(P_RIDING) && P_ADVANCE(P_RIDING) >= 200) {
+			unrestrict_weapon_skill(P_RIDING);
+			P_MAX_SKILL(P_RIDING) = P_BASIC;
+			You("learn the riding skill!");
+		} else if (P_MAX_SKILL(P_RIDING) == P_BASIC && P_ADVANCE(P_RIDING) >= 1600) {
+			P_ADVANCE(P_RIDING) = 20;
+			skill_sanity_check(P_RIDING);
+			P_MAX_SKILL(P_RIDING) = P_SKILLED;
+			pline("You can now become skilled in riding!");
+		} else if (P_MAX_SKILL(P_RIDING) == P_SKILLED && P_ADVANCE(P_RIDING) >= 5400) {
+			P_ADVANCE(P_RIDING) = 160;
+			skill_sanity_check(P_RIDING);
+			P_MAX_SKILL(P_RIDING) = P_EXPERT;
+			pline("You can now become expert in riding!");
+		} else if (P_MAX_SKILL(P_RIDING) == P_EXPERT && P_ADVANCE(P_RIDING) >= 12800) {
+			P_ADVANCE(P_RIDING) = 540;
+			skill_sanity_check(P_RIDING);
+			P_MAX_SKILL(P_RIDING) = P_MASTER;
+			pline("You can now become master in riding!");
+		} else if (P_MAX_SKILL(P_RIDING) == P_MASTER && P_ADVANCE(P_RIDING) >= 25000) {
+			P_ADVANCE(P_RIDING) = 1280;
+			skill_sanity_check(P_RIDING);
+			P_MAX_SKILL(P_RIDING) = P_GRAND_MASTER;
+			pline("You can now become grand master in riding!");
+		} else if (P_MAX_SKILL(P_RIDING) == P_GRAND_MASTER && P_ADVANCE(P_RIDING) >= 43200) {
+			P_ADVANCE(P_RIDING) = 2500;
 			skill_sanity_check(P_RIDING);
 			P_MAX_SKILL(P_RIDING) = P_SUPREME_MASTER;
 			pline("You can now become supreme master in riding!");

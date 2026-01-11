@@ -365,6 +365,16 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 		uwep->hvycurse = uwep->prmcurse = TRUE;
 	}
 
+	if (uwep && uwep->oartifact == ART_DREMER_HAMMER) {
+		curse(uwep);
+		uwep->hvycurse = uwep->prmcurse = TRUE;
+		pline("Uh-oh, that hammer seems to be very badly cursed.");
+	}
+
+	if (uwep && uwep->oartifact == ART_ARABELLA_S_LEVERAGE) {
+		curse(uwep);
+	}
+
 	if (uwep && uwep->oartifact == ART_TONA_S_GAMES && !uwep->hvycurse) {
 		curse(uwep);
 		uwep->hvycurse = TRUE;
@@ -891,6 +901,16 @@ swapweaponchoice:
 		if (uswapwep && uswapwep->oartifact == ART_ARABELLA_S_THINNER) {
 			curse(uswapwep);
 			uswapwep->hvycurse = uswapwep->prmcurse = TRUE;
+		}
+
+		if (uswapwep && uswapwep->oartifact == ART_DREMER_HAMMER) {
+			curse(uswapwep);
+			uswapwep->hvycurse = uswapwep->prmcurse = TRUE;
+			pline("Uh-oh, that hammer seems to be very badly cursed.");
+		}
+
+		if (uswapwep && uswapwep->oartifact == ART_ARABELLA_S_LEVERAGE) {
+			curse(uswapwep);
 		}
 
 		if (uswapwep && uswapwep->oartifact == ART_TONA_S_GAMES && !uswapwep->hvycurse) {

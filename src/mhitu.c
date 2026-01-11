@@ -2038,6 +2038,7 @@ u_slow_down()
 	if (uarm && uarm->oartifact == ART_GO_MIEFTLY_THEN_QUEUE__DAE) return;
 	if (uarmf && uarmf->otyp == SPEED_HOLDING_BOOTS) return;
 	if (bmwride(ART_MARLOWE_S_CAMEL)) return;
+	if (uarmc && uarmc->oartifact == ART_BOLWING_S_RAGS) return;
 	if (uarmc && uarmc->oartifact == ART_FAST_AURORA) return;
 	if (uwep && uwep->oartifact == ART_MAILIE_S_SELF_CENTRATION) return;
 	if (uarmf && uarmf->oartifact == ART_ERIK_S_MARCHING_BOOTS) return;
@@ -7377,6 +7378,7 @@ struct monst *mon;
 		if (uarms && uarms->otyp == NOPE_DRAGON_SCALE_SHIELD) armpro += 2;
 		if (uarmc && uarmc->oartifact == ART_EDNA_S_CALM) armpro += 5;
 		if (uarmc && uarmc->oartifact == ART_SI) armpro += 2;
+		if (uarm && uarm->oartifact == ART_OAR_SUPER_GRAPHICS_CARD_BU) armpro += 2;
 		if (uamul && uamul->otyp == AMULET_OF_GUARDING) armpro++;
 		if (uarmc && Role_if(PM_PRIEST) && itemhasappearance(uarmc, APP_ORNAMENTAL_COPE) ) armpro++;
 		if (uwep && uwep->oartifact == ART_DAINTY_SLOAD) armpro++;

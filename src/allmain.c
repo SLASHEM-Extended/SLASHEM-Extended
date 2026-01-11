@@ -2836,6 +2836,41 @@ nyssaraend:
 			}
 		}
 
+		if (uwep && uwep->oartifact == ART_DREMER_HAMMER && !rn2(5000)) {
+			struct obj *ldstone;
+
+			pline("A gray stone appears from nowhere!");
+
+			ldstone = mksobj_at(MULTITRAPPING_STONE, u.ux, u.uy, TRUE, FALSE, FALSE);
+			if (ldstone) {
+				ldstone->quan = 1L;
+				ldstone->owt = weight(ldstone);
+				if (!Blind) ldstone->dknown = 1;
+				if (ldstone) {
+				      pline("The stone automatically wanders into your knapsack!");
+					(void) pickup_object(ldstone, 1L, TRUE, TRUE);
+				}
+			}
+
+		}
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_DREMER_HAMMER && !rn2(5000)) {
+			struct obj *ldstone;
+
+			pline("A gray stone appears from nowhere!");
+
+			ldstone = mksobj_at(MULTITRAPPING_STONE, u.ux, u.uy, TRUE, FALSE, FALSE);
+			if (ldstone) {
+				ldstone->quan = 1L;
+				ldstone->owt = weight(ldstone);
+				if (!Blind) ldstone->dknown = 1;
+				if (ldstone) {
+				      pline("The stone automatically wanders into your knapsack!");
+					(void) pickup_object(ldstone, 1L, TRUE, TRUE);
+				}
+			}
+
+		}
+
 		if (uleft && uleft->oartifact == ART_LAISHA_DEAL && !rn2(2000)) adjalign(1);
 		if (uright && uright->oartifact == ART_LAISHA_DEAL && !rn2(2000)) adjalign(1);
 
@@ -4513,6 +4548,15 @@ nyssaraend:
 			} else if (u.fumbleduration < 1000) u.fumbleduration = 1000;
 		}
 
+		if (uarm && uarm->oartifact == ART_THEY_COME_FROM_MECKLENBURG && (u.ualign.type == A_CHAOTIC) && !rn2(20000)) {
+			if (u.ugangr > 0) {
+				u.ugangr--;
+				if (u.ugangr) pline("%s seems %s.", u_gname(), FunnyHallu ? "groovy" : "slightly mollified");
+				else pline("%s seems %s.", u_gname(), FunnyHallu ? "cosmic (not a new fact)" : "mollified");
+			}
+
+		}
+
 		if (uimplant && uimplant->oartifact == ART_DEAR_GOD__HELP_ME_) {
 			if (!rn2(powerfulimplants() ? 5000 : 15000)) {
 				if (u.ugangr > 0) {
@@ -5213,6 +5257,18 @@ newbossKTA:
 					}
 				}
 			}
+		}
+
+		if (uarm && uarm->oartifact == ART_OAR_SUPER_GRAPHICS_CARD_BU && !rn2(1000)) {
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			(void) makemon(specialtensmon(453), 0, 0, MM_ADJACENTOK); /* MS_GRAKA */
+
+			u.aggravation = 0;
 		}
 
 		if (uarmc && uarmc->oartifact == ART_VERENA_S_CLOAK_OF_BLOOMING) { /* might be a bit laggy --Amy */

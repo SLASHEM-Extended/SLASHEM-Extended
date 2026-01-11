@@ -631,6 +631,10 @@ init_randarts()
 	artilist[ART_RNG_S_EMBRACE].otyp = randartcloak();
 	artilist[ART_RNG_S_GRIMACE].otyp = randarthelm();
 	artilist[ART_JUBELJUBIJEEAH].otyp = randartspellbook();
+	artilist[ART_PURPLE_RAIN__PURPLE_RAIN__].otyp = randartspellbook();
+	artilist[ART_I__GONNA_SUCK_UP_THE_SUN__].otyp = randartspellbook();
+	artilist[ART_IN_THE_BED_GEWICKED].otyp = randartspellbook();
+	artilist[ART_BAD_BEY].otyp = randartspellbook();
 	artilist[ART_LEVALA_STING_LOVE].otyp = randartspellbook();
 	artilist[ART_I_PONSER_TO_MAKE_STINGER_B].otyp = randartspellbook();
 	artilist[ART_SCARS_ETCHED_BY_FLAME].otyp = randartspellbook();
@@ -802,6 +806,7 @@ init_randarts()
 	artilist[ART_FROM_MASHHAD_TO_AHVAZ].otyp = randartdragonscaleshield();
 	artilist[ART_DIG__OF_COURSE].otyp = randartmattock();
 	artilist[ART_ZIN_BA].otyp = randartsaddle();
+	artilist[ART_KERSTIN_S_WILD_RIDE].otyp = randartsaddle();
 	artilist[ART_YARA_S_HANDLE].otyp = randartsaddle();
 	artilist[ART_RHINE_CROSSING].otyp = randartsaddle();
 	artilist[ART_MARLOWE_S_CAMEL].otyp = randartsaddle();
@@ -809,6 +814,7 @@ init_randarts()
 	artilist[ART_A_HOHES_U].otyp = randartelementhorn();
 	artilist[ART_TURN_TO_ELEVEN].otyp = randartelementhorn();
 
+	artilist[ART_RITA_S_CUTE_CHEAT].otyp = randartcloakX();
 	artilist[ART_JANA_S_GRAVE_WALL].otyp = randartcloakX();
 	artilist[ART_NIMER_AGAIN].otyp = randartcloakX();
 	artilist[ART_GODOT_S_COFFEE_SUPPLY].otyp = randartcloakX();
@@ -856,6 +862,9 @@ init_randarts()
 	artilist[ART_SPECIAL_LACK].otyp = randartmeleeweaponX();
 	artilist[ART_WING_WING].otyp = randartmeleeweaponX();
 	artilist[ART_CARMOUFALSCH].otyp = randartspellbookX();
+	artilist[ART_MY_CRUDE_DISTORTION].otyp = randartspellbookX();
+	artilist[ART_CHANGE_CHANGE_CHANGE_CHANG].otyp = randartspellbookX();
+	artilist[ART_LOVE_IS_A_GREAT_STORY__LOV].otyp = randartspellbookX();
 	artilist[ART_WHEN_THE_CITY_SWEEPS].otyp = randartspellbookX();
 	artilist[ART_YOU_SMELL_GEESH_MAMA].otyp = randartspellbookX();
 	artilist[ART_ARMANDO_S_DRIVING_FORCE].otyp = randartspellbookX();
@@ -992,6 +1001,7 @@ init_randarts()
 	artilist[ART_TEMPERATOR].otyp = randartbootsX();
 	artilist[ART_PEWWWWWWW].otyp = randartjavelinX();
 	artilist[ART_VILYA].otyp = randartringX();
+	artilist[ART_TANGO_ALPHA_BRAVO].otyp = randartringX();
 	artilist[ART_TO_JUDITHBIS].otyp = randartringX();
 	artilist[ART_RING_OF_STEEL_DRAGON].otyp = randartringX();
 	artilist[ART_MARK_OF_THE_RIGHTFUL_SCION].otyp = randartringX();
@@ -1139,6 +1149,7 @@ init_randarts()
 	artilist[ART_LOGGERS_S_OVERKILL].otyp = randarttridentX();
 	artilist[ART_POSEIDON_S_TRIDENT].otyp = randarttridentX();
 	artilist[ART_TURVANG_S_THUNDER].otyp = randarthammerX();
+	artilist[ART_DREMER_HAMMER].otyp = randarthammerX();
 	artilist[ART_LERYN_S_HAMMER].otyp = randarthammerX();
 	artilist[ART_GAIA_HAMMER].otyp = randarthammerX();
 	artilist[ART_FORGE_HAMMER_OF_THE_ARTIFI].otyp = randarthammerX();
@@ -1199,6 +1210,7 @@ init_randarts()
 	artilist[ART_KEMONONOYARI].otyp = randartspearX();
 	artilist[ART_MONS_INFERNALIS_X_].otyp = randartspearX();
 	artilist[ART_NIUR_KRAD].otyp = randartpolearmX();
+	artilist[ART_ARABELLA_S_LEVERAGE].otyp = randartpolearmX();
 	artilist[ART_ARM_OF_OLYMPIA].otyp = randartspearX();
 	artilist[ART_KAZAANA].otyp = randartglovesX();
 	artilist[ART_GAUNTLETS_OF_THE_HEALING_H].otyp = randartglovesX();
@@ -1217,6 +1229,7 @@ init_randarts()
 	artilist[ART_VILEA_S_SECRET].otyp = randartclawX();
 	artilist[ART_SUPERSTAB].otyp = randartclawX();
 	artilist[ART_VORPAL_RULER].otyp = randartsaberX();
+	artilist[ART_GUROSHIVETU_].otyp = randartsaberX();
 	artilist[ART_VENERATION_SABRE].otyp = randartsaberX();
 	artilist[ART_BLOOD_SMEARED_SAW].otyp = randartgrinderX();
 	artilist[ART_NAIL_IMPACT].otyp = randartknucklesX();
@@ -1406,6 +1419,7 @@ init_appearance_randarts()
 	artilist[ART_PRINCE_OF_PERSIA].otyp = find_appearance_armor(APP_PERSIAN_BOOTS);
 	artilist[ART_SHE_S_NOT_FORGOTTEN].otyp = find_appearance_armor(APP_PARTICULARLY_TERRIBLE_BOOTS);
 	artilist[ART_ANASTASIA_S_PLAYFULNESS].otyp = find_appearance_armor(APP_HUGGING_BOOTS);
+	artilist[ART_INA_S_TEARS].otyp = find_appearance_armor(APP_HUGGING_BOOTS);
 	artilist[ART_KATIE_MELUA_S_FEMALE_WEAPO].otyp = find_appearance_armor(APP_FLEECY_BOOTS);
 	artilist[ART_LISSIE_S_SHEAGENTUR].otyp = find_appearance_armor(APP_FLEECY_BOOTS);
 	artilist[ART_COCKUETRY].otyp = find_appearance_armor(APP_FINGERLESS_GLOVES);
@@ -1639,6 +1653,7 @@ init_appearance_randarts()
 	artilist[ART_JONADAB_S_EVERYDAY_WEAR].otyp = find_appearance_armor(APP_UGLY_BOOTS);
 	artilist[ART_AMATEURSPORTS].otyp = find_appearance_armor(APP_UNISEX_PUMPS);
 	artilist[ART_RONJA_S_FEMALE_PUSHING].otyp = find_appearance_armor(APP_CUDDLE_CLOTH_BOOTS);
+	artilist[ART_RONJA_S_Z_PUSH].otyp = find_appearance_armor(APP_CUDDLE_CLOTH_BOOTS);
 	artilist[ART_SNAILHUNT].otyp = find_appearance_armor(APP_GARDEN_SLIPPERS);
 	artilist[ART_ANTJE_S_POWERSTRIDE].otyp = find_appearance_armor(APP_DYKE_BOOTS);
 	artilist[ART_NADINE_S_CUTENESS].otyp = find_appearance_armor(APP_ANKLE_STRAP_SANDALS);
@@ -2896,8 +2911,50 @@ register boolean mod;
 
 		    }
 
+		    if (otmp && otmp->oartifact == ART_MY_CRUDE_DISTORTION) {
+			u.antitelespelltimeout += rnz(1000);
+			pline("An anti-teleportation field has been activated!");
+		    }
+
+		    if (otmp && otmp->oartifact == ART_CHANGE_CHANGE_CHANGE_CHANG) {
+			incr_itimeout(&HWildWeatherEffect, rnz(25000));
+			pline_The("weather starts changing randomly!");
+		    }
+
 		    if (otmp && otmp->oartifact == ART_NINER) {
 			otmp->spe += 9;
+		    }
+
+		    if (otmp && otmp->oartifact == ART_TRIP__TRIP_) {
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			pline("Whoops, it's getting trippy! This might result in a lag spike, please be patient.");
+			struct monst *tripmonster;
+			d_level flev;
+			int tripspawns = 100;
+			while (tripspawns > 0) {
+				tripspawns--;
+
+				if (tripspawns == 50) pline("Halfway done, please stay patient...");
+
+				tripmonster = makemon(specialtensmon(461), 0, 0, MM_ADJACENTOK|MM_ANGRY); /* MS_TRIP */
+				if (tripmonster && !mon_has_amulet(tripmonster) && !(In_endgame(&u.uz)) ) {
+					flev = random_banishment_level();
+					migrate_to_level(tripmonster, ledger_no(&flev), MIGR_RANDOM, (coord *)0);
+				}
+				tripmonster = makemon(specialtensmon(471), 0, 0, MM_ADJACENTOK|MM_ANGRY); /* MS_OMEN */
+				if (tripmonster && !mon_has_amulet(tripmonster) && !(In_endgame(&u.uz)) ) {
+					flev = random_banishment_level();
+					migrate_to_level(tripmonster, ledger_no(&flev), MIGR_RANDOM, (coord *)0);
+				}
+			}
+
+			u.aggravation = 0;
+			pline("Alright, have a nice trip.");
 		    }
 
 		    if (otmp && otmp->oartifact == ART_WHEN_THE_CITY_SWEEPS) {
@@ -7829,6 +7886,43 @@ chargingchoice:
 
 		*/
 
+		if (obj->oartifact == ART_CLIMXIAN_WORSHIP) {
+			if (u.ragnaroktimer) {
+				pline("Hmm, that didn't do anything.");
+				break;
+			}
+
+			u.ragnaroktimer = rnz(100000);
+
+			if (P_MAX_SKILL(P_GUN_CONTROL) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(P_GUN_CONTROL);
+				pline("You can now learn the gun control skill!");
+			} else if (P_MAX_SKILL(P_GUN_CONTROL) == P_UNSKILLED) {
+				unrestrict_weapon_skill(P_GUN_CONTROL);
+				pline("You can now learn the gun control skill!");
+				P_MAX_SKILL(P_GUN_CONTROL) = P_BASIC;
+			} else if (P_MAX_SKILL(P_GUN_CONTROL) == P_BASIC) {
+				P_MAX_SKILL(P_GUN_CONTROL) = P_SKILLED;
+				pline("You can now become skilled in gun control!");
+			} else if (P_MAX_SKILL(P_GUN_CONTROL) == P_SKILLED) {
+				P_MAX_SKILL(P_GUN_CONTROL) = P_EXPERT;
+				pline("You can now become expert in gun control!");
+			} else if (P_MAX_SKILL(P_GUN_CONTROL) == P_EXPERT) {
+				P_MAX_SKILL(P_GUN_CONTROL) = P_MASTER;
+				pline("You can now become master in gun control!");
+			} else if (P_MAX_SKILL(P_GUN_CONTROL) == P_MASTER) {
+				P_MAX_SKILL(P_GUN_CONTROL) = P_GRAND_MASTER;
+				pline("You can now become grand master in gun control!");
+			} else if (P_MAX_SKILL(P_GUN_CONTROL) == P_GRAND_MASTER) {
+				P_MAX_SKILL(P_GUN_CONTROL) = P_SUPREME_MASTER;
+				pline("You can now become supreme master in gun control!");
+			} else {
+				pline("Sadly your gun control skill is already maxxed.");
+			}
+
+			break;
+		}
+
 		if (obj->oartifact == ART_GORTHRAK_S_SHACKLEBANE) {
 			if (Punished) {
 				unpunish();
@@ -7847,6 +7941,34 @@ chargingchoice:
 			flags.botl = TRUE;
 
 			pline_The("bottle of Nuka Cola is named %s today!", feminismtrapname(u.nukafemeffect) );
+
+			break;
+		}
+
+		if (obj->oartifact == ART_ELLA_S_VENGEANCE) {
+
+			if (levl[u.ux][u.uy].typ != ROOM && levl[u.ux][u.uy].typ != CORR) {
+				You_feel("claustrophobic!");
+				break;
+			}
+
+			curse(obj);
+			obj->hvycurse = obj->prmcurse = obj->stckcurse = TRUE;
+			if (obj->bbrcurse) {
+				if (obj->evilcurse) obj->morgcurse = TRUE;
+				else obj->evilcurse = TRUE;
+			}
+			obj->bbrcurse = TRUE;
+			pline("A terrible black aura surrounds your sandals.");
+
+			if (rn2(2)) {
+				pline("Suddenly a pentagram is inscribed on the floor!");
+				if (FunnyHallu) pline("USEITUSEITUSEITUSEITUSEIT!"); /* thanks Antichthon :D */
+				levl[u.ux][u.uy].typ = PENTAGRAM;
+			} else {
+				pline("You build a throne.");
+				levl[u.ux][u.uy].typ = THRONE;
+			}
 
 			break;
 		}
@@ -8292,6 +8414,13 @@ findmorestonesX:
 		if (obj->oartifact == ART_SEXEHSQUIRT) {
 
 			use_temporary_tech(T_MELTEE);
+
+			break;
+		}
+
+		if (obj->oartifact == ART_ARABELLA_S_LEVERAGE) {
+
+			use_temporary_tech(T_STAR_DIGGING);
 
 			break;
 		}

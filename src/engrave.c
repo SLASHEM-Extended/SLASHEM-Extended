@@ -1547,6 +1547,7 @@ int
 freehand()
 {
 	if (uwep && uwep->oartifact == ART_WAR_S_SWORD) return 1;
+	if (uwep && uwep->oartifact == ART_ARABELLA_S_LEVERAGE) return 1;
 	if (uwep && uwep->oartifact == ART_BARANA_S_MISS) return 1;
 	if (uwep && uwep->oartifact == ART_LENNY_S_MUSIC_MAKER) return 1;
 	if (uwep && uwep->oartifact == ART_PIPPA_S_URGE) return 1;
@@ -1571,6 +1572,7 @@ int
 freehandX()
 {
 	if (uwep && uwep->oartifact == ART_WAR_S_SWORD) return 1;
+	if (uwep && uwep->oartifact == ART_ARABELLA_S_LEVERAGE) return 1;
 	if (uwep && uwep->oartifact == ART_BARANA_S_MISS) return 1;
 	if (uwep && uwep->oartifact == ART_LENNY_S_MUSIC_MAKER) return 1;
 	if (uwep && uwep->oartifact == ART_PIPPA_S_URGE) return 1;

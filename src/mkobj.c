@@ -5224,6 +5224,8 @@ boolean guaranteed; /* can it work even when you have permacurse nastytrap effec
 
 	if (otmp && otmp->oartifact == ART_HAVE_IT_ALL_BUT_NOT_GET) return; /* so immune that even "guaranteed" remove curse effects do not uncurse it --Amy */
 	if (otmp && otmp->oartifact == ART_CURSED_APACHE) return;
+	if (uwep && uwep->oartifact == ART_DREMER_HAMMER && rn2(4)) return;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_DREMER_HAMMER && rn2(4)) return;
 
 	if ((otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(100) ) {
 		otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->stckcurse = 0;

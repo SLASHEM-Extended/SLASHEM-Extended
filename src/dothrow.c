@@ -2835,6 +2835,8 @@ boolean polearming;
 	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_ACTUAL_PRECISION) tmp += 5;
 	if (uleft && uleft->oartifact == ART_BLIND_PILOT) tmp -= 10;
 	if (uright && uright->oartifact == ART_BLIND_PILOT) tmp -= 10;
+	if (uwep && uwep->oartifact == ART_DREMER_HAMMER) tmp -= 20;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_DREMER_HAMMER) tmp -= 20;
 	if (uarmc && uarmc->oartifact == ART_DOUBLE_ARROW_NOSE) tmp += 5;
 	if (uleft && uleft->oartifact == ART_SHL_THEME) tmp += 2;
 	if (uright && uright->oartifact == ART_SHL_THEME) tmp += 2;

@@ -4746,6 +4746,28 @@ maybe_scream()
 	}
     }
 
+    if (autismweaponcheck(ART_GUROSHIVETU_) && !u.berserktime) {
+	if (Upolyd && (u.mh < (u.mhmax / 2)) ) {
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+		makemon(specialtensmon(454), 0, 0, MM_ADJACENTOK|MM_ANGRY); /* MS_TEMPER */
+		u.aggravation = 0;
+		u.berserktime = 25;
+		You("fly into a berserk rage!");
+	} else if (!Upolyd && (u.uhp < (u.uhpmax / 2)) ) {
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+		makemon(specialtensmon(454), 0, 0, MM_ADJACENTOK|MM_ANGRY); /* MS_TEMPER */
+		u.aggravation = 0;
+		u.berserktime = 25;
+		You("fly into a berserk rage!");
+	}
+    }
+
     if (Upolyd) {
 	if (u.mh < (u.mhmax / 4)) distresslevel = 3;
 	else if (u.mh < (u.mhmax / 2)) distresslevel = 2;

@@ -3376,6 +3376,66 @@ struct obj *book2;
 
 	*/
 
+	if (book2->oartifact == ART_PURPLE_RAIN__PURPLE_RAIN__) {
+		register struct monst *prainmon;
+		int purplerain = rn1(3,2);
+		while (purplerain > 0) {
+			purplerain--;
+			prainmon = makemon(&mons[PM_PURPLE_WORM], 0, 0, MM_ADJACENTOK);
+			if (prainmon) {
+				prainmon = tamedog(prainmon, (struct obj *) 0, TRUE);
+			}
+		}
+	}
+
+	if (book2->oartifact == ART_LOVE_IS_A_GREAT_STORY__LOV) {
+		int peacefulmons = rnd(7);
+		while (peacefulmons > 0) {
+			peacefulmons--;
+			(void) makemon(specialtensmon(115), u.ux, u.uy, MM_ADJACENTOK); /* M2_PEACEFUL */
+		}
+		(void) makemon(specialtensmon(320), u.ux, u.uy, MM_ADJACENTOK); /* M4_TAME */
+
+	}
+
+	if (book2->oartifact == ART_MY_CRUDE_DISTORTION) {
+		u.antitelespelltimeout += rnz(5000);
+		pline("An anti-teleportation field has been activated!");
+	}
+
+	if (book2->oartifact == ART_BAD_BEY) {
+		You("hold your breath.");
+		incr_itimeout(&HMagical_breathing, 10000);
+	}
+
+	if (book2->oartifact == ART_I__GONNA_SUCK_UP_THE_SUN__) {
+		pline_The("sun comes out.");
+		u.currentweather = WEATHER_SUNNY;
+		tell_main_weather();
+	}
+
+	if (book2->oartifact == ART_CHANGE_CHANGE_CHANGE_CHANG) {
+		if (rn2(2)) {
+			pline("It starts to rain.");
+			u.currentweather = WEATHER_RAIN;
+		} else {
+			pline("A thunderstorm comes in!");
+			u.currentweather = WEATHER_THUNDERSTORM;
+		}
+		tell_main_weather();
+
+	}
+
+	if (book2->oartifact == ART_IN_THE_BED_GEWICKED) {
+		u.tempssex5 += 10000;
+		incr_itimeout(&HSleep_resistance, 10000);
+		if (FunnyHallu)
+			pline("Too much coffee!");
+		else
+			You("no longer feel tired.");
+
+	}
+
 	if (book2->oartifact == ART_LEVALA_STING_LOVE) {
 		if (!FemtrapActiveRuth) pline("You just know that your legs are going to be ripped open by very sharp-edged combat boot heels.");
 		FemaleTrapSandra += 10000;
@@ -16424,6 +16484,7 @@ int spell;
 	if (uarmh && uarmh->oartifact == ART_ZERO_PERCENT_FAILURE) chance += 10;
 	if (uarmf && uarmf->oartifact == ART_SPELLBOOTS) chance += 10;
 	if (uarmc && uarmc->oartifact == ART_HENRIETTA_S_HEAVY_CASTER) chance += 15;
+	if (uarm && uarm->oartifact == ART_OAR_SUPER_GRAPHICS_CARD_BU) chance += 15;
 	if (uarm && uarm->oartifact == ART_HELIOKOPIS_S_RAGEQUIT) chance += 20;
 	if (have_albiestone()) chance += 100;
 	if (uarmf && uarmf->oartifact == ART_ROWALLAN_S_BALLING) chance += 10;

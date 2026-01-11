@@ -11127,6 +11127,10 @@ xxx_noobj:
 		 * are not objects.  Also set dknown in mthrowu.c.
 		 */
 
+		if (have_thilojewel() && otmp && (otmp->otyp == POT_PARALYSIS) && mtmp && (monstersoundtype(mtmp) == MS_MOLEST)) {
+			u.uprops[DEAC_FREE_ACTION].intrinsic += rnz(100);
+		}
+
 		if (otmp && otmp->otyp == POT_SALT_WATER && mtmp && mtmp->data == &mons[PM_CLEANER] && Race_if(PM_ELONA_SNAIL)) {
 			verbalize(rn2(2) ? "Snail!" : "Kill!");
 		}

@@ -3192,6 +3192,8 @@ int x;
 		if (uarmc && uarmc->oartifact == ART_ANCHORAGE_BATTLECOAT) tmp += 5;
 		if (uleft && uleft->oartifact == ART_HOH_UNNE) tmp += 5;
 		if (uright && uright->oartifact == ART_HOH_UNNE) tmp += 5;
+		if (uleft && uleft->oartifact == ART_TANGO_ALPHA_BRAVO) tmp += 40;
+		if (uright && uright->oartifact == ART_TANGO_ALPHA_BRAVO) tmp += 40;
 		if (uarm && uarm->otyp == CRYSTALLINE_DRAGON_SCALES) tmp += 1;
 		if (uarmh && uarmh->oartifact == ART_KASPAR_S_HELM_OF_THE_HORNE && u.ualign.type == A_CHAOTIC) tmp += 3;
 		if (uarm && uarm->oartifact == ART_HANDSOME_THREESOME) tmp += 3;
@@ -4352,7 +4354,8 @@ increasesincounter(n)
 register int n;
 {
 	if (uarmh && uarmh->otyp == GANGSTER_CAP && rn2(2)) return;
-	
+	if (uarm && uarm->oartifact == ART_THEY_COME_FROM_MECKLENBURG && (u.ualign.type == A_CHAOTIC) && rn2(10)) return;
+
 	u.ualign.sins += n;
 }
 
@@ -4364,6 +4367,10 @@ adjalign(n)
 register int n;
 {
 	if (uarmf && uarmf->oartifact == ART_MANDY_S_RAIDWEAR && !rn2(2) && (n < 0)) {
+		return;
+	}
+
+	if (uarm && uarm->oartifact == ART_THEY_COME_FROM_MECKLENBURG && rn2(5) && (n < 0) && (u.ualign.type == A_CHAOTIC)) {
 		return;
 	}
 

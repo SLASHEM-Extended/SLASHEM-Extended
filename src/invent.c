@@ -1711,6 +1711,42 @@ have_femityjewel()
 }
 
 boolean
+have_climxianjewel()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->oartifact == ART_CLIMXIAN_WORSHIP)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_thilojewel()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->oartifact == ART_THILO_S_ASSHOLERY)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_gronjajewel()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->oartifact == ART_GRONJA_S_FALSIFICATION)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
 have_albiestone()
 {
 	register struct obj *otmp;
@@ -35997,6 +36033,62 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: autocurses and doesn't fall off when you polymorph into a form that cannot normally wear armor, significantly improves your spellcasting chances and suppresses the burn, wince and invert effects. While wearing it, shapeshifters spawn much more often and are much more likely to transform into something dangerous, which may cause you to ragequit if the resulting monsters kill you."); break;
 				case ART_SWORD_OF_SPITE:
 					pline("Artifact specs: double damage, or if you're below half health it deals triple damage. This sword is colored purple and makes it so that you take double damage while wielding it."); break;
+				case ART_I__GONNA_SUCK_UP_THE_SUN__:
+					pline("Artifact specs: reading it sets the weather to 'sunny'."); break;
+				case ART_IN_THE_BED_GEWICKED:
+					pline("Artifact specs: reading it gives you sleep resistance for a good long while and makes seducing monsters spawn more often."); break;
+				case ART_BAD_BEY:
+					pline("Artifact specs: reading it gives you magical breathing for a while."); break;
+				case ART_MY_CRUDE_DISTORTION:
+					pline("Artifact specs: upon generating, it activated an anti-teleportation field for a couple of turns. Reading it does the same but with longer duration."); break;
+				case ART_CHANGE_CHANGE_CHANGE_CHANG:
+					pline("Artifact specs: the weather is probably pretty wild now, and becomes pretty stormy if you read this book."); break;
+				case ART_LOVE_IS_A_GREAT_STORY__LOV:
+					pline("Artifact specs: reading it spawns a couple peaceful monsters around you and potentially a tame one, but the latter can also occasionally spawn hostile."); break;
+				case ART_PURPLE_RAIN__PURPLE_RAIN__:
+					pline("Artifact specs: reading it spawns a bunch of tame purple worms somewhere on the current dungeon level."); break;
+				case ART_GRONJA_S_FALSIFICATION:
+					pline("Artifact specs: further speeds up the regeneration rate of female monsters."); break;
+				case ART_KERSTIN_S_WILD_RIDE:
+					pline("Artifact specs: riding a steed with this saddle gives the kerstin trap effect and makes fallout and elder scrolls monsters spawn quite a bit more often. If you train the riding skill beyond your cap to 10x the threshold for the next skill level, that one gets unlocked, but you'll then have to train up to that skill level manually."); break;
+				case ART_REGULATOR_DUSTER:
+					pline("Artifact specs: boosts your AC by one and makes regulators usually spawn peaceful."); break;
+				case ART_RAIDER_BLASTMASTER_ARMOR:
+					pline("Artifact specs: fire resistance when worn and makes raiders spawn peaceful most of the time."); break;
+				case ART_TALON_COMBAT_COAT:
+					pline("Artifact specs: half physical damage and 2 extra points of AC when worn, and makes talon company mercs spawn peaceful most of the time."); break;
+				case ART_TRIP__TRIP_:
+					pline("Artifact specs: heh, trippy :-)"); break;
+				case ART_POETT_ROEODOER_CHOENGOE:
+					pline("Artifact specs: makes 'oe' monsters spawn more often and usually peaceful, and while wearing it, your body armor skill trains twice as fast."); break;
+				case ART_ARABELLA_S_LEVERAGE:
+					pline("Artifact specs: +10 damage and can be used in melee effectively even when you're not riding. This weapon autocurses, but doesn't make your hands unusable. It can be invoked to perform the 'star digging' technique, even if you don't actually have that one. Something tells you that this item may have some bad side effects that may involve nasty traps..."); break;
+				case ART_RITA_S_CUTE_CHEAT:
+					pline("Artifact specs: It looks very cute! Rita probably looks really kawaii if she wears it :-)"); break;
+				case ART_DREMER_HAMMER:
+					pline("Artifact specs: +50 damage, but all your melee and ranged attacks have -20 to-hit. While wielding it, dremora and demons spawn much more often. It prime autocurses and makes it much harder for you to uncurse your gear, and also gives unchanging and occasionally puts some bad gray stone into your inventory."); break;
+				case ART_BOLWING_S_RAGS:
+					pline("Artifact specs: heavily autocurses when worn and grants drain, poison and sickness resistance and prevents effects that slow you down. Monsters from the Shivering Isles will spawn much more often while you wear it."); break;
+				case ART_INA_S_TEARS:
+					pline("Artifact specs: +12 kick damage, autocurses, your alignment record limit goes up much more quickly, and anorexic monsters spawn a lot more often. Sometimes they spawn peaceful and occasionally even tame."); break;
+				case ART_ELLA_S_VENGEANCE:
+					pline("Artifact specs: +5 kick damage, bulimic monsters spawn much more often and always hostile, and if you see one vomit, you'll become frenzied. This artifact also grants double resist fear, +10 melee to-hit and allows your kick to deal bleeding damage to targets. It can be invoked while you're on a room or corridor square to turn it into either a throne or pentagram, but doing so puts a reeeeeeeeeeally bad curse on the sandals and if they're already cursed with that bad effect, the curse becomes even worse!"); break;
+				case ART_OAR_SUPER_GRAPHICS_CARD_BU:
+					pline("Artifact specs: drain resistance, 10 extra points of AC and +2 MC when worn, graka monsters spawn more often and also randomly get forcibly spawned over time, colorshift effect, improves your spellcasting success chances, double magic find and mystery resistance, and you may sometimes resist random bad effects."); break;
+				case ART_GUROSHIVETU_:
+					pline("Artifact specs: +3 to-hit and +10 stun damage, but whenever something reduces you below half of your health you become frenzied and a temper monster spawns somewhere."); break;
+				case ART_THILO_S_ASSHOLERY:
+					pline("Artifact specs: carrying it causes molesting monsters to spawn a lot more often and they sometimes carry potions of paralysis. If they throw one at you, they deactivate your free action for a while to ensure you actually get paralyzed."); break;
+				case ART_TANGO_ALPHA_BRAVO:
+					pline("Artifact specs: heavily autocurses, greatly increases spawn rate for midi monsters when worn, very fast speed, +40 strength and +5 boost power."); break;
+				case ART_RONJA_S_Z_PUSH:
+					pline("Artifact specs: your kick deals +20 damage to undead but you also have the ronja trap effect and silly monsters spawn a lot more often."); break;
+				case ART_CASSLE_HEIGHT_STORM:
+					pline("Artifact specs: eating it can boost your strength but hercules monsters spawn more often for a while."); break;
+				case ART_CLIMXIAN_WORSHIP:
+					pline("Artifact specs: carrying it gives the lara trap effect and semen-shooting monsters spawn a lot more often. You're also capable of jumping. It can be invoked to boost the cap of your gun control skill, but only if you don't currently have a ragnarok timer, and the invoke will start such a timer."); break;
+				case ART_THEY_COME_FROM_MECKLENBURG:
+					pline("Artifact specs: monster sound effect and sticky autocurses when worn, boosts your AC by 10, and circumcision monsters spawn a lot more often. All your weapons get great damage boosts against circumcision monsters, and lesser boosts against hardcore aliens and converters. Chaotic. If your alignment is also chaotic, it grants the following additional effects: effects that reduce your alignment have a much lower chance of actually reducing it, effects that increase your sin counter are quite likely to not affect you, and divine anger (which normally doesn't time out at all) will very slowly go down over time."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;
