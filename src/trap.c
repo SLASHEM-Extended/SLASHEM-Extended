@@ -24679,7 +24679,7 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 			/* a boulder may fill the new pit, crushing monster */
 			fill_pit(trap->tx, trap->ty);
 			if (mtmp->mhp <= 0) trapkilled = TRUE;
-			if (unconscious()) {
+			if (unconscious() && !(youmonst.data->msound == MS_SNORE) ) {
 				multi = -1;
 				nomovemsg="The explosion awakens you!";
 			}

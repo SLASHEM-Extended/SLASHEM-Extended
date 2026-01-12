@@ -880,6 +880,7 @@ static const char *actualshirtmessages[] = { /* Scott Bigham */
 	"Mmmmmmm, Desiree DeLite is such a lovely, sweet woman and I absolutely want to hug her! <3",
 	"I don't know who Mister Spock is, but the ape with ear is certainly an asshole!",
 	"What they call 'vanilla' nowadays is actually raspberry-chili flavored, with a bit of champignon and some wasabi! Actual vanilla flavor died years ago, sadly :(",
+	"You are only a super hero if you yourself for super hold!",
 
 };
 

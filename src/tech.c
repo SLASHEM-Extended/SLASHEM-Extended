@@ -357,6 +357,15 @@ STATIC_OVL NEARDATA const char *abil_names[] = {
 	"toggle pet damage reduction",
 	"toggle symbiote damage reduction",
 	"breathe sunlight",
+	"camera click",
+	"wave socks",
+	"wave pants",
+	"play the trumpet",
+	"self harm",
+	"stabilize continuum",
+	"molestation",
+	"semen shot",
+	"circumcision",
 	"euthanize symbiote",
 	""
 };
@@ -3352,6 +3361,42 @@ int abil;
 			if (uarm && uarm->oartifact == ART_REDHOT_GLEAM && u.currentweather == WEATHER_SUNNY) return TRUE;
 			return FALSE;
 			break;
+		case ABIL_CAMERA_CLICK:
+			if (youmonst.data->msound == MS_PHOTO || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_SKILLED && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_PHOTO) ) return TRUE;
+			return FALSE;
+			break;
+		case ABIL_PANTS_ODOR:
+			if (youmonst.data->msound == MS_PANTS || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_SKILLED && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_PANTS) ) return TRUE;
+			return FALSE;
+			break;
+		case ABIL_SOCKS_ODOR:
+			if (youmonst.data->msound == MS_SOCKS || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_EXPERT && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_SOCKS) ) return TRUE;
+			return FALSE;
+			break;
+		case ABIL_TRUMPET:
+			if (youmonst.data->msound == MS_TRUMPET || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_MASTER && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_TRUMPET) ) return TRUE;
+			return FALSE;
+			break;
+		case ABIL_MOLEST:
+			if (youmonst.data->msound == MS_MOLEST || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_SKILLED && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_MOLEST) ) return TRUE;
+			return FALSE;
+			break;
+		case ABIL_CIRCUMCISE:
+			if (youmonst.data->msound == MS_INCISION || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_EXPERT && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_INCISION) ) return TRUE;
+			return FALSE;
+			break;
+		case ABIL_SEMEN_SHOT:
+			if (youmonst.data->msound == MS_SEMEN || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_SKILLED && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_SEMEN) ) return TRUE;
+			return FALSE;
+			break;
+		case ABIL_ANTI_TELEPORT:
+			if (youmonst.data->msound == MS_STABILIZE || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_EXPERT && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_STABILIZE) ) return TRUE;
+			return FALSE;
+			break;
+		case ABIL_SELFHARM:
+			if (youmonst.data->msound == MS_SELFHARM || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_BASIC && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_SELFHARM) ) return TRUE;
+			return FALSE;
+			break;
 		case ABIL_POLY_SPIT:
 			if (attacktype(youmonst.data, AT_SPIT) || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_BASIC && uactivesymbiosis && attacktype(&mons[u.usymbiote.mnum], AT_SPIT) ) ) return TRUE;
 			return FALSE;
@@ -3606,6 +3651,33 @@ domonabil()
 					break;
 				case ABIL_BREATHE_LIGHT:
 					pline("Allows you to breathe light at the enemy. This can only be done if you wear the 'Redhot Gleam' artifact armor and the weather is currently sunny.");
+					break;
+				case ABIL_CAMERA_CLICK:
+					pline("This ability lets you take a photo in a direction of your choice. It requires you to be in a form that can do so.");
+					break;
+				case ABIL_PANTS_ODOR:
+					pline("Allows you to hold up your pants and let monsters take a whiff, which may confuse them. Requires you to be in a form with that ability.");
+					break;
+				case ABIL_SOCKS_ODOR:
+					pline("Lets you hold your socks in front of an adjacent monster, which may paralyze it. This ability can only be used if you're in a monster form that can use socks as weapons.");
+					break;
+				case ABIL_TRUMPET:
+					pline("Allows you to make a loud sound that wakes up monsters. Requires you to be in a form that can trumpet.");
+					break;
+				case ABIL_MOLEST:
+					pline("Lets you attempt to molest an adjacent intelligent female monster. This damages your alignment record, and can only be done if you're in molester form.");
+					break;
+				case ABIL_SEMEN_SHOT:
+					pline("Allows you to fire a semen projectile which can only affect intelligent female monsters. This requires you to be in a form that can shoot semen.");
+					break;
+				case ABIL_CIRCUMCISE:
+					pline("Ultra evil. The gods will be very displeased if you do this, but it lets you circumcise the genitals of an adjacent humanoid monster. Since you're not a medical doctor, the target will bleed all over the place. Requires you to be in a form that can do so.");
+					break;
+				case ABIL_ANTI_TELEPORT:
+					pline("If you're in a form that can stabilize the space-time continuum, this allows you to do so, which will prevent all teleportation for a while, for both you and monsters.");
+					break;
+				case ABIL_SELFHARM:
+					pline("Noooooo! Please don't! Your body is precious and deserves to be healthy!");
 					break;
 				case ABIL_POLY_SPIT:
 					pline("Spits at the enemy. Requires you to have a spit attack.");
@@ -3885,6 +3957,677 @@ int abil_no;
 		case ABIL_POLY_BREATHE:
 			abilreturncode = dobreathe();
 			break;
+
+		case ABIL_SOCKS_ODOR:
+		{
+			abilreturncode = FALSE;
+
+			int breatheenergy = 75;
+			int squeakamount = 0;
+			register struct monst *mtmp;
+
+			if (u.uswallow) {
+		    		pline("Not enough room. Get out of the swallowing monster first.");
+		    		break;
+			}
+
+			squeakamount = breatheenergy;
+			/* squeaking skill can reduce the required amount; reduce it after setting up the variable for skill training */
+			if (!PlayerCannotUseSkills && breatheenergy > 2) {
+				switch (P_SKILL(P_SQUEAKING)) {
+			      	case P_BASIC:	breatheenergy *= 9; breatheenergy /= 10; break;
+			      	case P_SKILLED:	breatheenergy *= 8; breatheenergy /= 10; break;
+			      	case P_EXPERT:	breatheenergy *= 7; breatheenergy /= 10; break;
+			      	case P_MASTER:	breatheenergy *= 6; breatheenergy /= 10; break;
+			      	case P_GRAND_MASTER:	breatheenergy *= 5; breatheenergy /= 10; break;
+			      	case P_SUPREME_MASTER:	breatheenergy *= 4; breatheenergy /= 10; break;
+			      	default: break;
+				}
+			}
+			if (breatheenergy < 5) breatheenergy = 5; /* fail safe */
+
+			if (u.uen < breatheenergy) {
+				abilreturncode = FALSE;
+				You("don't have enough energy to use your socks as a weapon! You need at least %d mana!", breatheenergy);
+				if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+				break;
+			}
+
+			u.uen -= breatheenergy;
+			flags.botl = 1;
+
+			use_skill(P_SQUEAKING, rnd(20));
+
+			abilreturncode = TRUE;
+
+		    	if (!getdir((char *)0)) {
+				break;
+			}
+			if (!u.dx && !u.dy) {
+				/* Hopefully a mistake ;B */
+				pline("Eww, you filthy pervert! You can't do that in public!");
+		    		break;
+			}
+			if (!isok(u.ux + u.dx, u.uy + u.dy)) {
+				pline("Invalid target location.");
+		    		break;
+			}
+			mtmp = m_at(u.ux + u.dx, u.uy + u.dy);
+			if (!mtmp) {
+				pline("There was no monster at that location, and therefore your attempt fails!");
+				break;
+			}
+
+			You("hold your worn socks in front of %s's %s...", mon_nam(mtmp), mbodypart(mtmp, NOSE));
+			{
+				if (!resist(mtmp, TOOL_CLASS, 0, NOTELL) && !breathless(mtmp->data)) {
+					pline("%s inhales the asphyxiating smell!", Monnam(mtmp));
+					if (!dmgtype(mtmp->data, AD_PLYS)) {
+						wakeup(mtmp);
+						mtmp->mcanmove = 0;
+						mtmp->mfrozen = rnd(10);
+						mtmp->mstrategy &= ~STRAT_WAITFORU;
+					}
+				}
+			}
+
+			if (practicantterror) {
+				pline("%s rings out: 'What the hell do you think you're doing there??? That's a warning, and I also receive 500 zorkmids from you!'", noroelaname());
+				fineforpracticant(500, 0, 0);
+			}
+		}
+			break;
+
+		case ABIL_CIRCUMCISE:
+		{
+			abilreturncode = FALSE;
+
+			int breatheenergy = 100;
+			int squeakamount = 0;
+			register struct monst *mtmp;
+
+			if (u.uswallow) {
+		    		pline("You seem to be in a predicament that you need to get out of first.");
+		    		break;
+			}
+
+			squeakamount = breatheenergy;
+			/* squeaking skill can reduce the required amount; reduce it after setting up the variable for skill training */
+			if (!PlayerCannotUseSkills && breatheenergy > 2) {
+				switch (P_SKILL(P_SQUEAKING)) {
+			      	case P_BASIC:	breatheenergy *= 9; breatheenergy /= 10; break;
+			      	case P_SKILLED:	breatheenergy *= 8; breatheenergy /= 10; break;
+			      	case P_EXPERT:	breatheenergy *= 7; breatheenergy /= 10; break;
+			      	case P_MASTER:	breatheenergy *= 6; breatheenergy /= 10; break;
+			      	case P_GRAND_MASTER:	breatheenergy *= 5; breatheenergy /= 10; break;
+			      	case P_SUPREME_MASTER:	breatheenergy *= 4; breatheenergy /= 10; break;
+			      	default: break;
+				}
+			}
+
+			if (breatheenergy < 5) breatheenergy = 5; /* fail safe */
+
+			if (u.uen < breatheenergy) {
+				abilreturncode = FALSE;
+				You("don't have enough energy to perform this operation! You need at least %d mana!", breatheenergy);
+				if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+				break;
+			}
+
+			u.uen -= breatheenergy;
+			flags.botl = 1;
+
+			use_skill(P_SQUEAKING, rnd(40));
+
+			abilreturncode = TRUE;
+
+		    	if (!getdir((char *)0)) {
+				break;
+			}
+			if (!u.dx && !u.dy) {
+				/* Hopefully a mistake ;B */
+				pline("Don't do that yourself, you quack doctor! Find a real medical doctor if you really want to get circumcised!");
+		    		break;
+			}
+			if (!isok(u.ux + u.dx, u.uy + u.dy)) {
+				pline("Invalid target location.");
+		    		break;
+			}
+			mtmp = m_at(u.ux + u.dx, u.uy + u.dy);
+			if (!mtmp) {
+				pline("There was no monster at that location, and therefore your attempt fails!");
+				break;
+			}
+
+			You("apply a dorsal slit to %s's genitals...", mon_nam(mtmp));
+			{
+				if (!humanoid(mtmp->data)) {
+					pline("But you don't understand %s's different anatomy, and therefore end up fumbling the attempt.", mon_nam(mtmp));
+					wakeup(mtmp);
+				} else {
+					adjalign(-200);
+					increasesincounter(5);
+					u.alignlim -= 5;
+					u.ugangr += 1;
+
+					wakeup(mtmp);
+
+					mtmp->mhpmax -= rnd(25);
+					if (mtmp->mhpmax < 1) mtmp->mhpmax = 1;
+					if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = mtmp->mhpmax;
+					mtmp->bleedout += rn1(GushLevel * 2, GushLevel * 2);
+					mtmp->healblock += 50000;
+					mtmp->inertia += rn1(5000,5000);
+					mtmp->mcan = TRUE;
+					pline("*snap* Oh, shit, look at all the %s! What have you done!!", mbodypart(mtmp, BLOOD));
+					/* it is intentional that you can do this to the same monster several times; you're not a real doctor, and therefore aren't capable of
+					 * performing this OP correctly so the monster's foreskin is badly hurt but not gone (no, DO NOT try that in real life PLEASE!) --Amy */
+				}
+			}
+
+			if (practicantterror) {
+				pline("%s thunders: 'WHAT THE FUCK??? DO YOU THINK I WOULDN'T NOTICE YOU MUTILATING INNOCENT PEOPLE? THAT'S A PENALTY OF 100000 ZORKMIDS!!!'", noroelaname());
+				fineforpracticant(100000, 0, 0);
+				pline("%s thunders: 'YEAH WHAT'S THAT, MAGGOT? YOU WANT A DOUBLE? HERE YA GO! YOU'RE GONNA COLLECT 1000 ARROWS AND 1000 STONES TOO AND GIVE THEM TO ME AS WELL!'", noroelaname());
+				fineforpracticant(0, 1000, 1000);
+				pline("%s thunders: 'AND HERE'S SOME HEPATITIS C INJECTION FOR GOOD MEASURE! ENJOY YOUR INCURABLE DISEASE, FILTHY MAGGOT!'", noroelaname());
+				BloodLossProblem |= FROMOUTSIDE;
+			}
+		}
+			break;
+
+		case ABIL_MOLEST:
+		{
+			abilreturncode = FALSE;
+
+			int breatheenergy = 50;
+			int squeakamount = 0;
+			register struct monst *mtmp;
+
+			if (u.uswallow) {
+		    		pline("Ha-ha, that doesn't work while engulfed!");
+		    		break;
+			}
+
+			squeakamount = breatheenergy;
+			/* squeaking skill can reduce the required amount; reduce it after setting up the variable for skill training */
+			if (!PlayerCannotUseSkills && breatheenergy > 2) {
+				switch (P_SKILL(P_SQUEAKING)) {
+			      	case P_BASIC:	breatheenergy *= 9; breatheenergy /= 10; break;
+			      	case P_SKILLED:	breatheenergy *= 8; breatheenergy /= 10; break;
+			      	case P_EXPERT:	breatheenergy *= 7; breatheenergy /= 10; break;
+			      	case P_MASTER:	breatheenergy *= 6; breatheenergy /= 10; break;
+			      	case P_GRAND_MASTER:	breatheenergy *= 5; breatheenergy /= 10; break;
+			      	case P_SUPREME_MASTER:	breatheenergy *= 4; breatheenergy /= 10; break;
+			      	default: break;
+				}
+			}
+
+			if (breatheenergy < 5) breatheenergy = 5; /* fail safe */
+
+			if (u.uen < breatheenergy) {
+				abilreturncode = FALSE;
+				You("need %d mana to perform that action!", breatheenergy);
+				if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+				break;
+			}
+
+			u.uen -= breatheenergy;
+			flags.botl = 1;
+
+			use_skill(P_SQUEAKING, rnd(20));
+
+			abilreturncode = TRUE;
+
+		    	if (!getdir((char *)0)) {
+				break;
+			}
+			if (!u.dx && !u.dy) {
+				/* Hopefully a mistake ;B */
+				pline("You can't molest yourself!");
+		    		break;
+			}
+			if (!isok(u.ux + u.dx, u.uy + u.dy)) {
+				pline("Invalid target location.");
+		    		break;
+			}
+			mtmp = m_at(u.ux + u.dx, u.uy + u.dy);
+			if (!mtmp) {
+				pline("There was no monster at that location, and therefore your attempt fails!");
+				break;
+			}
+
+			You("try to grope %s...", mon_nam(mtmp));
+			{
+				if (!humanoid(mtmp->data)) {
+					pline("But %s just ignores your attempts.", mon_nam(mtmp));
+				} else if (!mtmp->female) {
+					wakeup(mtmp);
+					pline("%s is slightly irritated.", Monnam(mtmp));
+				} else {
+					/* what do you think you're doing, you pervert?! do you really think the gods won't notice? */
+					adjalign(-rnd(20));
+					if (!rn2(10)) increasesincounter(1);
+					if (!mtmp->mcanmove && yn("She's unable to react. Rape her?") == 'y') {
+						/* you monster! */
+						/* no wakeup(mtmp); she doesn't realize what's happening to her... but the gods will be PISSED */
+						adjalign(-1000);
+						increasesincounter(50);
+						u.alignlim -= 50;
+						u.ugangr += 15;
+						You("start doing very evil things to %s with your penis. We are censoring the graphical description because it's bad enough that you're such a sick freak in the first place... either way it was a very educational experience.", mon_nam(mtmp));
+						gainlevelmaybe();
+						exercise(A_WIS, TRUE);
+						You("feel that %s has noticed your evil deed. Damn, you're pretty much fucked, aren't you...", u_gname());
+						mtmp->m_en = 0;
+						mtmp->m_enmax -= rn1(10,10);
+						if (mtmp->m_enmax < 0) mtmp->m_enmax = 0;
+					} else {
+						wakeup(mtmp);
+						if (!rn2(5)) {
+							You("lick %s with your tongue!", mon_nam(mtmp));
+							mon_adjust_speed(mtmp, -1, (struct obj *)0);
+						}
+						if (!rn2(3)) {
+							You("tenderly massage %s's soft breasts...", mon_nam(mtmp));
+							monflee(mtmp, rnd(20), FALSE, TRUE, FALSE);
+						}
+						if (!rn2(2)) {
+							You("massage %s's tender buttocks!", mon_nam(mtmp));
+							mtmp->mstun = TRUE;
+						}
+						if (rn2(3)) {
+							You("kiss %s on the cheek!", mon_nam(mtmp));
+							mtmp->mconf = TRUE;
+						}
+						if (!rn2(2)) {
+							You("briefly grab %s's knee!", mon_nam(mtmp));
+							mtmp->healblock += rn1(30,30);
+						}
+						if (!rn2(5) && mtmp->mcanmove) {
+							pline("%s screams 'Help! Heeeeeelp!'", Monnam(mtmp));
+							aggravate();
+						}
+					}
+				}
+			}
+
+			if (practicantterror) {
+				pline("%s thunders: 'Sexual harassment is very definitely not permitted. You pay 20000 zorkmids, and if I ever catch you doing that again...'", noroelaname());
+				fineforpracticant(20000, 0, 0);
+			}
+		}
+			break;
+
+		case ABIL_PANTS_ODOR:
+		{
+			abilreturncode = FALSE;
+
+			int breatheenergy = 50;
+			int squeakamount = 0;
+
+			if (u.uswallow) {
+		    		pline("Not enough room. Get out of the swallowing monster first.");
+		    		break;
+			}
+
+			squeakamount = breatheenergy;
+			/* squeaking skill can reduce the required amount; reduce it after setting up the variable for skill training */
+			if (!PlayerCannotUseSkills && breatheenergy > 2) {
+				switch (P_SKILL(P_SQUEAKING)) {
+			      	case P_BASIC:	breatheenergy *= 9; breatheenergy /= 10; break;
+			      	case P_SKILLED:	breatheenergy *= 8; breatheenergy /= 10; break;
+			      	case P_EXPERT:	breatheenergy *= 7; breatheenergy /= 10; break;
+			      	case P_MASTER:	breatheenergy *= 6; breatheenergy /= 10; break;
+			      	case P_GRAND_MASTER:	breatheenergy *= 5; breatheenergy /= 10; break;
+			      	case P_SUPREME_MASTER:	breatheenergy *= 4; breatheenergy /= 10; break;
+			      	default: break;
+				}
+			}
+
+			if (breatheenergy < 5) breatheenergy = 5; /* fail safe */
+
+			if (u.uen < breatheenergy) {
+				abilreturncode = FALSE;
+				You("don't have enough energy to use your pants as a weapon! You need at least %d mana!", breatheenergy);
+				if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+				break;
+			}
+
+			u.uen -= breatheenergy;
+			flags.botl = 1;
+
+			abilreturncode = TRUE;
+
+			You("wave your sexy pants around!");
+			{
+				register struct monst *nexusmon, *nextmon;
+
+				for(nexusmon = fmon; nexusmon; nexusmon = nextmon) {
+				    nextmon = nexusmon->nmon; /* trap might kill mon */
+				    if (DEADMONSTER(nexusmon)) continue;
+				    if (nexusmon->mpeaceful || nexusmon->mtame) continue;
+				    if (breathless(nexusmon->data)) continue;
+				    if (resist(nexusmon, TOOL_CLASS, 0, NOTELL)) continue;
+
+				    if (distu(nexusmon->mx, nexusmon->my) > rnd(50)) continue;
+
+					/* doesn't anger peaceful ones - not a bug --Amy */
+					wakeup(nexusmon);
+					pline("%s gets dizzy from the beguiling scent!", Monnam(nexusmon));
+					nexusmon->mconf = TRUE;
+				}
+			}
+
+			if (practicantterror) {
+				pline("%s rings out: 'What the fuck??? That's a warning, and I also receive 2000 zorkmids from you!'", noroelaname());
+				fineforpracticant(2000, 0, 0);
+			}
+
+			use_skill(P_SQUEAKING, rnd(15));
+		}
+			break;
+
+		case ABIL_SELFHARM:
+		{
+			int breatheenergy = 5;
+			int squeakamount = 0;
+
+			abilreturncode = FALSE;
+
+			squeakamount = breatheenergy;
+			/* squeaking skill can reduce the required amount; reduce it after setting up the variable for skill training */
+			if (!PlayerCannotUseSkills && breatheenergy > 2) {
+				switch (P_SKILL(P_SQUEAKING)) {
+			      	case P_BASIC:	breatheenergy *= 9; breatheenergy /= 10; break;
+			      	case P_SKILLED:	breatheenergy *= 8; breatheenergy /= 10; break;
+			      	case P_EXPERT:	breatheenergy *= 7; breatheenergy /= 10; break;
+			      	case P_MASTER:	breatheenergy *= 6; breatheenergy /= 10; break;
+			      	case P_GRAND_MASTER:	breatheenergy *= 5; breatheenergy /= 10; break;
+			      	case P_SUPREME_MASTER:	breatheenergy *= 4; breatheenergy /= 10; break;
+			      	default: break;
+				}
+			}
+
+			if (breatheenergy < 2) breatheenergy = 2; /* fail safe */
+
+			if (u.uen < breatheenergy) {
+				abilreturncode = FALSE;
+				You("don't have enough mana, thankfully. Do not wait until you have %d mana again! Stay safe!", breatheenergy);
+				if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+				break;
+			}
+
+			u.uen -= breatheenergy;
+			flags.botl = 1;
+
+			abilreturncode = TRUE;
+
+			use_skill(P_SQUEAKING, 1);
+
+			switch (rnd(7)) {
+
+				case 1: pline("You put the knife to your lower %s and cut...", body_part(ARM)); break;
+				case 2: pline("You use a sharp object to cut open your belly..."); break;
+				case 3: pline("You slide your body along a rough surface and sustain terrible %s rashes.", body_part(BODY_SKIN)); break;
+				case 4: pline("You rip your butt open with a metallic edge."); break;
+				case 5: pline("You scratch up and down your %s with a sexy leather pump until it starts bleeding.", body_part(LEG)); break;
+				case 6: pline("You slit your %s full length with a sharp-edged zipper.", body_part(LEG)); break;
+				case 7: pline("You prick yourself with a needle."); break;
+			}
+
+			if (!rn2(20)) losehp(d(10,8), "self-harming", KILLED_BY);
+			else if (!rn2(5)) losehp(d(6,8), "self-harming", KILLED_BY);
+			else losehp(d(4,6), "self-harming", KILLED_BY);
+			/* unlike the spell, this also causes bleeding in addition to the immediate damage --Amy */
+			if (!rn2(20)) playerbleed(d(20,20));
+			else if (!rn2(5)) playerbleed(d(10,10));
+			else playerbleed(d(5,5));
+
+		}
+			break;
+
+		case ABIL_ANTI_TELEPORT:
+		{
+			int breatheenergy = 100;
+			int squeakamount = 0;
+
+			abilreturncode = FALSE;
+
+			squeakamount = breatheenergy;
+			/* squeaking skill can reduce the required amount; reduce it after setting up the variable for skill training */
+			if (!PlayerCannotUseSkills && breatheenergy > 2) {
+				switch (P_SKILL(P_SQUEAKING)) {
+			      	case P_BASIC:	breatheenergy *= 9; breatheenergy /= 10; break;
+			      	case P_SKILLED:	breatheenergy *= 8; breatheenergy /= 10; break;
+			      	case P_EXPERT:	breatheenergy *= 7; breatheenergy /= 10; break;
+			      	case P_MASTER:	breatheenergy *= 6; breatheenergy /= 10; break;
+			      	case P_GRAND_MASTER:	breatheenergy *= 5; breatheenergy /= 10; break;
+			      	case P_SUPREME_MASTER:	breatheenergy *= 4; breatheenergy /= 10; break;
+			      	default: break;
+				}
+			}
+
+			if (breatheenergy < 5) breatheenergy = 5; /* fail safe */
+
+			if (u.uen < breatheenergy) {
+				abilreturncode = FALSE;
+				You("don't have enough energy to stabilize the continuum! You need at least %d mana!", breatheenergy);
+				if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+				break;
+			}
+
+			u.uen -= breatheenergy;
+			flags.botl = 1;
+
+			use_skill(P_SQUEAKING, rnd(35));
+
+			abilreturncode = TRUE;
+
+			u.antitelespelltimeout += rn1(100, 100);
+			You("erect an anti-teleportation barrier!");
+
+		}
+			break;
+
+		case ABIL_TRUMPET:
+		{
+			int breatheenergy = 20;
+			int squeakamount = 0;
+
+			abilreturncode = FALSE;
+
+			squeakamount = breatheenergy;
+			/* squeaking skill can reduce the required amount; reduce it after setting up the variable for skill training */
+			if (!PlayerCannotUseSkills && breatheenergy > 2) {
+				switch (P_SKILL(P_SQUEAKING)) {
+			      	case P_BASIC:	breatheenergy *= 9; breatheenergy /= 10; break;
+			      	case P_SKILLED:	breatheenergy *= 8; breatheenergy /= 10; break;
+			      	case P_EXPERT:	breatheenergy *= 7; breatheenergy /= 10; break;
+			      	case P_MASTER:	breatheenergy *= 6; breatheenergy /= 10; break;
+			      	case P_GRAND_MASTER:	breatheenergy *= 5; breatheenergy /= 10; break;
+			      	case P_SUPREME_MASTER:	breatheenergy *= 4; breatheenergy /= 10; break;
+			      	default: break;
+				}
+			}
+
+			if (breatheenergy < 5) breatheenergy = 5; /* fail safe */
+
+			if (u.uen < breatheenergy) {
+				abilreturncode = FALSE;
+				You("don't have enough energy to play the trumpet! You need at least %d mana!", breatheenergy);
+				if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+				break;
+			}
+
+			u.uen -= breatheenergy;
+			flags.botl = 1;
+
+			abilreturncode = TRUE;
+
+			use_skill(P_SQUEAKING, rnd(7));
+
+			You("extract a loud noise from your %s!", makeplural(body_part(LUNG)) );
+			awaken_soldiers(0);
+			awaken_monsters(GushLevel * 5);
+
+		}
+			break;
+
+		case ABIL_CAMERA_CLICK:
+		{
+			int breatheenergy = 50;
+			int squeakamount = 0;
+			register struct monst *mtmp;
+			int ctx, cty;
+			int i;
+			ctx = u.ux, cty = u.uy;
+
+			abilreturncode = FALSE;
+
+			squeakamount = breatheenergy;
+			/* squeaking skill can reduce the required amount; reduce it after setting up the variable for skill training */
+			if (!PlayerCannotUseSkills && breatheenergy > 2) {
+				switch (P_SKILL(P_SQUEAKING)) {
+			      	case P_BASIC:	breatheenergy *= 9; breatheenergy /= 10; break;
+			      	case P_SKILLED:	breatheenergy *= 8; breatheenergy /= 10; break;
+			      	case P_EXPERT:	breatheenergy *= 7; breatheenergy /= 10; break;
+			      	case P_MASTER:	breatheenergy *= 6; breatheenergy /= 10; break;
+			      	case P_GRAND_MASTER:	breatheenergy *= 5; breatheenergy /= 10; break;
+			      	case P_SUPREME_MASTER:	breatheenergy *= 4; breatheenergy /= 10; break;
+			      	default: break;
+				}
+			}
+
+			if (breatheenergy < 5) breatheenergy = 5; /* fail safe */
+
+			if (u.uen < breatheenergy) {
+				abilreturncode = FALSE;
+				You("don't have enough energy to operate your camera! You need at least %d mana!", breatheenergy);
+				if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+				break;
+			}
+
+			u.uen -= breatheenergy;
+			flags.botl = 1;
+
+			use_skill(P_SQUEAKING, rnd(15));
+
+		    	if (!getdir((char *)0)) {
+				You("fumble and photograph a random surface, thereby wasting some precious film.");
+				abilreturncode = TRUE;
+				break;
+			}
+
+			abilreturncode = TRUE;
+
+			for(i = 0; i < 12; i++) {
+				if (!isok(ctx + u.dx, cty + u.dy)) break;
+				if (levl[ctx + u.dx][cty + u.dy].typ < POOL) break;
+
+				ctx += u.dx;
+				cty += u.dy;
+
+				mtmp = m_at(ctx, cty);
+
+				if (mtmp) {
+					if (!resist(mtmp, TOOL_CLASS, 0, NOTELL) && mtmp->mcansee && !resists_blnd(mtmp) ) {
+					    wakeup(mtmp);
+					    pline("%s is blinded by the flash!", Monnam(mtmp));
+					    mtmp->mcansee = 0;
+					    mtmp->mblinded = rnd(20);
+					}
+					break;
+				}
+			}
+
+			if (practicantterror) {
+				pline("%s rings out: 'Photography is strictly forbidden in the lab, and therefore you pay 100 zorkmids.'", noroelaname());
+				fineforpracticant(100, 0, 0);
+			}
+
+		}
+			break;
+
+		case ABIL_SEMEN_SHOT:
+		{
+			int breatheenergy = 20;
+			int squeakamount = 0;
+			register struct monst *mtmp;
+			int ctx, cty;
+			int i;
+			ctx = u.ux, cty = u.uy;
+
+			abilreturncode = FALSE;
+
+			squeakamount = breatheenergy;
+			/* squeaking skill can reduce the required amount; reduce it after setting up the variable for skill training */
+			if (!PlayerCannotUseSkills && breatheenergy > 2) {
+				switch (P_SKILL(P_SQUEAKING)) {
+			      	case P_BASIC:	breatheenergy *= 9; breatheenergy /= 10; break;
+			      	case P_SKILLED:	breatheenergy *= 8; breatheenergy /= 10; break;
+			      	case P_EXPERT:	breatheenergy *= 7; breatheenergy /= 10; break;
+			      	case P_MASTER:	breatheenergy *= 6; breatheenergy /= 10; break;
+			      	case P_GRAND_MASTER:	breatheenergy *= 5; breatheenergy /= 10; break;
+			      	case P_SUPREME_MASTER:	breatheenergy *= 4; breatheenergy /= 10; break;
+			      	default: break;
+				}
+			}
+
+			if (breatheenergy < 5) breatheenergy = 5; /* fail safe */
+
+			if (u.uen < breatheenergy) {
+				abilreturncode = FALSE;
+				You("don't have enough energy to shoot semen! You need at least %d mana!", breatheenergy);
+				if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+				break;
+			}
+
+			u.uen -= breatheenergy;
+			flags.botl = 1;
+
+			use_skill(P_SQUEAKING, rnd(7));
+
+		    	if (!getdir((char *)0)) {
+				You("wasted your semen. Oh well.");
+				abilreturncode = TRUE;
+				break;
+			}
+
+			abilreturncode = TRUE;
+
+			for(i = 0; i < 12; i++) {
+				if (!isok(ctx + u.dx, cty + u.dy)) break;
+				if (levl[ctx + u.dx][cty + u.dy].typ < POOL) break;
+
+				ctx += u.dx;
+				cty += u.dy;
+
+				mtmp = m_at(ctx, cty);
+
+				if (mtmp) {
+					if (humanoid(mtmp->data) && mtmp->female) {
+						wakeup(mtmp);
+						mtmp->mconf = TRUE;
+						monflee(mtmp, rn1(50, 50), FALSE, TRUE, FALSE);
+						mtmp->healblock += rn1(500, 500);
+						pline("%s screams 'Ewwwww! You lowlife punk!'", Monnam(mtmp));
+					} else {
+						wakeup(mtmp);
+						pline("%s shouts 'Scummy asshole!'", Monnam(mtmp));
+					}
+					break;
+				}
+			}
+
+			if (practicantterror) {
+				pline("%s booms: 'What the hell??? You must be out of your mind. I hope you're out of money soon, too, because I'll get 5000 zorkmids from you now. Don't you DARE doing that again!'", noroelaname());
+				fineforpracticant(5000, 0, 0);
+			}
+
+		}
+			break;
+
 		case ABIL_BREATHE_LIGHT:
 		{
 			int breatheenergy = 20;
@@ -3903,6 +4646,8 @@ int abil_no;
 			      	default: break;
 				}
 			}
+
+			if (breatheenergy < 5) breatheenergy = 5; /* fail safe */
 
 			if (u.uen < breatheenergy) {
 				abilreturncode = FALSE;

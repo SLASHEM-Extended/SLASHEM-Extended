@@ -5957,6 +5957,11 @@ static NEARDATA const char * const practicantlines[] = {
 "Always know that my rules and fines are in place for your protection. They're protecting you from doing things that could harm you or others, because you'll refrain from committing forbidden actions in order to be able to keep what little money you have.",
 "If you don't get why a specific rule of mine is in place or why you have to pay money for breaking it, I suggest you re-read the statutes of laboratory work. Perhaps then you'll figure out that they exist to ensure that the working atmosphere in the lab is free of unnecessary dangers for you and other practicants.",
 "You probably know it already, or can at least guess that this is the case but I'll repeat it anyway: cheating of any kind is strictly forbidden and will result in a draconic penalty. Don't you dare pretend you didn't hear me.",
+"Whatever you do, DON'T try to use your worn socks or pants as weapons. If you violate this rule, you're gonna pay, oh yes are you gonna pay.",
+"It is not permitted to take photos in the lab. If you do need to verify some test results, call me and I'll photograph it for you. Taking things into your own hands results in a penalty!",
+"It should go without saying, but if you little practicant dare to try inseminating the female practicants... let's just say it'll be very expensive.",
+"Any acts of sexual harassment, especially if targetted at female practicants, are going to cost you big time. Leave them the hell alone and let them do their work undisturbed, you hear?",
+"You may have heard of the incredibly evil practice called 'circumcision', which is really mutilation because the victim will never be the same after it's been done. Even when performed by 'approved' 'doctors' (if you ask me, nobody should ever be allowed to perform that), there's a high risk of infection, necrosis and all kinds of negative side effects. But YOU, well, are a first-semester practicant. Don't even think about stealing the dorsal slit from the triple-locked chamber. You will wish you've never been born.",
 };
 
 static NEARDATA const char * const hussylines[] = {
@@ -30213,6 +30218,9 @@ static NEARDATA const char * const fake_plines[] = {
 	"Oh no!!! The circumcision nurse applied the dorsal slit to your foreskin and... *snap* - applies a painful cut!",
 	"The hanging semen ejaculator's penis shoots some semen at you!",
 	"The hanging semen ejaculator's penis shoots some semen at you! This is really icky and you feel like notifying the server administrator about the gross content in this game.",
+	"You snore.",
+	"You snore. This is an indication that something with your respiration is not okay, and you should get it fixed if possible.",
+	"You snore. This annoys everyone nearby and will wake up other people who'd like to sleep too.",
 
 };
 

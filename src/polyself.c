@@ -1177,8 +1177,26 @@ int	mntmp;
 		pline(use_thec,monsterc,"chant");
 	    if (youmonst.data->msound == MS_WHORE)
 		pline(use_thec,monsterc,"talk sexily");
+	    if (youmonst.data->msound == MS_TRUMPET)
+		pline(use_thec,monsterc,"play the trumpet");
+	    if (youmonst.data->msound == MS_SOCKS)
+		pline(use_thec,monsterc,"spread the smell of your socks");
+	    if (youmonst.data->msound == MS_PANTS)
+		pline(use_thec,monsterc,"use your pants as a weapon");
+	    if (youmonst.data->msound == MS_PHOTO)
+		pline(use_thec,monsterc,"operate your camera");
 	    if (youmonst.data->msound == MS_SUPERMAN)
 		pline(use_thec,monsterc,"make superman taunts");
+	    if (youmonst.data->msound == MS_MOLEST)
+		pline(use_thec,monsterc,"molest a girl");
+	    if (youmonst.data->msound == MS_SEMEN)
+		pline(use_thec,monsterc,"shoot semen");
+	    if (youmonst.data->msound == MS_INCISION)
+		pline(use_thec,monsterc,"circumcise someone");
+	    if (youmonst.data->msound == MS_SELFHARM)
+		pline(use_thec,monsterc,"give in to your urges");
+	    if (youmonst.data->msound == MS_STABILIZE)
+		pline(use_thec,monsterc,"stabilize the time-space continuum");
 	    if (youmonst.data->msound == MS_BONES)
 		pline(use_thec,monsterc,"rattle");
 	    if (dmgtype(youmonst.data, AD_WET))
@@ -1702,6 +1720,9 @@ dogaze()
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return(0);
 	}
+
+	if (gazecost < 5) gazecost = 5; /* fail safe */
+
 	if (u.uen < gazecost) {
 		You("lack the energy to use your special gaze! Your current form's gaze attack costs %d mana!", gazecost);
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -1853,6 +1874,8 @@ dobreathe()
 	      	default: break;
 		}
 	}
+
+	if (energy < 5) energy = 5; /* fail safe */
 
 	if (u.uen < energy) {
 	    You("don't have enough energy to breathe! You need at least %d mana!",energy);
@@ -3006,6 +3029,8 @@ dosummon()
 		}
 	}
 
+	if (somanymana < 5) somanymana = 5; /* fail safe */
+
 	if (u.uen < somanymana) {
 	    You("lack the energy to send forth a call for help! You need at least %d!",somanymana);
 	    return(0);
@@ -3192,6 +3217,8 @@ dohide()
 	}
 	if (ismimic) {
 
+		if (hidingcost < 5) hidingcost = 5; /* fail safe */
+
 		if (u.uen < hidingcost) {
 		    You("lack the required %d mana to mimic an object.", hidingcost);
 		    return(0);
@@ -3227,6 +3254,8 @@ domindblast()
 	      	default: break;
 		}
 	}
+
+	if (mindblastcost < 2) mindblastcost = 2; /* fail safe */
 
 	if (u.uen < mindblastcost) {
 	    You("concentrate but lack the energy to maintain doing so. Wimp, you don't even have 10 mana to spare?!");
@@ -3896,6 +3925,8 @@ polyatwill()      /* Polymorph under conscious control (#youpoly) */
 		      	default: break;
 			}
 		}
+
+		if (somanymana < 5) somanymana = 5; /* fail safe */
 
 	    if (yn("Change lycanthropic form?") == 'n')
 		return 0;

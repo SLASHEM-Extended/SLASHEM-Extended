@@ -5174,6 +5174,11 @@ newbossAEFDE:
 			nomul(-(u.stasistime), "frozen in stasis", FALSE);
 		}
 
+		if ((youmonst.data->msound == MS_SNORE) && !rn2(5) && u.usleep) {
+			You("snore.");
+			wake_nearby();
+		}
+
 		if (FemtrapActiveMariya && !rn2(SuperFemtrapMariya ? 5 : 10) && multi < 0) {
 			register struct monst *mariyamon;
 			struct permonst *pm = 0;
@@ -24011,6 +24016,7 @@ antjenewturn:
 						if (flags.female) {
 							pline("You don't have a penis, so you cannot do that! Silly woman!");
 						} else {
+							/* you monster! */
 							adjalign(-1000);
 							increasesincounter(50);
 							u.alignlim -= 50;

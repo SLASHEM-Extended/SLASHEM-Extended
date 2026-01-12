@@ -129,6 +129,11 @@ usecameraagain:
 		use_skill(P_DEVICES,1);
 	}
 
+	if (practicantterror) {
+		pline("%s rings out: 'Photography is strictly forbidden in the lab, and therefore you pay 100 zorkmids.'", noroelaname());
+		fineforpracticant(100, 0, 0);
+	}
+
 	if (obj->oartifact == ART_GOODFILM && !useagain) {
 		useagain = TRUE;
 		You("can take another photo.");

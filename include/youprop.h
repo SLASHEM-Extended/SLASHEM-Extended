@@ -160,7 +160,7 @@
 
 #define BloodthirstyAttacking	(BloodthirstyEffect || (uarmh && uarmh->oartifact == ART_JANELLE_S_BETRAYAL) || u.uprops[BLOODTHIRSTY_EFFECT].extrinsic || have_stormstone() || (uwep && uwep->otyp == TECPATL) || (u.twoweap && uswapwep && uswapwep->otyp == TECPATL) )
 
-#define YouHaveTheSpeedBug	(Race_if(PM_PLAYER_MECHANIC) || SpeedBug || u.uprops[SPEED_BUG].extrinsic || (uarmf && uarmf->oartifact == ART_UNEVEN_ENGINE) || autismringcheck(ART_RING_OF_STEEL_DRAGON) || (uarm && uarm->oartifact == ART_HUNKSTERMAN) || (uarmf && uarmf->oartifact == ART_ERROR_IN_PLAY_ENCHANTMENT) || (uarmf && uarmf->oartifact == ART_BUGBOOTS_OF_ERRORNESS) || have_speedbugstone())
+#define YouHaveTheSpeedBug	(Race_if(PM_PLAYER_MECHANIC) || SpeedBug || u.uprops[SPEED_BUG].extrinsic || (uarmf && uarmf->oartifact == ART_UNEVEN_ENGINE) || autismringcheck(ART_RING_OF_STEEL_DRAGON) || (youmonst.data->msound == MS_SPEEDBUG) || (uarm && uarm->oartifact == ART_HUNKSTERMAN) || (uarmf && uarmf->oartifact == ART_ERROR_IN_PLAY_ENCHANTMENT) || (uarmf && uarmf->oartifact == ART_BUGBOOTS_OF_ERRORNESS) || have_speedbugstone())
 
 #define YouAreThirsty	(Thirst || u.uprops[THIRST].extrinsic || have_thirststone() || autismweaponcheck(ART_LUISA_S_CHARMING_BEAUTY))
 
@@ -989,7 +989,7 @@
 #define FemtrapActiveDora	(FemaleTrapDora || u.uprops[FEMTRAP_DORA].extrinsic || have_femtrapdora() || (uarmh && uarmh->oartifact == ART_ARABELLA_S_BEAUTY_BIRD) || autismweaponcheck(ART_DESERT_MAID) || (uarmf && uarmf->oartifact == ART_SHE_REALLY_LIKES_IT) || (uarm && uarm->oartifact == ART_TIMONA_S_INNER_BICKER) )
 #define FemtrapActiveMarike	(FemaleTrapMarike || u.uprops[FEMTRAP_MARIKE].extrinsic || have_femtrapmarike() || (uarm && uarm->oartifact == ART_BEXLEY_S_CUTESY) )
 #define FemtrapActiveJette	(FemaleTrapJette || u.uprops[FEMTRAP_JETTE].extrinsic || have_femtrapjette() || (uarmc && uarmc->oartifact == ART_RITA_S_CUTE_CHEAT) || Race_if(PM_ARTIFINDER) || autismweaponcheck(ART_HER_UNREACHABLE_BROOK) || (uarm && uarm->oartifact == ART_WHOA_THAT_S_THE_ONE_) || (uarmu && uarmu->oartifact == ART_HEEEEELEEEEEN && !Role_if(PM_ACTIVISTOR)) )
-#define FemtrapActiveIna	(FemaleTrapIna || u.uprops[FEMTRAP_INA].extrinsic || have_femtrapina() || (ublindf && ublindf->oartifact == ART_LAMEZA_S_EQUALITY && (u.uhunger < 201)) || (uarmc && uarmc->oartifact == ART_INA_S_APPRENTICESHIP) )
+#define FemtrapActiveIna	(FemaleTrapIna || u.uprops[FEMTRAP_INA].extrinsic || have_femtrapina() || (ublindf && ublindf->oartifact == ART_LAMEZA_S_EQUALITY && (u.uhunger < 201)) || (youmonst.data->msound == MS_ANOREXIA) || (uarmc && uarmc->oartifact == ART_INA_S_APPRENTICESHIP) )
 #define FemtrapActiveSing	(FemaleTrapSing || u.uprops[FEMTRAP_SING].extrinsic || have_femtrapsing() || autismweaponcheck(ART_VAMPIRE_SING_S_BLOODRUSH) || autismweaponcheck(ART_TONA_S_GAMES) || (Role_if(PM_SINGSLAVE)) || (uarmf && uarmf->oartifact == ART_MY_DEAR_SLAVE) || (uarmh && uarmh->oartifact == ART_SING_AND_JULIETTA_S_JOINT_) || (uarm && uarm->oartifact == ART_SING_S_STUNNING_BEAUTY) || (uarmf && uarmf->oartifact == ART_SINGHETA) )
 #define FemtrapActiveVictoria	(FemaleTrapVictoria || u.uprops[FEMTRAP_VICTORIA].extrinsic || have_femtrapvictoria() || (uball && uball->oartifact == ART_MAREA_S_EXALTITUDE) || (uarmu && uarmu->oartifact == ART_NOW_YOU_MADE_HER_SAD))
 #define FemtrapActiveMelissa	(FemaleTrapMelissa || u.uprops[FEMTRAP_MELISSA].extrinsic || have_femtrapmelissa())
@@ -1010,7 +1010,7 @@
 #define FemtrapActiveKerstin	(FemaleTrapKerstin || u.uprops[FEMTRAP_KERSTIN].extrinsic || have_femtrapkerstin() || bmwride(ART_KERSTIN_S_PROJECTION_LEAD) || bmwride(ART_KERSTIN_S_CLEARSOUND) || autismweaponcheck(ART_EN_GARDE____TOUCHE_) || bmwride(ART_KERSTIN_S_WILD_RIDE) || have_fragrantjewel() || (uarmf && uarmf->oartifact == ART_KERSTIN_S_LITTLE_HELP) || (uarm && uarm->oartifact == ART_MOTA_ROLA) || (uarmh && uarmh->oartifact == ART_WHO_CAN_DRIVE_BEST_) || bmwride(ART_KERSTIN_S_COWBOY_BOOST) || autismweaponcheck(ART_GONDOLIN_S_HIDDEN_PASSAGE) )
 #define FemtrapActiveLaura	(FemaleTrapLaura || u.uprops[FEMTRAP_LAURA].extrinsic || have_femtraplaura() || (uarmc && uarmc->oartifact == ART_LYCIA_S_WUSH) || (uarmf && uarmf->oartifact == ART_POCAHONTAS_HOME) )
 #define FemtrapActiveLarissa	(FemaleTrapLarissa || u.uprops[FEMTRAP_LARISSA].extrinsic || have_femtraplarissa() || autismweaponcheck(ART_ASTONI_S_STOUT_EMBANKMENT) || (uball && uball->oartifact == ART_ASTONI_S_STOUT_EMBANKMENT) || (uarmf && uarmf->oartifact == ART_SHE_REALLY_LIKES_IT) || autismweaponcheck(ART_LARISSA_S_LAUGHTER) )
-#define FemtrapActiveNora	(FemaleTrapNora || u.uprops[FEMTRAP_NORA].extrinsic || have_femtrapnora())
+#define FemtrapActiveNora	(FemaleTrapNora || u.uprops[FEMTRAP_NORA].extrinsic || have_femtrapnora() || (youmonst.data->msound == MS_BULIMIA) )
 #define FemtrapActiveNatalia	(FemaleTrapNatalia || u.uprops[FEMTRAP_NATALIA].extrinsic || have_femtrapnatalia() || (uarm && uarm->oartifact == ART_MENSTRATE_FOR_ME) || (uarmu && uarmu->oartifact == ART_MENSTRUATION_HURTS) )
 #define FemtrapActiveSusanne	(FemaleTrapSusanne || u.uprops[FEMTRAP_SUSANNE].extrinsic || have_femtrapsusanne() || (uarmc && uarmc->oartifact == ART_VINTO_MOBILE) || (uarm && uarm->oartifact == ART_SUSA_MAIL) )
 #define FemtrapActiveLisa	(FemaleTrapLisa || u.uprops[FEMTRAP_LISA].extrinsic || have_femtraplisa() || (uarmu && uarmu->oartifact == ART_LISE_S_UNDERWEAR) || (uarmh && uarmh->oartifact == ART_ADORNING_BUNDLE) )
@@ -1440,7 +1440,7 @@
 
 #define HMap_amnesia	u.uprops[MAP_AMNESIA].intrinsic
 #define EMap_amnesia	u.uprops[MAP_AMNESIA].extrinsic
-#define IntMap_amnesia	(HMap_amnesia)
+#define IntMap_amnesia	(HMap_amnesia || (youmonst.data->msound == MS_AMNESIA) )
 #define ExtMap_amnesia	(EMap_amnesia || (uarmc && uarmc->oartifact == ART_BAD_COMES_TO_WORSE) || autismweaponcheck(ART_MINOPOWER) )
 #define Map_amnesia	(IntMap_amnesia || ExtMap_amnesia || In_minotaurmaze(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz))
 #define StrongMap_amnesia	(IntMap_amnesia && ExtMap_amnesia && Map_amnesia)

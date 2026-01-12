@@ -12923,7 +12923,7 @@ struct monst *mtmp;
 	You_feel("aggravated at %s.", noit_mon_nam(mtmp));
 	display_nhwindow(WIN_MAP, TRUE);
 	docrt();
-	if (unconscious()) {
+	if (unconscious() && !(youmonst.data->msound == MS_SNORE) ) {
 		multi = -1;
 		nomovemsg =
 		      "Aggravated, you are jolted into full consciousness.";
