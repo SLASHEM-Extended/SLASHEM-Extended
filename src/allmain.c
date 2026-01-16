@@ -19047,7 +19047,7 @@ boolean new_game;	/* false => restoring an old game */
 	if (new_game) {
 		char versbuf[BUFSZ];
 		getversionstring(versbuf);
-		pline("You are playing '%s' on a public server. For game discussion, bug reports etc. join the #em.slashem.me IRC channel on Libera. You should absolutely do that, unless you want to figure out this complex game on your own. Amy and other players will be glad to give you advice!", versbuf);
+		pline("You are playing '%s' on a public server. The wiki can be found at https://nethack.fandom.com/wiki/User:Nv4dispbluescreen (recommended reading). For game discussion, bug reports etc. join the #em.slashem.me IRC channel on Libera. You should absolutely do that, unless you want to figure out this complex game on your own. Amy and other players will be glad to give you advice!", versbuf);
 	}
 #ifdef BIGSLEX
 	pline("Attention: You're playing BIGslex, where the dungeon levels are bigger than normal. Recommended terminal size is 125x45. If you're using other dimensions, change them now, save them in your terminal emulator's settings and then start a new session; changing the dimensions after you've already opened the terminal doesn't work right. Amy takes no responsibility for character deaths caused by a disappearing HP display due to players using wrong terminal settings.");

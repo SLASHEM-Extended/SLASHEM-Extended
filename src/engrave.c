@@ -6633,6 +6633,7 @@ static const char *epitaphs[] = {
 	"There was a hercules guy, who didn't seem to do much damage at first, but he also seemed to have lots and lots of hit points. So I fought him for a while and eventually he hit me ever harder, and suddenly he dealt more damage in one hit than I had max hit points! That cannot be right?!",
 	"uggggggghhhh amy are you insane, you actually made it so that hanging semen ejaculators have a ranged semen squirt attack now, why arent you in an asylum yet",
 	"Why did Amy have to add circumcision to the game, that's really too much. I've been circumcised in real life and I'm seething with everburning rage, wanting to fucking murder the shit out of the people that did it to me, and I play video games in an attempt to forget but now this fucked-ass game reminded me so I had to relive all of it again, god fucking dammit, Amy go to hell and I hope that the demons in the underworld will subject you to every imaginable form of torture forever until your soul rots away.",
+	"<mickey mouse voice> amy i tried to play the new slex version and something annoying happened so now i will go back to playing the old version", /* has actually happened and is the #1 reason why new games cannot be started on old versions anymore; if you want to play on the server, you play the most recent version, period! Goddammit! Incidentally, the player in question complained about something that had always been there and which they just didn't encounter on older versions earlier... --Amy */
 
 };
 

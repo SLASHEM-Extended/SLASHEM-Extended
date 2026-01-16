@@ -4208,7 +4208,7 @@ int abil_no;
 					/* what do you think you're doing, you pervert?! do you really think the gods won't notice? */
 					adjalign(-rnd(20));
 					if (!rn2(10)) increasesincounter(1);
-					if (!mtmp->mcanmove && yn("She's unable to react. Rape her?") == 'y') {
+					if (!mtmp->mcanmove && !flags.female && yn("She's unable to react. Rape her?") == 'y') {
 						/* you monster! */
 						/* no wakeup(mtmp); she doesn't realize what's happening to her... but the gods will be PISSED */
 						adjalign(-1000);

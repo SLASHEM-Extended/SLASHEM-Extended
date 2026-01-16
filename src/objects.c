@@ -11095,6 +11095,8 @@ WAND((char *)0,        "bouncing",  0, 150, 1, 0,        MT_CHITIN,     CLR_RED,
 WAND((char *)0,        "ringing",  0, 150, 1, 0,        MT_TITANIUM,     CLR_BLUE, 1),
 WAND((char *)0,        "whizzing",  0, 150, 1, 0,        MT_MERCURIAL,     CLR_YELLOW, 1),
 WAND((char *)0,        "humming",  0, 150, 1, 0,        MT_VIVA,     CLR_YELLOW, 1),
+WAND((char *)0,        "erogenous",  0, 150, 1, 0,        MT_LACQUER,     CLR_GRAY, 1),
+WAND((char *)0,        "erotic",  0, 150, 1, 0,        MT_INKA,     CLR_ORANGE, 1),
 
 #undef WAND
 

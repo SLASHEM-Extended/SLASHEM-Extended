@@ -1670,6 +1670,7 @@ dosounds()
 			"have to click OK on the shareware notice.",
 			"see the accursed crashy graphics card logo.",
 			"wonder whether this game has control stick support.",
+			"hear a midi song, one that sounds great with the right sound font and merely okay with the wrong one.",
 
 			"hear a speedrunner curse at Super Kaizo Mario because the game is too damn hard!",
 			"suddenly feel that you're really playing GTA! A cop car appears! The cop wields a shotgun! The cop fires a shotgun shell!--More--",
@@ -1681,8 +1682,9 @@ dosounds()
 			"feel that the colors are very fleece-bouffant!",
 			"hear someone say 'Die-Far-ben-sind-sehr-flau-schel-bau-schig!'",
 			"push buttons and your stupid PC responds by making annoying 'DIE-DIE-DOE' sounds instead of executing your commands!",
+			"hear the same title song that was used for the previous two installments, just rearranged a bit. Can't they come up with a new title song or something?",
 		};
-		You("%s", gamecorner_msg[rn2(10+hallu*10)]);
+		You("%s", gamecorner_msg[rn2(11+hallu*11)]);
 		return;
 	    }
 	    if (level.flags.has_illusionroom && !rn2(200)) {

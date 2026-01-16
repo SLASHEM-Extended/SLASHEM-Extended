@@ -6093,7 +6093,7 @@ static NEARDATA const char * const bangganglines[] = {
 "Listen up, Player 1: we have the bioweapon called covid-19, and we won't hesitate to use it on you.",
 "Soon I will test my new rifle on Player 1.",
 "Ahh, that gang scholar is approaching! I've readied my gun, and soon I'll finally get to fire it for the first time!",
-"The situation has become dire! The gang scholar is about to penetrate Anna's sanctum! Quick, everyone, get to the sanctum adn protect it with your lives!",
+"The situation has become dire! The gang scholar is about to penetrate Anna's sanctum! Quick, everyone, get to the sanctum and protect it with your lives!",
 "I've just finished another training session and am ready to fight Player 1 now!",
 "Hey, I have both a gun and good martial arts skills! I'll defend the downstair, preventing any gang scholars from getting past me!",
 "I'll express my lit cigarettes in that gang scholar's face.",
@@ -30221,6 +30221,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"You snore.",
 	"You snore. This is an indication that something with your respiration is not okay, and you should get it fixed if possible.",
 	"You snore. This annoys everyone nearby and will wake up other people who'd like to sleep too.",
+	"You hear a midi song, one that sounds great with the right sound font and merely okay with the wrong one.",
+	"You hear the same title song that was used for the previous two installments, just rearranged a bit. Can't they come up with a new title song or something?",
 
 };
 
