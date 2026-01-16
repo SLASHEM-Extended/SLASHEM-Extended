@@ -1052,11 +1052,17 @@ boolean costly;
 	    }
 
 	    energy = objects[SPE_TELEPORT_AWAY].oc_level * 5; /* even if it was teleport self (arbitrary) --Amy */
-	    if (costly) energy = 100;
-	    if (powerfulimplants() && uimplant && uimplant->oartifact == ART_KATRIN_S_SUDDEN_APPEARANCE) energy /= 2;
-	    if (uarmh && uarmh->oartifact == ART_TRIP_TERRAIN) energy /= 3;
-	    if (uarmc && uarmc->oartifact == ART_HOP_QUICKER) energy /= 3;
-	    if (uarm && uarm->oartifact == ART_TELESTAFFEN) energy /= 3;
+	    if (costly) {
+			energy = 100;
+			if (powerfulimplants() && uimplant && uimplant->oartifact == ART_KATRIN_S_SUDDEN_APPEARANCE) energy /= 2;
+			if (uarmh && uarmh->oartifact == ART_TRIP_TERRAIN) energy /= 3;
+			if (uarmc && uarmc->oartifact == ART_HOP_QUICKER) energy /= 3;
+			if (uarm && uarm->oartifact == ART_TELESTAFFEN) energy /= 3;
+			if (u.temptelefantastic) energy /= 2;
+		
+			if (energy < 10) energy = 10; /* don't allow it to become too dirt cheap... */
+	    }
+
 	    if (u.uen < energy) {
 #ifdef WIZARD
 		if (wizard)

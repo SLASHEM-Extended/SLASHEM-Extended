@@ -631,6 +631,7 @@ init_randarts()
 	artilist[ART_RNG_S_EMBRACE].otyp = randartcloak();
 	artilist[ART_RNG_S_GRIMACE].otyp = randarthelm();
 	artilist[ART_JUBELJUBIJEEAH].otyp = randartspellbook();
+	artilist[ART_TELE_FANTASTIC].otyp = randartspellbook();
 	artilist[ART_PURPLE_RAIN__PURPLE_RAIN__].otyp = randartspellbook();
 	artilist[ART_I__GONNA_SUCK_UP_THE_SUN__].otyp = randartspellbook();
 	artilist[ART_IN_THE_BED_GEWICKED].otyp = randartspellbook();
@@ -862,6 +863,7 @@ init_randarts()
 	artilist[ART_SPECIAL_LACK].otyp = randartmeleeweaponX();
 	artilist[ART_WING_WING].otyp = randartmeleeweaponX();
 	artilist[ART_CARMOUFALSCH].otyp = randartspellbookX();
+	artilist[ART_DEMO_HAS_BOGUS_NUMBER_OF_D].otyp = randartspellbookX();
 	artilist[ART_MY_CRUDE_DISTORTION].otyp = randartspellbookX();
 	artilist[ART_CHANGE_CHANGE_CHANGE_CHANG].otyp = randartspellbookX();
 	artilist[ART_LOVE_IS_A_GREAT_STORY__LOV].otyp = randartspellbookX();
@@ -2919,6 +2921,14 @@ register boolean mod;
 		    if (otmp && otmp->oartifact == ART_CHANGE_CHANGE_CHANGE_CHANG) {
 			incr_itimeout(&HWildWeatherEffect, rnz(25000));
 			pline_The("weather starts changing randomly!");
+		    }
+
+		    if (otmp && otmp->oartifact == ART_WORLD_WILL_BE_REDONE_BY_A_) {
+			makemon(&mons[PM_FEMALE_SYMBOL], 0, 0, MM_ADJACENTOK);
+		    }
+
+		    if (otmp && otmp->oartifact == ART_DEMO_HAS_BOGUS_NUMBER_OF_D) {
+			u.tempnoctrlp += rnz(5000);
 		    }
 
 		    if (otmp && otmp->oartifact == ART_NINER) {

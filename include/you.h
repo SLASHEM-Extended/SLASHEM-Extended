@@ -854,6 +854,8 @@ struct you {
 	int tempwwwww;		/* temporary 1 in 10000 chance per turn that all monsters on the level have their HP reduced to 10% of the previous value */
 	int tempssex5;		/* temporary +5 spawn freq for AD_SSEX */
 	int temphercules20;	/* temporary +20 spawn freq for MS_HERCULES */
+	int temptelefantastic;	/* temporary teleportitis, no tele control and Ctrl-T costs 50% of normal amount */
+	int tempnoctrlp;		/* temporary disable of Ctrl-P command */
 
 	int tempnukaeffect;	/* temporary feminism trap effect that corresponds to a bottle of Nuka Cola */
 	int tempnukaefftype;	/* the type of temporary feminism trap effect for the above */

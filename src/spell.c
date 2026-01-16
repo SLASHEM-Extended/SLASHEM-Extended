@@ -3398,6 +3398,15 @@ struct obj *book2;
 
 	}
 
+	if (book2->oartifact == ART_TELE_FANTASTIC) {
+		u.temptelefantastic += rnz(10000);
+		You("gain fantastic teleportitis!");
+	}
+
+	if (book2->oartifact == ART_WORLD_WILL_BE_REDONE_BY_A_) {
+		makemon(&mons[PM_FEMALE_SYMBOL], 0, 0, MM_ADJACENTOK);
+	}
+
 	if (book2->oartifact == ART_MY_CRUDE_DISTORTION) {
 		u.antitelespelltimeout += rnz(5000);
 		pline("An anti-teleportation field has been activated!");
@@ -3406,6 +3415,10 @@ struct obj *book2;
 	if (book2->oartifact == ART_BAD_BEY) {
 		You("hold your breath.");
 		incr_itimeout(&HMagical_breathing, 10000);
+	}
+
+	if (book2->oartifact == ART_DEMO_HAS_BOGUS_NUMBER_OF_D) {
+		u.tempnoctrlp += rnz(5000);
 	}
 
 	if (book2->oartifact == ART_I__GONNA_SUCK_UP_THE_SUN__) {

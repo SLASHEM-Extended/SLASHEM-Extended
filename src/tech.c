@@ -366,6 +366,7 @@ STATIC_OVL NEARDATA const char *abil_names[] = {
 	"molestation",
 	"semen shot",
 	"circumcision",
+	"dimming shout",
 	"euthanize symbiote",
 	""
 };
@@ -3559,6 +3560,10 @@ int abil;
 			if (FireImmunity && is_sand(u.ux,u.uy)) return TRUE;
 			return FALSE;
 			break;
+		case ABIL_DAVID_TROUSERS:
+			if (uarm && uarm->oartifact == ART_DAVID_HAS_A_TROUSERS_MADE_) return TRUE;
+			return FALSE;
+			break;
 		case ABIL_WEATHER_NOCTEM:
 			if (u.ulevel >= 18 && attackdamagetype(youmonst.data, AT_BREA, AD_DARK)) return TRUE;
 			if (u.ulevel >= 18 && attackdamagetype(youmonst.data, AT_BEAM, AD_DARK)) return TRUE;
@@ -3802,6 +3807,9 @@ domonabil()
 					break;
 				case ABIL_WEATHER_NOCTEM:
 					pline("Changes the weather to 'eclipse'.");
+					break;
+				case ABIL_DAVID_TROUSERS:
+					pline("Allows you to shout frighteningly, damaging nearby monsters. Despite appearances, this ability does not wake up everyone nearby, but the affected monsters may wake up. This ability is granted by a certain pair of artifact hawaiian shorts.");
 					break;
 				case ABIL_WEATHER_OVERCAST:
 					pline("Changes the weather to 'overcast', which is also the default weather theme.");
@@ -5376,6 +5384,57 @@ newbossSTEN:
 			tell_main_weather();
 
 			abilreturncode = TRUE;
+			break;
+		case ABIL_DAVID_TROUSERS:
+		{
+			int cost = 25;
+
+			abilreturncode = FALSE;
+
+			if (!PlayerCannotUseSkills) {
+				switch (P_SKILL(P_SQUEAKING)) {
+			      	case P_BASIC:	cost *= 9; cost /= 10; break;
+			      	case P_SKILLED:	cost *= 8; cost /= 10; break;
+			      	case P_EXPERT:	cost *= 7; cost /= 10; break;
+			      	case P_MASTER:	cost *= 6; cost /= 10; break;
+			      	case P_GRAND_MASTER:	cost *= 5; cost /= 10; break;
+			      	case P_SUPREME_MASTER:	cost *= 4; cost /= 10; break;
+			      	default: break;
+				}
+			}
+
+			if (cost < 5) cost = 5; /* fail safe */
+
+			if (u.uen < cost) {
+				You("lack the energy to use your shouting ability! Need at least %d mana!", cost);
+				if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+				return;
+			}
+
+			abilreturncode = TRUE;
+
+			u.uen -= cost;
+			use_skill(P_SQUEAKING, rnd(4));
+
+			You("shout at the nearby enemies!");
+			{
+				register struct monst *nexusmon, *nextmon;
+				for(nexusmon = fmon; nexusmon; nexusmon = nextmon) {
+				    nextmon = nexusmon->nmon; /* trap might kill mon */
+				    if (DEADMONSTER(nexusmon)) continue;
+				    if (nexusmon->mpeaceful || nexusmon->mtame) continue;
+				    if (resist(nexusmon, SPBOOK_CLASS, 0, NOTELL)) continue;
+
+				    if (distu(nexusmon->mx, nexusmon->my) > rnd(50)) continue;
+
+					/* doesn't anger peaceful ones - not a bug --Amy */
+					pline("%s is dimmed!", Monnam(nexusmon));
+					wakeup(nexusmon);
+					nexusmon->mhp -= rnd(10 + (GushLevel / 3));
+					if (nexusmon->mhp < 1) nexusmon->mhp = 1; /* cannot kill enemies */
+				}
+			}
+		}
 			break;
 		case ABIL_WEATHER_NOCTEM:
 

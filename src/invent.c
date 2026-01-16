@@ -36091,6 +36091,14 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: carrying it gives the lara trap effect and semen-shooting monsters spawn a lot more often. You're also capable of jumping. It can be invoked to boost the cap of your gun control skill, but only if you don't currently have a ragnarok timer, and the invoke will start such a timer."); break;
 				case ART_THEY_COME_FROM_MECKLENBURG:
 					pline("Artifact specs: monster sound effect and sticky autocurses when worn, boosts your AC by 10, and circumcision monsters spawn a lot more often. All your weapons get great damage boosts against circumcision monsters, and lesser boosts against hardcore aliens and converters. Chaotic. If your alignment is also chaotic, it grants the following additional effects: effects that reduce your alignment have a much lower chance of actually reducing it, effects that increase your sin counter are quite likely to not affect you, and divine anger (which normally doesn't time out at all) will very slowly go down over time."); break;
+				case ART_WORLD_WILL_BE_REDONE_BY_A_:
+					pline("Artifact specs: will probably bring about the end of the world."); break;
+				case ART_TELE_FANTASTIC:
+					pline("Artifact specs: reading it gives a long-lasting effect that causes you to have teleportitis and no teleport control, and halves the cost for invoking said teleportitis via Ctrl-T."); break;
+				case ART_DEMO_HAS_BOGUS_NUMBER_OF_D:
+					pline("Artifact specs: causes replays to malfunction for cookie reasons."); break;
+				case ART_DAVID_HAS_A_TROUSERS_MADE_:
+					pline("Artifact specs: is made of plastic and allows you to #monster to damage nearby enemies but it cannot kill them."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

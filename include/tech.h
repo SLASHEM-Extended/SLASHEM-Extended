@@ -403,9 +403,10 @@ struct monsterabil {
 #define ABIL_MOLEST	56
 #define ABIL_SEMEN_SHOT	57
 #define ABIL_CIRCUMCISE	58
+#define ABIL_DAVID_TROUSERS	59
 
-#define ABIL_EUTHANIZE_SYMBIOTE	59
+#define ABIL_EUTHANIZE_SYMBIOTE	60
 
-#define MAX_ABILITY 60
+#define MAX_ABILITY 61
 
 #endif /* TECH_H */

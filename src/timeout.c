@@ -404,9 +404,20 @@ nh_timeout()
 		if (!u.tempmorepokemon) You("feel that pokemon are no longer more likely to spawn.");
 	}
 
+	if (u.temptelefantastic) {
+		u.temptelefantastic--;
+		if (u.temptelefantastic < 0) u.temptelefantastic = 0; /* fail safe */
+		if (!u.temptelefantastic) You("no longer have fantastic teleportitis.");
+	}
+
 	if (u.temphercules20) {
 		u.temphercules20--;
 		if (u.temphercules20 < 0) u.temphercules20 = 0; /* fail safe */
+	}
+
+	if (u.tempnoctrlp) {
+		u.tempnoctrlp--;
+		if (u.tempnoctrlp < 0) u.tempnoctrlp = 0; /* fail safe */
 	}
 
 	if (u.temprandospawnfreq) {

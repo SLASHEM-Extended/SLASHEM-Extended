@@ -27339,6 +27339,22 @@ A("They come from Mecklenburg-Vorpommern",				BRONZE_PLATE_MAIL, /* monster soun
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 7000L ),
 
+A("The world will be redone by a *woman*",				SPE_RAGNAROK, /* upon generating or reading, a female symbol spawns somewhere */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Tele Fantastic",				SPE_HEALING, /* randart spellbook, reading gives rnz(10k) turns of an effect that grants teleportitis, disables tele control and halves Ctrl-T cost */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Demo has bogus number of directory entries: 0",				SPE_HEALING, /* randart2 spellbook, upon generating or reading the Ctrl-P command doesn't work for rnz(5000) turns */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("The David has a trousers made of plastic",				HAWAIIAN_SHORTS, /* material becomes PLASTIC upon wearing, allows you to #monster to damage (but not kill) nearby enemies */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

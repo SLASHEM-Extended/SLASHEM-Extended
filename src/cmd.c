@@ -216,7 +216,7 @@ doprev_message()
 	return 0;
 	}
 
-	if (AutomaticMorePrompt) {
+	if (AutomaticMorePrompt || u.tempnoctrlp || (Role_if(PM_SPACEWARS_FIGHTER) && Is_nemesis(&u.uz)) || (Role_if(PM_CAMPERSTRIKER) && In_quest(&u.uz)) ) {
 	pline("No, sorry, you can't review earlier messages.");
 	return 0;
 	}

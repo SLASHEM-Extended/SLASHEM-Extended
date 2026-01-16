@@ -9221,6 +9221,9 @@ playermsconvert()
 	      	default: break;
 		}
 	}
+
+	if (cost < 5) cost = 5; /* fail safe */
+
 	if (u.uen < cost) {
 		You("lack the energy to use your conversion sermon! Need at least %d mana!", cost);
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -9262,6 +9265,9 @@ playerwouwoutaunt()
 	      	default: break;
 		}
 	}
+
+	if (cost < 5) cost = 5; /* fail safe */
+
 	if (u.uen < cost) {
 		You("lack the energy to chant a wouwou taunt! Need at least %d mana!", cost);
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -9309,6 +9315,9 @@ playerwhoretalk()
 	      	default: break;
 		}
 	}
+
+	if (cost < 5) cost = 5; /* fail safe */
+
 	if (u.uen < cost) {
 		You("lack the energy to use your sexy talk ability! Need at least %d mana!", cost);
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -9375,6 +9384,9 @@ playersupermantaunt()
 	      	default: break;
 		}
 	}
+
+	if (cost < 5) cost = 5; /* fail safe */
+
 	if (u.uen < cost) {
 		You("lack the energy to make a superman taunt! Need at least %d mana!", cost);
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -9409,6 +9421,9 @@ playerrattlebones()
 	      	default: break;
 		}
 	}
+
+	if (cost < 5) cost = 5; /* fail safe */
+
 	if (u.uen < cost) {
 		You("lack the energy to rattle your %s! Need at least %d mana!", body_part(BONES), cost);
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */

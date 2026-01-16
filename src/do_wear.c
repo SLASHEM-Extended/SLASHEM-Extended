@@ -4910,6 +4910,11 @@ Armor_on()
 		objects[uarm->otyp].oc_material = MT_PLATINUM;
 	}
 
+	if (uarm && uarm->oartifact == ART_DAVID_HAS_A_TROUSERS_MADE_ && (objects[uarm->otyp].oc_material != MT_PLASTIC)) {
+		pline_The("David is wearing a trousers made of plastic!");
+		objects[uarm->otyp].oc_material = MT_PLASTIC;
+	}
+
 	if (uarm && uarm->oartifact == ART_RHIANNON_S_RAINCLOUD && uarm->otyp != WEATHER_DRAGON_SCALES) {
 		curse(uarm);
 		Your("armor reacts strangely!");
