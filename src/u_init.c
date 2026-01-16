@@ -18641,6 +18641,10 @@ u_init()
 	shambler->mr = rn2(5)*25;				/* varying amounts of MR */
 	shambler->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shambler->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(4); i++) {
 		attkptr = &shambler->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -18701,6 +18705,10 @@ u_init()
 	shamblerp->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerp->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerp->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(4); i++) {
 		attkptr = &shamblerp->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -18761,6 +18769,10 @@ u_init()
 	pokshambler->mr = rn2(5)*25;				/* varying amounts of MR */
 	pokshambler->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &pokshambler->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(4); i++) {
 		attkptr = &pokshambler->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -18821,6 +18833,10 @@ u_init()
 	pokshamblerp->mr = rn2(5)*25;				/* varying amounts of MR */
 	pokshamblerp->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &pokshamblerp->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(4); i++) {
 		attkptr = &pokshamblerp->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -18883,6 +18899,10 @@ u_init()
 	shamblera->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblera->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblera->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(4); i++) {
 		attkptr = &shamblera->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -18943,6 +18963,10 @@ u_init()
 	shamblerap->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerap->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerap->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(4); i++) {
 		attkptr = &shamblerap->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -19003,6 +19027,10 @@ u_init()
 	shamblerb->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerb->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerb->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(4); i++) {
 		attkptr = &shamblerb->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -19062,6 +19090,10 @@ u_init()
 	shamblerbp->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerbp->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerbp->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(4); i++) {
 		attkptr = &shamblerbp->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -19124,6 +19156,10 @@ u_init()
 	shamblers->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblers->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblers->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(6); i++) {
 		attkptr = &shamblers->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -19184,6 +19220,10 @@ u_init()
 	shamblersp->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblersp->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblersp->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(6); i++) {
 		attkptr = &shamblersp->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -19244,6 +19284,10 @@ u_init()
 	pokshamblers->mr = rn2(5)*25;				/* varying amounts of MR */
 	pokshamblers->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &pokshamblers->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(6); i++) {
 		attkptr = &pokshamblers->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -19304,6 +19348,10 @@ u_init()
 	pokshamblersp->mr = rn2(5)*25;				/* varying amounts of MR */
 	pokshamblersp->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &pokshamblersp->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(6); i++) {
 		attkptr = &pokshamblersp->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -19365,6 +19413,10 @@ u_init()
 	pokshamblerxts->mr = rn2(5)*25;				/* varying amounts of MR */
 	pokshamblerxts->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &pokshamblerxts->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < (rnd(5) + 1); i++) {
 		attkptr = &pokshamblerxts->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -19425,6 +19477,10 @@ u_init()
 	pokshamblerxtsp->mr = rn2(5)*25;				/* varying amounts of MR */
 	pokshamblerxtsp->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &pokshamblerxtsp->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < (rnd(5) + 1); i++) {
 		attkptr = &pokshamblerxtsp->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -19485,6 +19541,10 @@ u_init()
 	shamblerz->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerz->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerz->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < (rnd(5) + 1); i++) {
 		attkptr = &shamblerz->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -19545,6 +19605,10 @@ u_init()
 	shamblerza->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerza->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerza->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < (rnd(5) + 1); i++) {
 		attkptr = &shamblerza->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -19605,6 +19669,10 @@ u_init()
 	shamblernl->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblernl->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblernl->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < (rnd(5) + 1); i++) {
 		attkptr = &shamblernl->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -19665,6 +19733,10 @@ u_init()
 	shamblernla->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblernla->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblernla->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < (rnd(5) + 1); i++) {
 		attkptr = &shamblernla->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -19725,6 +19797,10 @@ u_init()
 	rshamblerz->mr = rn2(5)*25;				/* varying amounts of MR */
 	rshamblerz->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &rshamblerz->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < (rnd(5) + 1); i++) {
 		attkptr = &rshamblerz->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -19789,6 +19865,10 @@ u_init()
 	rshamblerza->mr = rn2(5)*25;				/* varying amounts of MR */
 	rshamblerza->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &rshamblerza->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < (rnd(5) + 1); i++) {
 		attkptr = &rshamblerza->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -19854,6 +19934,10 @@ u_init()
 	shamblerr->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerr->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerr->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(6); i++) {
 		attkptr = &shamblerr->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -19914,6 +19998,10 @@ u_init()
 	shamblerrp->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerrp->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerrp->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(6); i++) {
 		attkptr = &shamblerrp->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -19975,6 +20063,10 @@ u_init()
 	shamblert->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblert->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblert->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(5); i++) {
 		attkptr = &shamblert->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -20033,6 +20125,10 @@ u_init()
 	randspoilerb->mr = rn2(5)*25;				/* varying amounts of MR */
 	randspoilerb->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &randspoilerb->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(3); i++) {
 		attkptr = &randspoilerb->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -20092,6 +20188,10 @@ u_init()
 	randspoilerc->mr = rn2(5)*25;				/* varying amounts of MR */
 	randspoilerc->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &randspoilerc->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(5); i++) {
 		attkptr = &randspoilerc->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -20150,6 +20250,10 @@ u_init()
 	shamblery->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblery->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblery->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(5); i++) {
 		attkptr = &shamblery->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -20211,6 +20315,10 @@ u_init()
 	shamblertp->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblertp->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblertp->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(5); i++) {
 		attkptr = &shamblertp->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -20270,6 +20378,10 @@ u_init()
 	pokshamblert->mr = rn2(5)*25;				/* varying amounts of MR */
 	pokshamblert->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &pokshamblert->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(5); i++) {
 		attkptr = &pokshamblert->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -20328,6 +20440,10 @@ u_init()
 	pokshamblertp->mr = rn2(5)*25;				/* varying amounts of MR */
 	pokshamblertp->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &pokshamblertp->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(5); i++) {
 		attkptr = &pokshamblertp->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -20387,6 +20503,10 @@ u_init()
 	rpokshamblert->mr = rn2(5)*25;				/* varying amounts of MR */
 	rpokshamblert->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &rpokshamblert->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(5); i++) {
 		attkptr = &rpokshamblert->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -20449,6 +20569,10 @@ u_init()
 	rpokshamblertp->mr = rn2(5)*25;				/* varying amounts of MR */
 	rpokshamblertp->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &rpokshamblertp->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(5); i++) {
 		attkptr = &rpokshamblertp->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -20512,6 +20636,10 @@ u_init()
 	shamblerta->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerta->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerta->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(5); i++) {
 		attkptr = &shamblerta->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -20570,6 +20698,10 @@ u_init()
 	shamblerya->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerya->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerya->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(5); i++) {
 		attkptr = &shamblerya->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -20629,6 +20761,10 @@ u_init()
 	shamblertpa->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblertpa->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblertpa->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(5); i++) {
 		attkptr = &shamblertpa->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -20688,6 +20824,10 @@ u_init()
 	shamblerl->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerl->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerl->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(3); i++) {
 		attkptr = &shamblerl->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -20746,6 +20886,10 @@ u_init()
 	shamblerln->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerln->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerln->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(2); i++) {
 		attkptr = &shamblerln->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -20804,6 +20948,10 @@ u_init()
 	shamblerlo->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerlo->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerlo->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(2); i++) {
 		attkptr = &shamblerlo->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -20864,6 +21012,10 @@ u_init()
 	shamblerla->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerla->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerla->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(3); i++) {
 		attkptr = &shamblerla->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -20924,6 +21076,10 @@ u_init()
 	pokshamblerl->mr = rn2(5)*25;				/* varying amounts of MR */
 	pokshamblerl->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &pokshamblerl->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(3); i++) {
 		attkptr = &pokshamblerl->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -20984,6 +21140,10 @@ u_init()
 	pokshamblerla->mr = rn2(5)*25;				/* varying amounts of MR */
 	pokshamblerla->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &pokshamblerla->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(3); i++) {
 		attkptr = &pokshamblerla->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -21044,6 +21204,10 @@ u_init()
 	gloshamblerx->mr = rn2(5)*25;				/* varying amounts of MR */
 	gloshamblerx->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &gloshamblerx->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(3); i++) {
 		attkptr = &gloshamblerx->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -21104,6 +21268,10 @@ u_init()
 	gloshamblert->mr = rn2(5)*25;				/* varying amounts of MR */
 	gloshamblert->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &gloshamblert->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(5); i++) {
 		attkptr = &gloshamblert->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -21162,6 +21330,10 @@ u_init()
 	gloshamblerz->mr = rn2(5)*25;				/* varying amounts of MR */
 	gloshamblerz->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &gloshamblerz->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < (rnd(5) + 1); i++) {
 		attkptr = &gloshamblerz->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -21224,6 +21396,10 @@ u_init()
 	shamblerx->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerx->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerx->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(3); i++) {
 		attkptr = &shamblerx->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -21284,6 +21460,10 @@ u_init()
 	shamblerxz->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerxz->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerxz->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(3); i++) {
 		attkptr = &shamblerxz->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -21344,6 +21524,10 @@ u_init()
 	shamblerxa->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerxa->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerxa->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(3); i++) {
 		attkptr = &shamblerxa->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -21404,6 +21588,10 @@ u_init()
 	rshamblerx->mr = rn2(5)*25;				/* varying amounts of MR */
 	rshamblerx->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &rshamblerx->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(3); i++) {
 		attkptr = &rshamblerx->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -21468,6 +21656,10 @@ u_init()
 	rshamblerxa->mr = rn2(5)*25;				/* varying amounts of MR */
 	rshamblerxa->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &rshamblerxa->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(3); i++) {
 		attkptr = &rshamblerxa->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -21532,6 +21724,10 @@ u_init()
 	pokshamblerx->mr = rn2(5)*25;				/* varying amounts of MR */
 	pokshamblerx->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &pokshamblerx->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(3); i++) {
 		attkptr = &pokshamblerx->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -21592,6 +21788,10 @@ u_init()
 	pokshamblerxa->mr = rn2(5)*25;				/* varying amounts of MR */
 	pokshamblerxa->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &pokshamblerxa->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(3); i++) {
 		attkptr = &pokshamblerxa->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -21653,6 +21853,10 @@ u_init()
 	shamblerm->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerm->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerm->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(4); i++) {
 		attkptr = &shamblerm->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -21713,6 +21917,10 @@ u_init()
 	shamblerma->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerma->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerma->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(4); i++) {
 		attkptr = &shamblerma->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -21773,6 +21981,10 @@ u_init()
 	shamblern->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblern->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblern->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(4); i++) {
 		attkptr = &shamblern->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -21833,6 +22045,10 @@ u_init()
 	shamblerna->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerna->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerna->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(4); i++) {
 		attkptr = &shamblerna->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -21895,6 +22111,10 @@ u_init()
 	pokshamblerm->mr = rn2(5)*25;				/* varying amounts of MR */
 	pokshamblerm->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &pokshamblerm->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(4); i++) {
 		attkptr = &pokshamblerm->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -21955,6 +22175,10 @@ u_init()
 	pokshamblerma->mr = rn2(5)*25;				/* varying amounts of MR */
 	pokshamblerma->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &pokshamblerma->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(4); i++) {
 		attkptr = &pokshamblerma->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -22015,6 +22239,10 @@ u_init()
 	shamblerplayer->mr = rn2(11)*10;				/* varying amounts of MR */
 	shamblerplayer->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayer->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(5); i++) {
 		attkptr = &shamblerplayer->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -22073,6 +22301,10 @@ u_init()
 	shamblerplayergl->mr = rn2(11)*10;				/* varying amounts of MR */
 	shamblerplayergl->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayergl->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(5); i++) {
 		attkptr = &shamblerplayergl->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -22131,6 +22363,10 @@ u_init()
 	shamblerplayerb->mr = rn2(11)*10;				/* varying amounts of MR */
 	shamblerplayerb->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayerb->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(5); i++) {
 		attkptr = &shamblerplayerb->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -22189,6 +22425,10 @@ u_init()
 	shamblerplayerc->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerc->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayerc->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(4); i++) {
 		attkptr = &shamblerplayerc->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -22250,6 +22490,10 @@ u_init()
 	shamblerplayerd->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerd->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayerd->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(4); i++) {
 		attkptr = &shamblerplayerd->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -22311,6 +22555,10 @@ u_init()
 	shamblerplayere->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayere->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayere->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(4); i++) {
 		attkptr = &shamblerplayere->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -22372,6 +22620,10 @@ u_init()
 	shamblerplayerf->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerf->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayerf->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(4); i++) {
 		attkptr = &shamblerplayerf->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -22433,6 +22685,10 @@ u_init()
 	shamblerplayerg->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerg->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayerg->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(4); i++) {
 		attkptr = &shamblerplayerg->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -22494,6 +22750,10 @@ u_init()
 	shamblerplayerh->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerh->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayerh->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(4); i++) {
 		attkptr = &shamblerplayerh->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -22555,6 +22815,10 @@ u_init()
 	shamblerplayermso->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayermso->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayermso->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(4); i++) {
 		attkptr = &shamblerplayermso->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -22616,6 +22880,10 @@ u_init()
 	shamblerplayermsp->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayermsp->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayermsp->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(4); i++) {
 		attkptr = &shamblerplayermsp->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -22677,6 +22945,10 @@ u_init()
 	shamblerplayeri->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayeri->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayeri->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(4); i++) {
 		attkptr = &shamblerplayeri->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -22738,6 +23010,10 @@ u_init()
 	shamblerplayerj->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerj->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayerj->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(4); i++) {
 		attkptr = &shamblerplayerj->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -22799,6 +23075,10 @@ u_init()
 	shamblerplayerk->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerk->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayerk->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(5); i++) {
 		attkptr = &shamblerplayerk->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -22858,6 +23138,10 @@ u_init()
 	shamblerplayerl->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerl->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayerl->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(5); i++) {
 		attkptr = &shamblerplayerl->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -22917,6 +23201,10 @@ u_init()
 	shamblerplayerm->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerm->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayerm->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(5); i++) {
 		attkptr = &shamblerplayerm->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -22976,6 +23264,10 @@ u_init()
 	shamblerplayern->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayern->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayern->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(5); i++) {
 		attkptr = &shamblerplayern->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -23035,6 +23327,10 @@ u_init()
 	shamblerplayero->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayero->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayero->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayero->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -23096,6 +23392,10 @@ u_init()
 	shamblerplayerp->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerp->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayerp->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayerp->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -23157,6 +23457,10 @@ u_init()
 	shamblerplayerq->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerq->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayerq->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayerq->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -23220,6 +23524,10 @@ u_init()
 	shamblerplayerr->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerr->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayerr->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayerr->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -23283,6 +23591,10 @@ u_init()
 	shamblerplayers->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayers->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayers->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayers->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -23345,6 +23657,10 @@ u_init()
 	shamblerplayert->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayert->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayert->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayert->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -23406,6 +23722,10 @@ u_init()
 	shamblerplayeru->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayeru->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayeru->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayeru->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -23467,6 +23787,10 @@ u_init()
 	shamblerplayerv->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerv->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayerv->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayerv->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -23528,6 +23852,10 @@ u_init()
 	shamblerplayerflum->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerflum->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayerflum->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayerflum->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -23589,6 +23917,10 @@ u_init()
 	shamblerplayerw->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerw->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayerw->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayerw->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -23650,6 +23982,10 @@ u_init()
 	shamblerplayerx->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerx->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayerx->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayerx->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -23711,6 +24047,10 @@ u_init()
 	shamblerplayery->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayery->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayery->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayery->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -23772,6 +24112,10 @@ u_init()
 	shamblerplayerz->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerz->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayerz->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayerz->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -23833,6 +24177,10 @@ u_init()
 	shamblerplayeraa->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayeraa->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayeraa->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayeraa->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -23894,6 +24242,10 @@ u_init()
 	shamblerplayerab->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerab->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayerab->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayerab->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -23955,6 +24307,10 @@ u_init()
 	shamblerplayerac->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerac->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayerac->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayerac->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -24016,6 +24372,10 @@ u_init()
 	shamblerplayerad->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerad->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayerad->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayerad->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -24077,6 +24437,10 @@ u_init()
 	shamblerplayerae->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerae->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayerae->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayerae->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -24138,6 +24502,10 @@ u_init()
 	splicemona->mr = rn2(5)*25;				/* varying amounts of MR */
 	splicemona->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &splicemona->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(3); i++) {
 		attkptr = &splicemona->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -24198,6 +24566,10 @@ u_init()
 	splicemonb->mr = rn2(5)*25;				/* varying amounts of MR */
 	splicemonb->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &splicemonb->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(5); i++) {
 		attkptr = &splicemonb->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -25064,6 +25436,10 @@ u_init()
 
 	}
 
+	for (i = 0; i < 6; i++) {
+		attkptr = &randspoilerj->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(3); i++) {
 		attkptr = &randspoilerj->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -25085,6 +25461,10 @@ u_init()
 		attkptr->damd = rnd(7)+2;				/* either too high or too low */
 	}
 
+	for (i = 0; i < 6; i++) {
+		attkptr = &randspoilerk->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(3); i++) {
 		attkptr = &randspoilerk->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -26015,6 +26395,10 @@ u_init()
 	randomkop->ac = rn2(21)-10;				/* any AC */
 	randomkop->mr = rn2(5)*25;				/* varying amounts of MR */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &randomkop->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(4); i++) {
 		attkptr = &randomkop->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -26066,6 +26450,10 @@ u_init()
 	randomkopb->ac = rn2(31)-20;				/* any AC */
 	randomkopb->mr = rn2(5)*25;				/* varying amounts of MR */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &randomkopb->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(5); i++) {
 		attkptr = &randomkopb->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -26117,6 +26505,10 @@ u_init()
 	rrandomkopb->ac = rn2(31)-20;				/* any AC */
 	rrandomkopb->mr = rn2(5)*25;				/* varying amounts of MR */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &rrandomkopb->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(5); i++) {
 		attkptr = &rrandomkopb->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -26172,6 +26564,10 @@ u_init()
 	randomkopc->ac = rn2(40)-29;				/* any AC */
 	randomkopc->mr = rn2(5)*25;				/* varying amounts of MR */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &randomkopc->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < (rnd(5) + 1); i++) {
 		attkptr = &randomkopc->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -26223,6 +26619,10 @@ u_init()
 	randompompeji->ac = rn2(26)-15;				/* any AC */
 	randompompeji->mr = rn2(5)*25;				/* varying amounts of MR */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &randompompeji->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(4); i++) {
 		attkptr = &randompompeji->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -26274,6 +26674,10 @@ u_init()
 	randompompejib->ac = rn2(41)-30;				/* any AC */
 	randompompejib->mr = rn2(5)*25;				/* varying amounts of MR */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &randompompejib->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(5); i++) {
 		attkptr = &randompompejib->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -26325,6 +26729,10 @@ u_init()
 	randompompejic->ac = rn2(55)-44;				/* any AC */
 	randompompejic->mr = rn2(5)*25;				/* varying amounts of MR */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &randompompejic->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < (rnd(5) + 1); i++) {
 		attkptr = &randompompejic->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -32086,7 +32494,7 @@ int realityflag;
 	struct permonst* randomfungusb = &mons[PM_COLORLESS_FUNGUS];
 	struct permonst* randomfungusba = &mons[PM_COLORLESS_PATCH];
 	struct permonst* randomfungusbb = &mons[PM_COLORLESS_FORCE_FUNGUS];
-	struct permonst* randomfungusbbx = &mons[PM_COLORLESS_WORT];
+	struct permonst* randomfungusbbe = &mons[PM_COLORLESS_WORT];
 	struct permonst* randomfungusbc = &mons[PM_COLORLESS_FORCE_PATCH];
 	struct permonst* randomfungusbd = &mons[PM_COLORLESS_WARP_FUNGUS];
 	struct permonst* randomfungusbe = &mons[PM_COLORLESS_WARP_PATCH];
@@ -34244,6 +34652,10 @@ int realityflag;
 	shambler->mr = rn2(5)*25;				/* varying amounts of MR */
 	shambler->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shambler->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(4); i++) {
 		attkptr = &shambler->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -34304,6 +34716,10 @@ int realityflag;
 	shamblerp->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerp->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerp->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(4); i++) {
 		attkptr = &shamblerp->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -34364,6 +34780,10 @@ int realityflag;
 	pokshambler->mr = rn2(5)*25;				/* varying amounts of MR */
 	pokshambler->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &pokshambler->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(4); i++) {
 		attkptr = &pokshambler->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -34424,6 +34844,10 @@ int realityflag;
 	pokshamblerp->mr = rn2(5)*25;				/* varying amounts of MR */
 	pokshamblerp->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &pokshamblerp->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(4); i++) {
 		attkptr = &pokshamblerp->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -34486,6 +34910,10 @@ int realityflag;
 	shamblera->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblera->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblera->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(4); i++) {
 		attkptr = &shamblera->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -34546,6 +34974,10 @@ int realityflag;
 	shamblerap->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerap->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerap->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(4); i++) {
 		attkptr = &shamblerap->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -34606,6 +35038,10 @@ int realityflag;
 	shamblerb->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerb->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerb->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(4); i++) {
 		attkptr = &shamblerb->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -34665,6 +35101,10 @@ int realityflag;
 	shamblerbp->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerbp->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerbp->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(4); i++) {
 		attkptr = &shamblerbp->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -34727,6 +35167,10 @@ int realityflag;
 	shamblers->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblers->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblers->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(6); i++) {
 		attkptr = &shamblers->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -34787,6 +35231,10 @@ int realityflag;
 	shamblersp->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblersp->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblersp->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(6); i++) {
 		attkptr = &shamblersp->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -34847,6 +35295,10 @@ int realityflag;
 	pokshamblers->mr = rn2(5)*25;				/* varying amounts of MR */
 	pokshamblers->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &pokshamblers->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(6); i++) {
 		attkptr = &pokshamblers->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -34907,6 +35359,10 @@ int realityflag;
 	pokshamblersp->mr = rn2(5)*25;				/* varying amounts of MR */
 	pokshamblersp->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &pokshamblersp->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(6); i++) {
 		attkptr = &pokshamblersp->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -34968,6 +35424,10 @@ int realityflag;
 	pokshamblerxts->mr = rn2(5)*25;				/* varying amounts of MR */
 	pokshamblerxts->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &pokshamblerxts->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < (rnd(5) + 1); i++) {
 		attkptr = &pokshamblerxts->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -35028,6 +35488,10 @@ int realityflag;
 	pokshamblerxtsp->mr = rn2(5)*25;				/* varying amounts of MR */
 	pokshamblerxtsp->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &pokshamblerxtsp->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < (rnd(5) + 1); i++) {
 		attkptr = &pokshamblerxtsp->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -35088,6 +35552,10 @@ int realityflag;
 	shamblerz->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerz->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerz->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < (rnd(5) + 1); i++) {
 		attkptr = &shamblerz->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -35148,6 +35616,10 @@ int realityflag;
 	shamblerza->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerza->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerza->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < (rnd(5) + 1); i++) {
 		attkptr = &shamblerza->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -35208,6 +35680,10 @@ int realityflag;
 	shamblernl->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblernl->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblernl->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < (rnd(5) + 1); i++) {
 		attkptr = &shamblernl->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -35268,6 +35744,10 @@ int realityflag;
 	shamblernla->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblernla->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblernla->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < (rnd(5) + 1); i++) {
 		attkptr = &shamblernla->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -35328,6 +35808,10 @@ int realityflag;
 	rshamblerz->mr = rn2(5)*25;				/* varying amounts of MR */
 	rshamblerz->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &rshamblerz->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < (rnd(5) + 1); i++) {
 		attkptr = &rshamblerz->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -35392,6 +35876,10 @@ int realityflag;
 	rshamblerza->mr = rn2(5)*25;				/* varying amounts of MR */
 	rshamblerza->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &rshamblerza->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < (rnd(5) + 1); i++) {
 		attkptr = &rshamblerza->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -35457,6 +35945,10 @@ int realityflag;
 	shamblerr->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerr->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerr->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(6); i++) {
 		attkptr = &shamblerr->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -35517,6 +36009,10 @@ int realityflag;
 	shamblerrp->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerrp->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerrp->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(6); i++) {
 		attkptr = &shamblerrp->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -35578,6 +36074,10 @@ int realityflag;
 	shamblert->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblert->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblert->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(5); i++) {
 		attkptr = &shamblert->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -35636,6 +36136,10 @@ int realityflag;
 	randspoilerb->mr = rn2(5)*25;				/* varying amounts of MR */
 	randspoilerb->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &randspoilerb->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(3); i++) {
 		attkptr = &randspoilerb->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -35695,6 +36199,10 @@ int realityflag;
 	randspoilerc->mr = rn2(5)*25;				/* varying amounts of MR */
 	randspoilerc->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &randspoilerc->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(5); i++) {
 		attkptr = &randspoilerc->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -35753,6 +36261,10 @@ int realityflag;
 	shamblery->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblery->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblery->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(5); i++) {
 		attkptr = &shamblery->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -35814,6 +36326,10 @@ int realityflag;
 	shamblertp->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblertp->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblertp->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(5); i++) {
 		attkptr = &shamblertp->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -35873,6 +36389,10 @@ int realityflag;
 	pokshamblert->mr = rn2(5)*25;				/* varying amounts of MR */
 	pokshamblert->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &pokshamblert->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(5); i++) {
 		attkptr = &pokshamblert->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -35931,6 +36451,10 @@ int realityflag;
 	pokshamblertp->mr = rn2(5)*25;				/* varying amounts of MR */
 	pokshamblertp->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &pokshamblertp->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(5); i++) {
 		attkptr = &pokshamblertp->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -35990,6 +36514,10 @@ int realityflag;
 	rpokshamblert->mr = rn2(5)*25;				/* varying amounts of MR */
 	rpokshamblert->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &rpokshamblert->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(5); i++) {
 		attkptr = &rpokshamblert->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -36052,6 +36580,10 @@ int realityflag;
 	rpokshamblertp->mr = rn2(5)*25;				/* varying amounts of MR */
 	rpokshamblertp->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &rpokshamblertp->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(5); i++) {
 		attkptr = &rpokshamblertp->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -36115,6 +36647,10 @@ int realityflag;
 	shamblerta->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerta->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerta->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(5); i++) {
 		attkptr = &shamblerta->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -36173,6 +36709,10 @@ int realityflag;
 	shamblerya->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerya->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerya->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(5); i++) {
 		attkptr = &shamblerya->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -36232,6 +36772,10 @@ int realityflag;
 	shamblertpa->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblertpa->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblertpa->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(5); i++) {
 		attkptr = &shamblertpa->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -36291,6 +36835,10 @@ int realityflag;
 	shamblerl->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerl->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerl->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(3); i++) {
 		attkptr = &shamblerl->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -36349,6 +36897,10 @@ int realityflag;
 	shamblerln->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerln->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerln->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(2); i++) {
 		attkptr = &shamblerln->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -36407,6 +36959,10 @@ int realityflag;
 	shamblerlo->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerlo->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerlo->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(2); i++) {
 		attkptr = &shamblerlo->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -36467,6 +37023,10 @@ int realityflag;
 	shamblerla->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerla->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerla->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(3); i++) {
 		attkptr = &shamblerla->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -36527,6 +37087,10 @@ int realityflag;
 	pokshamblerl->mr = rn2(5)*25;				/* varying amounts of MR */
 	pokshamblerl->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &pokshamblerl->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(3); i++) {
 		attkptr = &pokshamblerl->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -36587,6 +37151,10 @@ int realityflag;
 	pokshamblerla->mr = rn2(5)*25;				/* varying amounts of MR */
 	pokshamblerla->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &pokshamblerla->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(3); i++) {
 		attkptr = &pokshamblerla->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -36647,6 +37215,10 @@ int realityflag;
 	gloshamblerx->mr = rn2(5)*25;				/* varying amounts of MR */
 	gloshamblerx->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &gloshamblerx->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(3); i++) {
 		attkptr = &gloshamblerx->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -36707,6 +37279,10 @@ int realityflag;
 	gloshamblert->mr = rn2(5)*25;				/* varying amounts of MR */
 	gloshamblert->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &gloshamblert->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(5); i++) {
 		attkptr = &gloshamblert->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -36765,6 +37341,10 @@ int realityflag;
 	gloshamblerz->mr = rn2(5)*25;				/* varying amounts of MR */
 	gloshamblerz->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &gloshamblerz->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < (rnd(5) + 1); i++) {
 		attkptr = &gloshamblerz->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -36827,6 +37407,10 @@ int realityflag;
 	shamblerx->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerx->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerx->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(3); i++) {
 		attkptr = &shamblerx->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -36887,6 +37471,10 @@ int realityflag;
 	shamblerxz->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerxz->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerxz->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(3); i++) {
 		attkptr = &shamblerxz->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -36947,6 +37535,10 @@ int realityflag;
 	shamblerxa->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerxa->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerxa->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(3); i++) {
 		attkptr = &shamblerxa->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -37007,6 +37599,10 @@ int realityflag;
 	rshamblerx->mr = rn2(5)*25;				/* varying amounts of MR */
 	rshamblerx->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &rshamblerx->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(3); i++) {
 		attkptr = &rshamblerx->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -37071,6 +37667,10 @@ int realityflag;
 	rshamblerxa->mr = rn2(5)*25;				/* varying amounts of MR */
 	rshamblerxa->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &rshamblerxa->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(3); i++) {
 		attkptr = &rshamblerxa->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -37135,6 +37735,10 @@ int realityflag;
 	pokshamblerx->mr = rn2(5)*25;				/* varying amounts of MR */
 	pokshamblerx->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &pokshamblerx->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(3); i++) {
 		attkptr = &pokshamblerx->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -37195,6 +37799,10 @@ int realityflag;
 	pokshamblerxa->mr = rn2(5)*25;				/* varying amounts of MR */
 	pokshamblerxa->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &pokshamblerxa->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(3); i++) {
 		attkptr = &pokshamblerxa->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -37256,6 +37864,10 @@ int realityflag;
 	shamblerm->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerm->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerm->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(4); i++) {
 		attkptr = &shamblerm->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -37316,6 +37928,10 @@ int realityflag;
 	shamblerma->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerma->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerma->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(4); i++) {
 		attkptr = &shamblerma->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -37376,6 +37992,10 @@ int realityflag;
 	shamblern->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblern->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblern->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(4); i++) {
 		attkptr = &shamblern->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -37436,6 +38056,10 @@ int realityflag;
 	shamblerna->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerna->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerna->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(4); i++) {
 		attkptr = &shamblerna->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -37498,6 +38122,10 @@ int realityflag;
 	pokshamblerm->mr = rn2(5)*25;				/* varying amounts of MR */
 	pokshamblerm->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &pokshamblerm->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(4); i++) {
 		attkptr = &pokshamblerm->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -37558,6 +38186,10 @@ int realityflag;
 	pokshamblerma->mr = rn2(5)*25;				/* varying amounts of MR */
 	pokshamblerma->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &pokshamblerma->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(4); i++) {
 		attkptr = &pokshamblerma->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -37618,6 +38250,10 @@ int realityflag;
 	shamblerplayer->mr = rn2(11)*10;				/* varying amounts of MR */
 	shamblerplayer->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayer->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(5); i++) {
 		attkptr = &shamblerplayer->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -37676,6 +38312,10 @@ int realityflag;
 	shamblerplayergl->mr = rn2(11)*10;				/* varying amounts of MR */
 	shamblerplayergl->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayergl->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(5); i++) {
 		attkptr = &shamblerplayergl->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -37734,6 +38374,10 @@ int realityflag;
 	shamblerplayerb->mr = rn2(11)*10;				/* varying amounts of MR */
 	shamblerplayerb->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayerb->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(5); i++) {
 		attkptr = &shamblerplayerb->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -37792,6 +38436,10 @@ int realityflag;
 	shamblerplayerc->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerc->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayerc->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(4); i++) {
 		attkptr = &shamblerplayerc->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -37853,6 +38501,10 @@ int realityflag;
 	shamblerplayerd->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerd->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayerd->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(4); i++) {
 		attkptr = &shamblerplayerd->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -37914,6 +38566,10 @@ int realityflag;
 	shamblerplayere->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayere->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayere->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(4); i++) {
 		attkptr = &shamblerplayere->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -37975,6 +38631,10 @@ int realityflag;
 	shamblerplayerf->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerf->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayerf->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(4); i++) {
 		attkptr = &shamblerplayerf->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -38036,6 +38696,10 @@ int realityflag;
 	shamblerplayerg->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerg->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayerg->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(4); i++) {
 		attkptr = &shamblerplayerg->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -38097,6 +38761,10 @@ int realityflag;
 	shamblerplayerh->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerh->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayerh->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(4); i++) {
 		attkptr = &shamblerplayerh->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -38158,6 +38826,10 @@ int realityflag;
 	shamblerplayermso->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayermso->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayermso->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(4); i++) {
 		attkptr = &shamblerplayermso->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -38219,6 +38891,10 @@ int realityflag;
 	shamblerplayermsp->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayermsp->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayermsp->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(4); i++) {
 		attkptr = &shamblerplayermsp->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -38280,6 +38956,10 @@ int realityflag;
 	shamblerplayeri->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayeri->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayeri->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(4); i++) {
 		attkptr = &shamblerplayeri->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -38341,6 +39021,10 @@ int realityflag;
 	shamblerplayerj->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerj->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayerj->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(4); i++) {
 		attkptr = &shamblerplayerj->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -38402,6 +39086,10 @@ int realityflag;
 	shamblerplayerk->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerk->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayerk->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(5); i++) {
 		attkptr = &shamblerplayerk->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -38461,6 +39149,10 @@ int realityflag;
 	shamblerplayerl->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerl->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayerl->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(5); i++) {
 		attkptr = &shamblerplayerl->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -38520,6 +39212,10 @@ int realityflag;
 	shamblerplayerm->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerm->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayerm->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(5); i++) {
 		attkptr = &shamblerplayerm->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -38579,6 +39275,10 @@ int realityflag;
 	shamblerplayern->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayern->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayern->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(5); i++) {
 		attkptr = &shamblerplayern->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -38638,6 +39338,10 @@ int realityflag;
 	shamblerplayero->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayero->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayero->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayero->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -38699,6 +39403,10 @@ int realityflag;
 	shamblerplayerp->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerp->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayerp->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayerp->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -38760,6 +39468,10 @@ int realityflag;
 	shamblerplayerq->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerq->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayerq->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayerq->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -38823,6 +39535,10 @@ int realityflag;
 	shamblerplayerr->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerr->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayerr->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayerr->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -38886,6 +39602,10 @@ int realityflag;
 	shamblerplayers->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayers->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayers->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayers->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -38948,6 +39668,10 @@ int realityflag;
 	shamblerplayert->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayert->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayert->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayert->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -39009,6 +39733,10 @@ int realityflag;
 	shamblerplayeru->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayeru->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayeru->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayeru->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -39070,6 +39798,10 @@ int realityflag;
 	shamblerplayerv->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerv->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayerv->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayerv->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -39131,6 +39863,10 @@ int realityflag;
 	shamblerplayerflum->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerflum->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayerflum->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayerflum->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -39192,6 +39928,10 @@ int realityflag;
 	shamblerplayerw->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerw->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayerw->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayerw->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -39253,6 +39993,10 @@ int realityflag;
 	shamblerplayerx->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerx->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayerx->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayerx->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -39314,6 +40058,10 @@ int realityflag;
 	shamblerplayery->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayery->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayery->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayery->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -39375,6 +40123,10 @@ int realityflag;
 	shamblerplayerz->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerz->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayerz->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayerz->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -39436,6 +40188,10 @@ int realityflag;
 	shamblerplayeraa->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayeraa->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayeraa->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayeraa->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -39497,6 +40253,10 @@ int realityflag;
 	shamblerplayerab->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerab->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayerab->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayerab->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -39558,6 +40318,10 @@ int realityflag;
 	shamblerplayerac->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerac->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayerac->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayerac->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -39619,6 +40383,10 @@ int realityflag;
 	shamblerplayerad->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerad->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayerad->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayerad->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -39680,6 +40448,10 @@ int realityflag;
 	shamblerplayerae->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerae->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayerae->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayerae->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -39741,6 +40513,10 @@ int realityflag;
 	splicemona->mr = rn2(5)*25;				/* varying amounts of MR */
 	splicemona->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &splicemona->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(3); i++) {
 		attkptr = &splicemona->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -39801,6 +40577,10 @@ int realityflag;
 	splicemonb->mr = rn2(5)*25;				/* varying amounts of MR */
 	splicemonb->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &splicemonb->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(5); i++) {
 		attkptr = &splicemonb->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -40062,11 +40842,11 @@ int realityflag;
 
 	}
 
-	randomfungusbbx->mmove = rnd(12);
-	randomfungusbbx->ac = 10-rnd(25);
-	randomfungusbbx->mr = rn2(101);
+	randomfungusbbe->mmove = rnd(12);
+	randomfungusbbe->ac = 10-rnd(25);
+	randomfungusbbe->mr = rn2(101);
 	for (i = 0; i < 3; i++) {
-		attkptr = &randomfungusbbx->mattk[i];
+		attkptr = &randomfungusbbe->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
 		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
@@ -40667,6 +41447,10 @@ int realityflag;
 
 	}
 
+	for (i = 0; i < 6; i++) {
+		attkptr = &randspoilerj->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(3); i++) {
 		attkptr = &randspoilerj->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -40688,6 +41472,10 @@ int realityflag;
 		attkptr->damd = rnd(7)+2;				/* either too high or too low */
 	}
 
+	for (i = 0; i < 6; i++) {
+		attkptr = &randspoilerk->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(3); i++) {
 		attkptr = &randspoilerk->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -41618,6 +42406,10 @@ int realityflag;
 	randomkop->ac = rn2(21)-10;				/* any AC */
 	randomkop->mr = rn2(5)*25;				/* varying amounts of MR */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &randomkop->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(4); i++) {
 		attkptr = &randomkop->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -41669,6 +42461,10 @@ int realityflag;
 	randomkopb->ac = rn2(31)-20;				/* any AC */
 	randomkopb->mr = rn2(5)*25;				/* varying amounts of MR */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &randomkopb->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(5); i++) {
 		attkptr = &randomkopb->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -41720,6 +42516,10 @@ int realityflag;
 	rrandomkopb->ac = rn2(31)-20;				/* any AC */
 	rrandomkopb->mr = rn2(5)*25;				/* varying amounts of MR */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &rrandomkopb->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(5); i++) {
 		attkptr = &rrandomkopb->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -41775,6 +42575,10 @@ int realityflag;
 	randomkopc->ac = rn2(40)-29;				/* any AC */
 	randomkopc->mr = rn2(5)*25;				/* varying amounts of MR */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &randomkopc->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < (rnd(5) + 1); i++) {
 		attkptr = &randomkopc->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -41826,6 +42630,10 @@ int realityflag;
 	randompompeji->ac = rn2(26)-15;				/* any AC */
 	randompompeji->mr = rn2(5)*25;				/* varying amounts of MR */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &randompompeji->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(4); i++) {
 		attkptr = &randompompeji->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -41877,6 +42685,10 @@ int realityflag;
 	randompompejib->ac = rn2(41)-30;				/* any AC */
 	randompompejib->mr = rn2(5)*25;				/* varying amounts of MR */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &randompompejib->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rnd(5); i++) {
 		attkptr = &randompompejib->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -41928,6 +42740,10 @@ int realityflag;
 	randompompejic->ac = rn2(55)-44;				/* any AC */
 	randompompejic->mr = rn2(5)*25;				/* varying amounts of MR */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &randompompejic->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < (rnd(5) + 1); i++) {
 		attkptr = &randompompejic->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -42366,14 +43182,6 @@ int realityflag;
 	starlitk->mflags2 &= ~M2_PNAME;
 	starlitk->mflags2 &= ~M2_PEACEFUL;
 
-	/* and a total train wreck... */
-	starlitmonster = -1;
-	starlitattempts = 0;
-	while ((starlitmonster == -1) && starlitattempts < 50000 ) {
-		starlitmonster = /*(NUMMONS + rnd(MISSINGNORANGE));*/PM_HUMAN;
-		starlitattempts++;
-	}
-
 	starlitmonster = -1;
 	starlitattempts = 0;
 	while (((starlitmonster == -1) || (mons[starlitmonster].mlevel > 5)) && starlitattempts < 50000 ) {
@@ -42467,6 +43275,14 @@ int realityflag;
 	sprintf(buf, "%s", generate_garbage_string() );
 	(void) strncpy(u.starlit3, buf, sizeof(buf) );
 	starlitn->mname = u.starlit3;
+
+	/* and a total train wreck... */
+	starlitmonster = -1;
+	starlitattempts = 0;
+	while ((starlitmonster == -1) && starlitattempts < 50000 ) {
+		starlitmonster = /*(NUMMONS + rnd(MISSINGNORANGE));*/PM_HUMAN;
+		starlitattempts++;
+	}
 
 	starlitu->mmove = mons[starlitmonster].mmove;
 	starlitu->ac = mons[starlitmonster].ac;
@@ -46902,7 +47718,12 @@ reinitmissingno()
 	shamblerplayermso->ac = rn2(21)-10;				/* any AC */
 	shamblerplayermso->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayermso->maligntyp = rn2(21)-10;			/* any alignment */
+
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayermso->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(4); i++) {
 		attkptr = &shamblerplayermso->mattk[i];
 		/* restrict it to certain types of attacks */
@@ -46964,6 +47785,10 @@ reinitmissingno()
 	shamblerplayermsp->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayermsp->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
+	for (i = 0; i < 6; i++) {
+		attkptr = &shamblerplayermsp->mattk[i];
+		attkptr->aatyp = attkptr->adtyp = attkptr->damn = attkptr->damd = 0;
+	}
 	for (i = 0; i < rno(4); i++) {
 		attkptr = &shamblerplayermsp->mattk[i];
 		/* restrict it to certain types of attacks */
