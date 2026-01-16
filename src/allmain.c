@@ -18897,7 +18897,7 @@ boolean new_game;	/* false => restoring an old game */
 	}
 
 	/* matrayser hybrid race: all of the player's starting inventory items are levelported away
-	 * after that has happened, all the item materials are shuffled --Amy */
+	 * after that has happened, all the item materials are shuffled but only if it's your main race --Amy */
 	if (ismatrayser && new_game) {
 		int mattries = 0;
 		register struct monst *offmon;
@@ -18909,7 +18909,7 @@ boolean new_game;	/* false => restoring an old game */
 				u_teleport_monB(offmon, FALSE);
 			}
 		}
-		matraysershuffle();
+		if (Race_if(PM_MATRAYSER)) matraysershuffle();
 	}
 
 	if (TheInfoIsFucked) {
@@ -22973,7 +22973,6 @@ timebasedlowerchance()
 	}
 
 	if (ismatrayser && !rn2(20)) return FALSE; /* downside for having potentially better item materials */
-	if (flags.hybridmatrayser && !rn2(5)) return FALSE; /* extra downside because someone might pick this hybrid specifically to gain some advantage --Amy */
 
 	if (uarmh && uarmh->oartifact == ART_SUDUNSEL) return TRUE; /* always generate the item */
 
