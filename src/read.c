@@ -882,6 +882,8 @@ static const char *actualshirtmessages[] = { /* Scott Bigham */
 	"What they call 'vanilla' nowadays is actually raspberry-chili flavored, with a bit of champignon and some wasabi! Actual vanilla flavor died years ago, sadly :(",
 	"You are only a super hero if you yourself for super hold!",
 	"I dreamed that Furio Tigre sat on my lap and caressed my black stiletto boots, and while doing so, he was the most tame and docile guy ever!",
+	"I love women's movements, they're so nice to look at.",
+	"I love women's movements, especially underneath my body.",
 
 };
 

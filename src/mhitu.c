@@ -1468,9 +1468,11 @@ elena23:
 				if (!mtmp->mfrenzied) {
 
 					char qbuf[QBUFSZ];
-					char c;
-					strcpy(qbuf,"Do you want to allow the pretty sandal to kick you again?");
-					if ((c = yn_function(qbuf, ynqchars, 'y')) != 'n') {
+
+					getlin ("Do you want to allow the pretty sandal to kick you again? If you don't, she'll probably hate you. [y/yes/no]",qbuf);
+
+					(void) lcase (qbuf);
+					if (!(strcmp (qbuf, "yes")) || !(strcmp (qbuf, "y")) || !(strcmp (qbuf, "ye")) || !(strcmp (qbuf, "ys"))) {
 						kseniakick = TRUE;
 						if (!SuperFemtrapKsenia && !rn2(20)) {
 							mtmp->mpeaceful = TRUE;

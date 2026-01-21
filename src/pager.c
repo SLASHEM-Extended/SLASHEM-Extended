@@ -30223,6 +30223,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"You snore. This annoys everyone nearby and will wake up other people who'd like to sleep too.",
 	"You hear a midi song, one that sounds great with the right sound font and merely okay with the wrong one.",
 	"You hear the same title song that was used for the previous two installments, just rearranged a bit. Can't they come up with a new title song or something?",
+	"You dream that you are listening to the radio, and they're playing a Bjoerk song but she's singing in German, strangely enough. The refrain always goes 'Hey Danea, ich glaube du weisst es, dass du heut abend kein Eis kriegst!'",
 
 };
 

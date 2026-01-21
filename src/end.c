@@ -448,6 +448,8 @@ register struct monst *mtmp;
 	}
 	if(mtmp->data == &mons[PM_SOLDIER_ANT]) strcat(buf, "    Go Team Ant!");
 
+	monster_kill_taunt(mtmp, 100, TRUE);
+
 	killer = buf;
 	if (mtmp->data->mlet == S_WRAITH)
 		u.ugrave_arise = PM_WRAITH;

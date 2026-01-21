@@ -8691,6 +8691,501 @@ register struct monst *mtmp;
 	}
 }
 
+void
+monster_kill_taunt(mtmp, soundchance, playerdead)
+struct monst *mtmp;
+int soundchance;
+boolean playerdead;
+{
+	if (rnd(100) > soundchance) return;
+
+	/* some of these are sound-based, others are vision-based */
+	switch (monstersoundtype(mtmp)) {
+		default:
+		case MS_SILENT:
+			if (cansee(mtmp->mx, mtmp->my) || playerdead) pline("%s takes on a victorious pose.", Monnam(mtmp));
+			break;
+		case MS_BARK:
+			if (flags.soundok || playerdead) pline("%s wags %s tail.", Monnam(mtmp), mhis(mtmp));
+			break;
+		case MS_MEW:
+			if (flags.soundok || playerdead) pline("%s sharpens %s claws.", Monnam(mtmp), mhis(mtmp));
+			break;
+		case MS_ROAR:
+			if (flags.soundok || playerdead) pline("%s roars into the air.", Monnam(mtmp));
+			break;
+		case MS_GROWL:
+			if (flags.soundok || playerdead) pline("%s growls contentedly.", Monnam(mtmp));
+			break;
+		case MS_SQEEK:
+			if (flags.soundok || playerdead) pline("%s squeaks happily.", Monnam(mtmp));
+			break;
+		case MS_SQAWK:
+			if (flags.soundok || playerdead) pline("%s squawks raucuously.", Monnam(mtmp));
+			break;
+		case MS_HISS:
+			if (flags.soundok || playerdead) pline("%s hisses and licks %s tongue.", Monnam(mtmp), mhis(mtmp));
+			break;
+		case MS_BUZZ:
+			if (flags.soundok || playerdead) pline("%s buzzes for a moment.", Monnam(mtmp));
+			break;
+		case MS_GRUNT:
+			if (flags.soundok || playerdead) pline("%s grunts dismissively.", Monnam(mtmp));
+			break;
+		case MS_NEIGH:
+			if (flags.soundok || playerdead) pline("%s blows through %s %s.", Monnam(mtmp), mhis(mtmp), mbodypart(mtmp, NOSE));
+			break;
+		case MS_WAIL:
+			if (flags.soundok || playerdead) pline("%s wails sadly.", Monnam(mtmp));
+			break;
+		case MS_GURGLE:
+			if (flags.soundok || playerdead) pline("%s gurgles loudly.", Monnam(mtmp));
+			break;
+		case MS_BURBLE:
+			if (flags.soundok || playerdead) pline("%s emits a frabjous burble.", Monnam(mtmp));
+			break;
+		case MS_SHRIEK:
+			if (flags.soundok || playerdead) pline("%s emits a long shriek.", Monnam(mtmp));
+			aggravate();
+			break;
+		case MS_BONES:
+			if (flags.soundok || playerdead) pline("%s rattles.", Monnam(mtmp));
+			break;
+		case MS_LAUGH:
+			if (flags.soundok || playerdead) pline("%s laughs: 'Haaaaaaa, ha ha ha ha ha!'", Monnam(mtmp));
+			break;
+		case MS_MUMBLE:
+			if (flags.soundok || playerdead) pline("%s makes a content mumble.", Monnam(mtmp));
+			break;
+		case MS_IMITATE:
+			if (flags.soundok || playerdead) pline("%s imitats %s defeated opponent.", Monnam(mtmp), mhis(mtmp));
+			break;
+		case MS_GUARD:
+			if (flags.soundok || playerdead) pline("%s shouts 'Got you, evil-doer!'", Monnam(mtmp));
+			break;
+		case MS_DJINNI:
+			if (flags.soundok || playerdead) pline("%s shouts 'Now YOU are gonna spend the next 500 years in a bottle!'", Monnam(mtmp));
+			break;
+		case MS_NURSE:
+			if (flags.soundok || playerdead) pline("%s remarks 'Hmm... operation successful, patient dead... at least a 50%% success...'", Monnam(mtmp));
+			break;
+		case MS_SEDUCE:
+			if (flags.soundok || playerdead) pline("%s remarks 'I guess my beauty was to die for... literally. Hahaha!'", Monnam(mtmp));
+			break;
+		case MS_VAMPIRE:
+			if (flags.soundok || playerdead) pline("%s grins 'Hah... now I vill drink your blood!'", Monnam(mtmp));
+			break;
+		case MS_BRIBE:
+			if (flags.soundok || playerdead) pline("%s remarks 'Should've paid, asshole. Now look what happened to you.'", Monnam(mtmp));
+			break;
+		case MS_RIDER:
+			if (flags.soundok || playerdead) pline("%s laughs 'My horse trampled all over that lowly creature.'", Monnam(mtmp));
+			break;
+		case MS_LEADER:
+			if (flags.soundok || playerdead) {
+				if (playerdead) pline("%s remarks 'A death fitting the traitor of %s.'", Monnam(mtmp), playeraliasname);
+				else pline("%s remarks 'Our nemesis will never win.'", Monnam(mtmp));
+			}
+			break;
+		case MS_NEMESIS:
+			if (flags.soundok || playerdead) {
+				if (playerdead) pline("%s laughs 'Game over, %s! Have fun starting a new game and slowly grinding your way back to me only to lose again! Ha, ha, ha!'", Monnam(mtmp), playeraliasname);
+				else pline("%s remarks 'That wasn't a challenge.'", Monnam(mtmp));
+			}
+			break;
+		case MS_GUARDIAN:
+			if (flags.soundok || playerdead) {
+				if (playerdead) pline("%s shouts '%s, you traitor deserved to die!'", Monnam(mtmp), playeraliasname);
+				else pline("%s remarks 'Ha! Not all hope is lost yet!'", Monnam(mtmp));
+			}
+			break;
+		case MS_SELL:
+			if (flags.soundok || playerdead) pline("%s shouts 'Death to shoplifters!'", Monnam(mtmp));
+			break;
+		case MS_ORACLE:
+			if (flags.soundok || playerdead) pline("%s mumbles 'I predict that this individual will enter the Nine Circles of Hell.'", Monnam(mtmp));
+			break;
+		case MS_PRIEST:
+			if (flags.soundok || playerdead) pline("%s's strong voice announces 'AHYO!'", Monnam(mtmp));
+			break;
+		case MS_SPELL:
+			if (flags.soundok || playerdead) pline("%s remarks 'Never underestimate the power of my spells!'", Monnam(mtmp));
+			break;
+		case MS_WERE:
+			if (flags.soundok || playerdead) pline("%s growls furiously and starts devouring %s corpse.", Monnam(mtmp), playerdead ? "your" : "the fallen opponent's");
+			break;
+		case MS_BOAST:
+			if (flags.soundok || playerdead) pline("%s laughs 'Wa ha ha ha, you never had a chance to begin with!'", Monnam(mtmp));
+			break;
+		case MS_GYPSY:
+			if (flags.soundok || playerdead) pline("%s remarks 'That'll teach you to attack a gypsy! Burn in hell!'", Monnam(mtmp));
+			break;
+		case MS_SHEEP:
+			if (flags.soundok || playerdead) pline("%s baaaaaaas for a while.", Monnam(mtmp));
+			break;
+		case MS_CHICKEN:
+			if (cansee(mtmp->mx, mtmp->my) || playerdead) pline("%s looks a little scared.", Monnam(mtmp));
+			break;
+		case MS_COW:
+			if (flags.soundok || playerdead) pline("%s makes a sound that sounds like 'Moomoomoo moo moo! Moo, moomoo moo!'", Monnam(mtmp));
+			break;
+		case MS_PARROT:
+			if (flags.soundok || playerdead) {
+				if (playerdead) pline("%s croaks '%s has lost!'", Monnam(mtmp), playeraliasname);
+				else pline("%s croaks 'I didn't do it, Your Honor!'", Monnam(mtmp));
+			}
+			break;
+		case MS_VICE:
+			if (flags.soundok || playerdead) pline("%s chants 'And he who is without sin shall throw the first stone.'", Monnam(mtmp));
+			break;
+		case MS_BOSS:
+			if (flags.soundok || playerdead) {
+				if (playerdead) pline("%s laughs 'You lost to the boss.'", Monnam(mtmp));
+				else pline("%s laughs 'No one can stop me!'", Monnam(mtmp));
+			}
+			break;
+		case MS_SOUND:
+			if (flags.soundok || playerdead) pline("%s starts singing a heavy metal tune.", Monnam(mtmp));
+			break;
+		case MS_STENCH:
+			if (cansee(mtmp->mx, mtmp->my) || playerdead) pline("%s sprays %sself with perfume.", Monnam(mtmp), mhim(mtmp));
+			break;
+		case MS_CASINO:
+			if (flags.soundok || playerdead) pline("%s mutters 'Hopefully that was the last rulebreaker for today.'", Monnam(mtmp));
+			break;
+		case MS_GLYPHS:
+			if (flags.soundok || playerdead) pline("%s remarks 'That glyph actually worked perfectly!'", Monnam(mtmp));
+			break;
+		case MS_SNORE:
+			if (flags.soundok || playerdead) pline("%s emits a bored snoring sound.", Monnam(mtmp));
+			break;
+		case MS_PHOTO:
+			if (cansee(mtmp->mx, mtmp->my) || playerdead) pline("%s takes a photo of %s.", Monnam(mtmp), playerdead ? "your corpse" : "the dead foe");
+			break;
+		case MS_REPAIR:
+			if (flags.soundok || playerdead) pline("%s states 'Never mess with a mechanic!'", Monnam(mtmp));
+			break;
+		case MS_DRUGS:
+			if (flags.soundok || playerdead) pline("%s shouts 'Die, fucking cop!'", Monnam(mtmp));
+			break;
+		case MS_COMBAT:
+			if (flags.soundok || playerdead) pline("%s remarks 'Now I have defeated you.'", Monnam(mtmp));
+			break;
+		case MS_MUTE:
+			if (flags.soundok || playerdead) pline("%s emits a series of grunts.", Monnam(mtmp));
+			break;
+		case MS_CORONA:
+			if (flags.soundok || playerdead) pline("%s remarks 'Serves you right for not wearing a face mask. Now you'll never spread any virus again.'", Monnam(mtmp));
+			break;
+		case MS_TRUMPET:
+			if (flags.soundok || playerdead) pline("%s trumpets victoriously.", Monnam(mtmp));
+			break;
+		case MS_PAIN:
+			if (flags.soundok || playerdead) pline("%s remarks 'That's gotta hurt!'", Monnam(mtmp));
+			break;
+		case MS_SING:
+			if (flags.soundok || playerdead) pline("%s sighs 'Why couldn't you just clean those girl shoes? You wouldn't have had to die!'", Monnam(mtmp));
+			break;
+		case MS_ALLA:
+			if (flags.soundok || playerdead) pline("%s mutters 'you have lost'.", Monnam(mtmp));
+			break;
+		case MS_POKEDEX:
+			if (flags.soundok || playerdead) pline("%s exclaims 'Ack! I killed the pokemon by mistake! Now I can't catch it any longer!'", Monnam(mtmp));
+			break;
+		case MS_APOC:
+			if (flags.soundok || playerdead) pline("%s remarks 'I merely sped up the inevitable for you, so you should probably be grateful.'", Monnam(mtmp));
+			break;
+		case MS_LIEDER:
+			if (flags.soundok || playerdead) {
+				if (playerdead) pline("%s remarks 'Punishment for not completing the quest quickly enough.'", Monnam(mtmp));
+				else pline("%s shouts 'Out of my way!'", Monnam(mtmp));
+			}
+			break;
+		case MS_GAARDIEN:
+			if (flags.soundok || playerdead) {
+				if (playerdead) pline("%s remarks 'You're too slow, %s. You're never gonna be a champion.'", Monnam(mtmp), playeraliasname);
+				else pline("%s shouts 'For the glory of our order!'", Monnam(mtmp));
+			}
+			break;
+		case MS_CLOCK:
+			if (cansee(mtmp->mx, mtmp->my) || playerdead) pline("%s takes note of the current time.", Monnam(mtmp));
+			break;
+		case MS_AREOLA:
+			if (flags.soundok || playerdead) pline("%s shouts 'I hate you and your ugly corpse!'", Monnam(mtmp));
+			break;
+		case MS_DEAD:
+			if (flags.soundok || playerdead) pline("%s bellows 'Now I'll put your stinking carcass in a coffin!'", Monnam(mtmp));
+			break;
+		case MS_STABILIZE:
+			if (flags.soundok || playerdead) pline("%s remarks 'My strategy worked!'", Monnam(mtmp));
+			break;
+		case MS_ESCAPE:
+			if (flags.soundok || playerdead) pline("%s shouts 'This is insane, all the killing! I gotta get out of here!'", Monnam(mtmp));
+			break;
+		case MS_POMPEJI:
+			if (flags.soundok || playerdead) pline("%s loudly exclaims 'Pompejiiiiiii!!!'", Monnam(mtmp));
+			break;
+		case MS_FEARHARE:
+			if (flags.soundok || playerdead) pline("%s whimpers 'Ah shit, someone died! How the hell did that happen? The murderer is probably still around here! Let's run!'", Monnam(mtmp));
+			break;
+		case MS_CODE:
+			if (flags.soundok || playerdead) pline("%s snickers 'Couldn't crack my code, eh? Ha ha ha!'", Monnam(mtmp));
+			break;
+		case MS_BULLETATOR:
+			if (flags.soundok || playerdead) pline("%s remarks 'That one won't be using automatic guns any time soon.'", Monnam(mtmp));
+			break;
+		case MS_OE:
+			if (flags.soundok || playerdead) pline("%s laughs 'Alright, enough messing around. Go back to work, you coolies.'", Monnam(mtmp));
+			break;
+		case MS_NASTYTRAP:
+			if (flags.soundok || playerdead) pline("%s laughs 'You can't survive the nasty traps.'", Monnam(mtmp));
+			break;
+		case MS_FEMI:
+			if (flags.soundok || playerdead) pline("%s shouts 'Feminism power!!!'", Monnam(mtmp));
+			break;
+		case MS_ANOREXIA:
+			if (flags.soundok || playerdead) pline("%s sobs 'No... I didn't want that to happen...'", Monnam(mtmp));
+			break;
+		case MS_BULIMIA:
+			if (flags.soundok || playerdead) pline("%s screams 'Yeah? Anyone else want some, too? I'll bash in the skull of every last one of you!'", Monnam(mtmp));
+			break;
+		case MS_GRAKA:
+			if (cansee(mtmp->mx, mtmp->my) || playerdead) pline("%s flickers for a moment.", Monnam(mtmp));
+			break;
+		case MS_BLANKER:
+			if (flags.soundok || playerdead) pline("%s remarks 'And now your remaining gear shall be disenchanted.'", Monnam(mtmp));
+			break;
+		case MS_CONDESCEND:
+			if (flags.soundok || playerdead) pline("%s stats 'Did you see it now? Did you see my power?'", Monnam(mtmp));
+			break;
+		case MS_TRIP:
+			if (cansee(mtmp->mx, mtmp->my) || playerdead) pline("%s displays an error message!", Monnam(mtmp));
+			break;
+		case MS_COMMON:
+			if (flags.soundok || playerdead) pline("%s says 'I defeated my opponent!'", Monnam(mtmp));
+			break;
+		case MS_AETHERIC:
+			if (flags.soundok || playerdead) pline("%s remarks 'Another enemy disappeared into the ether!'", Monnam(mtmp));
+			break;
+		case MS_BUSY:
+			if (flags.soundok || playerdead) pline("%s remarks 'Finally, the distraction is out of the way and I can get back to my work.'", Monnam(mtmp));
+			break;
+		case MS_JAM:
+			if (flags.soundok || playerdead) pline("%s says 'err, is that one not moving anymore?'", Monnam(mtmp));
+			break;
+		case MS_LOWPRIORITY:
+			if (flags.soundok || playerdead) pline("%s slowly croaks 'Uhh... probably terminated...'", Monnam(mtmp));
+			break;
+		case MS_SPEEDBUG:
+			if (flags.soundok || playerdead) pline("%s %s", Monnam(mtmp), rn2(2) ? "shouts 'Idefeatedthatnogoodbastard!'" : "murmurs 'I... think I... killed it...'");
+			break;
+		case MS_BEG:
+			if (flags.soundok || playerdead) pline("%s moans 'Please, I just wanted a little bit of money!'", Monnam(mtmp));
+			break;
+		case MS_HIRE:
+			if (flags.soundok || playerdead) {
+				if (playerdead) pline("%s states 'You should've hired me, then I wouldn't have had to kill you.'", Monnam(mtmp));
+				else pline("%s remarks 'Yeah! I killed an enemy!'", Monnam(mtmp));
+			}
+			break;
+		case MS_NEWS:
+			if (flags.soundok || playerdead) pline("%s shouts 'Latest news! I killed someone! But it was in self-defense!'", Monnam(mtmp));
+			break;
+		case MS_HOOT:
+			if (flags.soundok || playerdead) pline("%s hoots loudly.", Monnam(mtmp));
+			break;
+		case MS_RUSTLE:
+			if (flags.soundok || playerdead) pline("%s smacks %s branches.", Monnam(mtmp), mhis(mtmp));
+			break;
+		case MS_SEMEN:
+			if (cansee(mtmp->mx, mtmp->my) || playerdead) pline("%s squirts some semen on %s opponent's corpse.", Monnam(mtmp), mhis(mtmp));
+			break;
+		case MS_WEATHER:
+			if (flags.soundok || playerdead) pline("%s shouts 'Skies ass and cloud break!'", Monnam(mtmp));
+			break;
+		case MS_MODALSHOP:
+			if (flags.soundok || playerdead) pline("%s shouts '!Ahora puedes joderte, no bueno criminal!'", Monnam(mtmp));
+			break;
+		case MS_SCIENTIST:
+			if (flags.soundok || playerdead) pline("%s stammers 'Is... is it clear?'", Monnam(mtmp));
+			break;
+		case MS_INCISION:
+			if (flags.soundok || playerdead) pline("%s gloats 'Hah, all that blood... it turns me on. Anyone else whom I can circumcise?'", Monnam(mtmp));
+			break;
+		case MS_CRYTHROAT:
+			if (flags.soundok || playerdead) pline("%s screams 'NOOOOOOOOOOO! I KILLED SOMEONE! NOW I MUST GO TO PRISON!'", Monnam(mtmp));
+			break;
+		case MS_OMEN:
+			if (flags.soundok || playerdead) pline("%s remarks 'Told you that you'd die. But you didn't want to believe me.'", Monnam(mtmp));
+			break;
+		case MS_ARMORER:
+			if (flags.soundok || playerdead) pline("%s shouts 'SMASH! CRASH!'", Monnam(mtmp));
+			break;
+		case MS_HERCULES:
+			if (flags.soundok || playerdead) pline("%s remarks 'All too easy. Even my grandma could've defeated that one.'", Monnam(mtmp));
+			break;
+		case MS_SILLY:
+			if (flags.soundok || playerdead) pline("%s remarks 'Hey, now I can freely pull down %s pants and feel them up! That's not necrophilia, is it?'", Monnam(mtmp), playerdead ? "your" : "that corpse's");
+			break;
+		case MS_MIDI:
+			if (flags.soundok || playerdead) pline("%s intones 'Diiiiie deeeee dooooo, d-d-d-d-daaaaa d-d-d-d-d!'", Monnam(mtmp));
+			break;
+		case MS_PIRATE:
+			if (flags.soundok || playerdead) pline("%s grunts 'Dead men tell no tales!'", Monnam(mtmp));
+			break;
+		case MS_GAGA:
+			if (flags.soundok || playerdead) pline("%s remarks 'Should've treated me with respect, after all I'm %s and anyone who doesn't recognize that shall pay.'", Monnam(mtmp), mongenderidentity(mtmp));
+			break;
+		case MS_SHOCKTROOPER:
+			if (flags.soundok || playerdead) pline("%s says 'dup dup'.", Monnam(mtmp));
+			break;
+		case MS_MOLEST:
+			if (flags.soundok || playerdead) pline("%s laughs 'Now you won't stand between me and my hot, sexy girls anymore!'", Monnam(mtmp));
+			break;
+		case MS_TEMPER:
+			if (flags.soundok || playerdead) pline("%s announces 'I'm gonna break all of your puny bones, weakling!'", Monnam(mtmp));
+			break;
+		case MS_SHIVERINGESLES:
+			if (flags.soundok || playerdead) pline("%s says 'Ahh, ja, ja! Grossartige Flumpel-Schnuuze, der Tag geht 'brrrrangel' und mein Herz macht einen Wobbel-Wink! Hahaha, alles ist jig-jaggi ruhmvoll!'", Monnam(mtmp));
+			break;
+		case MS_GENDER:
+			if (flags.soundok || playerdead) pline("%s happily touches %s %s sexual organs.", Monnam(mtmp), mhis(mtmp), is_neuter(mtmp->data) ? "neuter" : mtmp->female ? "female" : "male");
+			break;
+		case MS_OUTCAST:
+			if (flags.soundok || playerdead) pline("%s says 'Target eliminated!'", Monnam(mtmp));
+			break;
+		case MS_AMNESIA:
+			if (flags.soundok || playerdead) pline("%s remarks 'Huh? Did someone just die? I forget what that looks like...'", Monnam(mtmp));
+			break;
+		case MS_BOS:
+			if (flags.soundok || playerdead) pline("%s chants 'Rest in peace.'", Monnam(mtmp));
+			break;
+		case MS_DREMORA:
+			if (flags.soundok || playerdead) pline("%s shouts 'Burst, bloodsack!'", Monnam(mtmp));
+			break;
+		case MS_MYTHICALDAWN:
+			if (flags.soundok || playerdead) pline("%s shouts 'Die, unbeliever!'", Monnam(mtmp));
+			break;
+		case MS_BAN:
+			if (flags.soundok || playerdead) pline("%s remarks 'Aaaaaaaaaaand banned.'", Monnam(mtmp));
+			break;
+		case MS_MUTANT:
+			if (flags.soundok || playerdead) pline("%s mutters 'Next time I wanna see a fight...'", Monnam(mtmp));
+			break;
+		case MS_ENCLAVE:
+			if (flags.soundok || playerdead) pline("%s says 'Target secured, sir.'", Monnam(mtmp));
+			break;
+		case MS_TALONCOMPANY:
+			if (flags.soundok || playerdead) pline("%s remarks 'Another notch in my gun!'", Monnam(mtmp));
+			break;
+		case MS_REGULATOR:
+			if (flags.soundok || playerdead) pline("%s remarks 'I'll add that lawbreaker's finger to my growing collection.'", Monnam(mtmp));
+			break;
+		case MS_HUMANOID:
+			if (flags.soundok || playerdead) pline("%s says 'I killed an enemy!'", Monnam(mtmp));
+			break;
+		case MS_METALMAFIA:
+			if (flags.soundok || playerdead) pline("%s laughs 'Now I'll get ALL of your metal.'", Monnam(mtmp));
+			break;
+		case MS_RAIDER:
+			if (flags.soundok || playerdead) pline("%s laughs 'That's like shooting fish in a barrel!'", Monnam(mtmp));
+			break;
+		case MS_ARREST:
+			if (flags.soundok || playerdead) pline("%s shouts 'Gotcha!'", Monnam(mtmp));
+			break;
+		case MS_FLUIDATOR:
+			if (flags.soundok || playerdead) pline("%s remarks 'The opponent has off-shot become!'", Monnam(mtmp));
+			break;
+		case MS_TREESQUAD:
+			if (flags.soundok || playerdead) pline("%s shouts 'Feel the wrath of Nature!'", Monnam(mtmp));
+			break;
+		case MS_SOLDIER:
+			if (flags.soundok || playerdead) pline("%s shouts 'Enemy down.'", Monnam(mtmp));
+			break;
+		case MS_BARBER:
+			if (flags.soundok || playerdead) pline("%s shouts 'The tunnel queues are the greatest!'", Monnam(mtmp));
+			break;
+		case MS_SPOILER:
+			pline("This program is not a valid Win32 application. Please contact the application's manufacturer if problems persist.");
+			break;
+		case MS_OHGOD:
+			if (flags.soundok || playerdead) pline("%s shouts 'Oh-god-o-matic-in-the-sky!'", Monnam(mtmp));
+			break;
+		case MS_WOLLOH:
+			if (flags.soundok || playerdead) pline("%s sneers 'Wolloh, now I done fucked you up!'", Monnam(mtmp));
+			break;
+		case MS_SELFHARM:
+			if (cansee(mtmp->mx, mtmp->my) || playerdead) pline("%s searches %s for blades.", Monnam(mtmp), playerdead ? "your corpse" : "the opponent's corpse");
+			break;
+		case MS_CUSS:
+			break;
+			if (flags.soundok || playerdead) pline("%s laughs 'Now you can suck cocks in hell!'", Monnam(mtmp));
+		case MS_WHORE:
+			if (flags.soundok || playerdead) pline("%s remarks 'I'll be sitting on you in a second.'", Monnam(mtmp));
+			break;
+		case MS_SUPERMAN:
+			if (flags.soundok || playerdead) pline("%s screams 'DEATH! DEATH TO ALL!'", Monnam(mtmp));
+			break;
+		case MS_FART_QUIET:
+			if (flags.soundok || playerdead) pline("%s produces very faint noises with %s %s butt.", Monnam(mtmp), mhis(mtmp), mtmp->female ? "sexy" : "ugly");
+			break;
+		case MS_FART_NORMAL:
+			if (flags.soundok || playerdead) pline("%s produces joyful squeaking noises with %s %s butt.", Monnam(mtmp), mhis(mtmp), mtmp->female ? "sexy" : "ugly");
+			break;
+		case MS_FART_LOUD:
+			if (flags.soundok || playerdead) pline("%s produces loud rumbling noises with %s %s butt.", Monnam(mtmp), mhis(mtmp), mtmp->female ? "sexy" : "ugly");
+			break;
+		case MS_SHOE:
+			if (flags.soundok || playerdead) {
+				if (playerdead) pline("%s places %s sole on your %s.", Monnam(mtmp), mhis(mtmp), body_part(STOMACH));
+				else pline("%s victoriously steps on the fallen enemy's corpse.", Monnam(mtmp));
+			}
+			break;
+		case MS_SOCKS:
+			if (flags.soundok || playerdead) pline("%s spreads %s beguiling odor.", Monnam(mtmp), mhis(mtmp));
+			break;
+		case MS_PANTS:
+			if (flags.soundok || playerdead) pline("%s happily floats back and forth.", Monnam(mtmp));
+			break;
+		case MS_CONVERT:
+			if (flags.soundok || playerdead) pline("%s remarks 'Iste son, ey kafir. Simdi ya Islam'a gececeksin ya da oeleceksin.'", Monnam(mtmp));
+			break;
+		case MS_HCALIEN:
+			if (cansee(mtmp->mx, mtmp->my) || playerdead) pline("%s looks at %s corpse with disdain.", Monnam(mtmp), playerdead ? "your" : "the fallen enemy's");
+			break;
+		case MS_GIBBERISH:
+			pline("%s", generate_garbage_string());
+			break;
+		case MS_HANDY:
+			if (flags.soundok || playerdead) {
+				if (mtmp->handytime) pline("%s says 'Ah sorry, I got interrupted, but now I'm back. Where were we?'", Monnam(mtmp));
+				else pline("%s remarks 'That was just in time, they may call me any moment now.'", Monnam(mtmp));
+			}
+			break;
+		case MS_CAR:
+			if (flags.soundok || playerdead) pline("%s remarks 'My body is too peaky for ya.'", Monnam(mtmp));
+			break;
+		case MS_JAPANESE:
+			if (flags.soundok || playerdead) pline("%s says 'Heiwa. Monogoto no seijona chitsujo. Sore ga modottekita.'", Monnam(mtmp));
+			break;
+		case MS_SOVIET:
+			if (flags.soundok || playerdead) pline("%s says 'V etoy igre uzhasnaya programmnaya realizatsiya, a iz ledyanykh blokov poluchitsya chto-to gorazdo luchshe.'", Monnam(mtmp));
+			break;
+		case MS_BRAG:
+			if (flags.soundok || playerdead) pline("%s laughs 'I am the best!'", Monnam(mtmp));
+			break;
+		case MS_PRINCESSLEIA:
+			if (flags.soundok || playerdead) pline("%s sobs 'I don't want to see all that ugly red blood of those filthy pedestrians...'", Monnam(mtmp));
+			break;
+		case MS_SISSY:
+			if (flags.soundok || playerdead) pline("%s shouts 'murder! murder! bull! come quickly!'", Monnam(mtmp));
+			break;
+		case MS_BOT:
+			if (flags.soundok || playerdead) pline("%s remarks 'Off to the shower!'", Monnam(mtmp));
+			break;
+	}
+}
+
 static int
 dochat()
 {

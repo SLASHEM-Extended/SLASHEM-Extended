@@ -4619,8 +4619,10 @@ physical:
                                                         pline("%s's body vaporizes!", Monnam(mdef));
                                                 }
                                                 mondead(mdef); /* no corpse */
-                                                if (mdef->mhp < 0) return (MM_DEF_DIED |
-                                                        (grow_up(magr,mdef) ? 0 : MM_AGR_DIED));
+                                                if (mdef->mhp < 0) {
+									monster_kill_taunt(magr, (magr->mtame) ? 10 : 100, FALSE);
+									return (MM_DEF_DIED | (grow_up(magr,mdef) ? 0 : MM_AGR_DIED));
+								}
                                         } else {
                                                 if (vis) {
                                                         strcpy(buf, Monnam(magr));
@@ -4647,15 +4649,16 @@ physical:
                                 }
                         }
 
-                        if (otmp && otmp->oartifact) {
-			    (void)artifact_hit(magr,mdef, otmp, &tmp, dieroll);
-			    if (mdef->mhp <= 0)
-				return (MM_DEF_DIED |
-					(grow_up(magr,mdef) ? 0 : MM_AGR_DIED));
+			if (otmp && otmp->oartifact) {
+				(void)artifact_hit(magr,mdef, otmp, &tmp, dieroll);
+				if (mdef->mhp <= 0) {
+					monster_kill_taunt(magr, (magr->mtame) ? 10 : 100, FALSE);
+					return (MM_DEF_DIED | (grow_up(magr,mdef) ? 0 : MM_AGR_DIED));
+				}
 			}
 			if (otmp && tmp)
 				mrustm(magr, mdef, otmp);
-		    }
+			}
 		} else if (magr->data == &mons[PM_PURPLE_WORM] &&
 			    mdef->data == &mons[PM_SHRIEKER]) {
 		    /* hack to enhance mm_aggression(); we don't want purple
@@ -4683,6 +4686,7 @@ physical:
 			if (mdef->mhp > 0) return 0;
 			else if (mdef->mtame && !vis)
 			    pline("May %s roast in peace.", mon_nam(mdef));
+			monster_kill_taunt(magr, (magr->mtame) ? 10 : 100, FALSE);
 			return (MM_DEF_DIED | (grow_up(magr,mdef) ?
 							0 : MM_AGR_DIED));
 		}
@@ -4762,6 +4766,7 @@ physical:
 			if (mdef->mhp > 0) return 0;
 			else if (mdef->mtame && !vis)
 			    pline("May %s rust in peace.", mon_nam(mdef));
+			monster_kill_taunt(magr, (magr->mtame) ? 10 : 100, FALSE);
 			return (MM_DEF_DIED | (grow_up(magr,mdef) ?
 							0 : MM_AGR_DIED));
 		}
@@ -4829,6 +4834,7 @@ physical:
 			if (mdef->mhp > 0) return 0;
 			else if (mdef->mtame && !vis)
 			    pline("May %s rot in peace.", mon_nam(mdef));
+			monster_kill_taunt(magr, (magr->mtame) ? 10 : 100, FALSE);
 			return (MM_DEF_DIED | (grow_up(magr,mdef) ?
 							0 : MM_AGR_DIED));
 		}
@@ -4883,6 +4889,7 @@ physical:
  post_stone:		if (mdef->mhp > 0) return 0;
 			else if (mdef->mtame && !vis)
 			    You(brief_feeling, "peculiarly sad");
+			monster_kill_taunt(magr, (magr->mtame) ? 10 : 100, FALSE);
 			return (MM_DEF_DIED | (grow_up(magr,mdef) ?
 							0 : MM_AGR_DIED));
 			tmp = (mattk->adtyp == AD_STON ? 0 : mattk->adtyp == AD_EDGE ? 0 : 1);
@@ -5852,6 +5859,7 @@ physical:
 			    if (mdef->mhp > 0) return 0;
 			    else if (mdef->mtame && !vis)
 				You(brief_feeling, "strangely sad");
+			    monster_kill_taunt(magr, (magr->mtame) ? 10 : 100, FALSE);
 			    return (MM_DEF_DIED | (grow_up(magr,mdef) ?
 							0 : MM_AGR_DIED));
 		    }
@@ -5880,6 +5888,7 @@ physical:
 			    if (mdef->mhp > 0) return 0;
 			    else if (mdef->mtame && !vis)
 				You(brief_feeling, "strangely sad");
+			    monster_kill_taunt(magr, (magr->mtame) ? 10 : 100, FALSE);
 			    return (MM_DEF_DIED | (grow_up(magr,mdef) ?
 							0 : MM_AGR_DIED));
 		    }
@@ -5915,6 +5924,7 @@ physical:
 			    if (mdef->mhp > 0) return 0;
 			    else if (mdef->mtame && !vis)
 				You(brief_feeling, "strangely sad");
+			    monster_kill_taunt(magr, (magr->mtame) ? 10 : 100, FALSE);
 			    return (MM_DEF_DIED | (grow_up(magr,mdef) ?
 							0 : MM_AGR_DIED));
 		    }
@@ -6112,9 +6122,10 @@ physical:
 			possibly_unwield(mdef, FALSE);
 			mdef->mstrategy &= ~STRAT_WAITFORU;
 			mselftouch(mdef, (const char *)0, FALSE);
-			if (mdef->mhp <= 0)
-				return (MM_DEF_DIED | (grow_up(magr,mdef) ?
-							0 : MM_AGR_DIED));
+			if (mdef->mhp <= 0) {
+				if (!DEADMONSTER(magr)) monster_kill_taunt(magr, (magr->mtame) ? 10 : 100, FALSE);
+				return (MM_DEF_DIED | (grow_up(magr,mdef) ? 0 : MM_AGR_DIED));
+			}
 			if (magr->data->mlet == S_NYMPH &&
 			    !tele_restrict(magr) && !rn2(5) ) {
 			    (void) rloc(magr, FALSE);
@@ -6681,7 +6692,7 @@ physical:
 
 	tmp = monsterdmgresist(mdef, tmp);
 
-	if((mdef->mhp -= tmp) < 1) {
+	if((mdef->mhp -= tmp) < 1) { /* attacked monster has died, and might lifesave */
 	    if (m_at(mdef->mx, mdef->my) == magr) {  /* see gulpmm() */
 		remove_monster(mdef->mx, mdef->my);
 		mdef->mhp = 1;	/* otherwise place_monster will complain */
@@ -6721,6 +6732,9 @@ physical:
 		}
 	    }
 
+	    if (!DEADMONSTER(magr) ) {
+		monster_kill_taunt(magr, (magr->mtame) ? 10 : 100, FALSE);
+	    }
 	    return (MM_DEF_DIED |
 		    ((magr->mhp > 0 && grow_up(magr,mdef)) ? 0 : MM_AGR_DIED));
 	}

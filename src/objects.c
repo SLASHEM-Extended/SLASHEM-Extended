@@ -9710,6 +9710,7 @@ SCROLL((char *)0,               "LISTEN TO THE ALBUM  PHANTOM ASSASSIN  BY IVE M
 SCROLL((char *)0,               "SALTED FAITHS WITHOUT WHITE DREAMS",  P_NONE,     1,   0, 100, CLR_WHITE, 1),
 SCROLL((char *)0,               "IT TAKES FOREVER TO TRAVEL FROM FUERTH TO TREBAY BY TRAIN",  P_NONE,     1,   0, 100, CLR_BROWN, 1),
 SCROLL((char *)0,               "THERE IS A TOWN NAMED VERVERT IN BREMEN",  P_NONE,     1,   0, 100, CLR_YELLOW, 1),
+SCROLL((char *)0,               "DAS WORT BEHINDERT IST ECHT MALL VOLL GEIMEN",  P_NONE,     1,   0, 100, CLR_ORANGE, 1),
 
 /* dummy for easier copypasting */
 /* SCROLL((char *)0,               "",  P_NONE,     1,   0, 100, CLR_, 1), */

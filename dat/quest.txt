@@ -79274,6 +79274,9 @@ exposure to this kind of content, you might want to opt out of
 this game. The author, Amy, takes no responsibility for any harm
 caused by playing this game.
 
+The author of this game does not support, condone or encourage any
+of the criminal or violent behavior depicted in the game.
+
 If you wish to not see this message on every new game start,
 you can hide it by adding OPTIONS=!contentwarning to your
 user configuration file.
