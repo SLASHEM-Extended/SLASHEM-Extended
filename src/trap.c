@@ -11427,8 +11427,10 @@ madnesseffect:
 		if (!rn2(2)) {
 			int blindtime = rnd(25 + rnd(monster_difficulty() ) );
 			pline("You hear a splash, and something hits you right in the %s.", body_part(FACE));
-			u.ucreamed += blindtime;
-			make_blinded(Blinded + (long)blindtime, FALSE);
+			if (!(ublindf && ublindf->otyp == PROTECTIVE_GLASSES)) {
+				u.ucreamed += blindtime;
+				make_blinded(Blinded + (long)blindtime, FALSE);
+			}
 
 		} else {
 			pline("You hear a splash, and are covered in acid!");

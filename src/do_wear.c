@@ -6602,6 +6602,11 @@ register struct obj *otmp;
 		curse(otmp);
 	}
 
+	if (otmp && otmp->oartifact == ART_THEY_COME_FROM_HOLLAND && !otmp->cursed) {
+		curse(otmp);
+		Your("glasses won't come off!");
+	}
+
 	if (otmp && otmp->oartifact == ART_BERIT_S_SAGE) {
 		curse(otmp);
 		otmp->hvycurse = otmp->prmcurse = TRUE;
@@ -7575,6 +7580,8 @@ doputon()
 					already_wearing("a condome");
 			else if (ublindf->otyp == CLIMBING_SET)
 					already_wearing("a climbing set");
+			else if (ublindf->otyp == PROTECTIVE_GLASSES)
+					already_wearing("protective glasses");
 			else if (ublindf->otyp == DEFUSING_BOX)
 					already_wearing("a defusing box");
 			else if (ublindf->otyp == BLINDFOLD || ublindf->otyp == EYECLOSER || ublindf->otyp == DRAGON_EYEPATCH) {

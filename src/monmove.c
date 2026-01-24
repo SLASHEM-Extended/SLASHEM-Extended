@@ -1951,9 +1951,11 @@ newbossSING:
 	{
 		pline("Using %s %s butt, %s produces tender noises and craps right in your %s.", mhis(mtmp), mtmp->female ? "sexy" : "ugly", mon_nam(mtmp), body_part(FACE) );
 
-		int blindinc = rnd(20);
-		u.ucreamed += blindinc;
-		make_blinded(Blinded + (long)blindinc, FALSE);
+		if (!(ublindf && ublindf->otyp == PROTECTIVE_GLASSES)) {
+			int blindinc = rnd(20);
+			u.ucreamed += blindinc;
+			make_blinded(Blinded + (long)blindinc, FALSE);
+		}
 		if (!rn2(5)) increasesanity(rnd(10));
 		u.cnd_crappingcount++;
 		if (FemtrapActiveJanet) {
@@ -1967,9 +1969,11 @@ newbossSING:
 	{
 		pline("Using %s %s butt, %s produces beautiful noises and craps right in your %s.", mhis(mtmp), mtmp->female ? "sexy" : "ugly", mon_nam(mtmp), body_part(FACE) );
 
-		int blindinc = rnd(50);
-		u.ucreamed += blindinc;
-		make_blinded(Blinded + (long)blindinc, FALSE);
+		if (!(ublindf && ublindf->otyp == PROTECTIVE_GLASSES)) {
+			int blindinc = rnd(50);
+			u.ucreamed += blindinc;
+			make_blinded(Blinded + (long)blindinc, FALSE);
+		}
 		if (!rn2(5)) increasesanity(rnd(10));
 		u.cnd_crappingcount++;
 		if (FemtrapActiveJanet) {
@@ -1983,9 +1987,11 @@ newbossSING:
 	{
 		pline("Using %s %s butt, %s produces disgusting noises and craps right in your %s.", mhis(mtmp), mtmp->female ? "sexy" : "ugly", mon_nam(mtmp), body_part(FACE) );
 
-		int blindinc = rnd(100);
-		u.ucreamed += blindinc;
-		make_blinded(Blinded + (long)blindinc, FALSE);
+		if (!(ublindf && ublindf->otyp == PROTECTIVE_GLASSES)) {
+			int blindinc = rnd(100);
+			u.ucreamed += blindinc;
+			make_blinded(Blinded + (long)blindinc, FALSE);
+		}
 		if (!rn2(5)) increasesanity(rnd(10));
 		u.cnd_crappingcount++;
 		if (FemtrapActiveJanet) {
@@ -3764,6 +3770,13 @@ toofar:
 	    }
 	    if(inrange && monstersoundtype(mtmp) == MS_CRYTHROAT) { /* spams its messages every turn, this is intentional --Amy */
 		pline("%s", generate_crythroat_string());
+	    }
+
+	    if (uleft && uleft->oartifact == ART_PREMATURE_RADIO_TRANSMISSI && monstersoundtype(mtmp) == MS_ENCLAVE && !rn2(200)) {
+		You_hear("static noise coming from your radio.");
+	    }
+	    if (uright && uright->oartifact == ART_PREMATURE_RADIO_TRANSMISSI && monstersoundtype(mtmp) == MS_ENCLAVE && !rn2(200)) {
+		You_hear("static noise coming from your radio.");
 	    }
 
 	    if(inrange && monstersoundtype(mtmp) == MS_NEWS && !rn2(100)) {

@@ -27355,6 +27355,54 @@ A("The David has a trousers made of plastic",				HAWAIIAN_SHORTS, /* material be
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
 
+A("Wonnene stars above us",				SPE_HEALING, /* randart2 spellbook, spawns starlit skies on the level upon generation and reading, with your XL determining which ones can spawn */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Premature Radio Transmission",				RIN_MOOD, /* randart2 ring, activates enclave upon generation, gives radio broadcasts and when a MS_ENCLAVE moves, there's a 1 in 200 chance that "You hear static noise coming from your radio." */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Important Design",				RED_DRAGON_SCALE_MAIL, /* randart DSM, free action */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Hanging Thread",				RED_DRAGON_SCALES, /* randart dragon scales, death resistance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Mysterious Symbol",				RED_DRAGON_SCALE_SHIELD, /* randart DSS, mystery resistance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Till's Exception",				PROTECTIVE_GLASSES, /* +2 CHA, can be invoked for scare monster */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("They come from Holland",				PROTECTIVE_GLASSES, /* antje trap effect, +1 all stats, autocurses; if you're wearing block heels, it also gives regeneration, full nutrients and half physical damage */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Martina's Superfleece",				BASIC_SHOES, /* indestructible, immune to all four types of erosion, resist mystery and death */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Clear First",				RED_DRAGON_SCALES, /* randart dragon scales */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Strong Second",				RED_DRAGON_SCALE_MAIL, /* randart DSM */
+	(SPFX_RESTR|SPFX_REFLECT), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Distant Third",				RED_DRAGON_SCALE_SHIELD, /* randart DSS, disint res */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("And a sword takes me iii-aah!",				SPE_MAGICTORCH, /* randart2 spellbook, reading trains short, long, broad and two-handed sword by 50 */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

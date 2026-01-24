@@ -793,15 +793,21 @@ init_randarts()
 	artilist[ART_REGROWN_RESOURCE].otyp = randartjavelin();
 	artilist[ART_NINJINGY].otyp = randartshuriken();
 	artilist[ART_LET_IT_STAY].otyp = randartdragonscales();
+	artilist[ART_HANGING_THREAD].otyp = randartdragonscales();
 	artilist[ART_JACINTA_S_PRECIOUS].otyp = randartdragonscales();
 	artilist[ART_KRAH_HOOOOO].otyp = randartdragonscales();
+	artilist[ART_CLEAR_FIRST].otyp = randartdragonscales();
 	artilist[ART_ICE_FROM_THE_NORTH].otyp = randartdragonscales();
 	artilist[ART_PROTPOW].otyp = randartdragonscalemail();
+	artilist[ART_STRONG_SECOND].otyp = randartdragonscalemail();
+	artilist[ART_IMPORTANT_DESIGN].otyp = randartdragonscalemail();
 	artilist[ART_DONNICA_S_SUPERLATIVE].otyp = randartdragonscalemail();
 	artilist[ART_HA_MONK].otyp = randartdragonscalemail();
 	artilist[ART_CUDDLE_CHALLENGE].otyp = randartdragonscalemail();
 	artilist[ART_PRISMATIC_DRAGON_PLATE].otyp = randartdragonscalemail();
 	artilist[ART_POFFGO].otyp = randartdragonscaleshield();
+	artilist[ART_DISTANT_THIRD].otyp = randartdragonscaleshield();
+	artilist[ART_MYSTERIOUS_SYMBOL].otyp = randartdragonscaleshield();
 	artilist[ART_EDIVA_S_SEE_THROUGH].otyp = randartdragonscaleshield();
 	artilist[ART_IT_IS_COMPLETE_NOW].otyp = randartdragonscaleshield();
 	artilist[ART_FROM_MASHHAD_TO_AHVAZ].otyp = randartdragonscaleshield();
@@ -863,6 +869,8 @@ init_randarts()
 	artilist[ART_SPECIAL_LACK].otyp = randartmeleeweaponX();
 	artilist[ART_WING_WING].otyp = randartmeleeweaponX();
 	artilist[ART_CARMOUFALSCH].otyp = randartspellbookX();
+	artilist[ART_AND_A_SWORD_TAKES_ME_III_A].otyp = randartspellbookX();
+	artilist[ART_WONNENE_STARS_ABOVE_US].otyp = randartspellbookX();
 	artilist[ART_DEMO_HAS_BOGUS_NUMBER_OF_D].otyp = randartspellbookX();
 	artilist[ART_MY_CRUDE_DISTORTION].otyp = randartspellbookX();
 	artilist[ART_CHANGE_CHANGE_CHANGE_CHANG].otyp = randartspellbookX();
@@ -1003,6 +1011,7 @@ init_randarts()
 	artilist[ART_TEMPERATOR].otyp = randartbootsX();
 	artilist[ART_PEWWWWWWW].otyp = randartjavelinX();
 	artilist[ART_VILYA].otyp = randartringX();
+	artilist[ART_PREMATURE_RADIO_TRANSMISSI].otyp = randartringX();
 	artilist[ART_TANGO_ALPHA_BRAVO].otyp = randartringX();
 	artilist[ART_TO_JUDITHBIS].otyp = randartringX();
 	artilist[ART_RING_OF_STEEL_DRAGON].otyp = randartringX();
@@ -2933,6 +2942,19 @@ register boolean mod;
 
 		    if (otmp && otmp->oartifact == ART_NINER) {
 			otmp->spe += 9;
+		    }
+
+		    if (otmp && otmp->oartifact == ART_PREMATURE_RADIO_TRANSMISSI) {
+			u.enclaveactive = TRUE; /* no message (intentional) --Amy */
+		    }
+
+		    if (otmp && otmp->oartifact == ART_WONNENE_STARS_ABOVE_US) {
+			makemon(&mons[PM_STARLIT_SKY], 0, 0, MM_ADJACENTOK);
+			if (u.ulevel > 4) makemon(&mons[PM_DARK_STARLIT_SKY], 0, 0, MM_ADJACENTOK);
+			if (u.ulevel > 9) makemon(&mons[PM_BLACK_STARLIT_SKY], 0, 0, MM_ADJACENTOK);
+			if (u.ulevel > 14) makemon(&mons[PM_RED_STARLIT_SKY], 0, 0, MM_ADJACENTOK);
+			if (u.ulevel > 19) makemon(&mons[PM_BROWN_STARLIT_SKY], 0, 0, MM_ADJACENTOK);
+			if (u.ulevel > 24) makemon(&mons[PM_GREEN_STARLIT_SKY], 0, 0, MM_ADJACENTOK);
 		    }
 
 		    if (otmp && otmp->oartifact == ART_TRIP__TRIP_) {
@@ -7940,6 +7962,23 @@ chargingchoice:
 			break;
 		}
 
+		if (obj->oartifact == ART_TILL_S_EXCEPTION) {
+
+			register struct monst *mtmp;
+
+			You("briefly take off your glasses and glare at everyone nearby!"); /* but you don't actually unwear them --Amy */
+
+			for(mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
+			    if (DEADMONSTER(mtmp)) continue;
+			    if (distu(mtmp->mx,mtmp->my) > 100) continue;
+			    if(cansee(mtmp->mx,mtmp->my)) {
+				    if (!resist(mtmp, SCROLL_CLASS, 0, NOTELL))
+					monflee(mtmp, rnd(25), FALSE, FALSE, FALSE);
+			    }
+			}
+
+			break;
+		}
 
 		if (obj->oartifact == ART_NAMED_NUKA_COLA) {
 

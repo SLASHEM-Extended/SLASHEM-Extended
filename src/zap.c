@@ -3644,7 +3644,7 @@ poly_obj(obj, id, degradation)
 		otmp->owornmask &= ~W_ARMF;
 	    if (otmp->owornmask & W_ARMU && !is_shirt(otmp))
 		otmp->owornmask &= ~W_ARMU;
-	    if (otmp->owornmask & W_TOOL && otmp->otyp != BLINDFOLD && otmp->otyp != EYECLOSER && otmp->otyp != DRAGON_EYEPATCH && otmp->otyp != CONDOME && otmp->otyp != CLIMBING_SET && otmp->otyp != DEFUSING_BOX && otmp->otyp != SOFT_CHASTITY_BELT &&
+	    if (otmp->owornmask & W_TOOL && otmp->otyp != BLINDFOLD && otmp->otyp != EYECLOSER && otmp->otyp != DRAGON_EYEPATCH && otmp->otyp != CONDOME && otmp->otyp != PROTECTIVE_GLASSES && otmp->otyp != CLIMBING_SET && otmp->otyp != DEFUSING_BOX && otmp->otyp != SOFT_CHASTITY_BELT &&
 	      otmp->otyp != TOWEL && otmp->otyp != LENSES && otmp->otyp != RADIOGLASSES && otmp->otyp != SHIELD_PATE_GLASSES && otmp->otyp != BOSS_VISOR && otmp->otyp != NIGHT_VISION_GOGGLES)
 		otmp->owornmask &= ~W_TOOL;
 	    if (obj->otyp == LEATHER_LEASH && obj->leashmon) o_unleash(obj);

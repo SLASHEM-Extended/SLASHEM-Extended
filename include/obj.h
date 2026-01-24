@@ -363,6 +363,7 @@ struct obj {
 				|| (otmp)->otyp == CONDOME\
 				|| (otmp)->otyp == TOWEL\
 				|| (otmp)->otyp == CLIMBING_SET\
+				|| (otmp)->otyp == PROTECTIVE_GLASSES\
 				|| (otmp)->otyp == DEFUSING_BOX\
 				|| (otmp)->otyp == SOFT_CHASTITY_BELT\
 				|| (otmp)->otyp == EYECLOSER\
@@ -377,6 +378,7 @@ struct obj {
 				|| o == CONDOME\
 				|| o == TOWEL\
 				|| o == CLIMBING_SET\
+				|| o == PROTECTIVE_GLASSES\
 				|| o == DEFUSING_BOX\
 				|| o == SOFT_CHASTITY_BELT\
 				|| o == EYECLOSER\

@@ -6539,10 +6539,11 @@ TOOL("shield pate glasses", (char *)0,	1, 0, 0, 0,    45,  0, 100, MT_GLASS, CLR
 TOOL("radioglasses", (char *)0, 1, 0, 0, 0, 300,  0,  200, MT_VIVA, CLR_ORANGE, 1),
 TOOL("boss visor", (char *)0, 1, 0, 0, 0, 300,  0,  200, MT_ARCANIUM, CLR_BRIGHT_MAGENTA, 10),
 TOOL("night vision goggles", (char *)0, 1, 0, 0, 0, 100,  0,  300, MT_OBSIDIAN, CLR_BRIGHT_GREEN, 6),
-TOOL("blindfold", (char *)0,    1, 0, 0, 0, 2600,  0,  20, MT_CLOTH, CLR_BLACK, 1),
+TOOL("protective glasses", (char *)0, 1, 0, 0, 0, 500,  0,  50, MT_PLASTIC, CLR_WHITE, 5),
+TOOL("blindfold", (char *)0,    1, 0, 0, 0, 2300,  0,  20, MT_CLOTH, CLR_BLACK, 1),
 TOOL("eyecloser", (char *)0, 1, 0, 0, 0, 300,  0,  20, MT_INKA, CLR_BROWN, 1),
 TOOL("dragon eyepatch", (char *)0, 1, 0, 0, 0, 300,  0,  20, MT_DRAGON_HIDE, CLR_BRIGHT_BLUE, 10),
-TOOL("towel", (char *)0,        1, 0, 0, 0, 1500,  0,  50, MT_CLOTH, CLR_MAGENTA, 1),
+TOOL("towel", (char *)0,        1, 0, 0, 0, 1300,  0,  50, MT_CLOTH, CLR_MAGENTA, 1),
 TOOL("condome", (char *)0,      1, 0, 0, 0,  190,  0,   5, MT_CLOTH, CLR_WHITE, 1),
 TOOL("climbing set", (char *)0,      1, 0, 0, 0,  100,  0,   500, MT_MINERAL, CLR_GRAY, 80),
 TOOL("defusing box", (char *)0,      1, 0, 0, 0,  200,  0,   200, MT_MINERAL, CLR_GRAY, 5),
@@ -9711,6 +9712,7 @@ SCROLL((char *)0,               "SALTED FAITHS WITHOUT WHITE DREAMS",  P_NONE,  
 SCROLL((char *)0,               "IT TAKES FOREVER TO TRAVEL FROM FUERTH TO TREBAY BY TRAIN",  P_NONE,     1,   0, 100, CLR_BROWN, 1),
 SCROLL((char *)0,               "THERE IS A TOWN NAMED VERVERT IN BREMEN",  P_NONE,     1,   0, 100, CLR_YELLOW, 1),
 SCROLL((char *)0,               "DAS WORT BEHINDERT IST ECHT MALL VOLL GEIMEN",  P_NONE,     1,   0, 100, CLR_ORANGE, 1),
+SCROLL((char *)0,               "MACH EINEN FEHLER  DUE DUE DUE",  P_NONE,     1,   0, 100, CLR_RED, 1),
 
 /* dummy for easier copypasting */
 /* SCROLL((char *)0,               "",  P_NONE,     1,   0, 100, CLR_, 1), */
@@ -11098,6 +11100,8 @@ WAND((char *)0,        "whizzing",  0, 150, 1, 0,        MT_MERCURIAL,     CLR_Y
 WAND((char *)0,        "humming",  0, 150, 1, 0,        MT_VIVA,     CLR_YELLOW, 1),
 WAND((char *)0,        "erogenous",  0, 150, 1, 0,        MT_LACQUER,     CLR_GRAY, 1),
 WAND((char *)0,        "erotic",  0, 150, 1, 0,        MT_INKA,     CLR_ORANGE, 1),
+WAND((char *)0,        "tangential",  0, 150, 1, 0,        MT_BAMBOO,     CLR_BROWN, 1),
+WAND((char *)0,        "torrodontial",  0, 150, 1, 0,        MT_TINSEL,     CLR_BROWN, 1),
 
 #undef WAND
 

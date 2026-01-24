@@ -7248,10 +7248,12 @@ newbossUTE:
 					pline("Friederike hangs her fluffy blond bundle into your face, which feels incredibly beautiful, however it also means your vision is obscured by all the wonderful female hair.");
 					{
 						healup( ( (level_difficulty() * 5) + rnd(50)), 0, FALSE, FALSE);
-						int blindinc = rnd(20);
-						u.ucreamed += blindinc;
-						make_blinded(Blinded + (long)blindinc, FALSE);
-						if (!Blind) Your("%s", vision_clears);
+						if (!(ublindf && ublindf->otyp == PROTECTIVE_GLASSES)) {
+							int blindinc = rnd(20);
+							u.ucreamed += blindinc;
+							make_blinded(Blinded + (long)blindinc, FALSE);
+							if (!Blind) Your("%s", vision_clears);
+						}
 					}
 					break;
 				case 3:

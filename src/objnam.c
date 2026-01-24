@@ -4999,6 +4999,8 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ FIRE_HYDRANT, "todo" },
 	{ ROLLING_PIN, "todo" },
 
+	{ PROTECTIVE_GLASSES, "todo" },
+
 	{0, "" }
 };
 
@@ -8714,6 +8716,8 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ BILLARD_QUEUE, "todo" },
 	{ FIRE_HYDRANT, "todo" },
 	{ ROLLING_PIN, "todo" },
+
+	{ PROTECTIVE_GLASSES, "todo" },
 
 	{0, "" }
 };

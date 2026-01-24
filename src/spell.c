@@ -3398,9 +3398,25 @@ struct obj *book2;
 
 	}
 
+	if (book2->oartifact == ART_AND_A_SWORD_TAKES_ME_III_A) {
+		use_skill(P_SHORT_SWORD, 50);
+		use_skill(P_BROAD_SWORD, 50);
+		use_skill(P_LONG_SWORD, 50);
+		use_skill(P_TWO_HANDED_SWORD, 50);
+	}
+
 	if (book2->oartifact == ART_TELE_FANTASTIC) {
 		u.temptelefantastic += rnz(10000);
 		You("gain fantastic teleportitis!");
+	}
+
+	if (book2->oartifact == ART_WONNENE_STARS_ABOVE_US) {
+		makemon(&mons[PM_STARLIT_SKY], 0, 0, MM_ADJACENTOK);
+		if (u.ulevel > 2) makemon(&mons[PM_DARK_STARLIT_SKY], 0, 0, MM_ADJACENTOK);
+		if (u.ulevel > 5) makemon(&mons[PM_BLACK_STARLIT_SKY], 0, 0, MM_ADJACENTOK);
+		if (u.ulevel > 10) makemon(&mons[PM_RED_STARLIT_SKY], 0, 0, MM_ADJACENTOK);
+		if (u.ulevel > 12) makemon(&mons[PM_BROWN_STARLIT_SKY], 0, 0, MM_ADJACENTOK);
+		if (u.ulevel > 14) makemon(&mons[PM_GREEN_STARLIT_SKY], 0, 0, MM_ADJACENTOK);
 	}
 
 	if (book2->oartifact == ART_WORLD_WILL_BE_REDONE_BY_A_) {

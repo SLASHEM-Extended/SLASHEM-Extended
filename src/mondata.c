@@ -274,8 +274,9 @@ struct obj *obj;		/* aatyp == AT_WEAP, AT_SPIT */
 		if (is_you && Blindfolded)
 		    return FALSE;
 	    } else if (obj && (obj->otyp == BLINDING_VENOM)) {
-		/* all ublindf, including LENSES, protect, cream-pies too */
-		if (is_you && (ublindf || u.ucreamed))
+		/* all ublindf, including LENSES, protect, cream-pies too
+		 * Amy edit: doesn't make sense that e.g. a condome or climbing kit helps here... */
+		if (is_you && ( (ublindf && (ublindf->otyp != CONDOME && ublindf->otyp != CLIMBING_SET && ublindf->otyp != DEFUSING_BOX && ublindf->otyp != SOFT_CHASTITY_BELT)) || u.ucreamed))
 		    return FALSE;
 		check_visor = TRUE;
 	    } else if (obj && (obj->otyp == POT_BLINDNESS)) {
@@ -294,8 +295,9 @@ struct obj *obj;		/* aatyp == AT_WEAP, AT_SPIT */
 	    break;
 
 	case AT_CLAW:
-	    /* e.g. raven: all ublindf, including LENSES, protect */
-	    if (is_you && ublindf)
+	    /* e.g. raven: all ublindf, including LENSES, protect
+	     * Amy edit: doesn't make sense that e.g. a condome or climbing kit helps here... */
+	    if (is_you && (ublindf && (ublindf->otyp != CONDOME && ublindf->otyp != CLIMBING_SET && ublindf->otyp != DEFUSING_BOX && ublindf->otyp != SOFT_CHASTITY_BELT)) )
 		return FALSE;
 	    if ((magr == &youmonst) && u.uswallow)
 		return FALSE;	/* can't affect eyes while inside monster */
@@ -318,7 +320,11 @@ struct obj *obj;		/* aatyp == AT_WEAP, AT_SPIT */
 	    for ( ; o; o = o->nobj)
 		if ((o->owornmask & W_ARMH) && (itemhasappearance(o, APP_VISORED_HELMET) || itemhasappearance(o, APP_ORANGE_VISORED_HELMET) || itemhasappearance(o, APP_TWISTED_VISOR_HELMET)) )
 		    return FALSE;
+
 	}
+
+	/* protective glasses protect you from all blindness attacks, including those where visors don't help --Amy */
+	if (is_you && ublindf && ublindf->otyp == PROTECTIVE_GLASSES) return FALSE;
 
 	if (RngeTrueSight && (mdef == &youmonst)) return FALSE;
 

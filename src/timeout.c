@@ -2133,6 +2133,34 @@ nh_timeout()
 
 	}
 
+	if (uleft && uleft->oartifact == ART_PREMATURE_RADIO_TRANSMISSI) {
+
+	    struct trap *t;
+
+	    for (t = ftrap; t != 0; t = t->ntrap) {
+		if (t && !rn2(10000) && !t->tseen && (t->trapdiff < rnd(150)) && !t->hiddentrap) {
+			t->tseen = 1;
+			u.cnd_traprevealcount++;
+			map_trap(t, TRUE);
+		}
+	    }
+
+	}
+
+	if (uright && uright->oartifact == ART_PREMATURE_RADIO_TRANSMISSI) {
+
+	    struct trap *t;
+
+	    for (t = ftrap; t != 0; t = t->ntrap) {
+		if (t && !rn2(10000) && !t->tseen && (t->trapdiff < rnd(150)) && !t->hiddentrap) {
+			t->tseen = 1;
+			u.cnd_traprevealcount++;
+			map_trap(t, TRUE);
+		}
+	    }
+
+	}
+
 	if (uarmh && uarmh->oartifact == ART_TARI_FEFALAS) {
 
 	    struct trap *t;
@@ -2696,6 +2724,24 @@ nh_timeout()
 	}
 
 	if (!rn2(100) && RngeRadioBroadcasts) {
+		const char *line;
+		char buflin[BUFSZ];
+		if (rn2(2)) line = getrumor(-1, buflin, TRUE);
+		else line = getrumor(0, buflin, TRUE);
+		if (!*line) line = "Slash'EM rumors file closed for renovation.";
+		pline("%s", line);
+	}
+
+	if (!rn2(100) && uleft && uleft->oartifact == ART_PREMATURE_RADIO_TRANSMISSI) {
+		const char *line;
+		char buflin[BUFSZ];
+		if (rn2(2)) line = getrumor(-1, buflin, TRUE);
+		else line = getrumor(0, buflin, TRUE);
+		if (!*line) line = "Slash'EM rumors file closed for renovation.";
+		pline("%s", line);
+	}
+
+	if (!rn2(100) && uright && uright->oartifact == ART_PREMATURE_RADIO_TRANSMISSI) {
 		const char *line;
 		char buflin[BUFSZ];
 		if (rn2(2)) line = getrumor(-1, buflin, TRUE);

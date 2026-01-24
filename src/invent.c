@@ -1329,6 +1329,7 @@ register struct obj *otmp;
 
 	if (otmp->oartifact == ART_EVERLASTING_HEELS) return TRUE;
 	if (otmp->oartifact == ART_THORIN_S_ETERNAL_OAK) return TRUE;
+	if (otmp->oartifact == ART_MARTINA_S_SUPERFLEECE) return TRUE;
 
 	switch (otmp->otyp) {
 
@@ -9242,7 +9243,7 @@ struct obj *otmp;
                 else if ((putting_on(word) &&
 		    ((otmp->oclass == FOOD_CLASS && otmp->otyp != MEAT_RING) ||
 		    (otmp->oclass == TOOL_CLASS &&
-		     otyp != BLINDFOLD && otyp != EYECLOSER && otyp != DRAGON_EYEPATCH && otyp != CONDOME && otyp != SOFT_CHASTITY_BELT && otyp != TOWEL && otyp != CLIMBING_SET && otyp != DEFUSING_BOX && otyp != LENSES && otyp != RADIOGLASSES && otyp != SHIELD_PATE_GLASSES && otyp != BOSS_VISOR && otyp != NIGHT_VISION_GOGGLES)))
+		     otyp != BLINDFOLD && otyp != EYECLOSER && otyp != DRAGON_EYEPATCH && otyp != CONDOME && otyp != SOFT_CHASTITY_BELT && otyp != TOWEL && otyp != CLIMBING_SET && otyp != PROTECTIVE_GLASSES && otyp != DEFUSING_BOX && otyp != LENSES && otyp != RADIOGLASSES && otyp != SHIELD_PATE_GLASSES && otyp != BOSS_VISOR && otyp != NIGHT_VISION_GOGGLES)))
 /*add check for improving*/
                 || ( (!strcmp(word, "wield") || !strcmp(word, "improve")) &&
 		    (otmp->oclass == TOOL_CLASS && !is_weptool(otmp)))
@@ -9765,7 +9766,7 @@ struct obj *otmp;
 		s1 = "T", s2 = "take", s3 = " off";
 	} else if ((ocls == RING_CLASS || otyp == MEAT_RING) ||
 		ocls == AMULET_CLASS || ocls == IMPLANT_CLASS ||
-		(otyp == BLINDFOLD || otyp == EYECLOSER || otyp == DRAGON_EYEPATCH || otyp == CONDOME || otyp == SOFT_CHASTITY_BELT || otyp == TOWEL || otyp == CLIMBING_SET || otyp == DEFUSING_BOX || otyp == LENSES || otyp == RADIOGLASSES || otyp == SHIELD_PATE_GLASSES || otyp == BOSS_VISOR || otyp == NIGHT_VISION_GOGGLES)) {
+		(otyp == BLINDFOLD || otyp == EYECLOSER || otyp == DRAGON_EYEPATCH || otyp == CONDOME || otyp == SOFT_CHASTITY_BELT || otyp == TOWEL || otyp == CLIMBING_SET || otyp == PROTECTIVE_GLASSES || otyp == DEFUSING_BOX || otyp == LENSES || otyp == RADIOGLASSES || otyp == SHIELD_PATE_GLASSES || otyp == BOSS_VISOR || otyp == NIGHT_VISION_GOGGLES)) {
 	    if (!strcmp(word, "wear"))
 		s1 = "P", s2 = "put", s3 = " on";
 	    else if (!strcmp(word, "take off"))
@@ -18315,6 +18316,8 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 				pline("This condome keeps your penis or other sexual organ safe while having a sexual encounter. It also reduces the amount of physical damage you take."); break;
 			case CLIMBING_SET:
 				pline("A tool that can be equipped to improve your chances of climbing a mountain. The idea for this tool was from ToME, and just like the original implementation, it prevents you from equipping a different type of tool at the same time."); break;
+			case PROTECTIVE_GLASSES:
+				pline("Wearing this tool protects you from blindness attacks and cream pies."); break;
 			case DEFUSING_BOX:
 				pline("Inspired by Counter-Strike, this item can be worn in the tool slot to allow you to attempt to disarm a wider variety of trap types."); break;
 			case BINNING_KIT:
@@ -36099,6 +36102,30 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: causes replays to malfunction for cookie reasons."); break;
 				case ART_DAVID_HAS_A_TROUSERS_MADE_:
 					pline("Artifact specs: is made of plastic and allows you to #monster to damage nearby enemies but it cannot kill them."); break;
+				case ART_WONNENE_STARS_ABOVE_US:
+					pline("Artifact specs: summons starlit skies."); break;
+				case ART_PREMATURE_RADIO_TRANSMISSI:
+					pline("Artifact specs: heh heh heh, now the Enclave is active :-P It also allows you to listen to the radio when worn and may occasionally pick up on static disturbances."); break;
+				case ART_IMPORTANT_DESIGN:
+					pline("Artifact specs: free action when worn."); break;
+				case ART_HANGING_THREAD:
+					pline("Artifact specs: death resistance when worn."); break;
+				case ART_MYSTERIOUS_SYMBOL:
+					pline("Artifact specs: mystery resistance when worn."); break;
+				case ART_TILL_S_EXCEPTION:
+					pline("Artifact specs: +2 charisma when worn, can be invoked to scare nearby monsters."); break;
+				case ART_THEY_COME_FROM_HOLLAND:
+					pline("Artifact specs: antje trap effect and +1 all stats when worn, autocurses, and if you're wearing block heels, it also gives regeneration, full nutrients and half physical damage."); break;
+				case ART_MARTINA_S_SUPERFLEECE:
+					pline("Artifact specs: indestructible and immune to all forms of erosion, mystery and death resistance when worn."); break;
+				case ART_CLEAR_FIRST:
+					pline("Artifact specs: magic resistance when worn."); break;
+				case ART_STRONG_SECOND:
+					pline("Artifact specs: reflection when worn."); break;
+				case ART_DISTANT_THIRD:
+					pline("Artifact specs: disintegration resistance when worn."); break;
+				case ART_AND_A_SWORD_TAKES_ME_III_A:
+					pline("Artifact specs: reading it trains the short sword, broadsword, long sword and two-handed sword skills a bunch."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

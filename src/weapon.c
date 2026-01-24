@@ -9059,6 +9059,7 @@ boolean extraskills; /* for artifact gifts and stuff: allow them to unlock vario
 		if (obj->otyp == FELT_TIP_MARKER) skill = P_TECHNIQUES;
 		if (obj->otyp == CLIMBING_SET) skill = P_TECHNIQUES;
 		if (obj->otyp == MATERIAL_KIT) skill = P_MISSILE_WEAPONS;
+		if (obj->otyp == PROTECTIVE_GLASSES) skill = P_MISSILE_WEAPONS;
 		if (obj->otyp == BLINDFOLD) skill = P_SHII_CHO;
 		if (obj->otyp == EYECLOSER) skill = P_MAKASHI;
 		if (obj->otyp == DRAGON_EYEPATCH) skill = P_SORESU;

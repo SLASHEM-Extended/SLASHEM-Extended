@@ -5717,6 +5717,7 @@ register struct obj *otmp;
 	if (otmp && otmp->oartifact == ART_VAELGROM_S_SPINE) return FALSE;
 	if (otmp && otmp->oartifact == ART_MASSIVITY_CUTEBLOCK) return FALSE;
 	if (otmp && otmp->oartifact == ART_BESTANDING_IN_THE_WEATHER) return FALSE;
+	if (otmp && otmp->oartifact == ART_MARTINA_S_SUPERFLEECE) return FALSE;
 
 	if (uarm && uarm->oartifact == ART_CASDIN_S_TANK_SUIT) return FALSE;
 
@@ -5774,6 +5775,7 @@ register struct obj *otmp;
 	if (otmp && otmp->oartifact == ART_VAELGROM_S_SPINE) return FALSE;
 	if (otmp && otmp->oartifact == ART_MASSIVITY_CUTEBLOCK) return FALSE;
 	if (otmp && otmp->oartifact == ART_BESTANDING_IN_THE_WEATHER) return FALSE;
+	if (otmp && otmp->oartifact == ART_MARTINA_S_SUPERFLEECE) return FALSE;
 
 	if (itemhasappearance(otmp, APP_WHITE_BUFFALO_BOOTS)) return TRUE;
 
@@ -5821,6 +5823,7 @@ register struct obj *otmp;
 	if (otmp && otmp->oartifact == ART_RUST_OK) return FALSE;
 	if (otmp && otmp->oartifact == ART_MASSIVITY_CUTEBLOCK) return FALSE;
 	if (otmp && otmp->oartifact == ART_BESTANDING_IN_THE_WEATHER) return FALSE;
+	if (otmp && otmp->oartifact == ART_MARTINA_S_SUPERFLEECE) return FALSE;
 
 	if (SpellColorMetal) {
 		return (!(is_metallic(otmp)));
@@ -5856,6 +5859,7 @@ register struct obj *otmp;
 	if (otmp && otmp->oartifact == ART_VAELGROM_S_SPINE) return FALSE;
 	if (otmp && otmp->oartifact == ART_MASSIVITY_CUTEBLOCK) return FALSE;
 	if (otmp && otmp->oartifact == ART_BESTANDING_IN_THE_WEATHER) return FALSE;
+	if (otmp && otmp->oartifact == ART_MARTINA_S_SUPERFLEECE) return FALSE;
 
 	if (uarmg && uarmg->oartifact == ART_BRIGITTE_S_SAFETY_MITTENS) return FALSE;
 
