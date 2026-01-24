@@ -533,7 +533,7 @@ moverock()
     register struct monst *mtmp;
 
     if (throws_rocks(youmonst.data) || (uarmg && uarmg->oartifact == ART_MOUNTAIN_FISTS) ) {
-	if (flags.nopick == 1 && flags.run == 0) {
+	if (flags.nopick == 1 && flags.run == 0 && flags.squeezeboulder) {
 
 		sx = u.ux + u.dx,  sy = u.uy + u.dy; /* boulder starting position */
 

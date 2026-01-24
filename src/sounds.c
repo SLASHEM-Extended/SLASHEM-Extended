@@ -8746,7 +8746,7 @@ boolean playerdead;
 			break;
 		case MS_SHRIEK:
 			if (flags.soundok || playerdead) pline("%s emits a long shriek.", Monnam(mtmp));
-			aggravate();
+			if (!playerdead) aggravate();
 			break;
 		case MS_BONES:
 			if (flags.soundok || playerdead) pline("%s rattles.", Monnam(mtmp));
@@ -8758,7 +8758,7 @@ boolean playerdead;
 			if (flags.soundok || playerdead) pline("%s makes a content mumble.", Monnam(mtmp));
 			break;
 		case MS_IMITATE:
-			if (flags.soundok || playerdead) pline("%s imitats %s defeated opponent.", Monnam(mtmp), mhis(mtmp));
+			if (flags.soundok || playerdead) pline("%s imitates %s defeated opponent.", Monnam(mtmp), mhis(mtmp));
 			break;
 		case MS_GUARD:
 			if (flags.soundok || playerdead) pline("%s shouts 'Got you, evil-doer!'", Monnam(mtmp));
@@ -8776,7 +8776,10 @@ boolean playerdead;
 			if (flags.soundok || playerdead) pline("%s grins 'Hah... now I vill drink your blood!'", Monnam(mtmp));
 			break;
 		case MS_BRIBE:
-			if (flags.soundok || playerdead) pline("%s remarks 'Should've paid, asshole. Now look what happened to you.'", Monnam(mtmp));
+			if (flags.soundok || playerdead) {
+				if (playerdead) pline("%s remarks 'Should've paid, asshole. Now look what happened to you.'", Monnam(mtmp));
+				else pline("%s remarks 'That is the fate of all those who refuse to pay.'", Monnam(mtmp));
+			}
 			break;
 		case MS_RIDER:
 			if (flags.soundok || playerdead) pline("%s laughs 'My horse trampled all over that lowly creature.'", Monnam(mtmp));
@@ -8884,13 +8887,19 @@ boolean playerdead;
 			if (flags.soundok || playerdead) pline("%s remarks 'That's gotta hurt!'", Monnam(mtmp));
 			break;
 		case MS_SING:
-			if (flags.soundok || playerdead) pline("%s sighs 'Why couldn't you just clean those girl shoes? You wouldn't have had to die!'", Monnam(mtmp));
+			if (flags.soundok || playerdead) {
+				if (playerdead) pline("%s sighs 'Why couldn't you just clean those girl shoes? You wouldn't have had to die!'", Monnam(mtmp));
+				else pline("%s states 'Serves you right for refusing to clean the girl shoes.'.", Monnam(mtmp));
+			}
 			break;
 		case MS_ALLA:
 			if (flags.soundok || playerdead) pline("%s mutters 'you have lost'.", Monnam(mtmp));
 			break;
 		case MS_POKEDEX:
-			if (flags.soundok || playerdead) pline("%s exclaims 'Ack! I killed the pokemon by mistake! Now I can't catch it any longer!'", Monnam(mtmp));
+			if (flags.soundok || playerdead) {
+				if (playerdead) pline("%s announces 'This is MY hunting ground, and you'll no longer catch my pokemon!'", Monnam(mtmp));
+				else pline("%s exclaims 'Ack! I killed the pokemon by mistake! Now I can't catch it any longer!'", Monnam(mtmp));
+			}
 			break;
 		case MS_APOC:
 			if (flags.soundok || playerdead) pline("%s remarks 'I merely sped up the inevitable for you, so you should probably be grateful.'", Monnam(mtmp));
@@ -8932,7 +8941,7 @@ boolean playerdead;
 			if (flags.soundok || playerdead) pline("%s snickers 'Couldn't crack my code, eh? Ha ha ha!'", Monnam(mtmp));
 			break;
 		case MS_BULLETATOR:
-			if (flags.soundok || playerdead) pline("%s remarks 'That one won't be using automatic guns any time soon.'", Monnam(mtmp));
+			if (flags.soundok || playerdead) pline("%s remarks '%s won't be using automatic guns any time soon.'", Monnam(mtmp), playerdead ? "You" : "That one");
 			break;
 		case MS_OE:
 			if (flags.soundok || playerdead) pline("%s laughs 'Alright, enough messing around. Go back to work, you coolies.'", Monnam(mtmp));
@@ -8956,7 +8965,7 @@ boolean playerdead;
 			if (flags.soundok || playerdead) pline("%s remarks 'And now your remaining gear shall be disenchanted.'", Monnam(mtmp));
 			break;
 		case MS_CONDESCEND:
-			if (flags.soundok || playerdead) pline("%s stats 'Did you see it now? Did you see my power?'", Monnam(mtmp));
+			if (flags.soundok || playerdead) pline("%s states 'Did you see it now? Did you see my power?'", Monnam(mtmp));
 			break;
 		case MS_TRIP:
 			if (cansee(mtmp->mx, mtmp->my) || playerdead) pline("%s displays an error message!", Monnam(mtmp));
@@ -9004,7 +9013,10 @@ boolean playerdead;
 			if (flags.soundok || playerdead) pline("%s shouts 'Skies ass and cloud break!'", Monnam(mtmp));
 			break;
 		case MS_MODALSHOP:
-			if (flags.soundok || playerdead) pline("%s shouts '!Ahora puedes joderte, no bueno criminal!'", Monnam(mtmp));
+			if (flags.soundok || playerdead) {
+				if (playerdead) pline("%s shouts '!Ahora puedes joderte, no bueno criminal!'", Monnam(mtmp));
+				else pline("%s announces '!Asi es! !Tengo otro!'", Monnam(mtmp));
+			}
 			break;
 		case MS_SCIENTIST:
 			if (flags.soundok || playerdead) pline("%s stammers 'Is... is it clear?'", Monnam(mtmp));
@@ -9052,7 +9064,7 @@ boolean playerdead;
 			if (flags.soundok || playerdead) pline("%s happily touches %s %s sexual organs.", Monnam(mtmp), mhis(mtmp), is_neuter(mtmp->data) ? "neuter" : mtmp->female ? "female" : "male");
 			break;
 		case MS_OUTCAST:
-			if (flags.soundok || playerdead) pline("%s says 'Target eliminated!'", Monnam(mtmp));
+			if (flags.soundok || playerdead) pline("%s says '%s!'", Monnam(mtmp), rn2(2) ? "Target eliminated" : "I am the best");
 			break;
 		case MS_AMNESIA:
 			if (flags.soundok || playerdead) pline("%s remarks 'Huh? Did someone just die? I forget what that looks like...'", Monnam(mtmp));
@@ -9118,8 +9130,8 @@ boolean playerdead;
 			if (cansee(mtmp->mx, mtmp->my) || playerdead) pline("%s searches %s for blades.", Monnam(mtmp), playerdead ? "your corpse" : "the opponent's corpse");
 			break;
 		case MS_CUSS:
-			break;
 			if (flags.soundok || playerdead) pline("%s laughs 'Now you can suck cocks in hell!'", Monnam(mtmp));
+			break;
 		case MS_WHORE:
 			if (flags.soundok || playerdead) pline("%s remarks 'I'll be sitting on you in a second.'", Monnam(mtmp));
 			break;

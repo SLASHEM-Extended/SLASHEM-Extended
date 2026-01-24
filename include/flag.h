@@ -127,6 +127,7 @@ struct flag {
 	boolean  sortpack;	/* sorted inventory */
 	boolean  soundok;	/* ok to tell about sounds heard */
 	boolean  sparkle;	/* show "resisting" special FX (Scott Bigham) */
+	boolean  squeezeboulder;	/* when polyd into a giant, prefixing movement with m squeezes onto a boulder */
 	boolean  standout;	/* use standout for --More-- */
 
 	boolean  tabcursesconfirm;	/* certain prompts in the curses interface require Tab to advance */

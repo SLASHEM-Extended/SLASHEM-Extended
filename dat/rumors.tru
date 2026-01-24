@@ -2700,7 +2700,7 @@ They say that grass whistles don't degrade when used in grassland.
 Wearing a ring of gambling boosts your blackjack success chances when the enchantment value is positive, and if the ring is blessed, it also makes it less likely for you to bust.
 Trying to repeatedly rub a feminism gem on a cursed touchstone is an exercise in futility; as much as you'd want to shatter the stupid gem away to nothing, it won't work.
 If you triggered the may-britt trap, your items may randomly get stolen by girls, and there's not always a message if it happens. But unlike nymphs, they at least won't get levelporting scrolls if they steal an artifact.
-Are you polymorphed into a giant and annoyed by the fact that you seemingly need to push boulders against a wall to pick them up? Prefix your movements with the 'm' key! Then you can just squeeze onto the square with that boulder and pick it up, even if it's in the middle of a room!
+Are you polymorphed into a giant and annoyed by the fact that you seemingly need to push boulders against a wall to pick them up? Turn on the squeeze_boulder option and prefix your movements with the 'm' key! Then you can just squeeze onto the square with that boulder and pick it up, even if it's in the middle of a room!
 Using martial arts while wearing heavy armor or a shield will penalize your damage output. If you're wearing both of these, the penalties will stack.
 Firearms make a loud noise whenever they're fired, which wakes up monsters.
 Pick-axes are meant to be used mostly as tools, which is why their melee damage output is rather subpar. Unless you find a really good one with high enchantment values, you should opt for a different type of weapon, e.g. a long sword.

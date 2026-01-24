@@ -300,6 +300,7 @@ static struct Bool_Opt
 	{"sparkle", &flags.sparkle, TRUE, SET_IN_GAME},
 	{"standout", &flags.standout, FALSE, SET_IN_GAME},
 	{"splash_screen",     &iflags.wc_splash_screen, TRUE, DISP_IN_GAME},	/*WC*/
+	{"squeeze_boulder", &flags.squeezeboulder, FALSE, SET_IN_GAME},
 
 	{"tabcursesconfirm", &flags.tabcursesconfirm, FALSE, SET_IN_GAME},
 
@@ -5339,7 +5340,7 @@ char *op;
 void
 randomoptionchange()
 {
-	switch (rnd(76)) {
+	switch (rnd(77)) {
 		case 1:
 			flags.autodig = !flags.autodig;
 			break;
@@ -5661,6 +5662,9 @@ randomoptionchange()
 		case 76:
 			flags.epyxmode = !flags.epyxmode;
 			if (isrougelike || Is_rogue_level(&u.uz)) assign_rogue_graphics(TRUE);
+			break;
+		case 77:
+			flags.squeezeboulder = !flags.squeezeboulder;
 			break;
 		default:
 			break;
