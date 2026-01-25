@@ -4884,19 +4884,19 @@ blankerchoice:
 		break;
 	case MS_GAGA:
 		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
-			verbl_msg = "The LGBTIQ+ community will avenge me...";
+			verbalize("The LGBTIQ+ community will avenge this %s...", mongenderidentity(mtmp));
 			break;
 		}
 		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
-			verbl_msg = "Can you procure some food that's suitable for my gender?";
+			verbalize("Can you procure some food that's suitable for a %s?", mongenderidentity(mtmp));
 			break;
 		}
 		if (mtmp->mtame) {
-			verbl_msg = "Always be aware of my gender.";
+			verbalize("Always be aware of my %s gender.", mongenderidentity(mtmp));
 		} else if (mtmp->mpeaceful) {
-			verbl_msg = "Hey, did I tell you about my gender yet?";
+			verbalize("Hey, did I tell you about my %s gender yet?", mongenderidentity(mtmp));
 		}
-		else verbl_msg = "You have to use the correct pronouns when talking to me!!!!!";
+		else verbalize("I'm %s! You have to use the correct pronouns when talking to me!!!!!", mongenderidentity(mtmp));
 		break;
 	case MS_COMMON:
 		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
