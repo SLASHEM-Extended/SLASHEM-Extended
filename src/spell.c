@@ -7782,14 +7782,14 @@ castanyway:
 	}
 
 	if (uwep && is_lightsaber(uwep) && (uwep->lamplit || Role_if(PM_SHADOW_JEDI)) ) {
-		u.unimanturns++;
+		u.unimanturns += spellev(spell);
 
 		if (spellev(spell) > rn2(8)) {
 			mightbooststat(A_INT);
 		}
 
-		if (u.unimanturns >= 3) {
-			u.unimanturns = 0;
+		while (u.unimanturns >= 3) {
+			u.unimanturns -= 3;
 			use_skill(P_NIMAN, 1);
 		}
 
@@ -7802,14 +7802,14 @@ castanyway:
 
 	}
 	if (uwep && uwep->oartifact == ART_NEVERMAN) {
-		u.unimanturns++;
+		u.unimanturns += spellev(spell);
 
 		if (spellev(spell) > rn2(8)) {
 			mightbooststat(A_INT);
 		}
 
-		if (u.unimanturns >= 3) {
-			u.unimanturns = 0;
+		while (u.unimanturns >= 3) {
+			u.unimanturns -= 3;
 			use_skill(P_NIMAN, 1);
 		}
 	}
