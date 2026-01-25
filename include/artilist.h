@@ -27403,6 +27403,134 @@ A("And a sword takes me iii-aah!",				SPE_MAGICTORCH, /* randart2 spellbook, rea
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
+A("Antidoorbane",				SKELETON_KEY, /* randart unlocking tool, suppresses doorning trap effect when wielded */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Brick Closel",				SKELETON_KEY, /* randart2 unlocking tool, material becomes BRICK when generated */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Armervault",				CHEST, /* randart2 container (cannot be bag of tricks), contains two randart1-base-item armor pieces for each slot */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Marc's Weapon Memory",				CHEST, /* randart container (cannot be bag of tricks), contains 10 random weapons */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Flatgirl",				CHEST, /* randart container (can be bag of tricks), carrying it while wearing sexy flats gives +1000 max carry cap and if you're female, also +1000 carry cap */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Dimstorage",				CHEST, /* randart2 container (cannot be bag of tricks), putting stuff into it doesn't use a turn */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Titodesc",				CHEST, /* randart2 container (can be bag of tricks), material becomes TITANIUM upon generating */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Forth Toolbox",				CHEST, /* randart container (cannot be bag of tricks), contains rn1(6,6) random tools */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Doctor's Supply",				RAD_X, /* using it generates 10 regular rad-x on the ground */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Church See",				RADAWAY, /* using it generates 10 random monsters which get a regular radaway and banish themselves to random dungeon levels */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Sexysole",				BEAUTY_PACK, /* using it trains sexy flats skill by rnz(200) */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("High Smartness",				INTELLIGENCE_PACK, /* using it unlocks stiletto heels skill or improves its cap by one */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
+
+A("Victoria's Other Secret",				INFUSION, /* using it improves the block heels skill cap by 4 skill levels but gives the victoria and thirst trap effects permanently and rnz(100k) turns of disabled sleep resist and rnz(200k) turns of disabled free action */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 50000L ),
+
+A("Skill-O-Gamble",				INFUSION, /* using it gives 5x the throne "unlock skill or chance of improving its cap" effect */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
+
+A("Vitality Tower",				INFUSION, /* using it improves your maximum HP by 20 + 2*CON */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Never Stop Nop",				WAX_CANDLE, /* randart2 light source, doesn't stop burning if a darkness effect hits you */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("completely quiet...",				WAX_CANDLE, /* randart light source, if it's in your inventory and currently on, you have double stealth */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Absolute Garant",				BOTTLE, /* if you choose a valid type of potion to make and have enough chemistry set charges, it won't explode and the resultant potion doesn't become selfmade */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Justin's Light",				BLINDFOLD, /* randart blindfold slot tool, +1 vision range */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("French Verdict",				BLINDFOLD, /* randart2 blindfold slot tool, +2 vision range */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Pleogolbe",				BLINDFOLD, /* randart blindfold slot tool */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Polintotah",				BLINDFOLD, /* randart2 blindfold slot tool, wild weather, scent view, mystery resistance, dimmopathy, burnopathy, numbopathy, freezopathy and stunnopathy, and if you're blind it also gives echolocation */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("The Total Gamble",				IC, /* upon generating, rolls a random skill and sets its cap to match your current amount of training */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Swappenwap",				RELAY, /* upon generating, causes the skill swap trap effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Verticality Change",				DIODE, /* upon generating, causes the skill upordown trap effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Dicebowl",				TRANSISTOR, /* upon generating, causes the skill randomize trap effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Mengheta-matic",				RED_DRAGON_SCALES, /* randart dragon scales, material becomes MENGETIUM upon generating */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Paradox Puzzle",				RED_DRAGON_SCALE_MAIL, /* randart DSM, material becomes CONUNDRUM upon generating */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Low Surprise",				RED_DRAGON_SCALE_SHIELD, /* randart DSS, material becomes CHITIN upon generating and enchantment is increased by d5 */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Feeldrawerload",				FIRE_HORN, /* randart elemental horn, amount of charges upon generation is multiplied by 3 and d5 added to the result */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Daleto",				FIRE_HORN, /* randart2 elemental horn, spawns erosionproof and blessed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Spilbomate",				FIRE_HORN, /* randart2 elemental horn, base item becomes a random material upon generating */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

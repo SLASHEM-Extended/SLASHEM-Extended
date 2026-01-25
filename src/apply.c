@@ -5604,6 +5604,10 @@ use_chemistry_set(struct obj *chemset)
 	if (bottle && bottle->oartifact == ART_SUPER_VONK) explosionpossible = FALSE;
 	if (bottle && bottle->oartifact == ART_MULTIAL) phialtype = 1; /* because it's used up below */
 	if (bottle && bottle->oartifact == ART_SKILLOGUP) phialtype = 2;
+	if (bottle && bottle->oartifact == ART_ABSOLUTE_GARANT) {
+		phialtype = 3;
+		explosionpossible = FALSE;
+	}
 
 	getlin("What potion do you want to make?",namebuf);
 	if (!namebuf[0] || namebuf[0] == '\033') return;
@@ -5642,10 +5646,13 @@ use_chemistry_set(struct obj *chemset)
 
 			}
 
+			/* artifacts that prevent explosions will only protect against random failures when the potion type is known --Amy
+			 * trying to make an unknown potion can still fail (not a bug) */
 			goto blast_him;
 		}
 	}
 	new_obj->selfmade = TRUE;
+	if (phialtype == 3) new_obj->selfmade = FALSE;
 	new_obj->cursed = bottle->cursed || chemset->cursed;
 	new_obj->blessed = bottle->blessed || chemset->blessed;
 	if (new_obj->blessed && new_obj->cursed) {
@@ -7484,8 +7491,105 @@ materialchoice:
 		if (obj && obj->oartifact == ART_COVIDIVAC) infusiontype = 1;
 		if (obj && obj->oartifact == ART_TURBOCURARINE_NEEDLE) infusiontype = 2;
 		if (obj && obj->oartifact == ART_SOPORIL_SHOT) infusiontype = 3;
+		if (obj && obj->oartifact == ART_VICTORIA_S_OTHER_SECRET) infusiontype = 4;
+		if (obj && obj->oartifact == ART_SKILL_O_GAMBLE) infusiontype = 5;
+		if (obj && obj->oartifact == ART_VITALITY_TOWER) infusiontype = 6;
 
 		delobj(obj);
+
+		if (infusiontype == 4) {
+			Thirst |= FROMOUTSIDE;
+			if (!FemtrapActiveRuth) pline("There's some karate women who want to demonstrate their combat capabilities to you.");
+			FemaleTrapVictoria |= FROMOUTSIDE;
+			u.uprops[DEAC_FREE_ACTION].intrinsic += rnz(200000);
+			u.uprops[DEAC_SLEEP_RES].intrinsic += rnz(100000);
+
+			if (P_MAX_SKILL(P_BLOCK_HEELS) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(P_BLOCK_HEELS);
+				P_MAX_SKILL(P_BLOCK_HEELS) = P_MASTER;
+				pline("You can now learn the type 3: block heels skill!");
+			} else if (P_MAX_SKILL(P_BLOCK_HEELS) <= P_BASIC) {
+				P_MAX_SKILL(P_BLOCK_HEELS) = P_GRAND_MASTER;
+				pline("You can now become grand master in type 3: block heels!");
+			} else if (P_MAX_SKILL(P_BLOCK_HEELS) <= P_GRAND_MASTER) {
+				P_MAX_SKILL(P_BLOCK_HEELS) = P_SUPREME_MASTER;
+				pline("You can now become supreme master in type 3: block heels!");
+			} else pline("Sadly your knowledge of the type 3: block heels skill is already maxed.");
+
+		}
+
+		if (infusiontype == 6) {
+			int vitalboost = 20 + (ACURR(A_CON) * 2);
+			u.uhpmax += vitalboost;
+			if (Upolyd) u.mhmax += vitalboost;
+			if (uinsymbiosis) {
+				u.usymbiote.mhpmax += vitalboost;
+				if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
+				maybe_evolve_symbiote();
+			}
+			You_feel("a lot of vitality!");
+		}
+
+		if (infusiontype == 5) {
+
+			int skillimprovements = 5;
+			while (skillimprovements > 0) {
+				skillimprovements--;
+
+				int skillimprove = randomgoodskill();
+
+				if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
+					unrestrict_weapon_skill(skillimprove);
+					pline("You can now learn the %s skill.", wpskillname(skillimprove));
+				} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
+					unrestrict_weapon_skill(skillimprove);
+					P_MAX_SKILL(skillimprove) = P_BASIC;
+					pline("You can now learn the %s skill.", wpskillname(skillimprove));
+				} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {
+					P_MAX_SKILL(skillimprove) = P_SKILLED;
+					pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+				} else if (!rn2(4) && P_MAX_SKILL(skillimprove) == P_SKILLED) {
+					P_MAX_SKILL(skillimprove) = P_EXPERT;
+					pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+				} else if (!rn2(10) && P_MAX_SKILL(skillimprove) == P_EXPERT) {
+					P_MAX_SKILL(skillimprove) = P_MASTER;
+					pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+				} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
+					P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
+					pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+				} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
+					P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
+					pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+				}
+
+				if (Race_if(PM_RUSMOT)) {
+					if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
+						unrestrict_weapon_skill(skillimprove);
+						pline("You can now learn the %s skill.", wpskillname(skillimprove));
+					} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
+						unrestrict_weapon_skill(skillimprove);
+						P_MAX_SKILL(skillimprove) = P_BASIC;
+						pline("You can now learn the %s skill.", wpskillname(skillimprove));
+					} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {
+						P_MAX_SKILL(skillimprove) = P_SKILLED;
+						pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+					} else if (!rn2(4) && P_MAX_SKILL(skillimprove) == P_SKILLED) {
+						P_MAX_SKILL(skillimprove) = P_EXPERT;
+						pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+					} else if (!rn2(10) && P_MAX_SKILL(skillimprove) == P_EXPERT) {
+						P_MAX_SKILL(skillimprove) = P_MASTER;
+						pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+					} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
+						P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
+						pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+					} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
+						P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
+						pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+					}
+				}
+			}
+
+		}
 
 		if (infusiontype == 1) {
 			upnivel(TRUE);
@@ -7550,6 +7654,7 @@ materialchoice:
 		/* prevent filthy hangup cheating --Amy */
 		if (obj && obj->oartifact == ART_RESIDUAL_BLOOD_EFFECT) radxtype = 1;
 		if (obj && obj->oartifact == ART_THROUGH_THE_HEAT) radxtype = 2;
+		if (obj && obj->oartifact == ART_DOCTOR_S_SUPPLY) radxtype = 3;
 
 		int radxpower = rn1(500, 500);
 		if (!PlayerCannotUseSkills) {
@@ -7576,6 +7681,22 @@ materialchoice:
 			incr_itimeout(&HStun_resist, rnz(1000));
 			You_feel("capable of surviving the heat.");
 		}
+		if (radxtype == 3) {
+			struct obj *uammo;
+			int radxes = 10;
+			while (radxes > 0) {
+				radxes--;
+				uammo = mksobj(RAD_X, TRUE, FALSE, FALSE);
+				if (uammo) {
+					uammo->quan = 1;
+					uammo->known = uammo->dknown = uammo->bknown = uammo->rknown = 1;
+					uammo->owt = weight(uammo);
+					dropy(uammo);
+					stackobj(uammo);
+				}
+			}
+			pline("There might be some additional rad-x on the ground...");
+		}
 
 		incr_itimeout(&HCont_resist, radxpower);
 		You_feel("more resistant to contamination.");
@@ -7589,6 +7710,7 @@ materialchoice:
 		int radawaytype = 0;
 		/* prevent filthy hangup cheating --Amy */
 		if (obj && obj->oartifact == ART_WRONG_CIGARETTE_BRAND) radawaytype = 1;
+		if (obj && obj->oartifact == ART_CHURCH_SEE) radawaytype = 2;
 
 		int radawaypower = 100;
 		if (!PlayerCannotUseSkills) {
@@ -7622,6 +7744,19 @@ materialchoice:
 				if (!uwep) setuwep(radcig, FALSE, TRUE);
 				if (radcig) curse(radcig);
 				You("suddenly have to smoke a stinking cigarette!");
+			}
+		}
+		if (radawaytype == 2) {
+			register struct monst *offmon;
+			d_level flev;
+			int radawayxtra = 10;
+			while (radawayxtra > 0) {
+				radawayxtra--;
+				if ((offmon = makemon((struct permonst *)0, 0, 0, NO_MM_FLAGS)) != 0) {
+					(void) mongets(offmon, RADAWAY);
+					flev = random_banishment_level();
+					migrate_to_level(offmon, ledger_no(&flev), MIGR_RANDOM, (coord *)0);
+				}
 			}
 		}
 
@@ -7773,6 +7908,7 @@ blesschoice:
 		/* we absolutely don't want lame hangup cheating! --Amy */
 		if (obj->oartifact == ART_PRIMA_DONNA) beautypacktype = 1;
 		if (obj->oartifact == ART_IT_S_IN_THE_EYE_OF_THE_BEH) beautypacktype = 2;
+		if (obj->oartifact == ART_SEXYSOLE) beautypacktype = 3;
 
 		noartispeak = TRUE;
 
@@ -7816,6 +7952,9 @@ blesschoice:
 			incr_itimeout(&HPolymorph_control, rnz(5000));
 			You_feel("capable of controlling your polymorphs.");
 		}
+		if (beautypacktype == 3) {
+			use_skill(P_SEXY_FLATS, rnz(200));
+		}
 
 	}
 		break;
@@ -7826,6 +7965,7 @@ blesschoice:
 		/* fuck off hangup cheater bastard, play some easymode variants if you want to cheat, slex is meant for those who want to play properly --Amy */
 		if (obj->oartifact == ART_SUCK_THE_MIND_FLAYER) intpacktype = 1;
 		if (obj->oartifact == ART_TWOHA) intpacktype = 2;
+		if (obj->oartifact == ART_HIGH_SMARTNESS) intpacktype = 3;
 
 		if (obj->unpaid) {
 			struct monst *shkp = shop_keeper(*u.ushops);
@@ -7843,6 +7983,32 @@ blesschoice:
 			AMAX(A_WIS) += 1;
 			flags.botl = 1;
 			pline("Your wisdom increases.");
+		}
+
+		if (intpacktype == 3) {
+			if (P_MAX_SKILL(P_STILETTO_HEELS) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(P_STILETTO_HEELS);
+				pline("You can now learn the type 1: stiletto heels skill!");
+			} else if (P_MAX_SKILL(P_STILETTO_HEELS) == P_UNSKILLED) {
+				unrestrict_weapon_skill(P_STILETTO_HEELS);
+				pline("You can now learn the type 1: stiletto heels skill!");
+				P_MAX_SKILL(P_STILETTO_HEELS) = P_BASIC;
+			} else if (P_MAX_SKILL(P_STILETTO_HEELS) == P_BASIC) {
+				P_MAX_SKILL(P_STILETTO_HEELS) = P_SKILLED;
+				pline("You can now become skilled in type 1: stiletto heels!");
+			} else if (P_MAX_SKILL(P_STILETTO_HEELS) == P_SKILLED) {
+				P_MAX_SKILL(P_STILETTO_HEELS) = P_EXPERT;
+				pline("You can now become expert in type 1: stiletto heels!");
+			} else if (P_MAX_SKILL(P_STILETTO_HEELS) == P_EXPERT) {
+				P_MAX_SKILL(P_STILETTO_HEELS) = P_MASTER;
+				pline("You can now become master in type 1: stiletto heels!");
+			} else if (P_MAX_SKILL(P_STILETTO_HEELS) == P_MASTER) {
+				P_MAX_SKILL(P_STILETTO_HEELS) = P_GRAND_MASTER;
+				pline("You can now become grand master in type 1: stiletto heels!");
+			} else if (P_MAX_SKILL(P_STILETTO_HEELS) == P_GRAND_MASTER) {
+				P_MAX_SKILL(P_STILETTO_HEELS) = P_SUPREME_MASTER;
+				pline("You can now become supreme master in type 1: stiletto heels!");
+			} else pline("Sadly your knowledge of the type 1: stiletto heels skill is already maxed.");
 		}
 
 		if (intpacktype == 2) {

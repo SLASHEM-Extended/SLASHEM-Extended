@@ -1714,6 +1714,30 @@ have_femityjewel()
 }
 
 boolean
+have_completelyquietlight()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->oartifact == ART_COMPLETELY_QUIET___ && otmp->lamplit)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_flatgirl()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->oartifact == ART_FLATGIRL)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
 have_climxianjewel()
 {
 	register struct obj *otmp;
@@ -36126,6 +36150,70 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: disintegration resistance when worn."); break;
 				case ART_AND_A_SWORD_TAKES_ME_III_A:
 					pline("Artifact specs: reading it trains the short sword, broadsword, long sword and two-handed sword skills a bunch."); break;
+				case ART_ANTIDOORBANE:
+					pline("Artifact specs: while wielding it, the doorning nastytrap effect is suppressed (if you happen to have that one active)."); break;
+				case ART_BRICK_CLOSEL:
+					pline("Artifact specs: made of brick."); break;
+				case ART_ARMERVAULT:
+					pline("Artifact specs: contains various armor pieces."); break;
+				case ART_MARC_S_WEAPON_MEMORY:
+					pline("Artifact specs: contains a bunch of weapons."); break;
+				case ART_FLATGIRL:
+					pline("Artifact specs: if you carry it in your inventory while wearing sexy flats, your maximum carry cap is increased considerably, and if you're female, your actual carry cap is also increased."); break;
+				case ART_DIMSTORAGE:
+					pline("Artifact specs: putting stuff into this container doesn't use a turn."); break;
+				case ART_TITODESC:
+					pline("Artifact specs: made of titanium."); break;
+				case ART_FORTH_TOOLBOX:
+					pline("Artifact specs: contains various tools."); break;
+				case ART_DOCTOR_S_SUPPLY:
+					pline("Artifact specs: using it generates a bunch of additional rad-x on the ground."); break;
+				case ART_CHURCH_SEE:
+					pline("Artifact specs: using it makes it so that a few monsters may carry radaway."); break;
+				case ART_SEXYSOLE:
+					pline("Artifact specs: using it trains the sexy flats skill by a generous amount."); break;
+				case ART_HIGH_SMARTNESS:
+					pline("Artifact specs: using it unlocks the type 1 (stiletto heels) skill, or improves its cap by one."); break;
+				case ART_VICTORIA_S_OTHER_SECRET:
+					pline("Artifact specs: using it improves the type 3 (block heels) skill cap by four skill levels but gives the victoria and thirst trap effects permanently and disables sleep resistance and free action for a long time."); break;
+				case ART_SKILL_O_GAMBLE:
+					pline("Artifact specs: using it may unlock or improve various skills."); break;
+				case ART_VITALITY_TOWER:
+					pline("Artifact specs: using it improves your maximum HP by a good amount, and even more if your constitution is high."); break;
+				case ART_NEVER_STOP_NOP:
+					pline("Artifact specs: darkness effects won't cause it to stop burning."); break;
+				case ART_COMPLETELY_QUIET___:
+					pline("Artifact specs: if you're carrying it while it's lit, you have double stealth."); break;
+				case ART_ABSOLUTE_GARANT:
+					pline("Artifact specs: doesn't explode if you make a valid potion, and the potion in question won't fail when quaffed."); break;
+				case ART_JUSTIN_S_LIGHT:
+					pline("Artifact specs: improves your vision range by one square when worn."); break;
+				case ART_FRENCH_VERDICT:
+					pline("Artifact specs: improves your vision range by two squares when worn."); break;
+				case ART_PLEOGOLBE:
+					pline("Artifact specs: magic resistance when worn."); break;
+				case ART_POLINTOTAH:
+					pline("Artifact specs: wild weather, scent view, mystery resistance, dimmopathy, burnopathy, numbopathy, freezopathy and stunnopathy when worn, and if you're blind it additionally gives echolocation."); break;
+				case ART_TOTAL_GAMBLE:
+					pline("Artifact specs: when it generated, one of your skills had its cap set to your current amount of training."); break;
+				case ART_SWAPPENWAP:
+					pline("Artifact specs: when it generated, your skills may have been swapped."); break;
+				case ART_VERTICALITY_CHANGE:
+					pline("Artifact specs: when it generated, your skills may have gone up or down."); break;
+				case ART_DICEBOWL:
+					pline("Artifact specs: when it generated, your skills may have been randomized."); break;
+				case ART_MENGHETA_MATIC:
+					pline("Artifact specs: made of mengetium."); break;
+				case ART_PARADOX_PUZZLE:
+					pline("Artifact specs: made of conundrum."); break;
+				case ART_LOW_SURPRISE:
+					pline("Artifact specs: made of chitin and usually well-enchanted."); break;
+				case ART_FEELDRAWERLOAD:
+					pline("Artifact specs: spawns with a lot of charges."); break;
+				case ART_DALETO:
+					pline("Artifact specs: spawns erosionproof and blessed."); break;
+				case ART_SPILBOMATE:
+					pline("Artifact specs: made of a random material."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

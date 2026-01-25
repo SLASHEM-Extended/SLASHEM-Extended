@@ -606,12 +606,17 @@ init_randarts()
 	artilist[ART_PRINCESS_BITCH].otyp = randartgloves();
 	artilist[ART_WOULD_YOU_RAIGHT_THAT].otyp = randartgloves();
 	artilist[ART_REFRACTURA].otyp = randartcontainernotricks();
+	artilist[ART_FORTH_TOOLBOX].otyp = randartcontainernotricks();
+	artilist[ART_MARC_S_WEAPON_MEMORY].otyp = randartcontainernotricks();
+	artilist[ART_ANTIDOORBANE].otyp = randartunlocking();
 	artilist[ART_GALLUS__TRINKET].otyp = randartunlocking();
 	artilist[ART_BRASS_CLOSEL].otyp = randartunlocking();
+	artilist[ART_CLIRR].otyp = randartlightsource();
+	artilist[ART_COMPLETELY_QUIET___].otyp = randartlightsource();
 	artilist[ART_OVERPOWEREMENT_RADII].otyp = randartlightsource();
 	artilist[ART_XAW_MUNNATS_PFOUT].otyp = randartlightsource();
-	artilist[ART_CLIRR].otyp = randartlightsourceX();
 	artilist[ART_SELF_SIMILARITY].otyp = randartcontainernotricks();
+	artilist[ART_FLATGIRL].otyp = randartcontainerplustricks();
 	artilist[ART_BESTANDING_IN_THE_WEATHER].otyp = randartcontainerplustricks();
 	artilist[ART_NO_STOPPING_THE_COURIER].otyp = randartcontainerplustricks();
 	artilist[ART_DIFFICULTY__].otyp = randartgloves();
@@ -773,7 +778,9 @@ init_randarts()
 	artilist[ART_HANDSOME_THREESOME].otyp = randartrobe();
 	artilist[ART_ROBUN_NUMBER].otyp = randartrobe();
 	artilist[ART_ROBXOR_ZSCH].otyp = randartrobe();
+	artilist[ART_PLEOGOLBE].otyp = randartblindfold();
 	artilist[ART_SYLBE_S_LACK].otyp = randartblindfold();
+	artilist[ART_JUSTIN_S_LIGHT].otyp = randartblindfold();
 	artilist[ART_DIVINE_SEER].otyp = randartblindfold();
 	artilist[ART_INKSCOVER].otyp = randartrobe();
 	artilist[ART_ALTADOON_HERMA_MORA].otyp = randartrobe();
@@ -793,12 +800,14 @@ init_randarts()
 	artilist[ART_REGROWN_RESOURCE].otyp = randartjavelin();
 	artilist[ART_NINJINGY].otyp = randartshuriken();
 	artilist[ART_LET_IT_STAY].otyp = randartdragonscales();
+	artilist[ART_MENGHETA_MATIC].otyp = randartdragonscales();
 	artilist[ART_HANGING_THREAD].otyp = randartdragonscales();
 	artilist[ART_JACINTA_S_PRECIOUS].otyp = randartdragonscales();
 	artilist[ART_KRAH_HOOOOO].otyp = randartdragonscales();
 	artilist[ART_CLEAR_FIRST].otyp = randartdragonscales();
 	artilist[ART_ICE_FROM_THE_NORTH].otyp = randartdragonscales();
 	artilist[ART_PROTPOW].otyp = randartdragonscalemail();
+	artilist[ART_PARADOX_PUZZLE].otyp = randartdragonscalemail();
 	artilist[ART_STRONG_SECOND].otyp = randartdragonscalemail();
 	artilist[ART_IMPORTANT_DESIGN].otyp = randartdragonscalemail();
 	artilist[ART_DONNICA_S_SUPERLATIVE].otyp = randartdragonscalemail();
@@ -806,6 +815,7 @@ init_randarts()
 	artilist[ART_CUDDLE_CHALLENGE].otyp = randartdragonscalemail();
 	artilist[ART_PRISMATIC_DRAGON_PLATE].otyp = randartdragonscalemail();
 	artilist[ART_POFFGO].otyp = randartdragonscaleshield();
+	artilist[ART_LOW_SURPRISE].otyp = randartdragonscaleshield();
 	artilist[ART_DISTANT_THIRD].otyp = randartdragonscaleshield();
 	artilist[ART_MYSTERIOUS_SYMBOL].otyp = randartdragonscaleshield();
 	artilist[ART_EDIVA_S_SEE_THROUGH].otyp = randartdragonscaleshield();
@@ -818,6 +828,7 @@ init_randarts()
 	artilist[ART_RHINE_CROSSING].otyp = randartsaddle();
 	artilist[ART_MARLOWE_S_CAMEL].otyp = randartsaddle();
 	artilist[ART_INFINITE_RANGE].otyp = randartleash();
+	artilist[ART_FEELDRAWERLOAD].otyp = randartelementhorn();
 	artilist[ART_A_HOHES_U].otyp = randartelementhorn();
 	artilist[ART_TURN_TO_ELEVEN].otyp = randartelementhorn();
 
@@ -954,13 +965,18 @@ init_randarts()
 	artilist[ART_SPECIAL_ROBUNG].otyp = randartrobeX();
 	artilist[ART_COME_ON_AMMY].otyp = randartrobeX();
 	artilist[ART_YETA_S_BEAR_BEING].otyp = randartrobeX();
+	artilist[ART_ARMERVAULT].otyp = randartcontainernotricksX();
+	artilist[ART_DIMSTORAGE].otyp = randartcontainernotricksX();
 	artilist[ART_SEVERAL_DUNGEONS_WORTH_OF_].otyp = randartcontainernotricksX();
+	artilist[ART_BRICK_CLOSEL].otyp = randartunlockingX();
 	artilist[ART_KARLIAH_S_NUKA_BREAK].otyp = randartunlockingX();
 	artilist[ART_RIMSKY_S_HAND_STAR].otyp = randartunlockingX();
+	artilist[ART_NEVER_STOP_NOP].otyp = randartlightsourceX();
 	artilist[ART_A_YARD_IS_NOT_A_METER].otyp = randartlightsourceX();
 	artilist[ART_HOLE_IN_THE_TREE].otyp = randartlightsourceX();
 	artilist[ART_D_N_H__D_N_H_].otyp = randartlightsourceX();
 	artilist[ART_OMMMMMMMG_WISH_GET].otyp = randartcontainernotricksX();
+	artilist[ART_TITODESC].otyp = randartcontainerplustricksX();
 	artilist[ART_THREE_OF_CHARM].otyp = randartcontainerplustricksX();
 	artilist[ART_CLONE_DYKE_TREASURE].otyp = randartcontainerplustricksX();
 	artilist[ART_TINPLAGUE].otyp = randartcontainerplustricksX();
@@ -980,7 +996,9 @@ init_randarts()
 	artilist[ART_HOW_CAN_ONE_PLEASE_LOOK_LI].otyp = randarthelmX();
 	artilist[ART_WEAR_OFF_THE_DAMN_RNG].otyp = randarthelmX();
 	artilist[ART_REJU_GLUCK_GLUCK_GLUCK_BUG].otyp = randarthelmX();
+	artilist[ART_POLINTOTAH].otyp = randartblindfoldX();
 	artilist[ART_BERIT_S_SAGE].otyp = randartblindfoldX();
+	artilist[ART_FRENCH_VERDICT].otyp = randartblindfoldX();
 	artilist[ART_TRULY_AWESOMELIG].otyp = randartblindfoldX();
 	artilist[ART_HAMBURG_ONE].otyp = randarthelmX();
 	artilist[ART_ARABELLA_S_MELEE_POWER].otyp = randartmeleeweaponX();
@@ -1271,6 +1289,8 @@ init_randarts()
 	artilist[ART_KERSTIN_S_CLEARSOUND].otyp = randartsaddleX();
 	artilist[ART_SADDLE_OF_BRYNHILDR].otyp = randartsaddleX();
 	artilist[ART_ANNOYING_PET_MONITOR].otyp = randartleashX();
+	artilist[ART_DALETO].otyp = randartelementhornX();
+	artilist[ART_SPILBOMATE].otyp = randartelementhornX();
 	artilist[ART_MAMA_LAUDA].otyp = randartelementhornX();
 
 	artilist[ART_ELLI_S_PSEUDOBAND_OF_POS].otyp = randartmeleeweaponX();
@@ -2943,6 +2963,200 @@ register boolean mod;
 		    if (otmp && otmp->oartifact == ART_NINER) {
 			otmp->spe += 9;
 		    }
+		    if (otmp && otmp->oartifact == ART_FEELDRAWERLOAD) {
+			if (otmp->spe > 0) otmp->spe *= 3;
+			otmp->spe += rnd(5);
+		    }
+
+		    if (otmp && otmp->oartifact == ART_DALETO) {
+			otmp->oerodeproof = TRUE;
+			otmp->cursed = otmp->hvycurse = otmp->prmcurse = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
+			otmp->blessed = TRUE;
+		    }
+
+		    if (otmp && otmp->oartifact == ART_TOTAL_GAMBLE) {
+			int gambleskill = randomgoodskill();
+			if (P_ADVANCE(gambleskill) < 19) {
+				P_MAX_SKILL(gambleskill) = P_ISRESTRICTED;
+				You("are now restricted in %s!", wpskillname(gambleskill));
+			} else if (P_ADVANCE(gambleskill) < 159) {
+				P_MAX_SKILL(gambleskill) = P_BASIC;
+				Your("%s skill is now capped at Basic!", wpskillname(gambleskill));
+			} else if (P_ADVANCE(gambleskill) < 539) {
+				P_MAX_SKILL(gambleskill) = P_SKILLED;
+				Your("%s skill is now capped at Skilled!", wpskillname(gambleskill));
+			} else if (P_ADVANCE(gambleskill) < 1279) {
+				P_MAX_SKILL(gambleskill) = P_EXPERT;
+				Your("%s skill is now capped at Expert!", wpskillname(gambleskill));
+			} else if (P_ADVANCE(gambleskill) < 2499) {
+				P_MAX_SKILL(gambleskill) = P_MASTER;
+				Your("%s skill is now capped at Master!", wpskillname(gambleskill));
+			} else if (P_ADVANCE(gambleskill) < 4319) {
+				P_MAX_SKILL(gambleskill) = P_GRAND_MASTER;
+				Your("%s skill is now capped at Grand Master!", wpskillname(gambleskill));
+			} else {
+				P_MAX_SKILL(gambleskill) = P_SUPREME_MASTER;
+				Your("%s skill is now capped at Supreme Master!", wpskillname(gambleskill));
+			}	
+
+			skill_sanity_check(gambleskill);
+		    }
+
+		    if (otmp && otmp->oartifact == ART_VERTICALITY_CHANGE) {
+				int tryct, tryct2, i;
+				int upordownskill;
+
+				upordownskill = randomgoodskill();
+				boolean will_go_up = rn2(2);
+
+				if (will_go_up) {
+					if (P_MAX_SKILL(upordownskill) == P_SUPREME_MASTER) {
+						pline("Somehow, nothing happens.");
+					} else if (P_MAX_SKILL(upordownskill) == P_GRAND_MASTER) {
+						P_MAX_SKILL(upordownskill) = P_SUPREME_MASTER;
+						pline("Your knowledge of the %s skill increases.", wpskillname(upordownskill));
+					} else if (P_MAX_SKILL(upordownskill) == P_MASTER) {
+						P_MAX_SKILL(upordownskill) = P_GRAND_MASTER;
+						pline("Your knowledge of the %s skill increases.", wpskillname(upordownskill));
+					} else if (P_MAX_SKILL(upordownskill) == P_EXPERT) {
+						P_MAX_SKILL(upordownskill) = P_MASTER;
+						pline("Your knowledge of the %s skill increases.", wpskillname(upordownskill));
+					} else if (P_MAX_SKILL(upordownskill) == P_SKILLED) {
+						P_MAX_SKILL(upordownskill) = P_EXPERT;
+						pline("Your knowledge of the %s skill increases.", wpskillname(upordownskill));
+					} else if (P_MAX_SKILL(upordownskill) == P_BASIC) {
+						P_MAX_SKILL(upordownskill) = P_SKILLED;
+						pline("Your knowledge of the %s skill increases.", wpskillname(upordownskill));
+					} else if (P_MAX_SKILL(upordownskill) == P_ISRESTRICTED) {
+						unrestrict_weapon_skill(upordownskill);
+						pline("You can now learn the %s skill.", wpskillname(upordownskill));
+					}
+				} else {
+
+					if (P_MAX_SKILL(upordownskill) == P_ISRESTRICTED) {
+						P_ADVANCE(upordownskill) = 0;
+						You("lost some hidden skill training.");
+					} else if (P_MAX_SKILL(upordownskill) == P_BASIC) {
+						P_MAX_SKILL(upordownskill) = P_ISRESTRICTED;
+						pline("You lose all knowledge of the %s skill!", wpskillname(upordownskill));
+						P_ADVANCE(upordownskill) = 0;
+					} else if (P_MAX_SKILL(upordownskill) == P_SKILLED) {
+						P_MAX_SKILL(upordownskill) = P_BASIC;
+						pline("You lose some knowledge of the %s skill!", wpskillname(upordownskill));
+					} else if (P_MAX_SKILL(upordownskill) == P_EXPERT) {
+						P_MAX_SKILL(upordownskill) = P_SKILLED;
+						pline("You lose some knowledge of the %s skill!", wpskillname(upordownskill));
+					} else if (P_MAX_SKILL(upordownskill) == P_MASTER) {
+						P_MAX_SKILL(upordownskill) = P_EXPERT;
+						pline("You lose some knowledge of the %s skill!", wpskillname(upordownskill));
+					} else if (P_MAX_SKILL(upordownskill) == P_GRAND_MASTER) {
+						P_MAX_SKILL(upordownskill) = P_MASTER;
+						pline("You lose some knowledge of the %s skill!", wpskillname(upordownskill));
+					} else if (P_MAX_SKILL(upordownskill) == P_SUPREME_MASTER) {
+						P_MAX_SKILL(upordownskill) = P_GRAND_MASTER;
+						pline("You lose some knowledge of the %s skill!", wpskillname(upordownskill));
+					}
+
+					skill_sanity_check(upordownskill);
+
+				}
+
+		    }
+
+		    if (otmp && otmp->oartifact == ART_DICEBOWL) {
+				int tryct, tryct2, i;
+				int randomizeskill;
+
+				randomizeskill = randomgoodskill();
+
+				/* if the skill's cap is lower than expert, then its new cap can't be higher than skilled
+				 * if it's at least expert, the new cap can't be lower than expert */
+
+				if (P_MAX_SKILL(randomizeskill) < P_EXPERT) {
+					if (rn2(2)) {
+						if (P_MAX_SKILL(randomizeskill) >= P_BASIC) {
+							P_MAX_SKILL(randomizeskill) = P_ISRESTRICTED;
+							P_ADVANCE(randomizeskill) = 0;
+						}
+						P_MAX_SKILL(randomizeskill) = P_ISRESTRICTED;
+						pline("Your %s skill is now restricted!", wpskillname(randomizeskill));
+					} else if (rn2(3)) {
+						if (P_MAX_SKILL(randomizeskill) == P_ISRESTRICTED) {
+							unrestrict_weapon_skill(randomizeskill);
+							P_MAX_SKILL(randomizeskill) = P_BASIC;
+						}
+						P_MAX_SKILL(randomizeskill) = P_BASIC;
+						pline("Your %s skill is now capped at basic!", wpskillname(randomizeskill));
+					} else {
+						if (P_MAX_SKILL(randomizeskill) == P_ISRESTRICTED) {
+							unrestrict_weapon_skill(randomizeskill);
+							P_MAX_SKILL(randomizeskill) = P_SKILLED;
+						}
+						P_MAX_SKILL(randomizeskill) = P_SKILLED;
+						pline("Your %s skill is now capped at skilled!", wpskillname(randomizeskill));
+					}
+				} else {
+					if (!rn2(100)) {
+						P_MAX_SKILL(randomizeskill) = P_SUPREME_MASTER;
+						pline("Your %s skill is now capped at supreme master!", wpskillname(randomizeskill));
+					} else if (!rn2(10)) {
+						P_MAX_SKILL(randomizeskill) = P_GRAND_MASTER;
+						pline("Your %s skill is now capped at grand master!", wpskillname(randomizeskill));
+					} else if (!rn2(2)) {
+						P_MAX_SKILL(randomizeskill) = P_MASTER;
+						pline("Your %s skill is now capped at master!", wpskillname(randomizeskill));
+					} else {
+						P_MAX_SKILL(randomizeskill) = P_EXPERT;
+						pline("Your %s skill is now capped at expert!", wpskillname(randomizeskill));
+					}
+				}
+
+				skill_sanity_check(randomizeskill);
+
+		    }
+
+		    if (otmp && otmp->oartifact == ART_SWAPPENWAP) {
+				int tempswapvalue;
+				int tempswapvalue2;
+				int tryct, tryct2, i;
+				int swapskill1, swapskill2;
+
+				swapskill1 = randomgoodskill();
+skillswapredo:
+				swapskill2 = randomgoodskill();
+				if (swapskill1 == swapskill2) goto skillswapredo;
+
+				if (P_MAX_SKILL(swapskill1) == P_MAX_SKILL(swapskill2)) {
+					tempswapvalue = P_ADVANCE(swapskill1);
+					tempswapvalue2 = P_ADVANCE(swapskill2);
+					P_ADVANCE(swapskill1) = tempswapvalue2;
+					P_ADVANCE(swapskill2) = tempswapvalue;
+
+					pline("Your training for the %s and %s skills was swapped.", wpskillname(swapskill1), wpskillname(swapskill2));
+
+					skill_sanity_check(swapskill1);
+					skill_sanity_check(swapskill2);
+				} else {
+					tempswapvalue = P_MAX_SKILL(swapskill1);
+					tempswapvalue2 = P_MAX_SKILL(swapskill2);
+					P_MAX_SKILL(swapskill1) = tempswapvalue2;
+					P_MAX_SKILL(swapskill2) = tempswapvalue;
+
+					if (P_SKILL(swapskill1) == P_ISRESTRICTED && P_MAX_SKILL(swapskill1) >= P_BASIC) {
+						P_SKILL(swapskill1) = P_UNSKILLED;
+						P_ADVANCE(swapskill1) = 0;
+					}
+					if (P_SKILL(swapskill2) == P_ISRESTRICTED && P_MAX_SKILL(swapskill2) >= P_BASIC) {
+						P_SKILL(swapskill2) = P_UNSKILLED;
+						P_ADVANCE(swapskill2) = 0;
+					}
+
+					pline("Your caps for the %s and %s skills were swapped.", wpskillname(swapskill1), wpskillname(swapskill2));
+
+					skill_sanity_check(swapskill1);
+					skill_sanity_check(swapskill2);
+				}
+		    }
 
 		    if (otmp && otmp->oartifact == ART_PREMATURE_RADIO_TRANSMISSI) {
 			u.enclaveactive = TRUE; /* no message (intentional) --Amy */
@@ -3869,6 +4083,117 @@ register boolean mod;
 					ocont->owt = weight(ocont);
 					(void) add_to_container(otmp, ocont, TRUE);
 				}
+			}
+
+		    }
+
+		    if (otmp && otmp->oartifact == ART_MARC_S_WEAPON_MEMORY) {
+			int maincontainerclass = WEAPON_CLASS;
+			int maincontaineramount = 10;
+
+			register struct obj *ocont;
+
+			while (maincontaineramount > 0) {
+				maincontaineramount--;
+				ocont = mkobj(maincontainerclass, FALSE, FALSE);
+				if (ocont) {
+					ocont->owt = weight(ocont);
+					(void) add_to_container(otmp, ocont, TRUE);
+				}
+			}
+
+		    }
+
+		    if (otmp && otmp->oartifact == ART_FORTH_TOOLBOX) {
+			int maincontainerclass = TOOL_CLASS;
+			int maincontaineramount = rn1(6,6);
+
+			register struct obj *ocont;
+
+			while (maincontaineramount > 0) {
+				maincontaineramount--;
+				ocont = mkobj(maincontainerclass, FALSE, FALSE);
+				if (ocont) {
+					ocont->owt = weight(ocont);
+					(void) add_to_container(otmp, ocont, TRUE);
+				}
+			}
+
+		    }
+
+		    if (otmp && otmp->oartifact == ART_ARMERVAULT) {
+
+			register struct obj *ocont;
+
+			ocont = mksobj(randartsuit(), TRUE, FALSE, FALSE);
+			if (ocont) {
+				ocont->owt = weight(ocont);
+				(void) add_to_container(otmp, ocont, TRUE);
+			}
+			ocont = mksobj(randartsuit(), TRUE, FALSE, FALSE);
+			if (ocont) {
+				ocont->owt = weight(ocont);
+				(void) add_to_container(otmp, ocont, TRUE);
+			}
+			ocont = mksobj(randartshirt(), TRUE, FALSE, FALSE);
+			if (ocont) {
+				ocont->owt = weight(ocont);
+				(void) add_to_container(otmp, ocont, TRUE);
+			}
+			ocont = mksobj(randartshirt(), TRUE, FALSE, FALSE);
+			if (ocont) {
+				ocont->owt = weight(ocont);
+				(void) add_to_container(otmp, ocont, TRUE);
+			}
+			ocont = mksobj(randartcloak(), TRUE, FALSE, FALSE);
+			if (ocont) {
+				ocont->owt = weight(ocont);
+				(void) add_to_container(otmp, ocont, TRUE);
+			}
+			ocont = mksobj(randartcloak(), TRUE, FALSE, FALSE);
+			if (ocont) {
+				ocont->owt = weight(ocont);
+				(void) add_to_container(otmp, ocont, TRUE);
+			}
+			ocont = mksobj(randarthelm(), TRUE, FALSE, FALSE);
+			if (ocont) {
+				ocont->owt = weight(ocont);
+				(void) add_to_container(otmp, ocont, TRUE);
+			}
+			ocont = mksobj(randarthelm(), TRUE, FALSE, FALSE);
+			if (ocont) {
+				ocont->owt = weight(ocont);
+				(void) add_to_container(otmp, ocont, TRUE);
+			}
+			ocont = mksobj(randartgloves(), TRUE, FALSE, FALSE);
+			if (ocont) {
+				ocont->owt = weight(ocont);
+				(void) add_to_container(otmp, ocont, TRUE);
+			}
+			ocont = mksobj(randartgloves(), TRUE, FALSE, FALSE);
+			if (ocont) {
+				ocont->owt = weight(ocont);
+				(void) add_to_container(otmp, ocont, TRUE);
+			}
+			ocont = mksobj(randartshield(), TRUE, FALSE, FALSE);
+			if (ocont) {
+				ocont->owt = weight(ocont);
+				(void) add_to_container(otmp, ocont, TRUE);
+			}
+			ocont = mksobj(randartshield(), TRUE, FALSE, FALSE);
+			if (ocont) {
+				ocont->owt = weight(ocont);
+				(void) add_to_container(otmp, ocont, TRUE);
+			}
+			ocont = mksobj(randartboots(), TRUE, FALSE, FALSE);
+			if (ocont) {
+				ocont->owt = weight(ocont);
+				(void) add_to_container(otmp, ocont, TRUE);
+			}
+			ocont = mksobj(randartboots(), TRUE, FALSE, FALSE);
+			if (ocont) {
+				ocont->owt = weight(ocont);
+				(void) add_to_container(otmp, ocont, TRUE);
 			}
 
 		    }
@@ -4822,6 +5147,25 @@ register boolean mod;
 		    }
 		    if (otmp && otmp->oartifact == ART_ETHER_DAGGER) {
 			if (objects[otmp->otyp].oc_material != MT_ETHER) objects[otmp->otyp].oc_material = MT_ETHER;
+		    }
+		    if (otmp && otmp->oartifact == ART_TITODESC) {
+			if (objects[otmp->otyp].oc_material != MT_TITANIUM) objects[otmp->otyp].oc_material = MT_TITANIUM;
+		    }
+		    if (otmp && otmp->oartifact == ART_LOW_SURPRISE) {
+			otmp->spe += rnd(5);
+			if (objects[otmp->otyp].oc_material != MT_CHITIN) objects[otmp->otyp].oc_material = MT_CHITIN;
+		    }
+		    if (otmp && otmp->oartifact == ART_PARADOX_PUZZLE) {
+			if (objects[otmp->otyp].oc_material != MT_CONUNDRUM) objects[otmp->otyp].oc_material = MT_CONUNDRUM;
+		    }
+		    if (otmp && otmp->oartifact == ART_MENGHETA_MATIC) {
+			if (objects[otmp->otyp].oc_material != MT_MENGETIUM) objects[otmp->otyp].oc_material = MT_MENGETIUM;
+		    }
+		    if (otmp && otmp->oartifact == ART_SPILBOMATE) {
+			objects[otmp->otyp].oc_material = rn2(LASTMATERIAL + 1); /* allow every material, including 0 (mysterious) */
+		    }
+		    if (otmp && otmp->oartifact == ART_BRICK_CLOSEL) {
+			if (objects[otmp->otyp].oc_material != MT_BRICK) objects[otmp->otyp].oc_material = MT_BRICK;
 		    }
 		    if (otmp && otmp->oartifact == ART_MOST_EROTIC_AIR_CURRENT_NO) {
 			objects[otmp->otyp].oc_color = CLR_BRIGHT_MAGENTA;

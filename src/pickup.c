@@ -3094,7 +3094,7 @@ ask_again2:
 		    (void) askchain((struct obj **)&invent,
 				    (one_by_one ? (char *)0 : select), allflag,
 				    in_container, ck_bag, 0, "nodot");
-		    if (current_container->oartifact != ART_KLARABELLA_S_HANDBAG && !(uarmc && uarmc->otyp == UTILITY_CLOAK && rn2(2)) && current_container->oartifact != ART_STASHIT) {
+		    if (current_container->oartifact != ART_KLARABELLA_S_HANDBAG && current_container->oartifact != ART_DIMSTORAGE && !(uarmc && uarmc->otyp == UTILITY_CLOAK && rn2(2)) && current_container->oartifact != ART_STASHIT) {
 			used = 1;
 		    }
 		} else if (menu_on_request < 0) {
@@ -3216,6 +3216,7 @@ boolean put_in;
     if (container && container->oartifact == ART_GITTA_S_HANDBAG && !put_in) return 0;
     if (container && container->oartifact == ART_GIDDEM_FAST_ && !put_in) return 0;
     if (container && container->oartifact == ART_KLARABELLA_S_HANDBAG && put_in) return 0;
+    if (container && container->oartifact == ART_DIMSTORAGE && put_in) return 0;
     if (container && container->oartifact == ART_STASHIT && put_in) return 0;
     return n_looted;
 }

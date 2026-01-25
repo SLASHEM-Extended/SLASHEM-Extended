@@ -168,6 +168,9 @@
 
 #define YouAreScrewedEternally (LongScrewup || u.uprops[LONG_SCREWUP].extrinsic || (uarm && uarm->oartifact == ART_ROSTINE_S_OVERCAST) || have_longscrewupstone())
 
+/* doorning trap can be suppressed by antidoorbane */
+#define DoorningHappens ( (DoorningEffect || u.uprops[DOORNING_EFFECT].extrinsic || have_doorningstone() || (uarmc && uarmc->oartifact == ART_ZUNI_S_IRIDESCENCE)) && !(uwep && uwep->oartifact == ART_ANTIDOORBANE) )
+
 #define GravationAggravation (GravationEffect || (flags.female && (u.genitalhealth_f > 1) && (u.genitalhealth_m < 1)) || (!flags.female && (u.genitalhealth_m > 1) && (u.genitalhealth_f < 1)) || u.uprops[GRAVATION].extrinsic || have_gravationstone() || (uarm && uarm->oartifact == ART_ASTRA_MAIL) )
 
 #define WallsAreHyperBlue (Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone() || autismweaponcheck(ART_KRONSCHER_BAR) || (uarm && uarm->oartifact == ART_CHIP_INFACT) || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY) || (uarms && uarms->oartifact == ART_BLUE_SHIRT_OF_DEATH) || (In_emynluin(&u.uz) && !u.emynluincomplete) )
@@ -1311,7 +1314,7 @@
 #define HStunnopathy	u.uprops[STUNNOPATHY].intrinsic
 #define EStunnopathy	u.uprops[STUNNOPATHY].extrinsic
 #define IntStunnopathy	(HStunnopathy)
-#define ExtStunnopathy	(EStunnopathy || (uarmh && uarmh->oartifact == ART_INCREDIBLE_VIEW) || (uarms && uarms->oartifact == ART_IT_IS_COMPLETE_NOW) || (uarmc && uarmc->oartifact == ART_PORTER_S_THINK) )
+#define ExtStunnopathy	(EStunnopathy || (ublindf && ublindf->oartifact == ART_POLINTOTAH) || (uarmh && uarmh->oartifact == ART_INCREDIBLE_VIEW) || (uarms && uarms->oartifact == ART_IT_IS_COMPLETE_NOW) || (uarmc && uarmc->oartifact == ART_PORTER_S_THINK) )
 
 #define Stunnopathy	(((IntStunnopathy && !(u.nonintrinsicproperty == STUNNOPATHY)) || (ExtStunnopathy && u.nonextrinsicproperty != STUNNOPATHY)) && !NoStunnopathy && !DetectionMethodsDontWork)
 #define StrongStunnopathy	(IntStunnopathy && ExtStunnopathy && Stunnopathy && u.nondoubleproperty != STUNNOPATHY)
@@ -1321,7 +1324,7 @@
 #define HNumbopathy	u.uprops[NUMBOPATHY].intrinsic
 #define ENumbopathy	u.uprops[NUMBOPATHY].extrinsic
 #define IntNumbopathy	(HNumbopathy)
-#define ExtNumbopathy	(ENumbopathy || (uarmh && uarmh->oartifact == ART_INCREDIBLE_VIEW) || (uarms && uarms->oartifact == ART_IT_IS_COMPLETE_NOW) || (uarmf && uarmf->oartifact == ART_END_OF_LEWDNESS) )
+#define ExtNumbopathy	(ENumbopathy || (ublindf && ublindf->oartifact == ART_POLINTOTAH) || (uarmh && uarmh->oartifact == ART_INCREDIBLE_VIEW) || (uarms && uarms->oartifact == ART_IT_IS_COMPLETE_NOW) || (uarmf && uarmf->oartifact == ART_END_OF_LEWDNESS) )
 
 #define Numbopathy	(((IntNumbopathy && !(u.nonintrinsicproperty == NUMBOPATHY)) || (ExtNumbopathy && u.nonextrinsicproperty != NUMBOPATHY)) && !NoNumbopathy && !DetectionMethodsDontWork)
 #define StrongNumbopathy	(IntNumbopathy && ExtNumbopathy && Numbopathy && u.nondoubleproperty != NUMBOPATHY)
@@ -1331,7 +1334,7 @@
 #define HDimmopathy	u.uprops[DIMMOPATHY].intrinsic
 #define EDimmopathy	u.uprops[DIMMOPATHY].extrinsic
 #define IntDimmopathy	(HDimmopathy)
-#define ExtDimmopathy	(EDimmopathy || (uarmh && uarmh->oartifact == ART_LORSKEL_S_BACKCUSS) || (uarmh && uarmh->oartifact == ART_INCREDIBLE_VIEW) || (uarms && uarms->oartifact == ART_IT_IS_COMPLETE_NOW) || (uwep && uwep->oartifact == ART_HOPE_OF_SOKOBAN) || (uarmf && uarmf->oartifact == ART_FINAL_EXAM_TIME))
+#define ExtDimmopathy	(EDimmopathy || (uarmh && uarmh->oartifact == ART_LORSKEL_S_BACKCUSS) || (uarmh && uarmh->oartifact == ART_INCREDIBLE_VIEW) || (uarms && uarms->oartifact == ART_IT_IS_COMPLETE_NOW) || (ublindf && ublindf->oartifact == ART_POLINTOTAH) || (uwep && uwep->oartifact == ART_HOPE_OF_SOKOBAN) || (uarmf && uarmf->oartifact == ART_FINAL_EXAM_TIME))
 
 #define Dimmopathy	(((IntDimmopathy && !(u.nonintrinsicproperty == DIMMOPATHY)) || (ExtDimmopathy && u.nonextrinsicproperty != DIMMOPATHY)) && !NoDimmopathy && !DetectionMethodsDontWork)
 #define StrongDimmopathy	(IntDimmopathy && ExtDimmopathy && Dimmopathy && u.nondoubleproperty != DIMMOPATHY)
@@ -1341,7 +1344,7 @@
 #define HFreezopathy	u.uprops[FREEZOPATHY].intrinsic
 #define EFreezopathy	u.uprops[FREEZOPATHY].extrinsic
 #define IntFreezopathy	(HFreezopathy)
-#define ExtFreezopathy	(EFreezopathy || (uchain && uchain->oartifact == ART_HEI_THE_COLD) || (uarmf && uarmf->oartifact == ART_LITTLE_ICE_BLOCK_WITH_THE_) || (uarmh && uarmh->oartifact == ART_INCREDIBLE_VIEW) || (uarms && uarms->oartifact == ART_IT_IS_COMPLETE_NOW) || (uarmc && uarmc->oartifact == ART_SIECHELALUER) )
+#define ExtFreezopathy	(EFreezopathy || (uchain && uchain->oartifact == ART_HEI_THE_COLD) || (uarmf && uarmf->oartifact == ART_LITTLE_ICE_BLOCK_WITH_THE_) || (uarmh && uarmh->oartifact == ART_INCREDIBLE_VIEW) || (ublindf && ublindf->oartifact == ART_POLINTOTAH) || (uarms && uarms->oartifact == ART_IT_IS_COMPLETE_NOW) || (uarmc && uarmc->oartifact == ART_SIECHELALUER) )
 
 #define Freezopathy	(((IntFreezopathy && !(u.nonintrinsicproperty == FREEZOPATHY)) || (ExtFreezopathy && u.nonextrinsicproperty != FREEZOPATHY)) && !NoFreezopathy && !DetectionMethodsDontWork)
 #define StrongFreezopathy	(IntFreezopathy && ExtFreezopathy && Freezopathy && u.nondoubleproperty != FREEZOPATHY)
@@ -1381,7 +1384,7 @@
 #define HBurnopathy	u.uprops[BURNOPATHY].intrinsic
 #define EBurnopathy	u.uprops[BURNOPATHY].extrinsic
 #define IntBurnopathy	(HBurnopathy)
-#define ExtBurnopathy	(EBurnopathy || (uarmh && uarmh->oartifact == ART_INCREDIBLE_VIEW) || (uarms && uarms->oartifact == ART_IT_IS_COMPLETE_NOW) || (uarmf && uarmf->oartifact == ART_BITCHSMOKE) || (uarmf && uarmf->oartifact == ART_BALE_OF_BODEN_SPEEDSTOCK))
+#define ExtBurnopathy	(EBurnopathy || (uarmh && uarmh->oartifact == ART_INCREDIBLE_VIEW) || (uarms && uarms->oartifact == ART_IT_IS_COMPLETE_NOW) || (uarmf && uarmf->oartifact == ART_BITCHSMOKE) || (ublindf && ublindf->oartifact == ART_POLINTOTAH) || (uarmf && uarmf->oartifact == ART_BALE_OF_BODEN_SPEEDSTOCK))
 
 #define Burnopathy	(((IntBurnopathy && !(u.nonintrinsicproperty == BURNOPATHY)) || (ExtBurnopathy && u.nonextrinsicproperty != BURNOPATHY)) && !NoBurnopathy && !DetectionMethodsDontWork)
 #define StrongBurnopathy	(IntBurnopathy && ExtBurnopathy && Burnopathy && u.nondoubleproperty != BURNOPATHY)
@@ -1535,8 +1538,8 @@
 #define HStealth		u.uprops[STEALTH].intrinsic
 #define EStealth		u.uprops[STEALTH].extrinsic
 #define BStealth		u.uprops[STEALTH].blocked
-#define IntStealth	(HStealth || autismringcheck(ART_XANATHAR_S_RING_OF_PROOF) || (uarmc && uarmc->oartifact == ART_STEALTH_OR_STEALING) || (uarmc && uarmc->oartifact == ART_WHISPERWIND_CLOAK) || (uarmf && uarmf->oartifact == ART_ROWAN_S_SILENT_PATH_BOOTS) || (uarm && uarm->oartifact == ART_HIDDEN_OPERATION) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_RESTROOM_DRENCHING) || (uarmf && uarmf->oartifact == ART_OTMAR_S_PHANTOM_STEPS) || (Race_if(PM_MOON_ELF) && ((flags.moonphase >= 1 && flags.moonphase <= 3) || autismringcheck(ART_METAL_GEAR_NETHACK) || (uwep && uwep->oartifact == ART_SUPERSTAB) || (flags.moonphase >= 5 && flags.moonphase <= 7))) )
-#define ExtStealth	(EStealth || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == STEALTH) ) || u.uprops[MULTISHOES].extrinsic || (uarmf && uarmf->oartifact == ART_BACKGROUND_HOLDING) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_RESTROOM_DRENCHING) || (uarmc && uarmc->oartifact == ART_STEALTH_OR_STEALING) || (Race_if(PM_BATMAN) && uwep && uwep->oartifact == ART_BLACKSWANDIR) || (ublindf && ublindf->otyp == EYECLOSER) || (Role_if(PM_TOPMODEL) && PlayerInHighHeels) )
+#define IntStealth	(HStealth || autismringcheck(ART_XANATHAR_S_RING_OF_PROOF) || (uarmc && uarmc->oartifact == ART_STEALTH_OR_STEALING) || (uarmc && uarmc->oartifact == ART_WHISPERWIND_CLOAK) || have_completelyquietlight() || (uarmf && uarmf->oartifact == ART_ROWAN_S_SILENT_PATH_BOOTS) || (uarm && uarm->oartifact == ART_HIDDEN_OPERATION) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_RESTROOM_DRENCHING) || (uarmf && uarmf->oartifact == ART_OTMAR_S_PHANTOM_STEPS) || (Race_if(PM_MOON_ELF) && ((flags.moonphase >= 1 && flags.moonphase <= 3) || autismringcheck(ART_METAL_GEAR_NETHACK) || (uwep && uwep->oartifact == ART_SUPERSTAB) || (flags.moonphase >= 5 && flags.moonphase <= 7))) )
+#define ExtStealth	(EStealth || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == STEALTH) ) || u.uprops[MULTISHOES].extrinsic || (uarmf && uarmf->oartifact == ART_BACKGROUND_HOLDING) || have_completelyquietlight() || (powerfulimplants() && uimplant && uimplant->oartifact == ART_RESTROOM_DRENCHING) || (uarmc && uarmc->oartifact == ART_STEALTH_OR_STEALING) || (Race_if(PM_BATMAN) && uwep && uwep->oartifact == ART_BLACKSWANDIR) || (ublindf && ublindf->otyp == EYECLOSER) || (Role_if(PM_TOPMODEL) && PlayerInHighHeels) )
 
 #define Stealth			(((IntStealth && u.nonintrinsicproperty != STEALTH) || (ExtStealth && u.nonextrinsicproperty != STEALTH)) && !BStealth && !NoStealth && !Race_if(PM_OGRO) && !autismweaponcheck(ART_ARMORWREAKER) && !Race_if(PM_ROHIRRIM) && !Race_if(PM_THUNDERLORD) && !(Role_if(PM_TOPMODEL) && flags.female && !PlayerInHighHeels) )
 #define StrongStealth	(IntStealth && ExtStealth && Stealth && u.nondoubleproperty != STEALTH && !(uimplant && uimplant->oartifact == ART_SYNAPSE_CROWN_OF_GANDALF) )
@@ -1957,11 +1960,11 @@
 #define HScentView		u.uprops[SCENT_VIEW].intrinsic
 #define EScentView		u.uprops[SCENT_VIEW].extrinsic
 #define IntScentView	(HScentView || (Upolyd && !haseyes(youmonst.data) && is_animal(youmonst.data)) )
-#define ExtScentView	(EScentView || (uarm && uarm->oartifact == ART_FARTHER_INTO_THE_JUNGLE) || (uarmf && uarmf->oartifact == ART_CAMELIC_SCENT) || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == SCENT_VIEW) ) || (uarmh && uarmh->oartifact == ART_HEARING_EAR) || (uarmh && uarmh->oartifact == ART_COMPLETE_SIGHT) || (uwep && uwep->oartifact == ART_INSECTMASHER) || autismringcheck(ART_HERO_ECHO) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_THEY_RE_REALLY_AFTER_ME) || (uwep && uwep->oartifact == ART_STEALTHY_EAR) || (ublindf && ublindf->oartifact == ART_MONIQUE_S_NONSENSE) || (uchain && uchain->oartifact == ART_OLEA_PRETIOSA) || (uwep && uwep->oartifact == ART_OLEA_PRETIOSA) || have_meefmeef() || (uarmc && uarmc->oartifact == ART_MEGGE_LYK_LYK_LYK) || (uarm && uarm->oartifact == ART_MENSTRATE_FOR_ME) || (uarm && uarm->oartifact == ART_WOOD_HUNTERING && uwep && (weapon_type(uwep) == P_BOW)) || (uwep && uwep->oartifact == ART_HELIOPOLIS_MISTAKE) || (uarm && uarm->oartifact == ART_CRYPT_SMELL && in_rooms(u.ux, u.uy, CRYPTROOM)) || (uarmf && uarmf->oartifact == ART_SAFARI_ROCKZ) || (ublindf && ublindf->oartifact == ART_SCENTFOLD) )
+#define ExtScentView	(EScentView || (uarm && uarm->oartifact == ART_FARTHER_INTO_THE_JUNGLE) || (uarmf && uarmf->oartifact == ART_CAMELIC_SCENT) || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == SCENT_VIEW) ) || (uarmh && uarmh->oartifact == ART_HEARING_EAR) || (uarmh && uarmh->oartifact == ART_COMPLETE_SIGHT) || (uwep && uwep->oartifact == ART_INSECTMASHER) || autismringcheck(ART_HERO_ECHO) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_THEY_RE_REALLY_AFTER_ME) || (uwep && uwep->oartifact == ART_STEALTHY_EAR) || (ublindf && ublindf->oartifact == ART_POLINTOTAH) || (ublindf && ublindf->oartifact == ART_MONIQUE_S_NONSENSE) || (uchain && uchain->oartifact == ART_OLEA_PRETIOSA) || (uwep && uwep->oartifact == ART_OLEA_PRETIOSA) || have_meefmeef() || (uarmc && uarmc->oartifact == ART_MEGGE_LYK_LYK_LYK) || (uarm && uarm->oartifact == ART_MENSTRATE_FOR_ME) || (uarm && uarm->oartifact == ART_WOOD_HUNTERING && uwep && (weapon_type(uwep) == P_BOW)) || (uwep && uwep->oartifact == ART_HELIOPOLIS_MISTAKE) || (uarm && uarm->oartifact == ART_CRYPT_SMELL && in_rooms(u.ux, u.uy, CRYPTROOM)) || (uarmf && uarmf->oartifact == ART_SAFARI_ROCKZ) || (ublindf && ublindf->oartifact == ART_SCENTFOLD) )
 
 #define ScentView		(((IntScentView && u.nonintrinsicproperty != SCENT_VIEW) || (ExtScentView && u.nonextrinsicproperty != SCENT_VIEW)) && !NoScentView)
 #define StrongScentView	(IntScentView && ExtScentView && ScentView && u.nondoubleproperty != SCENT_VIEW)
-#define HaveEcholocation	((Role_if(PM_BARD) || (uwep && uwep->oartifact == ART_GAME_KNOWLEDGE_CHEAT_SHEET) || (uwep && uwep->oartifact == ART_PEREGRINE_OF_NIGHT) || (uarm && uarm->oartifact == ART_FARTHER_INTO_THE_JUNGLE) || (uarm && uarm->oartifact == ART_PUNKED_BY_HEIDI) || (uarmh && uarmh->oartifact == ART_HEARING_EAR) || (uarmh && uarmh->oartifact == ART_COMPLETE_SIGHT) || (uarm && uarm->oartifact == ART_NONA_S_NONO) || autismringcheck(ART_HERO_ECHO) || (uarmf && uarmf->oartifact == ART_SQUARE_ZONE) || (uwep && uwep->oartifact == ART_SKODIT) || (ublindf && ublindf->oartifact == ART_MONIQUE_S_NONSENSE) || (uarmh && uarmh->oartifact == ART_EKOLOT_L) || (uwep && uwep->oartifact == ART_HELIOPOLIS_MISTAKE) || (Upolyd && !haseyes(youmonst.data) && !is_animal(youmonst.data)) || Role_if(PM_STAND_USER) || RngeEcholocation || Race_if(PM_ANCIPITAL) || Race_if(PM_BATMAN) || Race_if(PM_CHIROPTERAN) || Race_if(PM_HC_ALIEN) || Race_if(PM_SLYER_ALIEN) || u.echolocationspell || (Upolyd && youmonst.data->mlet == S_BAT) ) && !NoScentView && u.nonintrinsicproperty != SCENT_VIEW)
+#define HaveEcholocation	((Role_if(PM_BARD) || (uwep && uwep->oartifact == ART_GAME_KNOWLEDGE_CHEAT_SHEET) || (uwep && uwep->oartifact == ART_PEREGRINE_OF_NIGHT) || (uarm && uarm->oartifact == ART_FARTHER_INTO_THE_JUNGLE) || (uarm && uarm->oartifact == ART_PUNKED_BY_HEIDI) || (uarmh && uarmh->oartifact == ART_HEARING_EAR) || (uarmh && uarmh->oartifact == ART_COMPLETE_SIGHT) || (uarm && uarm->oartifact == ART_NONA_S_NONO) || autismringcheck(ART_HERO_ECHO) || (uarmf && uarmf->oartifact == ART_SQUARE_ZONE) || (uwep && uwep->oartifact == ART_SKODIT) || (ublindf && ublindf->oartifact == ART_POLINTOTAH && Blind) || (ublindf && ublindf->oartifact == ART_MONIQUE_S_NONSENSE) || (uarmh && uarmh->oartifact == ART_EKOLOT_L) || (uwep && uwep->oartifact == ART_HELIOPOLIS_MISTAKE) || (Upolyd && !haseyes(youmonst.data) && !is_animal(youmonst.data)) || Role_if(PM_STAND_USER) || RngeEcholocation || Race_if(PM_ANCIPITAL) || Race_if(PM_BATMAN) || Race_if(PM_CHIROPTERAN) || Race_if(PM_HC_ALIEN) || Race_if(PM_SLYER_ALIEN) || u.echolocationspell || (Upolyd && youmonst.data->mlet == S_BAT) ) && !NoScentView && u.nonintrinsicproperty != SCENT_VIEW)
 #define EcholocationActive	(StrongScentView || HaveEcholocation)
 
 #define NoScentView	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_SCENT_VIEW].intrinsic) || UHaveAids || (u.impossibleproperty == SCENT_VIEW) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
@@ -2101,7 +2104,7 @@
 #define HWildWeatherEffect		u.uprops[WILD_WEATHER].intrinsic
 #define EWildWeatherEffect		u.uprops[WILD_WEATHER].extrinsic
 #define IntWildWeatherEffect	(HWildWeatherEffect || (uarmc && uarmc->oartifact == ART_VENTE_MODESTE))
-#define ExtWildWeatherEffect	(EWildWeatherEffect || autismweaponcheck(ART_THUNDERDOME_BAR) || autismweaponcheck(ART_FOREST_FIRE) || autismweaponcheck(ART_MAGIHEX) || (uarmh && uarmh->oartifact == ART_SPRING_BREEZE) || have_clonedyke() || (uarmc && uarmc->oartifact == ART_VENTE_MODESTE) || (uarmc && uarmc->oartifact == ART_CORONA_TIME) || (uarmc && uarmc->oartifact == ART_OUT_OF_THE_RAIN) || (uarmf && uarmf->oartifact == ART_ALL_WEATHER_HEELS) || (uarmu && uarmu->oartifact == ART_EVERY_EVENTUALITY) || (uamul && uamul->oartifact == ART_______SCORE) )
+#define ExtWildWeatherEffect	(EWildWeatherEffect || autismweaponcheck(ART_THUNDERDOME_BAR) || autismweaponcheck(ART_FOREST_FIRE) || autismweaponcheck(ART_MAGIHEX) || (uarmh && uarmh->oartifact == ART_SPRING_BREEZE) || have_clonedyke() || (uarmc && uarmc->oartifact == ART_VENTE_MODESTE) || (uarmc && uarmc->oartifact == ART_CORONA_TIME) || (uarmc && uarmc->oartifact == ART_OUT_OF_THE_RAIN) || (ublindf && ublindf->oartifact == ART_POLINTOTAH) || (uarmf && uarmf->oartifact == ART_ALL_WEATHER_HEELS) || (uarmu && uarmu->oartifact == ART_EVERY_EVENTUALITY) || (uamul && uamul->oartifact == ART_______SCORE) )
 
 #define WildWeatherEffect		(IntWildWeatherEffect || ExtWildWeatherEffect)
 #define StrongWildWeatherEffect		(IntWildWeatherEffect && ExtWildWeatherEffect && WildWeatherEffect)

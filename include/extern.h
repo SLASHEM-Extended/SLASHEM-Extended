@@ -1096,6 +1096,8 @@ E boolean have_spectrumplinggem(void);
 E boolean have_amateurluckstone(void);
 E boolean have_suckstonearti(void);
 E boolean have_femityjewel(void);
+E boolean have_completelyquietlight(void);
+E boolean have_flatgirl(void);
 E boolean have_climxianjewel(void);
 E boolean have_thilojewel(void);
 E boolean have_gronjajewel(void);

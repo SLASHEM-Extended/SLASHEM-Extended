@@ -6375,7 +6375,7 @@ greasingdone:
 			contaminate(rnd(10), FALSE);
 		}
 
-		if (DoorningEffect || u.uprops[DOORNING_EFFECT].extrinsic || have_doorningstone() || (uarmc && uarmc->oartifact == ART_ZUNI_S_IRIDESCENCE) ) {
+		if (DoorningHappens) {
 			if (IS_DOOR(levl[u.ux][u.uy].typ) && (!rn2(10) || DoorningXtra) && u.umoved && !(t_at(u.ux, u.uy)) ) {
 
 				int i, j;

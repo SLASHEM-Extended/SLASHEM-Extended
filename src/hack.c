@@ -6103,6 +6103,7 @@ max_carr_cap() /* your absolute maximum carry cap (the actual one is lower, see 
 		maxcarrcap += 1000;
 		if (flags.female && u.ulevel < 10) maxcarrcap += 4000;
 	}
+	if (have_flatgirl() && PlayerInSexyFlats) maxcarrcap += 1000;
 	if (have_sportivox()) maxcarrcap += 250;
 	if (uarmc && uarmc->oartifact == ART_FEATHER_LIGHT) {
 		maxcarrcap += 100;
@@ -6215,6 +6216,7 @@ weight_cap() /* your current max carry cap (the one displayed on the bottom stat
 		carrcap += 1000;
 		if (flags.female && u.ulevel < 10) carrcap += 4000;
 	}
+	if (have_flatgirl() && PlayerInSexyFlats && flags.female) carrcap += 1000;
 	if (uchain && uchain->oartifact == ART_JORMUNGANDR_S_COIL) carrcap += 2000;
 	if (have_sportivox()) carrcap += 250;
 	if (uarmc && uarmc->oartifact == ART_FEATHER_LIGHT) {

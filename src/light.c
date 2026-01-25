@@ -497,7 +497,7 @@ snuff_light_source(x, y)
 		 * because it will go out when dropped.)
 		 */
 		if (artifact_light(obj)) continue;
-		if (obj->oartifact == ART_BRIGHTMACE || obj->oartifact == ART_DELIGHTSABER) continue;
+		if (obj->oartifact == ART_BRIGHTMACE || obj->oartifact == ART_NEVER_STOP_NOP || obj->oartifact == ART_DELIGHTSABER) continue;
 		end_burn(obj, (obj->otyp != MAGIC_LAMP && obj->otyp != FEANORIAN_LAMP));
 		/*
 		 * The current ls element has just been removed (and
