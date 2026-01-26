@@ -6029,6 +6029,13 @@ register struct obj *otmp;
 {
 	int tmp;
 
+	/* reduce early game deadliness: if both monster's level and the maximum level you've ever had are below 6, reduce damage --Amy */
+	int effectlevel = 6;
+	if (mtmp->m_lev < 8) effectlevel = mtmp->m_lev;
+	if (u.urmaxlvlUP > effectlevel) effectlevel = u.urmaxlvlUP;
+	if (effectlevel < 1) effectlevel = 1;
+	if (effectlevel > 8) effectlevel = 8;
+
 	boolean reveal_invis = FALSE;
 	if (mtmp != &youmonst) {
 		mtmp->msleeping = 0;
@@ -6045,7 +6052,12 @@ register struct obj *otmp;
 			} else if (rnd(20) < 10 + u.uac || !rn2(3) ) { /* good ac will no longer be 100% protection --Amy */
 			    pline_The("wand hits you!");
 			    tmp = d(2,12);
-			    tmp += rnd(monster_difficulty() + 1);
+			    if (effectlevel < 8) {
+				tmp *= effectlevel;
+				tmp /= 8;
+				if (tmp < 1) tmp = 1;
+			    }
+			    if (effectlevel >= 8) tmp += rnd(monster_difficulty() + 1);
 			    if(Half_spell_damage && rn2(2) ) tmp = (tmp+1) / 2;
 			    if(StrongHalf_spell_damage && rn2(2) ) tmp = (tmp+1) / 2;
 			    losehp(tmp, "wand of striking", KILLED_BY_AN);
@@ -6073,7 +6085,13 @@ register struct obj *otmp;
 			if (zap_oseen) makeknown(WAN_GRAVITY_BEAM);
 			pline("Gravity warps around you!");
 			tmp = d(6,12);
-			tmp += rnd( (monster_difficulty() * 2) + 1);
+			if (effectlevel < 8) {
+				tmp = d(4,12);
+				tmp *= effectlevel;
+				tmp /= 8;
+				if (tmp < 1) tmp = 1;
+			}
+			if (effectlevel >= 8) tmp += rnd( (monster_difficulty() * 2) + 1);
 			if(Half_spell_damage && rn2(2) ) tmp = (tmp+1) / 2;
 			if(StrongHalf_spell_damage && rn2(2) ) tmp = (tmp+1) / 2;
 			if (otmp && otmp->oartifact == ART_TITANIC_STOMP) tmp *= 2;
@@ -6523,7 +6541,12 @@ timeagain:
 			if (!Swimming && !Amphibious && !Breathless) {
 				pline("You're drowned in a stream of water bubbles and can't breathe!");
 			      tmp = d(4,12);
-			      tmp += rnd(monster_difficulty() + 1);
+				if (effectlevel < 8) {
+					tmp *= effectlevel;
+					tmp /= 8;
+					if (tmp < 1) tmp = 1;
+				}
+			      if (effectlevel >= 8) tmp += rnd(monster_difficulty() + 1);
 				if (otmp && otmp->oartifact == ART_UNHEALTHY_DROWNING) tmp *= 2;
 			      losehp(tmp, "wand of bubblebeam", KILLED_BY_AN);
 			}
@@ -6536,7 +6559,12 @@ timeagain:
 	case WAN_GOOD_NIGHT:
 		if (mtmp == &youmonst) {
 		    tmp = d(2,12);
-		    tmp += rnd(monster_difficulty() + 1);
+		    if (effectlevel < 8) {
+			tmp *= effectlevel;
+			tmp /= 8;
+			if (tmp < 1) tmp = 1;
+		    }
+		    if (effectlevel >= 8) tmp += rnd(monster_difficulty() + 1);
 		    if (otmp && otmp->oartifact == ART_GUTNACHT__GUTNACHT_) tmp *= 2;
 		    if (u.ualign.type == A_LAWFUL) tmp *= 2;
 		    if (u.ualign.type == A_CHAOTIC) tmp /= 2;
@@ -6554,8 +6582,14 @@ timeagain:
 
 	case WAN_DREAM_EATER:
 		if ((mtmp == &youmonst) && !u.antidreameater) {
-			tmp = d(10, 10);
-			tmp += rnd( (monster_difficulty() * 4) + 1);
+			tmp = d(8, 8);
+			if (effectlevel < 8) {
+				tmp = d(6, 6);
+				tmp *= effectlevel;
+				tmp /= 8;
+				if (tmp < 1) tmp = 1;
+			}
+			if (effectlevel >= 8) tmp += rnd( (monster_difficulty() * 3) + 1);
 			if (otmp && otmp->oartifact == ART_NEVER_WAKE_UP_AGAIN) tmp *= 2; 
 			pline("Your dream is eaten!");
 			losehp(tmp, "wand of dream eater", KILLED_BY_AN);
@@ -6757,6 +6791,15 @@ struct monst *mtmp;
 	struct obj *otmp2;
 	boolean oseen;
 
+	/* reduce early game deadliness: if both monster's level and the maximum level you've ever had are below 6, reduce damage --Amy */
+	int effectlevel = 8;
+	if (mtmp->m_lev < 8) effectlevel = mtmp->m_lev;
+	if (u.urmaxlvlUP > effectlevel) effectlevel = u.urmaxlvlUP;
+	if (effectlevel < 1) effectlevel = 1;
+	if (effectlevel > 8) effectlevel = 8;
+
+	int buzzamount; /* for the buzz function, to determine the damage multiplier */
+
 	/* offensive potions are not drunk, they're thrown */
 	if (otmp->oclass != POTION_CLASS && (i = precheck(mtmp, otmp)) != 0)
 		return i;
@@ -6835,16 +6878,47 @@ struct monst *mtmp;
 			}
 		}
 
+		if (otmp->otyp == WAN_MAGIC_MISSILE) {
+			buzzamount = 2;
+		} else if (otmp->otyp == WAN_SOLAR_BEAM) {
+			buzzamount = 8;
+		} else if (otmp->otyp == WAN_PSYBEAM) {
+			buzzamount = 7;
+		} else buzzamount = 6;
+
+		if (effectlevel < 8) {
+			buzzamount *= effectlevel;
+			buzzamount /= 8;
+			if (buzzamount < 1) buzzamount = 1;
+		}
+		if (effectlevel >= 8) {
+			if (otmp->otyp == WAN_MAGIC_MISSILE) {
+				buzzamount += (rnd(monster_difficulty()) / 10);
+			} else if (otmp->otyp == WAN_SOLAR_BEAM) {
+				buzzamount += (rnd(monster_difficulty()) / 4);
+			} else if (otmp->otyp == WAN_PSYBEAM) {
+				buzzamount += (rnd(monster_difficulty()) / 5);
+			} else {
+				buzzamount += (rnd(monster_difficulty()) / 8);
+			}
+		}
+
 		/* Monsters zapping wands will be more dangerous later in the game. --Amy */
 		buzz((int)(-30 - (otmp->otyp - WAN_MAGIC_MISSILE)),
-			(otmp->otyp == WAN_MAGIC_MISSILE) ? 2 + (rnd(monster_difficulty()) / 10) : (otmp->otyp == WAN_SOLAR_BEAM) ? 8 + (rnd(monster_difficulty()) / 4) : (otmp->otyp == WAN_PSYBEAM) ? 7 + (rnd(monster_difficulty()) / 5) : 6 + (rnd(monster_difficulty()) / 8),
+			buzzamount,
 			mtmp->mx, mtmp->my,
 			sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
 		m_using = FALSE;
 /*                }*/
 
 		if (mtmp && (mtmp->mhp > 0) && otmp && otmp->oartifact == ART_KLOENGLOENGLOENGLOENGLOENG) {
-		    buzz((int) (-29), 6, mtmp->mx, mtmp->my, sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
+			buzzamount = 6;
+			if (effectlevel < 8) {
+				buzzamount *= effectlevel;
+				buzzamount /= 8;
+				if (buzzamount < 1) buzzamount = 1;
+			}
+			buzz((int) (-29), buzzamount, mtmp->mx, mtmp->my, sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
 		}
 
 		if (mtmp->mhp > 0) { /* cutting down on annoying segfaults --Amy */
@@ -6857,7 +6931,17 @@ struct monst *mtmp;
 		if (oseen) makeknown(otmp->otyp);
 		m_using = TRUE;
 
-		buzz((int)(-26), 7 + (rnd(monster_difficulty()) / 6),
+		buzzamount = 7;
+		if (effectlevel < 8) {
+			buzzamount *= effectlevel;
+			buzzamount /= 8;
+			if (buzzamount < 1) buzzamount = 1;
+		}
+		if (effectlevel >= 8) {
+			buzzamount += (rnd(monster_difficulty()) / 6);
+		}
+
+		buzz((int)(-26), buzzamount,
 			mtmp->mx, mtmp->my,
 			sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
 		m_using = FALSE;
@@ -6873,6 +6957,22 @@ struct monst *mtmp;
 		if (oseen) makeknown(otmp->otyp);
 		m_using = TRUE;
 		if (!rn2(3)) u.uprops[DEAC_REFLECTING].intrinsic += rnd(5);
+
+		buzzamount = 12;
+		if (otmp && otmp->oartifact == ART_HOT_FLAME__AS_OPPOSED_TO_A) buzzamount = 24;
+
+		if (effectlevel < 8) {
+			buzzamount *= effectlevel;
+			buzzamount /= 8;
+			if (buzzamount < 1) buzzamount = 1;
+		}
+		if (effectlevel >= 8) {
+			if (otmp && otmp->oartifact == ART_HOT_FLAME__AS_OPPOSED_TO_A) {
+				buzzamount += (rnd(monster_difficulty()) / 2);
+			} else {
+				buzzamount += (rnd(monster_difficulty()) / 4);
+			}
+		}
 
 		if (isevilvariant) {
 			burnarmor(&youmonst);
@@ -6904,15 +7004,7 @@ struct monst *mtmp;
 
 		make_blinded(Blinded+rnz(100),FALSE);
 
-		if (otmp && otmp->oartifact == ART_HOT_FLAME__AS_OPPOSED_TO_A) {
-			buzz((int)(-21), 24 + (rnd(monster_difficulty()) / 2),
-			mtmp->mx, mtmp->my, sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
-		} else {
-			buzz((int)(-21), 12 + (rnd(monster_difficulty()) / 4),
-			mtmp->mx, mtmp->my, sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
-		}
-
-		buzz((int)(-21), 12 + (rnd(monster_difficulty()) / 4),
+		buzz((int)(-21), buzzamount,
 			mtmp->mx, mtmp->my,
 			sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
 		m_using = FALSE;
@@ -6933,11 +7025,21 @@ struct monst *mtmp;
 			destroy_item(POTION_CLASS, AD_COLD);
 		}
 
+		buzzamount = 12;
+		if (effectlevel < 8) {
+			buzzamount *= effectlevel;
+			buzzamount /= 8;
+			if (buzzamount < 1) buzzamount = 1;
+		}
+		if (effectlevel >= 8) {
+			buzzamount += (rnd(monster_difficulty()) / 4);
+		}
+
 		u_slow_down();
 
 		if (otmp && otmp->oartifact == ART_SHEER_COLD) make_frozen(HFrozen + 100, TRUE);
 
-		buzz((int)(-22), 12 + (rnd(monster_difficulty()) / 4),
+		buzz((int)(-22), buzzamount,
 			mtmp->mx, mtmp->my,
 			sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
 		m_using = FALSE;
@@ -6960,19 +7062,30 @@ struct monst *mtmp;
 			destroy_item(AMULET_CLASS, AD_ELEC);
 		}
 
+		buzzamount = 12;
+		if (otmp && otmp->oartifact == ART_BREW_OF_STORMS_CHURN_IT_UP) buzzamount = 30;
+
+		if (effectlevel < 8) {
+			buzzamount *= effectlevel;
+			buzzamount /= 8;
+			if (buzzamount < 1) buzzamount = 1;
+		}
+		if (effectlevel >= 8) {
+			if (otmp && otmp->oartifact == ART_BREW_OF_STORMS_CHURN_IT_UP) {
+				buzzamount += (rnd(monster_difficulty()) * 5 / 8);
+			} else {
+				buzzamount += (rnd(monster_difficulty()) / 4);
+			}
+		}
+
 		if (!rn2(3) && multi >= 0) {
 			if (isstunfish) nomul(-rnz(3), "paralyzed by thunder", TRUE);
 			else nomul(-rnd(3), "paralyzed by thunder", TRUE);
 		}
 		if (!rn2(2)) make_numbed(HNumbed + rnz(150), TRUE);
 
-		if (otmp && otmp->oartifact == ART_BREW_OF_STORMS_CHURN_IT_UP) {
-			buzz((int)(-25), 30 + (rnd(monster_difficulty()) * 5 / 8),
-			mtmp->mx, mtmp->my, sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
-		} else {
-			buzz((int)(-25), 12 + (rnd(monster_difficulty()) / 4),
-			mtmp->mx, mtmp->my, sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
-		}
+		buzz((int)(-25), buzzamount,
+		mtmp->mx, mtmp->my, sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
 
 		m_using = FALSE;
 		if (mtmp->mhp > 0) { /* cutting down on annoying segfaults --Amy */
@@ -6988,6 +7101,16 @@ struct monst *mtmp;
 		m_using = TRUE;
 		if (!rn2(3)) u.uprops[DEAC_REFLECTING].intrinsic += rnd(5);
 
+		buzzamount = 12;
+		if (effectlevel < 8) {
+			buzzamount *= effectlevel;
+			buzzamount /= 8;
+			if (buzzamount < 1) buzzamount = 1;
+		}
+		if (effectlevel >= 8) {
+			buzzamount += (rnd(monster_difficulty()) / 4);
+		}
+
 		{
 		    register struct obj *objX, *objX2;
 		    for (objX = invent; objX; objX = objX2) {
@@ -6996,7 +7119,7 @@ struct monst *mtmp;
 		    }
 		}
 
-		buzz((int)(-27), 12 + (rnd(monster_difficulty()) / 4),
+		buzz((int)(-27), buzzamount,
 			mtmp->mx, mtmp->my,
 			sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
 		m_using = FALSE;
@@ -7013,6 +7136,16 @@ struct monst *mtmp;
 		m_using = TRUE;
 		if (!rn2(3)) u.uprops[DEAC_REFLECTING].intrinsic += rnd(5);
 
+		buzzamount = 12;
+		if (effectlevel < 8) {
+			buzzamount *= effectlevel;
+			buzzamount /= 8;
+			if (buzzamount < 1) buzzamount = 1;
+		}
+		if (effectlevel >= 8) {
+			buzzamount += (rnd(monster_difficulty()) / 4);
+		}
+
 		if (!Poison_resistance) pline("You're badly poisoned!");
 		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_STR, -rnd(2), FALSE, TRUE);
 		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_DEX, -rnd(2), FALSE, TRUE);
@@ -7021,7 +7154,7 @@ struct monst *mtmp;
 		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_WIS, -rnd(2), FALSE, TRUE);
 		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_CHA, -rnd(2), FALSE, TRUE);
 
-		buzz((int)(-26), 12 + (rnd(monster_difficulty()) / 4),
+		buzz((int)(-26), buzzamount,
 			mtmp->mx, mtmp->my,
 			sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
 		m_using = FALSE;
@@ -7038,17 +7171,28 @@ struct monst *mtmp;
 		m_using = TRUE;
 		if (!rn2(3)) u.uprops[DEAC_REFLECTING].intrinsic += rnd(5);
 
+		buzzamount = 12;
+		if (otmp && otmp->oartifact == ART_WUMMINGEN) buzzamount = 24;
+
+		if (effectlevel < 8) {
+			buzzamount *= effectlevel;
+			buzzamount /= 8;
+			if (buzzamount < 1) buzzamount = 1;
+		}
+		if (effectlevel >= 8) {
+			if (otmp && otmp->oartifact == ART_WUMMINGEN) {
+				buzzamount += (rnd(monster_difficulty()) / 2);
+			} else {
+				buzzamount += (rnd(monster_difficulty()) / 4);
+			}
+		}
+
 		if (Upolyd && u.mh > 1) u.mh /= 2;
 		else if (!Upolyd && u.uhp > 1) u.uhp /= 2;
 		losehp(1, "nether beam", KILLED_BY_AN);
 
-		if (otmp && otmp->oartifact == ART_WUMMINGEN) {
-			buzz((int)(-29), 24 + (rnd(monster_difficulty()) / 2),
-			mtmp->mx, mtmp->my, sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
-		} else {
-			buzz((int)(-29), 12 + (rnd(monster_difficulty()) / 4),
-			mtmp->mx, mtmp->my, sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
-		}
+		buzz((int)(-29), buzzamount,
+		mtmp->mx, mtmp->my, sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
 
 		m_using = FALSE;
 		if (mtmp->mhp > 0) { /* cutting down on annoying segfaults --Amy */
@@ -7064,6 +7208,16 @@ struct monst *mtmp;
 		m_using = TRUE;
 		if (!rn2(3)) u.uprops[DEAC_REFLECTING].intrinsic += rnd(5);
 
+		buzzamount = 16;
+		if (effectlevel < 8) {
+			buzzamount *= effectlevel;
+			buzzamount /= 8;
+			if (buzzamount < 1) buzzamount = 1;
+		}
+		if (effectlevel >= 8) {
+			buzzamount += (rnd(monster_difficulty()) / 3);
+		}
+
 	      (void) cancel_monst(&youmonst, otmp, FALSE, TRUE, FALSE);
 
 		if (otmp && otmp->oartifact == ART_BAWU_MIXING_FUCK_) {
@@ -7073,7 +7227,7 @@ struct monst *mtmp;
 			pline("BULLET GIVEN BY BET-BOY GIVEN BY BET-BOY CAN USE");
 		}
 
-		buzz((int)(-28), 16 + (rnd(monster_difficulty()) / 3),
+		buzz((int)(-28), buzzamount,
 			mtmp->mx, mtmp->my,
 			sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
 		m_using = FALSE;
@@ -7090,9 +7244,19 @@ struct monst *mtmp;
 		m_using = TRUE;
 		if (!rn2(3)) u.uprops[DEAC_REFLECTING].intrinsic += rnd(5);
 
+		buzzamount = 8;
+		if (effectlevel < 8) {
+			buzzamount *= effectlevel;
+			buzzamount /= 8;
+			if (buzzamount < 1) buzzamount = 1;
+		}
+		if (effectlevel >= 8) {
+			buzzamount += (rnd(monster_difficulty()) / 6);
+		}
+
 		losehp(rnd(monster_difficulty() + 2), "chloroform", KILLED_BY);
 
-		buzz((int)(-23), 8 + (rnd(monster_difficulty()) / 6),
+		buzz((int)(-23), buzzamount,
 			mtmp->mx, mtmp->my,
 			sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
 		m_using = FALSE;
@@ -7109,13 +7273,20 @@ struct monst *mtmp;
 		m_using = TRUE;
 		if (!rn2(3)) u.uprops[DEAC_REFLECTING].intrinsic += rnd(5);
 
-		if (otmp && otmp->oartifact == ART_MEGA_OVERKILL) {
-			buzz((int)(-20), 11 + (rnd(monster_difficulty()) / 3),
-			mtmp->mx, mtmp->my, sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
-		} else {
-			buzz((int)(-20), 6 + (rnd(monster_difficulty()) / 3),
-			mtmp->mx, mtmp->my, sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
+		buzzamount = 6;
+		if (otmp && otmp->oartifact == ART_MEGA_OVERKILL) buzzamount = 11;
+
+		if (effectlevel < 8) {
+			buzzamount *= effectlevel;
+			buzzamount /= 8;
+			if (buzzamount < 1) buzzamount = 1;
 		}
+		if (effectlevel >= 8) {
+			buzzamount += (rnd(monster_difficulty()) / 3);
+		}
+
+		buzz((int)(-20), buzzamount,
+		mtmp->mx, mtmp->my, sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
 
 		m_using = FALSE;
 		if (mtmp->mhp > 0) { /* cutting down on annoying segfaults --Amy */
@@ -7132,19 +7303,36 @@ struct monst *mtmp;
 		if (oseen) makeknown(otmp->otyp);
 		m_using = TRUE;
 
-		buzz((int)(damagetype), damagetype == -26 ? 7 + (rnd(monster_difficulty()) / 6) : damagetype == -20 ? 2 + (rnd(monster_difficulty()) / 10) : damagetype == -28 ? 8 + (rnd(monster_difficulty()) / 4) : 6 + (rnd(monster_difficulty()) / 8),
+		if (damagetype == -26) buzzamount = 7;
+		else if (damagetype == -20) buzzamount = 2;
+		else if (damagetype == -28) buzzamount = 8;
+		else buzzamount = 6;
+
+		if (effectlevel < 8) {
+			buzzamount *= effectlevel;
+			buzzamount /= 8;
+			if (buzzamount < 1) buzzamount = 1;
+		}
+		if (effectlevel >= 8) {
+			if (damagetype == -26) buzzamount += (rnd(monster_difficulty()) / 6);
+			if (damagetype == -20) buzzamount += (rnd(monster_difficulty()) / 10);
+			if (damagetype == -28) buzzamount += (rnd(monster_difficulty()) / 4);
+			else buzzamount += (rnd(monster_difficulty()) / 8);
+		}
+
+		buzz((int)(damagetype), buzzamount,
 			mtmp->mx, mtmp->my,
 			sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
 
 		if (otmp && otmp->oartifact == ART_TRIBBLE_) {
 			if (mtmp && mtmp->mhp > 0) {
 				damagetype = -(20 + rn2(8));
-				buzz((int)(damagetype), damagetype == -26 ? 7 + (rnd(monster_difficulty()) / 6) : damagetype == -20 ? 2 + (rnd(monster_difficulty()) / 10) : damagetype == -28 ? 8 + (rnd(monster_difficulty()) / 4) : 6 + (rnd(monster_difficulty()) / 8),
+				buzz((int)(damagetype), buzzamount,
 			mtmp->mx, mtmp->my, sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
 			}
 			if (mtmp && mtmp->mhp > 0) {
 				damagetype = -(20 + rn2(8));
-				buzz((int)(damagetype), damagetype == -26 ? 7 + (rnd(monster_difficulty()) / 6) : damagetype == -20 ? 2 + (rnd(monster_difficulty()) / 10) : damagetype == -28 ? 8 + (rnd(monster_difficulty()) / 4) : 6 + (rnd(monster_difficulty()) / 8),
+				buzz((int)(damagetype), buzzamount,
 			mtmp->mx, mtmp->my, sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
 			}
 		}
@@ -7163,12 +7351,22 @@ struct monst *mtmp;
 		if (oseen) makeknown(otmp->otyp);
 		m_using = TRUE;
 
-		buzz((int)(-24), 7 + (rnd(monster_difficulty()) / 6),
+		buzzamount = 7;
+		if (effectlevel < 8) {
+			buzzamount *= effectlevel;
+			buzzamount /= 8;
+			if (buzzamount < 1) buzzamount = 1;
+		}
+		if (effectlevel >= 8) {
+			buzzamount += (rnd(monster_difficulty()) / 6);
+		}
+
+		buzz((int)(-24), buzzamount,
 			mtmp->mx, mtmp->my,
 			sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
 
 		if (mtmp && (mtmp->mhp > 0) && otmp && otmp->oartifact == ART_DOUBLEWHAM) {
-			buzz((int)(-24), 7 + (rnd(monster_difficulty()) / 6),
+			buzz((int)(-24), buzzamount,
 			mtmp->mx, mtmp->my, sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
 		}
 
@@ -7197,6 +7395,13 @@ struct monst *mtmp;
 		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 		m_using = TRUE;
 
+		buzzamount = rn1(6,6);
+		if (effectlevel < 8) {
+			buzzamount *= effectlevel;
+			buzzamount /= 8;
+			if (buzzamount < 1) buzzamount = 1;
+		}
+
 		if (isevilvariant) {
 			switch (m.has_offense) {
 				default: break;
@@ -7218,25 +7423,25 @@ struct monst *mtmp;
 		}
 
 		if (otmp->otyp == CHROME_HORN)
-			buzz(-26, rn1(6,6), mtmp->mx, mtmp->my, sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
+			buzz(-26, buzzamount, mtmp->mx, mtmp->my, sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
 		else if (otmp->otyp == DEATH_HORN)
-			buzz(-24, rn1(6,6), mtmp->mx, mtmp->my, sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
+			buzz(-24, buzzamount, mtmp->mx, mtmp->my, sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
 
 		else
 			buzz(-30 - ((otmp->otyp==FROST_HORN) ? AD_COLD-1 : (otmp->otyp==TEMPEST_HORN) ? AD_ELEC-1 : (otmp->otyp==SHADOW_HORN) ? AD_ACID-1 : (otmp->otyp==ETHER_HORN) ? AD_MAGM-1 : (otmp->otyp==CHROME_HORN) ? AD_DRST-1 : (otmp->otyp==DEATH_HORN) ? AD_DISN-1 : AD_FIRE-1),
-			rn1(6,6), mtmp->mx, mtmp->my,
+			buzzamount, mtmp->mx, mtmp->my,
 			sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
 
 		if (mtmp && mtmp->mhp > 0 && otmp->oartifact == ART_TURN_TO_ELEVEN) {
 
 			if (otmp->otyp == CHROME_HORN)
-				buzz(-26, rn1(6,6), mtmp->mx, mtmp->my, sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
+				buzz(-26, buzzamount, mtmp->mx, mtmp->my, sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
 			else if (otmp->otyp == DEATH_HORN)
-				buzz(-24, rn1(6,6), mtmp->mx, mtmp->my, sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
+				buzz(-24, buzzamount, mtmp->mx, mtmp->my, sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
 
 			else
 				buzz(-30 - ((otmp->otyp==FROST_HORN) ? AD_COLD-1 : (otmp->otyp==TEMPEST_HORN) ? AD_ELEC-1 : (otmp->otyp==SHADOW_HORN) ? AD_ACID-1 : (otmp->otyp==ETHER_HORN) ? AD_MAGM-1 : (otmp->otyp==CHROME_HORN) ? AD_DRST-1 : (otmp->otyp==DEATH_HORN) ? AD_DISN-1 : AD_FIRE-1),
-				rn1(6,6), mtmp->mx, mtmp->my,
+				buzzamount, mtmp->mx, mtmp->my,
 				sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
 		}
 
