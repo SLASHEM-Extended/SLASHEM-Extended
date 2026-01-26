@@ -1994,9 +1994,9 @@ struct monst *mtmp;
 	multishot = 1;
 	if (((mwep && ammo_and_launcher(otmp, mwep)) || skill == P_DAGGER || skill == P_KNIFE || skill == P_BOOMERANG || skill == -P_BOOMERANG ||
 		skill == -P_DART || skill == -P_SHURIKEN || skill == P_SPEAR || skill == P_JAVELIN) && !mtmp->mconf) {
-	    /* Assumes lords are skilled, princes are expert */
-	    if (is_prince(mtmp->data)) multishot += 2;
-	    else if (is_lord(mtmp->data)) multishot++;
+	    /* Assumes lords are skilled, princes are expert - but have some randomness --Amy */
+	    if (is_prince(mtmp->data) && rn2(2)) multishot += rnd(2);
+	    else if (is_lord(mtmp->data) && !rn2(3)) multishot++;
 
 	    if (MonsterMultishotBug || u.uprops[MONSTER_MULTISHOT_EFFECT].extrinsic || have_monstermultishotstone()) {
 		int multishotbonus = (mtmp->m_lev / 3);
@@ -2014,16 +2014,16 @@ struct monst *mtmp;
 		if (mtmp->m_lev >= 10 && extra_nasty(mtmp->data) && !rn2(4)) multishot++;
 		if (mtmp->m_lev >= 10 && extra_nasty(mtmp->data) && !rn2(8)) multishot++;
 
-		if (mtmp->m_lev >= 10 && mtmp->m_lev < 20) multishot += 1;
-		if (mtmp->m_lev >= 20 && mtmp->m_lev < 30) multishot += rnd(2);
-		if (mtmp->m_lev >= 30 && mtmp->m_lev < 40) multishot += rnd(3);
-		if (mtmp->m_lev >= 40 && mtmp->m_lev < 50) multishot += rnd(4);
-		if (mtmp->m_lev >= 50 && mtmp->m_lev < 60) multishot += rnd(5);
-		if (mtmp->m_lev >= 60 && mtmp->m_lev < 70) multishot += rnd(6);
-		if (mtmp->m_lev >= 70 && mtmp->m_lev < 80) multishot += rnd(7);
-		if (mtmp->m_lev >= 80 && mtmp->m_lev < 90) multishot += rnd(8);
-		if (mtmp->m_lev >= 90 && mtmp->m_lev < 100) multishot += rnd(9);
-		if (mtmp->m_lev >= 100) multishot += rnd(10);
+		if (mtmp->m_lev >= 10 && mtmp->m_lev < 20 && rn2(2)) multishot += 1;
+		if (mtmp->m_lev >= 20 && mtmp->m_lev < 30 && rn2(2)) multishot += rnd(2);
+		if (mtmp->m_lev >= 30 && mtmp->m_lev < 40 && rn2(2)) multishot += rnd(3);
+		if (mtmp->m_lev >= 40 && mtmp->m_lev < 50 && rn2(2)) multishot += rnd(4);
+		if (mtmp->m_lev >= 50 && mtmp->m_lev < 60 && rn2(2)) multishot += rnd(5);
+		if (mtmp->m_lev >= 60 && mtmp->m_lev < 70 && rn2(2)) multishot += rnd(6);
+		if (mtmp->m_lev >= 70 && mtmp->m_lev < 80 && rn2(2)) multishot += rnd(7);
+		if (mtmp->m_lev >= 80 && mtmp->m_lev < 90 && rn2(2)) multishot += rnd(8);
+		if (mtmp->m_lev >= 90 && mtmp->m_lev < 100 && rn2(2)) multishot += rnd(9);
+		if (mtmp->m_lev >= 100 && rn2(2)) multishot += rnd(10);
 
 	    /*  Elven Craftsmanship makes for light,  quick bows */
 	    if (otmp->otyp == ELVEN_ARROW && !otmp->cursed)
@@ -2035,9 +2035,20 @@ struct monst *mtmp;
 
 	    if (mwep && mwep->otyp == CATAPULT) multishot += rnd(5);
 
-	    if (mwep && mwep->otyp == HYDRA_BOW) multishot += 2;
-	    if (mwep && mwep->otyp == DEMON_CROSSBOW) multishot += 4;
-	    if (mwep && mwep->otyp == WILDHILD_BOW) multishot += 2;
+	    if (mwep && mwep->otyp == HYDRA_BOW) {
+		if (mtmp->m_lev < 5) multishot++;
+		else multishot += 2;
+	    }
+	    if (mwep && mwep->otyp == DEMON_CROSSBOW) {
+		if (mtmp->m_lev < 5) multishot++;
+		else if (mtmp->m_lev < 10) multishot += 2;
+		else if (mtmp->m_lev < 15) multishot += 3;
+		else multishot += 4;
+	    }
+	    if (mwep && mwep->otyp == WILDHILD_BOW) {
+		if (mtmp->m_lev > 10) multishot += 2;
+		else if (mtmp->m_lev > 5) multishot++;
+	    }
 
 	    if (mwep && is_lightsaber(mwep) && mwep->lamplit) { /* djem so monster lightsaber form */
 			multishot += 1;
@@ -2054,8 +2065,56 @@ struct monst *mtmp;
 	    /* Some randomness */
 	    if (multishot > 1)
 		multishot = rnd(multishot);
-	    if (mwep && objects[mwep->otyp].oc_rof && is_launcher(mwep))
-		multishot += objects[mwep->otyp].oc_rof;
+	    if (mwep && objects[mwep->otyp].oc_rof && is_launcher(mwep)) {
+		int rofbonus = objects[mwep->otyp].oc_rof;
+		/* fix some early game deadliness by reducing rate of fire if a level 0 goblin tries to be Rambo with a heavy machine gun or something --Amy */
+		switch (mwep->otyp) {
+			default:
+				break;
+			case SUBMACHINE_GUN:
+			case LEAD_UNLOADER:
+			case AUTO_SHOTGUN:
+				if (mtmp->m_lev < 4) rofbonus--;
+				if (rofbonus < 0) rofbonus = 0;
+				break;
+			case HEAVY_MACHINE_GUN:
+				if (mtmp->m_lev < 4) rofbonus--;
+				if (mtmp->m_lev < 8) rofbonus--;
+				if (mtmp->m_lev < 12) rofbonus--;
+				if (mtmp->m_lev < 16) rofbonus--;
+				if (mtmp->m_lev < 20) rofbonus--;
+				if (rofbonus < 0) rofbonus = 0;
+				break;
+			case MILITARY_RIFLE:
+			case KALASHNIKOV:
+			case ARM_BLASTER:
+				if (mtmp->m_lev < 4) rofbonus--;
+				if (mtmp->m_lev < 8) rofbonus--;
+				if (mtmp->m_lev < 12) rofbonus--;
+				if (mtmp->m_lev < 16) rofbonus--;
+				if (rofbonus < 0) rofbonus = 0;
+				break;
+			case ASSAULT_RIFLE:
+			case STORM_RIFLE:
+				if (mtmp->m_lev < 4) rofbonus--;
+				if (mtmp->m_lev < 8) rofbonus--;
+				if (mtmp->m_lev < 12) rofbonus--;
+				if (rofbonus < 0) rofbonus = 0;
+				break;
+			case BFG:
+				if (mtmp->m_lev < 20) {
+					int bfgreduction = 20 - mtmp->m_lev; /* value from 1 to 20 */
+					bfgreduction *= 3;
+					bfgreduction /= 2; /* now we have a value up to 30 */
+					rofbonus -= bfgreduction;
+				}
+				if (rofbonus < 0) rofbonus = 0;
+				break;
+		}
+		if (rofbonus > 0) rofbonus--; /* fix off-by-one bug: a rate of fire of 8, for example, means you fire 8 shots per round, not 9! --Amy */
+
+		multishot += rofbonus;
+	    }
 
 	    switch (monsndx(mtmp->data)) {
 	    case PM_SPARD:
