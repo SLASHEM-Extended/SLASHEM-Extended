@@ -910,6 +910,22 @@ extern struct trap *ftrap;
 
 #define ONE_WAY_PORTAL 792
 
+#define JAVELIN_TRAP 793
+#define CLAYMORE_TRAP 794
+#define UNICORN_TRAP 795
+#define SHOVEL_TRAP 796
+#define PICK_AXE_TRAP 797
+#define SHIELD_TRAP 798
+#define IRON_SHIELD_TRAP 799
+#define SLING_TRAP 800
+#define BONE_SLING_TRAP 801
+#define COBALT_SLING_TRAP 802
+#define SHELL_SLING_TRAP 803
+#define BRONZE_SLING_TRAP 804
+#define GREEN_SLING_TRAP 805
+#define BLACK_SLING_TRAP 806
+#define AMBER_SLING_TRAP 807
+
 /* todo area
 
 normal ones:
@@ -990,9 +1006,9 @@ special ones that don't spawn randomly:
 
 */
 
-#define TIMERUN_TRAP	793
+#define TIMERUN_TRAP	808
 
-#define TRAPNUM 794
+#define TRAPNUM 809
 
 /* "newtraps" in particular, but also timerun and vulnerate may be targets for grepping --Amy */
 

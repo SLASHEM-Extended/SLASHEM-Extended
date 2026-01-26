@@ -42,6 +42,13 @@ STATIC_DCL int disarm_difficult_trap(struct trap *);
 STATIC_DCL int disarm_mace_trap(struct trap *);
 STATIC_DCL int disarm_dagger_trap(struct trap *);
 STATIC_DCL int disarm_knife_trap(struct trap *);
+STATIC_DCL int disarm_javelin_trap(struct trap *);
+STATIC_DCL int disarm_claymore_trap(struct trap *);
+STATIC_DCL int disarm_unicorn_trap(struct trap *);
+STATIC_DCL int disarm_shovel_trap(struct trap *);
+STATIC_DCL int disarm_pick_axe_trap(struct trap *);
+STATIC_DCL int disarm_shield_trap(struct trap *);
+STATIC_DCL int disarm_iron_shield_trap(struct trap *);
 STATIC_DCL int disarm_fire_trap(struct trap *);
 STATIC_DCL int disarm_landmine(struct trap *);
 STATIC_DCL int disarm_squeaky_board(struct trap *);
@@ -3549,6 +3556,9 @@ int traptype;
 		case YELLOW_DAMAGE_TRAP:
 		case GREEN_DAMAGE_TRAP:
 		case WHITE_DAMAGE_TRAP:
+		case SHOVEL_TRAP:
+		case PICK_AXE_TRAP:
+		case SHIELD_TRAP:
 
 			return TRUE;
 
@@ -11391,6 +11401,366 @@ madnesseffect:
 
 		break;
 
+	    case SLING_TRAP:
+
+		if (trap->once && !rn2(15)) {
+		    You_hear("a loud click!");
+		    deltrap(trap);
+		    newsym(u.ux,u.uy);
+		    break;
+		}
+		trap->once = 1;
+		seetrap(trap);
+		pline("A stone shoots out at you!");
+		otmp = mksobj(SLING_AMMO, TRUE, FALSE, FALSE);
+		if (otmp) {
+			int projectiledamage = dmgval(otmp, &youmonst);
+			if (projectiledamage > 1) {
+				if (u.ulevel == 1) projectiledamage /= 2;
+				else if (u.ulevel == 2) {
+					projectiledamage *= 2;
+					projectiledamage /= 3;
+				} else if (u.ulevel == 3) {
+					projectiledamage *= 3;
+					projectiledamage /= 4;
+				} else if (u.ulevel == 4) {
+					projectiledamage *= 4;
+					projectiledamage /= 5;
+				}
+			}
+
+			otmp->quan = 1L;
+			otmp->owt = weight(otmp);
+
+			if (thitu(5 + rnd((monster_difficulty() / 3) + 1), projectiledamage + rnd((monster_difficulty() / 3) + 1), otmp, "stone")) {
+			    obfree(otmp, (struct obj *)0);
+			} else if (!timebasedlowerchance()) {
+			    obfree(otmp, (struct obj *)0);
+			} else {
+			    place_object(otmp, u.ux, u.uy);
+			    if (!Blind) otmp->dknown = 1;
+			    stackobj(otmp);
+			    newsym(u.ux, u.uy);
+			}
+		}
+
+		break;
+
+	    case BONE_SLING_TRAP:
+
+		if (trap->once && !rn2(15)) {
+		    You_hear("a loud click!");
+		    deltrap(trap);
+		    newsym(u.ux,u.uy);
+		    break;
+		}
+		trap->once = 1;
+		seetrap(trap);
+		pline("A stone shoots out at you!");
+		otmp = mksobj(BONE_FRAGMENT, TRUE, FALSE, FALSE);
+		if (otmp) {
+			int projectiledamage = dmgval(otmp, &youmonst);
+			if (projectiledamage > 1) {
+				if (u.ulevel == 1) projectiledamage /= 2;
+				else if (u.ulevel == 2) {
+					projectiledamage *= 2;
+					projectiledamage /= 3;
+				} else if (u.ulevel == 3) {
+					projectiledamage *= 3;
+					projectiledamage /= 4;
+				} else if (u.ulevel == 4) {
+					projectiledamage *= 4;
+					projectiledamage /= 5;
+				}
+			}
+
+			otmp->quan = 1L;
+			otmp->owt = weight(otmp);
+
+			if (thitu(5 + rnd((monster_difficulty() / 3) + 1), projectiledamage + rnd((monster_difficulty() / 3) + 1), otmp, "stone")) {
+			    obfree(otmp, (struct obj *)0);
+			} else if (!timebasedlowerchance()) {
+			    obfree(otmp, (struct obj *)0);
+			} else {
+			    place_object(otmp, u.ux, u.uy);
+			    if (!Blind) otmp->dknown = 1;
+			    stackobj(otmp);
+			    newsym(u.ux, u.uy);
+			}
+		}
+
+		break;
+
+	    case COBALT_SLING_TRAP:
+
+		if (trap->once && !rn2(15)) {
+		    You_hear("a loud click!");
+		    deltrap(trap);
+		    newsym(u.ux,u.uy);
+		    break;
+		}
+		trap->once = 1;
+		seetrap(trap);
+		pline("A stone shoots out at you!");
+		otmp = mksobj(COBALT_CHUNK, TRUE, FALSE, FALSE);
+		if (otmp) {
+			int projectiledamage = dmgval(otmp, &youmonst);
+			if (projectiledamage > 1) {
+				if (u.ulevel == 1) projectiledamage /= 2;
+				else if (u.ulevel == 2) {
+					projectiledamage *= 2;
+					projectiledamage /= 3;
+				} else if (u.ulevel == 3) {
+					projectiledamage *= 3;
+					projectiledamage /= 4;
+				} else if (u.ulevel == 4) {
+					projectiledamage *= 4;
+					projectiledamage /= 5;
+				}
+			}
+
+			otmp->quan = 1L;
+			otmp->owt = weight(otmp);
+
+			if (thitu(5 + rnd((monster_difficulty() / 3) + 1), projectiledamage + rnd((monster_difficulty() / 3) + 1), otmp, "stone")) {
+			    obfree(otmp, (struct obj *)0);
+			} else if (!timebasedlowerchance()) {
+			    obfree(otmp, (struct obj *)0);
+			} else {
+			    place_object(otmp, u.ux, u.uy);
+			    if (!Blind) otmp->dknown = 1;
+			    stackobj(otmp);
+			    newsym(u.ux, u.uy);
+			}
+		}
+
+		break;
+
+	    case AMBER_SLING_TRAP:
+
+		if (trap->once && !rn2(15)) {
+		    You_hear("a loud click!");
+		    deltrap(trap);
+		    newsym(u.ux,u.uy);
+		    break;
+		}
+		trap->once = 1;
+		seetrap(trap);
+		pline("A stone shoots out at you!");
+		otmp = mksobj(AMBER_FRAGMENT, TRUE, FALSE, FALSE);
+		if (otmp) {
+			int projectiledamage = dmgval(otmp, &youmonst);
+			if (projectiledamage > 1) {
+				if (u.ulevel == 1) projectiledamage /= 2;
+				else if (u.ulevel == 2) {
+					projectiledamage *= 2;
+					projectiledamage /= 3;
+				} else if (u.ulevel == 3) {
+					projectiledamage *= 3;
+					projectiledamage /= 4;
+				} else if (u.ulevel == 4) {
+					projectiledamage *= 4;
+					projectiledamage /= 5;
+				}
+			}
+
+			otmp->quan = 1L;
+			otmp->owt = weight(otmp);
+
+			if (thitu(5 + rnd((monster_difficulty() / 3) + 1), projectiledamage + rnd((monster_difficulty() / 3) + 1), otmp, "stone")) {
+			    obfree(otmp, (struct obj *)0);
+			} else if (!timebasedlowerchance()) {
+			    obfree(otmp, (struct obj *)0);
+			} else {
+			    place_object(otmp, u.ux, u.uy);
+			    if (!Blind) otmp->dknown = 1;
+			    stackobj(otmp);
+			    newsym(u.ux, u.uy);
+			}
+		}
+
+		break;
+
+	    case BLACK_SLING_TRAP:
+
+		if (trap->once && !rn2(15)) {
+		    You_hear("a loud click!");
+		    deltrap(trap);
+		    newsym(u.ux,u.uy);
+		    break;
+		}
+		trap->once = 1;
+		seetrap(trap);
+		pline("A stone shoots out at you!");
+		otmp = mksobj(GRAPHITE, TRUE, FALSE, FALSE);
+		if (otmp) {
+			int projectiledamage = dmgval(otmp, &youmonst);
+			if (projectiledamage > 1) {
+				if (u.ulevel == 1) projectiledamage /= 2;
+				else if (u.ulevel == 2) {
+					projectiledamage *= 2;
+					projectiledamage /= 3;
+				} else if (u.ulevel == 3) {
+					projectiledamage *= 3;
+					projectiledamage /= 4;
+				} else if (u.ulevel == 4) {
+					projectiledamage *= 4;
+					projectiledamage /= 5;
+				}
+			}
+
+			otmp->quan = 1L;
+			otmp->owt = weight(otmp);
+
+			if (thitu(5 + rnd((monster_difficulty() / 3) + 1), projectiledamage + rnd((monster_difficulty() / 3) + 1), otmp, "stone")) {
+			    obfree(otmp, (struct obj *)0);
+			} else if (!timebasedlowerchance()) {
+			    obfree(otmp, (struct obj *)0);
+			} else {
+			    place_object(otmp, u.ux, u.uy);
+			    if (!Blind) otmp->dknown = 1;
+			    stackobj(otmp);
+			    newsym(u.ux, u.uy);
+			}
+		}
+
+		break;
+
+	    case GREEN_SLING_TRAP:
+
+		if (trap->once && !rn2(15)) {
+		    You_hear("a loud click!");
+		    deltrap(trap);
+		    newsym(u.ux,u.uy);
+		    break;
+		}
+		trap->once = 1;
+		seetrap(trap);
+		pline("A stone shoots out at you!");
+		otmp = mksobj(TALC, TRUE, FALSE, FALSE);
+		if (otmp) {
+			int projectiledamage = dmgval(otmp, &youmonst);
+			if (projectiledamage > 1) {
+				if (u.ulevel == 1) projectiledamage /= 2;
+				else if (u.ulevel == 2) {
+					projectiledamage *= 2;
+					projectiledamage /= 3;
+				} else if (u.ulevel == 3) {
+					projectiledamage *= 3;
+					projectiledamage /= 4;
+				} else if (u.ulevel == 4) {
+					projectiledamage *= 4;
+					projectiledamage /= 5;
+				}
+			}
+
+			otmp->quan = 1L;
+			otmp->owt = weight(otmp);
+
+			if (thitu(5 + rnd((monster_difficulty() / 3) + 1), projectiledamage + rnd((monster_difficulty() / 3) + 1), otmp, "stone")) {
+			    obfree(otmp, (struct obj *)0);
+			} else if (!timebasedlowerchance()) {
+			    obfree(otmp, (struct obj *)0);
+			} else {
+			    place_object(otmp, u.ux, u.uy);
+			    if (!Blind) otmp->dknown = 1;
+			    stackobj(otmp);
+			    newsym(u.ux, u.uy);
+			}
+		}
+
+		break;
+
+	    case BRONZE_SLING_TRAP:
+
+		if (trap->once && !rn2(15)) {
+		    You_hear("a loud click!");
+		    deltrap(trap);
+		    newsym(u.ux,u.uy);
+		    break;
+		}
+		trap->once = 1;
+		seetrap(trap);
+		pline("A stone shoots out at you!");
+		otmp = mksobj(BRONZE_NUGGET, TRUE, FALSE, FALSE);
+		if (otmp) {
+			int projectiledamage = dmgval(otmp, &youmonst);
+			if (projectiledamage > 1) {
+				if (u.ulevel == 1) projectiledamage /= 2;
+				else if (u.ulevel == 2) {
+					projectiledamage *= 2;
+					projectiledamage /= 3;
+				} else if (u.ulevel == 3) {
+					projectiledamage *= 3;
+					projectiledamage /= 4;
+				} else if (u.ulevel == 4) {
+					projectiledamage *= 4;
+					projectiledamage /= 5;
+				}
+			}
+
+			otmp->quan = 1L;
+			otmp->owt = weight(otmp);
+
+			if (thitu(5 + rnd((monster_difficulty() / 3) + 1), projectiledamage + rnd((monster_difficulty() / 3) + 1), otmp, "stone")) {
+			    obfree(otmp, (struct obj *)0);
+			} else if (!timebasedlowerchance()) {
+			    obfree(otmp, (struct obj *)0);
+			} else {
+			    place_object(otmp, u.ux, u.uy);
+			    if (!Blind) otmp->dknown = 1;
+			    stackobj(otmp);
+			    newsym(u.ux, u.uy);
+			}
+		}
+
+		break;
+
+	    case SHELL_SLING_TRAP:
+
+		if (trap->once && !rn2(15)) {
+		    You_hear("a loud click!");
+		    deltrap(trap);
+		    newsym(u.ux,u.uy);
+		    break;
+		}
+		trap->once = 1;
+		seetrap(trap);
+		pline("A stone shoots out at you!");
+		otmp = mksobj(POINTY_SHELL, TRUE, FALSE, FALSE);
+		if (otmp) {
+			int projectiledamage = dmgval(otmp, &youmonst);
+			if (projectiledamage > 1) {
+				if (u.ulevel == 1) projectiledamage /= 2;
+				else if (u.ulevel == 2) {
+					projectiledamage *= 2;
+					projectiledamage /= 3;
+				} else if (u.ulevel == 3) {
+					projectiledamage *= 3;
+					projectiledamage /= 4;
+				} else if (u.ulevel == 4) {
+					projectiledamage *= 4;
+					projectiledamage /= 5;
+				}
+			}
+
+			otmp->quan = 1L;
+			otmp->owt = weight(otmp);
+
+			if (thitu(5 + rnd((monster_difficulty() / 3) + 1), projectiledamage + rnd((monster_difficulty() / 3) + 1), otmp, "stone")) {
+			    obfree(otmp, (struct obj *)0);
+			} else if (!timebasedlowerchance()) {
+			    obfree(otmp, (struct obj *)0);
+			} else {
+			    place_object(otmp, u.ux, u.uy);
+			    if (!Blind) otmp->dknown = 1;
+			    stackobj(otmp);
+			    newsym(u.ux, u.uy);
+			}
+		}
+
+		break;
+
 	    case CANNON_TRAP:
 
 		seetrap(trap);
@@ -14118,7 +14488,7 @@ madnesseffect:
 			if (unsolid(youmonst.data)) {
 				pline("A mace swings through your body.");
 			} else {
-				int projectiledamage = rnd(8)+ rnd( (monster_difficulty() / 2) + 1);
+				int projectiledamage = rnd(8) + rnd( (monster_difficulty() / 2) + 1);
 				if (projectiledamage > 1) {
 					if (u.ulevel == 1) projectiledamage /= 2;
 					else if (u.ulevel == 2) {
@@ -14145,7 +14515,7 @@ madnesseffect:
 			if (unsolid(youmonst.data)) {
 				pline("A dagger swings through your body.");
 			} else {
-				int projectiledamage = rnd(4)+ rnd( (monster_difficulty() / 5) + 1);
+				int projectiledamage = rnd(4) + rnd( (monster_difficulty() / 5) + 1);
 				if (projectiledamage > 1) {
 					if (u.ulevel == 1) projectiledamage /= 2;
 					else if (u.ulevel == 2) {
@@ -14172,7 +14542,7 @@ madnesseffect:
 			if (unsolid(youmonst.data)) {
 				pline("A knife swings through your body.");
 			} else {
-				int projectiledamage = rnd(3)+ rnd( (monster_difficulty() / 5) + 1);
+				int projectiledamage = rnd(3) + rnd( (monster_difficulty() / 5) + 1);
 				if (projectiledamage > 1) {
 					if (u.ulevel == 1) projectiledamage /= 2;
 					else if (u.ulevel == 2) {
@@ -14189,6 +14559,233 @@ madnesseffect:
 
 				pline("You are hit by a knife!");
 				losehp(projectiledamage,"knife trap",KILLED_BY_AN);
+			}
+
+			break;
+
+		case SHOVEL_TRAP:
+			seetrap(trap);
+
+			if (unsolid(youmonst.data)) {
+				pline("A shovel swings through your body.");
+			} else {
+				int projectiledamage = rnd(2) + rnd( (monster_difficulty() / 5) + 1);
+				if (projectiledamage > 1) {
+					if (u.ulevel == 1) projectiledamage /= 2;
+					else if (u.ulevel == 2) {
+						projectiledamage *= 2;
+						projectiledamage /= 3;
+					} else if (u.ulevel == 3) {
+						projectiledamage *= 3;
+						projectiledamage /= 4;
+					} else if (u.ulevel == 4) {
+						projectiledamage *= 4;
+						projectiledamage /= 5;
+					}
+				}
+
+				pline("You are hit by a shovel!");
+				losehp(projectiledamage,"shovel trap",KILLED_BY_AN);
+			}
+
+			break;
+
+		case SHIELD_TRAP:
+			seetrap(trap);
+
+			if (unsolid(youmonst.data)) {
+				pline("A shield swings through your body.");
+			} else {
+				int projectiledamage = rnd(3) + rnd( (monster_difficulty() / 5) + 1);
+				if (projectiledamage > 1) {
+					if (u.ulevel == 1) projectiledamage /= 2;
+					else if (u.ulevel == 2) {
+						projectiledamage *= 2;
+						projectiledamage /= 3;
+					} else if (u.ulevel == 3) {
+						projectiledamage *= 3;
+						projectiledamage /= 4;
+					} else if (u.ulevel == 4) {
+						projectiledamage *= 4;
+						projectiledamage /= 5;
+					}
+				}
+
+				pline("You are bashed by a shield!");
+				losehp(projectiledamage,"shield trap",KILLED_BY_AN);
+			}
+
+			break;
+
+		case IRON_SHIELD_TRAP:
+			seetrap(trap);
+
+			if (unsolid(youmonst.data)) {
+				pline("A metal shield swings through your body.");
+			} else {
+				int projectiledamage = rnd(6) + rnd( (monster_difficulty() / 3) + 1);
+				if (projectiledamage > 1) {
+					if (u.ulevel == 1) projectiledamage /= 2;
+					else if (u.ulevel == 2) {
+						projectiledamage *= 2;
+						projectiledamage /= 3;
+					} else if (u.ulevel == 3) {
+						projectiledamage *= 3;
+						projectiledamage /= 4;
+					} else if (u.ulevel == 4) {
+						projectiledamage *= 4;
+						projectiledamage /= 5;
+					}
+				}
+
+				pline("You are bashed by a metal shield!");
+				losehp(projectiledamage,"iron shield trap",KILLED_BY_AN);
+			}
+
+			break;
+
+		case PICK_AXE_TRAP:
+			seetrap(trap);
+
+			if (unsolid(youmonst.data)) {
+				pline("A pick-axe swings through your body.");
+			} else {
+				int projectiledamage = rnd(4) + rnd( (monster_difficulty() / 5) + 1);
+				if (projectiledamage > 1) {
+					if (u.ulevel == 1) projectiledamage /= 2;
+					else if (u.ulevel == 2) {
+						projectiledamage *= 2;
+						projectiledamage /= 3;
+					} else if (u.ulevel == 3) {
+						projectiledamage *= 3;
+						projectiledamage /= 4;
+					} else if (u.ulevel == 4) {
+						projectiledamage *= 4;
+						projectiledamage /= 5;
+					}
+				}
+
+				pline("You are hit by a pick-axe!");
+				losehp(projectiledamage,"pick-axe trap",KILLED_BY_AN);
+			}
+
+			break;
+
+		case JAVELIN_TRAP:
+			seetrap(trap);
+
+			if (unsolid(youmonst.data)) {
+				pline("A javelin pierces through your body.");
+			} else {
+				int projectiledamage = rnd(8) + rnd( (monster_difficulty() / 2) + 1);
+				if (projectiledamage > 1) {
+					if (u.ulevel == 1) projectiledamage /= 2;
+					else if (u.ulevel == 2) {
+						projectiledamage *= 2;
+						projectiledamage /= 3;
+					} else if (u.ulevel == 3) {
+						projectiledamage *= 3;
+						projectiledamage /= 4;
+					} else if (u.ulevel == 4) {
+						projectiledamage *= 4;
+						projectiledamage /= 5;
+					}
+				}
+
+				pline("You are hit by a javelin!");
+				losehp(projectiledamage,"javelin trap",KILLED_BY_AN);
+			}
+
+			break;
+
+		case UNICORN_TRAP:
+			seetrap(trap);
+
+			if (unsolid(youmonst.data)) {
+				pline("A unicorn horn pierces through your body.");
+			} else {
+				int projectiledamage = rnd(10) + rnd( (monster_difficulty() / 2) + 1);
+				if (projectiledamage > 1) {
+					if (u.ulevel == 1) projectiledamage /= 2;
+					else if (u.ulevel == 2) {
+						projectiledamage *= 2;
+						projectiledamage /= 3;
+					} else if (u.ulevel == 3) {
+						projectiledamage *= 3;
+						projectiledamage /= 4;
+					} else if (u.ulevel == 4) {
+						projectiledamage *= 4;
+						projectiledamage /= 5;
+					}
+				}
+
+				pline("You are hit by a unicorn horn!");
+				losehp(projectiledamage,"unicorn trap",KILLED_BY_AN);
+
+				/* occasionally give cursed unihorn effect --Amy */
+				if (!obsidianprotection() && !rn2(5)) switch (rnd(11)) {
+					case 1:
+						make_blinded(Blinded + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
+						break;
+					case 2:
+						make_feared(HFeared + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
+						break;
+					case 3:
+						make_burned(HBurned + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
+						break;
+					case 4:
+						make_frozen(HFrozen + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
+						break;
+					case 5:
+						make_numbed(HNumbed + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
+						break;
+					case 6:
+						(void) make_hallucinated(HHallucination + rnd(10) + rnd(monster_difficulty() + 1), TRUE, 0L);
+						break;
+					case 7:
+						make_stunned(HStun + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
+						break;
+					case 8:
+						make_confused(HConfusion + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
+						pline("You're confused!");
+						break;
+					case 9:
+						(void) adjattrib(rn2(A_MAX), -1, FALSE, TRUE);
+						break;
+					case 10:
+						make_sick(rn1(25,25), "unihorn food poisoning", TRUE, SICK_VOMITABLE);
+						break;
+					case 11:
+						make_dimmed(HDimmed + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
+						break;
+				}
+			}
+
+			break;
+
+		case CLAYMORE_TRAP:
+			seetrap(trap);
+
+			if (unsolid(youmonst.data)) {
+				pline("A claymore swings through your body.");
+			} else {
+				int projectiledamage = rnd(12) + rnd( (monster_difficulty() / 2) + 1);
+				if (projectiledamage > 1) {
+					if (u.ulevel == 1) projectiledamage /= 2;
+					else if (u.ulevel == 2) {
+						projectiledamage *= 2;
+						projectiledamage /= 3;
+					} else if (u.ulevel == 3) {
+						projectiledamage *= 3;
+						projectiledamage /= 4;
+					} else if (u.ulevel == 4) {
+						projectiledamage *= 4;
+						projectiledamage /= 5;
+					}
+				}
+
+				pline("You are hit by a claymore!");
+				losehp(projectiledamage,"claymore trap",KILLED_BY_AN);
 			}
 
 			break;
@@ -23678,6 +24275,14 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		case BLADE_WIRE:
 		case MAGNET_TRAP:
 		case SLINGSHOT_TRAP:
+		case SLING_TRAP:
+		case BONE_SLING_TRAP:
+		case COBALT_SLING_TRAP:
+		case AMBER_SLING_TRAP:
+		case GREEN_SLING_TRAP:
+		case BLACK_SLING_TRAP:
+		case BRONZE_SLING_TRAP:
+		case SHELL_SLING_TRAP:
 		case CANNON_TRAP:
 		case VENOM_SPRINKLER:
 		case FUMAROLE:
@@ -23754,6 +24359,14 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		case WHITE_DAMAGE_TRAP:
 		case BLUE_DAMAGE_TRAP:
 		case MULTI_DEBUFF_TRAP:
+
+		case JAVELIN_TRAP:
+		case CLAYMORE_TRAP:
+		case UNICORN_TRAP:
+		case SHOVEL_TRAP:
+		case PICK_AXE_TRAP:
+		case SHIELD_TRAP:
+		case IRON_SHIELD_TRAP:
 
 		case SKILL_MULTIPLY_TRAP:
 		case TRAPWALK_TRAP:
@@ -28260,6 +28873,202 @@ struct trap *ttmp;
 }
 
 int
+disarm_claymore_trap(ttmp)
+struct trap *ttmp;
+{
+	xchar trapx = ttmp->tx, trapy = ttmp->ty;
+	int fails = try_disarm(ttmp, FALSE, FALSE);
+
+	if (fails < 2) return fails;
+	You("disarm the trap!");
+	u.cnd_untrapamount++;
+
+	int trapxp = 3 * (deepest_lev_reached(FALSE) + 1);
+	if (uamul && uamul->oartifact == ART_PEXPER_DRRLTRRT) trapxp *= 10;
+	more_experienced(trapxp, 0);
+
+	mightbooststat(A_DEX);
+	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
+		u.uhpmax += 3;
+		if (Upolyd) u.mhmax += 3;
+		flags.botl = TRUE;
+	}
+	newexplevel();
+	if (u.ualign.type == A_LAWFUL) adjalign(1);
+	cnv_trap_obj(TWO_HANDED_SWORD, 1, ttmp);
+	newsym(trapx, trapy);
+	return 1;
+}
+
+int
+disarm_iron_shield_trap(ttmp)
+struct trap *ttmp;
+{
+	xchar trapx = ttmp->tx, trapy = ttmp->ty;
+	int fails = try_disarm(ttmp, FALSE, FALSE);
+
+	if (fails < 2) return fails;
+	You("disarm the trap!");
+	u.cnd_untrapamount++;
+
+	int trapxp = 3 * (deepest_lev_reached(FALSE) + 1);
+	if (uamul && uamul->oartifact == ART_PEXPER_DRRLTRRT) trapxp *= 10;
+	more_experienced(trapxp, 0);
+
+	mightbooststat(A_DEX);
+	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
+		u.uhpmax += 3;
+		if (Upolyd) u.mhmax += 3;
+		flags.botl = TRUE;
+	}
+	newexplevel();
+	if (u.ualign.type == A_LAWFUL) adjalign(1);
+	cnv_trap_obj(LARGE_SHIELD, 1, ttmp);
+	newsym(trapx, trapy);
+	return 1;
+}
+
+int
+disarm_shield_trap(ttmp)
+struct trap *ttmp;
+{
+	xchar trapx = ttmp->tx, trapy = ttmp->ty;
+	int fails = try_disarm(ttmp, FALSE, FALSE);
+
+	if (fails < 2) return fails;
+	You("disarm the trap!");
+	u.cnd_untrapamount++;
+
+	int trapxp = 3 * (deepest_lev_reached(FALSE) + 1);
+	if (uamul && uamul->oartifact == ART_PEXPER_DRRLTRRT) trapxp *= 10;
+	more_experienced(trapxp, 0);
+
+	mightbooststat(A_DEX);
+	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
+		u.uhpmax += 3;
+		if (Upolyd) u.mhmax += 3;
+		flags.botl = TRUE;
+	}
+	newexplevel();
+	if (u.ualign.type == A_LAWFUL) adjalign(1);
+	cnv_trap_obj(SMALL_SHIELD, 1, ttmp);
+	newsym(trapx, trapy);
+	return 1;
+}
+
+int
+disarm_pick_axe_trap(ttmp)
+struct trap *ttmp;
+{
+	xchar trapx = ttmp->tx, trapy = ttmp->ty;
+	int fails = try_disarm(ttmp, FALSE, FALSE);
+
+	if (fails < 2) return fails;
+	You("disarm the trap!");
+	u.cnd_untrapamount++;
+
+	int trapxp = 3 * (deepest_lev_reached(FALSE) + 1);
+	if (uamul && uamul->oartifact == ART_PEXPER_DRRLTRRT) trapxp *= 10;
+	more_experienced(trapxp, 0);
+
+	mightbooststat(A_DEX);
+	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
+		u.uhpmax += 3;
+		if (Upolyd) u.mhmax += 3;
+		flags.botl = TRUE;
+	}
+	newexplevel();
+	if (u.ualign.type == A_LAWFUL) adjalign(1);
+	cnv_trap_obj(PICK_AXE, 1, ttmp);
+	newsym(trapx, trapy);
+	return 1;
+}
+
+int
+disarm_shovel_trap(ttmp)
+struct trap *ttmp;
+{
+	xchar trapx = ttmp->tx, trapy = ttmp->ty;
+	int fails = try_disarm(ttmp, FALSE, FALSE);
+
+	if (fails < 2) return fails;
+	You("disarm the trap!");
+	u.cnd_untrapamount++;
+
+	int trapxp = 3 * (deepest_lev_reached(FALSE) + 1);
+	if (uamul && uamul->oartifact == ART_PEXPER_DRRLTRRT) trapxp *= 10;
+	more_experienced(trapxp, 0);
+
+	mightbooststat(A_DEX);
+	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
+		u.uhpmax += 3;
+		if (Upolyd) u.mhmax += 3;
+		flags.botl = TRUE;
+	}
+	newexplevel();
+	if (u.ualign.type == A_LAWFUL) adjalign(1);
+	cnv_trap_obj(SHOVEL, 1, ttmp);
+	newsym(trapx, trapy);
+	return 1;
+}
+
+int
+disarm_unicorn_trap(ttmp)
+struct trap *ttmp;
+{
+	xchar trapx = ttmp->tx, trapy = ttmp->ty;
+	int fails = try_disarm(ttmp, FALSE, FALSE);
+
+	if (fails < 2) return fails;
+	You("disarm the trap!");
+	u.cnd_untrapamount++;
+
+	int trapxp = 3 * (deepest_lev_reached(FALSE) + 1);
+	if (uamul && uamul->oartifact == ART_PEXPER_DRRLTRRT) trapxp *= 10;
+	more_experienced(trapxp, 0);
+
+	mightbooststat(A_DEX);
+	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
+		u.uhpmax += 3;
+		if (Upolyd) u.mhmax += 3;
+		flags.botl = TRUE;
+	}
+	newexplevel();
+	if (u.ualign.type == A_LAWFUL) adjalign(1);
+	cnv_trap_obj(UNICORN_HORN, 1, ttmp);
+	newsym(trapx, trapy);
+	return 1;
+}
+
+int
+disarm_javelin_trap(ttmp)
+struct trap *ttmp;
+{
+	xchar trapx = ttmp->tx, trapy = ttmp->ty;
+	int fails = try_disarm(ttmp, FALSE, FALSE);
+
+	if (fails < 2) return fails;
+	You("disarm the trap!");
+	u.cnd_untrapamount++;
+
+	int trapxp = 3 * (deepest_lev_reached(FALSE) + 1);
+	if (uamul && uamul->oartifact == ART_PEXPER_DRRLTRRT) trapxp *= 10;
+	more_experienced(trapxp, 0);
+
+	mightbooststat(A_DEX);
+	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
+		u.uhpmax += 3;
+		if (Upolyd) u.mhmax += 3;
+		flags.botl = TRUE;
+	}
+	newexplevel();
+	if (u.ualign.type == A_LAWFUL) adjalign(1);
+	cnv_trap_obj(JAVELIN, rnd(5), ttmp);
+	newsym(trapx, trapy);
+	return 1;
+}
+
+int
 disarm_acid_trap(ttmp)
 struct trap *ttmp;
 {
@@ -29008,6 +29817,22 @@ boolean force;
 				return disarm_shooting_trap(ttmp, SPIKE);
 			case SLINGSHOT_TRAP:
 				return disarm_shooting_trap(ttmp, ROCK);
+			case SLING_TRAP:
+				return disarm_shooting_trap(ttmp, SLING_AMMO);
+			case BONE_SLING_TRAP:
+				return disarm_shooting_trap(ttmp, BONE_FRAGMENT);
+			case COBALT_SLING_TRAP:
+				return disarm_shooting_trap(ttmp, COBALT_CHUNK);
+			case BRONZE_SLING_TRAP:
+				return disarm_shooting_trap(ttmp, BRONZE_NUGGET);
+			case SHELL_SLING_TRAP:
+				return disarm_shooting_trap(ttmp, POINTY_SHELL);
+			case GREEN_SLING_TRAP:
+				return disarm_shooting_trap(ttmp, TALC);
+			case BLACK_SLING_TRAP:
+				return disarm_shooting_trap(ttmp, GRAPHITE);
+			case AMBER_SLING_TRAP:
+				return disarm_shooting_trap(ttmp, AMBER_FRAGMENT);
 			case THROWING_STAR_TRAP:
 				return disarm_shooting_trap(ttmp, SHURIKEN);
 			case HEEL_TRAP:
@@ -29070,6 +29895,20 @@ boolean force;
 				return disarm_dagger_trap(ttmp);
 			case KNIFE_TRAP:
 				return disarm_knife_trap(ttmp);
+			case JAVELIN_TRAP:
+				return disarm_javelin_trap(ttmp);
+			case CLAYMORE_TRAP:
+				return disarm_claymore_trap(ttmp);
+			case UNICORN_TRAP:
+				return disarm_unicorn_trap(ttmp);
+			case SHOVEL_TRAP:
+				return disarm_shovel_trap(ttmp);
+			case PICK_AXE_TRAP:
+				return disarm_pick_axe_trap(ttmp);
+			case SHIELD_TRAP:
+				return disarm_shield_trap(ttmp);
+			case IRON_SHIELD_TRAP:
+				return disarm_iron_shield_trap(ttmp);
 			case FIRE_TRAP:
 				return disarm_fire_trap(ttmp);
 			case PIT:

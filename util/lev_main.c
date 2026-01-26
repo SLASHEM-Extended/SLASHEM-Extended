@@ -968,6 +968,22 @@ static struct {
 
 	{ "one way portal",   ONE_WAY_PORTAL },
 
+	{ "javelin",   JAVELIN_TRAP },
+	{ "claymore",   CLAYMORE_TRAP },
+	{ "unicorn",   UNICORN_TRAP },
+	{ "shovel",   SHOVEL_TRAP },
+	{ "pick",   PICK_AXE_TRAP },
+	{ "shield",   SHIELD_TRAP },
+	{ "iron shield",   IRON_SHIELD_TRAP },
+	{ "sling",   SLING_TRAP },
+	{ "bone sling",   BONE_SLING_TRAP },
+	{ "cobalt sling",   COBALT_SLING_TRAP },
+	{ "shell sling",   SHELL_SLING_TRAP },
+	{ "bronze sling",   BRONZE_SLING_TRAP },
+	{ "green sling",   GREEN_SLING_TRAP },
+	{ "black sling",   BLACK_SLING_TRAP },
+	{ "amber sling",   AMBER_SLING_TRAP },
+
 	{ "timerun", TIMERUN_TRAP },
 	{ 0, 0 }
 };

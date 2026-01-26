@@ -661,6 +661,9 @@ rndtrap()
 			if (tndx == DEBUFF_TRAP) ct += 4;
 			if (tndx == PHASEPORTER) ct += 1;
 			if (tndx == STAT_DAMAGE_TRAP) ct += 2;
+			if (tndx == SHOVEL_TRAP) ct += 4;
+			if (tndx == PICK_AXE_TRAP) ct += 2;
+			if (tndx == SHIELD_TRAP) ct += 2;
 
 			rndtrap_state.choice_count += ct;
 			rndtrap_state.tchoices[tndx] = ct;

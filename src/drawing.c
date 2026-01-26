@@ -1143,6 +1143,22 @@ const struct symdef defsyms[MAXPCHARS] = {
 
 	{'^', "one-way portal", C(CLR_BRIGHT_MAGENTA)},	/* trap */
 
+	{'^', "javelin trap", C(CLR_CYAN)},	/* trap */
+	{'^', "claymore trap", C(CLR_CYAN)},	/* trap */
+	{'^', "unicorn trap", C(CLR_WHITE)},	/* trap */
+	{'^', "shovel trap", C(CLR_GRAY)},	/* trap */
+	{'^', "pick-axe trap", C(CLR_GRAY)},	/* trap */
+	{'^', "shield trap", C(CLR_BROWN)},	/* trap */
+	{'^', "iron shield trap", C(CLR_GRAY)},	/* trap */
+	{'^', "sling trap", C(CLR_GRAY)},	/* trap */
+	{'^', "bone sling trap", C(CLR_GRAY)},	/* trap */
+	{'^', "cobalt sling trap", C(CLR_BLUE)},	/* trap */
+	{'^', "shell sling trap", C(CLR_ORANGE)},	/* trap */
+	{'^', "bronze sling trap", C(CLR_RED)},	/* trap */
+	{'^', "green sling trap", C(CLR_GREEN)},	/* trap */
+	{'^', "black sling trap", C(CLR_BLACK)},	/* trap */
+	{'^', "amber sling trap", C(CLR_YELLOW)},	/* trap */
+
 	{'^', "timerun trap", C(CLR_BRIGHT_CYAN)},	/* trap */
 	{'|', "wall",		C(CLR_GRAY)},	/* vbeam */
 	{'-', "wall",		C(CLR_GRAY)},	/* hbeam */
@@ -2118,6 +2134,22 @@ static uchar ibm_graphics[MAXPCHARS] = {
 
 	g_FILLER(S_one_way_portal),
 
+	g_FILLER(S_javelin_trap),
+	g_FILLER(S_claymore_trap),
+	g_FILLER(S_unicorn_trap),
+	g_FILLER(S_shovel_trap),
+	g_FILLER(S_pick_axe_trap),
+	g_FILLER(S_shield_trap),
+	g_FILLER(S_iron_shield_trap),
+	g_FILLER(S_sling_trap),
+	g_FILLER(S_bone_sling_trap),
+	g_FILLER(S_cobalt_sling_trap),
+	g_FILLER(S_shell_sling_trap),
+	g_FILLER(S_bronze_sling_trap),
+	g_FILLER(S_green_sling_trap),
+	g_FILLER(S_black_sling_trap),
+	g_FILLER(S_amber_sling_trap),
+
 	g_FILLER(S_timerun_trap),
 	0xb3,	/* S_vbeam:	meta-3, vertical rule */
 	0xc4,	/* S_hbeam:	meta-D, horizontal rule */
@@ -3081,6 +3113,22 @@ static uchar dec_graphics[MAXPCHARS] = {
 
 	g_FILLER(S_one_way_portal),
 
+	g_FILLER(S_javelin_trap),
+	g_FILLER(S_claymore_trap),
+	g_FILLER(S_unicorn_trap),
+	g_FILLER(S_shovel_trap),
+	g_FILLER(S_pick_axe_trap),
+	g_FILLER(S_shield_trap),
+	g_FILLER(S_iron_shield_trap),
+	g_FILLER(S_sling_trap),
+	g_FILLER(S_bone_sling_trap),
+	g_FILLER(S_cobalt_sling_trap),
+	g_FILLER(S_shell_sling_trap),
+	g_FILLER(S_bronze_sling_trap),
+	g_FILLER(S_green_sling_trap),
+	g_FILLER(S_black_sling_trap),
+	g_FILLER(S_amber_sling_trap),
+
 	g_FILLER(S_timerun_trap),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
 	0xf1,	/* S_hbeam:	meta-q, horizontal rule */
@@ -4040,6 +4088,22 @@ static uchar wing_graphics[MAXPCHARS] = {
 	g_FILLER(S_enclave_spawner),
 
 	g_FILLER(S_one_way_portal),
+
+	g_FILLER(S_javelin_trap),
+	g_FILLER(S_claymore_trap),
+	g_FILLER(S_unicorn_trap),
+	g_FILLER(S_shovel_trap),
+	g_FILLER(S_pick_axe_trap),
+	g_FILLER(S_shield_trap),
+	g_FILLER(S_iron_shield_trap),
+	g_FILLER(S_sling_trap),
+	g_FILLER(S_bone_sling_trap),
+	g_FILLER(S_cobalt_sling_trap),
+	g_FILLER(S_shell_sling_trap),
+	g_FILLER(S_bronze_sling_trap),
+	g_FILLER(S_green_sling_trap),
+	g_FILLER(S_black_sling_trap),
+	g_FILLER(S_amber_sling_trap),
 
 	g_FILLER(S_timerun_trap),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
@@ -5001,6 +5065,22 @@ static uchar mac_graphics[MAXPCHARS] = {
 	g_FILLER(S_enclave_spawner),
 
 	g_FILLER(S_one_way_portal),
+
+	g_FILLER(S_javelin_trap),
+	g_FILLER(S_claymore_trap),
+	g_FILLER(S_unicorn_trap),
+	g_FILLER(S_shovel_trap),
+	g_FILLER(S_pick_axe_trap),
+	g_FILLER(S_shield_trap),
+	g_FILLER(S_iron_shield_trap),
+	g_FILLER(S_sling_trap),
+	g_FILLER(S_bone_sling_trap),
+	g_FILLER(S_cobalt_sling_trap),
+	g_FILLER(S_shell_sling_trap),
+	g_FILLER(S_bronze_sling_trap),
+	g_FILLER(S_green_sling_trap),
+	g_FILLER(S_black_sling_trap),
+	g_FILLER(S_amber_sling_trap),
 
 	g_FILLER(S_timerun_trap),
 
@@ -6171,6 +6251,22 @@ boolean is_rlevel;
 	    showsyms[S_enclave_spawner] = 0x04;
 
 	    showsyms[S_one_way_portal] = 0x04;
+
+	    showsyms[S_javelin_trap] = 0x04;
+	    showsyms[S_claymore_trap] = 0x04;
+	    showsyms[S_unicorn_trap] = 0x04;
+	    showsyms[S_shovel_trap] = 0x04;
+	    showsyms[S_pick_axe_trap] = 0x04;
+	    showsyms[S_shield_trap] = 0x04;
+	    showsyms[S_iron_shield_trap] = 0x04;
+	    showsyms[S_sling_trap] = 0x04;
+	    showsyms[S_bone_sling_trap] = 0x04;
+	    showsyms[S_cobalt_sling_trap] = 0x04;
+	    showsyms[S_shell_sling_trap] = 0x04;
+	    showsyms[S_bronze_sling_trap] = 0x04;
+	    showsyms[S_green_sling_trap] = 0x04;
+	    showsyms[S_black_sling_trap] = 0x04;
+	    showsyms[S_amber_sling_trap] = 0x04;
 
  	    showsyms[S_timerun_trap] = 0x04;
 
