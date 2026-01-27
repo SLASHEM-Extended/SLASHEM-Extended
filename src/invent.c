@@ -36214,6 +36214,30 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: spawns erosionproof and blessed."); break;
 				case ART_SPILBOMATE:
 					pline("Artifact specs: made of a random material."); break;
+				case ART_UNFAIR_SHEARS_OF_THE_PROST:
+					pline("Artifact specs: causes bleeding damage to targets, allows you to #monster to circumcise enemies."); break;
+				case ART_ERRONEOUS_VELOCITY:
+					pline("Artifact specs: if a pet eats it, its speed becomes very random."); break;
+				case ART_ENCLAVE_COFFER:
+					pline("Artifact specs: contains the enclave's equipment, but now their soldiers and robots are all over the place."); break;
+				case ART_HYPERLOAD:
+					pline("Artifact specs: shoots much more damaging magic missiles."); break;
+				case ART_DIEDAEDODIEDAE_:
+					pline("Artifact specs: improvising with it changes the weather to 'eclipse' and makes the area dark. This also applies if a monster plays it."); break;
+				case ART_VERSUPERPOISONED:
+					pline("Artifact specs: shoots more damaging poison blasts."); break;
+				case ART_SOUL_EXCHANGE:
+					pline("Artifact specs: if you play it while your alla is reduced and you have at least 100 zorkmids out in the open, you will pay as many zorkmids as possible and regain a line of alla for every 100 you paid, but your alla can't go over 1000."); break;
+				case ART_MUSIC_THERAPY:
+					pline("Artifact specs: if you play it while your genital health is reduced and you have at least 1000 zorkmids out in the open, you will pay as many zorkmids as possible and regain a point of genital health for every 1000 you paid, but your genital health can't go over 100."); break;
+				case ART_LIKE_IN_ITALY_:
+					pline("Artifact specs: playing it changes the weather to 'fog' and gives temporary protection."); break;
+				case ART_POMPOUS_INGENIATE_ART:
+					pline("Artifact specs: spawns with twice as many charges."); break;
+				case ART_SOMETHING_ABOUT_AN_ICE_BLO:
+					pline("Artifact specs: playing it while it has charges shoots ice blasts in all directions and casts the 'frost' spell."); break;
+				case ART_WORLD_RESHAPED:
+					pline("Artifact specs: causes very powerful earthquakes and also changes the world, but you won't be able to fix status effects for a good long while."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

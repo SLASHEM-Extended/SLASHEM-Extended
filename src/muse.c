@@ -7395,7 +7395,16 @@ struct monst *mtmp;
 		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 		m_using = TRUE;
 
+		if (otmp && otmp->oartifact == ART_DIEDAEDODIEDAE_) {
+			litroomlite(FALSE);
+			u.currentweather = WEATHER_ECLIPSE;
+			tell_main_weather();
+		}
+
 		buzzamount = rn1(6,6);
+		if (otmp && otmp->oartifact == ART_HYPERLOAD) buzzamount *= 3;
+		if (otmp && otmp->oartifact == ART_VERSUPERPOISONED) buzzamount *= 2;
+
 		if (effectlevel < 8) {
 			buzzamount *= effectlevel;
 			buzzamount /= 8;

@@ -3383,7 +3383,7 @@ int abil;
 			return FALSE;
 			break;
 		case ABIL_CIRCUMCISE:
-			if (youmonst.data->msound == MS_INCISION || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_EXPERT && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_INCISION) ) return TRUE;
+			if (youmonst.data->msound == MS_INCISION || (uwep && uwep->oartifact == ART_UNFAIR_SHEARS_OF_THE_PROST) || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_EXPERT && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_INCISION) ) return TRUE;
 			return FALSE;
 			break;
 		case ABIL_SEMEN_SHOT:

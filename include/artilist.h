@@ -27531,6 +27531,54 @@ A("Spilbomate",				FIRE_HORN, /* randart2 elemental horn, base item becomes a ra
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
 
+A("Unfair Shears of the Prostate",				KNIFE, /* randart2 knife, +6 bleeding damage to targets, allows you to #monster like the MS_INCISION sound effect */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Erroneous Velocity",				TRIPE_RATION, /* if a pet eats it, it gains the speedbugger egotype */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Enclave Coffer",				NANO_CHEST, /* contains d3 implants, d5 wands and rn1(10,10) weapons; upon generating, the enclave is activated and rn1(20,20) MS_ENCLAVE and rn1(3,3) MS_BOT spawn in one specific place */
+	(SPFX_RESTR|SPFX_NOWISH|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Hyperload",				ETHER_HORN, /* shoots magic missiles for 3x the normal amount of damage */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Diedaedodiedae!",				SHADOW_HORN, /* if someone improvises with it, the area is darkened and weather changed to eclipse */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Versuperpoisoned",				CHROME_HORN, /* shoots poison blasts for double the normal amount of damage */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Soul Exchange",				TOOLED_HORN, /* playing it while you have at least 100 zorkmids restores your alla, 1 point per 100 zorkmids (which are deducted from your account) but not above 1000 alla */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Music Therapy",				TOOLED_HORN, /* playing it while you have at least 1000 zorkmids restores your genital health, 1 point per 1000 zorkmids (which are deducted from your account) but not above 100 genital health */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 12000L ),
+
+A("Like in Italy!",				FOG_HORN, /* playing it sets the current weather to "fog" and your temporary protection to 4 */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3500L ),
+
+A("Pompous Ingeniate Art",				MAGIC_HARP, /* spawns with 2x charges */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("something about an ice block",				MAGIC_HARP, /* playing it while it has charges shoots strength-6 ice blasts in all directions and casts the "frost" spell */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("World Reshaped",				DRUM_OF_EARTHQUAKE, /* always causes strength-12 earthquake and also alter reality but gives rnz(20000) turns of heavy status effect */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

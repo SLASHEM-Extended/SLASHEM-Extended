@@ -448,6 +448,11 @@ panpipeduedeldiedue:
 	case DEATH_HORN:		/* Idem wand of disint beam */
 	case SHADOW_HORN:		/* Idem wand of acid */
 	    if (do_spec && instr->spe > 0) {
+
+		int buzzamount = rn1(6,6);
+		if (instr->oartifact == ART_HYPERLOAD) buzzamount *= 3;
+		if (instr->oartifact == ART_VERSUPERPOISONED) buzzamount *= 2;
+
 		boolean nochargechange = FALSE;
 		if (instr && instr->oartifact == ART_A_HOHES_U && rn2(3)) nochargechange = TRUE;
 
@@ -456,6 +461,13 @@ panpipeduedeldiedue:
 				consume_obj_charge(instr, TRUE);
 			}
 		}
+
+		if (instr->oartifact == ART_DIEDAEDODIEDAE_) {
+			litroomlite(FALSE);
+			u.currentweather = WEATHER_ECLIPSE;
+			tell_main_weather();
+		}
+
 		use_skill(P_DEVICES,rnd(3));
 		if (Race_if(PM_FAWN)) {
 			use_skill(P_DEVICES,rnd(3));
@@ -485,10 +497,10 @@ hornchoice:
 		    }
 		} else {
 		    buzz((instr->otyp == FROST_HORN) ? AD_COLD-1 : (instr->otyp == TEMPEST_HORN) ? AD_ELEC-1 : (instr->otyp == ETHER_HORN) ? AD_MAGM-1 : (instr->otyp == CHROME_HORN) ? 26 : (instr->otyp == DEATH_HORN) ? 24 : (instr->otyp == SHADOW_HORN) ? AD_ACID-1 : AD_FIRE-1,
-			rn1(6,6), u.ux, u.uy, u.dx, u.dy);
+			buzzamount, u.ux, u.uy, u.dx, u.dy);
 		    if (instr->oartifact == ART_TURN_TO_ELEVEN) {
 			    buzz((instr->otyp == FROST_HORN) ? AD_COLD-1 : (instr->otyp == TEMPEST_HORN) ? AD_ELEC-1 : (instr->otyp == ETHER_HORN) ? AD_MAGM-1 : (instr->otyp == CHROME_HORN) ? 26 : (instr->otyp == DEATH_HORN) ? 24 : (instr->otyp == SHADOW_HORN) ? AD_ACID-1 : AD_FIRE-1,
-				rn1(6,6), u.ux, u.uy, u.dx, u.dy);
+				buzzamount, u.ux, u.uy, u.dx, u.dy);
 
 		    }
 		}
@@ -541,6 +553,68 @@ hornchoice:
 	    }
 
 	    exercise(A_WIS, FALSE);
+
+	    if (instr && instr->oartifact == ART_LIKE_IN_ITALY_) {
+		u.currentweather = WEATHER_FOG;
+		tell_main_weather();
+		if (!u.uspellprot) {
+			u.uspellprot = 4;
+			u.uspmtime = 10;
+			if (!u.usptime) u.usptime = u.uspmtime;
+			find_ac();
+			flags.botl = TRUE;
+			You_feel("strangely protected. Could be because you feel like you're in Italy.");
+		}
+	    }
+
+	    if (instr && instr->oartifact == ART_SOUL_EXCHANGE) {
+		int healposs = (1000 - u.alla);
+		int goldvar;
+		if ((healposs > 0) && u.ugold >= 100) {
+			goldvar = (u.ugold / 100);
+			if (goldvar > healposs) goldvar = healposs;
+
+			if (u.ugold >= (goldvar * 100)) {
+				u.ugold -= (goldvar * 100);
+				u.alla += goldvar;
+				flags.botl = TRUE;
+				Your("soul has been recovered by %d points for only %d zorkmids!", goldvar, goldvar * 100);
+			}
+		}
+	    }
+
+	    if (instr && instr->oartifact == ART_MUSIC_THERAPY) {
+		if (!flags.female) {
+			int healposs = (100 - u.genitalhealth_m);
+			int goldvar;
+			if ((healposs > 0) && u.ugold >= 1000) {
+				goldvar = (u.ugold / 1000);
+				if (goldvar > healposs) goldvar = healposs;
+
+				if (u.ugold >= (goldvar * 1000)) {
+					u.ugold -= (goldvar * 1000);
+					u.genitalhealth_m += goldvar;
+					flags.botl = TRUE;
+					Your("foreskin has been recovered by %d points for only %d zorkmids!", goldvar, goldvar * 100);
+				}
+			}
+		} else {
+			int healposs = (100 - u.genitalhealth_f);
+			int goldvar;
+			if ((healposs > 0) && u.ugold >= 1000) {
+				goldvar = (u.ugold / 1000);
+				if (goldvar > healposs) goldvar = healposs;
+
+				if (u.ugold >= (goldvar * 1000)) {
+					u.ugold -= (goldvar * 1000);
+					u.genitalhealth_f += goldvar;
+					flags.botl = TRUE;
+					Your("genitals have been recovered by %d points for only %d zorkmids!", goldvar, goldvar * 100);
+				}
+			}
+		}
+	    }
+
 	    break;
 	case PIANO:
 	case GUITAR:
@@ -580,6 +654,18 @@ hornchoice:
 		if (uarmh && itemhasappearance(uarmh, APP_MUSICAL_HELMET) )
 			use_skill(P_DEVICES,9);
 
+		if (instr && instr->oartifact == ART_SOMETHING_ABOUT_AN_ICE_BLO) {
+			buzz(22, 6, u.ux, u.uy, -1, 0);
+			buzz(22, 6, u.ux, u.uy, 1, 0);
+			buzz(22, 6, u.ux, u.uy, -1, 1);
+			buzz(22, 6, u.ux, u.uy, 1, 1);
+			buzz(22, 6, u.ux, u.uy, 0, 1);
+			buzz(22, 6, u.ux, u.uy, -1, -1);
+			buzz(22, 6, u.ux, u.uy, 1, -1);
+			buzz(22, 6, u.ux, u.uy, 0, -1);
+			castspecificspell(SPE_FROST);
+		}
+
 		pline("%s very attractive music.", Tobjnam(instr, "produce"));
 		charm_monsters((GushLevel - 1) / 3 + 1);
 		exercise(A_DEX, TRUE);
@@ -594,6 +680,9 @@ hornchoice:
 	    break;
 	case DRUM_OF_EARTHQUAKE:	/* create several pits */
 	    if (do_spec && instr->spe > 0) {
+
+		int earthquakestrength = ((GushLevel - 1) / 3) + 1;
+
 		if (nochargechange >= rnd(10)) consume_obj_charge(instr, TRUE);
 		use_skill(P_DEVICES,1);
 		if (Race_if(PM_FAWN)) {
@@ -608,7 +697,14 @@ hornchoice:
 
 		You("produce a heavy, thunderous rolling!");
 		pline_The("entire dungeon is shaking around you!");
-		do_earthquake((GushLevel - 1) / 3 + 1);
+
+		if (instr && instr->oartifact == ART_WORLD_RESHAPED) {
+			earthquakestrength = 12;
+			StatusTrapProblem += rnz(20000);
+			alter_reality(0);
+		}
+
+		do_earthquake(earthquakestrength);
 		/* shake up monsters in a much larger radius... */
 		awaken_monsters(ROWNO * COLNO);
 		makeknown(DRUM_OF_EARTHQUAKE);

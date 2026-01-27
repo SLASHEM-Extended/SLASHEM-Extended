@@ -1271,6 +1271,7 @@ init_randarts()
 	artilist[ART_CAPAUER].otyp = randartshurikenX();
 	artilist[ART_ETERNALE_DELAY].otyp = randartmattockX();
 	artilist[ART_TWISTED_TURN].otyp = randartknifeX();
+	artilist[ART_UNFAIR_SHEARS_OF_THE_PROST].otyp = randartknifeX();
 	artilist[ART_MCCAULEY_S_INTELLIGENCE].otyp = randartbroadswordX();
 	artilist[ART_SUPERDRAGONBANE].otyp = randartbroadswordX();
 	artilist[ART_MCCAULEY_S_ARGUMENT].otyp = randartshortswordX();
@@ -2963,6 +2964,9 @@ register boolean mod;
 		    if (otmp && otmp->oartifact == ART_NINER) {
 			otmp->spe += 9;
 		    }
+		    if (otmp && otmp->oartifact == ART_POMPOUS_INGENIATE_ART) {
+			otmp->spe *= 2;
+		    }
 		    if (otmp && otmp->oartifact == ART_FEELDRAWERLOAD) {
 			if (otmp->spe > 0) otmp->spe *= 3;
 			otmp->spe += rnd(5);
@@ -3160,6 +3164,74 @@ skillswapredo:
 
 		    if (otmp && otmp->oartifact == ART_PREMATURE_RADIO_TRANSMISSI) {
 			u.enclaveactive = TRUE; /* no message (intentional) --Amy */
+		    }
+
+		    if (otmp && otmp->oartifact == ART_ENCLAVE_COFFER) {
+			u.enclaveactive = TRUE; /* no message (intentional) --Amy */
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			coord cc, dd;
+			int cx,cy, randsp, i;
+
+			cx = rn2(COLNO);
+			cy = rn2(ROWNO);
+
+			randsp = rn1(20,20);
+
+			for (i = 0; i < randsp; i++) {
+				(void) makemon(specialtensmon(442), cx, cy, MM_ADJACENTOK); /* MS_ENCLAVE */
+			}
+
+			randsp = rn1(3,3);
+
+			for (i = 0; i < randsp; i++) {
+				(void) makemon(specialtensmon(406), cx, cy, MM_ADJACENTOK); /* MS_BOT */
+			}
+
+			u.aggravation = 0;
+
+			int maincontainerclass = WEAPON_CLASS;
+			int maincontaineramount = rn1(10, 10);
+
+			register struct obj *ocont;
+
+			while (maincontaineramount > 0) {
+				maincontaineramount--;
+				ocont = mkobj(maincontainerclass, FALSE, FALSE);
+				if (ocont) {
+					ocont->owt = weight(ocont);
+					(void) add_to_container(otmp, ocont, TRUE);
+				}
+			}
+
+			maincontainerclass = IMPLANT_CLASS;
+			maincontaineramount = rnd(3);
+
+			while (maincontaineramount > 0) {
+				maincontaineramount--;
+				ocont = mkobj(maincontainerclass, FALSE, FALSE);
+				if (ocont) {
+					ocont->owt = weight(ocont);
+					(void) add_to_container(otmp, ocont, TRUE);
+				}
+			}
+
+			maincontainerclass = WAND_CLASS;
+			maincontaineramount = rnd(5);
+
+			while (maincontaineramount > 0) {
+				maincontaineramount--;
+				ocont = mkobj(maincontainerclass, FALSE, FALSE);
+				if (ocont) {
+					ocont->owt = weight(ocont);
+					(void) add_to_container(otmp, ocont, TRUE);
+				}
+			}
+
 		    }
 
 		    if (otmp && otmp->oartifact == ART_WONNENE_STARS_ABOVE_US) {
