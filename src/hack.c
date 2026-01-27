@@ -4746,6 +4746,10 @@ maybe_scream()
 	}
     }
 
+    if (youmonst.data->msound == MS_FEARHARE) {
+	make_feared(HFeared + rn1(5,5), TRUE);
+    }
+
     if (autismweaponcheck(ART_GUROSHIVETU_) && !u.berserktime) {
 	if (Upolyd && (u.mh < (u.mhmax / 2)) ) {
 		if (Aggravate_monster) {
@@ -4763,6 +4767,16 @@ maybe_scream()
 		}
 		makemon(specialtensmon(454), 0, 0, MM_ADJACENTOK|MM_ANGRY); /* MS_TEMPER */
 		u.aggravation = 0;
+		u.berserktime = 25;
+		You("fly into a berserk rage!");
+	}
+    }
+
+    if ((youmonst.data->msound == MS_TEMPER) && !u.berserktime) {
+	if (Upolyd && (u.mh < (u.mhmax / 2)) ) {
+		u.berserktime = 25;
+		You("fly into a berserk rage!");
+	} else if (!Upolyd && (u.uhp < (u.uhpmax / 2)) ) {
 		u.berserktime = 25;
 		You("fly into a berserk rage!");
 	}

@@ -887,8 +887,12 @@ boolean talk;
 
 	if (!xtime && old) {
 		if (talk && (HeavyFeared < 2) )
-		    pline("%s",
-			FunnyHallu ? "You're ready to rumble again!" : "You're no longer afraid.");
+
+			if (Race_if(PM_TUMBLRER) || Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) {
+				pline("%s", FunnyHallu ? "You overcome your inferiority complex!" : "You're not triggered anymore.");
+			} else {
+				pline("%s", FunnyHallu ? "You're ready to rumble again!" : "You're no longer afraid.");
+			}
 	}
 
 	if (xtime && old) {
@@ -2500,6 +2504,7 @@ playerextrinsicspeed()
 	if ((uarmf && uarmf->oartifact == ART_FASTER_THAN_ALL_OTHERS_INT) || autismringcheck(ART_POLYFAST) || (uwep && uwep->oartifact == ART_SHARPTOOTH_SAYER) || (uwep && uwep->oartifact == ART_ZANTASBORE) || (uwep && uwep->oartifact == ART_HACHURATE) || (uarmf && uarmf->oartifact == ART_BALE_OF_BODEN_SPEEDSTOCK) || (uwep && uwep->oartifact == ART_BOINDIL_S_CHOICE) || (uwep && uwep->oartifact == ART_MOVENIN_HOSASA) || (uarm && uarm->oartifact == ART_WHAT_MISS_I_CONSTANTLY) || (uwep && uwep->oartifact == ART_HACKNSLASH) || (uwep && uwep->oartifact == ART_NOOBY_BONUS_STYLE && bimanual(uwep)) || (uwep && uwep->oartifact == ART_STORM_ON) || (uwep && uwep->oartifact == ART_POWERVALK) || (uarmg && uarmg->oartifact == ART_GO_UP_AND_SOAR) || (uarmf && u.uinwater && uarmf->oartifact == ART_PECTORAL_HEEL) || (uwep && uwep->oartifact == ART_RACE_ALONG_THE_HIGHWAY) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_SONIC_TONFA) || (uchain && uchain->oartifact == ART_RACE_ALONG_THE_HIGHWAY && uball && uwep && (uwep == uball)) || (uarm && uarm->oartifact == ART_KWOURSTOMAL_) || (uarm && uarm->oartifact == ART_I_AM_YOUR_FALL) || (uwep && uwep->oartifact == ART_P_WING) || (uarmf && uarmf->oartifact == ART_SEVENLEAGUEBOOTS) ) return TRUE;
 	if ( (uarmf && uarmf->oartifact == ART_HERMES_S_SANDALS) || (uarmf && uarmf->oartifact == ART_BRIGHT_AURORA) || (uarmf && uarmf->oartifact == ART_FENG_HUO_LUN) || (uwep && uwep->oartifact == ART_HEAVY_CROSSBOW_OF_ETERNITY) || (uarmf && uarmf->oartifact == ART_FIGHTBOOST) || (uwep && uwep->oartifact == ART_TURNINGIKE) || (uwep && uwep->oartifact == ART_DAEMEL) || autismringcheck(ART_CERBERUS_BAND) || (uarm && uarm->oartifact == ART_NATAS_IS_BACK) || autismringcheck(ART_GOD_STAT) || (uarm && uarm->oartifact == ART_AGILITATE) || (uwep && uwep->oartifact == ART_HECTIC_OH_YEAH) ) return TRUE;
 	if ( (uarmg && uarmg->oartifact == ART_TSUNAMI_FISTS) || (uarm && uarm->oartifact == ART_FOR_ONCE_MOVING_SWIFTLY) || (uarm && uarm->oartifact == ART_GO_MIEFTLY_THEN_QUEUE__DAE) || autismringcheck(ART_WILDFIST) || (uarm && uarm->oartifact == ART_GAYIFIED) || (uwep && uwep->oartifact == ART_UNIQUE_WIND_BOW) || (uwep && uwep->oartifact == ART_BOW_SURROUNDED_BY_WIND) || (uwep && uwep->oartifact == ART_PLANTAR_NO) || (uwep && uwep->oartifact == ART_EORLINGAS) || (uarmg && uarmg->oartifact == ART_ELARA_S_AGILITY) || (uamul && uamul->oartifact == ART_HUMBLE_STUMBLE) || (uarmh && uarmh->oartifact == ART_VIGERIUN_) || (uamul && uamul->oartifact == ART_COMPLETELY_PUMPED) || (uamul && uamul->oartifact == ART_GREETINGS_FROM_EVI) || (uarmc && uarmc->oartifact == ART_JENNELLE_S_IMMEDIATIVITY) || (uarms && uarms->oartifact == ART_MOVERET) || (uarmc && uarmc->oartifact == ART_PHEWHAUNCH) || (uarm && uarm->oartifact == ART_SPEEDSTERSUIT) ) return TRUE;
+	if ( (youmonst.data->msound == MS_ARMORER && !Upolyd && (u.uhp < (u.uhpmax / 3))) || (youmonst.data->msound == MS_ARMORER && Upolyd && (u.mh < (u.mhmax / 3))) ) return TRUE;
 	if ( (uchain && uchain->oartifact == ART_JORMUNGANDR_S_COIL) || (uimplant && uimplant->oartifact == ART_GIULY_AH) || (uarm && uarm->oartifact == ART_MOTA_ROLA) || u.tempveryfastspeed || (uarmc && uarmc->oartifact == ART_CLARA_S_WINDCLOAK) || bmwride(ART_KERSTIN_S_PROJECTION_LEAD) || (uarmc && uarmc->oartifact == ART_HUNTING_TIME_HINT) || (uarmf && uarmf->oartifact == ART_ADHS_DIAGNOSIS) || (uarmg && uarmg->oartifact == ART_GLENNIS_DOWNS) || (uamul && uamul->oartifact == ART_ADELAIDE_S_RACING) || bmwride(ART_MARLOWE_S_CAMEL) || (uarmf && uarmf->oartifact == ART_MAREN_S_GALE_BOOTS) || autismringcheck(ART_TANGO_ALPHA_BRAVO) || (uarmf && uarmf->oartifact == ART_DARIUS_S_STORMWALKERS) || (uwep && uwep->oartifact == ART_PIPPA_S_URGE) ) return TRUE;
 
 	return FALSE;

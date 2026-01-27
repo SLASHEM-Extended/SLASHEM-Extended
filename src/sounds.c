@@ -263,7 +263,7 @@ dosounds()
     }
     if (level.flags.has_beehive && !rn2(200)) {
 
-	switch (rn2(6+hallu*6)) {
+	switch (rn2(8+hallu*8)) {
 	    case 0:
 		You_hear("a low buzzing.");
 		break;
@@ -287,19 +287,31 @@ dosounds()
 		    uarmh ? "" : "(nonexistent) ");
 		break;
 	    case 7:
-		pline("You suddenly see King Zing chasing after you! RUN, Rambi, RUN!!!");
+		You("see little holes in the wall.");
 		break;
 	    case 8:
-		You("smell stale honey.");
+		You("see part of a broken beehive on the floor.");
 		break;
 	    case 9:
-		You_hear("an atmospheric, ethereal track about the cyclical nature of the universe, complete with a prominent, low humming sound. Before you know it, you start shedding tears of joy as the soothing music allows you to finally overcome your acute depression."); /* "The Humming" (Enya); just writing this causes my eyes to well up with tears... --Amy */
+		pline("You suddenly see King Zing chasing after you! RUN, Rambi, RUN!!!");
 		break;
 	    case 10:
-		You("wonder what the hell a 'bee badass' is supposed to be?!");
+		You("smell stale honey.");
 		break;
 	    case 11:
+		You_hear("an atmospheric, ethereal track about the cyclical nature of the universe, complete with a prominent, low humming sound. Before you know it, you start shedding tears of joy as the soothing music allows you to finally overcome your acute depression."); /* "The Humming" (Enya); just writing this causes my eyes to well up with tears... --Amy */
+		break;
+	    case 12:
+		You("wonder what the hell a 'bee badass' is supposed to be?!");
+		break;
+	    case 13:
 		You("know that the zingers are really wasps, not bees. They even look like wasps, and are just as aggressive!");
+		break;
+	    case 14:
+		You("think that the apiculturist is a wussie, always wearing that mesh bonnet. Real men face the bees without such cheating tools!");
+		break;
+	    case 15:
+		You("think it's really annoying that the wasps respawn every time you leave the area.");
 		break;
 	}
 	return;
@@ -466,6 +478,7 @@ dosounds()
 			"hear cries of repentance!",
 			"hear futile pleas for mercy!",
 			"hear Franziska von Karma torturing a hapless detective!",
+			"hear a repeating electric sound!",
 
 			"hear screams of lust!",
 			"hear the crack of your mistress's whip!",
@@ -474,8 +487,9 @@ dosounds()
 			"hear erotic rubbing noises!",
 			"hear cheerful squeaking noises!",
 			"hear sexy licking noises!",
+			"suddenly think of a tight spandex suit!",
 		};
-		You("%s", lemurepit_msg[rn2(7+hallu*7)]);
+		You("%s", lemurepit_msg[rn2(8+hallu*8)]);
 		return;
 	    }
 	    if (level.flags.has_spiderhall && !rn2(200)) {
@@ -878,6 +892,7 @@ dosounds()
 			"hear chains clinking.",
 			"smell a lot of rust.",
 			"hear a gun clank.",
+			"seem to hear something dissolving.",
 
 			"hear iron oxidize.",
 			"hear a military contractor making out like a bandit.",
@@ -886,8 +901,9 @@ dosounds()
 			"wonder why the hell this set of messages is called 'library_msg' in the game's source.",
 			"feel that parts of the floor have been washed away.",
 			"hear the nearby ACME building!",
+			"feel that this place is a mess.",
 		};
-		You("%s", library_msg[rn2(7)+hallu*7]);
+		You("%s", library_msg[rn2(8)+hallu*8]);
 		return;
 	    }
 
@@ -901,6 +917,7 @@ dosounds()
 			"thank your godparents for raising you in a peaceful environment.",
 			"wonder what the weird round part in the middle of the village is supposed to be.", /* a well */
 			"feel like playing hide-and-seek with the other children, and hide in the wagon.",
+			"think about paying a visit to the temple.",
 
 			"feel like returning to your burned home... wait, is there really a reason for doing so?", /* the hallu sounds in particular are inspired by the storyline of Castle of the Winds */
 			"hope that you don't have to master the fleeing mine...",
@@ -910,8 +927,9 @@ dosounds()
 			"remember that weird letter talking about someone who is supposedly dead, which was signed by a single 'S' with flames emanating from it.",
 			"feel your pack resting heavily on your shoulders, shifting with each step... and then you come to the wrecked gate and realize that someone must've killed the entire population of the village!",
 			"returned to your doomed hometown. Now, all the shops are destroyed, the farm was burned, the wagons are in flames and the weird round part in the center is poisoned.",
+			"devise a plan to return to your hometown, but be aware of this: even if you somehow reach it, the buildings are still destroyed.",
 		};
-		You("%s", hamletroom_msg[rn2(8+hallu*8)]);
+		You("%s", hamletroom_msg[rn2(9+hallu*9)]);
 		return;
 	    }
 
@@ -924,6 +942,7 @@ dosounds()
 			"hear an officer giving commands hectically.",
 			"realize that this place is bustling with police.",
 			"hear someone eating a cream pie.",
+			"hear someone ordering another donut.",
 
 			"realize that your cop wanted level is 6, and the forces of law are coming to bust you!",
 			"are chased by a speeding police car!",
@@ -932,8 +951,9 @@ dosounds()
 			"encounter a woman who looks dressed like a cop, but she isn't actually a cop, as she's not trying to bust you; in fact, she's wearing high heels! Who the hell is she?", /* a meter maid */
 			"know that those stupid hippie cops can't bust you, after all you're a real playa and your slogan is 'Orange Grove for life, motherfucker'.", /* CJ being chased by cops in San Fierro */
 			"feel that you should enter the 'no police' cheat, which means you can never have a wanted level.",
+			"think it's stupid how the cops always stand behind the cars of their roadblocks, because it allows you to ram into their cars and crush the cops underneath their own vehicles.",
 		};
-		if (rn2(5)) You("%s", kopstation_msg[rn2(7+hallu*7)]);
+		if (rn2(5)) You("%s", kopstation_msg[rn2(8+hallu*8)]);
 		else {
 			switch (rn2(2+hallu*2)) {
 				case 0: default:
@@ -1060,6 +1080,7 @@ dosounds()
 			"wonder where the denizens of the dungeon came from.",
 			"sense a foul stench that makes you feel a little nauseated.",
 			"swear that you'll ensure the goblin patrol will never loot against orders.",
+			"feel that it'll be very satisfying to punish the bandits who raided your home.",
 
 			"listen to a soothing melody and a chant that sounds like 'Sleep-bundle-wing!'", /* Elona sleeping music */
 			"suddenly fall asleep. (Hopefully no monster decides to feast on your exposed flesh before you wake up.)",
@@ -1069,8 +1090,9 @@ dosounds()
 			"suddenly realize that when your hometown was destroyed, the evil overlord did so because he specifically wanted to kill YOU!",
 			"notice the orcs' attractive smell. Wait, since when do orcs of all things smell attractive???",
 			"find a scrap of parchment, which reads: 'Should ye find human Men or Women lyrking about, slay them without Delay; & bring uf the stilled Bodief.'",
+			"will find out who that ominous figure is whose name starts with an S. Obviously, it's the evil overlord that the bandits were reporting to!",
 		};
-		You("%s", sleepingroom_msg[rn2(8+hallu*8)]);
+		You("%s", sleepingroom_msg[rn2(9+hallu*9)]);
 		return;
 	    }
 
@@ -1108,6 +1130,7 @@ dosounds()
 			"hear an animal munching on some food.",
 			"notice a dog smell.",
 			"detect a strong odor reminiscent of a stable.",
+			"catch an odor reminiscent of a stable.",
 
 			"hear a hissing sound, and it's right behind you!",
 			"look behind you and see a three-headed monkey!",
@@ -1117,8 +1140,9 @@ dosounds()
 			"like to get a giraffe as a pet, as that's certainly more interesting than a cat or dog!",
 			"feel that the werewolf loading screens appear every other time! Maybe they stop appearing if you cure your lycanthropy?", /* TES 5 (Skyrim) */
 			"wonder why other people don't get what you're saying when you call horses 'cars', even though they're basically an organic version of a car...",
+			"think people who talk to animals are real weirdos, because it's scientifically known that animals can't understand the human language.",
 		};
-		You("%s", menagerie_msg[rn2(8+hallu*8)]);
+		You("%s", menagerie_msg[rn2(9+hallu*9)]);
 		return;
 	    }
 
@@ -1204,6 +1228,7 @@ dosounds()
 			"can smell a nearby waste processing plant.",
 			"suddenly see a sign that says 'WARNING: No trespassing beyond this point, lethal radiation dose may be reached within 5 seconds!'.",
 			"see a rusty barrel filled with nuclear waste.",
+			"see a nuclear waste warning sign.",
 
 			"feel the presence of the ether generator!",
 			"can overhear the president saying 'That was the last straw! I'll bomb that fucking country now! I just need to get the code and press the big red button!'",
@@ -1213,8 +1238,9 @@ dosounds()
 			"are suddenly receiving about 500 RAD per second, and have to mash-mash that radaway hotkey like mad or you'll die!", /* Fallout 3, overworld entrance to Vault 87 */
 			"suddenly hear a terrible 'Drrdrrdrr!' sound and get mortally scared, because you don't know that it's just a Geiger counter!",
 			"hope that there will be a great war with several atomic rockets being launched, because the resulting nuclear winter will effectively cool down the planet and undo the unwanted climate change!",
+			"feel that in the year 2077, tensions between two of the world's greatest superpowers will escalate to the point of a nuclear exchange!",
 		};
-		You("%s", nuclearchamber_msg[rn2(8+hallu*8)]);
+		You("%s", nuclearchamber_msg[rn2(9+hallu*9)]);
 		return;
 	    }
 
@@ -1327,6 +1353,7 @@ dosounds()
 			"somehow feel that the default rules are not valid here.",
 			"are afraid that this place will be rather unfair to you.",
 			"can tell from the sounds that the monsters on this level are spectacularly unforgiving.",
+			"have to be aware of the half-assed changes, and need to keep the wiki open at all times.",
 
 			"know that you won't make it through this level alive...",
 			"will die, but not before you've witnessed the evil perpetrators taking your beloved toys and breaking them into pieces.",
@@ -1337,8 +1364,9 @@ dosounds()
 			"have to eat hundreds of corpses to obtain full resistance.", /* sporkhack */
 			"feel that magic resistance will not protect you from the destroy armor spell.", /* ditto */
 			"finally understand that interface screws are not fake difficulty.",
+			"realize that there's too much spork and not enough grunt, and a whole load of STUPID heaved on top of it!",
 		};
-		You("%s", evilroom_msg[rn2(9+hallu*9)]);
+		You("%s", evilroom_msg[rn2(10+hallu*10)]);
 		return;
 	    }
 	    if (level.flags.has_religioncenter && !rn2(200)) {
@@ -1671,6 +1699,7 @@ dosounds()
 			"see the accursed crashy graphics card logo.",
 			"wonder whether this game has control stick support.",
 			"hear a midi song, one that sounds great with the right sound font and merely okay with the wrong one.",
+			"see a loading screen that says 'PLEASE STAND BY...'",
 
 			"hear a speedrunner curse at Super Kaizo Mario because the game is too damn hard!",
 			"suddenly feel that you're really playing GTA! A cop car appears! The cop wields a shotgun! The cop fires a shotgun shell!--More--",
@@ -1683,8 +1712,9 @@ dosounds()
 			"hear someone say 'Die-Far-ben-sind-sehr-flau-schel-bau-schig!'",
 			"push buttons and your stupid PC responds by making annoying 'DIE-DIE-DOE' sounds instead of executing your commands!",
 			"hear the same title song that was used for the previous two installments, just rearranged a bit. Can't they come up with a new title song or something?",
+			"are really tired of having to see the same loading screen every couple of minutes because the game keeps crashing all the time! Sometimes it even crashes during loading, i.e. before you're back in the game!",
 		};
-		You("%s", gamecorner_msg[rn2(11+hallu*11)]);
+		You("%s", gamecorner_msg[rn2(12+hallu*12)]);
 		return;
 	    }
 	    if (level.flags.has_illusionroom && !rn2(200)) {
@@ -1770,6 +1800,8 @@ dosounds()
 			"see an error message pop up: nv4_disp.dll device driver is stuck in an infinite loop.",
 			"see an error message pop up: The win16 subsystem has insufficient resources to continue running. Click on OK, close your application and restart your machine.",
 			"see an error message pop up: System resources depleted. Please restart your computer.",
+			"see an error message pop up: Not enough working memory to start the application. Close one or several applications and try again.",
+			"see an error message pop up: Not enough memory to initialize NETHACK",
 			"listen to Arabella saying 'Stop stalking me all the time, you're creepy.'",
 			"listen to Arabella saying 'You're not Marc, and therefore you won't ever defeat me.'",
 			"listen to Arabella saying 'You admitted that you want to grope my girl butt. Time to join #metoo and tell them that you're a sexual predator.'",
@@ -1791,7 +1823,7 @@ dosounds()
 			"encounter the annoying bug where the game just closes with no message.",
 			"suddenly find yourself at the MS-DOS prompt. The game crashed so hard that the entire Windows 3.1 operating system just stopped running, without even giving a message or anything.",
 		};
-		You("%s", insideroom_msg[rn2(12+hallu*38)]);
+		You("%s", insideroom_msg[rn2(12+hallu*40)]);
 		return;
 	    }
 
@@ -1809,6 +1841,10 @@ dosounds()
 			"stumble upon a fountain that looked like a wall tile.",
 			"can't help it, the underground rivers with farmland and fountains really seem like a game bug to you.",
 			"take a sip from one of the fountains but only feel refreshed, which indicates that the fountain is out of charges.",
+			"hear quite the loud roar of water. It's probably a waterfall!",
+			"hear the sound of several fountains.",
+			"are looking for the hidden entrance to the underground river.",
+			"feel that there is a paucity of monsters on the level for some reason. Where are they hiding?",
 
 			"hear a fountain crash through solid rock with a mighty roar!",
 			"admire the beautiful mountains around here. Strange, how can mountains be in an underground dungeon?",
@@ -1827,7 +1863,7 @@ dosounds()
 			"hear a sea shell exploding!",
 			"hear a C-shell script running.",
 		};
-		You("%s", riverroom_msg[rn2(12+hallu*16)]);
+		You("%s", riverroom_msg[rn2(16+hallu*16)]);
 		return;
 	    }
 

@@ -1253,6 +1253,9 @@ moveloop()
 				if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
+				if (youmonst.data->msound == MS_JAM && !rn2(6) && moveamt > 1)
+					moveamt /= 2;
+
 				if (PlayerInStilettoHeels && !FemtrapActiveNaomi && !(uimplant && uimplant->oartifact == ART_TORSTEN_S_FEMININENESS && powerfulimplants()) && !(uarmu && uarmu->oartifact == ART_MODELWALK) && (rnd(u.ulevel) < 11) && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && (P_MAX_SKILL(P_STILETTO_HEELS) == P_ISRESTRICTED) && !rn2(flags.female ? 24 : 20) && moveamt > 1)
 					moveamt /= 2;
 
@@ -1800,6 +1803,9 @@ moveloop()
 				moveamt /= 2;
 
 			if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1) /* spirits too are slower sometimes because wallwalking is really powerful */
+				moveamt /= 2;
+
+			if (youmonst.data->msound == MS_JAM && !rn2(6) && moveamt > 1) /* if you're jammed, you might be unable to move */
 				moveamt /= 2;
 
 			if (PlayerInStilettoHeels && !FemtrapActiveNaomi && !(uimplant && uimplant->oartifact == ART_TORSTEN_S_FEMININENESS && powerfulimplants()) && !(uarmu && uarmu->oartifact == ART_MODELWALK) && (rnd(u.ulevel) < 11) && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && (P_MAX_SKILL(P_STILETTO_HEELS) == P_ISRESTRICTED) && !rn2(flags.female ? 24 : 20) && moveamt > 1)
@@ -2775,6 +2781,14 @@ moveloop()
 			int madepoolQ = 0;
 			do_clear_areaX(u.ux, u.uy, 5 + rnd(5), do_lockfloodAL, (void *)&madepoolQ);
 
+		}
+
+		/* if you're a MS_GRAKA, mojibake glyphs appear everywhere --Amy */
+		if (youmonst.data->msound == MS_GRAKA) {
+			int grakax, grakay;
+			grakax = rn1(COLNO-3,2);
+			grakay = rn2(ROWNO);
+			show_glyph(grakax, grakay, randomglyph());
 		}
 
 		if (uimplant && uimplant->oartifact == ART_MINDFRAME_OF_NYSSARA_THE_T && !rn2(5000)) {
