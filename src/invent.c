@@ -36238,6 +36238,114 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: playing it while it has charges shoots ice blasts in all directions and casts the 'frost' spell."); break;
 				case ART_WORLD_RESHAPED:
 					pline("Artifact specs: causes very powerful earthquakes and also changes the world, but you won't be able to fix status effects for a good long while."); break;
+				case ART_DISSOLVOTEK:
+					pline("Artifact specs: carrying it while actually having yellow spells gives acid resistance."); break;
+				case ART_ARCTICER_WINTER:
+					pline("Artifact specs: carrying it while actually having white spells gives cold resistance."); break;
+				case ART_ROY_S_MANLINESS:
+					pline("Artifact specs: carrying it while actually having pink spells gives drain resistance."); break;
+				case ART_MARLENA_S_FOREST:
+					pline("Artifact specs: carrying it while actually having green spells gives poison resistance."); break;
+				case ART_MOURNDRESSING:
+					pline("Artifact specs: carrying it while actually having black spells gives disintegration resistance."); break;
+				case ART_NO_GLEAMSHINE:
+					pline("Artifact specs: carrying it while actually having cyan spells gives fear resistance."); break;
+				case ART_DARK_CELLAR_HOUSING:
+					pline("Artifact specs: carrying it while actually having blue spells gives shock resistance."); break;
+				case ART_COLOR_OF_SEXUALITY:
+					pline("Artifact specs: carrying it while actually having red spells gives fire resistance."); break;
+				case ART_INA_S_BRIGHTNESS:
+					pline("Artifact specs: carrying it while actually having orange spells gives sleep resistance."); break;
+				case ART_KATRIN_S_THRILL:
+					pline("Artifact specs: carrying it while actually having violet spells gives sickness resistance."); break;
+				case ART_BUTT_OUTPUT:
+					pline("Artifact specs: carrying it while actually having brown spells gives confusion resistance."); break;
+				case ART_SHINING_MENU:
+					pline("Artifact specs: half spell damage when carried."); break;
+				case ART_BEHOLDEN_IN_THE_NAME:
+					pline("Artifact specs: carrying it while actually having bright cyan spells gives contamination resistance."); break;
+				case ART_IRIS_FLAX_SHARP:
+					pline("Artifact specs: carrying it while actually having silver spells gives reflection."); break;
+				case ART_MUXXERHEAD:
+					pline("Artifact specs: carrying it while actually having metal spells gives mystery resistance."); break;
+				case ART_FORTUNEFEET:
+					pline("Artifact specs: carrying it while actually having platinum spells gives stun resistance."); break;
+				case ART_HEIDENEI:
+					pline("Artifact specs: when it generated, your sling skill cap was increased by several levels."); break;
+				case ART_PERPLEX_PERSPECTIVE:
+					pline("Artifact specs: when it generated, some skill got swapped with your sling skill and the latter had its cap increased."); break;
+				case ART_AMY_WHY_DO_YOU_ADD_ALL_THO:
+					pline("Artifact specs: reading it causes a nexus stat swap."); break;
+				case ART_KERSIE_PERSIE:
+					pline("Artifact specs: riding a steed with this saddle gives the kerstin and yasaman trap effects and your riding skill trains twice as fast, you have double fire resistance and good resistance against perfume attacks."); break;
+				case ART_FIRSTACKE:
+					pline("Artifact specs: spawns with bigger stack size."); break;
+				case ART_BLACK_MAW:
+					pline("Artifact specs: double damage, death resistance when wielded."); break;
+				case ART_DEATH_MAW:
+					pline("Artifact specs: double damage, death resistance when wielded."); break;
+				case ART_BANGSPRANG:
+					pline("Artifact specs: double fire damage."); break;
+				case ART_WEE_HOUR_EFFECT:
+					pline("Artifact specs: +3 to-hit and +8 damage, and if you're using it in the morning, it gives +20 strength, +5 dexterity and +2 vision range."); break;
+				case ART_WARBOEMMEN:
+					pline("Artifact specs: +10 to-hit, +5 damage and boosts your AC by 5 points."); break;
+				case ART_FEEBILITY:
+					pline("Artifact specs: +5 damage, -4 melee to-hit, mystery resistance and halved monster spawn rate when wielded."); break;
+				case ART_BROADWPN_HEAD:
+					pline("Artifact specs: +10 to-hit and +15 damage against monsters who always spawn hostile."); break;
+				case ART_NARROWNESSCAPE:
+					pline("Artifact specs: +13 to-hit and +22 acid damage against monsters which can't pick up items, warning when wielded."); break;
+				case ART_MOST_IS_NOT_A_GOOD_TERM:
+					pline("Artifact specs: +8 to-hit and +10 damage against monsters who always spawn peaceful or hostile as well as ones who wander."); break;
+				case ART_ALL_IN_ALL_IS_THE_BEST_BAC:
+					pline("Artifact specs: +13 damage, -2 intelligence and +2 all other stats when wielded."); break;
+				case ART_BALL_SHOT_:
+					pline("Artifact specs: occasionally shoots a powerful magic missile when you attack things in melee. This will briefly give you magic resistance, half spell damage and reflection, to minimize the risk of you getting hit by your own beam."); break;
+				case ART_SHOTTE_RAIGHT:
+					pline("Artifact specs: when it generated, your bow skill cap was increased by two skill levels."); break;
+				case ART_P_U_E_U_U_U:
+					pline("Artifact specs: when it generated, your crossbow and missile weapons skill caps were increased by one skill level each."); break;
+				case ART_FLIUFLIUFLIUFLIUFLIUUUUU_:
+					pline("Artifact specs: if you throw it at a monster and hit, there's a small chance to increase your dart skill cap to the next skill level, but only if your current skill level is equal to your current cap, and in that case your dart skill training is set back to zero. If you didn't have enough dart skill, you gain some alla instead."); break;
+				case ART_UNICR_N:
+					pline("Artifact specs: +8 to-hit and +10 damage, applying it changes its material to 'mysterious', wild weather when wielded, can be used with a shield even if it's two-handed, makes you immune to psi blasts and highly resistant to psi attacks."); break;
+				case ART_POWLBOWL:
+					pline("Artifact specs: +4 to-hit and +4 damage, and upon generating, it boosted your polearms skill cap."); break;
+				case ART_SHARDS_BRING_LUCK:
+					pline("Artifact specs: if you manage to break it by applying it at a monster, it doubles your polearms skill cap."); break;
+				case ART_DA_GREAT_GAMBLE:
+					pline("Artifact specs: gives four more casino chips when used and also randomizes your skills quite a bit."); break;
+				case ART_AWESOME_:
+					pline("Artifact specs: using it picks a random skill and greatly increases its cap."); break;
+				case ART_SAM_S_LUCKLESS_STREAK:
+					pline("Artifact specs: using it gives nine more casino chips; when it generated, it may have reduced the cap of a random skill."); break;
+				case ART_NO__THEY_MAY_NOT_DO_THIS_:
+					pline("Artifact specs: when it generated, it set a random skill to 'restricted' and potentially gave you skill points as a compensation."); break;
+				case ART_LUCK_WITH_THE_MONEY__PITCH:
+					pline("Artifact specs: when it generated, it set the training of a random skill to zero and may have given you zorkmids as a compensation."); break;
+				case ART_YET_ANOTHER__JUST_WATCH:
+					pline("Artifact specs: pain sense if you ride a steed with this saddle."); break;
+				case ART_AUTORA:
+					pline("Artifact specs: applying it blesses it."); break;
+				case ART_WHILEHOLD:
+					pline("Artifact specs: spawns with more fuel."); break;
+				case ART_SUCKSTRIKE:
+					pline("Artifact specs: spawns with more fuel and also gains more when recharged, but -5 increase accuracy and damage, -3 strength and dexterity, reduces your spellcasting success chances and if you throw it while it's lit, you get some nasty trap effects for 100 turns."); break;
+				case ART_SCRIBBELN:
+					pline("Artifact specs: reading it creates a bunch of blank scrolls on the ground."); break;
+				case ART_ALCHEM_LOAD:
+					pline("Artifact specs: quaffing it creates a bunch of bottles on the ground."); break;
+				case ART_DAISY_S_PRINCESS_BOOTS:
+					pline("Artifact specs: drain and hallucination resistance when worn, dora trap effect, doesn't get damaged by shit traps."); break;
+				case ART_KICK_ART:
+					pline("Artifact specs: carrying it boosts your kick damage by 8 but all monsters with kick attacks hit you more often and may move slightly faster."); break;
+				case ART_PEEPSHOW:
+					pline("Artifact specs: boosts the kick damage bonuses given by the various specific high heel type skills when carried, and grants an extra boost if you're kicking while wearing juen peep-toes."); break;
+				case ART_MARIKE_S_WALL_BUTT:
+					pline("Artifact specs: riding a steed with this saddle gives the marike trap effect, allows you to reach the ground even if your riding skill is unskilled and gives a good saving throw against falling off."); break;
+				case ART_VANCE_S_TAX:
+					pline("Artifact specs: when it generated, it may have unlocked the riding skill, or maybe reduced its cap."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

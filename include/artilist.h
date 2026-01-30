@@ -27579,6 +27579,222 @@ A("World Reshaped",				DRUM_OF_EARTHQUAKE, /* always causes strength-12 earthqua
 	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
 
+A("Dissolvotek",				YELLOW_SPELL_STONE, /* acid resistance if carried while having yellow spells */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Arcticer Winter",				WHITE_SPELL_STONE, /* cold resistance if carried while having white spells */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Roy's Manliness",				PINK_SPELL_STONE, /* drain resistance if carried while having pink spells */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Marlena's Forest",				GREEN_SPELL_STONE, /* poison resistance if carried while having green spells */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Mourndressing",				BLACK_SPELL_STONE, /* disint res if carried while having black spells */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("No Gleamshine",				CYAN_SPELL_STONE, /* fear res if carried while having cyan spells */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Dark Cellar Housing",				BLUE_SPELL_STONE, /* shock res if carried while having blue spells */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Color of Sexuality",				RED_SPELL_STONE, /* fire res if carried while having red spells */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Ina's Brightness",				ORANGE_SPELL_STONE, /* sleep res if carried while having orange spells */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Katrin's Thrill",				VIOLET_SPELL_STONE, /* sickness res if carried while having violet spells */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Butt Output",				BROWN_SPELL_STONE, /* confusion res if carried while having brown spells */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Shining Menu",				GOLDSPELL_STONE,
+	(SPFX_RESTR|SPFX_EVIL), (SPFX_HSPDAM), 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Beholden in the name",				BRIGHT_CYAN_SPELL_STONE, /* contamination res if carried while having bright cyan spells */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Iris Flax Sharp",				SILVER_SPELL_STONE, /* reflection if carried while having silver spells */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Muxxerhead",				METAL_SPELL_STONE, /* mystery res if carried while having metal spells */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Fortunefeet",				PLATINUM_SPELL_STONE, /* stun res if carried while having platinum spells */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Heidenei",				UNSKILLED_STONE, /* upon generating, increases sling skill cap by 2-3 skill levels */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Perplex Perspective",				TRAINING_STONE, /* upon generating, swaps a random skill with the sling skill (like skill swap trap) and then boosts sling skill cap by one skill level */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Amy why do you add all those artifacts? They're stupid!",				SPE_MAGICTORCH, /* randart2 spellbook, reading gives nexus stat swap without the risk of losing a point forever */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Kersie Persie",				LEATHER_SADDLE, /* randart2 saddle, kerstin and yasaman trap effects, riding trains 2x as fast, double resist fire and 90% chance to resist perfume */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Firstacke",				KNIFE, /* randart knife, spawns with +15 stack size */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 400L ),
+
+A("Black Maw",				TWO_HANDED_SWORD, /* randart two-handed sword, death resistance, to-hit h@ck */
+	(SPFX_RESTR), 0, 0,
+	PHYS(1, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Death Maw",				TWO_HANDED_SWORD, /* randart2 two-handed sword, death resistance, to-hit h@ck */
+	(SPFX_RESTR), 0, 0,
+	PHYS(1, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Bangsprang",				CLUB, /* randart2 club, to-hit h@ck */
+	(SPFX_RESTR), 0, 0,
+	FIRE(1, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Wee Hour Effect",				MORNING_STAR, /* randart2 morning star, if the current time is between 5 and 11 AM it gives +20 STR, +5 DEX and +2 vision range */
+	(SPFX_RESTR), 0, 0,
+	PHYS(3, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Warboemmen",				MACE, /* randart2 mace, +5 AC */
+	(SPFX_RESTR), 0, 0,
+	PHYS(10, 5), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Feebility",				FLAIL, /* randart2 flail, -4 melee to-hit, mystery resistance, halves monster spawn rate */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0, 5), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Broadwpn Head",				BROADSWORD, /* randart2 broadsword */
+	(SPFX_RESTR|SPFX_DFLAG2), 0, (M2_HOSTILE),
+	PHYS(10, 15), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Narrownesscape",				SHORT_SWORD, /* randart2 short sword */
+	(SPFX_RESTR|SPFX_WARN|SPFX_DFLAG1), 0, (M1_NOTAKE),
+	ACID(13, 22), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Most is not a good term",				LONG_SWORD, /* randart2 long sword */
+	(SPFX_RESTR|SPFX_DFLAG2), 0, (M2_HOSTILE|M2_PEACEFUL|M2_WANDER),
+	PHYS(8, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3333L ),
+
+A("All in all is the best back",				LONG_SWORD, /* randart2 melee weapon, -2 INT, +2 all other stats */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0, 13), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Ball Shot!",				LONG_SWORD, /* randart2 melee weapon, 1 in 100 chance when you hit something in melee that you fire a strength-20 magic missile in the direction of your attack and get 5 turns of magic resistance, half spell damage and reflection */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Shotte Raight",				BOW, /* randart2 bow, upon generating your bow skill cap is increased by 2 skill levels */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 16000L ),
+
+A("P u e u u u",				CROSSBOW, /* randart2 crossbow, upon generating your crossbow and missile weapons skill cap are increased by one skill level */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 16000L ),
+
+A("Fliufliufliufliufliuuuuu!",				DART, /* randart2 dart, hitting with a thrown one has 1 in 200 chance that if your current dart skill level is the maximum that you can reach, the cap is increased by one level and dart training is set back to 0; if the skill wasn't high enough, you gain 10 alla instead */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("unicr0n",				UNICORN_HORN, /* randart2 unihorn, applying it changes material to MYSTERIOUS, wild weather, can also be used with a shield, immunity to psi blasts and 90% chance to resist AD_SPC2 attacks */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(8, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Powlbowl",				HALBERD, /* randart2 polearm, upon generating your polearms skill cap is increased by one (if you were restricted, it gets capped at skilled) */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	PHYS(4, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 18000L ),
+
+A("Shards Bring Luck",				HALBERD, /* randart polearm, if you manage to break it by applying it'll double your polearms skill cap or if you were restricted, it gets a cap of skilled */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 15000L ),
+
+A("Da Great Gamble",				CASINO_CHIP, /* gives 4 more when applied and applies the skill swap, skill randomize and skill upordown trap effects d5 times each. */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("AWESOME!",				CASINO_CHIP, /* rolls a random skill and increases its cap by 5 levels */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 99999L ),
+
+A("Sam's Luckless Streak",				CASINO_CHIP, /* upon generating, a random skill is rolled and its cap reduced by d3 skill levels; applying it gives 9 more chips */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("No! They may not do this!",				SPE_MAGICTORCH, /* randart2 spellbook, upon generating it rolls a skill and sets its cap to restricted; for every skill level you lost that way, you gain one skill point */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Luck with the money, pitch with the love",				CASINO_CHIP, /* upon generating it rolls a skill and sets its training to 0; you gain 10x as many zorkmids as the amount of training */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Yet Another, Just Watch",				LEATHER_SADDLE, /* randart saddle, pain sense */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Autora",				LEATHER_SADDLE, /* becomes blessed upon applying */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Whilehold",				WHITE_LIGHTSABER, /* randart lightsaber, spawns with 3x fuel */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Suckstrike",				WHITE_LIGHTSABER, /* randart2 lightsaber, spawns with 5x fuel and gains 3x as much when charged but -5 increase accuracy and damage, -3 STR/DEX, -20% spell success chance and if you throw it while it's lit, you get 100 turns of inaccuracy, low stats and redinc trap effects */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("scribbeln",				SCR_BLANK_PAPER, /* randart2 scroll, reading generates a stack of 5 blank scrolls on the floor */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Alchem Load",				POT_WATER, /* randart2 potion, quaffing generates a stack of 5 bottles on the floor */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Daisy's Princess Boots",				HIPPIE_HEELS, /* don't get damaged by heaps of shit, dora trap effect */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_HALRES|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_DRLI), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Kick Art",				MARLENA_S_JEWEL, /* carrying it boosts your kick damage by 8 but all monsters with AT_KICK have +20 to-hit and 10% chance per turn to move at double speed */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Peepshow",				JUEN_S_JEWEL, /* boosts damage bonuses of the individual high heel type skills, and if you're wearing juen peep-toes your kick deals an additional +10 */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Marike's Wall Butt",				LEATHER_SADDLE, /* randart saddle, marike trap, allows you to still reach the ground and 75% saving throw against falling off */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Vance's Tax",				LEATHER_SADDLE, /* randart saddle, upon generating it reduces your riding skill cap by one level if it was skilled or higher, but unlocks it with a cap of basic if it was restricted */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */
