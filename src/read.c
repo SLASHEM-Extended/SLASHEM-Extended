@@ -884,6 +884,7 @@ static const char *actualshirtmessages[] = { /* Scott Bigham */
 	"I dreamed that Furio Tigre sat on my lap and caressed my black stiletto boots, and while doing so, he was the most tame and docile guy ever!",
 	"I love women's movements, they're so nice to look at.",
 	"I love women's movements, especially underneath my body.",
+	"As long as you don't have compelling arguments to refute my statement, it is by definition correct and valid.",
 
 };
 

@@ -89,20 +89,20 @@ static const char * const farttrapnames[] = {
  * if this changes, keep mkmaze.c bound_digging() in sync for no fun walls trap */
 
 /* quiet */
-"Nadja", "Mailie", "Elif", "Solvejg", "Sueschen", 
-"Jessica", "Yvonne", "Patricia", "Jennifer", "Inge", 
-"Sarah", "Birgit", /* 0-11 */
+"Nadja", "Mailie", "Elif", "Solvejg", "Sueschen",  /* 0-4 */
+"Jessica", "Yvonne", "Patricia", "Jennifer", "Inge", /* 5-9 */
+"Sarah", "Birgit", /* 10-11 */
 
 /* normal */
-"Kati", "Maurah", "Eveline", "Larissa", "Sandra", 
-"Meltem", "Kerstin", "Karin", "Ina", "Lou", 
-"Lisa", "Miriam", "Elena", "Katharina", "Simone", 
-"Jasieen", "Marike", "Sue Lyn", "Marleen", "Claudia",
-"Ksenia", /* 12-32 */
+"Kati", "Maurah", "Eveline", "Larissa", "Sandra", /* 12-16 */
+"Meltem", "Kerstin", "Karin", "Ina", "Lou", /* 17-21 */
+"Lisa", "Miriam", "Elena", "Katharina", "Simone", /* 22-26 */
+"Jasieen", "Marike", "Sue Lyn", "Marleen", "Claudia", /* 27-31 */
+"Ksenia", /* 32 */
 
 /* loud */
-"Sunali", "Thai", "Klara", "Ludgera", "Johanetta", 
-"Antje", "Ruea", "Mariya", "Wendy", "Katia", /* 33-42 */
+"Sunali", "Thai", "Klara", "Ludgera", "Johanetta", /* 33-37 */
+"Antje", "Ruea", "Mariya", "Wendy", "Katia", /* 38-42 */
 
 };
 
@@ -28292,6 +28292,7 @@ struct trap *ttmp;
 		int trapxp = 20 * (deepest_lev_reached(FALSE) + 1);
 		if (uamul && uamul->oartifact == ART_PEXPER_DRRLTRRT) trapxp *= 10;
 		more_experienced(trapxp, 0);
+		newexplevel();
  
 		mightbooststat(A_DEX);
 		if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
@@ -28299,7 +28300,6 @@ struct trap *ttmp;
 			if (Upolyd) u.mhmax += 3;
 			flags.botl = TRUE;
 		}
-		newexplevel();
 	}
 	cnv_trap_obj(LAND_MINE, 1, ttmp);
 	u.cnd_untrapamount++;
@@ -28321,6 +28321,7 @@ struct trap *ttmp;
 	int trapxp = 10 * (deepest_lev_reached(FALSE) + 1);
 	if (uamul && uamul->oartifact == ART_PEXPER_DRRLTRRT) trapxp *= 10;
 	more_experienced(trapxp, 0);
+	newexplevel();
 
 	mightbooststat(A_DEX);
 	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
@@ -28328,7 +28329,6 @@ struct trap *ttmp;
 		if (Upolyd) u.mhmax += 1;
 		flags.botl = TRUE;
 	}
-	newexplevel();
 	deltrap(ttmp);
 	if (!(levl[trapx][trapy].typ == ALTAR && (Is_astralevel(&u.uz) || Is_sanctum(&u.uz)) ) ) {
 		levl[trapx][trapy].typ = FOUNTAIN;
@@ -28354,6 +28354,7 @@ int exper;
 	int trapxp = exper * (deepest_lev_reached(FALSE) + 1);
 	if (uamul && uamul->oartifact == ART_PEXPER_DRRLTRRT) trapxp *= 10;
 	more_experienced(trapxp, 0);
+	newexplevel();
 
 	flags.botl = TRUE;
 	if (exper < 5) hpboost = 2;
@@ -28367,7 +28368,6 @@ int exper;
 	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
 		u.uhpmax += hpboost;
 		if (Upolyd) u.mhmax += hpboost;
-		newexplevel();
 	}
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 	deltrap(ttmp);
@@ -28389,6 +28389,7 @@ struct trap *ttmp;
 	int trapxp = 3 * (deepest_lev_reached(FALSE) + 1);
 	if (uamul && uamul->oartifact == ART_PEXPER_DRRLTRRT) trapxp *= 10;
 	more_experienced(trapxp, 0);
+	newexplevel();
 
 	mightbooststat(A_DEX);
 	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
@@ -28396,7 +28397,6 @@ struct trap *ttmp;
 		if (Upolyd) u.mhmax += 2;
 		flags.botl = TRUE;
 	}
-	newexplevel();
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 	deltrap(ttmp);
 	newsym(trapx, trapy);
@@ -28417,6 +28417,7 @@ struct trap *ttmp;
 	int trapxp = 3 * (deepest_lev_reached(FALSE) + 1);
 	if (uamul && uamul->oartifact == ART_PEXPER_DRRLTRRT) trapxp *= 10;
 	more_experienced(trapxp, 0);
+	newexplevel();
 
 	mightbooststat(A_DEX);
 	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
@@ -28424,7 +28425,6 @@ struct trap *ttmp;
 		if (Upolyd) u.mhmax += 2;
 		flags.botl = TRUE;
 	}
-	newexplevel();
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 	cnv_trap_obj(MORNING_STAR, 1, ttmp);
 	newsym(trapx, trapy);
@@ -28445,6 +28445,7 @@ struct trap *ttmp;
 	int trapxp = 3 * (deepest_lev_reached(FALSE) + 1);
 	if (uamul && uamul->oartifact == ART_PEXPER_DRRLTRRT) trapxp *= 10;
 	more_experienced(trapxp, 0);
+	newexplevel();
 
 	mightbooststat(A_DEX);
 	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
@@ -28452,7 +28453,6 @@ struct trap *ttmp;
 		if (Upolyd) u.mhmax += 3;
 		flags.botl = TRUE;
 	}
-	newexplevel();
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 	cnv_trap_obj(IRON_CHAIN, 1, ttmp);
 	newsym(trapx, trapy);
@@ -28774,6 +28774,7 @@ struct trap *ttmp;
 	int trapxp = multiplier * (deepest_lev_reached(FALSE) + 1);
 	if (uamul && uamul->oartifact == ART_PEXPER_DRRLTRRT) trapxp *= 10;
 	more_experienced(trapxp, 0);
+	newexplevel();
 
 	mightbooststat(A_DEX);
 	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
@@ -28781,7 +28782,6 @@ struct trap *ttmp;
 		if (Upolyd) u.mhmax += 3;
 		flags.botl = TRUE;
 	}
-	newexplevel();
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 	deltrap(ttmp);
 	newsym(trapx, trapy);
@@ -28802,6 +28802,7 @@ struct trap *ttmp;
 	int trapxp = 3 * (deepest_lev_reached(FALSE) + 1);
 	if (uamul && uamul->oartifact == ART_PEXPER_DRRLTRRT) trapxp *= 10;
 	more_experienced(trapxp, 0);
+	newexplevel();
 
 	mightbooststat(A_DEX);
 	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
@@ -28809,7 +28810,6 @@ struct trap *ttmp;
 		if (Upolyd) u.mhmax += 3;
 		flags.botl = TRUE;
 	}
-	newexplevel();
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 	cnv_trap_obj(MACE, 1, ttmp);
 	newsym(trapx, trapy);
@@ -28830,6 +28830,7 @@ struct trap *ttmp;
 	int trapxp = 3 * (deepest_lev_reached(FALSE) + 1);
 	if (uamul && uamul->oartifact == ART_PEXPER_DRRLTRRT) trapxp *= 10;
 	more_experienced(trapxp, 0);
+	newexplevel();
 
 	mightbooststat(A_DEX);
 	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
@@ -28837,7 +28838,6 @@ struct trap *ttmp;
 		if (Upolyd) u.mhmax += 3;
 		flags.botl = TRUE;
 	}
-	newexplevel();
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 	cnv_trap_obj(DAGGER, 1, ttmp);
 	newsym(trapx, trapy);
@@ -28858,6 +28858,7 @@ struct trap *ttmp;
 	int trapxp = 3 * (deepest_lev_reached(FALSE) + 1);
 	if (uamul && uamul->oartifact == ART_PEXPER_DRRLTRRT) trapxp *= 10;
 	more_experienced(trapxp, 0);
+	newexplevel();
 
 	mightbooststat(A_DEX);
 	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
@@ -28865,7 +28866,6 @@ struct trap *ttmp;
 		if (Upolyd) u.mhmax += 3;
 		flags.botl = TRUE;
 	}
-	newexplevel();
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 	cnv_trap_obj(KNIFE, 1, ttmp);
 	newsym(trapx, trapy);
@@ -28886,6 +28886,7 @@ struct trap *ttmp;
 	int trapxp = 3 * (deepest_lev_reached(FALSE) + 1);
 	if (uamul && uamul->oartifact == ART_PEXPER_DRRLTRRT) trapxp *= 10;
 	more_experienced(trapxp, 0);
+	newexplevel();
 
 	mightbooststat(A_DEX);
 	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
@@ -28893,7 +28894,6 @@ struct trap *ttmp;
 		if (Upolyd) u.mhmax += 3;
 		flags.botl = TRUE;
 	}
-	newexplevel();
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 	cnv_trap_obj(TWO_HANDED_SWORD, 1, ttmp);
 	newsym(trapx, trapy);
@@ -28914,6 +28914,7 @@ struct trap *ttmp;
 	int trapxp = 3 * (deepest_lev_reached(FALSE) + 1);
 	if (uamul && uamul->oartifact == ART_PEXPER_DRRLTRRT) trapxp *= 10;
 	more_experienced(trapxp, 0);
+	newexplevel();
 
 	mightbooststat(A_DEX);
 	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
@@ -28921,7 +28922,6 @@ struct trap *ttmp;
 		if (Upolyd) u.mhmax += 3;
 		flags.botl = TRUE;
 	}
-	newexplevel();
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 	cnv_trap_obj(LARGE_SHIELD, 1, ttmp);
 	newsym(trapx, trapy);
@@ -28942,6 +28942,7 @@ struct trap *ttmp;
 	int trapxp = 3 * (deepest_lev_reached(FALSE) + 1);
 	if (uamul && uamul->oartifact == ART_PEXPER_DRRLTRRT) trapxp *= 10;
 	more_experienced(trapxp, 0);
+	newexplevel();
 
 	mightbooststat(A_DEX);
 	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
@@ -28949,7 +28950,6 @@ struct trap *ttmp;
 		if (Upolyd) u.mhmax += 3;
 		flags.botl = TRUE;
 	}
-	newexplevel();
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 	cnv_trap_obj(SMALL_SHIELD, 1, ttmp);
 	newsym(trapx, trapy);
@@ -28970,6 +28970,7 @@ struct trap *ttmp;
 	int trapxp = 3 * (deepest_lev_reached(FALSE) + 1);
 	if (uamul && uamul->oartifact == ART_PEXPER_DRRLTRRT) trapxp *= 10;
 	more_experienced(trapxp, 0);
+	newexplevel();
 
 	mightbooststat(A_DEX);
 	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
@@ -28977,7 +28978,6 @@ struct trap *ttmp;
 		if (Upolyd) u.mhmax += 3;
 		flags.botl = TRUE;
 	}
-	newexplevel();
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 	cnv_trap_obj(PICK_AXE, 1, ttmp);
 	newsym(trapx, trapy);
@@ -28998,6 +28998,7 @@ struct trap *ttmp;
 	int trapxp = 3 * (deepest_lev_reached(FALSE) + 1);
 	if (uamul && uamul->oartifact == ART_PEXPER_DRRLTRRT) trapxp *= 10;
 	more_experienced(trapxp, 0);
+	newexplevel();
 
 	mightbooststat(A_DEX);
 	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
@@ -29005,7 +29006,6 @@ struct trap *ttmp;
 		if (Upolyd) u.mhmax += 3;
 		flags.botl = TRUE;
 	}
-	newexplevel();
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 	cnv_trap_obj(SHOVEL, 1, ttmp);
 	newsym(trapx, trapy);
@@ -29026,6 +29026,7 @@ struct trap *ttmp;
 	int trapxp = 3 * (deepest_lev_reached(FALSE) + 1);
 	if (uamul && uamul->oartifact == ART_PEXPER_DRRLTRRT) trapxp *= 10;
 	more_experienced(trapxp, 0);
+	newexplevel();
 
 	mightbooststat(A_DEX);
 	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
@@ -29033,7 +29034,6 @@ struct trap *ttmp;
 		if (Upolyd) u.mhmax += 3;
 		flags.botl = TRUE;
 	}
-	newexplevel();
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 	cnv_trap_obj(UNICORN_HORN, 1, ttmp);
 	newsym(trapx, trapy);
@@ -29054,6 +29054,7 @@ struct trap *ttmp;
 	int trapxp = 3 * (deepest_lev_reached(FALSE) + 1);
 	if (uamul && uamul->oartifact == ART_PEXPER_DRRLTRRT) trapxp *= 10;
 	more_experienced(trapxp, 0);
+	newexplevel();
 
 	mightbooststat(A_DEX);
 	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
@@ -29061,7 +29062,6 @@ struct trap *ttmp;
 		if (Upolyd) u.mhmax += 3;
 		flags.botl = TRUE;
 	}
-	newexplevel();
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 	cnv_trap_obj(JAVELIN, rnd(5), ttmp);
 	newsym(trapx, trapy);
@@ -29082,6 +29082,7 @@ struct trap *ttmp;
 	int trapxp = 3 * (deepest_lev_reached(FALSE) + 1);
 	if (uamul && uamul->oartifact == ART_PEXPER_DRRLTRRT) trapxp *= 10;
 	more_experienced(trapxp, 0);
+	newexplevel();
 
 	mightbooststat(A_DEX);
 	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
@@ -29089,7 +29090,6 @@ struct trap *ttmp;
 		if (Upolyd) u.mhmax += 3;
 		flags.botl = TRUE;
 	}
-	newexplevel();
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 	if (!rn2(5)) cnv_trap_obj(POT_ACID, rnd(2), ttmp);
 	else deltrap(ttmp);
@@ -29111,6 +29111,7 @@ struct trap *ttmp;
 	int trapxp = 1 * (deepest_lev_reached(FALSE) + 1);
 	if (uamul && uamul->oartifact == ART_PEXPER_DRRLTRRT) trapxp *= 10;
 	more_experienced(trapxp, 0);
+	newexplevel();
 
 	mightbooststat(A_DEX);
 	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
@@ -29118,7 +29119,6 @@ struct trap *ttmp;
 		if (Upolyd) u.mhmax += 1;
 		flags.botl = TRUE;
 	}
-	newexplevel();
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 	deltrap(ttmp);
 	newsym(trapx, trapy);
@@ -29139,8 +29139,8 @@ struct trap *ttmp;
 	int trapxp = 1 * (deepest_lev_reached(FALSE) + 1);
 	if (uamul && uamul->oartifact == ART_PEXPER_DRRLTRRT) trapxp *= 10;
 	more_experienced(trapxp, 0);
-
 	newexplevel();
+
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 	deltrap(ttmp);
 	newsym(trapx, trapy);
@@ -29165,6 +29165,7 @@ struct trap *ttmp;
 	int trapxp = 5 * (deepest_lev_reached(FALSE) + 1);
 	if (uamul && uamul->oartifact == ART_PEXPER_DRRLTRRT) trapxp *= 10;
 	more_experienced(trapxp, 0);
+	newexplevel();
 
 	mightbooststat(A_DEX);
 	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
@@ -29172,7 +29173,6 @@ struct trap *ttmp;
 		if (Upolyd) u.mhmax += 5;
 		flags.botl = TRUE;
 	}
-	newexplevel();
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 
 	unkrwrd = mkobj(RANDOM_CLASS, FALSE, FALSE);
@@ -29264,12 +29264,12 @@ struct trap *ttmp;
 			int trapxp = 500 * (deepest_lev_reached(FALSE) + 1);
 			if (uamul && uamul->oartifact == ART_PEXPER_DRRLTRRT) trapxp *= 10;
 			more_experienced(trapxp, 0);
+			newexplevel();
 
 			/* always give boost because they're hard to disarm --Amy */
 			u.uhpmax += 25;
 			if (Upolyd) u.mhmax += 25;
 			flags.botl = TRUE;
-			newexplevel();
 			deltrap(ttmp);
 			ttmp = maketrap(trapx, trapy, HEEL_TRAP, 0, cangivehp);
 			if (ttmp && !ttmp->hiddentrap ) ttmp->tseen = 1;
@@ -29352,6 +29352,7 @@ struct trap *ttmp;
 	int trapxp = 3 * (deepest_lev_reached(FALSE) + 1);
 	if (uamul && uamul->oartifact == ART_PEXPER_DRRLTRRT) trapxp *= 10;
 	more_experienced(trapxp, 0);
+	newexplevel();
 
 	mightbooststat(A_DEX);
 	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
@@ -29359,7 +29360,6 @@ struct trap *ttmp;
 		if (Upolyd) u.mhmax += 2;
 		flags.botl = TRUE;
 	}
-	newexplevel();
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 	if (!rn2(10)) cnv_trap_obj(POT_WATER, rnd(4), ttmp);
 	else deltrap(ttmp);
@@ -29381,6 +29381,7 @@ struct trap *ttmp;
 	int trapxp = 20 * (deepest_lev_reached(FALSE) + 1);
 	if (uamul && uamul->oartifact == ART_PEXPER_DRRLTRRT) trapxp *= 10;
 	more_experienced(trapxp, 0);
+	newexplevel();
 
 	mightbooststat(A_DEX);
 	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
@@ -29388,7 +29389,6 @@ struct trap *ttmp;
 		if (Upolyd) u.mhmax += 10;
 		flags.botl = TRUE;
 	}
-	newexplevel();
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 
 	if (ttmp->launch_otyp == 1) cnv_trap_obj(WEDGE_SANDALS, 1, ttmp);
@@ -29482,6 +29482,7 @@ struct trap *ttmp;
 	int trapxp = 1 * (deepest_lev_reached(FALSE) + 1);
 	if (uamul && uamul->oartifact == ART_PEXPER_DRRLTRRT) trapxp *= 10;
 	more_experienced(trapxp, 5);
+	newexplevel();
 
 	mightbooststat(A_DEX);
 	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
@@ -29489,7 +29490,6 @@ struct trap *ttmp;
 		if (Upolyd) u.mhmax += 5;
 		flags.botl = TRUE;
 	}
-	newexplevel();
 	return 1;
 }
 
@@ -29530,6 +29530,7 @@ struct trap *ttmp;
 	int trapxp = 1 * (deepest_lev_reached(FALSE) + 1);
 	if (uamul && uamul->oartifact == ART_PEXPER_DRRLTRRT) trapxp *= 10;
 	more_experienced(trapxp, 5);
+	newexplevel();
 
 	mightbooststat(A_DEX);
 	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
@@ -29537,7 +29538,6 @@ struct trap *ttmp;
 		if (Upolyd) u.mhmax += 1;
 		flags.botl = TRUE;
 	}
-	newexplevel();
 	return 1;
 }
 
@@ -29556,6 +29556,7 @@ int otyp;
 	int trapxp = 10 * (deepest_lev_reached(FALSE) + 1);
 	if (uamul && uamul->oartifact == ART_PEXPER_DRRLTRRT) trapxp *= 10;
 	more_experienced(trapxp, 0);
+	newexplevel();
 
 	mightbooststat(A_DEX);
 	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
@@ -29563,7 +29564,6 @@ int otyp;
 		if (Upolyd) u.mhmax += 1;
 		flags.botl = TRUE;
 	}
-	newexplevel();
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 	cnv_trap_obj(otyp, 50-rnl(50), ttmp);
 	return 1;
@@ -29592,6 +29592,7 @@ int otyp;
 	int trapxp = multiplier * (deepest_lev_reached(FALSE) + 1);
 	if (uamul && uamul->oartifact == ART_PEXPER_DRRLTRRT) trapxp *= 10;
 	more_experienced(trapxp, 0);
+	newexplevel();
 
 	mightbooststat(A_DEX);
 	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
@@ -29599,7 +29600,6 @@ int otyp;
 		if (Upolyd) u.mhmax += 1;
 		flags.botl = TRUE;
 	}
-	newexplevel();
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 	cnv_trap_obj(otyp, 50-rnl(50), ttmp);
 	return 1;
