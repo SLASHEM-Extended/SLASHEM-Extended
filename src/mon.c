@@ -2334,6 +2334,10 @@ struct monst *mon;
 		mmove /= 2;
 	}
 
+	if (have_kickart() && attacktype(mon->data, AT_KICK) && (mmove > 0) && !rn2(10)) {
+		mmove *= 2;
+	}
+
 	/* armorer: speeds up when low on health, slowed if near max health --Amy
 	 * I *swear* I came up with this idea myself when I was little, back then I didn't know about Diablo 2 and the The Smith/Hephasto who have EXACTLY this ability.
 	 * And I also swear that I called the monster I made up back then "armorer" without knowing that Hephasto is literally called the Armorer. */

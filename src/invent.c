@@ -1714,6 +1714,67 @@ have_femityjewel()
 }
 
 boolean
+have_grumblebumble()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->oartifact == ART_JAN_S_GRUMBLEBUMBLE)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_kickart()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->oartifact == ART_KICK_ART)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_peepshow()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->oartifact == ART_PEEPSHOW)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+int
+have_spellcolorartifact()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(SpellColorYellow && otmp->oartifact == ART_DISSOLVOTEK) return YELLOW_SPELL_STONE;
+		if(SpellColorWhite && otmp->oartifact == ART_ARCTICER_WINTER) return WHITE_SPELL_STONE;
+		if(SpellColorPink && otmp->oartifact == ART_ROY_S_MANLINESS) return PINK_SPELL_STONE;
+		if(SpellColorGreen && otmp->oartifact == ART_MARLENA_S_FOREST) return GREEN_SPELL_STONE;
+		if(SpellColorBlack && otmp->oartifact == ART_MOURNDRESSING) return BLACK_SPELL_STONE;
+		if(SpellColorCyan && otmp->oartifact == ART_NO_GLEAMSHINE) return CYAN_SPELL_STONE;
+		if(SpellColorBlue && otmp->oartifact == ART_DARK_CELLAR_HOUSING) return BLUE_SPELL_STONE;
+		if(SpellColorRed && otmp->oartifact == ART_COLOR_OF_SEXUALITY) return RED_SPELL_STONE;
+		if(SpellColorOrange && otmp->oartifact == ART_INA_S_BRIGHTNESS) return ORANGE_SPELL_STONE;
+		if(SpellColorViolet && otmp->oartifact == ART_KATRIN_S_THRILL) return VIOLET_SPELL_STONE;
+		if(SpellColorBrown && otmp->oartifact == ART_BUTT_OUTPUT) return BROWN_SPELL_STONE;
+		if(SpellColorBrightCyan && otmp->oartifact == ART_BEHOLDEN_IN_THE_NAME) return BRIGHT_CYAN_SPELL_STONE;
+		if(SpellColorSilver && otmp->oartifact == ART_IRIS_FLAX_SHARP) return SILVER_SPELL_STONE;
+		if(SpellColorMetal && otmp->oartifact == ART_MUXXERHEAD) return METAL_SPELL_STONE;
+		if(SpellColorPlatinum && otmp->oartifact == ART_FORTUNEFEET) return PLATINUM_SPELL_STONE;
+	}
+	return(FALSE);
+}
+
+boolean
 have_completelyquietlight()
 {
 	register struct obj *otmp;
@@ -36335,7 +36396,7 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 				case ART_SCRIBBELN:
 					pline("Artifact specs: reading it creates a bunch of blank scrolls on the ground."); break;
 				case ART_ALCHEM_LOAD:
-					pline("Artifact specs: quaffing it creates a bunch of bottles on the ground."); break;
+					pline("Artifact specs: quaffing it creates a bunch of bottles."); break;
 				case ART_DAISY_S_PRINCESS_BOOTS:
 					pline("Artifact specs: drain and hallucination resistance when worn, dora trap effect, doesn't get damaged by shit traps."); break;
 				case ART_KICK_ART:
@@ -36346,6 +36407,14 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: riding a steed with this saddle gives the marike trap effect, allows you to reach the ground even if your riding skill is unskilled and gives a good saving throw against falling off."); break;
 				case ART_VANCE_S_TAX:
 					pline("Artifact specs: when it generated, it may have unlocked the riding skill, or maybe reduced its cap."); break;
+				case ART_LOOKING_FOR_A_CURE_FOR_MAD:
+					pline("Artifact specs: reading it reduces your sanity somewhat."); break;
+				case ART_JAN_S_GRUMBLEBUMBLE:
+					pline("Artifact specs: carrying it causes 'your momma' jokes to happen more often, can be invoked to unwield it in case you're currently wielding this artifact."); break;
+				case ART_CURVEDRATCH:
+					pline("Artifact specs: can be invoked to spawn a random scimitar-class weapon which curses itself and forcibly equips itself in your hand."); break;
+				case ART_PARASITIC_GROWTH:
+					pline("Artifact specs: can be invoked to use it up, increasing your symbiosis skill cap in the process (or unlocking the skill if you don't have it) and giving you the metabolic nastytrap effect for a long time."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

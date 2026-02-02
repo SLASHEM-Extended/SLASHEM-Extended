@@ -6064,6 +6064,8 @@ metalmafiaagain:
 						pline("But you actually enjoy the lovely scent.");
 					} else if (rn2(10) && uarmf && uarmf->oartifact == ART_KATHARINA_S_SIGH) {
 						pline("But you actually enjoy the lovely scent.");
+					} else if (rn2(10) && bmwride(ART_KERSIE_PERSIE)) {
+						pline("But you actually enjoy the lovely scent.");
 					} else {
 						badeffect();
 						if (rn2(2)) increasesanity(rnz(20 + mtmp->m_lev));
@@ -6112,6 +6114,8 @@ metalmafiaagain:
 			} else if (rn2(20) && uwep && uwep->oartifact == ART_HIGH_ORIENTAL_PRAISE) {
 				pline("But you actually enjoy the lovely scent.");
 			} else if (rn2(10) && uarmf && uarmf->oartifact == ART_KATHARINA_S_SIGH) {
+				pline("But you actually enjoy the lovely scent.");
+			} else if (rn2(10) && bmwride(ART_KERSIE_PERSIE)) {
 				pline("But you actually enjoy the lovely scent.");
 			} else {
 				badeffect();

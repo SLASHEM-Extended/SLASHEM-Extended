@@ -939,6 +939,8 @@ register struct monst *mtmp;
 	if (uwep && uwep->oartifact == ART_LUCKY_MELEE_ATTACKS) tmp += 10;
 	if (StrongBlind_resistance) tmp += rn1(5, 5);
 	if (uarmh && uarmh->oartifact == ART_WAITING_FOR_MELEE) tmp -= 2;
+	if (uwep && uwep->oartifact == ART_FEEBILITY) tmp -= 4;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_FEEBILITY) tmp -= 4;
 	if (bmwride(ART_KERSTIN_S_COWBOY_BOOST)) tmp += 2;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_DUAL_MASTERY) tmp += 5;
 	if (uarmf && uarmf->oartifact == ART_PROPERTY_GRUMBLE) tmp -= 5;
@@ -1094,6 +1096,8 @@ register struct monst *mtmp;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_VLADSBANE) tmp -= 5;
 	if (uwep && uwep->oartifact == ART_CHARGING_MADE_EASY) tmp -= 5;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_CHARGING_MADE_EASY) tmp -= 5;
+	if (uwep && uwep->oartifact == ART_SUCKSTRIKE) tmp -= 5;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SUCKSTRIKE) tmp -= 5;
 
 	if (Race_if(PM_PLAYER_SKELETON)) tmp -= u.ulevel; /* sorry */
 
@@ -3162,6 +3166,7 @@ int dieroll;
 								obj->age += rn1(100, 100);
 								if (obj->otyp == ORANGE_LIGHTSABER) obj->age += (rn1(100, 100) * rnd(2));
 								if (obj->oartifact == ART_DESANN_S_WRATH) obj->age += (rn1(100, 100) * rnd(2));
+								if (obj->oartifact == ART_SUCKSTRIKE) obj->age += (rn1(100, 100) * 2);
 								pline("Your lightsaber gains additional energy!");
 							}
 						}
@@ -4564,6 +4569,8 @@ int dieroll;
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_VLADSBANE) tmp -= 5;
 		if (uwep && uwep->oartifact == ART_CHARGING_MADE_EASY) tmp -= 5;
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_CHARGING_MADE_EASY) tmp -= 5;
+		if (uwep && uwep->oartifact == ART_SUCKSTRIKE) tmp -= 5;
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SUCKSTRIKE) tmp -= 5;
 		if (uarmf && uarmf->oartifact == ART_PROPERTY_GRUMBLE) tmp += 8;
 		if (uarmh && uarmh->oartifact == ART_HABIBA_S_MATRONAGE) tmp += 2;
 		if (!thrown && uarmg && uarmg->oartifact == ART_SUPERHEAVYKLONK) tmp += 4;
@@ -5679,6 +5686,68 @@ melatechoice:
 		if (wep && wep->oartifact == ART_SWORD_THAT_ENDS_ALL) {
 			ragnarok(FALSE);
 			if (evilfriday && u.ulevel > 1) evilragnarok(FALSE,u.ulevel);
+		}
+
+		if (thrown && obj && obj->oartifact == ART_FLIUFLIUFLIUFLIUFLIUUUUU_ && !rn2(200)) {
+			if (P_MAX_SKILL(P_DART) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(P_DART);
+				pline("You can now learn the dart skill!");
+			} else if (P_MAX_SKILL(P_DART) == P_UNSKILLED) {
+				unrestrict_weapon_skill(P_DART);
+				pline("You can now learn the dart skill!");
+				P_MAX_SKILL(P_DART) = P_BASIC;
+			} else if (P_MAX_SKILL(P_DART) == P_BASIC) {
+				if (P_ADVANCE(P_DART) >= 20) {
+					P_ADVANCE(P_DART) = 0;
+					skill_sanity_check(P_DART);
+					P_MAX_SKILL(P_DART) = P_SKILLED;
+					pline("You can now become skilled with darts!");
+				} else {
+					gain_alla(10);
+					Your("soul feels a bit more whole!");
+				}
+			} else if (P_MAX_SKILL(P_DART) == P_SKILLED) {
+				if (P_ADVANCE(P_DART) >= 160) {
+					P_ADVANCE(P_DART) = 0;
+					skill_sanity_check(P_DART);
+					P_MAX_SKILL(P_DART) = P_EXPERT;
+					pline("You can now become expert with darts!");
+				} else {
+					gain_alla(10);
+					Your("soul feels a bit more whole!");
+				}
+			} else if (P_MAX_SKILL(P_DART) == P_EXPERT) {
+				if (P_ADVANCE(P_DART) >= 540) {
+					P_ADVANCE(P_DART) = 0;
+					skill_sanity_check(P_DART);
+					P_MAX_SKILL(P_DART) = P_MASTER;
+					pline("You can now become master with darts!");
+				} else {
+					gain_alla(10);
+					Your("soul feels a bit more whole!");
+				}
+			} else if (P_MAX_SKILL(P_DART) == P_MASTER) {
+				if (P_ADVANCE(P_DART) >= 1280) {
+					P_ADVANCE(P_DART) = 0;
+					skill_sanity_check(P_DART);
+					P_MAX_SKILL(P_DART) = P_GRAND_MASTER;
+					pline("You can now become grand master with darts!");
+				} else {
+					gain_alla(10);
+					Your("soul feels a bit more whole!");
+				}
+			} else if (P_MAX_SKILL(P_DART) == P_GRAND_MASTER) {
+				if (P_ADVANCE(P_DART) >= 2500) {
+					P_ADVANCE(P_DART) = 0;
+					skill_sanity_check(P_DART);
+					P_MAX_SKILL(P_DART) = P_SUPREME_MASTER;
+					pline("You can now become supreme master with darts!");
+				} else {
+					gain_alla(10);
+					Your("soul feels a bit more whole!");
+				}
+			}
+
 		}
 
 		if (thrown && obj && obj->oartifact == ART_MAP_END) {
@@ -8225,6 +8294,7 @@ melatechoice:
 		uwep->age += tmp;
 		if (uwep->otyp == ORANGE_LIGHTSABER) uwep->age += (tmp * rnd(2));
 		if (uwep->oartifact == ART_DESANN_S_WRATH) uwep->age += (tmp * rnd(2));
+		if (uwep->oartifact == ART_SUCKSTRIKE) uwep->age += (tmp * 2);
 		pline("Your lightsaber is recharged a bit!");
 	}
 
@@ -12128,6 +12198,14 @@ bladeangerdone2:
 					if (!mon) return FALSE;
 					if (DEADMONSTER(mon)) return FALSE;
 				}
+				if (uwep && uwep->oartifact == ART_BALL_SHOT_ && !rn2(100) && (u.dx || u.dy) && !u.dz) {
+					incr_itimeout(&HAntimagic, 5);
+					incr_itimeout(&HHalf_spell_damage, 5);
+					incr_itimeout(&HReflecting, 5);
+					buzz(20, 20, u.ux, u.uy, u.dx, u.dy);
+					if (!mon) return FALSE;
+					if (DEADMONSTER(mon)) return FALSE;
+				}
 				if (uwep && uwep->oartifact == ART_DIABLO_S_LBOD && !rn2(20) && (u.dx || u.dy) && !u.dz) {
 					buzz(15, rnd(10), u.ux, u.uy, u.dx, u.dy);
 					if (!mon) return FALSE;
@@ -13871,6 +13949,7 @@ boolean ranged;
 
 			if (Psi_resist && rn2(StrongPsi_resist ? 100 : 20)) break;
 			if (obsidianprotection()) break;
+			if (uwep && uwep->oartifact == ART_UNICR_N && rn2(10)) break;
 			pline("%s's corrupted mind backlashes your attack!", Monnam(mon) );
 
 			switch (rnd(10)) {

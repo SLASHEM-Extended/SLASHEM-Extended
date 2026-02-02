@@ -1470,6 +1470,19 @@ doread()
 		}
 	}
 
+	if (scroll->oartifact == ART_SCRIBBELN && !(scroll->obrittle) ) {
+		scroll->obrittle++;
+		struct obj *usaddling;
+		usaddling = mksobj(SCR_BLANK_PAPER, TRUE, FALSE, FALSE);
+		if (usaddling) {
+			usaddling->quan = 5;
+			usaddling->owt = weight(usaddling);
+			dropy(usaddling);
+			stackobj(usaddling);
+			pline("There might be a stack of scrolls waiting on the floor...");
+		}
+	}
+
 	if (scroll->oartifact == ART_DESIGN_YOUR_OWN && !(scroll->obrittle) ) {
 		scroll->obrittle++;
 
@@ -2173,6 +2186,7 @@ int curse_bless;
 			obj->age += 2000;
 			if (obj->otyp == ORANGE_LIGHTSABER) obj->age += (2000 * rnd(2));
 			if (obj->oartifact == ART_DESANN_S_WRATH) obj->age += (2000 * rnd(2));
+			if (obj->oartifact == ART_SUCKSTRIKE) obj->age += 4000;
 		    }
 		    p_glow2(obj, NH_BLUE);
 			u.cnd_chargingcount++;
@@ -2185,6 +2199,7 @@ int curse_bless;
 		    obj->age += 1000;
 		    if (obj->otyp == ORANGE_LIGHTSABER) obj->age += (1000 * rnd(2));
 		    if (obj->oartifact == ART_DESANN_S_WRATH) obj->age += (1000 * rnd(2));
+			if (obj->oartifact == ART_SUCKSTRIKE) obj->age += 2000;
 		    if (issoviet && obj->age > 1500) {
 				obj->age = 1500;
 				pline("Vasha legkaya sablya ne zaryazhena pravil'no, potomu chto tip ledyanogo bloka nenavidit Emi i vse izmeneniya, kotoryye ona proizvodit. Yasno, chto slesh ikh vsegda budet vonyuchey kuchey der'ma.");

@@ -668,6 +668,14 @@ eveningtime()
 	return(hour >= 18 && hour <= 24);
 }
 
+int
+morningtime()
+{
+	register int hour = getlt()->tm_hour;
+
+	return(hour >= 5 && hour <= 11);
+}
+
 #endif /* OVL2 */
 
 /*hacklib.c*/

@@ -2495,6 +2495,7 @@ mattacku(mtmp)
 	if (mtmp->data == &mons[PM_UNEXPECTED_BANNER]) tmp -= rnd(20);	/* ditto */
 	if (mtmp->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_]) tmp += rnd(100); /* the elder priest uses an aimbot and a wallhack */
 	if (uwep && uwep->oartifact == ART_KARATE_KID && attacktype(mtmp->data, AT_KICK)) tmp += 20;
+	if (have_kickart() && attacktype(mtmp->data, AT_KICK)) tmp += 20;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_KARATE_KID && attacktype(mtmp->data, AT_KICK)) tmp += 20;
 	if (Race_if(PM_PLAYER_ZRUTY) && is_human(mtmp->data)) tmp += rnd(5);
 	if (uwep && uwep->oartifact == ART_PERFECT_UNIVERSE && MON_WEP(mtmp)) tmp -= 5;
@@ -10722,7 +10723,7 @@ dopois:
 	    case AD_SPC2:
 		hitmsg(mtmp, mattk);
 		if (statsavingthrow) break;
-		if(!mtmp->mcan && !obsidianprotection() && !rn2(4) && (!Psi_resist || !rn2(StrongPsi_resist ? 100 : 20)) ) {
+		if(!mtmp->mcan && !obsidianprotection() && !(uwep && uwep->oartifact == ART_UNICR_N && rn2(10)) && !rn2(4) && (!Psi_resist || !rn2(StrongPsi_resist ? 100 : 20)) ) {
 
 			pline("Your mind is blasted by psionic energy.");
 
@@ -11804,6 +11805,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 	      case AD_SPC2:
 			if (Psi_resist && rn2(StrongPsi_resist ? 100 : 20) ) break;
 			if (obsidianprotection()) break;
+			if (uwep && uwep->oartifact == ART_UNICR_N && rn2(10)) break;
 
 			You_feel("something focusing on your mind!");
 
@@ -16252,7 +16254,7 @@ common:
 
 	    case AD_SPC2:
 
-		if ((!Psi_resist || !rn2(StrongPsi_resist ? 100 : 20)) && !obsidianprotection()) {
+		if ((!Psi_resist || !rn2(StrongPsi_resist ? 100 : 20)) && !(uwep && uwep->oartifact == ART_UNICR_N && rn2(10)) && !obsidianprotection()) {
 
 			pline("Your %s is spinning!", body_part(HEAD) );
 
@@ -16842,7 +16844,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		break;
 
 	    case AD_SPC2:
-	      if(!mtmp->mcan && canseemon(mtmp) && !obsidianprotection() && mtmp->mcansee && (issoviet || !rn2(7)) )
+	      if(!mtmp->mcan && canseemon(mtmp) && !(uwep && uwep->oartifact == ART_UNICR_N && rn2(10)) && !obsidianprotection() && mtmp->mcansee && (issoviet || !rn2(7)) )
  		{
 			char visageword[BUFSZ]; /* from ToME */
 			strcpy(visageword, "bad"); /* fail safe --Amy */

@@ -2684,8 +2684,9 @@ dosacrifice()
 
 	if (Role_if(PM_POLITICIAN) && !rn2(5)) {
 
-	u.ugold += rnz(100);
-	pline(FunnyHallu ? "Bribe money! Yay!" : "Your budget is extended!");
+		u.ugold += rnz(100);
+		pline(FunnyHallu ? "Bribe money! Yay!" : "Your budget is extended!");
+		flags.botl = TRUE;
 
 	}
 

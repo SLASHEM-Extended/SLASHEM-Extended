@@ -452,6 +452,7 @@ shieldblockboo:
 			uwep->age += 25;
 			if (uwep->otyp == ORANGE_LIGHTSABER) uwep->age += (25 * rnd(2));
 			if (uwep->oartifact == ART_DESANN_S_WRATH) uwep->age += (25 * rnd(2));
+			if (uwep->oartifact == ART_SUCKSTRIKE) uwep->age += 50;
 		}
 
 		return(0);

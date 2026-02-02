@@ -25885,46 +25885,48 @@ void
 doshittrap(box)
 struct obj *box;        /* at the moment only for floor traps */
 {
-        int num = 0;
-        num = d(4, 4) + rnd((monster_difficulty() / 2) + 1);
-		if (num > 1) {
-			if (u.ulevel == 1) num /= 2;
-			else if (u.ulevel == 2) {
-				num *= 2;
-				num /= 3;
-			} else if (u.ulevel == 3) {
-				num *= 3;
-				num /= 4;
-			} else if (u.ulevel == 4) {
-				num *= 4;
-				num /= 5;
-			}
+	int num = 0;
+	num = d(4, 4) + rnd((monster_difficulty() / 2) + 1);
+
+	if (num > 1) {
+		if (u.ulevel == 1) num /= 2;
+		else if (u.ulevel == 2) {
+			num *= 2;
+			num /= 3;
+		} else if (u.ulevel == 3) {
+			num *= 3;
+			num /= 4;
+		} else if (u.ulevel == 4) {
+			num *= 4;
+			num /= 5;
 		}
-        if (box) {
-                impossible("doshittrap() called with non-null box.");
-                return;
-        }
+	}
 
-        pline("You stepped into a heap of shit!");
+      if (box) {
+		impossible("doshittrap() called with non-null box.");
+		return;
+	}
 
-		if (uarmf && uarmf->oartifact == ART_SMELL_LIKE_DOG_SHIT) {
-			pline("Now you smell even worse than before.");
-			(void) adjattrib(A_CHA, -1, TRUE, TRUE);
-		}
+	pline("You stepped into a heap of shit!");
 
-		if (uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH) {
-			pline("But your footwear is unaffected.");
-			return;
-		}
+	if (uarmf && uarmf->oartifact == ART_SMELL_LIKE_DOG_SHIT) {
+		pline("Now you smell even worse than before.");
+		(void) adjattrib(A_CHA, -1, TRUE, TRUE);
+	}
 
-        if (Acid_resistance) { /* let's just assume the stuff is acidic or corrosive --Amy */
-                shieldeff(u.ux, u.uy);
-                num /= 2;
-        }
+	if (uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH) {
+		pline("But your footwear is unaffected.");
+		return;
+	}
+
+      if (Acid_resistance) { /* let's just assume the stuff is acidic or corrosive --Amy */
+		shieldeff(u.ux, u.uy);
+		num /= 2;
+      }
 
 	if (Stoned) fix_petrification();
 
-	if (!rn2(10) || !(uarmf && itemhasappearance(uarmf, APP_PROFILED_BOOTS) ) ) {
+	if ( (!rn2(10) || !(uarmf && itemhasappearance(uarmf, APP_PROFILED_BOOTS) ) ) && !(uarmf && uarmf->oartifact == ART_DAISY_S_PRINCESS_BOOTS)) {
 
 	/* damage boots, but don't destroy them; if they would be destroyed, disenchant them instead --Amy */
 	    if (uarmf && !rn2(5)) {
@@ -28120,7 +28122,7 @@ boolean difficulttrap;
 	}
 	/* untrappable traps are located on the ground. */
 	if (!can_reach_floor()) {
-		if (u.usteed && !(uwep && uwep->oartifact == ART_SORTIE_A_GAUCHE) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && !FemtrapActiveKerstin && !bmwride(ART_JAFARO_ON_TOUR) && !(bmwride(ART_DEEPER_LAID_BMW)) && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) )
+		if (u.usteed && !(uwep && uwep->oartifact == ART_SORTIE_A_GAUCHE) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && !FemtrapActiveKerstin && !bmwride(ART_JAFARO_ON_TOUR) && !bmwride(ART_MARIKE_S_WALL_BUTT) && !(bmwride(ART_DEEPER_LAID_BMW)) && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) )
 			You("aren't skilled enough to reach from %s.",
 				mon_nam(u.usteed));
 		else
@@ -30127,7 +30129,7 @@ boolean force;
 			case 'q': return(0);
 			case 'n': continue;
 		    }
-		    if (u.usteed && !(uwep && uwep->oartifact == ART_SORTIE_A_GAUCHE) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && !FemtrapActiveKerstin && !bmwride(ART_JAFARO_ON_TOUR) && !(bmwride(ART_DEEPER_LAID_BMW)) && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) ) {
+		    if (u.usteed && !(uwep && uwep->oartifact == ART_SORTIE_A_GAUCHE) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && !FemtrapActiveKerstin && !bmwride(ART_JAFARO_ON_TOUR) && !bmwride(ART_MARIKE_S_WALL_BUTT) && !(bmwride(ART_DEEPER_LAID_BMW)) && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) ) {
 			You("aren't skilled enough to reach from %s.",
 				mon_nam(u.usteed));
 			return(0);

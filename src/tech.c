@@ -10843,11 +10843,13 @@ revid_end:
 				uwep->age += 1000;
 				if (uwep->otyp == ORANGE_LIGHTSABER) uwep->age += (1000 * rnd(2));
 				if (uwep->oartifact == ART_DESANN_S_WRATH) uwep->age += (1000 * rnd(2));
+				if (uwep->oartifact == ART_SUCKSTRIKE) uwep->age += 2000;
 			}
 			if (uswapwep && is_lightsaber(uswapwep)) {
 				uswapwep->age += 1000;
 				if (uswapwep->otyp == ORANGE_LIGHTSABER) uswapwep->age += (1000 * rnd(2));
 				if (uswapwep->oartifact == ART_DESANN_S_WRATH) uswapwep->age += (1000 * rnd(2));
+				if (uswapwep->oartifact == ART_SUCKSTRIKE) uswapwep->age += 2000;
 			}
 
 			pline("Lightsaber energy replenished. Did it cost you an important intrinsic?");
@@ -15610,6 +15612,7 @@ charge_saber()
 			You("manage to channel the force perfectly!");
 			uwep->age += 1500; // Jackpot!
 			if (uwep->oartifact == ART_KYLE_S_JACKPOT) uwep->age += (1500 * rnd(2));
+			if (uwep->oartifact == ART_SUCKSTRIKE) uwep->age += 3000;
 		}
 
 	} else
@@ -15644,6 +15647,10 @@ manacalccomplete:
 	if (uwep->oartifact == ART_KYLE_S_JACKPOT) {
 		uwep->age += (yourmana * (( (effectlevel + rnd(5 + effectlevel) ) / rnd(10)) + rno(3)));
 		if (!rn2(2)) uwep->age += (yourmana * (( (effectlevel + rnd(5 + effectlevel) ) / rnd(10)) + rno(3)));
+	}
+	if (uwep->oartifact == ART_SUCKSTRIKE) {
+		uwep->age += (yourmana * (( (effectlevel + rnd(5 + effectlevel) ) / rnd(10)) + rno(3)));
+		uwep->age += (yourmana * (( (effectlevel + rnd(5 + effectlevel) ) / rnd(10)) + rno(3)));
 	}
 	/* improved results by Amy */
 

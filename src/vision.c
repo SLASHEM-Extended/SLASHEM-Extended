@@ -697,6 +697,7 @@ vision_recalc(control)
 	if (uarmh && uarmh->oartifact == ART_HILL_SCOUT) efflightradius += 4;
 	if (ublindf && ublindf->oartifact == ART_JUSTIN_S_LIGHT) efflightradius += 1;
 	if (ublindf && ublindf->oartifact == ART_FRENCH_VERDICT) efflightradius += 2;
+	if (uwep && uwep->oartifact == ART_WEE_HOUR_EFFECT && morningtime()) efflightradius += 2;
 
 	if (uarmg && uarmg->oartifact == ART_MAX_THE_SECRET_AGENT) efflightradius = MAX_RADIUS;
 	if (uarm && uarm->oartifact == ART_DARK_MINDDRILL) efflightradius = MAX_RADIUS;

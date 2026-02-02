@@ -185,12 +185,12 @@
  */
 #define P_ISRESTRICTED		-1
 #define P_UNSKILLED		1
-#define P_BASIC			2
-#define P_SKILLED		3
-#define P_EXPERT		4
-#define P_MASTER		5
-#define P_GRAND_MASTER		6
-#define P_SUPREME_MASTER		7
+#define P_BASIC			2 /* actually skill level 1 */
+#define P_SKILLED		3	/* skilled = skill level 2 */
+#define P_EXPERT		4	/* expert = skill level 3 */
+#define P_MASTER		5	/* master = skill level 4 */
+#define P_GRAND_MASTER		6 /* grand = skill level 5 */
+#define P_SUPREME_MASTER		7 /* sup = skill level 6 */
 #define P_LIMIT P_SUPREME_MASTER
 
 #define practice_needed_to_advance(level,skill) \

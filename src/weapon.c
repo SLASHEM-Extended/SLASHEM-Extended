@@ -7221,6 +7221,7 @@ int degree;
 	if (uarmf && uarmf->oartifact == ART_INGRID_S_SECRETARY_OFFICE && skill == P_CONE_HEELS) degree *= 3;
 	if (uarmg && uarmg->oartifact == ART_NIA_S_NEAR_MISS && skill == P_MISSILE_WEAPONS) degree *= 2;
 	if (uarm && uarm->oartifact == ART_POETT_ROEODOER_CHOENGOE && skill == P_BODY_ARMOR) degree *= 2;
+	if (bmwride(ART_KERSIE_PERSIE) && skill == P_RIDING) degree *= 2;
 	if (Race_if(PM_AZTPOK) && skill == P_SPIRITUALITY) {
 		if (P_ADVANCE(skill) >= 4320) degree *= 7;
 		else if (P_ADVANCE(skill) >= 2500) degree *= 6;
@@ -7375,11 +7376,13 @@ screwupsdone:
 			uwep->age++;
 			if (uwep->otyp == ORANGE_LIGHTSABER) uwep->age += rnd(2);
 			if (uwep->oartifact == ART_DESANN_S_WRATH) uwep->age += rnd(2);
+			if (uwep->oartifact == ART_SUCKSTRIKE) uwep->age += 2;
 		}
 		if (uwep && uwep->oartifact == ART_GLUCKERCHARGE && uwep->lamplit && uwep->altmode && skill >= P_SHII_CHO && skill <= P_WEDI) {
 			uwep->age += 4;
 			if (uwep->otyp == ORANGE_LIGHTSABER) uwep->age += (4 * rnd(2));
 			if (uwep->oartifact == ART_DESANN_S_WRATH) uwep->age += (4 * rnd(2));
+			if (uwep->oartifact == ART_SUCKSTRIKE) uwep->age += 8;
 		}
 	}
 

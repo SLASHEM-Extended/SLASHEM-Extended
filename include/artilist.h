@@ -27672,7 +27672,7 @@ A("Death Maw",				TWO_HANDED_SWORD, /* randart2 two-handed sword, death resistan
 	PHYS(1, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
 
 A("Bangsprang",				CLUB, /* randart2 club, to-hit h@ck */
-	(SPFX_RESTR), 0, 0,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
 	FIRE(1, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
 
 A("Wee Hour Effect",				MORNING_STAR, /* randart2 morning star, if the current time is between 5 and 11 AM it gives +20 STR, +5 DEX and +2 vision range */
@@ -27755,7 +27755,7 @@ A("Yet Another, Just Watch",				LEATHER_SADDLE, /* randart saddle, pain sense */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
-A("Autora",				LEATHER_SADDLE, /* becomes blessed upon applying */
+A("Autora",				LEATHER_SADDLE, /* randart saddle, becomes blessed upon applying */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
 
@@ -27771,7 +27771,7 @@ A("scribbeln",				SCR_BLANK_PAPER, /* randart2 scroll, reading generates a stack
 	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
 
-A("Alchem Load",				POT_WATER, /* randart2 potion, quaffing generates a stack of 5 bottles on the floor */
+A("Alchem Load",				POT_WATER, /* randart2 potion, quaffing generates 5 bottles */
 	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
 
@@ -27794,6 +27794,22 @@ A("Marike's Wall Butt",				LEATHER_SADDLE, /* randart saddle, marike trap, allow
 A("Vance's Tax",				LEATHER_SADDLE, /* randart saddle, upon generating it reduces your riding skill cap by one level if it was skilled or higher, but unlocks it with a cap of basic if it was restricted */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("looking for a cure for madness",				SPE_MAGICTORCH, /* randart spellbook, reading it reduces sanity by rnz(100) */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Jan's Grumblebumble",				MOMMY_STONE, /* momma jokes happen more often, can be invoked to unwield it if it's currently wielded */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Curvedratch",				ENGRAVING_STONE, /* invoking spawns a random scimitar (randart1-style), curses and forcibly equips it */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Parasitic Growth",				METABOLIC_STONE, /* can be invoked to use it up, increase symbiosis skill cap by 1 and give rnz(50000) turns of metabolic trap effect */
+	(SPFX_RESTR|SPFX_NOWISH|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 9000L ),
 
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 

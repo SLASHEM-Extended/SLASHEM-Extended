@@ -1046,6 +1046,7 @@ E int night(void);
 E int midnight(void);
 E int twilighttime(void);
 E int eveningtime(void);
+E int morningtime(void);
 
 /* ### invent.c ### */
 
@@ -1096,6 +1097,10 @@ E boolean have_spectrumplinggem(void);
 E boolean have_amateurluckstone(void);
 E boolean have_suckstonearti(void);
 E boolean have_femityjewel(void);
+E boolean have_grumblebumble(void);
+E boolean have_kickart(void);
+E boolean have_peepshow(void);
+E int have_spellcolorartifact(void);
 E boolean have_completelyquietlight(void);
 E boolean have_flatgirl(void);
 E boolean have_climxianjewel(void);
@@ -1905,6 +1910,7 @@ E void unbless(struct obj *);
 E void curse(struct obj *);
 E void curse_on_creation(struct obj *);
 E void uncurse(struct obj *, BOOLEAN_P);
+E void uncurse_completely(struct obj *, BOOLEAN_P);
 E void blessorcurse(struct obj *,int);
 E void blessorcurse_on_creation(struct obj *,int);
 E boolean is_rustprone(struct obj *);

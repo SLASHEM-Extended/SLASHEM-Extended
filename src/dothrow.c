@@ -950,6 +950,12 @@ newbossO:
 		weffects(pseudo);
 	}
 
+	if (obj && obj->oartifact == ART_SUCKSTRIKE && obj->lamplit) {
+		InaccuracyBug += 100;
+		AllStatsAreLower += 100;
+		RedincBug += 100;
+	}
+
 	if (tech_inuse(T_BLADE_ANGER) && (objects[obj->otyp].oc_skill == -P_SHURIKEN || objects[obj->otyp].oc_skill == P_SHURIKEN ) ) {
 		pseudo = mksobj(SPE_BLADE_ANGER, FALSE, 2, FALSE);
 		if (!pseudo) goto bladeangerdone;
@@ -1957,7 +1963,10 @@ boolean hitsroof;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_VLADSBANE) dmg -= 5;
 	if (uwep && uwep->oartifact == ART_CHARGING_MADE_EASY) dmg -= 5;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_CHARGING_MADE_EASY) dmg -= 5;
+	if (uwep && uwep->oartifact == ART_SUCKSTRIKE) dmg -= 5;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SUCKSTRIKE) dmg -= 5;
 	if (uwep && uwep->oartifact == ART_BLACK_MARK) dmg -= 1;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_BLACK_MARK) dmg -= 1;
 	if (uarm && uarm->oartifact == ART_POWASPEL) dmg -= 3;
 	if (uarmf && uarmf->oartifact == ART_MY_DEAR_SLAVE) dmg -= 1;
 
@@ -2876,6 +2885,8 @@ boolean polearming;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_VLADSBANE) tmp -= 5;
 	if (uwep && uwep->oartifact == ART_CHARGING_MADE_EASY) tmp -= 5;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_CHARGING_MADE_EASY) tmp -= 5;
+	if (uwep && uwep->oartifact == ART_SUCKSTRIKE) tmp -= 5;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SUCKSTRIKE) tmp -= 5;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_DUAL_MASTERY) tmp += 5;
 	if (uwep && uwep->oartifact == ART_SPINESHOOTER) tmp += 5;
 	if (uarmf && uarmf->oartifact == ART_PROPERTY_GRUMBLE) tmp -= 5;
@@ -2950,6 +2961,7 @@ boolean polearming;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_ITALY_SI_ES) tmp -= rnd(25);
 	if (uarmc && uarmc->oartifact == ART_OLD_PERSON_TALK) tmp -= 5;
 	if (uwep && uwep->oartifact == ART_BLACK_MARK) tmp -= 1;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_BLACK_MARK) tmp -= 1;
 	if (uwep && uwep->oartifact == ART_LOUD_SHITTER) tmp -= 7;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_LOUD_SHITTER) tmp -= 7;
 	if (uwep && uwep->oartifact == ART_CHINESE_MODEL) tmp -= 5;

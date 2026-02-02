@@ -97,6 +97,8 @@ register boolean clumsy;
 		You("scratch the last shred away.");
 		dmg += 10000;
 	}
+	if (have_kickart()) dmg += 8;
+	if (have_peepshow() && uarmf && uarmf->otyp == JUEN_PEEP_TOES) dmg += 10;
 
 	if (uarmf && itemhasappearance(uarmf, APP_ALLIGATOR_PUMPS) && !rn2(1000) && !(mon->data->geno & G_UNIQ) && !bigmonst(mon->data) ) {
 		pline("*gulp*");
@@ -272,6 +274,77 @@ register boolean clumsy;
 			default: dmg += 0; break;
 
 		}
+
+		if (have_peepshow()) {
+			if (PlayerInBlockHeels) {
+				switch (P_SKILL(P_BLOCK_HEELS)) {
+					case P_BASIC:		dmg +=  1; break;
+					case P_SKILLED:	dmg +=  2; break;
+					case P_EXPERT:	dmg +=  3; break;
+					case P_MASTER:	dmg +=  4; break;
+					case P_GRAND_MASTER:	dmg +=  5; break;
+					case P_SUPREME_MASTER:	dmg +=  6; break;
+					default: dmg += 0; break;
+				}
+			}
+			if (PlayerInConeHeels) {
+				switch (P_SKILL(P_CONE_HEELS)) {
+					case P_BASIC:		dmg +=  1; break;
+					case P_SKILLED:	dmg +=  2; break;
+					case P_EXPERT:	dmg +=  3; break;
+					case P_MASTER:	dmg +=  4; break;
+					case P_GRAND_MASTER:	dmg +=  5; break;
+					case P_SUPREME_MASTER:	dmg +=  6; break;
+					default: dmg += 0; break;
+				}
+			}
+			if (PlayerInStilettoHeels) {
+				switch (P_SKILL(P_STILETTO_HEELS)) {
+					case P_BASIC:		dmg +=  2; break;
+					case P_SKILLED:	dmg +=  4; break;
+					case P_EXPERT:	dmg +=  6; break;
+					case P_MASTER:	dmg +=  8; break;
+					case P_GRAND_MASTER:	dmg +=  10; break;
+					case P_SUPREME_MASTER:	dmg +=  12; break;
+					default: dmg += 0; break;
+				}
+			}
+			if (PlayerInWedgeHeels) {
+				switch (P_SKILL(P_WEDGE_HEELS)) {
+					case P_BASIC:		dmg +=  1; break;
+					case P_SKILLED:	dmg +=  2; break;
+					case P_EXPERT:	dmg +=  3; break;
+					case P_MASTER:	dmg +=  4; break;
+					case P_GRAND_MASTER:	dmg +=  5; break;
+					case P_SUPREME_MASTER:	dmg +=  6; break;
+					default: dmg += 0; break;
+				}
+			}
+			if (PlayerInBallHeels) {
+				if (u.ballskill >= 20) dmg++;
+				if (u.ballskill >= 160) dmg++;
+				if (u.ballskill >= 540) dmg++;
+				if (u.ballskill >= 1280) dmg++;
+				if (u.ballskill >= 2560) dmg++;
+				if (u.ballskill >= 4320) dmg++;
+			}
+			if (PlayerInColumnarHeels) {
+				if (u.columnarskill >= 20) dmg++;
+				if (u.columnarskill >= 160) dmg++;
+				if (u.columnarskill >= 540) dmg++;
+				if (u.columnarskill >= 1280) dmg++;
+				if (u.columnarskill >= 2560) dmg++;
+				if (u.columnarskill >= 4320) dmg++;
+			}
+			if (PlayerInPyramidalHeels) {
+				if (u.pyramidalskill >= 20) dmg++;
+				if (u.pyramidalskill >= 160) dmg++;
+				if (u.pyramidalskill >= 540) dmg++;
+				if (u.pyramidalskill >= 1280) dmg++;
+				if (u.pyramidalskill >= 2560) dmg++;
+				if (u.pyramidalskill >= 4320) dmg++;
+			}
+		} /* peepshow bonus end */
 
 	}
 

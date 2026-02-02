@@ -3031,6 +3031,8 @@ convertdone:
 				pline("But you actually enjoy the lovely scent.");
 			} else if (rn2(10) && uarmf && uarmf->oartifact == ART_KATHARINA_S_SIGH) {
 				pline("But you actually enjoy the lovely scent.");
+			} else if (rn2(10) && bmwride(ART_KERSIE_PERSIE)) {
+				pline("But you actually enjoy the lovely scent.");
 			} else {
 
 				badeffect();
@@ -3139,14 +3141,14 @@ convertdone:
 			pline("%s concentrates.", Monnam(mtmp));
 		if (distu(mtmp->mx, mtmp->my) > BOLT_LIM * BOLT_LIM) {
 			You(FunnyHallu ? "sense a fantastic wave of psychic energy." : "sense a faint wave of psychic energy.");
-			if (!mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) > 25 * 25) && !(uarmh && uarmh->oartifact == ART_NOTKNOW_EY) && !rn2(5)) maybehackimplant();
+			if (!mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) > 25 * 25) && !(ublindf && ublindf->oartifact == ART_SYLBE_S_LACK) && !(uarmh && uarmh->oartifact == ART_SPIREHEAD) && !(uarmh && uarmh->oartifact == ART_NOTKNOW_EY) && !(uarmh && uarmh->oartifact == ART_PROTECTOR_NO____) && !(uwep && uwep->oartifact == ART_UNICR_N) && !(uarmh && itemhasappearance(uarmh, APP_TT_HELMET)) && !rn2(5)) maybehackimplant();
 			goto toofar;
 		}
 		pline("A wave of psychic energy pours over you!");
 		if ( (mtmp->mpeaceful || (Psi_resist && rn2(StrongPsi_resist ? 100 : 20) ) ) &&
 		    (!Conflict || resist(mtmp, RING_CLASS, 0, 0))) {
 			pline("It feels quite soothing.");
-		} else if ((uarmh && uarmh->oartifact == ART_NOTKNOW_EY) || (uarmh && uarmh->oartifact == ART_SPIREHEAD) || (ublindf && ublindf->oartifact == ART_SYLBE_S_LACK) || (uarmh && itemhasappearance(uarmh, APP_TT_HELMET)) || (uarmh && uarmh->oartifact == ART_PROTECTOR_NO____)) {
+		} else if ((uarmh && uarmh->oartifact == ART_NOTKNOW_EY) || (uwep && uwep->oartifact == ART_UNICR_N) || (uarmh && uarmh->oartifact == ART_SPIREHEAD) || (ublindf && ublindf->oartifact == ART_SYLBE_S_LACK) || (uarmh && itemhasappearance(uarmh, APP_TT_HELMET)) || (uarmh && uarmh->oartifact == ART_PROTECTOR_NO____)) {
 			pline("But it doesn't affect you.");
 		} else {
 			if (!mtmp->mpeaceful) maybehackimplant();

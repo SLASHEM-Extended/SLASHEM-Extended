@@ -638,6 +638,7 @@ init_randarts()
 	artilist[ART_RNG_S_EMBRACE].otyp = randartcloak();
 	artilist[ART_RNG_S_GRIMACE].otyp = randarthelm();
 	artilist[ART_JUBELJUBIJEEAH].otyp = randartspellbook();
+	artilist[ART_LOOKING_FOR_A_CURE_FOR_MAD].otyp = randartspellbook();
 	artilist[ART_TELE_FANTASTIC].otyp = randartspellbook();
 	artilist[ART_PURPLE_RAIN__PURPLE_RAIN__].otyp = randartspellbook();
 	artilist[ART_I__GONNA_SUCK_UP_THE_SUN__].otyp = randartspellbook();
@@ -830,6 +831,7 @@ init_randarts()
 	artilist[ART_MARIKE_S_WALL_BUTT].otyp = randartsaddle();
 	artilist[ART_VANCE_S_TAX].otyp = randartsaddle();
 	artilist[ART_YET_ANOTHER__JUST_WATCH].otyp = randartsaddle();
+	artilist[ART_AUTORA].otyp = randartsaddle();
 	artilist[ART_KERSTIN_S_WILD_RIDE].otyp = randartsaddle();
 	artilist[ART_YARA_S_HANDLE].otyp = randartsaddle();
 	artilist[ART_RHINE_CROSSING].otyp = randartsaddle();
@@ -3002,7 +3004,7 @@ register boolean mod;
 
 		    if (otmp && otmp->oartifact == ART_DALETO) {
 			otmp->oerodeproof = TRUE;
-			otmp->cursed = otmp->hvycurse = otmp->prmcurse = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
+			uncurse_completely(otmp, TRUE);
 			otmp->blessed = TRUE;
 		    }
 
@@ -3187,6 +3189,66 @@ skillswapredo:
 
 					skill_sanity_check(swapskill1);
 					skill_sanity_check(swapskill2);
+				}
+		    }
+
+		    if (otmp && otmp->oartifact == ART_PERPLEX_PERSPECTIVE) {
+				int tempswapvalue;
+				int tempswapvalue2;
+				int tryct, tryct2, i;
+				int swapskill1, swapskill2;
+
+				swapskill1 = P_SLING;
+skillswapredoX:
+				swapskill2 = randomgoodskill();
+				if (swapskill1 == swapskill2) goto skillswapredoX;
+
+				if (P_MAX_SKILL(swapskill1) == P_MAX_SKILL(swapskill2)) {
+					tempswapvalue = P_ADVANCE(swapskill1);
+					tempswapvalue2 = P_ADVANCE(swapskill2);
+					P_ADVANCE(swapskill1) = tempswapvalue2;
+					P_ADVANCE(swapskill2) = tempswapvalue;
+
+					pline("Your training for the %s and %s skills was swapped.", wpskillname(swapskill1), wpskillname(swapskill2));
+
+					skill_sanity_check(swapskill1);
+					skill_sanity_check(swapskill2);
+				} else {
+					tempswapvalue = P_MAX_SKILL(swapskill1);
+					tempswapvalue2 = P_MAX_SKILL(swapskill2);
+					P_MAX_SKILL(swapskill1) = tempswapvalue2;
+					P_MAX_SKILL(swapskill2) = tempswapvalue;
+
+					if (P_SKILL(swapskill1) == P_ISRESTRICTED && P_MAX_SKILL(swapskill1) >= P_BASIC) {
+						P_SKILL(swapskill1) = P_UNSKILLED;
+						P_ADVANCE(swapskill1) = 0;
+					}
+					if (P_SKILL(swapskill2) == P_ISRESTRICTED && P_MAX_SKILL(swapskill2) >= P_BASIC) {
+						P_SKILL(swapskill2) = P_UNSKILLED;
+						P_ADVANCE(swapskill2) = 0;
+					}
+
+					pline("Your caps for the %s and %s skills were swapped.", wpskillname(swapskill1), wpskillname(swapskill2));
+
+					skill_sanity_check(swapskill1);
+					skill_sanity_check(swapskill2);
+				}
+
+				if (P_MAX_SKILL(P_SLING) == P_ISRESTRICTED) {
+					unrestrict_weapon_skill(P_SLING);
+				} else if (P_MAX_SKILL(P_SLING) == P_UNSKILLED) {
+					unrestrict_weapon_skill(P_SLING);
+					P_MAX_SKILL(P_SLING) = P_BASIC;
+				} else if (P_MAX_SKILL(P_SLING) == P_BASIC) {
+					P_MAX_SKILL(P_SLING) = P_SKILLED;
+				} else if (P_MAX_SKILL(P_SLING) == P_SKILLED) {
+					P_MAX_SKILL(P_SLING) = P_EXPERT;
+				} else if (P_MAX_SKILL(P_SLING) == P_EXPERT) {
+					P_MAX_SKILL(P_SLING) = P_MASTER;
+				} else if (P_MAX_SKILL(P_SLING) == P_MASTER) {
+					P_MAX_SKILL(P_SLING) = P_GRAND_MASTER;
+				} else if (P_MAX_SKILL(P_SLING) == P_GRAND_MASTER) {
+					P_MAX_SKILL(P_SLING) = P_SUPREME_MASTER;
 				}
 		    }
 
@@ -4093,6 +4155,114 @@ skillswapredo:
 				getfeminismtrapintrinsic();
 		    }
 
+		    if (otmp && otmp->oartifact == ART_SAM_S_LUCKLESS_STREAK) {
+			int downskill = randomgoodskill();
+
+			if (P_MAX_SKILL(downskill) == P_BASIC) {
+				P_MAX_SKILL(downskill) = P_ISRESTRICTED;
+				P_ADVANCE(downskill) = 0;
+				pline("You lose all knowledge of the %s skill!", wpskillname(downskill));
+			} else if (P_MAX_SKILL(downskill) == P_SKILLED) {
+				P_MAX_SKILL(downskill) = !rn2(3) ? P_BASIC : P_ISRESTRICTED;
+				if (P_MAX_SKILL(downskill) == P_ISRESTRICTED) {
+					P_ADVANCE(downskill) = 0;
+					pline("You lose all knowledge of the %s skill!", wpskillname(downskill));
+				} else {
+					pline("You lose some knowledge of the %s skill!", wpskillname(downskill));
+				}
+			} else if (P_MAX_SKILL(downskill) == P_EXPERT) {
+				P_MAX_SKILL(downskill) = !rn2(3) ? P_ISRESTRICTED : !rn2(2) ? P_BASIC : P_SKILLED;
+				if (P_MAX_SKILL(downskill) == P_ISRESTRICTED) {
+					P_ADVANCE(downskill) = 0;
+					pline("You lose all knowledge of the %s skill!", wpskillname(downskill));
+				} else {
+					pline("You lose some knowledge of the %s skill!", wpskillname(downskill));
+				}
+			} else if (P_MAX_SKILL(downskill) == P_MASTER) {
+				P_MAX_SKILL(downskill) = !rn2(3) ? P_EXPERT : !rn2(2) ? P_BASIC : P_SKILLED;
+				pline("You lose some knowledge of the %s skill!", wpskillname(downskill));
+			} else if (P_MAX_SKILL(downskill) == P_GRAND_MASTER) {
+				P_MAX_SKILL(downskill) = !rn2(3) ? P_EXPERT : !rn2(2) ? P_MASTER : P_SKILLED;
+				pline("You lose some knowledge of the %s skill!", wpskillname(downskill));
+			} else if (P_MAX_SKILL(downskill) == P_SUPREME_MASTER) {
+				P_MAX_SKILL(downskill) = !rn2(3) ? P_EXPERT : !rn2(2) ? P_MASTER : P_GRAND_MASTER;
+				pline("You lose some knowledge of the %s skill!", wpskillname(downskill));
+			}
+
+			skill_sanity_check(downskill);
+
+		    }
+
+		    if (otmp && otmp->oartifact == ART_NO__THEY_MAY_NOT_DO_THIS_) {
+			int downskill = randomgoodskill();
+			int compensationskills = 0;
+			if (P_MAX_SKILL(downskill) == P_BASIC) compensationskills = 1;
+			if (P_MAX_SKILL(downskill) == P_SKILLED) compensationskills = 2;
+			if (P_MAX_SKILL(downskill) == P_EXPERT) compensationskills = 3;
+			if (P_MAX_SKILL(downskill) == P_MASTER) compensationskills = 4;
+			if (P_MAX_SKILL(downskill) == P_GRAND_MASTER) compensationskills = 5;
+			if (P_MAX_SKILL(downskill) == P_SUPREME_MASTER) compensationskills = 6;
+
+			P_MAX_SKILL(downskill) = P_ISRESTRICTED;
+			P_ADVANCE(downskill) = 0; /* even if it was already restricted, this is on purpose --Amy */
+			pline("You lose all knowledge of the %s skill!", wpskillname(downskill));
+
+			skill_sanity_check(downskill);
+
+			if (compensationskills > 0) {
+				u.weapon_slots += compensationskills;
+			}
+		    }
+
+		    if (otmp && otmp->oartifact == ART_LUCK_WITH_THE_MONEY__PITCH) {
+			int downskill = randomgoodskill();
+			int compensationdollars = P_ADVANCE(downskill) * 10;
+
+			P_ADVANCE(downskill) = 0;
+			skill_sanity_check(downskill);
+
+			You("have to relearn how to use the %s skill!", wpskillname(downskill));
+
+			if (compensationdollars > 0) {
+				u.ugold += compensationdollars;
+				You("gain %d dollars as a compensation.", compensationdollars);
+				flags.botl = TRUE;
+			}
+
+		    }
+
+		    if (otmp && otmp->oartifact == ART_VANCE_S_TAX) {
+			if (P_MAX_SKILL(P_RIDING) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(P_RIDING);
+				pline("You can now learn the riding skill!");
+			} else if (P_MAX_SKILL(P_RIDING) == P_UNSKILLED) {
+				unrestrict_weapon_skill(P_RIDING);
+				pline("You can now learn the riding skill!");
+				P_MAX_SKILL(P_RIDING) = P_BASIC;
+			} else if (P_MAX_SKILL(P_RIDING) == P_SKILLED) {
+				P_MAX_SKILL(P_RIDING) = P_BASIC;
+				skill_sanity_check(P_RIDING);
+				pline("You lose some knowledge of the riding skill!");
+			} else if (P_MAX_SKILL(P_RIDING) == P_EXPERT) {
+				P_MAX_SKILL(P_RIDING) = P_SKILLED;
+				skill_sanity_check(P_RIDING);
+				pline("You lose some knowledge of the riding skill!");
+			} else if (P_MAX_SKILL(P_RIDING) == P_MASTER) {
+				P_MAX_SKILL(P_RIDING) = P_EXPERT;
+				skill_sanity_check(P_RIDING);
+				pline("You lose some knowledge of the riding skill!");
+			} else if (P_MAX_SKILL(P_RIDING) == P_GRAND_MASTER) {
+				P_MAX_SKILL(P_RIDING) = P_MASTER;
+				skill_sanity_check(P_RIDING);
+				pline("You lose some knowledge of the riding skill!");
+			} else if (P_MAX_SKILL(P_RIDING) == P_SUPREME_MASTER) {
+				P_MAX_SKILL(P_RIDING) = P_GRAND_MASTER;
+				skill_sanity_check(P_RIDING);
+				pline("You lose some knowledge of the riding skill!");
+			}
+
+		    }
+
 		    if (otmp && otmp->oartifact == ART_LUCKY_GENERATION) {
 			pline("Luck smiles upon you...");
 
@@ -4119,6 +4289,143 @@ skillswapredo:
 				P_MAX_SKILL(P_FLAIL) = P_SUPREME_MASTER;
 				pline("You can now become supreme master with flails!");
 			} else pline("Sadly your knowledge of the flail skill is already maxed.");
+
+		    }
+
+		    if (otmp && otmp->oartifact == ART_POWLBOWL) {
+			You_feel("like poking things with a pole...");
+
+			if (P_MAX_SKILL(P_POLEARMS) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(P_POLEARMS);
+				pline("You can now learn the polearm skill!");
+				P_MAX_SKILL(P_POLEARMS) = P_SKILLED;
+			} else if (P_MAX_SKILL(P_POLEARMS) == P_UNSKILLED) {
+				unrestrict_weapon_skill(P_POLEARMS);
+				pline("You can now learn the polearm skill!");
+				P_MAX_SKILL(P_POLEARMS) = P_SKILLED;
+			} else if (P_MAX_SKILL(P_POLEARMS) == P_BASIC) {
+				P_MAX_SKILL(P_POLEARMS) = P_SKILLED;
+				pline("You can now become skilled with polearms!");
+			} else if (P_MAX_SKILL(P_POLEARMS) == P_SKILLED) {
+				P_MAX_SKILL(P_POLEARMS) = P_EXPERT;
+				pline("You can now become expert with polearms!");
+			} else if (P_MAX_SKILL(P_POLEARMS) == P_EXPERT) {
+				P_MAX_SKILL(P_POLEARMS) = P_MASTER;
+				pline("You can now become master with polearms!");
+			} else if (P_MAX_SKILL(P_POLEARMS) == P_MASTER) {
+				P_MAX_SKILL(P_POLEARMS) = P_GRAND_MASTER;
+				pline("You can now become grand master with polearms!");
+			} else if (P_MAX_SKILL(P_POLEARMS) == P_GRAND_MASTER) {
+				P_MAX_SKILL(P_POLEARMS) = P_SUPREME_MASTER;
+				pline("You can now become supreme master with polearms!");
+			} else pline("Sadly your knowledge of the polearm skill is already maxed.");
+
+		    }
+
+		    if (otmp && otmp->oartifact == ART_P_U_E_U_U_U) {
+			You("suddenly gain the ability to shoot more effectively!");
+
+			if (P_MAX_SKILL(P_CROSSBOW) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(P_CROSSBOW);
+				pline("You can now learn the crossbow skill!");
+			} else if (P_MAX_SKILL(P_CROSSBOW) == P_UNSKILLED) {
+				unrestrict_weapon_skill(P_CROSSBOW);
+				pline("You can now learn the crossbow skill!");
+				P_MAX_SKILL(P_CROSSBOW) = P_BASIC;
+			} else if (P_MAX_SKILL(P_CROSSBOW) == P_BASIC) {
+				P_MAX_SKILL(P_CROSSBOW) = P_SKILLED;
+				pline("You can now become skilled with crossbows!");
+			} else if (P_MAX_SKILL(P_CROSSBOW) == P_SKILLED) {
+				P_MAX_SKILL(P_CROSSBOW) = P_EXPERT;
+				pline("You can now become expert with crossbows!");
+			} else if (P_MAX_SKILL(P_CROSSBOW) == P_EXPERT) {
+				P_MAX_SKILL(P_CROSSBOW) = P_MASTER;
+				pline("You can now become master with crossbows!");
+			} else if (P_MAX_SKILL(P_CROSSBOW) == P_MASTER) {
+				P_MAX_SKILL(P_CROSSBOW) = P_GRAND_MASTER;
+				pline("You can now become grand master with crossbows!");
+			} else if (P_MAX_SKILL(P_CROSSBOW) == P_GRAND_MASTER) {
+				P_MAX_SKILL(P_CROSSBOW) = P_SUPREME_MASTER;
+				pline("You can now become supreme master with crossbows!");
+			} else pline("Sadly your knowledge of the crossbow skill is already maxed.");
+
+			if (P_MAX_SKILL(P_MISSILE_WEAPONS) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(P_MISSILE_WEAPONS);
+				pline("You can now learn the missile weapon skill!");
+			} else if (P_MAX_SKILL(P_MISSILE_WEAPONS) == P_UNSKILLED) {
+				unrestrict_weapon_skill(P_MISSILE_WEAPONS);
+				pline("You can now learn the missile weapon skill!");
+				P_MAX_SKILL(P_MISSILE_WEAPONS) = P_BASIC;
+			} else if (P_MAX_SKILL(P_MISSILE_WEAPONS) == P_BASIC) {
+				P_MAX_SKILL(P_MISSILE_WEAPONS) = P_SKILLED;
+				pline("You can now become skilled with missile weapons!");
+			} else if (P_MAX_SKILL(P_MISSILE_WEAPONS) == P_SKILLED) {
+				P_MAX_SKILL(P_MISSILE_WEAPONS) = P_EXPERT;
+				pline("You can now become expert with missile weapons!");
+			} else if (P_MAX_SKILL(P_MISSILE_WEAPONS) == P_EXPERT) {
+				P_MAX_SKILL(P_MISSILE_WEAPONS) = P_MASTER;
+				pline("You can now become master with missile weapons!");
+			} else if (P_MAX_SKILL(P_MISSILE_WEAPONS) == P_MASTER) {
+				P_MAX_SKILL(P_MISSILE_WEAPONS) = P_GRAND_MASTER;
+				pline("You can now become grand master with missile weapons!");
+			} else if (P_MAX_SKILL(P_MISSILE_WEAPONS) == P_GRAND_MASTER) {
+				P_MAX_SKILL(P_MISSILE_WEAPONS) = P_SUPREME_MASTER;
+				pline("You can now become supreme master with missile weapons!");
+			} else pline("Sadly your knowledge of the missile weapon skill is already maxed.");
+
+		    }
+
+		    if (otmp && otmp->oartifact == ART_SHOTTE_RAIGHT) {
+			You_feel("more capable of firing a bow...");
+
+			if (P_MAX_SKILL(P_BOW) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(P_BOW);
+				pline("You can now learn the bow skill!");
+				P_MAX_SKILL(P_BOW) = P_SKILLED;
+			} else if (P_MAX_SKILL(P_BOW) == P_UNSKILLED) {
+				unrestrict_weapon_skill(P_BOW);
+				pline("You can now learn the bow skill!");
+				P_MAX_SKILL(P_BOW) = P_SKILLED;
+			} else if (P_MAX_SKILL(P_BOW) == P_BASIC) {
+				P_MAX_SKILL(P_BOW) = P_EXPERT;
+				pline("You can now become expert with bows!");
+			} else if (P_MAX_SKILL(P_BOW) == P_SKILLED) {
+				P_MAX_SKILL(P_BOW) = P_MASTER;
+				pline("You can now become master with bows!");
+			} else if (P_MAX_SKILL(P_BOW) == P_EXPERT) {
+				P_MAX_SKILL(P_BOW) = P_GRAND_MASTER;
+				pline("You can now become grand master with bows!");
+			} else if (P_MAX_SKILL(P_BOW) == P_MASTER) {
+				P_MAX_SKILL(P_BOW) = P_SUPREME_MASTER;
+				pline("You can now become supreme master with bows!");
+			} else if (P_MAX_SKILL(P_BOW) == P_GRAND_MASTER) {
+				P_MAX_SKILL(P_BOW) = P_SUPREME_MASTER;
+				pline("You can now become supreme master with bows!");
+			} else pline("Sadly your knowledge of the bow skill is already maxed.");
+
+		    }
+
+		    if (otmp && otmp->oartifact == ART_HEIDENEI) {
+			pline("Something seems to improve your ability to use a sling...");
+			pline("Check out the #enhance menu to see what's changed!");
+
+			if (P_MAX_SKILL(P_SLING) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(P_SLING);
+				P_MAX_SKILL(P_SLING) = rn2(2) ? P_SKILLED : P_EXPERT;
+			} else if (P_MAX_SKILL(P_SLING) == P_UNSKILLED) {
+				unrestrict_weapon_skill(P_SLING);
+				P_MAX_SKILL(P_SLING) = rn2(2) ? P_SKILLED : P_EXPERT;
+			} else if (P_MAX_SKILL(P_SLING) == P_BASIC) {
+				P_MAX_SKILL(P_SLING) = rn2(2) ? P_MASTER : P_EXPERT;
+			} else if (P_MAX_SKILL(P_SLING) == P_SKILLED) {
+				P_MAX_SKILL(P_SLING) = rn2(2) ? P_MASTER : P_GRAND_MASTER;
+			} else if (P_MAX_SKILL(P_SLING) == P_EXPERT) {
+				P_MAX_SKILL(P_SLING) = rn2(2) ? P_SUPREME_MASTER : P_GRAND_MASTER;
+			} else if (P_MAX_SKILL(P_SLING) == P_MASTER) {
+				P_MAX_SKILL(P_SLING) = P_SUPREME_MASTER;
+			} else if (P_MAX_SKILL(P_SLING) == P_GRAND_MASTER) {
+				P_MAX_SKILL(P_SLING) = P_SUPREME_MASTER;
+			} else pline("Sadly your knowledge of the sling skill is already maxed.");
 
 		    }
 
@@ -5070,6 +5377,10 @@ skillswapredo:
 			otmp->quan += 200;
 			otmp->owt = weight(otmp);
 		    }
+		    if (otmp && otmp->oartifact == ART_FIRSTACKE) {
+			otmp->quan += 15;
+			otmp->owt = weight(otmp);
+		    }
 		    if (otmp && otmp->oartifact == ART_ITAK_HONE) {
 			otmp->quan += 4;
 			otmp->owt = weight(otmp);
@@ -5332,6 +5643,12 @@ skillswapredo:
 		    }
 		    if (otmp && otmp->oartifact == ART_QUASIMAGICAL_SHINE) {
 			otmp->age *= 3;
+		    }
+		    if (otmp && otmp->oartifact == ART_WHILEHOLD) {
+			otmp->age *= 3;
+		    }
+		    if (otmp && otmp->oartifact == ART_SUCKSTRIKE) {
+			otmp->age *= 5;
 		    }
 		    if (otmp && otmp->oartifact == ART_LASTDARK) {
 			otmp->age *= 10;
@@ -6074,6 +6391,9 @@ struct monst *mon;
 			case ART_DAMNBLAST:
 			case ART_RITUAL_RINGED_SPEAR:
 			case ART_SUPAHIT:
+			case ART_BANGSPRANG:
+			case ART_BLACK_MAW:
+			case ART_DEATH_MAW:
 			case ART_SCALPEL_OF_LIFE_AND_DEATH:
 			case ART_NADJA_S_BROKEN_NAIL:
 			case ART_FAMOUS_LANCE:
@@ -8362,6 +8682,70 @@ chargingchoice:
 
 		*/
 
+		if (obj->oartifact == ART_PARASITIC_GROWTH) {
+			useupall(obj);
+			FastMetabolismEffect += rnz(50000);
+
+			if (P_MAX_SKILL(P_SYMBIOSIS) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(P_SYMBIOSIS);
+				pline("You can now learn the symbiosis skill!");
+			} else if (P_MAX_SKILL(P_SYMBIOSIS) == P_UNSKILLED) {
+				unrestrict_weapon_skill(P_SYMBIOSIS);
+				pline("You can now learn the symbiosis skill!");
+				P_MAX_SKILL(P_SYMBIOSIS) = P_BASIC;
+			} else if (P_MAX_SKILL(P_SYMBIOSIS) == P_BASIC) {
+				P_MAX_SKILL(P_SYMBIOSIS) = P_SKILLED;
+				pline("You can now become skilled in symbiosis!");
+			} else if (P_MAX_SKILL(P_SYMBIOSIS) == P_SKILLED) {
+				P_MAX_SKILL(P_SYMBIOSIS) = P_EXPERT;
+				pline("You can now become expert in symbiosis!");
+			} else if (P_MAX_SKILL(P_SYMBIOSIS) == P_EXPERT) {
+				P_MAX_SKILL(P_SYMBIOSIS) = P_MASTER;
+				pline("You can now become master in symbiosis!");
+			} else if (P_MAX_SKILL(P_SYMBIOSIS) == P_MASTER) {
+				P_MAX_SKILL(P_SYMBIOSIS) = P_GRAND_MASTER;
+				pline("You can now become grand master in symbiosis!");
+			} else if (P_MAX_SKILL(P_SYMBIOSIS) == P_GRAND_MASTER) {
+				P_MAX_SKILL(P_SYMBIOSIS) = P_SUPREME_MASTER;
+				pline("You can now become supreme master in symbiosis!");
+			} else pline("Sadly your knowledge of the symbiosis skill is already maxed.");
+
+			break;
+		}
+
+		if (obj->oartifact == ART_CURVEDRATCH) {
+			register struct obj *radcig;
+			radcig = mksobj(rnd_class(SCIMITAR, HIGH_ELVEN_WARSWORD), TRUE, FALSE, FALSE);
+			if (radcig) {
+				(void) pickup_object(radcig, radcig->quan, TRUE, TRUE);
+
+				if (uwep) setnotworn(uwep);
+				if (bimanual(radcig)) {
+					if (uswapwep) uswapwepgone();
+					if (uarms) remove_worn_item(uarms, TRUE);
+				}
+				if (!uwep) setuwep(radcig, FALSE, TRUE);
+				if (radcig) curse(radcig);
+				pline("You're suddenly wielding a scimitar!");
+			}
+
+			break;
+		}
+
+		if (obj->oartifact == ART_JAN_S_GRUMBLEBUMBLE) {
+			if (uwep && (uwep == obj)) {
+				setnotworn(uwep);
+				pline("You're not wielding the stone anymore.");
+			} else {
+				pline("%s", nothing_happens);
+				if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+					pline("Oh wait, actually something bad happens...");
+					badeffect();
+				}
+			}
+			break;
+		}
+
 		if (obj->oartifact == ART_CLIMXIAN_WORSHIP) {
 			if (u.ragnaroktimer) {
 				pline("Hmm, that didn't do anything.");
@@ -10504,7 +10888,7 @@ tscheinschroll:
 				uchocitem->quan = 1;
 				uchocitem->known = uchocitem->dknown = uchocitem->bknown = uchocitem->rknown = 1;
 				uchocitem->owt = weight(uchocitem);
-				uchocitem->cursed = uchocitem->hvycurse = uchocitem->prmcurse = uchocitem->morgcurse = uchocitem->evilcurse = uchocitem->bbrcurse = uchocitem->stckcurse = 0;
+				uncurse_completely(uchocitem, TRUE);
 				uchocitem->blessed = TRUE;
 				uchocitem->finalcancel = TRUE;
 				dropy(uchocitem);

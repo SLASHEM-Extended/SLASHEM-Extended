@@ -333,6 +333,7 @@ moveloop()
 			if (uarmc && uarmc->oartifact == ART_BLEBLE___) monclock *= 2;
 			if (uarmf && uarmf->oartifact == ART_CHRRRRRRR) monclock *= 2;
 			if (issuxxor) monclock *= 2;
+			if (uwep && uwep->oartifact == ART_FEEBILITY) monclock *= 2;
 			if (autismringcheck(ART_BETTER_GET_RID_QUICKLY)) monclock *= 2; /* doesn't stack if you wear two, this is by design --Amy */
 			if (uarm && uarm->oartifact == ART_ISIMOUD) monclock *= 2;
 			if (uarmu && uarmu->oartifact == ART_FIRST_THERE_WE_WERE) monclock *= 2;
@@ -11729,6 +11730,10 @@ newbossO:
 		}
 
 		if ((MommaBugEffect || u.uprops[MOMMA_BUG].extrinsic || (uimplant && uimplant->oartifact == ART_DEINE_MUDDA) || have_mommystone()) && !rn2(100)) {
+			randomcuss();
+		}
+
+		if (have_grumblebumble() && !rn2(100)) {
 			randomcuss();
 		}
 

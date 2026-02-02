@@ -7233,7 +7233,7 @@ boolean noisy;
 	if (uarms) {
 	    if (noisy) already_wearing(an(c_shield));
 	    err++;
-	} else if (uwep && bimanual(uwep) && otmp->otyp != GRIM_SHIELD && otmp->oartifact != ART_EASY_HOLD && !(uwep && otmp->oartifact == ART_OFFBOW && (objects[uwep->otyp].oc_skill == P_BOW)) && !Race_if(PM_THRALL) && !Race_if(PM_URGOTH) && !Race_if(PM_ZAUR) && !Race_if(PM_WYLVAN) ) {
+	} else if (uwep && bimanual(uwep) && otmp->otyp != GRIM_SHIELD && uwep->oartifact != ART_UNICR_N && otmp->oartifact != ART_EASY_HOLD && !(uwep && otmp->oartifact == ART_OFFBOW && (objects[uwep->otyp].oc_skill == P_BOW)) && !Race_if(PM_THRALL) && !Race_if(PM_URGOTH) && !Race_if(PM_ZAUR) && !Race_if(PM_WYLVAN) ) {
 	    if (noisy) 
 		You("cannot wear a shield while wielding a two-handed %s.",
 		    is_sword(uwep) ? c_sword :
@@ -8278,6 +8278,7 @@ find_ac()
 	if (uarmc && uarmc->oartifact == ART_ARGAGA) uac -= 2;
 	if (uarm && uarm->oartifact == ART_PLATFLAT) uac -= 7;
 	if (uwep && uwep->oartifact == ART_RHALALALALALAAAAR) uac -= 6;
+	if (uwep && uwep->oartifact == ART_WARBOEMMEN) uac -= 5;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_RHALALALALALAAAAR) uac -= 6;
 	if (uarmf && uarmf->oartifact == ART_THICK_PLATFORM_CRAZE) uac -= 2;
 	if (uwep && uwep->oartifact == ART_SUPERCHANT) uac -= 10;

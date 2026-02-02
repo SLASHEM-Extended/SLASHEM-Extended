@@ -3376,6 +3376,15 @@ struct obj *book2;
 
 	*/
 
+	if (book2->oartifact == ART_AMY_WHY_DO_YOU_ADD_ALL_THO) {
+		nexus_swap();
+	}
+
+	if (book2->oartifact == ART_LOOKING_FOR_A_CURE_FOR_MAD) {
+		You_feel("much less sane than before.");
+		reducesanity(rnz(100));
+	}
+
 	if (book2->oartifact == ART_PURPLE_RAIN__PURPLE_RAIN__) {
 		register struct monst *prainmon;
 		int purplerain = rn1(3,2);
@@ -7797,6 +7806,7 @@ castanyway:
 			uwep->age += energy;
 			if (uwep->otyp == ORANGE_LIGHTSABER) uwep->age += (energy * rnd(2));
 			if (uwep->oartifact == ART_DESANN_S_WRATH) uwep->age += (energy * rnd(2));
+			if (uwep->oartifact == ART_SUCKSTRIKE) uwep->age += (energy * 2);
 			pline("Your lightsaber is charged a bit.");
 		}
 
@@ -16500,6 +16510,8 @@ int spell;
 	if (uarms && uarms->oartifact == ART_HEAVE_FIELD) chance -= 20;
 	if (uarmh && uarmh->oartifact == ART_FREDERIK_S_COMBAT_HELMET) chance -= 15;
 	if (uarmh && uarmh->oartifact == ART_FRIEDRICH_S_BATTLE_VISOR) chance -= 20;
+	if (uwep && uwep->oartifact == ART_SUCKSTRIKE) chance -= 20;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SUCKSTRIKE) chance -= 20;
 	if (StrongMagicVacuum) chance -= 50;
 
 	if (Race_if(PM_PLAYER_GOLEM)) {

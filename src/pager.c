@@ -5137,6 +5137,10 @@ static NEARDATA const char * const demagoguelines[] = {
 "Our police force didn't kill a harmless, peaceful civilian! He was armed, and pointed his gun at our officers! So of course he got shot, after all the officers were fearing for their lives and it was 'shoot or be shot' for them!",
 "That crazed mass murderer of a president needs to go! Even his own party members are openly voicing their desire to get rid of him, which proves that he's unfit for his office and every day that he stays in charge is a lost day!",
 "If that bomb was to explode, the world would be a better place...", /* from Fallout 3, regarding the bomb in Megaton */
+"We know exactly what we want, and it's no Greens and no left-wing extremists!",
+"We need to remove all the right-wing extremists, they're not good for our country!",
+"We need to start a big riot where we carry concealed guns and kick police cars to show them what we think of their oppression!",
+"The assholes from the other parties should heed the rules of democracy, which state that every party gets their fair chance! If our party happens to get the majority of votes, that just means the people identify with our position more than with the other parties' positions, and that's no reason for those other parties to engage in illegal actions like tearing down our election posters or threatening our representatives!",
 };
 
 static NEARDATA const char * const longinglines[] = {

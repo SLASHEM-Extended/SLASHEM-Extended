@@ -783,7 +783,7 @@ moverock()
 		 if (Blind) feel_location(sx,sy);
 	cannot_push:
 	    if (throws_rocks(youmonst.data) || (uarmg && uarmg->oartifact == ART_MOUNTAIN_FISTS) ) {
-		if (u.usteed && !(uwep && uwep->oartifact == ART_SORTIE_A_GAUCHE) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && !FemtrapActiveKerstin && !bmwride(ART_JAFARO_ON_TOUR) && !(bmwride(ART_DEEPER_LAID_BMW)) && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) ) {
+		if (u.usteed && !(uwep && uwep->oartifact == ART_SORTIE_A_GAUCHE) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && !FemtrapActiveKerstin && !bmwride(ART_JAFARO_ON_TOUR) && !bmwride(ART_MARIKE_S_WALL_BUTT) && !(bmwride(ART_DEEPER_LAID_BMW)) && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) ) {
 		    You("aren't skilled enough to %s %s from %s.",
 			(flags.pickup && !In_sokoban(&u.uz))
 			    ? "pick up" : "push aside",
@@ -4539,7 +4539,7 @@ dopickup()
 		return(0);
 	}
 	if (!can_reach_floor()) {
-		if (u.usteed && !(uwep && uwep->oartifact == ART_SORTIE_A_GAUCHE) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && !FemtrapActiveKerstin && !bmwride(ART_JAFARO_ON_TOUR) && !(bmwride(ART_DEEPER_LAID_BMW)) && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) )
+		if (u.usteed && !(uwep && uwep->oartifact == ART_SORTIE_A_GAUCHE) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && !FemtrapActiveKerstin && !bmwride(ART_JAFARO_ON_TOUR) && !bmwride(ART_MARIKE_S_WALL_BUTT) && !(bmwride(ART_DEEPER_LAID_BMW)) && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) )
 		    You("aren't skilled enough to reach from %s.",
 			y_monnam(u.usteed));
 		else

@@ -139,6 +139,10 @@ mayfalloffsteed()
 		if (spcsavingthrow < 75) spcsavingthrow = 75;
 	}
 
+	if (bmwride(ART_MARIKE_S_WALL_BUTT)) {
+		if (spcsavingthrow < 75) spcsavingthrow = 75;
+	}
+
 	if (opelride(SEATBELT_SADDLE)) {
 		spcsavingthrow = 75;
 		if (bmwride(ART_RULES_MAKE_SENSE)) spcsavingthrow = 90;
