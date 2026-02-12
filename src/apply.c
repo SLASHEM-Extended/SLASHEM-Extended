@@ -15,6 +15,8 @@ static const char tools_too[] = { ALL_CLASSES, TOOL_CLASS, POTION_CLASS,
 static const char tinnables[] = { ALLOW_FLOOROBJ, FOOD_CLASS, 0 };
 static NEARDATA const char recharge_type[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
 
+static int toolbroken; /* for using polearms, to check whether they got vaporized */
+
 STATIC_DCL int use_camera(struct obj *);
 STATIC_DCL int use_towel(struct obj *);
 STATIC_DCL boolean its_dead(int,int,int *);
@@ -4661,6 +4663,7 @@ use_pole (obj)
 				pline(FunnyHallu ? "You lost your stick!" : "Your weapon shatters into pieces!");
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Pochemu u vas takoy malen'kiy polovogo chlena v lyubom sluchaye?" : "Krrrrrrrtsch!");
 				useup(obj);
+				toolbroken = TRUE;
 				return (1);
 
 			}
@@ -4674,6 +4677,7 @@ use_pole (obj)
 				pline(FunnyHallu ? "You lost your stick!" : "Your weapon shatters into pieces!");
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Pochemu u vas takoy malen'kiy polovogo chlena v lyubom sluchaye?" : "Krrrrrrrtsch!");
 				useup(obj);
+				toolbroken = TRUE;
 				return (1);
 
 			}
@@ -4687,6 +4691,7 @@ use_pole (obj)
 				pline(FunnyHallu ? "You lost your stick!" : "Your weapon shatters into pieces!");
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Pochemu u vas takoy malen'kiy polovogo chlena v lyubom sluchaye?" : "Krrrrrrrtsch!");
 				useup(obj);
+				toolbroken = TRUE;
 				return (1);
 
 			}
@@ -4700,6 +4705,7 @@ use_pole (obj)
 				pline(FunnyHallu ? "You lost your stick!" : "Your weapon shatters into pieces!");
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Pochemu u vas takoy malen'kiy polovogo chlena v lyubom sluchaye?" : "Krrrrrrrtsch!");
 				useup(obj);
+				toolbroken = TRUE;
 				return (1);
 
 			}
@@ -4723,6 +4729,7 @@ use_pole (obj)
 			pline(FunnyHallu ? "You lost your stick!" : "Your weapon shatters into pieces!");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Pochemu u vas takoy malen'kiy polovogo chlena v lyubom sluchaye?" : "Krrrrrrrtsch!");
 			useup(obj);
+			toolbroken = TRUE;
 			if (shardluck) { /* ha! thought you could hangup cheat, eh? gtfo sucker :-P --Amy */
 				if (P_MAX_SKILL(P_POLEARMS) == P_ISRESTRICTED) {
 					unrestrict_weapon_skill(P_POLEARMS);
@@ -4776,6 +4783,7 @@ use_pole (obj)
 			pline(FunnyHallu ? "You lost your stick!" : "Your weapon shatters into pieces!");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Pochemu u vas takoy malen'kiy polovogo chlena v lyubom sluchaye?" : "Krrrrrrrtsch!");
 			useup(obj);
+			toolbroken = TRUE;
 			if (shardluck) { /* ha! thought you could hangup cheat, eh? gtfo sucker :-P --Amy */
 				if (P_MAX_SKILL(P_POLEARMS) == P_ISRESTRICTED) {
 					unrestrict_weapon_skill(P_POLEARMS);
@@ -5809,6 +5817,7 @@ doapply()
 	register boolean can_use = FALSE;
 	char class_list[MAXOCLASSES+2];
 	boolean noartispeak = FALSE; /* if item was vaporized, don't call arti_speaks because segfaults despite fail safe */
+	toolbroken = FALSE;
 
 	if (u.powerfailure || (uarmf && uarmf->oartifact == ART_BRITTA_S_MURDER_STORY) || (isselfhybrid && (moves % 3 == 0 && moves % 11 != 0) ) ) {
 		pline("Your power's down, and therefore you cannot apply anything.");
@@ -5893,7 +5902,10 @@ doapply()
 	/* Mushroom can use every weapon as a polearm, including bows, arrows etc., can be turned on via #monster --Amy */
 	if ( (Race_if(PM_PLAYER_MUSHROOM) || (uchain && uchain->oartifact == ART_ERO_ERO_ERO_ERO_MUSHROOM_M)) && obj->oclass == WEAPON_CLASS && u.mushroompoles) {
 
-		if (uwep && uwep == obj) res = use_pole(obj);
+		if (uwep && uwep == obj) {
+			res = use_pole(obj);
+			if (toolbroken) noartispeak = TRUE;
+		}
 		else {
 			pline("You must wield this item first if you want to apply it!"); 
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -5994,10 +6006,14 @@ dyechoice:
 	case SECRET_SOUND_WHIP:
 
 		if (obj->oartifact == ART_WOETSCHERSMAG || obj->oartifact == ART_SIMON_S_ULTRALONGNESS) {
-			if (uwep && uwep == obj) res = use_pole(obj);
-			else {pline("You must wield this item first if you want to apply it!"); 
+			if (uwep && uwep == obj) {
+				res = use_pole(obj);
+				if (toolbroken) noartispeak = TRUE;
+			} else {
+				pline("You must wield this item first if you want to apply it!"); 
 				if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
-				wield_tool(obj, "swing"); }
+				wield_tool(obj, "swing");
+			}
 			break;
 		}
 
@@ -6150,15 +6166,22 @@ dyechoice:
 	case ETERNIUM_MATTOCK:
 	case DWARVISH_MATTOCK: /* KMH, balance patch -- the mattock is a pick, too */
 		if (uwep && uwep == obj) res = use_pick_axe(obj);
-		else {pline("You must wield this item first if you want to apply it!"); 
+		else {
+			pline("You must wield this item first if you want to apply it!"); 
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
-			wield_tool(obj, "swing"); }
+			wield_tool(obj, "swing");
+		}
 		break;
 	case FISHING_POLE:
-		if (uwep && uwep == obj) res = use_pole(obj);
-		else {pline("You must wield this item first if you want to apply it!"); 
+		if (uwep && uwep == obj) {
+			res = use_pole(obj);
+			if (toolbroken) noartispeak = TRUE;
+		}
+		else {
+			pline("You must wield this item first if you want to apply it!"); 
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
-			wield_tool(obj, "swing"); }
+			wield_tool(obj, "swing");
+		}
 		break;
 	case TINNING_KIT:
 		use_tinning_kit(obj);
@@ -6430,6 +6453,7 @@ dyechoice:
 
 		if (uwep && uwep == obj && uwep->lamplit && uwep->altmode) {
 			res = use_pole(obj);
+			if (toolbroken) noartispeak = TRUE;
 			break;
 		}
 
@@ -6453,6 +6477,7 @@ dyechoice:
 
 		if (uwep && uwep == obj && uwep->lamplit) {
 			res = use_pole(obj);
+			if (toolbroken) noartispeak = TRUE;
 			break;
 		}
 
@@ -8539,10 +8564,14 @@ chargingchoice:
 		/* KMH, balance patch -- polearms can strike at a distance */
 
 		if (is_applypole(obj)) {
-			if (uwep && uwep == obj) res = use_pole(obj);
-			else {pline("You must wield this item first if you want to apply it!"); 
+			if (uwep && uwep == obj) {
+				res = use_pole(obj);
+				if (toolbroken) noartispeak = TRUE;
+			} else {
+				pline("You must wield this item first if you want to apply it!"); 
 				if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
-				wield_tool(obj, "swing"); }
+				wield_tool(obj, "swing");
+			}
 			break;
 		} else if (is_pick(obj) || is_axe(obj) || is_antibar(obj) ) {
 			if (uwep && uwep == obj) res = use_pick_axe(obj);
