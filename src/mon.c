@@ -8196,6 +8196,8 @@ xkilled(mtmp, dest)
 			    && typ != ARMORED_LEASH
 			    && typ != INKA_LEASH
 			    && typ != ADAMANT_LEASH
+			    && typ != RODEO_LEASH
+			    && typ != BUGGED_LEASH
 			    && typ != FIGURINE
 			    && (otmp->owt > 3 ||
 				objects[typ].oc_big oc_bimanual/oc_bulky ||

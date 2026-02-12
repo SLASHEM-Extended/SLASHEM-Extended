@@ -3837,6 +3837,8 @@ E void evilskilldecrease(void);
 E void dataskilldecrease(void);
 E void skilltraininghalve(void);
 E void doubleskilltraining(void);
+E void improveskillcap(void);
+E void doubleskillcapreduct(void);
 E void additionalskilltraining(int);
 E void boostknownskillcap(void);
 E void unrestrictskillchoice(void);

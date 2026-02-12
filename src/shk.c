@@ -992,10 +992,7 @@ register struct obj *obj, *merge;
 
 	if (obj == usaddle) dismount_steed(DISMOUNT_GENERIC);
 
-	if (obj->otyp == LEATHER_LEASH && obj->leashmon) o_unleash(obj);
-	if (obj->otyp == ARMORED_LEASH && obj->leashmon) o_unleash(obj);
-	if (obj->otyp == INKA_LEASH && obj->leashmon) o_unleash(obj);
-	if (obj->otyp == ADAMANT_LEASH && obj->leashmon) o_unleash(obj);
+	if (is_leash_type(obj) && obj->leashmon) o_unleash(obj);
 	if (obj->oclass == SPBOOK_CLASS) book_disappears(obj);
 	if (obj->oclass == FOOD_CLASS) food_disappears(obj);
 	/* [ALI] Enforce new rules: Containers must have their contents
@@ -4817,7 +4814,7 @@ register int fall;
 		obj2 = obj->nobj;
 		if ((obj->owornmask & ~(W_SWAPWEP|W_QUIVER)) != 0 ||
 			(obj == uswapwep && u.twoweap) ||
-			(obj->otyp == LEATHER_LEASH && obj->leashmon) || (obj->otyp == ARMORED_LEASH && obj->leashmon) || (obj->otyp == INKA_LEASH && obj->leashmon) || (obj->otyp == ADAMANT_LEASH && obj->leashmon) ) continue;
+			(is_leash_type(obj) && obj->leashmon) ) continue;
 		if (obj == current_wand) continue;
 		setnotworn(obj);
 		freeinv(obj);

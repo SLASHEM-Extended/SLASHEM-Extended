@@ -30782,6 +30782,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"Incoming message for Player 1. The message is from 'Nicole'. It reads: 'No! Stay away! You may not do anything to me!'",
 	"Incoming message for Player 1. The message is from 'Nicole'. It reads: 'Oh god, you're a sexual predator! I gotta warn all of my friends about you!'",
 	"Incoming message for Player 1. The message is from 'Nicole'. It reads: 'I gotta ensure that you never get close to me again!'",
+	"You feel a permament loss of skill knowledge!",
 
 };
 

@@ -1207,7 +1207,7 @@ register int after;	/* this is extra fast monster movement */
 
 		/* if leashed, we drag him along.
 		 * ....... but that doesn't mean the dog should just fucking stop following when he gets too far away!! --Amy */
-		/*if (mtmp->mleashed && distu(nx, ny) > 4) continue;*/
+		if (mtmp->mleashed && ((get_mleash_otyp(mtmp) == BUGGED_LEASH) || (get_mleash_artifact_type(mtmp) == ART_ELIJAH_S_MIGHT) || (get_mleash_artifact_type(mtmp) == ART_INTERMINABLE_DILEMMA) ) && distu(nx, ny) > 4) continue;
 
 		/* if a guardian, try to stay close by choice */
 		if ((!has_edog || is_spell) &&

@@ -6015,7 +6015,7 @@ goodeffect()
 					     obj->otyp == STONE_OF_MAGIC_RESISTANCE ||
 					     is_nastygraystone(obj) ||
 					     is_feminismstone(obj) ||
-					     (obj->otyp == LEATHER_LEASH && obj->leashmon) || (obj->otyp == ARMORED_LEASH && obj->leashmon) || (obj->otyp == INKA_LEASH && obj->leashmon) || (obj->otyp == ADAMANT_LEASH && obj->leashmon) ) && !stack_too_big(obj) ) {
+					     (is_leash_type(obj) && obj->leashmon)) && !stack_too_big(obj) ) {
 						uncurse(obj, FALSE);
 					}
 
@@ -16396,6 +16396,12 @@ peffects(otmp)
 			}
 		}
 
+		if (otmp->oartifact == ART_MODERNEST_HEALING_METHOD) {
+			if (flags.female) u.genitalhealth_f = 100;
+			else u.genitalhealth_m = 100;
+			Your("%s is healed!", flags.female ? "genital area" : "foreskin");
+		}
+
 		if (otmp->cursed) {
 			unkn++;
 			You("decide to recover yourself.");
@@ -19036,10 +19042,7 @@ boolean canarti;
 		owornmask &= ~W_TOOL;
 	    otyp2 = obj->otyp;
 	    obj->otyp = otyp;
-	    if (obj->otyp == LEATHER_LEASH && obj->leashmon) o_unleash(obj);
-	    if (obj->otyp == ARMORED_LEASH && obj->leashmon) o_unleash(obj);
-	    if (obj->otyp == INKA_LEASH && obj->leashmon) o_unleash(obj);
-	    if (obj->otyp == ADAMANT_LEASH && obj->leashmon) o_unleash(obj);
+	    if (is_leash_type(obj) && obj->leashmon) o_unleash(obj);
 	    remove_worn_item(obj, TRUE);
 	    obj->otyp = otyp2;
 	    obj->owornmask = owornmask;

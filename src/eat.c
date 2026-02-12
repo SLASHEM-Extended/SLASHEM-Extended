@@ -6205,13 +6205,7 @@ eatspecial() /* called after eating non-food */
 	}
 	if (otmp->oclass == RING_CLASS || otmp->oclass == AMULET_CLASS || otmp->oclass == IMPLANT_CLASS)
 		eataccessory(otmp);
-	else if (otmp->otyp == LEATHER_LEASH && otmp->leashmon)
-		o_unleash(otmp);
-	else if (otmp->otyp == ARMORED_LEASH && otmp->leashmon)
-		o_unleash(otmp);
-	else if (otmp->otyp == INKA_LEASH && otmp->leashmon)
-		o_unleash(otmp);
-	else if (otmp->otyp == ADAMANT_LEASH && otmp->leashmon)
+	else if (is_leash_type(otmp) && (otmp->leashmon))
 		o_unleash(otmp);
 
 	/* KMH -- idea by "Tommy the Terrorist" */

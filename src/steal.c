@@ -488,19 +488,7 @@ gotobj:
 	    }
 	}
 
-	if (otmp->otyp == LEATHER_LEASH && otmp->leashmon) {
-	    if (monkey_business && otmp->cursed) goto cant_take;
-	    o_unleash(otmp);
-	}
-	if (otmp->otyp == ARMORED_LEASH && otmp->leashmon) {
-	    if (monkey_business && otmp->cursed) goto cant_take;
-	    o_unleash(otmp);
-	}
-	if (otmp->otyp == INKA_LEASH && otmp->leashmon) {
-	    if (monkey_business && otmp->cursed) goto cant_take;
-	    o_unleash(otmp);
-	}
-	if (otmp->otyp == ADAMANT_LEASH && otmp->leashmon) {
+	if (is_leash_type(otmp) && otmp->leashmon) {
 	    if (monkey_business && otmp->cursed) goto cant_take;
 	    o_unleash(otmp);
 	}

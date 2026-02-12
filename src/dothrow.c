@@ -912,6 +912,10 @@ newbossO:
 		buzz(10, rnd(4), u.ux, u.uy, u.dx, u.dy);
 	}
 
+	if (launcher && obj && obj->oartifact == ART_DRUNKROCK) {
+		artilist[ART_DRUNKROCK].attk.adtyp = randartiattacktype();
+	}
+
 	if (launcher && obj && obj->oartifact == ART_SUFFOCATION_BREATH && u.ualign.record > 0) {
 		buzz(16, 10, u.ux, u.uy, u.dx, u.dy); /* poison gas */
 		increasesincounter(1);
@@ -935,6 +939,12 @@ newbossO:
 		buzz(1, 1, u.ux, u.uy, u.dx, u.dy); /* 1, not 11, or it'll explode! */
 	}
 
+	if (obj && obj->oartifact == ART_SUCKSTRIKE && obj->lamplit) {
+		InaccuracyBug += 100;
+		AllStatsAreLower += 100;
+		RedincBug += 100;
+	}
+
 	/* beam-spell-like effects by Amy: these will define "pseudo", which then has to be freed later */
 	if (uwep && obj && ammo_and_launcher(obj,uwep) && uwep->oartifact == ART_DECREO_TALAM_LA_NOSTER_ && !rn2(20)) {
 		pseudo = mksobj(SPE_SLOW_MONSTER, FALSE, 2, FALSE);
@@ -948,12 +958,6 @@ newbossO:
 		/* now proc the slow monster effect */
 		verbalize("Decreo talam la noster!");
 		weffects(pseudo);
-	}
-
-	if (obj && obj->oartifact == ART_SUCKSTRIKE && obj->lamplit) {
-		InaccuracyBug += 100;
-		AllStatsAreLower += 100;
-		RedincBug += 100;
 	}
 
 	if (tech_inuse(T_BLADE_ANGER) && (objects[obj->otyp].oc_skill == -P_SHURIKEN || objects[obj->otyp].oc_skill == P_SHURIKEN ) ) {
@@ -3701,6 +3705,9 @@ evasionchancedone:
 		    }
 		    if (obj->oartifact == ART_LAST_LIKE_FOREVER) {
 			if (rn2(25)) broken = 0;
+		    }
+		    if (obj->oartifact == ART_DIVELLIN) {
+			if (rn2(10)) broken = 0;
 		    }
 
 		    if (objects[otyp].oc_material == MT_BAMBOO && broken && !rn2(4)) broken = 0;

@@ -837,6 +837,9 @@ init_randarts()
 	artilist[ART_RHINE_CROSSING].otyp = randartsaddle();
 	artilist[ART_MARLOWE_S_CAMEL].otyp = randartsaddle();
 	artilist[ART_INFINITE_RANGE].otyp = randartleash();
+	artilist[ART_LUCY_S_CONFETTI_SHOWER].otyp = randartleash();
+	artilist[ART_ELIJAH_S_MIGHT].otyp = randartleash();
+	artilist[ART_MELANIE_S_ANIMOTALK].otyp = randartleash();
 	artilist[ART_FEELDRAWERLOAD].otyp = randartelementhorn();
 	artilist[ART_A_HOHES_U].otyp = randartelementhorn();
 	artilist[ART_TURN_TO_ELEVEN].otyp = randartelementhorn();
@@ -891,6 +894,7 @@ init_randarts()
 	artilist[ART_SPECIAL_LACK].otyp = randartmeleeweaponX();
 	artilist[ART_WING_WING].otyp = randartmeleeweaponX();
 	artilist[ART_CARMOUFALSCH].otyp = randartspellbookX();
+	artilist[ART_YEAH__YEAH__ON_BARAKTO_N_G].otyp = randartspellbookX();
 	artilist[ART_NO__THEY_MAY_NOT_DO_THIS_].otyp = randartspellbookX();
 	artilist[ART_AMY_WHY_DO_YOU_ADD_ALL_THO].otyp = randartspellbookX();
 	artilist[ART_AND_A_SWORD_TAKES_ME_III_A].otyp = randartspellbookX();
@@ -1320,6 +1324,9 @@ init_randarts()
 	artilist[ART_KERSTIN_S_CLEARSOUND].otyp = randartsaddleX();
 	artilist[ART_SADDLE_OF_BRYNHILDR].otyp = randartsaddleX();
 	artilist[ART_ANNOYING_PET_MONITOR].otyp = randartleashX();
+	artilist[ART_STEFAN_S_ETERNAL_GRIN].otyp = randartleashX();
+	artilist[ART_INTERMINABLE_DILEMMA].otyp = randartleashX();
+	artilist[ART_MELANIE_S_SNYFFYSOUND].otyp = randartleashX();
 	artilist[ART_DALETO].otyp = randartelementhornX();
 	artilist[ART_SPILBOMATE].otyp = randartelementhornX();
 	artilist[ART_MAMA_LAUDA].otyp = randartelementhornX();
@@ -2996,6 +3003,16 @@ register boolean mod;
 		    }
 		    if (otmp && otmp->oartifact == ART_POMPOUS_INGENIATE_ART) {
 			otmp->spe *= 2;
+		    }
+		    if (otmp && otmp->oartifact == ART_DSCHUEUEUEUEUEUE___) {
+			if ((u.weapon_slots < 1) && u.skills_advanced) {
+				You_feel("a permament loss of skill knowledge!");
+				lose_last_spent_skill(); /* no refund */
+			} else if (u.weapon_slots > 0) {
+				u.weapon_slots--;
+				You_feel("a permament loss of skill knowledge!");
+			}
+
 		    }
 		    if (otmp && otmp->oartifact == ART_FEELDRAWERLOAD) {
 			if (otmp->spe > 0) otmp->spe *= 3;
@@ -8681,6 +8698,36 @@ chargingchoice:
 		}
 
 		*/
+
+		if (obj->oartifact == ART_DECOUD_IT) {
+			useupall(obj);
+			give_code_number();
+			break;
+		}
+
+		if (obj->oartifact == ART_RARITYPROGRAM) {
+			useupall(obj);
+			You("feel very skillful, and gain an extra skill slot!");
+			u.weapon_slots++;
+			break;
+		}
+
+		if (obj->oartifact == ART_NASTY_LAD) {
+
+			u.youaredead = 1;
+			You("die.");
+
+			killer = "performing genital surgery";
+			killer_format = KILLED_BY;
+			done(DIED);
+			u.youaredead = 0;
+
+			if (flags.female) u.genitalhealth_f = 100;
+			else u.genitalhealth_m = 100;
+			Your("%s is healed!", flags.female ? "genital area" : "foreskin");
+
+			break;
+		}
 
 		if (obj->oartifact == ART_PARASITIC_GROWTH) {
 			useupall(obj);

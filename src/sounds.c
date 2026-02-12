@@ -6609,7 +6609,7 @@ metalmafiaagain:
 			any.a_int = 15;
 			if (mtmp->nurse_genitalhealing) add_menu(tmpwin, NO_GLYPH, &any , 'z', 0, ATR_NONE, "Genital Healing", MENU_UNSELECTED);
 			any.a_int = 16;
-			if (mtmp->nurse_genitalhealing) add_menu(tmpwin, NO_GLYPH, &any , 'j', 0, ATR_NONE, "Circumcision", MENU_UNSELECTED);
+			if (mtmp->nurse_incision) add_menu(tmpwin, NO_GLYPH, &any , 'j', 0, ATR_NONE, "Circumcision", MENU_UNSELECTED);
 
 			end_menu(tmpwin, "Services Available:");
 			n = select_menu(tmpwin, PICK_ONE, &selected);

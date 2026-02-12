@@ -3647,10 +3647,7 @@ poly_obj(obj, id, degradation)
 	    if (otmp->owornmask & W_TOOL && otmp->otyp != BLINDFOLD && otmp->otyp != EYECLOSER && otmp->otyp != DRAGON_EYEPATCH && otmp->otyp != CONDOME && otmp->otyp != PROTECTIVE_GLASSES && otmp->otyp != CLIMBING_SET && otmp->otyp != DEFUSING_BOX && otmp->otyp != SOFT_CHASTITY_BELT &&
 	      otmp->otyp != TOWEL && otmp->otyp != LENSES && otmp->otyp != RADIOGLASSES && otmp->otyp != SHIELD_PATE_GLASSES && otmp->otyp != BOSS_VISOR && otmp->otyp != NIGHT_VISION_GOGGLES)
 		otmp->owornmask &= ~W_TOOL;
-	    if (obj->otyp == LEATHER_LEASH && obj->leashmon) o_unleash(obj);
-	    if (obj->otyp == ARMORED_LEASH && obj->leashmon) o_unleash(obj);
-	    if (obj->otyp == INKA_LEASH && obj->leashmon) o_unleash(obj);
-	    if (obj->otyp == ADAMANT_LEASH && obj->leashmon) o_unleash(obj);
+	    if (is_leash_type(obj) && obj->leashmon) o_unleash(obj);
 	    if (obj_location == OBJ_INVENT) {
 		remove_worn_item(obj, TRUE);
 		setworn(otmp, otmp->owornmask);

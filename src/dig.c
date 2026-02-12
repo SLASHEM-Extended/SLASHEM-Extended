@@ -2153,16 +2153,7 @@ bury_an_obj(otmp)
 	if (otmp == uchain || obj_resists(otmp, 0, 0))
 		return(otmp2);
 
-	if (otmp->otyp == LEATHER_LEASH && otmp->leashmon != 0)
-		o_unleash(otmp);
-
-	if (otmp->otyp == ARMORED_LEASH && otmp->leashmon != 0)
-		o_unleash(otmp);
-
-	if (otmp->otyp == INKA_LEASH && otmp->leashmon != 0)
-		o_unleash(otmp);
-
-	if (otmp->otyp == ADAMANT_LEASH && otmp->leashmon != 0)
+	if (is_leash_type(otmp) && (otmp->leashmon != 0) )
 		o_unleash(otmp);
 
 	if (otmp == usaddle)

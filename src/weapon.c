@@ -8999,6 +8999,8 @@ boolean extraskills; /* for artifact gifts and stuff: allow them to unlock vario
 	if (obj->otyp == ARMORED_LEASH) skill = P_PETKEEPING;
 	if (obj->otyp == INKA_LEASH) skill = P_PETKEEPING;
 	if (obj->otyp == ADAMANT_LEASH) skill = P_PETKEEPING;
+	if (obj->otyp == RODEO_LEASH) skill = P_PETKEEPING;
+	if (obj->otyp == BUGGED_LEASH) skill = P_PETKEEPING;
 	if (obj->otyp == FIGURINE) skill = P_PETKEEPING;
 	if (obj->otyp == WOODEN_FLUTE) skill = P_PETKEEPING;
 	if (obj->otyp == MAGIC_FLUTE) skill = P_PETKEEPING;
@@ -11542,6 +11544,8 @@ boostskillagain:
 	}
 }
 
+/* player may pick a skill that has at least one unit of training and which isn't restricted, to double the amount of training --Amy
+ * capped at a gain of 5000 units of training in order to not make it too godawfully trivial to reach high values */
 void
 doubleskilltraining()
 {
@@ -11813,6 +11817,7 @@ doubleskilltraining()
 
 }
 
+/* player can pick a currently restricted skill, which is unlocked with a cap of basic --Amy */
 void
 unrestrictskillchoice()
 {
@@ -11999,6 +12004,464 @@ unrestrictskillchoice()
 
 }
 
+/* player can pick a non-restricted skill to boost its cap by one --Amy */
+void
+improveskillcap()
+{
+	int acquiredskill;
+	acquiredskill = 0;
+	int whichskill = P_NONE;
+
+	pline("Pick a skill to improve the cap. The prompt will loop until you actually make a choice.");
+
+	while (acquiredskill == 0) { /* ask the player what they want --Amy */
+
+	if (!P_RESTRICTED_OR_MAXXED(P_DAGGER) && yn("Do you want to boost the dagger skill?")=='y') {
+		    whichskill = P_DAGGER;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_KNIFE) && yn("Do you want to boost the knife skill?")=='y') {
+		    whichskill = P_KNIFE;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_AXE) && yn("Do you want to boost the axe skill?")=='y') {
+		    whichskill = P_AXE;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_PICK_AXE) && yn("Do you want to boost the pick-axe skill?")=='y') {
+		    whichskill = P_PICK_AXE;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_SHORT_SWORD) && yn("Do you want to boost the short sword skill?")=='y') {
+		    whichskill = P_SHORT_SWORD;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_BROAD_SWORD) && yn("Do you want to boost the broad sword skill?")=='y') {
+		    whichskill = P_BROAD_SWORD;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_LONG_SWORD) && yn("Do you want to boost the long sword skill?")=='y') {
+		    whichskill = P_LONG_SWORD;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_TWO_HANDED_SWORD) && yn("Do you want to boost the two-handed sword skill?")=='y') {
+		    whichskill = P_TWO_HANDED_SWORD;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_SCIMITAR) && yn("Do you want to boost the scimitar skill?")=='y') {
+		    whichskill = P_SCIMITAR;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_SABER) && yn("Do you want to boost the saber skill?")=='y') {
+		    whichskill = P_SABER;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_CLUB) && yn("Do you want to boost the club skill?")=='y') {
+		    whichskill = P_CLUB;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_PADDLE) && yn("Do you want to boost the paddle skill?")=='y') {
+		    whichskill = P_PADDLE;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_MACE) && yn("Do you want to boost the mace skill?")=='y') {
+		    whichskill = P_MACE;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_MORNING_STAR) && yn("Do you want to boost the morning star skill?")=='y') {
+		    whichskill = P_MORNING_STAR;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_FLAIL) && yn("Do you want to boost the flail skill?")=='y') {
+		    whichskill = P_FLAIL;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_HAMMER) && yn("Do you want to boost the hammer skill?")=='y') {
+		    whichskill = P_HAMMER;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_QUARTERSTAFF) && yn("Do you want to boost the quarterstaff skill?")=='y') {
+		    whichskill = P_QUARTERSTAFF;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_ORB) && yn("Do you want to boost the orb skill?")=='y') {
+		    whichskill = P_ORB;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_CLAW) && yn("Do you want to boost the claw skill?")=='y') {
+		    whichskill = P_CLAW;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_GRINDER) && yn("Do you want to boost the grinder skill?")=='y') {
+		    whichskill = P_GRINDER;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_POLEARMS) && yn("Do you want to boost the polearms skill?")=='y') {
+		    whichskill = P_POLEARMS;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_SPEAR) && yn("Do you want to boost the spear skill?")=='y') {
+		    whichskill = P_SPEAR;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_JAVELIN) && yn("Do you want to boost the javelin skill?")=='y') {
+		    whichskill = P_JAVELIN;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_TRIDENT) && yn("Do you want to boost the trident skill?")=='y') {
+		    whichskill = P_TRIDENT;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_LANCE) && yn("Do you want to boost the lance skill?")=='y') {
+		    whichskill = P_LANCE;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_BOW) && yn("Do you want to boost the bow skill?")=='y') {
+		    whichskill = P_BOW;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_SLING) && yn("Do you want to boost the sling skill?")=='y') {
+		    whichskill = P_SLING;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_FIREARM) && yn("Do you want to boost the firearms skill?")=='y') {
+		    whichskill = P_FIREARM;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_CROSSBOW) && yn("Do you want to boost the crossbow skill?")=='y') {
+		    whichskill = P_CROSSBOW;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_DART) && yn("Do you want to boost the dart skill?")=='y') {
+		    whichskill = P_DART;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_SHURIKEN) && yn("Do you want to boost the shuriken skill?")=='y') {
+		    whichskill = P_SHURIKEN;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_BOOMERANG) && yn("Do you want to boost the boomerang skill?")=='y') {
+		    whichskill = P_BOOMERANG;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_BOULDER_THROWING) && yn("Do you want to boost the boulder-throwing skill?")=='y') {
+		    whichskill = P_BOULDER_THROWING;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_VENOM) && yn("Do you want to boost the venom skill?")=='y') {
+		    whichskill = P_VENOM;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_WHIP) && yn("Do you want to boost the whip skill?")=='y') {
+		    whichskill = P_WHIP;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_UNICORN_HORN) && yn("Do you want to boost the unicorn horn skill?")=='y') {
+		    whichskill = P_UNICORN_HORN;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_LIGHTSABER) && yn("Do you want to boost the lightsaber skill?")=='y') {
+		    whichskill = P_LIGHTSABER;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_ATTACK_SPELL) && yn("Do you want to boost the attack spell skill?")=='y') {
+		    whichskill = P_ATTACK_SPELL;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_HEALING_SPELL) && yn("Do you want to boost the healing spell skill?")=='y') {
+		    whichskill = P_HEALING_SPELL;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_DIVINATION_SPELL) && yn("Do you want to boost the divination spell skill?")=='y') {
+		    whichskill = P_DIVINATION_SPELL;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_ENCHANTMENT_SPELL) && yn("Do you want to boost the enchantment spell skill?")=='y') {
+		    whichskill = P_ENCHANTMENT_SPELL;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_PROTECTION_SPELL) && yn("Do you want to boost the protection spell skill?")=='y') {
+		    whichskill = P_PROTECTION_SPELL;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_BODY_SPELL) && yn("Do you want to boost the body spell skill?")=='y') {
+		    whichskill = P_BODY_SPELL;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_OCCULT_SPELL) && yn("Do you want to boost the occult spell skill?")=='y') {
+		    whichskill = P_OCCULT_SPELL;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_ELEMENTAL_SPELL) && yn("Do you want to boost the elemental spell skill?")=='y') {
+		    whichskill = P_ELEMENTAL_SPELL;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_CHAOS_SPELL) && yn("Do you want to boost the chaos spell skill?")=='y') {
+		    whichskill = P_CHAOS_SPELL;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_MATTER_SPELL) && yn("Do you want to boost the matter spell skill?")=='y') {
+		    whichskill = P_MATTER_SPELL;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_RIDING) && yn("Do you want to boost the riding skill?")=='y') {
+		    whichskill = P_RIDING;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_HIGH_HEELS) && yn("Do you want to boost the high heels skill?")=='y') {
+		    whichskill = P_HIGH_HEELS;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_GENERAL_COMBAT) && yn("Do you want to boost the general combat skill?")=='y') {
+		    whichskill = P_GENERAL_COMBAT;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_SHIELD) && yn("Do you want to boost the shield skill?")=='y') {
+		    whichskill = P_SHIELD;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_BODY_ARMOR) && yn("Do you want to boost the body armor skill?")=='y') {
+		    whichskill = P_BODY_ARMOR;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_TWO_HANDED_WEAPON) && yn("Do you want to boost the two-handed weapon skill?")=='y') {
+		    whichskill = P_TWO_HANDED_WEAPON;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_TWO_WEAPON_COMBAT) && yn("Do you want to boost the two-weapon combat skill?")=='y') {
+		    whichskill = P_TWO_WEAPON_COMBAT;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_POLYMORPHING) && yn("Do you want to boost the polymorphing skill?")=='y') {
+		    whichskill = P_POLYMORPHING;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_DEVICES) && yn("Do you want to boost the devices skill?")=='y') {
+		    whichskill = P_DEVICES;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_SEARCHING) && yn("Do you want to boost the searching skill?")=='y') {
+		    whichskill = P_SEARCHING;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_SPIRITUALITY) && yn("Do you want to boost the spirituality skill?")=='y') {
+		    whichskill = P_SPIRITUALITY;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_PETKEEPING) && yn("Do you want to boost the petkeeping skill?")=='y') {
+		    whichskill = P_PETKEEPING;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_MISSILE_WEAPONS) && yn("Do you want to boost the missile weapons skill?")=='y') {
+		    whichskill = P_MISSILE_WEAPONS;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_TECHNIQUES) && yn("Do you want to boost the techniques skill?")=='y') {
+		    whichskill = P_TECHNIQUES;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_IMPLANTS) && yn("Do you want to boost the implants skill?")=='y') {
+		    whichskill = P_IMPLANTS;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_SEXY_FLATS) && yn("Do you want to boost the sexy flats skill?")=='y') {
+		    whichskill = P_SEXY_FLATS;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_MEMORIZATION) && yn("Do you want to boost the memorization skill?")=='y') {
+		    whichskill = P_MEMORIZATION;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_WEIGHT_LIFTING) && yn("Do you want to boost the weight lifting skill?")=='y') {
+		    whichskill = P_WEIGHT_LIFTING;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_GUN_CONTROL) && yn("Do you want to boost the gun control skill?")=='y') {
+		    whichskill = P_GUN_CONTROL;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_SQUEAKING) && yn("Do you want to boost the squeaking skill?")=='y') {
+		    whichskill = P_SQUEAKING;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_SYMBIOSIS) && yn("Do you want to boost the symbiosis skill?")=='y') {
+		    whichskill = P_SYMBIOSIS;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_SHII_CHO) && yn("Do you want to boost the form I (Shii-Cho) skill?")=='y') {
+		    whichskill = P_SHII_CHO;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_MAKASHI) && yn("Do you want to boost the form II (Makashi) skill?")=='y') {
+		    whichskill = P_MAKASHI;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_SORESU) && yn("Do you want to boost the form III (Soresu) skill?")=='y') {
+		    whichskill = P_SORESU;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_ATARU) && yn("Do you want to boost the form IV (Ataru) skill?")=='y') {
+		    whichskill = P_ATARU;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_SHIEN) && yn("Do you want to boost the form V (Shien) skill?")=='y') {
+		    whichskill = P_SHIEN;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_DJEM_SO) && yn("Do you want to boost the form V (Djem So) skill?")=='y') {
+		    whichskill = P_DJEM_SO;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_NIMAN) && yn("Do you want to boost the form VI (Niman) skill?")=='y') {
+		    whichskill = P_NIMAN;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_JUYO) && yn("Do you want to boost the form VII (Juyo) skill?")=='y') {
+		    whichskill = P_JUYO;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_VAAPAD) && yn("Do you want to boost the form VII (Vaapad) skill?")=='y') {
+		    whichskill = P_VAAPAD;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_WEDI) && yn("Do you want to boost the form VIII (Wedi) skill?")=='y') {
+		    whichskill = P_WEDI;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_STILETTO_HEELS) && yn("Do you want to boost the type 1: stiletto heels skill?")=='y') {
+		    whichskill = P_STILETTO_HEELS;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_CONE_HEELS) && yn("Do you want to boost the type 2: cone heels skill?")=='y') {
+		    whichskill = P_CONE_HEELS;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_BLOCK_HEELS) && yn("Do you want to boost the type 3: block heels skill?")=='y') {
+		    whichskill = P_BLOCK_HEELS;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_WEDGE_HEELS) && yn("Do you want to boost the type 4: wedge heels skill?")=='y') {
+		    whichskill = P_WEDGE_HEELS;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_BARE_HANDED_COMBAT) && yn("Do you want to boost the bare-handed combat skill?")=='y') {
+		    whichskill = P_BARE_HANDED_COMBAT;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_MARTIAL_ARTS) && yn("Do you want to boost the martial arts skill?")=='y') {
+		    whichskill = P_MARTIAL_ARTS;	acquiredskill = 1; }
+	else if (yn("Do you want to boost no skill at all?")=='y') {
+		    acquiredskill = 1; }
+	}
+
+	if (whichskill != P_NONE) {
+		if (P_MAX_SKILL(whichskill) == P_BASIC) {
+			P_MAX_SKILL(whichskill) = P_SKILLED;
+			if (P_ADVANCE(whichskill) > 20) P_ADVANCE(whichskill) = 20;
+		} else if (P_MAX_SKILL(whichskill) == P_SKILLED) {
+			P_MAX_SKILL(whichskill) = P_EXPERT;
+			if (P_ADVANCE(whichskill) > 160) P_ADVANCE(whichskill) = 160;
+		} else if (P_MAX_SKILL(whichskill) == P_EXPERT) {
+			P_MAX_SKILL(whichskill) = P_MASTER;
+			if (P_ADVANCE(whichskill) > 540) P_ADVANCE(whichskill) = 540;
+		} else if (P_MAX_SKILL(whichskill) == P_MASTER) {
+			P_MAX_SKILL(whichskill) = P_GRAND_MASTER;
+			if (P_ADVANCE(whichskill) > 1280) P_ADVANCE(whichskill) = 1280;
+		} else if (P_MAX_SKILL(whichskill) == P_GRAND_MASTER) {
+			P_MAX_SKILL(whichskill) = P_SUPREME_MASTER;
+			if (P_ADVANCE(whichskill) > 2500) P_ADVANCE(whichskill) = 2500;
+		}
+	}
+
+	pline("Check out what you got!");
+
+}
+
+/* player can pick a non-restricted skill to double its skill cap, but other skills randomly have their cap reduced --Amy
+ * the amount of skills that get the reduction is proportional to the amount of skill levels you gain for the one you selected */
+void
+doubleskillcapreduct()
+{
+	int acquiredskill;
+	acquiredskill = 0;
+	int whichskill = P_NONE;
+	int reductionamount = 0;
+	int reductionskill = P_NONE;
+	int attempts = 50000;
+
+	pline("Pick a skill to double the cap. The prompt will loop until you actually make a choice.");
+
+	while (acquiredskill == 0) { /* ask the player what they want --Amy */
+
+	if (!P_RESTRICTED_OR_MAXXED(P_DAGGER) && yn("Do you want to boost the dagger skill?")=='y') {
+		    whichskill = P_DAGGER;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_KNIFE) && yn("Do you want to boost the knife skill?")=='y') {
+		    whichskill = P_KNIFE;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_AXE) && yn("Do you want to boost the axe skill?")=='y') {
+		    whichskill = P_AXE;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_PICK_AXE) && yn("Do you want to boost the pick-axe skill?")=='y') {
+		    whichskill = P_PICK_AXE;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_SHORT_SWORD) && yn("Do you want to boost the short sword skill?")=='y') {
+		    whichskill = P_SHORT_SWORD;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_BROAD_SWORD) && yn("Do you want to boost the broad sword skill?")=='y') {
+		    whichskill = P_BROAD_SWORD;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_LONG_SWORD) && yn("Do you want to boost the long sword skill?")=='y') {
+		    whichskill = P_LONG_SWORD;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_TWO_HANDED_SWORD) && yn("Do you want to boost the two-handed sword skill?")=='y') {
+		    whichskill = P_TWO_HANDED_SWORD;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_SCIMITAR) && yn("Do you want to boost the scimitar skill?")=='y') {
+		    whichskill = P_SCIMITAR;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_SABER) && yn("Do you want to boost the saber skill?")=='y') {
+		    whichskill = P_SABER;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_CLUB) && yn("Do you want to boost the club skill?")=='y') {
+		    whichskill = P_CLUB;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_PADDLE) && yn("Do you want to boost the paddle skill?")=='y') {
+		    whichskill = P_PADDLE;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_MACE) && yn("Do you want to boost the mace skill?")=='y') {
+		    whichskill = P_MACE;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_MORNING_STAR) && yn("Do you want to boost the morning star skill?")=='y') {
+		    whichskill = P_MORNING_STAR;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_FLAIL) && yn("Do you want to boost the flail skill?")=='y') {
+		    whichskill = P_FLAIL;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_HAMMER) && yn("Do you want to boost the hammer skill?")=='y') {
+		    whichskill = P_HAMMER;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_QUARTERSTAFF) && yn("Do you want to boost the quarterstaff skill?")=='y') {
+		    whichskill = P_QUARTERSTAFF;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_ORB) && yn("Do you want to boost the orb skill?")=='y') {
+		    whichskill = P_ORB;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_CLAW) && yn("Do you want to boost the claw skill?")=='y') {
+		    whichskill = P_CLAW;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_GRINDER) && yn("Do you want to boost the grinder skill?")=='y') {
+		    whichskill = P_GRINDER;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_POLEARMS) && yn("Do you want to boost the polearms skill?")=='y') {
+		    whichskill = P_POLEARMS;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_SPEAR) && yn("Do you want to boost the spear skill?")=='y') {
+		    whichskill = P_SPEAR;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_JAVELIN) && yn("Do you want to boost the javelin skill?")=='y') {
+		    whichskill = P_JAVELIN;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_TRIDENT) && yn("Do you want to boost the trident skill?")=='y') {
+		    whichskill = P_TRIDENT;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_LANCE) && yn("Do you want to boost the lance skill?")=='y') {
+		    whichskill = P_LANCE;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_BOW) && yn("Do you want to boost the bow skill?")=='y') {
+		    whichskill = P_BOW;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_SLING) && yn("Do you want to boost the sling skill?")=='y') {
+		    whichskill = P_SLING;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_FIREARM) && yn("Do you want to boost the firearms skill?")=='y') {
+		    whichskill = P_FIREARM;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_CROSSBOW) && yn("Do you want to boost the crossbow skill?")=='y') {
+		    whichskill = P_CROSSBOW;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_DART) && yn("Do you want to boost the dart skill?")=='y') {
+		    whichskill = P_DART;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_SHURIKEN) && yn("Do you want to boost the shuriken skill?")=='y') {
+		    whichskill = P_SHURIKEN;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_BOOMERANG) && yn("Do you want to boost the boomerang skill?")=='y') {
+		    whichskill = P_BOOMERANG;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_BOULDER_THROWING) && yn("Do you want to boost the boulder-throwing skill?")=='y') {
+		    whichskill = P_BOULDER_THROWING;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_VENOM) && yn("Do you want to boost the venom skill?")=='y') {
+		    whichskill = P_VENOM;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_WHIP) && yn("Do you want to boost the whip skill?")=='y') {
+		    whichskill = P_WHIP;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_UNICORN_HORN) && yn("Do you want to boost the unicorn horn skill?")=='y') {
+		    whichskill = P_UNICORN_HORN;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_LIGHTSABER) && yn("Do you want to boost the lightsaber skill?")=='y') {
+		    whichskill = P_LIGHTSABER;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_ATTACK_SPELL) && yn("Do you want to boost the attack spell skill?")=='y') {
+		    whichskill = P_ATTACK_SPELL;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_HEALING_SPELL) && yn("Do you want to boost the healing spell skill?")=='y') {
+		    whichskill = P_HEALING_SPELL;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_DIVINATION_SPELL) && yn("Do you want to boost the divination spell skill?")=='y') {
+		    whichskill = P_DIVINATION_SPELL;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_ENCHANTMENT_SPELL) && yn("Do you want to boost the enchantment spell skill?")=='y') {
+		    whichskill = P_ENCHANTMENT_SPELL;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_PROTECTION_SPELL) && yn("Do you want to boost the protection spell skill?")=='y') {
+		    whichskill = P_PROTECTION_SPELL;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_BODY_SPELL) && yn("Do you want to boost the body spell skill?")=='y') {
+		    whichskill = P_BODY_SPELL;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_OCCULT_SPELL) && yn("Do you want to boost the occult spell skill?")=='y') {
+		    whichskill = P_OCCULT_SPELL;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_ELEMENTAL_SPELL) && yn("Do you want to boost the elemental spell skill?")=='y') {
+		    whichskill = P_ELEMENTAL_SPELL;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_CHAOS_SPELL) && yn("Do you want to boost the chaos spell skill?")=='y') {
+		    whichskill = P_CHAOS_SPELL;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_MATTER_SPELL) && yn("Do you want to boost the matter spell skill?")=='y') {
+		    whichskill = P_MATTER_SPELL;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_RIDING) && yn("Do you want to boost the riding skill?")=='y') {
+		    whichskill = P_RIDING;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_HIGH_HEELS) && yn("Do you want to boost the high heels skill?")=='y') {
+		    whichskill = P_HIGH_HEELS;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_GENERAL_COMBAT) && yn("Do you want to boost the general combat skill?")=='y') {
+		    whichskill = P_GENERAL_COMBAT;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_SHIELD) && yn("Do you want to boost the shield skill?")=='y') {
+		    whichskill = P_SHIELD;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_BODY_ARMOR) && yn("Do you want to boost the body armor skill?")=='y') {
+		    whichskill = P_BODY_ARMOR;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_TWO_HANDED_WEAPON) && yn("Do you want to boost the two-handed weapon skill?")=='y') {
+		    whichskill = P_TWO_HANDED_WEAPON;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_TWO_WEAPON_COMBAT) && yn("Do you want to boost the two-weapon combat skill?")=='y') {
+		    whichskill = P_TWO_WEAPON_COMBAT;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_POLYMORPHING) && yn("Do you want to boost the polymorphing skill?")=='y') {
+		    whichskill = P_POLYMORPHING;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_DEVICES) && yn("Do you want to boost the devices skill?")=='y') {
+		    whichskill = P_DEVICES;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_SEARCHING) && yn("Do you want to boost the searching skill?")=='y') {
+		    whichskill = P_SEARCHING;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_SPIRITUALITY) && yn("Do you want to boost the spirituality skill?")=='y') {
+		    whichskill = P_SPIRITUALITY;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_PETKEEPING) && yn("Do you want to boost the petkeeping skill?")=='y') {
+		    whichskill = P_PETKEEPING;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_MISSILE_WEAPONS) && yn("Do you want to boost the missile weapons skill?")=='y') {
+		    whichskill = P_MISSILE_WEAPONS;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_TECHNIQUES) && yn("Do you want to boost the techniques skill?")=='y') {
+		    whichskill = P_TECHNIQUES;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_IMPLANTS) && yn("Do you want to boost the implants skill?")=='y') {
+		    whichskill = P_IMPLANTS;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_SEXY_FLATS) && yn("Do you want to boost the sexy flats skill?")=='y') {
+		    whichskill = P_SEXY_FLATS;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_MEMORIZATION) && yn("Do you want to boost the memorization skill?")=='y') {
+		    whichskill = P_MEMORIZATION;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_WEIGHT_LIFTING) && yn("Do you want to boost the weight lifting skill?")=='y') {
+		    whichskill = P_WEIGHT_LIFTING;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_GUN_CONTROL) && yn("Do you want to boost the gun control skill?")=='y') {
+		    whichskill = P_GUN_CONTROL;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_SQUEAKING) && yn("Do you want to boost the squeaking skill?")=='y') {
+		    whichskill = P_SQUEAKING;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_SYMBIOSIS) && yn("Do you want to boost the symbiosis skill?")=='y') {
+		    whichskill = P_SYMBIOSIS;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_SHII_CHO) && yn("Do you want to boost the form I (Shii-Cho) skill?")=='y') {
+		    whichskill = P_SHII_CHO;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_MAKASHI) && yn("Do you want to boost the form II (Makashi) skill?")=='y') {
+		    whichskill = P_MAKASHI;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_SORESU) && yn("Do you want to boost the form III (Soresu) skill?")=='y') {
+		    whichskill = P_SORESU;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_ATARU) && yn("Do you want to boost the form IV (Ataru) skill?")=='y') {
+		    whichskill = P_ATARU;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_SHIEN) && yn("Do you want to boost the form V (Shien) skill?")=='y') {
+		    whichskill = P_SHIEN;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_DJEM_SO) && yn("Do you want to boost the form V (Djem So) skill?")=='y') {
+		    whichskill = P_DJEM_SO;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_NIMAN) && yn("Do you want to boost the form VI (Niman) skill?")=='y') {
+		    whichskill = P_NIMAN;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_JUYO) && yn("Do you want to boost the form VII (Juyo) skill?")=='y') {
+		    whichskill = P_JUYO;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_VAAPAD) && yn("Do you want to boost the form VII (Vaapad) skill?")=='y') {
+		    whichskill = P_VAAPAD;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_WEDI) && yn("Do you want to boost the form VIII (Wedi) skill?")=='y') {
+		    whichskill = P_WEDI;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_STILETTO_HEELS) && yn("Do you want to boost the type 1: stiletto heels skill?")=='y') {
+		    whichskill = P_STILETTO_HEELS;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_CONE_HEELS) && yn("Do you want to boost the type 2: cone heels skill?")=='y') {
+		    whichskill = P_CONE_HEELS;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_BLOCK_HEELS) && yn("Do you want to boost the type 3: block heels skill?")=='y') {
+		    whichskill = P_BLOCK_HEELS;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_WEDGE_HEELS) && yn("Do you want to boost the type 4: wedge heels skill?")=='y') {
+		    whichskill = P_WEDGE_HEELS;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_BARE_HANDED_COMBAT) && yn("Do you want to boost the bare-handed combat skill?")=='y') {
+		    whichskill = P_BARE_HANDED_COMBAT;	acquiredskill = 1; }
+	else if (!P_RESTRICTED_OR_MAXXED(P_MARTIAL_ARTS) && yn("Do you want to boost the martial arts skill?")=='y') {
+		    whichskill = P_MARTIAL_ARTS;	acquiredskill = 1; }
+	else if (yn("Do you want to boost no skill at all?")=='y') {
+		    acquiredskill = 1; }
+	}
+
+	if (whichskill != P_NONE) {
+		if (P_MAX_SKILL(whichskill) == P_BASIC) {
+			reductionamount = 1;
+			P_MAX_SKILL(whichskill) = P_SKILLED;
+			if (P_ADVANCE(whichskill) > 20) P_ADVANCE(whichskill) = 20;
+		} else if (P_MAX_SKILL(whichskill) == P_SKILLED) {
+			reductionamount = 2;
+			P_MAX_SKILL(whichskill) = P_MASTER;
+			if (P_ADVANCE(whichskill) > 160) P_ADVANCE(whichskill) = 160;
+		} else if (P_MAX_SKILL(whichskill) == P_EXPERT) {
+			reductionamount = 3;
+			P_MAX_SKILL(whichskill) = P_SUPREME_MASTER;
+			if (P_ADVANCE(whichskill) > 540) P_ADVANCE(whichskill) = 540;
+		} else if (P_MAX_SKILL(whichskill) == P_MASTER) {
+			reductionamount = 2;
+			P_MAX_SKILL(whichskill) = P_SUPREME_MASTER;
+			if (P_ADVANCE(whichskill) > 1280) P_ADVANCE(whichskill) = 1280;
+		} else if (P_MAX_SKILL(whichskill) == P_GRAND_MASTER) {
+			reductionamount = 1;
+			P_MAX_SKILL(whichskill) = P_SUPREME_MASTER;
+			if (P_ADVANCE(whichskill) > 2500) P_ADVANCE(whichskill) = 2500;
+		}
+	}
+
+	/* reduce the cap of random skills, but not the one you just boosted --Amy */
+	if (reductionamount > 0) {
+		reductionamount += rn2(reductionamount + 1);
+
+		while (reductionamount > 0) {
+			attempts = 50000;
+			reductionamount--;
+			reductionskill = randomgoodskill();
+			while ((attempts > 0) && ((reductionskill == whichskill) || P_RESTRICTED(reductionskill) ) ) {
+				attempts--;
+				reductionskill = randomgoodskill();
+			}
+
+			if (!P_RESTRICTED(reductionskill) && (reductionskill != whichskill)) {
+				if (P_MAX_SKILL(reductionskill) == P_BASIC) {
+					P_MAX_SKILL(reductionskill) = P_ISRESTRICTED;
+					P_ADVANCE(reductionskill) = 0;
+				} else if (P_MAX_SKILL(reductionskill) == P_SKILLED) {
+					P_MAX_SKILL(reductionskill) = P_BASIC;
+				} else if (P_MAX_SKILL(reductionskill) == P_EXPERT) {
+					P_MAX_SKILL(reductionskill) = P_SKILLED;
+				} else if (P_MAX_SKILL(reductionskill) == P_MASTER) {
+					P_MAX_SKILL(reductionskill) = P_EXPERT;
+				} else if (P_MAX_SKILL(reductionskill) == P_GRAND_MASTER) {
+					P_MAX_SKILL(reductionskill) = P_MASTER;
+				} else if (P_MAX_SKILL(reductionskill) == P_SUPREME_MASTER) {
+					P_MAX_SKILL(reductionskill) = P_GRAND_MASTER;
+				}
+				skill_sanity_check(reductionskill);
+			}
+		}
+
+	}
+
+	pline("Check out what you got!");
+
+}
+
+/* player can pick a non-restricted skill to add "trainamount" points of skill training --Amy */
 void
 additionalskilltraining(trainamount)
 int trainamount;
@@ -12295,6 +12758,7 @@ practice_weapon()
                 
 }
 
+/* player uses a grinder as a weapon: can also hit monsters on certain squares relative to the player's position --Amy */
 void
 grinderattack(direction)
 int direction;

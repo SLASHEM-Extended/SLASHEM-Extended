@@ -215,6 +215,7 @@ struct skills {
 #define P_ADVANCE(type)		(u.weapon_skills[type].advance)
 #define P_MATRIX(type)		(u.weapon_skills[type].matrixskill)
 #define P_RESTRICTED(type)	(u.weapon_skills[type].skill == P_ISRESTRICTED)
+#define P_RESTRICTED_OR_MAXXED(type)	(u.weapon_skills[type].skill == P_ISRESTRICTED || u.weapon_skills[type].max_skill == P_LIMIT)
 
 #define P_SKILL_LIMIT 2000	/* max number of skill advancements */
 

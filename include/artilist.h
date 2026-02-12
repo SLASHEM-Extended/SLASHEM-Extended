@@ -27811,6 +27811,130 @@ A("Parasitic Growth",				METABOLIC_STONE, /* can be invoked to use it up, increa
 	(SPFX_RESTR|SPFX_NOWISH|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 9000L ),
 
+A("Melanie's Animotalk",				LEATHER_LEASH, /* randart leash, cursed one will only deal damage to the pet 10% of the time */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Melanie's Snyffysound",				LEATHER_LEASH, /* randart2 leash, if check_leash is called on it while it's cursed it tries to become uncursed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Yeah, yeah, on barakto'n girl",				SPE_MAGICTORCH, /* randart2 spellbook, reading tries 9x to pacify all M2_FEMALE in a 11x11 area centered on you */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Detecting the monsters, a que rerde...",				SPE_DETECT_MONSTERS, /* reading gives 500 turns of detect monsters */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Selfblood Transfer",				CHARGER, /* using it while you have at least one skill point left reduces your amount of skill points by one and lets you select a skill (which needs to have a cap of at least basic) and increases its cap by one */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 25000L ),
+
+A("Overstack from Kalahari",				CHARGER, /* using it lets you select a skill and doubles its cap, but reduces X+rn2(X+1) other skills, with X being the amount of skill levels that got added to the chosen skill's cap */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 50000L ),
+
+A("Dschueueueueueue...",				PACK_OF_FLOPPIES, /* upon generating, you lose a skill point, potentially undoing the last skill you've advanced (no effect if you have none) */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20L ),
+
+A("Rarityprogram",				PACK_OF_FLOPPIES, /* invoking uses it up and gives you a skill point */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 20000L ),
+
+A("Nasty LAD",				BLACK_DRESS, /* can be invoked to die and restore genital health to full, even if you were at 0 */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Modernest Healing Method",				POT_RECOVERY, /* quaffing will restore your genital health to full, even if you were at 0 */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 15000L ),
+
+A("Charlotte's Big Victory",				RODEO_LEASH, /* adds d12 more movement energy when pulling the pet */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Lucy's Confetti Shower",				LEATHER_LEASH, /* randart leash, pulling the pet gives 12 movement energy */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4500L ),
+
+A("Stefan's Eternal Grin",				LEATHER_LEASH, /* randart2 leash, pulling the pet gives rn1(12,12) movement energy */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Eulogy's Slave Collar",				BUGGED_LEASH, /* applying it curses it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Elijah's Might",				LEATHER_LEASH, /* randart leash, uses bugged leash method */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Interminable Dilemma",				LEATHER_LEASH, /* randart2 leash, uses bugged leash method, applying it curses it, doesn't deal choke damage to the pet and the pet behaves as if it had the stabilizer egotype */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Decoud It",				MIRROR, /* can be invoked to give a number of the secret code, but doing so uses it up */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("White Dust",				WORTHLESS_PIECE_OF_WHITE_GLASS,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	COLD(2, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10L ),
+
+A("Zoolithe",				WORTHLESS_PIECE_OF_BLUE_GLASS,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	ELEC(2, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10L ),
+
+A("Firebrick",				WORTHLESS_PIECE_OF_RED_GLASS,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	FIRE(2, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10L ),
+
+A("Organomuck",				WORTHLESS_PIECE_OF_YELLOWISH_B, /* can rot the target's armor upon a hit */
+	(SPFX_RESTR), 0, 0,
+	PHYS(2, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10L ),
+
+A("Sleep Powder",				WORTHLESS_PIECE_OF_ORANGE_GLAS, /* can put target to sleep for rn1(5,5) turns on a hit if it doesn't resist */
+	(SPFX_RESTR), 0, 0,
+	PHYS(2, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10L ),
+
+A("Orthoglass",				WORTHLESS_PIECE_OF_YELLOW_GLAS,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	ACID(2, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10L ),
+
+A("Black Tar",				WORTHLESS_PIECE_OF_BLACK_GLASS,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	DRLI(2, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10L ),
+
+A("Hinzite",				WORTHLESS_PIECE_OF_PINK_GLASS,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	STUN(2, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10L ),
+
+A("Aquamad",				WORTHLESS_PIECE_OF_CYAN_GLASS, /* can cause target to turn to flee for rn1(10,10) turns if it fails to resist */
+	(SPFX_RESTR), 0, 0,
+	PHYS(2, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10L ),
+
+A("BING!",				WORTHLESS_PIECE_OF_TEAL_GLASS, /* if it hits a monster, the square it landed on is lit up */
+	(SPFX_RESTR), 0, 0,
+	PHYS(2, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10L ),
+
+A("Jerkystone",				WORTHLESS_PIECE_OF_GREEN_GLASS,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	DRST(2, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10L ),
+
+A("Divellin",				WORTHLESS_PIECE_OF_RADIANT_GLA, /* if it would've mulched, 90% chance that it doesn't */
+	(SPFX_RESTR), 0, 0,
+	PHYS(2, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10L ),
+
+A("Drunkrock",				WORTHLESS_PIECE_OF_VIOLET_GLAS, /* if you fire it, the damage type is randomized */
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	PHYS(2, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10L ),
+
+A("Glaustock",				WORTHLESS_PIECE_OF_DARK_BLUE_G,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	MAGM(2, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

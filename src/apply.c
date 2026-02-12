@@ -929,7 +929,7 @@ number_leashed()
 	register struct obj *obj;
 
 	for(obj = invent; obj; obj = obj->nobj)
-		if((obj->otyp == LEATHER_LEASH || obj->otyp == ARMORED_LEASH || obj->otyp == INKA_LEASH || obj->otyp == ADAMANT_LEASH) && obj->leashmon != 0) i++;
+		if(is_leash_type(obj) && obj->leashmon != 0) i++;
 	return(i);
 }
 
@@ -960,8 +960,7 @@ int leashbreakchance; /* 0 = never break, other number = 1 in X chance to break 
 		Your("leash falls slack.");
 	}
 	for(otmp = invent; otmp; otmp = otmp->nobj)
-		if((otmp->otyp == LEATHER_LEASH || otmp->otyp == ARMORED_LEASH || otmp->otyp == INKA_LEASH || otmp->otyp == ADAMANT_LEASH) &&
-				otmp->leashmon == (int)mtmp->m_id) {
+		if (is_leash_type(otmp) && (otmp->leashmon == (int)mtmp->m_id) ) {
 			otmp->leashmon = 0;
 			if (leashbreakchance > 0) {
 				if (!rn2(leashbreakchance) && (!otmp->oartifact || !rn2(5)) ) {
@@ -980,7 +979,7 @@ unleash_all()		/* player is about to die (for bones) */
 	register struct monst *mtmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj)
-		if(otmp->otyp == LEATHER_LEASH || otmp->otyp == ARMORED_LEASH || otmp->otyp == INKA_LEASH || otmp->otyp == ADAMANT_LEASH) otmp->leashmon = 0;
+		if (is_leash_type(otmp)) otmp->leashmon = 0;
 	for(mtmp = fmon; mtmp; mtmp = mtmp->nmon)
 		mtmp->mleashed = 0;
 }
@@ -1097,7 +1096,7 @@ register struct monst *mtmp;
 
 	otmp = invent;
 	while(otmp) {
-		if((otmp->otyp == LEATHER_LEASH || otmp->otyp == ARMORED_LEASH || otmp->otyp == INKA_LEASH || otmp->otyp == ADAMANT_LEASH) && (otmp->leashmon == (int)mtmp->m_id) )
+		if (is_leash_type(otmp) && (otmp->leashmon == (int)mtmp->m_id) )
 			return(otmp);
 		otmp = otmp->nobj;
 	}
@@ -1113,7 +1112,7 @@ register struct monst *mtmp;
 
 	otmp = invent;
 	while(otmp) {
-		if((otmp->otyp == LEATHER_LEASH || otmp->otyp == ARMORED_LEASH || otmp->otyp == INKA_LEASH || otmp->otyp == ADAMANT_LEASH) && (otmp->leashmon == (int)mtmp->m_id) )
+		if(is_leash_type(otmp) && (otmp->leashmon == (int)mtmp->m_id) )
 			return (otmp->otyp);
 		otmp = otmp->nobj;
 	}
@@ -1129,7 +1128,7 @@ register struct monst *mtmp;
 
 	otmp = invent;
 	while(otmp) {
-		if((otmp->otyp == LEATHER_LEASH || otmp->otyp == ARMORED_LEASH || otmp->otyp == INKA_LEASH || otmp->otyp == ADAMANT_LEASH) && (otmp->leashmon == (int)mtmp->m_id) && otmp->oartifact)
+		if (is_leash_type(otmp) && (otmp->leashmon == (int)mtmp->m_id) && otmp->oartifact)
 			return (otmp->oartifact);
 		otmp = otmp->nobj;
 	}
@@ -1151,8 +1150,7 @@ next_to_u()
 			if (distu(mtmp->mx,mtmp->my) > 2) mnexto(mtmp);
 			if (distu(mtmp->mx,mtmp->my) > 2) {
 			    for(otmp = invent; otmp; otmp = otmp->nobj)
-				if((otmp->otyp == LEATHER_LEASH || otmp->otyp == ARMORED_LEASH || otmp->otyp == INKA_LEASH || otmp->otyp == ADAMANT_LEASH) &&
-					otmp->leashmon == (int)mtmp->m_id) {
+				if (is_leash_type(otmp) && (otmp->leashmon == (int)mtmp->m_id) ) {
 				    if(otmp->cursed) return(FALSE);
 				    You_feel("%s leash go slack.",
 					(number_leashed() > 1) ? "a" : "the");
@@ -1177,9 +1175,16 @@ register xchar x, y;
 	register struct obj *otmp;
 	register struct monst *mtmp;
 	int chokedamage = 2;
+	boolean superchoke = FALSE; /* would've died in vanilla, and since this is SLEX, pet took heavy damage instead */
+	boolean leashpull = FALSE; /* are you pulling the leash? if yes, speed up the pet so it has a chance of catching up --Amy */
 
 	for (otmp = invent; otmp; otmp = otmp->nobj) {
-	    if ((otmp->otyp != LEATHER_LEASH && otmp->otyp != ARMORED_LEASH && otmp->otyp != INKA_LEASH && otmp->otyp != ADAMANT_LEASH) || otmp->leashmon == 0) continue;
+
+	    leashpull = FALSE;
+	    superchoke = FALSE;
+	    chokedamage = 2;
+
+	    if (!is_leash_type(otmp) || (otmp->leashmon == 0) ) continue;
 	    for (mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
 		if (DEADMONSTER(mtmp)) continue;
 		if ((int)mtmp->m_id == otmp->leashmon) break; 
@@ -1192,40 +1197,52 @@ register xchar x, y;
 
 	    if (otmp && otmp->otyp == INKA_LEASH) chokedamage = 20;
 
+	    if (otmp && otmp->oartifact == ART_MELANIE_S_SNYFFYSOUND && otmp->cursed) uncurse(otmp, FALSE);
+
 	    if (dist2(u.ux,u.uy,mtmp->mx,mtmp->my) > dist2(x,y,mtmp->mx,mtmp->my)) {
 		if (!um_dist(mtmp->mx, mtmp->my, 3)) {
 		    ;	/* still close enough */
 		} else if (otmp->oartifact == ART_INFINITE_RANGE) {
 			; /* doesn't snap or anything, no matter how far away the pet is */
-		} else if (otmp->cursed && otmp->otyp != ADAMANT_LEASH && !breathless(mtmp->data) && (!mtmp->egotype_undead) ) {
+		} else if (otmp->cursed && !breathless(mtmp->data) && (!mtmp->egotype_undead) ) {
 
-		    /* used to be that if the pet's AI was too stOOpid to just *fucking move closer to you when leashed*, it'd die once you got too far away...
-		     * that's bullshit and you know that, devs! so I fixed it! instead, it deals more damage and causes heal block for the pet --Amy */
-		    if (um_dist(mtmp->mx, mtmp->my, 5)) chokedamage += rn1(10, 10);
+			if (otmp->otyp != ADAMANT_LEASH && otmp->oartifact != ART_INTERMINABLE_DILEMMA && !(otmp->oartifact == ART_MELANIE_S_ANIMOTALK && rn2(10)) ) {
 
-		    if ((mtmp->mhp -= rnd(chokedamage)) <= 0) {
-			long save_pacifism = u.uconduct.killer;
+			    /* used to be that if the pet's AI was too stOOpid to just *fucking move closer to you when leashed*, it'd die once you got too far away...
+			     * that's bullshit and you know that, devs! so I fixed it! instead, it deals more damage and causes heal block for the pet --Amy */
+			    if (um_dist(mtmp->mx, mtmp->my, 5)) {
+				chokedamage += rn1(10, 10);
+				superchoke = TRUE;
+			    }
 
-			Your("leash chokes %s to death!", mon_nam(mtmp));
-			/* hero might not have intended to kill pet, but
-			   that's the result of his actions; gain experience,
-			   lose pacifism, take alignment and luck hit, make
-			   corpse less likely to remain tame after revival */
-			xkilled(mtmp, 0);	/* no "you kill it" message */
-			/* life-saving doesn't ordinarily reset this */
-			if (mtmp->mhp > 0) u.uconduct.killer = save_pacifism;
-		    } else {
-			pline("%s chokes on the leash!", Monnam(mtmp));
-			if (um_dist(mtmp->mx, mtmp->my, 5)) {
-				mtmp->healblock += rn1(20,20);
-				pet_distress(mtmp, 3); /* growl */
+			    if ((mtmp->mhp -= rnd(chokedamage)) <= 0) {
+				long save_pacifism = u.uconduct.killer;
+
+				Your("leash chokes %s to death!", mon_nam(mtmp));
+				/* hero might not have intended to kill pet, but
+				   that's the result of his actions; gain experience,
+				   lose pacifism, take alignment and luck hit, make
+				   corpse less likely to remain tame after revival */
+				xkilled(mtmp, 0);	/* no "you kill it" message */
+				/* life-saving doesn't ordinarily reset this */
+				if (mtmp->mhp > 0) u.uconduct.killer = save_pacifism;
+			    } else {
+				pline("%s chokes%s on the leash!", Monnam(mtmp), superchoke ? " heavily" : "");
+				leashpull = TRUE;
+				if (um_dist(mtmp->mx, mtmp->my, 5)) {
+					mtmp->healblock += rn1(20,20);
+					pet_distress(mtmp, 3); /* growl */
+				}
+				/* tameness eventually drops to 1 here (never 0) */
+				if (mtmp->mtame && rn2(mtmp->mtame) && !((rnd(30 - ACURR(A_CHA))) < 4) ) mtmp->mtame--;
+			    }
+			} else {
+				You("pull on the leash.");
+				leashpull = TRUE;
 			}
-			/* tameness eventually drops to 1 here (never 0) */
-			if (mtmp->mtame && rn2(mtmp->mtame) && !((rnd(30 - ACURR(A_CHA))) < 4) ) mtmp->mtame--;
-		    }
 		} else {
 		    if (um_dist(mtmp->mx, mtmp->my, 5)) {
-			if (otmp->otyp == LEATHER_LEASH || otmp->otyp == ARMORED_LEASH || otmp->otyp == ADAMANT_LEASH) {
+			if (otmp->otyp != INKA_LEASH) {
 				pline("%s leash snaps loose!", s_suffix(Monnam(mtmp)));
 				m_unleash(mtmp, FALSE, 0);
 			} else if (otmp->otyp == INKA_LEASH) {
@@ -1238,18 +1255,26 @@ register xchar x, y;
 			}
 		    } else {
 			You("pull on the leash.");
+			leashpull = TRUE;
+		    }
+		}
+
+		if (leashpull) {
 			/* fucking MOVE, you dick of a pet! I pulled the motherfucking leash, don't you DARE just standing there!! --Amy */
-			mtmp->movement += rnd(12);
+			if (otmp) {
+				mtmp->movement += (otmp->oartifact == ART_STEFAN_S_ETERNAL_GRIN) ? rn1(12,12) : (otmp->otyp == RODEO_LEASH) ? 12 : (otmp->oartifact == ART_LUCY_S_CONFETTI_SHOWER) ? 12 : rnd(12);
+				if (otmp->oartifact == ART_CHARLOTTE_S_BIG_VICTORY) mtmp->movement += rnd(12);
+			}
 			if (monstersoundtype(mtmp) != MS_SILENT)
 			    switch (rn2(3)) {
 			    case 0:  growl(mtmp);   break;
 			    case 1:  yelp(mtmp);    break;
 			    default: whimper(mtmp); break;
-			    }
-		    }
+			}
 		}
-	    }
-	}
+	    } /* pet distance check complete - this huge block is run for *one specific* pet and then the next object in the chain is checked */
+	} /* check all the objects done */
+
 }
 
 #endif /* OVL0 */
@@ -6203,6 +6228,10 @@ dyechoice:
 	case ARMORED_LEASH:
 	case INKA_LEASH:
 	case ADAMANT_LEASH:
+	case RODEO_LEASH:
+	case BUGGED_LEASH:
+		if (obj && obj->oartifact == ART_EULOGY_S_SLAVE_COLLAR && !obj->cursed) curse(obj);
+		if (obj && obj->oartifact == ART_INTERMINABLE_DILEMMA && !obj->cursed) curse(obj);
 		use_leash(obj);
 		break;
 	case LEATHER_SADDLE:
@@ -8375,6 +8404,8 @@ blesschoice:
 		/* nope, you WILL NOT GET to abuse hangup cheats here --Amy */
 		if (obj->oartifact == ART_AMMY_S_TEMPTATION) chargertype = 1;
 		if (obj->oartifact == ART_OUTRADIATE) chargertype = 2;
+		if (obj->oartifact == ART_SELFBLOOD_TRANSFER) chargertype = 3;
+		if (obj->oartifact == ART_OVERSTACK_FROM_KALAHARI) chargertype = 4;
 
 		if (CannotSelectItemsInPrompts) return 0;
 
@@ -8396,6 +8427,19 @@ blesschoice:
 
 		if (chargertype == 2) {
 			decontaminate(1000);
+		}
+
+		if (chargertype == 3) {
+			if (u.weapon_slots > 0) {
+				u.weapon_slots--;
+				improveskillcap();
+			} else {
+				pline("Since you don't have any skill points, you can't boost a skill.");
+			}
+		}
+
+		if (chargertype == 4) {
+			doubleskillcapreduct();
 		}
 
 		pline("You may charge an object.");

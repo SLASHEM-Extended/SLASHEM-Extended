@@ -2836,7 +2836,7 @@ convertdone:
 
 	}
 
-	if ( ((monstersoundtype(mtmp) == MS_STABILIZE) || (mtmp->egotype_stabilizer)) && !u.antitelespelltimeout && !rn2(100) && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) ) {
+	if ( ((monstersoundtype(mtmp) == MS_STABILIZE) || (mtmp->mleashed && (get_mleash_artifact_type(mtmp) == ART_INTERMINABLE_DILEMMA)) || (mtmp->egotype_stabilizer)) && !u.antitelespelltimeout && !rn2(100) && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) ) {
 		u.antitelespelltimeout = rnz(20);
 		pline("%s stabilizes the space around.", Monnam(mtmp)); /* message is sic from Elona */
 	}
@@ -5225,7 +5225,7 @@ struct monst *mtmp;
 		    typ != SACK && typ != BAG_OF_HOLDING &&
 		    typ != BAG_OF_TRICKS && !Is_candle(obj) &&
 		    typ != OILSKIN_SACK && typ != TITAN_SACK && typ != LEATHER_LEASH &&
-		    typ != INKA_LEASH && typ != ADAMANT_LEASH && typ != ARMORED_LEASH &&
+		    typ != INKA_LEASH && typ != ADAMANT_LEASH && typ != RODEO_LEASH && typ != BUGGED_LEASH && typ != ARMORED_LEASH &&
 		    typ != STETHOSCOPE && typ != BLINDFOLD && typ != EYECLOSER && typ != DRAGON_EYEPATCH && typ != TOWEL &&
 		    typ != TIN_WHISTLE && typ != GRASS_WHISTLE && typ != MAGIC_WHISTLE &&
 		    typ != MAGIC_MARKER && typ != TIN_OPENER && typ != BUDO_NO_SASU && typ != JEONTU_GEOM &&

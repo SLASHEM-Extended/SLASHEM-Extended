@@ -5001,6 +5001,9 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 
 	{ PROTECTIVE_GLASSES, "todo" },
 
+	{ RODEO_LEASH, "todo" },
+	{ BUGGED_LEASH, "todo" },
+
 	{0, "" }
 };
 
@@ -8719,6 +8722,9 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 
 	{ PROTECTIVE_GLASSES, "todo" },
 
+	{ RODEO_LEASH, "todo" },
+	{ BUGGED_LEASH, "todo" },
+
 	{0, "" }
 };
 
@@ -9841,19 +9847,7 @@ plus:
 			strcat(bp, flags.simpledescs ? " (worn)" : " (being worn)");
 			break;
 		}
-		if (obj->otyp == LEATHER_LEASH && obj->leashmon != 0) {
-			strcat(bp, " (in use)");
-			break;
-		}
-		if (obj->otyp == ARMORED_LEASH && obj->leashmon != 0) {
-			strcat(bp, " (in use)");
-			break;
-		}
-		if (obj->otyp == INKA_LEASH && obj->leashmon != 0) {
-			strcat(bp, " (in use)");
-			break;
-		}
-		if (obj->otyp == ADAMANT_LEASH && obj->leashmon != 0) {
+		if (is_leash_type(obj) && (obj->leashmon != 0)) {
 			strcat(bp, " (in use)");
 			break;
 		}

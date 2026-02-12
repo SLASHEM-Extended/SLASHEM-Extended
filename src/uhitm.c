@@ -4889,6 +4889,12 @@ int dieroll;
 			}
 		}
 
+		if (thrown && obj && obj->oartifact == ART_AQUAMAD) {
+			if (!resist(mon, WEAPON_CLASS, 0, NOTELL)) {
+				monflee(mon, rn1(10,10), FALSE, TRUE, FALSE);
+			}
+		}
+
 		if (thrown && obj && obj->oartifact == ART_ENERGY_LEECH) {
 			u.uen += 20;
 			if (u.uen > u.uenmax) u.uen = u.uenmax;
@@ -5636,6 +5642,25 @@ melatechoice:
 		if (thrown && obj && obj->oartifact == ART_RAZORSHARD) {
 			mon->bleedout += 10;
 			pline("%s is bleeding!", Monnam(mon));
+		}
+
+		if (thrown && obj && obj->oartifact == ART_SLEEP_POWDER) {
+			int parlyzdur = rn1(5,5);
+
+			if (!mon->msleeping && !resist(mon, WEAPON_CLASS, 0, NOTELL) && sleep_monst(mon, parlyzdur, -1)) {
+				pline("%s is put to sleep by you!", Monnam(mon));
+				slept_monst(mon);
+			}
+		}
+
+		if (thrown && obj && obj->oartifact == ART_BING_) {
+			if (isok(mon->mx, mon->my)) {
+				levl[mon->mx][mon->my].lit = TRUE;
+			}
+		}
+
+		if (thrown && obj && obj->oartifact == ART_ORGANOMUCK) {
+			hurtmarmor(mon, AD_DCAY);
 		}
 
 		if (thrown && obj && obj->oartifact == ART_FOMMP && uwep && uwep->otyp == PISTOL_PAIR) {

@@ -3376,6 +3376,12 @@ struct obj *book2;
 
 	*/
 
+	if (book2->oartifact == ART_DETECTING_THE_MONSTERS__A_) {
+		incr_itimeout(&HDetect_monsters, 500);
+		see_monsters();
+		You("sense monsters"); /* missing period is intentional because it's the CoW message --Amy */
+	}
+
 	if (book2->oartifact == ART_AMY_WHY_DO_YOU_ADD_ALL_THO) {
 		nexus_swap();
 	}
@@ -3404,6 +3410,30 @@ struct obj *book2;
 			(void) makemon(specialtensmon(115), u.ux, u.uy, MM_ADJACENTOK); /* M2_PEACEFUL */
 		}
 		(void) makemon(specialtensmon(320), u.ux, u.uy, MM_ADJACENTOK); /* M4_TAME */
+
+	}
+
+	if (book2->oartifact == ART_YEAH__YEAH__ON_BARAKTO_N_G) {
+
+		int i, j, bd = 5;
+		struct monst *mtmp;
+
+		for(i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+			if (!isok(u.ux + i, u.uy + j)) continue;
+			if ((mtmp = m_at(u.ux + i, u.uy + j)) != 0) {
+
+				if (mtmp->mpeaceful) continue;
+				if (!is_female(mtmp->data)) continue;
+				if (mtmp->mfrenzied) continue;
+
+				if (!resist(mtmp, SPBOOK_CLASS, 0, NOTELL) || !resist(mtmp, SPBOOK_CLASS, 0, NOTELL) || !resist(mtmp, SPBOOK_CLASS, 0, NOTELL) || !resist(mtmp, SPBOOK_CLASS, 0, NOTELL) || !resist(mtmp, SPBOOK_CLASS, 0, NOTELL) || !resist(mtmp, SPBOOK_CLASS, 0, NOTELL) || !resist(mtmp, SPBOOK_CLASS, 0, NOTELL) || !resist(mtmp, SPBOOK_CLASS, 0, NOTELL) || !resist(mtmp, SPBOOK_CLASS, 0, NOTELL)) {
+					mtmp->mpeaceful = TRUE;
+					pline("%s is pacified!", Monnam(mtmp));
+				}
+
+			}
+
+		}
 
 	}
 
@@ -11739,7 +11769,7 @@ whisperchoice:
 			     objC->otyp == STONE_OF_MAGIC_RESISTANCE ||
 			     is_nastygraystone(objC) ||
 			     is_feminismstone(objC) ||
-			     (objC->otyp == LEATHER_LEASH && objC->leashmon) || (objC->otyp == ARMORED_LEASH && objC->leashmon) || (objC->otyp == INKA_LEASH && objC->leashmon) || (objC->otyp == ADAMANT_LEASH && objC->leashmon) ) && !stack_too_big(objC) && !rn2(5) ) {
+			     (is_leash_type(objC) && objC->leashmon) ) && !stack_too_big(objC) && !rn2(5) ) {
 			    	blessorcurse(objC, 2);
 			}
 		}

@@ -11887,7 +11887,7 @@ struct obj *obj;
 			)) != 0L) return TRUE;
 	if (obj->oclass != TOOL_CLASS) return FALSE;
 	return (boolean)(obj == uwep || obj->lamplit ||
-				((obj->otyp == LEATHER_LEASH || obj->otyp == ARMORED_LEASH || obj->otyp == INKA_LEASH || obj->otyp == ADAMANT_LEASH) && obj->leashmon));
+				(is_leash_type(obj) && obj->leashmon));
 }
 
 int
@@ -18669,6 +18669,10 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 				pline("This tool can be applied at a tame monster to force it to follow you. While the pet is leashed, it'll take reduced damage."); break;
 			case INKA_LEASH: 
 				pline("This tool can be applied at a tame monster to force it to follow you. If the pet falls behind, it attempts to teleport to you."); break;
+			case RODEO_LEASH: 
+				pline("This tool can be applied at a tame monster to force it to follow you. Pulling the pet along with this one is more likely to work properly, but of course the pet may still end up acting stupid."); break;
+			case BUGGED_LEASH: 
+				pline("This tool can be applied at a tame monster to force it to follow you. But the pet may fall behind and act stupid instead of actually being pulled along."); break;
 			case ADAMANT_LEASH: 
 				pline("This tool can be applied at a tame monster to force it to follow you. What's special about this type of leash is that a cursed one won't kill your pet by suffocation."); break;
 			case STETHOSCOPE: 
@@ -36415,6 +36419,68 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: can be invoked to spawn a random scimitar-class weapon which curses itself and forcibly equips itself in your hand."); break;
 				case ART_PARASITIC_GROWTH:
 					pline("Artifact specs: can be invoked to use it up, increasing your symbiosis skill cap in the process (or unlocking the skill if you don't have it) and giving you the metabolic nastytrap effect for a long time."); break;
+				case ART_MELANIE_S_ANIMOTALK:
+					pline("Artifact specs: if it's cursed, it deals much less damage to the pet."); break;
+				case ART_MELANIE_S_SNYFFYSOUND:
+					pline("Artifact specs: constantly tries to uncurse itself if it's in use."); break;
+				case ART_YEAH__YEAH__ON_BARAKTO_N_G:
+					pline("Artifact specs: reading it has a high chance of pacifying female monsters in a 11x11 area centered on you."); break;
+				case ART_DETECTING_THE_MONSTERS__A_:
+					pline("Artifact specs: reading it gives detect monsters for a period of time."); break;
+				case ART_SELFBLOOD_TRANSFER:
+					pline("Artifact specs: if you use it while having at least one skill point, your amount of skill points is reduced by one and you can select a skill to increase its cap by one. The skill in question needs to have a cap of at least basic."); break;
+				case ART_OVERSTACK_FROM_KALAHARI:
+					pline("Artifact specs: using it lets you select a skill, the cap of which will be doubled, but your other skills will have their caps damaged proportional to the amount of skill levels that your selected skill gained."); break;
+				case ART_DSCHUEUEUEUEUEUE___:
+					pline("Artifact specs: you lost a skill point when this artifact generated. Too bad."); break;
+				case ART_RARITYPROGRAM:
+					pline("Artifact specs: can be invoked, which uses it up and permanently increases your amount of skill points by one."); break;
+				case ART_NASTY_LAD:
+					pline("Artifact specs: invoking it restores your genital health, even if you've been completely circumcised, but with the side effect that you die. Better have a method of life saving ready."); break;
+				case ART_MODERNEST_HEALING_METHOD:
+					pline("Artifact specs: quaffing it restores your genital health, even if you've been completely circumcised."); break;
+				case ART_CHARLOTTE_S_BIG_VICTORY:
+					pline("Artifact specs: pulling the pet with it causes the pet to act even faster."); break;
+				case ART_LUCY_S_CONFETTI_SHOWER:
+					pline("Artifact specs: pulling the pet with it causes it to act faster."); break;
+				case ART_STEFAN_S_ETERNAL_GRIN:
+					pline("Artifact specs: pulling the pet with it causes it to act much faster."); break;
+				case ART_EULOGY_S_SLAVE_COLLAR:
+					pline("Artifact specs: curses itself whenever you apply it."); break;
+				case ART_ELIJAH_S_MIGHT:
+					pline("Artifact specs: uses the stupid method when pulling the pet, which means the pet may sometimes illogically fail to follow you."); break;
+				case ART_INTERMINABLE_DILEMMA:
+					pline("Artifact specs: uses the stupid method when pulling the pet, which means the pet may sometimes illogically fail to follow you. If you apply it, this leash becomes cursed. It doesn't deal choking damage to the pet even when it's cursed, and the leashed pet is capable of stabilizing the space-time continuum."); break;
+				case ART_DECOUD_IT:
+					pline("Artifact specs: can be applied to get a hint for the secret code. Doing so will use up this artifact."); break;
+				case ART_WHITE_DUST:
+					pline("Artifact specs: +2 to-hit and +2 cold damage."); break;
+				case ART_ZOOLITHE:
+					pline("Artifact specs: +2 to-hit and +2 shock damage."); break;
+				case ART_FIREBRICK:
+					pline("Artifact specs: +2 to-hit and +2 fire damage."); break;
+				case ART_ORGANOMUCK:
+					pline("Artifact specs: +2 to-hit and +2 damage, can rot the target's armor."); break;
+				case ART_SLEEP_POWDER:
+					pline("Artifact specs: +2 to-hit and +2 damage, can put the target to sleep if it doesn't resist."); break;
+				case ART_ORTHOGLASS:
+					pline("Artifact specs: +2 to-hit and +2 acid damage."); break;
+				case ART_BLACK_TAR:
+					pline("Artifact specs: +2 to-hit and +2 drain damage."); break;
+				case ART_HINZITE:
+					pline("Artifact specs: +2 to-hit and +2 stun damage."); break;
+				case ART_AQUAMAD:
+					pline("Artifact specs: +2 to-hit and +2 damage, can cause the target to flee if it fails a resistance check."); break;
+				case ART_BING_:
+					pline("Artifact specs: +2 to-hit and +2 damage, if it hits an enemy it lights up the target square."); break;
+				case ART_JERKYSTONE:
+					pline("Artifact specs: +2 to-hit and +2 poison damage."); break;
+				case ART_DIVELLIN:
+					pline("Artifact specs: +2 to-hit and +2 damage, mulches a lot less often when fired."); break;
+				case ART_DRUNKROCK:
+					pline("Artifact specs: +2 to-hit and +2 damage. Whenever you fire it, the damage type is randomized."); break;
+				case ART_GLAUSTOCK:
+					pline("Artifact specs: +2 to-hit and +2 magic damage."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

@@ -1387,25 +1387,7 @@ register const char *word;
 		obj->bknown = 1;
 		return(FALSE);
 	}
-	if (obj->otyp == LEATHER_LEASH && obj->leashmon != 0) {
-		if (*word)
-			pline_The("leash is tied around your %s.",
-					body_part(HAND));
-		return(FALSE);
-	}
-	if (obj->otyp == ARMORED_LEASH && obj->leashmon != 0) {
-		if (*word)
-			pline_The("leash is tied around your %s.",
-					body_part(HAND));
-		return(FALSE);
-	}
-	if (obj->otyp == INKA_LEASH && obj->leashmon != 0) {
-		if (*word)
-			pline_The("leash is tied around your %s.",
-					body_part(HAND));
-		return(FALSE);
-	}
-	if (obj->otyp == ADAMANT_LEASH && obj->leashmon != 0) {
+	if (is_leash_type(obj) && (obj->leashmon != 0) ) {
 		if (*word)
 			pline_The("leash is tied around your %s.",
 					body_part(HAND));

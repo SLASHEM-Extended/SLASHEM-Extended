@@ -6582,9 +6582,11 @@ TOOL("inka saddle", "saddle",   0, 0, 0, 0, 500,0, 150, MT_INKA, HI_LEATHER, 20)
 /* inka saddle = last saddle */
 
 /* leather leash = first leash */
-TOOL("leather leash", "leash",  0, 0, 0, 0, 1000, 0,  20, MT_LEATHER, HI_LEATHER, 1),
+TOOL("leather leash", "leash",  0, 0, 0, 0, 890, 0,  20, MT_LEATHER, HI_LEATHER, 1),
 TOOL("adamant leash", "leash",  0, 0, 0, 0, 50, 0,  20, MT_ADAMANTIUM, HI_LEATHER, 30),
 TOOL("armored leash", "leash",  0, 0, 0, 0, 50, 0,  20, MT_STEEL, HI_LEATHER, 25),
+TOOL("rodeo leash", "leash",     0, 0, 0, 0, 100, 0,  20, MT_VEGGY, HI_LEATHER, 10),
+TOOL("bugged leash", "leash",     0, 0, 0, 0, 10, 0,  20, MT_PWN_BUBBLE, HI_LEATHER, 5),
 TOOL("inka leash", "leash",     0, 0, 0, 0, 100, 0,  20, MT_INKA, HI_LEATHER, 20),
 /* inka leash = last leash */
 
