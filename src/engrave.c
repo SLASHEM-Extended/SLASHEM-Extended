@@ -6645,6 +6645,7 @@ static const char *epitaphs[] = {
 	"If interface screwing traps were too common, or (almost) impossible to fix when you get their effects, then they might be unbalanced. But they are actually quite rare and time out after not too terribly long. Ergo, they aren't unbalanced and any allegations that they actually were are just baseless conjecture.",
 	"What, you're playing a monk and owning pretty much everything and are still complaining that the game is supposedly 'hard'? Dude if it feels like that, it's probably because you're not playing your character to the full extent of her abilities! You're roleplaying and therefore pretend that missile weapons, spells, non-vegan comestibles and various other things don't exist, no wonder it's 'harder' for you!",
 	"What, you're complaining that a monk with maxxed martial arts skill is doing 'only' 25 damage per hit? Dude do you even know how powerful that is, a valkyrie with a +7 long sword at expert skill might do about the same damage but she needs to find and enchant the sword first, and it can be disenchanted, stolen or many other things, while your monk's fists are always with you! The monk's melee is certainly not too weak, play a ranger or locksmith if you want to see what it's like to play a char who's weak at melee!",
+	"Create monster effect snowballed. Something read a cursed scroll that summoned over a dozen monsters and one of them then had a wand of create monster to summon a couple dozen more.",
 
 };
 

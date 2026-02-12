@@ -9733,6 +9733,8 @@ SCROLL((char *)0,               "IT TAKES FOREVER TO TRAVEL FROM FUERTH TO TREBA
 SCROLL((char *)0,               "THERE IS A TOWN NAMED VERVERT IN BREMEN",  P_NONE,     1,   0, 100, CLR_YELLOW, 1),
 SCROLL((char *)0,               "DAS WORT BEHINDERT IST ECHT MALL VOLL GEIMEN",  P_NONE,     1,   0, 100, CLR_ORANGE, 1),
 SCROLL((char *)0,               "MACH EINEN FEHLER  DUE DUE DUE",  P_NONE,     1,   0, 100, CLR_RED, 1),
+SCROLL((char *)0,               "STOP PUTTING EVERYTHING I SAY ON THE GOLD SCALE",  P_NONE,     1,   0, 100, CLR_YELLOW, 1),
+SCROLL((char *)0,               "TAEN AND REUKRA ARE RIDICULOUS CARTOON VILLAINS",  P_NONE,     1,   0, 100, CLR_CYAN, 1),
 
 /* dummy for easier copypasting */
 /* SCROLL((char *)0,               "",  P_NONE,     1,   0, 100, CLR_, 1), */

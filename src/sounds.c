@@ -8746,13 +8746,13 @@ boolean playerdead;
 			if (cansee(mtmp->mx, mtmp->my) || playerdead) pline("%s takes on a victorious pose.", Monnam(mtmp));
 			break;
 		case MS_BARK:
-			if (flags.soundok || playerdead) pline("%s wags %s tail.", Monnam(mtmp), mhis(mtmp));
+			if (flags.soundok || cansee(mtmp->mx, mtmp->my) || playerdead) pline("%s wags %s tail.", Monnam(mtmp), mhis(mtmp));
 			break;
 		case MS_MEW:
-			if (flags.soundok || playerdead) pline("%s sharpens %s claws.", Monnam(mtmp), mhis(mtmp));
+			if (flags.soundok || cansee(mtmp->mx, mtmp->my) || playerdead) pline("%s sharpens %s claws.", Monnam(mtmp), mhis(mtmp));
 			break;
 		case MS_ROAR:
-			if (flags.soundok || playerdead) pline("%s roars into the air.", Monnam(mtmp));
+			if (flags.soundok || cansee(mtmp->mx, mtmp->my) || playerdead) pline("%s roars into the air.", Monnam(mtmp));
 			break;
 		case MS_GROWL:
 			if (flags.soundok || playerdead) pline("%s growls contentedly.", Monnam(mtmp));
@@ -8773,7 +8773,7 @@ boolean playerdead;
 			if (flags.soundok || playerdead) pline("%s grunts dismissively.", Monnam(mtmp));
 			break;
 		case MS_NEIGH:
-			if (flags.soundok || playerdead) pline("%s blows through %s %s.", Monnam(mtmp), mhis(mtmp), mbodypart(mtmp, NOSE));
+			if (flags.soundok || cansee(mtmp->mx, mtmp->my) || playerdead) pline("%s blows through %s %s.", Monnam(mtmp), mhis(mtmp), mbodypart(mtmp, NOSE));
 			break;
 		case MS_WAIL:
 			if (flags.soundok || playerdead) pline("%s wails sadly.", Monnam(mtmp));
@@ -8798,7 +8798,7 @@ boolean playerdead;
 			if (flags.soundok || playerdead) pline("%s makes a content mumble.", Monnam(mtmp));
 			break;
 		case MS_IMITATE:
-			if (flags.soundok || playerdead) pline("%s imitates %s defeated opponent.", Monnam(mtmp), mhis(mtmp));
+			if (cansee(mtmp->mx, mtmp->my) || playerdead) pline("%s imitates %s defeated opponent.", Monnam(mtmp), mhis(mtmp));
 			break;
 		case MS_GUARD:
 			if (flags.soundok || playerdead) pline("%s shouts 'Got you, evil-doer!'", Monnam(mtmp));
@@ -8855,7 +8855,7 @@ boolean playerdead;
 			if (flags.soundok || playerdead) pline("%s remarks 'Never underestimate the power of my spells!'", Monnam(mtmp));
 			break;
 		case MS_WERE:
-			if (flags.soundok || playerdead) pline("%s growls furiously and starts devouring %s corpse.", Monnam(mtmp), playerdead ? "your" : "the fallen opponent's");
+			if (flags.soundok || cansee(mtmp->mx, mtmp->my) || playerdead) pline("%s growls furiously and starts devouring %s corpse.", Monnam(mtmp), playerdead ? "your" : "the fallen opponent's");
 			break;
 		case MS_BOAST:
 			if (flags.soundok || playerdead) pline("%s laughs 'Wa ha ha ha, you never had a chance to begin with!'", Monnam(mtmp));
@@ -8929,7 +8929,7 @@ boolean playerdead;
 		case MS_SING:
 			if (flags.soundok || playerdead) {
 				if (playerdead) pline("%s sighs 'Why couldn't you just clean those girl shoes? You wouldn't have had to die!'", Monnam(mtmp));
-				else pline("%s states 'Serves you right for refusing to clean the girl shoes.'.", Monnam(mtmp));
+				else pline("%s states 'Serves you right for refusing to clean the girl shoes.'", Monnam(mtmp));
 			}
 			break;
 		case MS_ALLA:
