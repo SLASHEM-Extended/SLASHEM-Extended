@@ -191,6 +191,10 @@ struct obj *obj;
 		mtmp->egotype_flying = TRUE;
 	}
 
+	if (obj && obj->oartifact == ART_ERRONEOUS_VELOCITY) {
+		mtmp->egotype_speedbugger = TRUE;
+	}
+
 	if (obj && obj->oartifact == ART_WORKING_FIELD_EFFECT) {
 		mtmp->egotype_stabilizer = TRUE;
 	}
@@ -1201,8 +1205,9 @@ register int after;	/* this is extra fast monster movement */
 		ny = poss[i].y;
 		cursemsg[i] = FALSE;
 
-		/* if leashed, we drag him along. */
-		if (mtmp->mleashed && distu(nx, ny) > 4) continue;
+		/* if leashed, we drag him along.
+		 * ....... but that doesn't mean the dog should just fucking stop following when he gets too far away!! --Amy */
+		/*if (mtmp->mleashed && distu(nx, ny) > 4) continue;*/
 
 		/* if a guardian, try to stay close by choice */
 		if ((!has_edog || is_spell) &&

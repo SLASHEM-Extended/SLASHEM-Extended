@@ -1198,8 +1198,12 @@ register xchar x, y;
 		} else if (otmp->oartifact == ART_INFINITE_RANGE) {
 			; /* doesn't snap or anything, no matter how far away the pet is */
 		} else if (otmp->cursed && otmp->otyp != ADAMANT_LEASH && !breathless(mtmp->data) && (!mtmp->egotype_undead) ) {
-		    if (um_dist(mtmp->mx, mtmp->my, 5) ||
-			    (mtmp->mhp -= rnd(chokedamage)) <= 0) {
+
+		    /* used to be that if the pet's AI was too stOOpid to just *fucking move closer to you when leashed*, it'd die once you got too far away...
+		     * that's bullshit and you know that, devs! so I fixed it! instead, it deals more damage and causes heal block for the pet --Amy */
+		    if (um_dist(mtmp->mx, mtmp->my, 5)) chokedamage += rn1(10, 10);
+
+		    if ((mtmp->mhp -= rnd(chokedamage)) <= 0) {
 			long save_pacifism = u.uconduct.killer;
 
 			Your("leash chokes %s to death!", mon_nam(mtmp));
@@ -1212,6 +1216,10 @@ register xchar x, y;
 			if (mtmp->mhp > 0) u.uconduct.killer = save_pacifism;
 		    } else {
 			pline("%s chokes on the leash!", Monnam(mtmp));
+			if (um_dist(mtmp->mx, mtmp->my, 5)) {
+				mtmp->healblock += rn1(20,20);
+				pet_distress(mtmp, 3); /* growl */
+			}
 			/* tameness eventually drops to 1 here (never 0) */
 			if (mtmp->mtame && rn2(mtmp->mtame) && !((rnd(30 - ACURR(A_CHA))) < 4) ) mtmp->mtame--;
 		    }
@@ -1230,6 +1238,8 @@ register xchar x, y;
 			}
 		    } else {
 			You("pull on the leash.");
+			/* fucking MOVE, you dick of a pet! I pulled the motherfucking leash, don't you DARE just standing there!! --Amy */
+			mtmp->movement += rnd(12);
 			if (monstersoundtype(mtmp) != MS_SILENT)
 			    switch (rn2(3)) {
 			    case 0:  growl(mtmp);   break;
