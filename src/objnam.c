@@ -12576,23 +12576,11 @@ typfnd:
 		otmp->oartifact != ART_OGRESMASHER &&
 		otmp->oartifact != ART_SWORD_OF_BALANCE)) ||
 # endif
-	     (otmp->oartifact && nartifact_exist() == 0 && !rn2(20) ) ||
-	     (otmp->oartifact && nartifact_exist() == 1 && !rn2(18) ) ||
-	     (otmp->oartifact && nartifact_exist() == 2 && !rn2(16) ) ||
-	     (otmp->oartifact && nartifact_exist() == 3 && !rn2(14) ) ||
-	     (otmp->oartifact && nartifact_exist() == 4 && !rn2(12) ) ||
-	     (otmp->oartifact && nartifact_exist() == 5 && !rn2(10) ) ||
-	     (otmp->oartifact && nartifact_exist() == 6 && !rn2(9) ) ||
-	     (otmp->oartifact && nartifact_exist() == 7 && !rn2(8) ) ||
-	     (otmp->oartifact && nartifact_exist() == 8 && !rn2(7) ) ||
-	     (otmp->oartifact && nartifact_exist() == 9 && !rn2(6) ) ||
-	     (otmp->oartifact && nartifact_exist() == 10 && !rn2(5) ) ||
-	     (otmp->oartifact && nartifact_exist() == 11 && !rn2(4) ) ||
-	     (otmp->oartifact && nartifact_exist() == 12 && !rn2(3) ) ||
-/* there should be a chance of an artifact wish failing even if none have been created yet --Amy 
- * but since there are so many more artifacts generated now, we increase the failure chance more slowly */
-	     (otmp->oartifact && (nartifact_exist() > 12) && rn2(nartifact_exist()) > 8) ||
-		 (Role_if(PM_PIRATE) && otmp->oartifact == ART_REAVER) || (isfriday && !rn2(5)) )
+		/* there should be a chance of an artifact wish failing even if none have been created yet --Amy 
+		 * but since there are so many more artifacts generated now, we increase the failure chance more slowly */
+		(otmp->oartifact && (rnd(60 + nartifact_exist()) > 50) ) ||
+
+		(Role_if(PM_PIRATE) && otmp->oartifact == ART_REAVER) || (isfriday && !rn2(5)) )
 #ifdef WIZARD
 	    && !wizard
 #endif
