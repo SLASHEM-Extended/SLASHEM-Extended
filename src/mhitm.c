@@ -816,7 +816,8 @@ meleeattack:
 		break;
 
 	    case AT_EXPL:
-		if (!magr->mtame && rn2(20)) break; /* we want the things to explode at YOU! Since monsters are immune to quite some attack types anyway, and the exploding lights would just suicide without causing any effect. --Amy */
+		if (!magr->mtame && rn2(3)) break;
+		/* used to be that monsters would be immune to most such effects but they're not anymore --Amy */
 
 		if (!monnear(magr, mdef->mx, mdef->my)) break; /* we don't want them to suddenly warp and explode in someone's face --Amy */
 
@@ -829,7 +830,8 @@ meleeattack:
 		break;
 
 	    case AT_ENGL:
-		if (u.usteed && (mdef == u.usteed)) {
+		/* used to be that steed would be immune but not anymore --Amy */
+		if (u.usteed && rn2(3) && (mdef == u.usteed)) {
 		    strike = 0;
 		    break;
 		}
@@ -4006,7 +4008,8 @@ gulpmm(magr, mdef, mattk)
 	if (DEADMONSTER(magr)) return 0;
 	if (DEADMONSTER(mdef)) return 0;
 
-	if (mdef->data->msize >= MZ_HUGE && magr->data->msize < MZ_HUGE) return MM_MISS;
+	/* just because the pet is large doesn't mean the engulfer can't attack it at all! --Amy */
+	if (mdef->data->msize >= MZ_HUGE && magr->data->msize < MZ_HUGE && (!mdef->mtame || rn2(3)) ) return MM_MISS;
 
 	if (vis) {
 		sprintf(buf,"%s swallows", Monnam(magr));
