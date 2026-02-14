@@ -839,28 +839,33 @@ boolean (*allow)(OBJ_P);/* allow function */
 	    for (i = 0; i < n; i++) {
 		curr = oarray[i];
 
-		if ((qflags & FEEL_COCKATRICE) && (curr->otyp == CORPSE || curr->otyp == EGG) &&
-		     will_feel_cockatrice(curr, FALSE)) {
-			destroy_nhwindow(win);	/* stop the menu and revert */
-			(void) look_here(0, FALSE);
-			return 0;
-		}
-		if ((!(qflags & INVORDER_SORT) || curr->oclass == *pack)
-							&& (*allow)(curr)) {
+		/* sortloot changed things here, and after 7 years of it working fine, I got a crash... apparently we need to make sure "curr" is defined --Amy
+		 * it's not a clean fix, probably still leaks memory but at least it doesn't crash with this check in place */
+		if (curr) {
 
-		    /* if sorting, print type name (once only) */
-		    if (qflags & INVORDER_SORT && !printed_type_name) {
-			any.a_obj = (struct obj *) 0;
-			add_menu(win, NO_GLYPH, &any, 0, 0, iflags.menu_headings,
-					let_to_name(*pack, FALSE, iflags.showsym), MENU_UNSELECTED);
-			printed_type_name = TRUE;
-		    }
+			if ((qflags & FEEL_COCKATRICE) && (curr->otyp == CORPSE || curr->otyp == EGG) &&
+			     will_feel_cockatrice(curr, FALSE)) {
+				destroy_nhwindow(win);	/* stop the menu and revert */
+				(void) look_here(0, FALSE);
+				return 0;
+			}
+			if ((!(qflags & INVORDER_SORT) || curr->oclass == *pack)
+								&& (*allow)(curr)) {
 
-		    any.a_obj = curr;
-		    add_menu(win, obj_to_glyph(curr), &any,
-			    qflags & USE_INVLET ? curr->invlet : 0,
-			    def_oc_syms[(int)objects[curr->otyp].oc_class],
-			    ATR_NONE, doname(curr), MENU_UNSELECTED);
+			    /* if sorting, print type name (once only) */
+			    if (qflags & INVORDER_SORT && !printed_type_name) {
+				any.a_obj = (struct obj *) 0;
+				add_menu(win, NO_GLYPH, &any, 0, 0, iflags.menu_headings,
+						let_to_name(*pack, FALSE, iflags.showsym), MENU_UNSELECTED);
+				printed_type_name = TRUE;
+			    }
+
+			    any.a_obj = curr;
+			    add_menu(win, obj_to_glyph(curr), &any,
+				    qflags & USE_INVLET ? curr->invlet : 0,
+				    def_oc_syms[(int)objects[curr->otyp].oc_class],
+				    ATR_NONE, doname(curr), MENU_UNSELECTED);
+			}
 		}
 	    }
 	    pack++;
