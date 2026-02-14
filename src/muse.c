@@ -11341,7 +11341,7 @@ xxx_noobj:
 		 * are not objects.  Also set dknown in mthrowu.c.
 		 */
 
-		if (have_thilojewel() && otmp && (otmp->otyp == POT_PARALYSIS) && mtmp && (monstersoundtype(mtmp) == MS_MOLEST)) {
+		if (carryingarti(ART_THILO_S_ASSHOLERY) && otmp && (otmp->otyp == POT_PARALYSIS) && mtmp && (monstersoundtype(mtmp) == MS_MOLEST)) {
 			u.uprops[DEAC_FREE_ACTION].intrinsic += rnz(100);
 		}
 

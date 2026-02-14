@@ -184,6 +184,7 @@ const char *name;	/* if null, then format `obj' */
 		if (uarms->spe < 0) shieldblockrate += (uarms->spe * 2);
 
 		if (uarm && uarm->oartifact == ART_WOODSTOCK) shieldblockrate += 5;
+		if (carryingarti(ART_HEMEPHEELE)) shieldblockrate += 10;
 		if (uarm && uarm->oartifact == ART_SEWERIC_OUTLOOKPOST) shieldblockrate += 20;
 		if (uamul && uamul->oartifact == ART_IMPROVED_SIGN) shieldblockrate += 10;
 		if (uwep && uwep->oartifact == ART_HOLD_IT_OUT) shieldblockrate += 20;
@@ -2173,6 +2174,8 @@ struct monst *mtmp;
 
 		/* weaker monsters shouldn't spam you with thousands of arrows --Amy */
 		if (!rn2(2) && !strongmonst(mtmp->data) && !extra_nasty(mtmp->data) && !(mtmp->data->geno & G_UNIQ) && multishot > 1) multishot -= rnd(multishot / 2);
+
+		if (carryingarti(ART_THEY_KEEP_MISSING_EACH_OTH) && multishot > 1) multishot--;
 
 	    if ((long)multishot > otmp->quan) multishot = (int)otmp->quan;
 

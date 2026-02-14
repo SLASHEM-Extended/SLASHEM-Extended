@@ -324,6 +324,7 @@ moveloop()
 
 			if (verisiertEffect || u.uprops[VERISIERTEFFECT].extrinsic || autismweaponcheck(ART_HOL_ON_MAN) || (uimplant && uimplant->oartifact == ART_YOU_SHOULD_SURRENDER) || (uarms && uarms->oartifact == ART_GOLDEN_DAWN) || (uarms && uarms->oartifact == ART_GREXIT_IS_NEAR) || autismweaponcheck(ART_UPGRADED_LEMURE) || have_verisiertstone()) monclock /= 5;
 			if (uarmf && uarmf->oartifact == ART_BLACK_DIAMOND_ICON) monclock /= 4; /* stacks with the above */
+			if (carryingarti(ART_EXCLAMATION_MARK_)) monclock /= 2;
 			if (ishaxor) monclock /= 2;
 			if (Race_if(PM_LICH_WARRIOR)) monclock /= 2;
 			if (Race_if(PM_RODNEYAN)) monclock /= 4;
@@ -337,7 +338,7 @@ moveloop()
 			if (autismringcheck(ART_BETTER_GET_RID_QUICKLY)) monclock *= 2; /* doesn't stack if you wear two, this is by design --Amy */
 			if (uarm && uarm->oartifact == ART_ISIMOUD) monclock *= 2;
 			if (uarmu && uarmu->oartifact == ART_FIRST_THERE_WE_WERE) monclock *= 2;
-			if (have_minimejewel()) monclock *= 3;
+			if (carryingarti(ART_MINIMAL_MINI_ME)) monclock *= 3;
 
 			if (Race_if(PM_DEVELOPER) && ((u.ulevel > 9) || (moves > 10000)) ) monclock /= 3;
 
@@ -373,6 +374,7 @@ moveloop()
 			if (u.sterilized) xtraclock *= (5 + spell_damage_bonus(SPE_STERILIZE));
 
 			if (verisiertEffect || u.uprops[VERISIERTEFFECT].extrinsic || have_verisiertstone()) xtraclock /= 5;
+			if (carryingarti(ART_EXCLAMATION_MARK_)) xtraclock /= 2;
 			if (autismweaponcheck(ART_UPGRADED_LEMURE)) xtraclock /= 5;
 			if (uimplant && uimplant->oartifact == ART_YOU_SHOULD_SURRENDER) xtraclock /= 5;
 			if (uarms && uarms->oartifact == ART_GOLDEN_DAWN) xtraclock /= 5;
@@ -383,7 +385,7 @@ moveloop()
 			if (Race_if(PM_RODNEYAN)) xtraclock /= 4;
 			if (uarmg && uarmg->oartifact == ART_DIFFICULTY__) xtraclock /= 2;
 			if (issuxxor) xtraclock *= 2;
-			if (have_minimejewel()) xtraclock *= 3;
+			if (carryingarti(ART_MINIMAL_MINI_ME)) xtraclock *= 3;
 			if (uarmc && uarmc->oartifact == ART_BLEBLE___) xtraclock *= 2;
 			if (uarmf && uarmf->oartifact == ART_CHRRRRRRR) xtraclock *= 2;
 			if (uarm && uarm->oartifact == ART_ISIMOUD) xtraclock *= 2;
@@ -2376,6 +2378,7 @@ moveloop()
 			if (uarmh && uarmh->oartifact == ART_REAL_SPEED_DEVIL && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uarm && uarm->oartifact == ART_LESS_PROTECTED_GLASS_CANNO && !rn2(2)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uamul && uamul->oartifact == ART_ADELAIDE_S_RACING && (rnd(10) > 3) ) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
+			if (carryingarti(ART_RALF_S_HIGHWAY) && (rnd(10) > 3) ) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uarmf && uarmf->oartifact == ART_MAREN_S_GALE_BOOTS && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uimplant && uimplant->oartifact == ART_COMBAT_NODE_OF_THARION_BLA && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uimplant && uimplant->oartifact == ART_CORELINK_OF_CU_CHULAINN && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
@@ -2556,7 +2559,7 @@ moveloop()
 		    }
 
 			/* fluctuating speed - sadly jonadab never fully disclosed how that bug worked in fourk... */
-		    if ((FluctuatingSpeed || u.uprops[FLUCTUATING_SPEED].extrinsic || have_fluctuatingspeedstone() || have_analeahjewel() ) && moveamt > 0) {
+		    if ((FluctuatingSpeed || u.uprops[FLUCTUATING_SPEED].extrinsic || have_fluctuatingspeedstone() || carryingarti(ART_ANALEAH_S_CONTINUITY) ) && moveamt > 0) {
 			if (FluctuatingSpeedXtra) {
 				if ((moves % 36) < 10) {
 					moveamt /= 12;
@@ -2792,6 +2795,34 @@ moveloop()
 			show_glyph(grakax, grakay, randomglyph());
 		}
 
+		if (carryingarti(ART_ADDERCOUNTER)) {
+			u.urexp += 1;
+		}
+
+		if (carryingarti(ART_LAST_PART) && !rn2(5000)) {
+			int i, j;
+			int identamount = rnd(10);
+			pline("You learn the identity of some objects:");
+			for (i = 0; i < identamount; i++) {
+				j = rn2(NUM_OBJECTS);
+				while (objects[j].oc_prob < 1) j = rn2(NUM_OBJECTS);
+				makeknown(j);
+				pline("%s (%s).", obj_descr[j].oc_name, objtypenames[objects[j].oc_class]);
+			}
+
+		}
+
+		if (carryingarti(ART_BOH_THE_SHOUT_) && !rn2(20000)) {
+			if (uwep) {
+				if (uwep->oclass == WEAPON_CLASS || uwep->oclass == BALL_CLASS || uwep->oclass == GEM_CLASS || uwep->oclass == CHAIN_CLASS || uwep->oclass == VENOM_CLASS || is_weptool(uwep)) {
+					if (uwep->spe < 10) {
+						uwep->spe++;
+						Your("weapon glows for a moment.");
+					}
+				}
+			}
+		}
+
 		if (uimplant && uimplant->oartifact == ART_MINDFRAME_OF_NYSSARA_THE_T && !rn2(5000)) {
 
 			register struct obj *nyssaraotmp, *nyssaranewotmp;
@@ -2849,6 +2880,30 @@ nyssaraend:
 					if (wwmtmp->mhp < 1) wwmtmp->mhp = 1;
 				}
 			}
+		}
+
+		if (carryingarti(ART_FIELD_CLICK_RADIO) && !rn2(5000)) {
+			int cx,cy;
+			int i, j;
+			boolean canbeinawall = FALSE;
+			if (!rn2(Passes_walls ? 5 : 25)) canbeinawall = TRUE;
+
+			cx = rn2(COLNO);
+			cy = rn2(ROWNO);
+
+		      for (i = -2; i <= 2; i++) for(j = -2; j <= 2; j++) {
+				if (!isok(cx + i, cy + j)) continue;
+				if ((levl[cx + i][cy + j].typ <= DBWALL) && !canbeinawall) continue;
+				if (t_at(cx + i, cy + j)) continue;
+
+				if (rn2(5)) (void) maketrap(cx + i, cy + j, rndtrap(), 100, TRUE);
+			}
+
+		}
+
+		if (carryingarti(ART_IRREGULAR_RADIANCE) && !rn2(20000)) {
+			You_feel("more attractive!");
+			(void) adjattrib(A_CHA, 1, FALSE, TRUE);
 		}
 
 		if (uwep && uwep->oartifact == ART_DREMER_HAMMER && !rn2(5000)) {
@@ -3139,6 +3194,10 @@ nyssaraend:
 			pline("Somehow, your memory is lost...");
 			incr_itimeout(&HMap_amnesia, 500);
 			uarms->spe++;
+		}
+
+		if (carryingarti(ART_TRISTREHOLD) && !rn2(25000)) {
+			goodeffect();
 		}
 
 		if (!PlayerCannotUseSkills && PlayerInBallHeels && (u.ballskill >= 20) ) {
@@ -3817,7 +3876,7 @@ nyssaraend:
 			}
 		}
 
-		if (have_repeatingloadstone() && !rn2(2500)) {
+		if (carryingarti(ART_REPEATING_LOAD) && !rn2(2500)) {
 			struct obj *ldstone;
 			pline("A gray stone appears from nowhere!");
 			ldstone = mksobj_at(LOADSTONE, u.ux, u.uy, TRUE, FALSE, FALSE);
@@ -4072,7 +4131,7 @@ nyssaraend:
 			u.yawmtime++;
 		}
 
-		if ((KillerRoomEffect || (u.martialstyle == MARTIALSTYLE_WRESTLING) || (uarmf && uarmf->oartifact == ART_LEGENDARY_JESSICA && !rn2(5)) || u.uprops[KILLER_ROOM_EFFECT].extrinsic || (uarmf && uarmf->oartifact == ART_HIGHWAY_HUNTER) || autismweaponcheck(ART_MAGYAR_IDEA) || have_killerroomstone()) && !rn2(4000)) {
+		if ((KillerRoomEffect || (u.martialstyle == MARTIALSTYLE_WRESTLING) || (uarmf && uarmf->oartifact == ART_LEGENDARY_JESSICA && !rn2(5)) || u.uprops[KILLER_ROOM_EFFECT].extrinsic || (uarmf && uarmf->oartifact == ART_HIGHWAY_HUNTER) || autismweaponcheck(ART_MAGYAR_IDEA) || have_killerroomstone()) && !rn2(carryingarti(ART_THEY_MAKE_KILL_KILL_KILL_N) ? 2000 : 4000)) {
 			int killerroomtype = rnd(29);
 			struct permonst *killermonster = &mons[PM_ANT]; /* arbitrary */
 
@@ -4100,35 +4159,35 @@ nyssaraend:
 
 				switch (killerroomtype) {
 					case 1:
-						killermonster = specialtensmon(322); break;
+						killermonster = specialtensmon(322); break; /* M5_SPACEWARS */
 					case 2:
-						killermonster = specialtensmon(326); break;
+						killermonster = specialtensmon(326); break; /* M5_ANIMEBAND */
 					case 3:
-						killermonster = specialtensmon(333); break;
+						killermonster = specialtensmon(333); break; /* MS_STENCH */
 					case 4:
 						killermonster = courtmon(); break;
 					case 5:
-						killermonster = specialtensmon(427); break;
+						killermonster = specialtensmon(427); break; /* M5_ELDERSCROLLS */
 					case 6:
-						killermonster = specialtensmon(323); break;
+						killermonster = specialtensmon(323); break; /* M5_JOKE */
 					case 7:
-						killermonster = specialtensmon(328); break;
+						killermonster = specialtensmon(328); break; /* M5_DLORDS */
 					case 8:
 						killermonster = douglas_adams_mon(); break;
 					case 9:
-						killermonster = specialtensmon(331); break;
+						killermonster = specialtensmon(331); break; /* M5_RANDOMIZED */
 					case 10:
 						killermonster = evilroommon(); break;
 					case 11:
-						killermonster = specialtensmon(426); break;
+						killermonster = specialtensmon(426); break; /* M5_AOE */
 					case 12:
-						killermonster = specialtensmon(361); break;
+						killermonster = specialtensmon(361); break; /* M5_ELONA */
 					case 13:
-						killermonster = specialtensmon(347); break;
+						killermonster = specialtensmon(347); break; /* MS_CONVERT */
 					case 14:
-						killermonster = specialtensmon(325); break;
+						killermonster = specialtensmon(325); break; /* M5_STEAMBAND */
 					case 15:
-						killermonster = specialtensmon(348); break;
+						killermonster = specialtensmon(348); break; /* MS_HCALIEN */
 					case 16:
 						killermonster = machineroommon(); break;
 					case 17:
@@ -4136,13 +4195,13 @@ nyssaraend:
 					case 18:
 						killermonster = migohivemon(); break;
 					case 19:
-						killermonster = specialtensmon(324); break;
+						killermonster = specialtensmon(324); break; /* M5_ANGBAND */
 					case 20:
-						killermonster = specialtensmon(330); break;
+						killermonster = specialtensmon(330); break; /* M5_DNETHACK */
 					case 21:
-						killermonster = specialtensmon(341); break;
+						killermonster = specialtensmon(341); break; /* M5_EVIL */
 					case 22:
-						killermonster = specialtensmon(332); break;
+						killermonster = specialtensmon(332); break; /* MS_SHOE */
 					case 23:
 						killermonster = insidemon(); break;
 					case 24:
@@ -4152,11 +4211,11 @@ nyssaraend:
 					case 26:
 						killermonster = illusionmon(); break;
 					case 27:
-						killermonster = specialtensmon(327); break;
+						killermonster = specialtensmon(327); break; /* M5_DIABLO */
 					case 28:
-						killermonster = specialtensmon(434); break;
+						killermonster = specialtensmon(434); break; /* M5_CDDA */
 					case 29:
-						killermonster = specialtensmon(140); break;
+						killermonster = specialtensmon(140); break; /* M3_POKEMON */
 					default:
 						killermonster = &mons[PM_ANT]; break;
 				}
@@ -4169,7 +4228,7 @@ nyssaraend:
 
 		}
 
-		if ((TrapwarpingBug || u.uprops[TRAPWARPING].extrinsic || have_trapwarpstone() || (uarmu && uarmu->oartifact == ART_COVER_THE_SEXY_BUTT) || (uarm && uarm->oartifact == ART_EVERYTHING_COMES_WITH_A_CO) ) && !rn2(100)) {
+		if ((TrapwarpingBug || u.uprops[TRAPWARPING].extrinsic || have_trapwarpstone() || (uarmu && uarmu->oartifact == ART_COVER_THE_SEXY_BUTT) || (uarm && uarm->oartifact == ART_EVERYTHING_COMES_WITH_A_CO) ) && !rn2(carryingarti(ART_FLIT_AROUND_LIKE_CRAZY) ? 20 : 100)) {
 			for(ttmp = ftrap; ttmp; ttmp = ttmp->ntrap) {
 				if (ttmp->ttyp == MAGIC_PORTAL) continue;
 				if (ttmp->ttyp == ONE_WAY_PORTAL) continue;
@@ -5814,6 +5873,10 @@ newbossS:
 			You("feel the need to enter the secret course leading to the public toilet!");
 			antjeminigame();
 		}
+		if (carryingarti(ART_DECADENCE_IN_DOSES) && !rn2(2000)) {
+			You("feel the need to enter the secret course leading to the public toilet!");
+			antjeminigame();
+		}
 
 		if (uarmf && uarmf->oartifact == ART_ENDORPHIC_SCRATCHING && !rn2(4000)) {
 			pline("Your pumps challenge you to a fight!");
@@ -6228,6 +6291,41 @@ greasingdone:
 
 		}
 
+		if (carryingarti(ART_TODAY_HUE__TOMORROW_HOTT) && !rn2(100)) {
+			switch (rnd(5)) {
+
+				case 1:
+					if (u.petcollectitems) {
+						u.petcollectitems = 0;
+					} else {
+						u.petcollectitems = 1;
+					}
+					break;
+				case 2:
+					u.petattackenemies = !rn2(4) ? -1 : !rn2(3) ? 0 : rn2(2) ? 1 : 2;
+					break;
+				case 3:
+					if (u.petcaneat) {
+						u.petcaneat = 0;
+					} else {
+						u.petcaneat = 1;
+					}
+					break;
+				case 4:
+					if (u.petcanfollow) {
+						u.petcanfollow = 0;
+					} else {
+						u.petcanfollow = 1;
+					}
+					break;
+				case 5:
+					u.steedhitchance = rn2(101);
+					break;
+
+			}
+
+		}
+
 		if (u.tarmustrokingturn) {
 			u.tarmustrokingturn--;
 			if (u.tarmustrokingturn < 0) u.tarmustrokingturn = 0; /* fail safe */
@@ -6338,7 +6436,7 @@ greasingdone:
 			else skilltrainingdecrease(level_difficulty() + 1);
 		}
 
-		if (have_amateurluckstone() && !rn2(100)) {
+		if (carryingarti(ART_AMATEURHOUR_S_SIGH) && !rn2(100)) {
 			contaminate(rnd(10), FALSE);
 		}
 
@@ -6462,6 +6560,23 @@ greasingdone:
 		}
 
 		if (!rn2(2500) && uarmg && itemhasappearance(uarmg, APP_DEMOLITION_GLOVES) ) {
+			struct obj *dynamite;
+			dynamite = mksobj(STICK_OF_DYNAMITE, TRUE, FALSE, FALSE);
+			if (dynamite) {
+				if (dynamite->otyp != STICK_OF_DYNAMITE) delobj(dynamite);
+				else {
+					dynamite->dynamitekaboom = 1;
+					dynamite->quan = 1;
+					dynamite->owt = weight(dynamite);
+					dropy(dynamite);
+					attach_bomb_blow_timeout(dynamite, 0, 0);
+					run_timers();
+				}
+			}
+
+		}
+
+		if (!rn2(2500) && carryingarti(ART_KHOR_S_BOMB) ) {
 			struct obj *dynamite;
 			dynamite = mksobj(STICK_OF_DYNAMITE, TRUE, FALSE, FALSE);
 			if (dynamite) {
@@ -6717,6 +6832,7 @@ greasingdone:
 			pline("A toilet! You feel that you have to take a shit, and so you do.");
 
 			use_skill(P_SQUEAKING, 10);
+			if (carryingarti(ART_MAYWON_MONTH)) use_skill(P_SQUEAKING, 10);
 			int crapduration = 5;
 			if (uarm && objects[uarm->otyp].oc_delay) {
 				pline("Taking off your armor is going to take a while...");
@@ -9086,7 +9202,7 @@ newbossJANI:
 			litroomlite(FALSE);
 		}
 
-		if (have_miraclebeautifulnoises() && !rn2(200)) reducesanity(1);
+		if (carryingarti(ART_MIRACLE_BEAUTIFUL_NOISES) && !rn2(200)) reducesanity(1);
 		if (uleft && uleft->oartifact == ART_CONTINUOUS_JUICE && !rn2(100)) reducesanity(1);
 		if (uright && uright->oartifact == ART_CONTINUOUS_JUICE && !rn2(100)) reducesanity(1);
 
@@ -9595,6 +9711,15 @@ newbossSTEN:
 
 		}
 
+		if (carryingarti(ART_PARASYM_ACCEPTANCE) && !rn2(500)) {
+			if (uinsymbiosis) {
+				if (!u.usymbiote.cursed) cursesymbiote();
+			} else {
+				getrandomsymbiote(FALSE, FALSE);
+				if (uinsymbiosis) cursesymbiote();
+			}
+		}
+
 		if (uwep && uwep->oartifact == ART_APPLY_B) {
 			increasesanity_noeffect(1, FALSE);
 		}
@@ -9710,13 +9835,14 @@ newbossBUTT:
 			}
 		}
 
-		if (uwep && is_lightsaber(uwep) && uwep->lamplit && isfriday) {
+		if ((uwep && is_lightsaber(uwep) && uwep->lamplit && isfriday) || carryingarti(ART_FIRRRRRRRR____GA_)) {
 
 			if (!SkillTrainingImpossible) {
 
 				u.firgaturns++;
+				if (carryingarti(ART_FIRRRRRRRR____GA_) && uwep && is_lightsaber(uwep) && uwep->lamplit && isfriday) u.firgaturns += 4;
 				if (u.firgaturns >= 10) {
-					u.firgaturns = 0;
+					u.firgaturns -= 10;
 					if (!rn2(131313)) {
 						u.firgaskill = 0;
 					} else if (!rn2(13)) {
@@ -9920,6 +10046,32 @@ newbossSUPERSING:
 		}
 
 		if (FemtrapActiveIrina && !rn2(25000)) {
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			coord cc, dd;
+			int cx,cy;
+
+			cx = rn2(COLNO);
+			cy = rn2(ROWNO);
+
+			randsp = (rn2(16) + 5);
+
+			for (i = 0; i < randsp; i++) {
+
+				if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				(void) makemon(specialtensmon(332), cx, cy, MM_ADJACENTOK|MM_ANGRY); /* MS_SHOE */
+			}
+
+			u.aggravation = 0;
+
+		}
+
+		if (carryingarti(ART_ADWAODITH_S_HERECOME) && !rn2(25000)) {
 
 			if (Aggravate_monster) {
 				u.aggravation = 1;
@@ -11733,7 +11885,7 @@ newbossO:
 			randomcuss();
 		}
 
-		if (have_grumblebumble() && !rn2(100)) {
+		if (carryingarti(ART_JAN_S_GRUMBLEBUMBLE) && !rn2(100)) {
 			randomcuss();
 		}
 
@@ -12107,6 +12259,10 @@ newbossX:
 #endif
 			}
 
+		}
+
+		if (carryingarti(ART_DITAECT_MAENNSTERS) && !rn2(2000)) {
+			rndcurse();
 		}
 
 		if (In_gammacaves(&u.uz) && !u.gammacavescomplete && (dunlev(&u.uz) == dunlevs_in_dungeon(&u.uz)) ) {
@@ -15457,7 +15613,7 @@ newboss:
 			morehungry(rnd(1000));
 		}
 
-		if (have_hungerhealer()) {
+		if (carryingarti(ART_HUNGERHEALER)) {
 			morehungry(1);
 			if (uinsymbiosis && Role_if(PM_SYMBIANT)) {
 				if (u.usymbiote.mhp < u.usymbiote.mhpmax) {
@@ -17233,6 +17389,15 @@ past4:
 
 			}
 
+			if (carryingarti(ART_SOMKON_DESTERATION) && !rn2(2000) ) {
+
+				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
+				pline("A mysterious force surrounds you...");
+			      if (!playerlevelportdisabled()) level_tele();
+				else You_feel("very disoriented but decide to move on.");
+
+			}
+
 			if (uarmg && uarmg->oartifact == ART_ARABELLA_S_GREAT_BANISHER && !rn2(2000) ) {
 
 				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
@@ -17692,6 +17857,12 @@ past4:
 		for(ttmp = ftrap; ttmp; ttmp = ttmp->ntrap) {
 			if (ttmp && distu(ttmp->tx, ttmp->ty) < 101 && is_nasty_trap(ttmp->ttyp)) {
 				dotrap(ttmp, DONTREVEAL|SKIPGARBAGE);
+				if (ttmp && !ttmp->tseen && carryingarti(ART_ANTSYVEAL)) {
+					if (!ttmp->hiddentrap) {
+						ttmp->tseen = 1;
+						map_trap(ttmp, TRUE);
+					}
+				}
 			}
 		}
 	}
@@ -23268,6 +23439,7 @@ int x, y;
 		if ((grakamon = level.monsters[x][y]) != (struct monst *)0) {
 			if (monstersoundtype(grakamon) == MS_GRAKA) return TRUE;
 			if (grakamon->egotype_grakabug) return TRUE;
+			if (carryingarti(ART_HELIOKOPIS_S_ANNOYANCE) && (grakamon->m_lev > u.ulevel)) return TRUE;
 		}
 	}
 

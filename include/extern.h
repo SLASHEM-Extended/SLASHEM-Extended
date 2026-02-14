@@ -784,6 +784,7 @@ E void container_contents(struct obj *,BOOLEAN_P,BOOLEAN_P);
 E void dump(const char * const pre, const char * const str);
 E void do_containerconts(struct obj *,BOOLEAN_P,BOOLEAN_P,BOOLEAN_P);
 #endif
+E void do_vanquished(int, BOOLEAN_P, BOOLEAN_P, BOOLEAN_P);
 E void terminate(int);
 E int dolistvanq(void);
 E int num_genocides(void);
@@ -1075,68 +1076,22 @@ E struct obj *carryingappearance(int);
 E boolean itemsurvivedestruction(struct obj *, int);
 E const char *objtypenames[];
 
-E boolean haveartileash(int);
-
-E boolean have_lizard(void);
-E boolean have_loadstone(void);
-E boolean have_pokeloadstone(void);
-E boolean have_maybrittclick(void);
-E boolean have_luckypack(void);
-E boolean have_miraclebeautifulnoises(void);
-E boolean have_hardcoreaddiction(void);
-E boolean have_magicrystal(void);
-E boolean have_superjonadabstone(void);
-E boolean have_trippingjewel(void);
-E boolean have_allisloststone(void);
-E boolean have_autohealpotion(void);
-E boolean have_repeatingloadstone(void);
-E boolean have_whitewaterrafting(void);
-E boolean have_daisybag(void);
-E boolean have_invisoloadstone(void);
-E boolean have_spectrumplinggem(void);
-E boolean have_amateurluckstone(void);
-E boolean have_suckstonearti(void);
-E boolean have_femityjewel(void);
-E boolean have_grumblebumble(void);
-E boolean have_kickart(void);
-E boolean have_peepshow(void);
-E int have_spellcolorartifact(void);
-E boolean have_completelyquietlight(void);
-E boolean have_flatgirl(void);
-E boolean have_climxianjewel(void);
-E boolean have_thilojewel(void);
-E boolean have_gronjajewel(void);
-E boolean have_albiestone(void);
-E boolean have_refractura(void);
-E boolean have_analeahjewel(void);
-E boolean have_fragrantjewel(void);
-E boolean have_clonedyke(void);
-E boolean have_prettyblond(void);
-E boolean have_meefmeef(void);
-E int have_dnhdnh(void);
-E boolean have_estealdoctor(void);
-E boolean have_crashrecoverstone(void);
-E boolean have_sportivox(void);
-E boolean have_minimejewel(void);
-E boolean have_burnerdream(void);
-E boolean have_stashitcontainer(void);
-E boolean have_feeldasag(void);
-E boolean have_oneinfourstone(void);
-E boolean have_doubleshelljewel(void);
-E boolean have_contaminatejewel(void);
-E boolean have_haveitallstone(void);
-E boolean have_sonjartifact(void);
-E boolean have_leohighlantern(void);
-E boolean have_fireringcandle(void);
-E boolean have_sleepstone(void);
-E boolean have_magicresstone(void);
-E boolean have_cursedmagicresstone(void);
-E boolean have_loadboulder(void);
-E boolean have_starlightstone(void);
+/* checking for the presence of a specific item in the player's inventory is done via the various "carrying" functions above --Amy
+ * functions that check for something specific are needed only if additional stuff has to be checked, e.g. the item's lit state */
+E boolean have_lizard(void); /* checks various lizard corpses */
+E boolean have_loadstone(void); /* checks regular loadstone and whether it's cursed */
+E boolean haveartileash(int); /* checks whether the specific artifact leash type is currently leashed to something */
+E int have_spellcolorartifact(void); /* checks whether you have the corresponding spell color trap and returns its ID */
+E boolean have_completelyquietlight(void); /* checks whether it's lit */
+E boolean have_refractura(void); /* checks whether johanetta trap effect is active */
+E int have_dnhdnh(void); /* checks whether or not it's lit and returns an appropriate value */
+E boolean have_burnerdream(void); /* checks whether it's lit */
+E boolean have_cursedmagicresstone(void); /* checks whether it's cursed */
+E boolean have_loadboulder(void); /* checks whether it's cursed */
+E boolean have_starlightstone(void); /* checks whether it's cursed */
 E boolean sjwcheck(int);
 E boolean feminizecheck(int);
 E int itemactions(struct obj *,BOOLEAN_P,BOOLEAN_P);
-E boolean have_hungerhealer(void);
 
 E int dostackmark(void);
 
@@ -2684,6 +2639,7 @@ E boolean is_musable(struct obj *);
 E boolean ismusablenumber(int);
 E boolean ishighheeled(struct obj *);
 E boolean ishighheeledb(int);
+E boolean isblockheeledb(int);
 
 E boolean playerwearshighheels(void);
 E boolean playerwearssexyflats(void);

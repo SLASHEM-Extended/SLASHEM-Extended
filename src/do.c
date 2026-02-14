@@ -1814,7 +1814,7 @@ dodown()
 		return(0);
 	} else
 
-	if (Levitation && !Race_if(PM_LEVITATOR) ) { /* levitators are hard enough already --Amy */
+	if (Levitation && !Race_if(PM_LEVITATOR) && !carryingarti(ART_FLIWITEERER) ) { /* levitators are hard enough already --Amy */
 	    if ((HLevitation & I_SPECIAL) || (ELevitation & W_ARTI)) {
 		/* end controlled levitation */
 		if (ELevitation & W_ARTI) {
@@ -2794,7 +2794,7 @@ rerollchaloc:
 
 		}
 
-		if (have_sonjartifact()) {
+		if (carryingarti(ART_QUE_TANGHERISONJA)) {
 
 			if (Aggravate_monster) {
 				u.aggravation = 1;

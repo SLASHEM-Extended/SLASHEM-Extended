@@ -527,7 +527,7 @@ getyear()
 
 /* KMH -- Used by gypsies */
 int
-getmonth()
+getmonth() /* january = 0, february = 1 and so on */
 {
 	return (getlt()->tm_mon);
 }

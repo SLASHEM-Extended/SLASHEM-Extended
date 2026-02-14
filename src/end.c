@@ -54,7 +54,6 @@ extern void dump_spells(void);
 extern void dump_techniques(void);
 extern void dump_overview(void);
 extern void dump_discoveries(void);
-void do_vanquished(int, BOOLEAN_P, BOOLEAN_P);
 STATIC_DCL void list_genocided(int, BOOLEAN_P, BOOLEAN_P);
 #else
 STATIC_DCL void list_genocided(CHAR_P,BOOLEAN_P);
@@ -665,7 +664,7 @@ boolean taken;
 	ask = should_query_disclose_option('v', &defquery);
 	if (!done_stopprint)
 #ifdef DUMP_LOG
-	    do_vanquished(defquery, ask, TRUE);
+	    do_vanquished(defquery, ask, TRUE, FALSE);
 #else
 	    list_vanquished(defquery, ask);
 #endif
@@ -1296,6 +1295,54 @@ persiadone:
 	}
 trolldone:
 
+	if (carryingarti(ART_ELENA_S_CELEBRATION) && u.uhpmax > 10 && how < GENOCIDED && u.ulevel > 2) {
+		pline("But wait...");
+		losexp("Elena's celebration", TRUE, FALSE);
+		if (u.uhpmax < 11) {
+			int statxx;
+			for (statxx = 0; statxx < A_MAX; statxx++) {
+				ABASE(statxx) -= 1;
+				AMAX(statxx) -= 1;
+				if (ABASE(statxx) < ATTRABSMIN(statxx)) ABASE(statxx) = ATTRABSMIN(statxx);
+				if (AMAX(statxx) < ATTRABSMIN(statxx)) AMAX(statxx) = ATTRABSMIN(statxx);
+			}
+			u.uenmax -= rnz(50);
+			if (u.uenmax < 0) u.uenmax = 0;
+			if (u.uen > u.uenmax) u.uen = u.uenmax;
+			skillcaploss();
+			skillcaploss();
+			skillcaploss();
+			skillcaploss();
+			skillcaploss();
+			evilspellforget();
+			eviltechincrease();
+			evilskilldecrease();
+		}
+		losexp("Elena's celebration", TRUE, FALSE);
+		Deprovement += rnz(25000);
+		pline("You come back to life!");
+
+		if (wanttodie) {
+			pline("Nyehehe-hehe-he, you would have lifesaved but you said you want your possessions identified! GAME OVER!");
+			goto elenadone;
+		}
+
+		if(u.uhpmax <= 0) u.uhpmax = 1;	/* arbitrary */
+		savelife(how);
+		u.lifesavepenalty++;
+		killer = 0;
+		killer_format = 0;
+
+#ifdef LIVELOGFILE
+		livelog_avert_death();
+#endif
+		u.youaredead = 0;
+
+		return;
+
+	}
+elenadone:
+
 	/* Felids have 9 lives --Amy */
 	if (Race_if(PM_FELID) && u.uhpmax > 10 && how < GENOCIDED && u.ulevel > 2 && (u.felidlives > 1) ) {
 		u.felidlives--;
@@ -1804,7 +1851,7 @@ deathheaddone:
 	}
 playgamedone:
 
-	if (have_autohealpotion() && u.uhp < 1 && how < GENOCIDED) {
+	if (carryingarti(ART_GULP_GULP_GULP) && u.uhp < 1 && how < GENOCIDED) {
 
 		register struct obj *prcstone;
 
@@ -1849,6 +1896,52 @@ playgamedone:
 		}
 	}
 gulpdone:
+
+	if (carryingarti(ART_RUGGELUU_) && how < GENOCIDED) {
+
+		register struct obj *prcstone;
+
+		pline("But wait...");
+		pline("You come back to life!");
+		if (how == CHOKING) You("vomit ...");
+		You_feel("much better!");
+
+		prcstone = carryingarti(ART_RUGGELUU_);
+
+		if (prcstone) {
+			if (prcstone->quan > 1) {
+				prcstone->quan -= 1;
+				prcstone->owt = weight(prcstone);
+			} else useupall(prcstone);
+		} else { /* game over */
+			pline("Except that for some reason it didn't work, so you only thought that you're alive again and really you're just as dead as before!");
+			goto ruggeldone;
+		}
+
+		if (wanttodie) {
+			pline("Nyehehe-hehe-he, you would have lifesaved but you said you want your possessions identified! GAME OVER!");
+			goto ruggeldone;
+		}
+
+		(void) adjattrib(A_CON, -1, TRUE, TRUE);
+		if(u.uhpmax <= 0) u.uhpmax = 10;	/* arbitrary */
+		savelife(how);
+		u.lifesavepenalty++;
+		if (how == GENOCIDED)
+			pline("Unfortunately you are still genocided...");
+		else {
+
+			killer = 0;
+			killer_format = 0;
+#ifdef LIVELOGFILE
+			livelog_avert_death();
+#endif
+			u.youaredead = 0;
+
+			return;
+		}
+	}
+ruggeldone:
 
 	if (uamul && uamul->otyp == AMULET_OF_THIRD_CHANCE && u.uhp < 1 && how < GENOCIDED) {
 
@@ -3352,17 +3445,18 @@ char defquery;
 boolean ask;
 #ifdef DUMP_LOG
 {
-	do_vanquished(defquery, ask, FALSE);
+	do_vanquished(defquery, ask, FALSE, FALSE);
 	return TRUE;
 
 	/* this function should return something... but the return isn't used anywhere --Amy */
 }
 
 void
-do_vanquished(defquery, ask, want_dump)
+do_vanquished(defquery, ask, want_dump, wizard_bypass)
 int defquery;
 boolean ask;
 boolean want_dump;
+boolean wizard_bypass; /* if TRUE, act as if wizard mode was active */
 #endif
 {
     register int i, lev;
@@ -3377,7 +3471,7 @@ boolean want_dump;
 
     /* get totals first */
     for (i = LOW_PM; i < NUMMONS; i++) {
-	if (mvitals[i].died || program_state.gameover || wizard ) ntypes++;
+	if (mvitals[i].died || program_state.gameover || wizard || wizard_bypass ) ntypes++;
 	total_killed += (long)mvitals[i].died;
 	total_born += (long)mvitals[i].born;
 	if (mons[i].geno & G_UNIQ) bosses_killed += (long)mvitals[i].died;
@@ -3416,7 +3510,7 @@ boolean want_dump;
 		}
 #endif /* 0 */
 
-		if (/*mons[i].mlevel == lev &&*/ (((nkilled = mvitals[i].died) > 0) || (nkilled != mvitals[i].born && (program_state.gameover || wizard)) ) ) {
+		if (/*mons[i].mlevel == lev &&*/ (((nkilled = mvitals[i].died) > 0) || (nkilled != mvitals[i].born && (program_state.gameover || wizard || wizard_bypass)) ) ) {
 		    if ((mons[i].geno & G_UNIQ) && i != PM_HIGH_PRIEST) {
 			sprintf(buf, "%s%s",
 				!type_is_pname(&mons[i]) ? "The " : "",
@@ -3438,7 +3532,7 @@ boolean want_dump;
 			else
 			    sprintf(buf, "%d %s",
 				    nkilled, makeplural(mons[i].mname));
-			if (nkilled != mvitals[i].born && (program_state.gameover || wizard)) /* only show this after death --Amy */
+			if (nkilled != mvitals[i].born && (program_state.gameover || wizard || wizard_bypass)) /* only show this after death --Amy */
 			    sprintf(buf + strlen(buf), " (%d created)",
 				    (int) mvitals[i].born);
 		    }
@@ -3454,7 +3548,7 @@ boolean want_dump;
 	    if (ntypes > 1) {
 		putstr(klwin, 0, "");
 
-		if (program_state.gameover || wizard) {
+		if (program_state.gameover || wizard || wizard_bypass) {
 			sprintf(buf, "%ld creature%s born.", total_born, total_born == 1 ? "" : "s");
 			putstr(klwin, 0, buf);
 #ifdef DUMP_LOG
@@ -3469,7 +3563,7 @@ boolean want_dump;
 #endif
 
 
-		if (program_state.gameover || wizard) {
+		if (program_state.gameover || wizard || wizard_bypass) {
 			sprintf(buf, "%ld boss%s born.", bosses_born, bosses_born == 1 ? "" : "es");
 			putstr(klwin, 0, buf);
 #ifdef DUMP_LOG

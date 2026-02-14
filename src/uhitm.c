@@ -72,6 +72,7 @@ int attk;
 	    case AD_CORR: hurt = 3; break;
 	    case AD_LAVA: hurt = 0; break;
 	    case AD_FLAM: hurt = 0; break;
+	    case AD_NGEN: hurt = 7; break;
 	    default: hurt = 2; break;
 	}
 	/* What the following code does: it keeps looping until it
@@ -80,42 +81,88 @@ int attk;
 	 * rusty metal, are not targets.  However, your body always
 	 * is, no matter what covers it.
 	 */
-	while (1) {
-	    switch(rn2(5)) {
-	    case 0:
-		target = which_armor(mdef, W_ARMH);
-		if (!target || !rust_dmg(target, xname(target), hurt, FALSE, mdef))
-		    continue;
-		break;
-	    case 1:
-		target = which_armor(mdef, W_ARMC);
-		if (target) {
-		    (void)rust_dmg(target, xname(target), hurt, TRUE, mdef);
-		    break;
+
+	if (hurt == 7) {
+		while (1) {
+		    switch(rn2(5)) {
+		    case 0:
+			target = which_armor(mdef, W_ARMH);
+			if (!target)
+			    continue;
+			drain_item_severely(target);
+			break;
+		    case 1:
+			target = which_armor(mdef, W_ARMC);
+			if (target) {
+			    drain_item_severely(target);
+			    break;
+			}
+			if ((target = which_armor(mdef, W_ARM)) != (struct obj *)0) {
+			    drain_item_severely(target);
+			} else if ((target = which_armor(mdef, W_ARMU)) != (struct obj *)0) {
+			    drain_item_severely(target);
+			}
+			break;
+		    case 2:
+			target = which_armor(mdef, W_ARMS);
+			if (!target)
+			    continue;
+			drain_item_severely(target);
+			break;
+		    case 3:
+			target = which_armor(mdef, W_ARMG);
+			if (!target)
+			    continue;
+			drain_item_severely(target);
+			break;
+		    case 4:
+			target = which_armor(mdef, W_ARMF);
+			if (!target)
+			    continue;
+			drain_item_severely(target);
+			break;
+		    }
+		    break; /* Out of while loop */
 		}
-		if ((target = which_armor(mdef, W_ARM)) != (struct obj *)0) {
-		    (void)rust_dmg(target, xname(target), hurt, TRUE, mdef);
-		} else if ((target = which_armor(mdef, W_ARMU)) != (struct obj *)0) {
-		    (void)rust_dmg(target, xname(target), hurt, TRUE, mdef);
+
+	} else {
+		while (1) {
+		    switch(rn2(5)) {
+		    case 0:
+			target = which_armor(mdef, W_ARMH);
+			if (!target || !rust_dmg(target, xname(target), hurt, FALSE, mdef))
+			    continue;
+			break;
+		    case 1:
+			target = which_armor(mdef, W_ARMC);
+			if (target) {
+			    (void)rust_dmg(target, xname(target), hurt, TRUE, mdef);
+			    break;
+			}
+			if ((target = which_armor(mdef, W_ARM)) != (struct obj *)0) {
+			    (void)rust_dmg(target, xname(target), hurt, TRUE, mdef);
+			} else if ((target = which_armor(mdef, W_ARMU)) != (struct obj *)0) {
+			    (void)rust_dmg(target, xname(target), hurt, TRUE, mdef);
+			}
+			break;
+		    case 2:
+			target = which_armor(mdef, W_ARMS);
+			if (!target || !rust_dmg(target, xname(target), hurt, FALSE, mdef))
+			    continue;
+			break;
+		    case 3:
+			target = which_armor(mdef, W_ARMG);
+			if (!target || !rust_dmg(target, xname(target), hurt, FALSE, mdef))
+			    continue;
+			break;
+		    case 4:
+			target = which_armor(mdef, W_ARMF);
+			if (!target || !rust_dmg(target, xname(target), hurt, FALSE, mdef))
+			    continue;
+			break;
+		    }
+		    break; /* Out of while loop */
 		}
-		break;
-	    case 2:
-		target = which_armor(mdef, W_ARMS);
-		if (!target || !rust_dmg(target, xname(target), hurt, FALSE, mdef))
-		    continue;
-		break;
-	    case 3:
-		target = which_armor(mdef, W_ARMG);
-		if (!target || !rust_dmg(target, xname(target), hurt, FALSE, mdef))
-		    continue;
-		break;
-	    case 4:
-		target = which_armor(mdef, W_ARMF);
-		if (!target || !rust_dmg(target, xname(target), hurt, FALSE, mdef))
-		    continue;
-		break;
-	    }
-	    break; /* Out of while loop */
 	}
 }
 
@@ -1357,7 +1404,7 @@ register struct monst *mtmp;
 		return(FALSE);
 	}
 
-	if (FemtrapActiveJulia && !rn2( (uimplant && uimplant->oartifact == ART_GIULY_AH) ? 3 : 5) && mtmp->female && humanoid(mtmp->data) ) {
+	if (FemtrapActiveJulia && !rn2( (uimplant && uimplant->oartifact == ART_GIULY_AH) ? 3 : carryingarti(ART_SUNNY_HONEYDEW) ? 3 : 5) && mtmp->female && humanoid(mtmp->data) ) {
 		u.cnd_juliatrapcnt++;
 		You("are held back by the referee, who states that it's unfair of you to try to attack %s!", mon_nam(mtmp));
 		return(FALSE);
@@ -4491,6 +4538,7 @@ int dieroll;
 		if (uimplant && uimplant->oartifact == ART_MELDAM_PERCS) tmp += (powerfulimplants() ? 2 : 1);
 		if (uleft && uleft->oartifact == ART_SHL_THEME) tmp += 2;
 		if (uright && uright->oartifact == ART_SHL_THEME) tmp += 2;
+		if (!thrown && carryingarti(ART_NUTTY_BITS)) tmp += rnd(6);
 		if (!thrown && uarmg && uarmg->oartifact == ART_NALI_THE_BNALI) tmp += 5;
 		if (!thrown && uarmh && uarmh->oartifact == ART_FRIEDRICH_S_BATTLE_VISOR) tmp += 3;
 		if (!thrown && uleft && uleft->oartifact == ART_BUFFIST) tmp += 2;
@@ -4499,6 +4547,7 @@ int dieroll;
 		if (!thrown && uarmg && uarmg->oartifact == ART_OFFENDUFF) tmp += 2;
 		if (!thrown && uarmc && uarmc->oartifact == ART_ULFRIC_HIGH_KING) tmp += 3;
 		if (!thrown && uarmh && uarmh->oartifact == ART_JANELLE_S_BETRAYAL) tmp += 5;
+		if (!thrown && carryingarti(ART_SHARPBLADE_SECT)) tmp += 2;
 		if (uwep && uwep->oartifact == ART_DARKGOD_S_MINUSES) tmp -= 6;
 		if (uarm && uarm->oartifact == ART_TIMONA_S_INNER_BICKER) tmp += 1;
 		if (u.tempincrdmg1) tmp += 1;
@@ -5306,6 +5355,14 @@ armorsmashdone:
 
 		if (wep && wep->oartifact == ART_LARISSA_S_REVENGE) {
 			hurtmarmor(mon, AD_DCAY);
+		}
+
+		if (wep && wep->oartifact == ART_TREVER_AXE) {
+			hurtmarmor(mon, AD_NGEN);
+		}
+
+		if (wep && wep->oartifact == ART_TREVER_POLE) {
+			hurtmarmor(mon, AD_NGEN);
 		}
 
 		if (wep && wep->oartifact == ART_DROWSING_ROD && !rn2(3)) {
@@ -13282,6 +13339,7 @@ boolean ranged;
 
 	    case AD_SOUN:
 		if (uimplant && uimplant->oartifact == ART_LIVE_AT_READING && rn2(10)) break;
+		if (carryingarti(ART_LINKIN_PARK_LISTENIN) && rn2(10)) break;
 
 		pline("%s screams terribly at your attack, and the noise seems to blow your ears!", Monnam(mon) );
 		if (YouAreDeaf) tmp /= 2;

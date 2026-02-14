@@ -868,7 +868,7 @@ struct obj *box;
 				if (powerfulimplants()) otmp->quan *= 2;
 			}
 
-			if (have_trippingjewel()) {
+			if (carryingarti(ART_TRIPPING)) {
 				otmp->quan *= 3; otmp->quan /= 2;
 			}
 			if (uarmh && uarmh->oartifact == ART_GOLD_STANDARD) otmp->quan *= 2;
@@ -5776,6 +5776,8 @@ register struct obj *otmp;
 	if (otmp && otmp->oartifact == ART_MASSIVITY_CUTEBLOCK) return FALSE;
 	if (otmp && otmp->oartifact == ART_BESTANDING_IN_THE_WEATHER) return FALSE;
 	if (otmp && otmp->oartifact == ART_MARTINA_S_SUPERFLEECE) return FALSE;
+
+	if (carryingarti(ART_BULLGARB)) return FALSE;
 
 	if (itemhasappearance(otmp, APP_WHITE_BUFFALO_BOOTS)) return TRUE;
 

@@ -304,6 +304,7 @@ int thrown;
 	    if (uright && uright->oartifact == ART_ACTUAL_CAVE_DWELLING && launcher && objects[launcher->otyp].oc_skill == P_SLING) multishot++;
 
 	    if (uarms && uarms->oartifact == ART_OFFBOW && launcher && objects[launcher->otyp].oc_skill == P_BOW) multishot += 1;
+	    if (carryingarti(ART_PAS_SUPEROP_) && launcher && objects[launcher->otyp].oc_skill == P_BOW) multishot += 1;
 	    if (uarmc && uarmc->oartifact == ART_DOUBLE_ARROW_NOSE && launcher && objects[launcher->otyp].oc_skill == P_BOW) multishot += 1;
 
 	    if (launcher && launcher->oartifact == ART_NOCK_GUN && (launcher->invoketimer <= monstermoves) ) {
@@ -2832,6 +2833,7 @@ boolean polearming;
 	if (uarms && uarms->otyp == DARK_DRAGON_SCALE_SHIELD) tmp += 1;
 	if (uarmg && uarmg->oartifact == ART_FLOEMMELFLOEMMELFLOEMMELFL) tmp += 1;
 	if (uarmf && uarmf->oartifact == ART_MELISSA_S_BEAUTY) tmp += 5;
+	if (carryingarti(ART_PAS_SUPEROP_)) tmp += 5;
 	if (uarmf && uarmf->oartifact == ART_MAY_BRITT_S_ADULTHOOD) tmp -= 2;
 	if (uwep && uwep->oartifact == ART_WILD_HEAVY_SWINGS) tmp -= 10;
 	if (uwep && uwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON) tmp += 1;
@@ -3195,7 +3197,7 @@ inaccurateguns:
 
 	/* certain monsters are capable of deflecting projectiles --Amy */
 
-	if (!pieks && !(uarm && uarm->oartifact == ART_ARMOR_PIERCE) && !(gunused && rn2(3)) && !(rn2(13) < skillpierce ) ) {
+	if (!pieks && !(uarm && uarm->oartifact == ART_ARMOR_PIERCE) && !(gunused && carryingarti(ART_PLOS_MOH_)) && !(gunused && rn2(3)) && !(rn2(13) < skillpierce ) ) {
 
 		if (verysmall(mon->data) && !rn2(4)) {
 			tmp = -100;
@@ -3218,15 +3220,15 @@ inaccurateguns:
 
 	/* certain traits also allow monsters to avoid getting hit */
 
-	if (amorphous(mon->data) && !(uarm && uarm->oartifact == ART_ARMOR_PIERCE) && !rn2(5) && tmp > -50 && !(rn2(20) < skillpierce ) ) {
+	if (amorphous(mon->data) && !(gunused && carryingarti(ART_PLOS_MOH_)) && !(uarm && uarm->oartifact == ART_ARMOR_PIERCE) && !rn2(5) && tmp > -50 && !(rn2(20) < skillpierce ) ) {
 		tmp = -100;
 		pline("%s's amorphous body skillfully dodges the projectile!", Monnam(mon));
 	}
-	if (noncorporeal(mon->data) && !(uarm && uarm->oartifact == ART_ARMOR_PIERCE) && rn2(3) && tmp > -50 && !(rn2(40) < skillpierce ) ) {
+	if (noncorporeal(mon->data) && !(gunused && carryingarti(ART_PLOS_MOH_)) && !(uarm && uarm->oartifact == ART_ARMOR_PIERCE) && rn2(3) && tmp > -50 && !(rn2(40) < skillpierce ) ) {
 		tmp = -100;
 		pline("%s easily avoids the projectile due to being noncorporeal!", Monnam(mon));
 	}
-	if (unsolid(mon->data) && !(uarm && uarm->oartifact == ART_ARMOR_PIERCE) && !rn2(4) && tmp > -50 && !(rn2(20) < skillpierce ) ) {
+	if (unsolid(mon->data) && !(gunused && carryingarti(ART_PLOS_MOH_)) && !(uarm && uarm->oartifact == ART_ARMOR_PIERCE) && !rn2(4) && tmp > -50 && !(rn2(20) < skillpierce ) ) {
 		tmp = -100;
 		pline("%s's unsolid body lets the projectile pass through harmlessly!", Monnam(mon));
 	}

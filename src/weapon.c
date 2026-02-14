@@ -6258,6 +6258,11 @@ int degree;
 
 /*    if (skill != P_NONE && !P_RESTRICTED(skill)) {*/
 
+	if (carryingarti(ART_TWO_ACTIVATES_RAGE) && !rn2(100) && (skill == P_DEVICES)) {
+		You_feel("very strong!");
+		(void) adjattrib(A_STR, 1, FALSE, TRUE);
+	}
+
 	if (uleft && uleft->oartifact == ART_FOLL_GUD && (skill == P_SEARCHING)) {
 
 		int increasechance;
@@ -7211,6 +7216,7 @@ int degree;
 	if (uright && uright->oartifact == ART_IT_MAKES_EH_WHAT_IT_WANTS && skill == P_PETKEEPING) degree *= 3;
 	if (uarm && uarm->oartifact == ART_MOCCASYL && skill == P_SEXY_FLATS) degree *= 2;
 	if (uarm && uarm->oartifact == ART_PRISMATIC_DRAGON_PLATE && skill == P_PETKEEPING) degree *= 3;
+	if (carryingarti(ART_BARKSTERS) && skill == P_PETKEEPING) degree *= 2;
 	if (uarmf && uarmf->oartifact == ART_CANNOT_WALK_WITH_THE_ARIAN && skill == P_HIGH_HEELS) degree *= 3;
 	if (uarmc && uarmc->oartifact == ART_EXCITEMENT_OF_HAX && skill == P_SHIELD) degree *= 2;
 	if (Race_if(PM_MAYMES) && (skill == P_FIREARM || skill == P_BOW || skill == P_CROSSBOW)) degree *= 2;
@@ -7222,6 +7228,7 @@ int degree;
 	if (uarmg && uarmg->oartifact == ART_NIA_S_NEAR_MISS && skill == P_MISSILE_WEAPONS) degree *= 2;
 	if (uarm && uarm->oartifact == ART_POETT_ROEODOER_CHOENGOE && skill == P_BODY_ARMOR) degree *= 2;
 	if (bmwride(ART_KERSIE_PERSIE) && skill == P_RIDING) degree *= 2;
+	if (carryingarti(ART_UP_GOES_THE_POLY) && skill == P_POLYMORPHING) degree *= 3;
 	if (Race_if(PM_AZTPOK) && skill == P_SPIRITUALITY) {
 		if (P_ADVANCE(skill) >= 4320) degree *= 7;
 		else if (P_ADVANCE(skill) >= 2500) degree *= 6;
@@ -7243,6 +7250,7 @@ int degree;
 		if (skill == P_SEXY_FLATS) degree *= 2;
 		if (skill >= P_STILETTO_HEELS && skill <= P_WEDGE_HEELS) degree *= 3;
 	}
+	if (carryingarti(ART_LEARN_THE_MODEL_HANDICRAFT) && skill >= P_STILETTO_HEELS && skill <= P_WEDGE_HEELS) degree *= 2;
 	if (uamul && uamul->oartifact == ART_GREETINGS_FROM_EVI) {
 		if (skill == P_HIGH_HEELS) degree *= 2;
 		if (skill == P_SEXY_FLATS) degree *= 2;
@@ -7432,6 +7440,39 @@ screwupsdone:
 			skill_sanity_check(P_RIDING);
 			P_MAX_SKILL(P_RIDING) = P_SUPREME_MASTER;
 			pline("You can now become supreme master in riding!");
+		}
+	}
+
+	if (carryingarti(ART_UP_GOES_THE_POLY) && skill == P_POLYMORPHING && (P_MAX_SKILL(skill) < P_SUPREME_MASTER) ) {
+		if (P_RESTRICTED(P_POLYMORPHING) && P_ADVANCE(P_POLYMORPHING) >= 200) {
+			unrestrict_weapon_skill(P_POLYMORPHING);
+			P_MAX_SKILL(P_POLYMORPHING) = P_BASIC;
+			You("learn the polymorphing skill!");
+		} else if (P_MAX_SKILL(P_POLYMORPHING) == P_BASIC && P_ADVANCE(P_POLYMORPHING) >= 1600) {
+			P_ADVANCE(P_POLYMORPHING) = 20;
+			skill_sanity_check(P_POLYMORPHING);
+			P_MAX_SKILL(P_POLYMORPHING) = P_SKILLED;
+			pline("You can now become skilled in polymorphing!");
+		} else if (P_MAX_SKILL(P_POLYMORPHING) == P_SKILLED && P_ADVANCE(P_POLYMORPHING) >= 5400) {
+			P_ADVANCE(P_POLYMORPHING) = 160;
+			skill_sanity_check(P_POLYMORPHING);
+			P_MAX_SKILL(P_POLYMORPHING) = P_EXPERT;
+			pline("You can now become expert in polymorphing!");
+		} else if (P_MAX_SKILL(P_POLYMORPHING) == P_EXPERT && P_ADVANCE(P_POLYMORPHING) >= 12800) {
+			P_ADVANCE(P_POLYMORPHING) = 540;
+			skill_sanity_check(P_POLYMORPHING);
+			P_MAX_SKILL(P_POLYMORPHING) = P_MASTER;
+			pline("You can now become master in polymorphing!");
+		} else if (P_MAX_SKILL(P_POLYMORPHING) == P_MASTER && P_ADVANCE(P_POLYMORPHING) >= 25000) {
+			P_ADVANCE(P_POLYMORPHING) = 1280;
+			skill_sanity_check(P_POLYMORPHING);
+			P_MAX_SKILL(P_POLYMORPHING) = P_GRAND_MASTER;
+			pline("You can now become grand master in polymorphing!");
+		} else if (P_MAX_SKILL(P_POLYMORPHING) == P_GRAND_MASTER && P_ADVANCE(P_POLYMORPHING) >= 43200) {
+			P_ADVANCE(P_POLYMORPHING) = 2500;
+			skill_sanity_check(P_POLYMORPHING);
+			P_MAX_SKILL(P_POLYMORPHING) = P_SUPREME_MASTER;
+			pline("You can now become supreme master in polymorphing!");
 		}
 	}
 

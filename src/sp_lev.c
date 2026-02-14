@@ -3906,6 +3906,8 @@ schar ftyp, btyp;
 				(void) mksobj_at(BOULDER, xx, yy, TRUE, FALSE, FALSE);
 			else if(!rn2(ishaxor ? 20 : 40) && (timebasedlowerchance() || timebasedlowerchance() || timebasedlowerchance() ) )
 				(void) mkobj_at(0, xx, yy, TRUE, FALSE);
+			else if (!rn2(40) && timebasedlowerchance() && carryingarti(ART_HACK_ACTIVATED))
+				(void) mkobj_at(0, xx, yy, TRUE, FALSE);
 			else if(moves == 1 && !rn2(60)) /* some earlygame help... --Amy */
 				(void) mkobj_at(0, xx, yy, TRUE, FALSE);
 			else if(!rn2(ishaxor ? 50 : 100)){ 
@@ -4099,7 +4101,7 @@ boolean prefilled;
 
 	if (croom && croom->rtype == OROOM && at_dgn_entrance("Green Cross") && !(level.flags.has_greencrossroom)) croom->rtype = GREENCROSSROOM;
 
-	if (croom && croom->rtype == OROOM && !rn2( ((isironman || RngeIronmanMode || In_netherrealm(&u.uz)) && (depth(&u.uz) > 1 && !(u.preversionmode && In_greencross(&u.uz) && (dunlev(&u.uz) == 1)) && !(iszapem && In_spacebase(&u.uz) && (dunlev(&u.uz) == 1))) ) ? 1 : ((isironman || RngeIronmanMode || In_netherrealm(&u.uz)) && depth(&u.uz) < 2) ? 10 : Role_if(PM_CAMPERSTRIKER) ? 50 : 5000) ) {
+	if (croom && croom->rtype == OROOM && !rn2( ((isironman || RngeIronmanMode || carryingarti(ART_BADASS_MAN_OF_STEEL) || In_netherrealm(&u.uz)) && (depth(&u.uz) > 1 && !(u.preversionmode && In_greencross(&u.uz) && (dunlev(&u.uz) == 1)) && !(iszapem && In_spacebase(&u.uz) && (dunlev(&u.uz) == 1))) ) ? 1 : ((isironman || RngeIronmanMode || carryingarti(ART_BADASS_MAN_OF_STEEL) || In_netherrealm(&u.uz)) && depth(&u.uz) < 2) ? 10 : Role_if(PM_CAMPERSTRIKER) ? 50 : 5000) ) {
 
 retryrandtype:
 		switch (rnd(113)) {
@@ -5355,7 +5357,7 @@ room *r, *pr;
 		 * DLC - this can fail if corridors are added to this room
 		 * at a later point.  Currently no good way to fix this.
 		 */
-		if( (aroom->rtype != OROOM || (at_dgn_entrance("Green Cross") && !(level.flags.has_greencrossroom)) || !rn2( ((isironman || RngeIronmanMode || In_netherrealm(&u.uz)) && (depth(&u.uz) > 1 && !(u.preversionmode && In_greencross(&u.uz) && (dunlev(&u.uz) == 1)) && !(iszapem && In_spacebase(&u.uz) && (dunlev(&u.uz) == 1))) ) ? 1 : ((isironman || RngeIronmanMode || In_netherrealm(&u.uz)) && depth(&u.uz) < 2) ? 10 : Role_if(PM_CAMPERSTRIKER) ? 50 : 5000) ) && r->filled) fill_room(aroom, FALSE);
+		if( (aroom->rtype != OROOM || (at_dgn_entrance("Green Cross") && !(level.flags.has_greencrossroom)) || !rn2( ((isironman || RngeIronmanMode || carryingarti(ART_BADASS_MAN_OF_STEEL) || In_netherrealm(&u.uz)) && (depth(&u.uz) > 1 && !(u.preversionmode && In_greencross(&u.uz) && (dunlev(&u.uz) == 1)) && !(iszapem && In_spacebase(&u.uz) && (dunlev(&u.uz) == 1))) ) ? 1 : ((isironman || RngeIronmanMode || carryingarti(ART_BADASS_MAN_OF_STEEL) || In_netherrealm(&u.uz)) && depth(&u.uz) < 2) ? 10 : Role_if(PM_CAMPERSTRIKER) ? 50 : 5000) ) && r->filled) fill_room(aroom, FALSE);
 
 		if ( (aroom->rtype == OROOM || !rn2(5)) && (!r->nsubroom || !rn2(5)) ) {
 			add_amy_stuff(aroom);
@@ -6089,7 +6091,7 @@ dlb *fd;
 		troom = &rooms[nroom];
 
 		/* mark rooms that must be filled, but do it later */
-		if (tmpregion.rtype != OROOM || (at_dgn_entrance("Green Cross") && !(level.flags.has_greencrossroom)) || !rn2( ((isironman || RngeIronmanMode || In_netherrealm(&u.uz)) && (depth(&u.uz) > 1 && !(u.preversionmode && In_greencross(&u.uz) && (dunlev(&u.uz) == 1)) && !(iszapem && In_spacebase(&u.uz) && (dunlev(&u.uz) == 1))) ) ? 1 : ((isironman || RngeIronmanMode || In_netherrealm(&u.uz)) && depth(&u.uz) < 2) ? 10 : Role_if(PM_CAMPERSTRIKER) ? 50 : 5000) )
+		if (tmpregion.rtype != OROOM || (at_dgn_entrance("Green Cross") && !(level.flags.has_greencrossroom)) || !rn2( ((isironman || RngeIronmanMode || carryingarti(ART_BADASS_MAN_OF_STEEL) || In_netherrealm(&u.uz)) && (depth(&u.uz) > 1 && !(u.preversionmode && In_greencross(&u.uz) && (dunlev(&u.uz) == 1)) && !(iszapem && In_spacebase(&u.uz) && (dunlev(&u.uz) == 1))) ) ? 1 : ((isironman || RngeIronmanMode || carryingarti(ART_BADASS_MAN_OF_STEEL) || In_netherrealm(&u.uz)) && depth(&u.uz) < 2) ? 10 : Role_if(PM_CAMPERSTRIKER) ? 50 : 5000) )
 		    mustfill[nroom] = (prefilled ? 2 : 1);
 
 		if(tmpregion.rirreg) {
@@ -6470,68 +6472,80 @@ dlb *fd;
 		    (void) maketrap(mm.x, mm.y, trytrap, 100, TRUE);
 	    }
 
+		if (carryingarti(ART_HACK_ACTIVATED)) {
+#ifdef BIGSLEX
+		    for(x = rnd((int) ((rn2(4) ? 30 : 60) * mapfact) / 100); x; x--) {
+#else
+		    for(x = rnd((int) ((rn2(4) ? 20 : 40) * mapfact) / 100); x; x--) {
+#endif
+			if (timebasedlowerchance() || timebasedlowerchance() || timebasedlowerchance()) {
+				mazexy_all(&mm);
+				(void) mkobj_at(!rn2(25) ? GEM_CLASS : 0, mm.x, mm.y, TRUE, FALSE);
+			}
+		    }
+		}
+
 		if (ishaxor) {
 #ifdef BIGSLEX
-	    for(x = rnd((int) ((rn2(4) ? 30 : 60) * mapfact) / 100); x; x--) {
+		    for(x = rnd((int) ((rn2(4) ? 30 : 60) * mapfact) / 100); x; x--) {
 #else
-	    for(x = rnd((int) ((rn2(4) ? 20 : 40) * mapfact) / 100); x; x--) {
+		    for(x = rnd((int) ((rn2(4) ? 20 : 40) * mapfact) / 100); x; x--) {
 #endif
-		if (timebasedlowerchance() || timebasedlowerchance() || timebasedlowerchance()) {
-		    maze1xy(&mm, DRY);
-		    (void) mkobj_at(!rn2(25) ? GEM_CLASS : RANDOM_CLASS, mm.x, mm.y, TRUE, FALSE);
-		}
-	    }
-	    for(x = rnd((int) (12 * mapfact) / 100); x; x--) {
-		    maze1xy(&mm, DRY);
-		    (void) mksobj_at(BOULDER, mm.x, mm.y, TRUE, FALSE, FALSE);
-	    }
-#ifdef BIGSLEX
-	    for (x = rn2(70); x; x--) 	{ 
-#else
-	    for (x = rn2(20); x; x--) 	{ 
-#endif
-		    maze1xy(&mm, DRY);
-			    char buf[BUFSZ];
-				const char *mesg = random_engraving(buf);
-			    make_engr_at(mm.x, mm.y, mesg, 0L, (xchar)0);
+			if (timebasedlowerchance() || timebasedlowerchance() || timebasedlowerchance()) {
+			    maze1xy(&mm, DRY);
+			    (void) mkobj_at(!rn2(25) ? GEM_CLASS : RANDOM_CLASS, mm.x, mm.y, TRUE, FALSE);
 			}
-	    for (x = rn2(2); x; x--) { if (!(iszapem && !(u.zapemescape)) && !(u.preversionmode && !u.preversionescape) && (depth(&u.uz) > depth(&medusa_level))) {
-		maze1xy(&mm, DRY);
-		if (!ishomicider) (void) makemon(minotaurvariant(), mm.x, mm.y, MM_MAYSLEEP);
-		else makerandomtrap_at(mm.x, mm.y, TRUE);
-		} /* cause they would be outta depth when mazes are generated at a shallow level --Amy */
-	    }
+		    }
+		    for(x = rnd((int) (12 * mapfact) / 100); x; x--) {
+			    maze1xy(&mm, DRY);
+			    (void) mksobj_at(BOULDER, mm.x, mm.y, TRUE, FALSE, FALSE);
+		    }
 #ifdef BIGSLEX
-	    for(x = rnd((int) ((rn2(2) ? 168 : rn2(4) ? 42 : 84) * mapfact) / 100); x; x--) {
+		    for (x = rn2(70); x; x--) 	{ 
 #else
-	    for(x = rnd((int) ((rn2(2) ? 48 : rn2(4) ? 12 : 24) * mapfact) / 100); x; x--) {
+		    for (x = rn2(20); x; x--) 	{ 
 #endif
-		    maze1xy(&mm, WET|DRY);
-		    if (!ishomicider) (void) makemon((struct permonst *) 0, mm.x, mm.y, MM_MAYSLEEP);
-		    else makerandomtrap_at(mm.x, mm.y, TRUE);
-	    }
-	    for(x = rn2((int) (15 * mapfact) / 100); x; x--) {
-		    maze1xy(&mm, DRY);
-		    (void) mkgold(0L,mm.x,mm.y);
-	    }
+			    maze1xy(&mm, DRY);
+				    char buf[BUFSZ];
+					const char *mesg = random_engraving(buf);
+				    make_engr_at(mm.x, mm.y, mesg, 0L, (xchar)0);
+				}
+		    for (x = rn2(2); x; x--) { if (!(iszapem && !(u.zapemescape)) && !(u.preversionmode && !u.preversionescape) && (depth(&u.uz) > depth(&medusa_level))) {
+			maze1xy(&mm, DRY);
+			if (!ishomicider) (void) makemon(minotaurvariant(), mm.x, mm.y, MM_MAYSLEEP);
+			else makerandomtrap_at(mm.x, mm.y, TRUE);
+			} /* cause they would be outta depth when mazes are generated at a shallow level --Amy */
+		    }
 #ifdef BIGSLEX
-	    for(x = rn2((int) ((!rn2(6) ? 210 : rn2(4) ? 52 : 105) * mapfact) / 100); x; x--) {
+		    for(x = rnd((int) ((rn2(2) ? 168 : rn2(4) ? 42 : 84) * mapfact) / 100); x; x--) {
 #else
-	    for(x = rn2((int) ((!rn2(6) ? 60 : rn2(4) ? 15 : 30) * mapfact) / 100); x; x--) {
+		    for(x = rnd((int) ((rn2(2) ? 48 : rn2(4) ? 12 : 24) * mapfact) / 100); x; x--) {
 #endif
-		    int trytrap;
+			    maze1xy(&mm, WET|DRY);
+			    if (!ishomicider) (void) makemon((struct permonst *) 0, mm.x, mm.y, MM_MAYSLEEP);
+			    else makerandomtrap_at(mm.x, mm.y, TRUE);
+		    }
+		    for(x = rn2((int) (15 * mapfact) / 100); x; x--) {
+			    maze1xy(&mm, DRY);
+			    (void) mkgold(0L,mm.x,mm.y);
+		    }
+#ifdef BIGSLEX
+		    for(x = rn2((int) ((!rn2(6) ? 210 : rn2(4) ? 52 : 105) * mapfact) / 100); x; x--) {
+#else
+		    for(x = rn2((int) ((!rn2(6) ? 60 : rn2(4) ? 15 : 30) * mapfact) / 100); x; x--) {
+#endif
+			    int trytrap;
 
-		    maze1xy(&mm, DRY);
-		    trytrap = rndtrap();
-		    if (sobj_at(BOULDER, mm.x, mm.y))
-			while (trytrap == PIT || trytrap == SPIKED_PIT || trytrap == GIANT_CHASM || trytrap == SHIT_PIT || trytrap == MANA_PIT || trytrap == ANOXIC_PIT || trytrap == HYPOXIC_PIT || trytrap == ACID_PIT || trytrap == SHAFT_TRAP || trytrap == CURRENT_SHAFT ||
-				trytrap == TRAPDOOR || trytrap == HOLE)
+			    maze1xy(&mm, DRY);
 			    trytrap = rndtrap();
-		    (void) maketrap(mm.x, mm.y, trytrap, 100, TRUE);
-	    }
-		}
-
-    }
+			    if (sobj_at(BOULDER, mm.x, mm.y))
+				while (trytrap == PIT || trytrap == SPIKED_PIT || trytrap == GIANT_CHASM || trytrap == SHIT_PIT || trytrap == MANA_PIT || trytrap == ANOXIC_PIT || trytrap == HYPOXIC_PIT || trytrap == ACID_PIT || trytrap == SHAFT_TRAP || trytrap == CURRENT_SHAFT ||
+					trytrap == TRAPDOOR || trytrap == HOLE)
+				    trytrap = rndtrap();
+			    (void) maketrap(mm.x, mm.y, trytrap, 100, TRUE);
+		    }
+		} /* haxor check */
+	} /* if in mapwalk check */
 
 	/* make rivers if possible --Amy */
 	if (!rn2(50) && !In_endgame(&u.uz) ) mkrivers();

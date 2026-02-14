@@ -2495,10 +2495,11 @@ mattacku(mtmp)
 	if (mtmp->data == &mons[PM_UNEXPECTED_BANNER]) tmp -= rnd(20);	/* ditto */
 	if (mtmp->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_]) tmp += rnd(100); /* the elder priest uses an aimbot and a wallhack */
 	if (uwep && uwep->oartifact == ART_KARATE_KID && attacktype(mtmp->data, AT_KICK)) tmp += 20;
-	if (have_kickart() && attacktype(mtmp->data, AT_KICK)) tmp += 20;
+	if (carryingarti(ART_KICK_ART) && attacktype(mtmp->data, AT_KICK)) tmp += 20;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_KARATE_KID && attacktype(mtmp->data, AT_KICK)) tmp += 20;
 	if (Race_if(PM_PLAYER_ZRUTY) && is_human(mtmp->data)) tmp += rnd(5);
 	if (uwep && uwep->oartifact == ART_PERFECT_UNIVERSE && MON_WEP(mtmp)) tmp -= 5;
+	if (carryingarti(ART_THEY_KEEP_MISSING_EACH_OTH)) tmp -= rnd(10);
 
 	/* farting monsters are simply more likely to hit you, except if you bash their sexy butts --Amy */
 	if (monstersoundtype(mtmp) == MS_FART_LOUD && !mtmp->butthurt) tmp += rnd(5);
@@ -2516,6 +2517,8 @@ mattacku(mtmp)
 	if (is_table(mtmp->mx, mtmp->my)) tmp += 3;
 	if (humanoid(mtmp->data) && is_female(mtmp->data) && attacktype(mtmp->data, AT_KICK) && FemtrapActiveMadeleine) tmp += rnd(100);
 	if (humanoid(mtmp->data) && is_female(mtmp->data) && FemtrapActiveWendy) tmp += rnd(SuperFemtrapWendy ? 20 : 10);
+
+	if (carryingarti(ART_STRANGELY_HUGGENSOFT) && attacktype(mtmp->data, AT_KICK)) tmp -= rnd(20);
 
 	if (!rn2(20)) tmp += 20; /* "natural 20" like in D&D --Amy */
 
@@ -3387,7 +3390,7 @@ elena37:
 	    if(flags.botl) bot();
 	/* give player a chance of waking up before dying -kaa */
 	    if(sum[i] == 1) {	    /* successful attack */
-		if (u.usleep && u.usleep < monstermoves && !rn2(have_sleepstone() ? 20 : 10)) {
+		if (u.usleep && u.usleep < monstermoves && !rn2(carrying(SLEEPSTONE) ? 20 : 10)) {
 		    multi = -1;
 		    nomovemsg = "The combat suddenly awakens you.";
 		}
@@ -5347,7 +5350,8 @@ newboss:
 		a->adtyp = AD_BURN;
 		a->damn = 2;
 		a->damd = (1 + (mtmp->m_lev));
-
+		if (carryingarti(ART_NARNIA_S_CLASSITY)) a->damd *= 2;
+	
 		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
@@ -5408,6 +5412,7 @@ newboss:
 		a = &mdat2->mattk[3];
 		a->aatyp = AT_TUCH;
 		a->adtyp = (is_female(mtmp->data) ? AD_SEDU : AD_SITM);
+		if (carryingarti(ART_CHAUNDRA_POKA)) a->adtyp = AD_SEDU;
 		a->damn = 0;
 		a->damd = 0;
 
@@ -7280,6 +7285,12 @@ struct attack *mattk;
                        (mattk->adtyp == AD_WRAP) ?
                       "swings itself around of" : "grabs");
                 return TRUE;
+	} else if (carryingarti(ART_ANTIWRAP) && rn2(50) ) {
+                pline("%s %s you, but you manage to slip free!",
+                       Monnam(mtmp),
+                       (mattk->adtyp == AD_WRAP) ?
+                      "swings itself around of" : "grabs");
+                return TRUE;
 	} else if (RngeSlipping && rn2(10) ) {
                 pline("%s %s you, but your slipperyness allows you to slip free!",
                        Monnam(mtmp),
@@ -7369,6 +7380,7 @@ struct monst *mon;
 		if (uarmf && uarmf->oartifact == ART_HANNAH_S_INNOCENCE) armpro += 2;
 		if (uarm && uarm->otyp == NOPE_DRAGON_SCALES) armpro += 2;
 		if (uarmc && uarmc->oartifact == ART_EMIL_S_MANTLE_OF_RESOLVE) armpro += 2;
+		if (carryingarti(ART_LEGENDARIUM_PERCENTAGE)) armpro += 2;
 		if (uarmc && uarmc->oartifact == ART_ADRIA_S_MIMICKING) armpro += 2;
 		if (uarmh && uarmh->oartifact == ART_GISELA_S_TRICK) armpro += 3;
 		if (uarm && uarm->oartifact == ART_EMSE_TRADE) armpro += 3;
@@ -8086,6 +8098,9 @@ hitmu(mtmp, mattk)
 		/* hurt the player's hands --Amy */
 		pline("Your hands got hit hard!");
 		incr_itimeout(&Glib, dmg);
+		if (carryingarti(ART_HOPSCOTCH_CUP)) {
+			if (dmg > 0) playerbleed(dmg);
+		}
 		flags.botl = TRUE;
 
 		break;
@@ -10306,6 +10321,7 @@ dopois:
 		if (statsavingthrow) break;
 		if (mtmp->mcan) break;
 		if (uimplant && uimplant->oartifact == ART_LIVE_AT_READING && rn2(10)) break;
+		if (carryingarti(ART_LINKIN_PARK_LISTENIN) && rn2(10)) break;
 		pline("Your %s are blasted by hellish noise!", body_part(EARS));
 		if (YouAreDeaf) dmg /= 2;
 		make_stunned(HStun + dmg, TRUE);
@@ -13115,6 +13131,7 @@ do_stone2:
 	    case AD_SOUN:
 		if (mtmp->mcan) break;
 		if (uimplant && uimplant->oartifact == ART_LIVE_AT_READING && rn2(10)) break;
+		if (carryingarti(ART_LINKIN_PARK_LISTENIN) && rn2(10)) break;
 		pline("AUUUUUUGGGGGHHHHHGGHH - the noise in here is unbearable!");
 		if (YouAreDeaf) tmp /= 2;
 		make_stunned(HStun + tmp, TRUE);
@@ -15750,6 +15767,7 @@ common:
 	    case AD_SOUN:
 
 		if (uimplant && uimplant->oartifact == ART_LIVE_AT_READING && rn2(10)) break;
+		if (carryingarti(ART_LINKIN_PARK_LISTENIN) && rn2(10)) break;
 		pline("Your %s are blasted by hellish noise!", body_part(EARS));
 		if (YouAreDeaf) tmp /= 2;
 		make_stunned(HStun + tmp, TRUE);
@@ -18431,6 +18449,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_SOUN:
 
 		if (uimplant && uimplant->oartifact == ART_LIVE_AT_READING && rn2(10)) break;
+		if (carryingarti(ART_LINKIN_PARK_LISTENIN) && rn2(10)) break;
 
 		if (!mtmp->mcan && canseemon(mtmp) &&
 			couldsee(mtmp->mx, mtmp->my) &&
@@ -19896,8 +19915,10 @@ register int n;
 	}
 
 	if (ExplodingDiceEffect || u.uprops[EXPLODING_DICE].extrinsic || have_explodingdicestone() || autismweaponcheck(ART_FOOK_THE_OBSTACLES)) {
+		int explodingdicechance = 6; /* 1 in X chance for dice to explode */
+		if (carryingarti(ART_NUTTY_BITS)) explodingdicechance = 3;
 		int basedamage = n;
-		while (!rn2(6)) n += basedamage;
+		while (!rn2(explodingdicechance)) n += basedamage;
 	}
 
 	if (uarms && uarms->oartifact == ART_OF_VOIDING && n > 0) {

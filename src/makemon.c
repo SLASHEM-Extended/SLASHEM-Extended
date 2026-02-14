@@ -26739,7 +26739,7 @@ loveheelover:
 		if (!rn2(20)) (void) mongets(mtmp, rn2(10) ? SCR_ROOT_PASSWORD_DETECTION : SCR_COURSE_TRAVELING);
 	}
 
-	if (have_thilojewel() && (monstersoundtype(mtmp) == MS_MOLEST) && !rn2(20)) {
+	if (carryingarti(ART_THILO_S_ASSHOLERY) && (monstersoundtype(mtmp) == MS_MOLEST) && !rn2(20)) {
 		(void) mongets(mtmp, POT_PARALYSIS);
 	}
 
@@ -26863,9 +26863,14 @@ xchar x, y;	/* clone's preferred location or 0 (near mon) */
 	if (mon->isgyp) m2->isgyp = FALSE;
 	m2->mxlth = 0;
 	place_monster(m2, m2->mx, m2->my);
-	if (emits_light(m2->data))
+	if (emits_light(m2->data)) {
 	    new_light_source(m2->mx, m2->my, emits_light(m2->data),
 			     LS_MONSTER, (void *)m2);
+	} else if (carryingarti(ART_PANTYSHINE) && m2->lisaseen) {
+	    new_light_source(m2->mx, m2->my, 1,
+			     LS_MONSTER, (void *)m2);
+	}
+
 	if (m2->mnamelth) {
 	    m2->mnamelth = 0; /* or it won't get allocated */
 	    m2 = christen_monst(m2, NAME(mon));
@@ -27565,7 +27570,6 @@ register int	mmflags;
 	}
 
 	/* maybe generate a sleeping monster */
-
 	if (!rn2(Aggravate_monster ? 500 : 100) && (!u.uhave.amulet || u.freeplaymode || (!u.amuletcompletelyimbued && rn2(3)))) mtmp->msleeping = 1;
 
 	if ((mmflags & MM_MAYSLEEP) && !rn2(5)) {
@@ -27588,8 +27592,10 @@ register int	mmflags;
 	if (monstersoundtype(mtmp) == MS_SNORE) mtmp->msleeping = 1;
 
 	/* or an invisible one, based on an evil patch idea by jonadab */
-
-	if (!rn2(250)) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+	if (!rn2(250)) {
+		mtmp->minvis = TRUE;
+		mtmp->perminvis = TRUE;
+	}
 
 	if (ptr == &mons[PM_SCROLLER_MASTER] && isok(x, y) && !(t_at(x, y)) )
 		(void) maketrap(x, y, ACTIVE_SUPERSCROLLER_TRAP, 0, FALSE);
@@ -27597,11 +27603,19 @@ register int	mmflags;
 	if (ptr == &mons[PM_BOULDER_MASTER] && !monster_is_revived && !mtmp->mrevived && isok(x, y) && !(t_at(x, y)) )
 		(void) mksobj_at(BOULDER, x, y, TRUE, FALSE, FALSE);
 
-	if (ptr == &mons[PM_GOOD_ITEM_MASTER] && !monster_is_revived && !mtmp->mrevived && isok(x, y) )
+	if (ptr == &mons[PM_GOOD_ITEM_MASTER] && !monster_is_revived && !mtmp->mrevived && isok(x, y) ) {
 		(void) mksobj_at(usefulitem(), x, y, TRUE, Race_if(PM_ARTIFINDER) ? TRUE : FALSE, FALSE);
+		if (carryingarti(ART_COLORFUL_CLOTHING)) (void) mkobj_at(ARMOR_CLASS, x, y, TRUE, FALSE);
+	}
 
-	if (ptr == &mons[PM_BAD_ITEM_MASTER] && !monster_is_revived && !mtmp->mrevived && isok(x, y) )
+	if (ptr == &mons[PM_BAD_ITEM_MASTER] && !monster_is_revived && !mtmp->mrevived && isok(x, y) ) {
 		(void) mksobj_at(nastymusableitem(), x, y, TRUE, Race_if(PM_ARTIFINDER) ? TRUE : FALSE, FALSE);
+		if (carryingarti(ART_COLORFUL_CLOTHING)) (void) mkobj_at(ARMOR_CLASS, x, y, TRUE, FALSE);
+	}
+
+	if (ptr == &mons[PM_ITEM_MASTER] && !monster_is_revived && !mtmp->mrevived && isok(x, y) ) {
+		if (carryingarti(ART_COLORFUL_CLOTHING)) (void) mkobj_at(ARMOR_CLASS, x, y, TRUE, FALSE);
+	}
 
 	if (ptr == &mons[PM_HOLE_MASTER] && isok(x, y) && !(t_at(x, y)) )
 		(void) maketrap(x, y, HOLE, 10, TRUE);
@@ -29902,9 +29916,13 @@ register int	mmflags;
 
 	}
 
-	if ((ct = emits_light(mtmp->data)) > 0)
+	if ((ct = emits_light(mtmp->data)) > 0) {
 		new_light_source(mtmp->mx, mtmp->my, ct,
 				 LS_MONSTER, (void *)mtmp);
+	} else if (carryingarti(ART_PANTYSHINE) && mtmp->lisaseen) {
+		new_light_source(mtmp->mx, mtmp->my, 1,
+				 LS_MONSTER, (void *)mtmp);
+	}
 
 	mitem = 0;	/* extra inventory item for this monster */
 
@@ -30287,7 +30305,7 @@ register int	mmflags;
 		if ((mtmp2 = tamedog(mtmp, (struct obj *)0, FALSE)) != 0) mtmp = mtmp2;
 	}
 
-	if (!rn2(33) && !monster_is_revived && is_pokemon(mtmp->data) && have_pokeloadstone() ) {
+	if (!rn2(33) && !monster_is_revived && is_pokemon(mtmp->data) && carryingarti(ART_AUTOMATIC_POKE_BALL) ) {
 		if ((mtmp2 = tamedog(mtmp, (struct obj *)0, FALSE)) != 0) mtmp = mtmp2;
 	}
 
@@ -30340,6 +30358,7 @@ register int	mmflags;
 
 	if ((uarmc && itemhasappearance(uarmc, APP_HEARING_CLOAK) ) && !rn2(50)) willsenser = TRUE;
 	if (uarm && uarm->oartifact == ART_RADIOGRAM_OVERHEARING) willsenser = TRUE;
+	if (carryingarti(ART_ZIM_SOUND) && rn2(10)) willsenser = TRUE;
 
 	if (willsenser && !u.tempsenserlistener) {
 		pline("You sense the arrival of %s.", noit_mon_nam(mtmp));
@@ -31004,6 +31023,7 @@ loopback:
 		if (ct > 0 && (In_hellbathroom(&u.uz) && (ptr->msound == MS_FART_NORMAL) )) ct += 10;
 		if (ct > 0 && (In_hellbathroom(&u.uz) && (ptr->msound == MS_FART_QUIET) )) ct += 10;
 		if (ct > 0 && (In_hellbathroom(&u.uz) && (ptr->msound == MS_FART_LOUD) )) ct += 10;
+		if (ct > 0 && (carryingarti(ART_TICK_TOCK_TRAUMA) && (ptr->msound == MS_CLOCK) )) ct += 50;
 		if (ct > 0 && (uwep && uwep->oartifact == ART_BIDETHANDER && (ptr->msound == MS_FART_LOUD) )) ct += 20;
 		if (ct > 0 && (u.twoweap && uswapwep && uswapwep->oartifact == ART_BIDETHANDER && (ptr->msound == MS_FART_LOUD) )) ct += 20;
 		if (ct > 0 && (uarmf && uarmf->oartifact == ART_ANALIS_VIRGINALIS && (ptr->msound == MS_FART_NORMAL) )) ct += 10;
@@ -31050,12 +31070,12 @@ loopback:
 		if (ct > 0 && (uarmf && uarmf->oartifact == ART_INA_S_TEARS && (ptr->msound == MS_ANOREXIA) )) ct += 20;
 		if (ct > 0 && (uarmf && uarmf->oartifact == ART_ELLA_S_VENGEANCE && (ptr->msound == MS_BULIMIA) )) ct += 50;
 		if (ct > 0 && (uarm && uarm->oartifact == ART_OAR_SUPER_GRAPHICS_CARD_BU && (ptr->msound == MS_GRAKA) )) ct += 20;
-		if (ct > 0 && (have_thilojewel() && (ptr->msound == MS_MOLEST) )) ct += 100;
+		if (ct > 0 && (carryingarti(ART_THILO_S_ASSHOLERY) && (ptr->msound == MS_MOLEST) )) ct += 100;
 		if (ct > 0 && (uleft && uleft->oartifact == ART_TANGO_ALPHA_BRAVO && (ptr->msound == MS_MIDI) )) ct += 200;
 		if (ct > 0 && (uright && uright->oartifact == ART_TANGO_ALPHA_BRAVO && (ptr->msound == MS_MIDI) )) ct += 200;
 		if (ct > 0 && (uarmf && uarmf->oartifact == ART_RONJA_S_Z_PUSH && (ptr->msound == MS_SILLY) )) ct += 50;
 		if (ct > 0 && (u.temphercules20 && (ptr->msound == MS_HERCULES) )) ct += 20;
-		if (ct > 0 && (have_climxianjewel() && (ptr->msound == MS_SEMEN) )) ct += 50;
+		if (ct > 0 && (carryingarti(ART_CLIMXIAN_WORSHIP) && (ptr->msound == MS_SEMEN) )) ct += 50;
 		if (ct > 0 && (uarm && uarm->oartifact == ART_THEY_COME_FROM_MECKLENBURG && (ptr->msound == MS_INCISION) )) ct += 50;
 
 		if (ct > 0 && (uarmh && uarmh->oartifact == ART_WERKAUF && (ptr->mlet == S_ZOMBIE) )) ct += 20;
@@ -31857,6 +31877,7 @@ loopback:
 		if (ct > 0 && (Role_if(PM_SHOE_FETISHIST) && (ptr->msound == MS_SHOE) )) ct += 100;
 		if (ct > 0 && (FemtrapActiveJohanna && (ptr->msound == MS_SHOE) )) ct += 100;
 		if (ct > 0 && (FemtrapActiveIrina && (ptr->msound == MS_SHOE) )) ct += 25;
+		if (ct > 0 && (carryingarti(ART_ADWAODITH_S_HERECOME) && (ptr->msound == MS_SHOE) )) ct += 25;
 		if (ct > 0 && (FemtrapActiveNadine && dmgtype(ptr, AD_FEMI) )) ct += (SuperFemtrapNadine ? 50 : 20);
 		if (ct > 0 && (Role_if(PM_SECRET_ADVICE_MEMBER) && (ptr->msound == MS_ARREST) )) ct += 4;
 		if (ct > 0 && (Role_if(PM_SECRET_ADVICE_MEMBER) && (ptr->msound == MS_SOLDIER) )) ct += 2;
@@ -32840,6 +32861,7 @@ int     spc;
 		if ((In_hellbathroom(&u.uz) && (mons[last].msound == MS_FART_NORMAL) )) num += 10;
 		if ((In_hellbathroom(&u.uz) && (mons[last].msound == MS_FART_QUIET) )) num += 10;
 		if ((In_hellbathroom(&u.uz) && (mons[last].msound == MS_FART_LOUD) )) num += 10;
+		if ((carryingarti(ART_TICK_TOCK_TRAUMA) && (mons[last].msound == MS_CLOCK) )) num += 50;
 		if ((uwep && uwep->oartifact == ART_BIDETHANDER && (mons[last].msound == MS_FART_LOUD) )) num += 20;
 		if ((u.twoweap && uswapwep && uswapwep->oartifact == ART_BIDETHANDER && (mons[last].msound == MS_FART_LOUD) )) num += 20;
 		if ((uarmf && uarmf->oartifact == ART_ANALIS_VIRGINALIS && (mons[last].msound == MS_FART_NORMAL) )) num += 10;
@@ -32879,12 +32901,12 @@ int     spc;
 		if ((uarmf && uarmf->oartifact == ART_INA_S_TEARS && (mons[last].msound == MS_ANOREXIA) )) num += 20;
 		if ((uarmf && uarmf->oartifact == ART_ELLA_S_VENGEANCE && (mons[last].msound == MS_BULIMIA) )) num += 50;
 		if ((uarm && uarm->oartifact == ART_OAR_SUPER_GRAPHICS_CARD_BU && (mons[last].msound == MS_GRAKA) )) num += 20;
-		if ((have_thilojewel() && (mons[last].msound == MS_MOLEST) )) num += 100;
+		if ((carryingarti(ART_THILO_S_ASSHOLERY) && (mons[last].msound == MS_MOLEST) )) num += 100;
 		if ((uleft && uleft->oartifact == ART_TANGO_ALPHA_BRAVO && (mons[last].msound == MS_MIDI) )) num += 200;
 		if ((uright && uright->oartifact == ART_TANGO_ALPHA_BRAVO && (mons[last].msound == MS_MIDI) )) num += 200;
 		if ((uarmf && uarmf->oartifact == ART_RONJA_S_Z_PUSH && (mons[last].msound == MS_SILLY) )) num += 50;
 		if ((u.temphercules20 && (mons[last].msound == MS_HERCULES) )) num += 20;
-		if ((have_climxianjewel() && (mons[last].msound == MS_SEMEN) )) num += 50;
+		if ((carryingarti(ART_CLIMXIAN_WORSHIP) && (mons[last].msound == MS_SEMEN) )) num += 50;
 		if ((uarm && uarm->oartifact == ART_THEY_COME_FROM_MECKLENBURG && (mons[last].msound == MS_INCISION) )) num += 50;
 
 		if ((Role_if(PM_ACTIVISTOR) && always_hostile(&mons[last]))) num += 5;
@@ -33669,6 +33691,7 @@ int     spc;
 		if ((Role_if(PM_SHOE_FETISHIST) && (mons[last].msound == MS_SHOE) )) num += 100;
 		if ((FemtrapActiveJohanna && (mons[last].msound == MS_SHOE) )) num += 100;
 		if ((FemtrapActiveIrina && (mons[last].msound == MS_SHOE) )) num += 25;
+		if ((carryingarti(ART_ADWAODITH_S_HERECOME) && (mons[last].msound == MS_SHOE) )) num += 25;
 		if ((FemtrapActiveNadine && dmgtype(&mons[last], AD_FEMI) )) num += (SuperFemtrapNadine ? 50 : 20);
 		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && (mons[last].msound == MS_ARREST) )) num += 4;
 		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && (mons[last].msound == MS_SOLDIER) )) num += 2;
@@ -34305,6 +34328,7 @@ int     spc;
 		if ((In_hellbathroom(&u.uz) && (mons[first].msound == MS_FART_NORMAL) )) num -= 10;
 		if ((In_hellbathroom(&u.uz) && (mons[first].msound == MS_FART_QUIET) )) num -= 10;
 		if ((In_hellbathroom(&u.uz) && (mons[first].msound == MS_FART_LOUD) )) num -= 10;
+		if ((carryingarti(ART_TICK_TOCK_TRAUMA) && (mons[first].msound == MS_CLOCK) )) num -= 50;
 		if ((uwep && uwep->oartifact == ART_BIDETHANDER && (mons[first].msound == MS_FART_LOUD) )) num -= 20;
 		if ((u.twoweap && uswapwep && uswapwep->oartifact == ART_BIDETHANDER && (mons[first].msound == MS_FART_LOUD) )) num -= 20;
 		if ((uarmf && uarmf->oartifact == ART_ANALIS_VIRGINALIS && (mons[first].msound == MS_FART_NORMAL) )) num -= 10;
@@ -34344,12 +34368,12 @@ int     spc;
 		if ((uarmf && uarmf->oartifact == ART_INA_S_TEARS && (mons[first].msound == MS_ANOREXIA) )) num -= 20;
 		if ((uarmf && uarmf->oartifact == ART_ELLA_S_VENGEANCE && (mons[first].msound == MS_BULIMIA) )) num -= 50;
 		if ((uarm && uarm->oartifact == ART_OAR_SUPER_GRAPHICS_CARD_BU && (mons[first].msound == MS_GRAKA) )) num -= 20;
-		if ((have_thilojewel() && (mons[first].msound == MS_MOLEST) )) num -= 100;
+		if ((carryingarti(ART_THILO_S_ASSHOLERY) && (mons[first].msound == MS_MOLEST) )) num -= 100;
 		if ((uleft && uleft->oartifact == ART_TANGO_ALPHA_BRAVO && (mons[first].msound == MS_MIDI) )) num -= 200;
 		if ((uright && uright->oartifact == ART_TANGO_ALPHA_BRAVO && (mons[first].msound == MS_MIDI) )) num -= 200;
 		if ((uarmf && uarmf->oartifact == ART_RONJA_S_Z_PUSH && (mons[first].msound == MS_SILLY) )) num -= 50;
 		if ((u.temphercules20 && (mons[first].msound == MS_HERCULES) )) num -= 20;
-		if ((have_climxianjewel() && (mons[first].msound == MS_SEMEN) )) num -= 50;
+		if ((carryingarti(ART_CLIMXIAN_WORSHIP) && (mons[first].msound == MS_SEMEN) )) num -= 50;
 		if ((uarm && uarm->oartifact == ART_THEY_COME_FROM_MECKLENBURG && (mons[first].msound == MS_INCISION) )) num -= 50;
 
 		if ((Role_if(PM_ACTIVISTOR) && always_hostile(&mons[first]))) num -= 5;
@@ -35134,6 +35158,7 @@ int     spc;
 		if ((Role_if(PM_SHOE_FETISHIST) && (mons[first].msound == MS_SHOE) )) num -= 100;
 		if ((FemtrapActiveJohanna && (mons[first].msound == MS_SHOE) )) num -= 100;
 		if ((FemtrapActiveIrina && (mons[first].msound == MS_SHOE) )) num -= 25;
+		if ((carryingarti(ART_ADWAODITH_S_HERECOME) && (mons[first].msound == MS_SHOE) )) num -= 25;
 		if ((FemtrapActiveNadine && dmgtype(&mons[first], AD_FEMI) )) num -= (SuperFemtrapNadine ? 50 : 20);
 		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && (mons[first].msound == MS_ARREST) )) num -= 4;
 		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && (mons[first].msound == MS_SOLDIER) )) num -= 2;

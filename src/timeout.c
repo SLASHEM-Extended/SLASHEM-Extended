@@ -1423,6 +1423,20 @@ nh_timeout()
 
 	}
 
+	if (carryingarti(ART_FIELD_CLICK_RADIO)) {
+
+	    struct trap *t;
+
+	    for (t = ftrap; t != 0; t = t->ntrap) {
+		if (t && !rn2(500) && !t->tseen && (t->trapdiff < rnd(150)) && !t->hiddentrap) {
+			t->tseen = 1;
+			u.cnd_traprevealcount++;
+			map_trap(t, TRUE);
+		}
+	    }
+
+	}
+
 	if (uarm && uarm->oartifact == ART_JACINTA_S_PRECIOUS) {
 
 	    struct trap *t;
@@ -1522,7 +1536,7 @@ nh_timeout()
 
 	}
 
-	if (have_superjonadabstone()) {
+	if (carryingarti(ART_JONADAB_S_EXTRA_MODE)) {
 
 	    struct trap *t;
 
@@ -2208,7 +2222,7 @@ nh_timeout()
 			}
 		}
 
-		if (!rn2(slipchance) && !(uarmf && uarmf->oartifact == ART_NATURAL_SPRING) && !(uarmf && uarmf->oartifact == ART_MAREN_S_GALE_BOOTS) && !(uarmf && uarmf->oartifact == ART_INGRID_S_IRONHOOF_BOOTS) && !(uarmf && uarmf->oartifact == ART_LARS_S_IRONSTRIDE_BOOTS) && !(uarmg && uarmg->oartifact == ART_ERASMUS__SCRIPTED_GAUNTLET && !rn2(2)) && !(uarmf && uarmf->oartifact == ART_SO_WONDERFULLY_FLUFFY_SOFT) && !(uarmf && uarmf->oartifact == ART_JENNY_SUPERSOFT) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS) ) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) ) {
+		if (!rn2(slipchance) && !(uarmf && uarmf->oartifact == ART_NATURAL_SPRING) && !(uarmf && uarmf->oartifact == ART_MAREN_S_GALE_BOOTS) && !(uarmf && uarmf->oartifact == ART_INGRID_S_IRONHOOF_BOOTS) && !(uarmf && uarmf->oartifact == ART_LARS_S_IRONSTRIDE_BOOTS) && !(uarmg && uarmg->oartifact == ART_ERASMUS__SCRIPTED_GAUNTLET && !rn2(2)) && !(uarmf && uarmf->oartifact == ART_SO_WONDERFULLY_FLUFFY_SOFT) && !(carryingarti(ART_STILETTOS_OF_NORTHERN_RUSS) && PlayerInStilettoHeels) && !(uarmf && uarmf->oartifact == ART_JENNY_SUPERSOFT) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS) ) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) ) {
 			    slip_or_trip();
 
 			    if (!rn2(uarmh ? 5000 : 1000) && !(uarmh && itemhasappearance(uarmh, APP_BIKER_HELMET)) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
@@ -2271,7 +2285,7 @@ nh_timeout()
 		}
 	}
 
-	if (u.umoved && !rn2(flags.female ? 500 : 250) && !(uarmu && uarmu->oartifact == ART_MODELWALK) && (rnd(u.ulevel) < 11) && PlayerInBlockHeels && !FemtrapActiveNaomi && !(uimplant && uimplant->oartifact == ART_TORSTEN_S_FEMININENESS && powerfulimplants()) && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && (P_MAX_SKILL(P_BLOCK_HEELS) == P_ISRESTRICTED) ) {
+	if (u.umoved && !rn2(flags.female ? 500 : 250) && !(uarmu && uarmu->oartifact == ART_MODELWALK) && (rnd(u.ulevel) < 11) && PlayerInBlockHeels && !carryingarti(ART_IT_S_HER_DISEASE) && !FemtrapActiveNaomi && !(uimplant && uimplant->oartifact == ART_TORSTEN_S_FEMININENESS && powerfulimplants()) && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && (P_MAX_SKILL(P_BLOCK_HEELS) == P_ISRESTRICTED) ) {
 		if (uarmf && itemhasappearance(uarmf, APP_RETRACTABLE_BLOCK_HEELS)) {
 			; /* do nothing */
 		} else {
@@ -2297,6 +2311,10 @@ nh_timeout()
 		if (rnd(u.ulevel) > 10) highheelfail = FALSE;
 
 		if (PlayerInBlockHeels && uarmf && itemhasappearance(uarmf, APP_RETRACTABLE_BLOCK_HEELS)) {
+			highheelfail = FALSE;
+		}
+
+		if (PlayerInBlockHeels && carryingarti(ART_IT_S_HER_DISEASE)) {
 			highheelfail = FALSE;
 		}
 
@@ -2458,7 +2476,7 @@ nh_timeout()
 
 	}
 
-	if (u.umoved && (uarmf && itemhasappearance(uarmf, APP_IRREGULAR_BOOTS) ) && !rn2(100) && !(uarmf && uarmf->oartifact == ART_NATURAL_SPRING) && !(uarmf && uarmf->oartifact == ART_MAREN_S_GALE_BOOTS) && !(uarmf && uarmf->oartifact == ART_INGRID_S_IRONHOOF_BOOTS) && !(uarmf && uarmf->oartifact == ART_LARS_S_IRONSTRIDE_BOOTS) && !(uarmg && uarmg->oartifact == ART_ERASMUS__SCRIPTED_GAUNTLET && !rn2(2)) && !(uarmf && uarmf->oartifact == ART_SO_WONDERFULLY_FLUFFY_SOFT) && !(uarmf && uarmf->oartifact == ART_JENNY_SUPERSOFT) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS) ) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) && ((rnd(7) > P_SKILL(P_HIGH_HEELS)) || (PlayerCannotUseSkills) ) ) {
+	if (u.umoved && (uarmf && itemhasappearance(uarmf, APP_IRREGULAR_BOOTS) ) && !rn2(100) && !(uarmf && uarmf->oartifact == ART_NATURAL_SPRING) && !(uarmf && uarmf->oartifact == ART_MAREN_S_GALE_BOOTS) && !(uarmf && uarmf->oartifact == ART_INGRID_S_IRONHOOF_BOOTS) && !(uarmf && uarmf->oartifact == ART_LARS_S_IRONSTRIDE_BOOTS) && !(uarmg && uarmg->oartifact == ART_ERASMUS__SCRIPTED_GAUNTLET && !rn2(2)) && !(uarmf && uarmf->oartifact == ART_SO_WONDERFULLY_FLUFFY_SOFT) && !(carryingarti(ART_STILETTOS_OF_NORTHERN_RUSS) && PlayerInStilettoHeels) && !(uarmf && uarmf->oartifact == ART_JENNY_SUPERSOFT) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS) ) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) && ((rnd(7) > P_SKILL(P_HIGH_HEELS)) || (PlayerCannotUseSkills) ) ) {
 			    slip_or_trip();
 
 			    if (!rn2(uarmh ? 5000 : 1000) && !(uarmh && itemhasappearance(uarmh, APP_BIKER_HELMET)) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
@@ -2485,7 +2503,7 @@ nh_timeout()
 
 	}
 
-	if (u.umoved && RngeIrregularity && !rn2(100) && !(uarmf && uarmf->oartifact == ART_NATURAL_SPRING) && !(uarmf && uarmf->oartifact == ART_MAREN_S_GALE_BOOTS) && !(uarmf && uarmf->oartifact == ART_INGRID_S_IRONHOOF_BOOTS) && !(uarmf && uarmf->oartifact == ART_LARS_S_IRONSTRIDE_BOOTS) && !(uarmg && uarmg->oartifact == ART_ERASMUS__SCRIPTED_GAUNTLET && !rn2(2)) && !(uarmf && uarmf->oartifact == ART_SO_WONDERFULLY_FLUFFY_SOFT) && !(uarmf && uarmf->oartifact == ART_JENNY_SUPERSOFT) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS) ) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) && ((rnd(7) > P_SKILL(P_HIGH_HEELS)) || (PlayerCannotUseSkills) ) ) {
+	if (u.umoved && RngeIrregularity && !rn2(100) && !(uarmf && uarmf->oartifact == ART_NATURAL_SPRING) && !(uarmf && uarmf->oartifact == ART_MAREN_S_GALE_BOOTS) && !(uarmf && uarmf->oartifact == ART_INGRID_S_IRONHOOF_BOOTS) && !(uarmf && uarmf->oartifact == ART_LARS_S_IRONSTRIDE_BOOTS) && !(uarmg && uarmg->oartifact == ART_ERASMUS__SCRIPTED_GAUNTLET && !rn2(2)) && !(uarmf && uarmf->oartifact == ART_SO_WONDERFULLY_FLUFFY_SOFT) && !(carryingarti(ART_STILETTOS_OF_NORTHERN_RUSS) && PlayerInStilettoHeels) && !(uarmf && uarmf->oartifact == ART_JENNY_SUPERSOFT) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS) ) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) && ((rnd(7) > P_SKILL(P_HIGH_HEELS)) || (PlayerCannotUseSkills) ) ) {
 			    slip_or_trip();
 
 			    if (!rn2(uarmh ? 5000 : 1000) && !(uarmh && itemhasappearance(uarmh, APP_BIKER_HELMET)) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
@@ -2620,7 +2638,7 @@ nh_timeout()
 
 	}
 
-	if (u.umoved && (uarmf && uarmf->oartifact == ART_UNEVEN_STILTS) && !rn2(100) && !(uarmf && uarmf->oartifact == ART_NATURAL_SPRING) && !(uarmf && uarmf->oartifact == ART_MAREN_S_GALE_BOOTS) && !(uarmf && uarmf->oartifact == ART_INGRID_S_IRONHOOF_BOOTS) && !(uarmf && uarmf->oartifact == ART_LARS_S_IRONSTRIDE_BOOTS) && !(uarmg && uarmg->oartifact == ART_ERASMUS__SCRIPTED_GAUNTLET && !rn2(2)) && !(uarmf && uarmf->oartifact == ART_SO_WONDERFULLY_FLUFFY_SOFT) && !(uarmf && uarmf->oartifact == ART_JENNY_SUPERSOFT) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS) ) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) && ((rnd(7) > P_SKILL(P_HIGH_HEELS)) || (PlayerCannotUseSkills) ) ) {
+	if (u.umoved && (uarmf && uarmf->oartifact == ART_UNEVEN_STILTS) && !rn2(100) && !(uarmf && uarmf->oartifact == ART_NATURAL_SPRING) && !(uarmf && uarmf->oartifact == ART_MAREN_S_GALE_BOOTS) && !(uarmf && uarmf->oartifact == ART_INGRID_S_IRONHOOF_BOOTS) && !(uarmf && uarmf->oartifact == ART_LARS_S_IRONSTRIDE_BOOTS) && !(uarmg && uarmg->oartifact == ART_ERASMUS__SCRIPTED_GAUNTLET && !rn2(2)) && !(uarmf && uarmf->oartifact == ART_SO_WONDERFULLY_FLUFFY_SOFT) && !(carryingarti(ART_STILETTOS_OF_NORTHERN_RUSS) && PlayerInStilettoHeels) && !(uarmf && uarmf->oartifact == ART_JENNY_SUPERSOFT) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS) ) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) && ((rnd(7) > P_SKILL(P_HIGH_HEELS)) || (PlayerCannotUseSkills) ) ) {
 			    slip_or_trip();
 
 			    if (!rn2(uarmh ? 5000 : 1000) && !(uarmh && itemhasappearance(uarmh, APP_BIKER_HELMET)) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
@@ -2798,6 +2816,12 @@ nh_timeout()
 
 	}
 
+	if (!rn2(TrapCreationXtra ? 100 : 200) && carryingarti(ART_I_LL_MURDER_EVERYONE_) ) {
+
+		makerandomtrap(FALSE);
+
+	}
+
 	if (!rn2(TrapCreationXtra ? 100 : 200) && autismringcheck(ART_CROQUE_FORD) ) {
 
 		makerandomtrap(FALSE);
@@ -2851,6 +2875,13 @@ nh_timeout()
 	}
 
 	if (!rn2(TrapCreationXtra ? 1000 : 2000) && have_trapcreationstone() ) {
+
+		makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE);
+		makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE);
+
+	}
+
+	if (!rn2(TrapCreationXtra ? 1000 : 2000) && carryingarti(ART_I_LL_MURDER_EVERYONE_) ) {
 
 		makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE);
 		makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE);
@@ -4279,7 +4310,7 @@ nh_timeout()
 
 	if (!rn2(1000) && u.repunishcounter && !Punished) punishx();
 
-	if (have_sleepstone() && !rn2(200)) {
+	if (carrying(SLEEPSTONE) && !rn2(200)) {
 	    fall_asleep(-rnd(10), TRUE);
 		pline("You fall asleep.");
 	}
@@ -5791,7 +5822,7 @@ nh_timeout()
 		case FUMBLING:
 			/* call this only when a move took place.  */
 			/* otherwise handle fumbling msgs locally. */
-			if (u.umoved && !Levitation && !(uarmf && uarmf->oartifact == ART_NATURAL_SPRING) && !(uarmf && uarmf->oartifact == ART_MAREN_S_GALE_BOOTS) && !(uarmf && uarmf->oartifact == ART_INGRID_S_IRONHOOF_BOOTS) && !(uarmf && uarmf->oartifact == ART_LARS_S_IRONSTRIDE_BOOTS) && !(uarmg && uarmg->oartifact == ART_ERASMUS__SCRIPTED_GAUNTLET && !rn2(2)) && !(uarmf && uarmf->oartifact == ART_SO_WONDERFULLY_FLUFFY_SOFT) && !(uarmf && uarmf->oartifact == ART_JENNY_SUPERSOFT) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS)) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) && (!PlayerInHighHeels || (PlayerCannotUseSkills) || (rnd(7) > P_SKILL(P_HIGH_HEELS) ) ) ) {
+			if (u.umoved && !Levitation && !(uarmf && uarmf->oartifact == ART_NATURAL_SPRING) && !(uarmf && uarmf->oartifact == ART_MAREN_S_GALE_BOOTS) && !(uarmf && uarmf->oartifact == ART_INGRID_S_IRONHOOF_BOOTS) && !(uarmf && uarmf->oartifact == ART_LARS_S_IRONSTRIDE_BOOTS) && !(uarmg && uarmg->oartifact == ART_ERASMUS__SCRIPTED_GAUNTLET && !rn2(2)) && !(uarmf && uarmf->oartifact == ART_SO_WONDERFULLY_FLUFFY_SOFT) && !(carryingarti(ART_STILETTOS_OF_NORTHERN_RUSS) && PlayerInStilettoHeels) && !(uarmf && uarmf->oartifact == ART_JENNY_SUPERSOFT) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS)) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) && (!PlayerInHighHeels || (PlayerCannotUseSkills) || (rnd(7) > P_SKILL(P_HIGH_HEELS) ) ) ) {
 			    slip_or_trip();
 
 			/* based on the evil patch idea by jonadab: stupidity or amnesia from falling on your head --Amy */

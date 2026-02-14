@@ -2894,7 +2894,7 @@ age_spells()
 	for (i = 0; i < MAXSPELL && spellid(i) != NO_SPELL; i++)
 	    if (spellknow(i) ) {
 
-		if (!(uarmc && itemhasappearance(uarmc, APP_GUILD_CLOAK) ) && !(uamul && uamul->oartifact == ART_SUPER_MEMORY) && !tech_inuse(T_SPELL_SPAM) ) {
+		if (!(uarmc && itemhasappearance(uarmc, APP_GUILD_CLOAK) ) && !carryingarti(ART_QUANTUM_BRAIN) && !(uamul && uamul->oartifact == ART_SUPER_MEMORY) && !tech_inuse(T_SPELL_SPAM) ) {
 
 			/* 10000 turns is nothing compared to the length of the game; have it last longer, please! --Amy */
 			if (spellmemorize(i) && !rn2(2)) continue;
@@ -14931,6 +14931,7 @@ rerollX:
 		if (Keen_memory && !rn2(StrongKeen_memory ? 3 : 5)) cyanwillgodown = FALSE;
 		if (uarm && uarm->oartifact == ART_COPE_OF_THE_ELDRITCH_KNIGH && rn2(2)) cyanwillgodown = FALSE;
 		if (uarmc && itemhasappearance(uarmc, APP_GUILD_CLOAK) ) cyanwillgodown = FALSE;
+		if (carryingarti(ART_QUANTUM_BRAIN)) cyanwillgodown = FALSE;
 		if (uamul && uamul->oartifact == ART_SUPER_MEMORY) cyanwillgodown = FALSE;
 		if (tech_inuse(T_SPELL_SPAM)) cyanwillgodown = FALSE;
 		if (uarms && uarms->oartifact == ART_UNUSUAL_ENCH && !rn2(5)) cyanwillgodown = FALSE;
@@ -15889,7 +15890,7 @@ int spell;
 	    splcaster += (issoviet ? 2 : 1);
 
 	/* Robes are body armour in SLASH'EM */
-	if (uarm && !SpellColorMetal && (is_metallic(uarm) || is_filmitem(uarm)) && !is_etheritem(uarm) && !is_meteosteelitem(uarm)) {
+	if (uarm && !SpellColorMetal && !carryingarti(ART_TEALGLEAM) && (is_metallic(uarm) || is_filmitem(uarm)) && !is_etheritem(uarm) && !is_meteosteelitem(uarm)) {
 
 		/* Amy grepping target: "materialeffect" */
 		/* baseline = 15, used by iron, alumen and sinnum */
@@ -15944,7 +15945,7 @@ int spell;
 		splcaster += (urole.spelarmr * armorpenalties / (issoviet ? 12 : 30));
 	}
 
-	if (uarmc && !SpellColorMetal && (is_metallic(uarmc) || is_filmitem(uarmc)) && !is_etheritem(uarmc) && !is_meteosteelitem(uarmc)) {
+	if (uarmc && !SpellColorMetal && !carryingarti(ART_TEALGLEAM) && (is_metallic(uarmc) || is_filmitem(uarmc)) && !is_etheritem(uarmc) && !is_meteosteelitem(uarmc)) {
 
 		switch (objects[(uarmc)->otyp].oc_material) {
 			default: break;
@@ -15998,7 +15999,7 @@ int spell;
 
 	}
 
-	if (uarmu && !SpellColorMetal && (is_metallic(uarmu) || is_filmitem(uarmu)) && !is_etheritem(uarmu) && !is_meteosteelitem(uarmu)) {
+	if (uarmu && !SpellColorMetal && !carryingarti(ART_TEALGLEAM) && (is_metallic(uarmu) || is_filmitem(uarmu)) && !is_etheritem(uarmu) && !is_meteosteelitem(uarmu)) {
 
 		switch (objects[(uarmu)->otyp].oc_material) {
 			default: break;
@@ -16052,7 +16053,7 @@ int spell;
 
 	}
 
-	if (uarms && !SpellColorMetal) {
+	if (uarms && !SpellColorMetal && !carryingarti(ART_TEALGLEAM)) {
 		if (!is_metallic(uarms) || is_etheritem(uarms) || is_meteosteelitem(uarms)) shieldpenalties /= 3;
 
 		switch (objects[(uarms)->otyp].oc_material) {
@@ -16107,7 +16108,7 @@ int spell;
 
 	}
 
-	if (uarmh && !SpellColorMetal && (is_metallic(uarmh) || is_filmitem(uarmh)) && !is_etheritem(uarmh) && !is_meteosteelitem(uarmh) && uarmh->otyp != HELM_OF_BRILLIANCE) {
+	if (uarmh && !SpellColorMetal && !carryingarti(ART_TEALGLEAM) && (is_metallic(uarmh) || is_filmitem(uarmh)) && !is_etheritem(uarmh) && !is_meteosteelitem(uarmh) && uarmh->otyp != HELM_OF_BRILLIANCE) {
 
 		switch (objects[(uarmh)->otyp].oc_material) {
 			default: break;
@@ -16161,7 +16162,7 @@ int spell;
 
 	}
 
-	if (uarmg && !SpellColorMetal && (is_metallic(uarmg) || is_filmitem(uarmg)) && !is_etheritem(uarmg) && !is_meteosteelitem(uarmg)) {
+	if (uarmg && !SpellColorMetal && !carryingarti(ART_TEALGLEAM) && (is_metallic(uarmg) || is_filmitem(uarmg)) && !is_etheritem(uarmg) && !is_meteosteelitem(uarmg)) {
 
 		switch (objects[(uarmg)->otyp].oc_material) {
 			default: break;
@@ -16215,7 +16216,7 @@ int spell;
 
 	}
 
-	if (uarmf && !SpellColorMetal && (is_metallic(uarmf) || is_filmitem(uarmf)) && !is_etheritem(uarmf) && !is_meteosteelitem(uarmf)) {
+	if (uarmf && !SpellColorMetal && !carryingarti(ART_TEALGLEAM) && (is_metallic(uarmf) || is_filmitem(uarmf)) && !is_etheritem(uarmf) && !is_meteosteelitem(uarmf)) {
 
 		switch (objects[(uarmf)->otyp].oc_material) {
 			default: break;
@@ -16555,9 +16556,10 @@ int spell;
 	if (uarmh && uarmh->oartifact == ART_ZERO_PERCENT_FAILURE) chance += 10;
 	if (uarmf && uarmf->oartifact == ART_SPELLBOOTS) chance += 10;
 	if (uarmc && uarmc->oartifact == ART_HENRIETTA_S_HEAVY_CASTER) chance += 15;
+	if (carryingarti(ART_CHAUNDRA_POKA)) chance += 15;
 	if (uarm && uarm->oartifact == ART_OAR_SUPER_GRAPHICS_CARD_BU) chance += 15;
 	if (uarm && uarm->oartifact == ART_HELIOKOPIS_S_RAGEQUIT) chance += 20;
-	if (have_albiestone()) chance += 100;
+	if (carryingarti(ART_ALBIE_S_WHITEOUT)) chance += 100;
 	if (uarmf && uarmf->oartifact == ART_ROWALLAN_S_BALLING) chance += 10;
 	if (uarmg && uarmg->oartifact == ART_ERASMUS__SCRIPTED_GAUNTLET) chance += 30;
 	if (uimplant && uimplant->oartifact == ART_SPINAL_MATRIX_OF_RAISTLIN) chance += 20;
@@ -16594,7 +16596,7 @@ int spell;
 	if (bmwride(ART_ZIN_BA)) chance += 10;
 	if (uarmg && uarmg->oartifact == ART_WAND_INTO_SPELL) chance += 10;
 	if (uarmc && uarmc->oartifact == ART_SHROUD) chance += 10;
-	if (have_magicrystal()) chance += 5;
+	if (carryingarti(ART_MAGICRYSTAL)) chance += 5;
 	if (uarmh && uarmh->oartifact == ART_ALL_THE_BETTER_SPELLING) chance += 5;
 	if (uarm && uarm->oartifact == ART_KAMAKURA_BORI) chance += 20;
 	if (uarmh && uarmh->oartifact == ART_DREHTURN) chance += 10;
@@ -17063,7 +17065,7 @@ int spell;
 	if (uarm && uarm->oartifact == ART_ALTADOON_HERMA_MORA) chance += 20;
 	if (uarmg && uarmg->oartifact == ART_HOGWILD_WIZ) chance += 5;
 	if (uarmg && uarmg->oartifact == ART_WAND_INTO_SPELL) chance += 10;
-	if (have_magicrystal()) chance += 5;
+	if (carryingarti(ART_MAGICRYSTAL)) chance += 5;
 	if (uarmh && uarmh->oartifact == ART_ALL_THE_BETTER_SPELLING) chance += 5;
 
 	if (uwep && uwep->oartifact == ART_RASSCHEN_TAAK) chance += 5;

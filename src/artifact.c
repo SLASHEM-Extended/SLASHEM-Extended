@@ -1243,11 +1243,13 @@ init_randarts()
 	artilist[ART_BLUE_CORSAR_SWIMMING].otyp = randartscimitarX();
 	artilist[ART_FONLAUSCHI].otyp = randartpolearmX();
 	artilist[ART_RANKIS].otyp = randartpolearmX();
+	artilist[ART_TREVER_POLE].otyp = randartpolearmX();
 	artilist[ART_SOUL_REAPER].otyp = randartpolearmX();
 	artilist[ART_DOOMSDAY_HALBERD].otyp = randartpolearmX();
 	artilist[ART_VOID_SCYTHE].otyp = randartpolearmX();
 	artilist[ART_AVAL_N].otyp = randartscimitarX();
 	artilist[ART_EUTATS_ENOTS].otyp = randartaxeX();
+	artilist[ART_TREVER_AXE].otyp = randartaxeX();
 	artilist[ART_AXE_OF_DESTRUCTION].otyp = randartaxeX();
 	artilist[ART_FOREST_FIRE].otyp = randartaxeX();
 	artilist[ART_FUNE_NO_IKARI].otyp = randartaxeX();
@@ -2755,6 +2757,14 @@ register boolean mod;
 			}
 		    }
 
+		    if (otmp && otmp->oartifact == ART_HEIGHTBOOST) {
+			if (P_MAX_SKILL(P_RIDING) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(P_RIDING);
+				P_MAX_SKILL(P_RIDING) = P_BASIC;
+				pline("You can now learn the riding skill!");
+			}
+		    }
+
 		    if (otmp && otmp->oartifact == ART_EVERYTHING_A_PRINCESS_NEED) {
 			if (P_MAX_SKILL(P_RIDING) == P_ISRESTRICTED) {
 				unrestrict_weapon_skill(P_RIDING);
@@ -3799,6 +3809,30 @@ skillswapredoX:
 			} else pline("Sadly your knowledge of the occult spells skill is already maxed.");
 
 		    }
+
+		    if (otmp && otmp->oartifact == ART_ADWAODITH_S_HERECOME) {
+			if (P_MAX_SKILL(P_WEDGE_HEELS) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(P_WEDGE_HEELS);
+				P_MAX_SKILL(P_WEDGE_HEELS) = P_EXPERT;
+				pline("You can now learn the type 4: wedge heels skill!");
+			} else if (P_MAX_SKILL(P_WEDGE_HEELS) == P_BASIC) {
+				P_MAX_SKILL(P_WEDGE_HEELS) = P_EXPERT;
+				pline("You can now become expert in type 4: wedge heels!");
+			} else if (P_MAX_SKILL(P_WEDGE_HEELS) == P_SKILLED) {
+				P_MAX_SKILL(P_WEDGE_HEELS) = P_MASTER;
+				pline("You can now become master in type 4: wedge heels!");
+			} else if (P_MAX_SKILL(P_WEDGE_HEELS) == P_EXPERT) {
+				P_MAX_SKILL(P_WEDGE_HEELS) = P_GRAND_MASTER;
+				pline("You can now become grand master in type 4: wedge heels!");
+			} else if (P_MAX_SKILL(P_WEDGE_HEELS) == P_MASTER) {
+				P_MAX_SKILL(P_WEDGE_HEELS) = P_SUPREME_MASTER;
+				pline("You can now become supreme master in type 4: wedge heels!");
+			} else if (P_MAX_SKILL(P_WEDGE_HEELS) == P_GRAND_MASTER) {
+				P_MAX_SKILL(P_WEDGE_HEELS) = P_SUPREME_MASTER;
+				pline("You can now become supreme master in type 4: wedge heels!");
+			} else pline("Sadly your knowledge of the type 4: wedge heels skill is already maxed.");
+		    }
+
 		    if (otmp && otmp->oartifact == ART_ENRAAAAAAAAGE) {
 		      register struct monst *mtmp2;
 			struct edog* edog;
@@ -4133,6 +4167,10 @@ skillswapredoX:
 		    if (otmp && otmp->oartifact == ART_WELL__MIGHT_AS_WELL_WEAR_T) {
 			FemaleTrapJette += 50000;
 		    }
+		    if (otmp && otmp->oartifact == ART_HER_BROOKLAUGHTER_VOICE) {
+			if (!FemtrapActiveRuth) pline("The power of feminism compels you.");
+			FemaleTrapJette += rnz(25000);
+		    }
 		    if (otmp && otmp->oartifact == ART_WHOA_DOUBLE___) {
 			otmp->spe += rnd(10);
 		    }
@@ -4306,6 +4344,59 @@ skillswapredoX:
 				P_MAX_SKILL(P_FLAIL) = P_SUPREME_MASTER;
 				pline("You can now become supreme master with flails!");
 			} else pline("Sadly your knowledge of the flail skill is already maxed.");
+
+		    }
+
+		    if (otmp && otmp->oartifact == ART_DA_AREA_SOLE) {
+			You_feel("capable of wearing various types of footwear!");
+
+			if (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(P_HIGH_HEELS);
+				pline("You can now learn the high heels skill!");
+			} else if (P_MAX_SKILL(P_HIGH_HEELS) == P_UNSKILLED) {
+				unrestrict_weapon_skill(P_HIGH_HEELS);
+				pline("You can now learn the high heels skill!");
+				P_MAX_SKILL(P_HIGH_HEELS) = P_BASIC;
+			} else if (P_MAX_SKILL(P_HIGH_HEELS) == P_BASIC) {
+				P_MAX_SKILL(P_HIGH_HEELS) = P_SKILLED;
+				pline("You can now become skilled with high heels!");
+			} else if (P_MAX_SKILL(P_HIGH_HEELS) == P_SKILLED) {
+				P_MAX_SKILL(P_HIGH_HEELS) = P_EXPERT;
+				pline("You can now become expert with high heels!");
+			} else if (P_MAX_SKILL(P_HIGH_HEELS) == P_EXPERT) {
+				P_MAX_SKILL(P_HIGH_HEELS) = P_MASTER;
+				pline("You can now become master with high heels!");
+			} else if (P_MAX_SKILL(P_HIGH_HEELS) == P_MASTER) {
+				P_MAX_SKILL(P_HIGH_HEELS) = P_GRAND_MASTER;
+				pline("You can now become grand master with high heels!");
+			} else if (P_MAX_SKILL(P_HIGH_HEELS) == P_GRAND_MASTER) {
+				P_MAX_SKILL(P_HIGH_HEELS) = P_SUPREME_MASTER;
+				pline("You can now become supreme master with high heels!");
+			} else pline("Sadly your knowledge of the high heels skill is already maxed.");
+
+			if (P_MAX_SKILL(P_SEXY_FLATS) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(P_SEXY_FLATS);
+				pline("You can now learn the sexy flats skill!");
+			} else if (P_MAX_SKILL(P_SEXY_FLATS) == P_UNSKILLED) {
+				unrestrict_weapon_skill(P_SEXY_FLATS);
+				pline("You can now learn the sexy flats skill!");
+				P_MAX_SKILL(P_SEXY_FLATS) = P_BASIC;
+			} else if (P_MAX_SKILL(P_SEXY_FLATS) == P_BASIC) {
+				P_MAX_SKILL(P_SEXY_FLATS) = P_SKILLED;
+				pline("You can now become skilled with sexy flats!");
+			} else if (P_MAX_SKILL(P_SEXY_FLATS) == P_SKILLED) {
+				P_MAX_SKILL(P_SEXY_FLATS) = P_EXPERT;
+				pline("You can now become expert with sexy flats!");
+			} else if (P_MAX_SKILL(P_SEXY_FLATS) == P_EXPERT) {
+				P_MAX_SKILL(P_SEXY_FLATS) = P_MASTER;
+				pline("You can now become master with sexy flats!");
+			} else if (P_MAX_SKILL(P_SEXY_FLATS) == P_MASTER) {
+				P_MAX_SKILL(P_SEXY_FLATS) = P_GRAND_MASTER;
+				pline("You can now become grand master with sexy flats!");
+			} else if (P_MAX_SKILL(P_SEXY_FLATS) == P_GRAND_MASTER) {
+				P_MAX_SKILL(P_SEXY_FLATS) = P_SUPREME_MASTER;
+				pline("You can now become supreme master with sexy flats!");
+			} else pline("Sadly your knowledge of the sexy flats skill is already maxed.");
 
 		    }
 
@@ -5576,6 +5667,79 @@ skillswapredoX:
 		    if (otmp && otmp->oartifact == ART_ETHER_DAGGER) {
 			if (objects[otmp->otyp].oc_material != MT_ETHER) objects[otmp->otyp].oc_material = MT_ETHER;
 		    }
+		    if (otmp && otmp->oartifact == ART_TRISHA_S_ABILITIES) {
+			if (objects[otmp->otyp].oc_material != MT_STEEL) objects[otmp->otyp].oc_material = MT_STEEL;
+
+			if (P_MAX_SKILL(P_CLUB) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(P_CLUB);
+			} else if (P_MAX_SKILL(P_CLUB) == P_UNSKILLED) {
+				unrestrict_weapon_skill(P_CLUB);
+				P_MAX_SKILL(P_CLUB) = P_BASIC;
+			} else if (P_MAX_SKILL(P_CLUB) == P_BASIC) {
+				P_MAX_SKILL(P_CLUB) = P_SKILLED;
+			} else if (P_MAX_SKILL(P_CLUB) == P_SKILLED) {
+				P_MAX_SKILL(P_CLUB) = P_EXPERT;
+			} else if (P_MAX_SKILL(P_CLUB) == P_EXPERT) {
+				P_MAX_SKILL(P_CLUB) = P_MASTER;
+			} else if (P_MAX_SKILL(P_CLUB) == P_MASTER) {
+				P_MAX_SKILL(P_CLUB) = P_GRAND_MASTER;
+			} else if (P_MAX_SKILL(P_CLUB) == P_GRAND_MASTER) {
+				P_MAX_SKILL(P_CLUB) = P_SUPREME_MASTER;
+			}
+
+			if (P_MAX_SKILL(P_MACE) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(P_MACE);
+			} else if (P_MAX_SKILL(P_MACE) == P_UNSKILLED) {
+				unrestrict_weapon_skill(P_MACE);
+				P_MAX_SKILL(P_MACE) = P_BASIC;
+			} else if (P_MAX_SKILL(P_MACE) == P_BASIC) {
+				P_MAX_SKILL(P_MACE) = P_SKILLED;
+			} else if (P_MAX_SKILL(P_MACE) == P_SKILLED) {
+				P_MAX_SKILL(P_MACE) = P_EXPERT;
+			} else if (P_MAX_SKILL(P_MACE) == P_EXPERT) {
+				P_MAX_SKILL(P_MACE) = P_MASTER;
+			} else if (P_MAX_SKILL(P_MACE) == P_MASTER) {
+				P_MAX_SKILL(P_MACE) = P_GRAND_MASTER;
+			} else if (P_MAX_SKILL(P_MACE) == P_GRAND_MASTER) {
+				P_MAX_SKILL(P_MACE) = P_SUPREME_MASTER;
+			}
+
+			if (P_MAX_SKILL(P_MORNING_STAR) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(P_MORNING_STAR);
+			} else if (P_MAX_SKILL(P_MORNING_STAR) == P_UNSKILLED) {
+				unrestrict_weapon_skill(P_MORNING_STAR);
+				P_MAX_SKILL(P_MORNING_STAR) = P_BASIC;
+			} else if (P_MAX_SKILL(P_MORNING_STAR) == P_BASIC) {
+				P_MAX_SKILL(P_MORNING_STAR) = P_SKILLED;
+			} else if (P_MAX_SKILL(P_MORNING_STAR) == P_SKILLED) {
+				P_MAX_SKILL(P_MORNING_STAR) = P_EXPERT;
+			} else if (P_MAX_SKILL(P_MORNING_STAR) == P_EXPERT) {
+				P_MAX_SKILL(P_MORNING_STAR) = P_MASTER;
+			} else if (P_MAX_SKILL(P_MORNING_STAR) == P_MASTER) {
+				P_MAX_SKILL(P_MORNING_STAR) = P_GRAND_MASTER;
+			} else if (P_MAX_SKILL(P_MORNING_STAR) == P_GRAND_MASTER) {
+				P_MAX_SKILL(P_MORNING_STAR) = P_SUPREME_MASTER;
+			}
+
+			if (P_MAX_SKILL(P_HAMMER) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(P_HAMMER);
+				P_MAX_SKILL(P_HAMMER) = P_SKILLED;
+			} else if (P_MAX_SKILL(P_HAMMER) == P_UNSKILLED) {
+				unrestrict_weapon_skill(P_HAMMER);
+				P_MAX_SKILL(P_HAMMER) = P_SKILLED;
+			} else if (P_MAX_SKILL(P_HAMMER) == P_BASIC) {
+				P_MAX_SKILL(P_HAMMER) = P_EXPERT;
+			} else if (P_MAX_SKILL(P_HAMMER) == P_SKILLED) {
+				P_MAX_SKILL(P_HAMMER) = P_MASTER;
+			} else if (P_MAX_SKILL(P_HAMMER) == P_EXPERT) {
+				P_MAX_SKILL(P_HAMMER) = P_GRAND_MASTER;
+			} else if (P_MAX_SKILL(P_HAMMER) == P_MASTER) {
+				P_MAX_SKILL(P_HAMMER) = P_SUPREME_MASTER;
+			} else if (P_MAX_SKILL(P_HAMMER) == P_GRAND_MASTER) {
+				P_MAX_SKILL(P_HAMMER) = P_SUPREME_MASTER;
+			}
+			You("suddenly feel much more skilled with blunt weapons!");
+		    }
 		    if (otmp && otmp->oartifact == ART_TITODESC) {
 			if (objects[otmp->otyp].oc_material != MT_TITANIUM) objects[otmp->otyp].oc_material = MT_TITANIUM;
 		    }
@@ -5597,6 +5761,9 @@ skillswapredoX:
 		    }
 		    if (otmp && otmp->oartifact == ART_MOST_EROTIC_AIR_CURRENT_NO) {
 			objects[otmp->otyp].oc_color = CLR_BRIGHT_MAGENTA;
+		    }
+		    if (otmp && otmp->oartifact == ART_GTWCTTWW) {
+			objects[otmp->otyp].oc_color = CLR_YELLOW;
 		    }
 		    if (otmp && otmp->oartifact == ART_TINPLAGUE) {
 			if (objects[otmp->otyp].oc_material != MT_SINNUM) objects[otmp->otyp].oc_material = MT_SINNUM;
@@ -8358,6 +8525,7 @@ arti_invoke(obj)
 	/* highly randomized timeout; squeaking skill helps --Amy */
 	int artitimeout = rnz(2000);
 	if (!rn2(5)) artitimeout = rnz(20000);
+	if (obj && obj->oartifact == ART_MARC_S_DEFINITIVE_BREAK) artitimeout *= rn1(2,2);
 	if (!PlayerCannotUseSkills) {
 		switch (P_SKILL(P_SQUEAKING)) {
 	      	case P_BASIC:	artitimeout *= 9; artitimeout /= 10; break;
@@ -8698,6 +8866,104 @@ chargingchoice:
 		}
 
 		*/
+
+		if (obj->oartifact == ART_IN_SEPARATION) {
+
+			int madepool = 0;
+			do_clear_areaX(u.ux, u.uy, 8, do_lockfloodP, (void *)&madepool);
+			pline(FunnyHallu ? "It's getting a little bit tight in here!" : "Walls and obstacles shoot up from the ground!");
+
+			break;
+		}
+
+		if (obj->oartifact == ART_YOUR_BLACK_HAND) {
+			use_temporary_tech(T_DRAINING_PUNCH);
+			break;
+		}
+
+		if (obj->oartifact == ART_IT_S_HER_DISEASE) {
+			use_temporary_tech(T_SHOPPING_QUEEN);
+			break;
+		}
+
+		if (obj->oartifact == ART_UE___UE___UE) {
+			use_temporary_tech(T_TIME_STOP);
+			break;
+		}
+
+		if (obj->oartifact == ART_FULL_VOLUME___) {
+			u.boosttimer += rn1(100,100);
+			You("gain massive power.");
+			break;
+		}
+
+		if (obj->oartifact == ART_GONNA_KICK_YOUR_ASS) {
+			randommartialstyle();
+			break;
+		}
+
+		if (obj->oartifact == ART_CASHAGO) {
+			u.ugold += rnz(100);
+			pline(FunnyHallu ? "Bribe money! Yay!" : "Your budget is extended!");
+			flags.botl = TRUE;
+			break;
+		}
+
+		if (obj->oartifact == ART_BLUEDAYPAPER_BECOMES_SHITT) {
+			change_luck(1);
+			You_feel("lucky.");
+			break;
+		}
+
+		if (obj->oartifact == ART_GOLD_FOR_EVERYONE) {
+			do_vanquished('y', FALSE, FALSE, TRUE);
+			break;
+		}
+
+		if (obj->oartifact == ART_US_STAYS_NO_SELECTION) {
+			polyself(FALSE);
+			break;
+		}
+
+		if (obj->oartifact == ART_TEASELING_) {
+			tech_metronome();
+			break;
+		}
+
+		if (obj->oartifact == ART_HUGKICK) {
+
+			if (obj->spe < 0) {
+				pline("%s", nothing_happens);
+				if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+					pline("Oh wait, actually something bad happens...");
+					badeffect();
+				}
+				break;
+			}
+			obj->spe = -1;
+
+			register struct obj *hugboots;
+			hugboots = mksobj(find_appearance_armor(APP_HUGGING_BOOTS), TRUE, FALSE, FALSE);
+
+			if (hugboots) {
+				(void) pickup_object(hugboots, hugboots->quan, TRUE, TRUE);
+
+				if (is_boots(hugboots)) {
+					if (uarmf) remove_worn_item(uarmf, TRUE);
+					setworn(hugboots, W_ARMF);
+					Boots_on();
+					if (hugboots) {
+						curse(hugboots);
+						hugboots->hvycurse = TRUE;
+					}
+				} else {
+					impossible("hugkick made non-boot item");
+					return;
+				}
+			}
+
+			break;
+		}
 
 		if (obj->oartifact == ART_DECOUD_IT) {
 			useupall(obj);
@@ -9323,6 +9589,20 @@ findmorestonesX:
 			break;
 		}
 
+		if (obj->oartifact == ART_NOT_A_VERY_STRONG_POISON) {
+
+			buzz(26, 6, u.ux, u.uy, -1, 0);
+			buzz(26, 6, u.ux, u.uy, 1, 0);
+			buzz(26, 6, u.ux, u.uy, -1, 1);
+			buzz(26, 6, u.ux, u.uy, 1, 1);
+			buzz(26, 6, u.ux, u.uy, 0, 1);
+			buzz(26, 6, u.ux, u.uy, -1, -1);
+			buzz(26, 6, u.ux, u.uy, 1, -1);
+			buzz(26, 6, u.ux, u.uy, 0, -1);
+
+			break;
+		}
+
 		if (obj->oartifact == ART_NINJUTSU) {
 			u.martialstyle = MARTIALSTYLE_MARSHALARTS;
 			You("changed your martial arts style to 'marshal arts'.");
@@ -9335,6 +9615,11 @@ findmorestonesX:
 			break;
 		}
 
+		if (obj->oartifact == ART_CLASSRACE_INVITATION) {
+			use_temporary_tech(T_MARATHON);
+			break;
+		}
+
 		if (obj->oartifact == ART_SEXEHSQUIRT) {
 
 			use_temporary_tech(T_MELTEE);
@@ -9343,6 +9628,13 @@ findmorestonesX:
 		}
 
 		if (obj->oartifact == ART_ARABELLA_S_LEVERAGE) {
+
+			use_temporary_tech(T_STAR_DIGGING);
+
+			break;
+		}
+
+		if (obj->oartifact == ART_EMGESHOT) {
 
 			use_temporary_tech(T_STAR_DIGGING);
 

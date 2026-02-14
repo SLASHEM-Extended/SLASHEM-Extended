@@ -8087,6 +8087,7 @@ find_ac()
 	if (uarmc && uarmc->oartifact == ART_DES_MIRREN) uac -= 3;
 	if (uarm && uarm->oartifact == ART_REGULATOR_DUSTER) uac -= 1;
 	if (uarm && uarm->oartifact == ART_TALON_COMBAT_COAT) uac -= 2;
+	if (carryingarti(ART_HEMEPHEELE)) uac -= 10;
 	if (uarmc && uarmc->oartifact == ART_BORINGPAD) uac -= 3;
 	if (uarm && uarm->oartifact == ART_HARDUP) uac -= 2;
 	if (uarm && uarm->oartifact == ART_JUST_A_HUNK_OF_AC) uac -= 7;
@@ -8169,6 +8170,9 @@ find_ac()
 	if (uarmh && uarmh->oartifact == ART_COLONEL_BASTARD_S_BALLISTI) uac -= 2;
 	if (uarmh && uarmh->oartifact == ART_SARAH_S_AWE_INVITATION) uac -= 5;
 	if (uarm && uarm->oartifact == ART_THA_WALL) uac -= 9;
+	if (carryingarti(ART_SUCH_A_CUDDLE)) uac -= 2;
+	if (carryingarti(ART_LONGBATTLE)) uac -= 10;
+	if (carryingarti(ART_THEY_KEEP_MISSING_EACH_OTH)) uac -= 10;
 	if (uarm && uarm->oartifact == ART_OWYN_S_SHINY_ARMOR) uac -= 15;
 	if (uarm && uarm->oartifact == ART_AYZAH_S_HURDLE) uac -= 10;
 	if (uarmf && uarmf->oartifact == ART_HANNAH_S_INNOCENCE) uac -= 5;

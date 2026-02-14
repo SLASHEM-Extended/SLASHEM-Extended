@@ -1418,163 +1418,6 @@ numberofwornmysteriousitems()
 }
 
 boolean
-have_pokeloadstone()
-{
-	register struct obj *otmp;
-
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == LOADSTONE && otmp->oartifact == ART_AUTOMATIC_POKE_BALL)
-			return(TRUE);
-		}
-	return(FALSE);
-}
-
-boolean
-have_autohealpotion()
-{
-	register struct obj *otmp;
-
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == POT_FULL_HEALING && otmp->oartifact == ART_GULP_GULP_GULP)
-			return(TRUE);
-		}
-	return(FALSE);
-
-}
-
-boolean
-have_superjonadabstone()
-{
-	register struct obj *otmp;
-
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == LOADBOULDER && otmp->oartifact == ART_JONADAB_S_EXTRA_MODE)
-			return(TRUE);
-		}
-	return(FALSE);
-}
-
-boolean
-have_trippingjewel()
-{
-	register struct obj *otmp;
-
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == HENRIETTA_S_JEWEL && otmp->oartifact == ART_TRIPPING)
-			return(TRUE);
-		}
-	return(FALSE);
-}
-
-boolean
-have_maybrittclick()
-{
-	register struct obj *otmp;
-
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MAY_BRITT_S_JEWEL && otmp->oartifact == ART_MAY_BRITT_S_CLICK)
-			return(TRUE);
-		}
-	return(FALSE);
-}
-
-boolean
-have_magicrystal()
-{
-	register struct obj *otmp;
-
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == CHALCEDON && otmp->oartifact == ART_MAGICRYSTAL)
-			return(TRUE);
-		}
-	return(FALSE);
-}
-
-boolean
-have_luckypack()
-{
-	register struct obj *otmp;
-
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == LUCKSTONE && otmp->oartifact == ART_LUCKY_PACK)
-			return(TRUE);
-		}
-	return(FALSE);
-}
-
-boolean
-have_miraclebeautifulnoises()
-{
-	register struct obj *otmp;
-
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == KATHARINA_S_JEWEL && otmp->oartifact == ART_MIRACLE_BEAUTIFUL_NOISES)
-			return(TRUE);
-		}
-	return(FALSE);
-}
-
-boolean
-have_hardcoreaddiction()
-{
-	register struct obj *otmp;
-
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MELTEM_S_JEWEL && otmp->oartifact == ART_HARDCORE_ADDICTION)
-			return(TRUE);
-		}
-	return(FALSE);
-}
-
-boolean
-have_allisloststone()
-{
-	register struct obj *otmp;
-
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ITEM_TELEPORTING_STONE && otmp->oartifact == ART_ALL_IS_LOST)
-			return(TRUE);
-		}
-	return(FALSE);
-}
-
-boolean
-have_repeatingloadstone()
-{
-	register struct obj *otmp;
-
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == LOADSTONE && otmp->oartifact == ART_REPEATING_LOAD)
-			return(TRUE);
-		}
-	return(FALSE);
-}
-
-boolean
-have_hungerhealer()
-{
-	register struct obj *otmp;
-
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == HITCHHIKER_S_GUIDE_TO_THE_GALA && otmp->oartifact == ART_HUNGERHEALER)
-			return(TRUE);
-		}
-	return(FALSE);
-}
-
-boolean
-have_invisoloadstone()
-{
-	register struct obj *otmp;
-
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == LOADSTONE && otmp->oartifact == ART_JONADAB_S_HEAVYLOAD)
-			return(TRUE);
-		}
-	return(FALSE);
-}
-
-boolean
 haveartileash(artityp)
 int artityp;
 {
@@ -1589,161 +1432,12 @@ int artityp;
 }
 
 boolean
-have_spectrumplinggem()
-{
-	register struct obj *otmp;
-
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == CIRMOCLINE && otmp->oartifact == ART_SPECTRUM_PLING)
-			return(TRUE);
-		}
-	return(FALSE);
-}
-
-boolean
-have_whitewaterrafting()
-{
-	register struct obj *otmp;
-
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == DISPERSION_BOX && otmp->oartifact == ART_WHITEWATER_RAFTING)
-			return(TRUE);
-		}
-	return(FALSE);
-}
-
-boolean
-have_daisybag()
-{
-	register struct obj *otmp;
-
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == HANDYBAG && otmp->oartifact == ART_DAISY_S_HANDBAG)
-			return(TRUE);
-		}
-	return(FALSE);
-}
-
-boolean
 have_burnerdream()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == OIL_CANDLE && otmp->oartifact == ART_BURNER_DREAM && otmp->lamplit)
-			return(TRUE);
-		}
-	return(FALSE);
-}
-
-boolean
-have_amateurluckstone()
-{
-	register struct obj *otmp;
-
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == LUCKSTONE && otmp->oartifact == ART_AMATEURHOUR_S_SIGH)
-			return(TRUE);
-		}
-
-	return(FALSE);
-}
-
-boolean
-have_suckstonearti()
-{
-	register struct obj *otmp;
-
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == SLEEPSTONE && otmp->oartifact == ART_SUCKSTONE)
-			return(TRUE);
-		}
-
-	return(FALSE);
-}
-
-boolean
-have_feeldasag()
-{
-	register struct obj *otmp;
-
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == SACK && otmp->oartifact == ART_FEELDASAG)
-			return(TRUE);
-		}
-
-	return(FALSE);
-}
-
-boolean
-have_fireringcandle()
-{
-	register struct obj *otmp;
-
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MAGIC_CANDLE && otmp->oartifact == ART_FIRERING)
-			return(TRUE);
-		}
-
-	return(FALSE);
-}
-
-boolean
-have_leohighlantern()
-{
-	register struct obj *otmp;
-
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == BRASS_LANTERN && otmp->oartifact == ART_LEO_IS_ALWAYS_HIGH)
-			return(TRUE);
-		}
-
-	return(FALSE);
-}
-
-boolean
-have_femityjewel()
-{
-	register struct obj *otmp;
-
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->oartifact == ART_FEMITY_SOLVE)
-			return(TRUE);
-		}
-	return(FALSE);
-}
-
-boolean
-have_grumblebumble()
-{
-	register struct obj *otmp;
-
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->oartifact == ART_JAN_S_GRUMBLEBUMBLE)
-			return(TRUE);
-		}
-	return(FALSE);
-}
-
-boolean
-have_kickart()
-{
-	register struct obj *otmp;
-
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->oartifact == ART_KICK_ART)
-			return(TRUE);
-		}
-	return(FALSE);
-}
-
-boolean
-have_peepshow()
-{
-	register struct obj *otmp;
-
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->oartifact == ART_PEEPSHOW)
 			return(TRUE);
 		}
 	return(FALSE);
@@ -1770,6 +1464,7 @@ have_spellcolorartifact()
 		if(SpellColorSilver && otmp->oartifact == ART_IRIS_FLAX_SHARP) return SILVER_SPELL_STONE;
 		if(SpellColorMetal && otmp->oartifact == ART_MUXXERHEAD) return METAL_SPELL_STONE;
 		if(SpellColorPlatinum && otmp->oartifact == ART_FORTUNEFEET) return PLATINUM_SPELL_STONE;
+		if(SpellColorGray && otmp->oartifact == ART_MADE_OF_STONE) return GREYOUT_STONE;
 	}
 	return(FALSE);
 }
@@ -1781,114 +1476,6 @@ have_completelyquietlight()
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->oartifact == ART_COMPLETELY_QUIET___ && otmp->lamplit)
-			return(TRUE);
-		}
-	return(FALSE);
-}
-
-boolean
-have_flatgirl()
-{
-	register struct obj *otmp;
-
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->oartifact == ART_FLATGIRL)
-			return(TRUE);
-		}
-	return(FALSE);
-}
-
-boolean
-have_climxianjewel()
-{
-	register struct obj *otmp;
-
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->oartifact == ART_CLIMXIAN_WORSHIP)
-			return(TRUE);
-		}
-	return(FALSE);
-}
-
-boolean
-have_thilojewel()
-{
-	register struct obj *otmp;
-
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->oartifact == ART_THILO_S_ASSHOLERY)
-			return(TRUE);
-		}
-	return(FALSE);
-}
-
-boolean
-have_gronjajewel()
-{
-	register struct obj *otmp;
-
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->oartifact == ART_GRONJA_S_FALSIFICATION)
-			return(TRUE);
-		}
-	return(FALSE);
-}
-
-boolean
-have_albiestone()
-{
-	register struct obj *otmp;
-
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->oartifact == ART_ALBIE_S_WHITEOUT)
-			return(TRUE);
-		}
-	return(FALSE);
-}
-
-boolean
-have_analeahjewel()
-{
-	register struct obj *otmp;
-
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->oartifact == ART_ANALEAH_S_CONTINUITY)
-			return(TRUE);
-		}
-	return(FALSE);
-}
-
-boolean
-have_fragrantjewel()
-{
-	register struct obj *otmp;
-
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->oartifact == ART_ALL_THE_FRAGRANT_GIRLS)
-			return(TRUE);
-		}
-	return(FALSE);
-}
-
-boolean
-have_prettyblond()
-{
-	register struct obj *otmp;
-
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->oartifact == ART_PRETTYBLOND)
-			return(TRUE);
-		}
-	return(FALSE);
-}
-
-boolean
-have_meefmeef()
-{
-	register struct obj *otmp;
-
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->oartifact == ART_MEEFMEEF)
 			return(TRUE);
 		}
 	return(FALSE);
@@ -1920,138 +1507,6 @@ have_refractura()
 			if (FemtrapActiveJohanetta) return(TRUE);
 		}
 	}
-	return(FALSE);
-}
-
-boolean
-have_clonedyke()
-{
-	register struct obj *otmp;
-
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->oartifact == ART_CLONE_DYKE_TREASURE)
-			return(TRUE);
-		}
-	return(FALSE);
-}
-
-boolean
-have_estealdoctor()
-{
-	register struct obj *otmp;
-
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->oartifact == ART_DOCTOR_ENERGY_STEAL)
-			return(TRUE);
-		}
-	return(FALSE);
-}
-
-boolean
-have_crashrecoverstone()
-{
-	register struct obj *otmp;
-
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->oartifact == ART_CRASH_RECOVERY)
-			return(TRUE);
-		}
-	return(FALSE);
-}
-
-boolean
-have_sportivox()
-{
-	register struct obj *otmp;
-
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->oartifact == ART_SPORTIVOX)
-			return(TRUE);
-		}
-	return(FALSE);
-}
-
-boolean
-have_minimejewel()
-{
-	register struct obj *otmp;
-
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->oartifact == ART_MINIMAL_MINI_ME)
-			return(TRUE);
-		}
-	return(FALSE);
-}
-
-boolean
-have_stashitcontainer()
-{
-	register struct obj *otmp;
-
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->oartifact == ART_STASHIT)
-			return(TRUE);
-		}
-	return(FALSE);
-}
-
-boolean
-have_oneinfourstone()
-{
-	register struct obj *otmp;
-
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->oartifact == ART_ONE_IN_FOUR)
-			return(TRUE);
-		}
-	return(FALSE);
-}
-
-boolean
-have_doubleshelljewel()
-{
-	register struct obj *otmp;
-
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->oartifact == ART_DOUBLESHELL)
-			return(TRUE);
-		}
-	return(FALSE);
-}
-
-boolean
-have_contaminatejewel()
-{
-	register struct obj *otmp;
-
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->oartifact == ART_NOT_GONNA_CONTAMINATE)
-			return(TRUE);
-		}
-	return(FALSE);
-}
-
-boolean
-have_haveitallstone()
-{
-	register struct obj *otmp;
-
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->oartifact == ART_HAVE_IT_ALL_BUT_NOT_GET)
-			return(TRUE);
-		}
-	return(FALSE);
-}
-
-boolean
-have_sonjartifact()
-{
-	register struct obj *otmp;
-
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->oartifact == ART_QUE_TANGHERISONJA)
-			return(TRUE);
-		}
 	return(FALSE);
 }
 
@@ -3890,7 +3345,7 @@ boolean
 feminizecheck(femnumber)
 int femnumber;
 {
-	if (!isfeminizer && !Role_if(PM_CLIMACTERIAL) && !(uamul && uamul->oartifact == ART_NAMED_NUKA_COLA) && !u.tempnukaeffect && !have_contaminatejewel() ) return FALSE;
+	if (!isfeminizer && !Role_if(PM_CLIMACTERIAL) && !(uamul && uamul->oartifact == ART_NAMED_NUKA_COLA) && !u.tempnukaeffect && !(carryingarti(ART_NOT_GONNA_CONTAMINATE)) ) return FALSE;
 
 	if (Role_if(PM_CLIMACTERIAL)) {
 		if (u.urmaxlvlUP >= 3 && u.climauspices3 == femnumber) return TRUE;
@@ -3907,7 +3362,7 @@ int femnumber;
 
 	/* caution: make sure any added items are also checked above!! --Amy */
 	if (isfeminizer && u.feminizeffect == femnumber) return TRUE;
-	if (have_contaminatejewel() && (u.contamjeweleffect == femnumber)) return TRUE;
+	if (carryingarti(ART_NOT_GONNA_CONTAMINATE) && (u.contamjeweleffect == femnumber)) return TRUE;
 	if (uamul && uamul->oartifact == ART_NAMED_NUKA_COLA && (u.nukafemeffect == femnumber)) return TRUE;
 	if (u.tempnukaeffect && (u.tempnukaefftype == femnumber) ) return TRUE;
 	/* caution: make sure any added items are also checked above!! --Amy */
@@ -4459,36 +3914,12 @@ foreignartifactcount()
 }
 
 boolean
-have_sleepstone()
-{
-	register struct obj *otmp;
-
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == SLEEPSTONE)
-			return(TRUE);
-		}
-	return(FALSE);
-}
-
-boolean
-have_magicresstone()
-{
-	register struct obj *otmp;
-
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == STONE_OF_MAGIC_RESISTANCE)
-			return(TRUE);
-		}
-	return(FALSE);
-}
-
-boolean
 have_cursedmagicresstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == STONE_OF_MAGIC_RESISTANCE  && otmp->cursed)
+		if(otmp->otyp == STONE_OF_MAGIC_RESISTANCE && otmp->cursed)
 			return(TRUE);
 		}
 	return(FALSE);
@@ -5818,7 +5249,7 @@ have_stealerstone()
 	}
 	if (u.nastinator81) return TRUE;
 	if (sjwcheck(81)) return TRUE;
-	if (have_suckstonearti()) return TRUE;
+	if (carryingarti(ART_SUCKSTONE)) return TRUE;
 	return(FALSE);
 }
 
@@ -8074,7 +7505,7 @@ have_elmstreetstone()
 	}
 	if (u.nastinator222) return TRUE;
 	if (sjwcheck(222)) return TRUE;
-	if (have_suckstonearti()) return TRUE;
+	if (carryingarti(ART_SUCKSTONE)) return TRUE;
 
 	return(FALSE);
 }
@@ -36481,6 +35912,334 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: +2 to-hit and +2 damage. Whenever you fire it, the damage type is randomized."); break;
 				case ART_GLAUSTOCK:
 					pline("Artifact specs: +2 to-hit and +2 magic damage."); break;
+				case ART_HER_BROOKLAUGHTER_VOICE:
+					pline("Artifact specs: when it generated, you got a long-lasting jette trap effect."); break;
+				case ART_SAFER_SHIN:
+					pline("Artifact specs: half physical damage when carried."); break;
+				case ART_EROGE_CHEEK:
+					pline("Artifact specs: death resistance when carried."); break;
+				case ART_ASCENDANCE_ABILITY:
+					pline("Artifact specs: can be invoked to branchport."); break;
+				case ART_LEGENDARIUM_PERCENTAGE:
+					pline("Artifact specs: double free action and +2 MC when carried."); break;
+				case ART_GRIFTED_CAPABILITY:
+					pline("Artifact specs: wonderlegs and diminished bleeding when carried."); break;
+				case ART_BUTTCHARM:
+					pline("Artifact specs: while carrying it, you can #monster to fart."); break;
+				case ART_HEIGHTBOOST:
+					pline("Artifact specs: if you didn't have the riding skill when it generated, it got unlocked. While carrying it, you can reach the ground while riding even if you're still unskilled."); break;
+				case ART_NARNIA_S_CLASSITY:
+					pline("Artifact specs: stronger kristina trap effect when carried and free action."); break;
+				case ART_CHAUNDRA_POKA:
+					pline("Artifact specs: stronger melissa trap effect when carried and +4 intelligence, +2 wisdom and slightly improved spellcasting success chances."); break;
+				case ART_MAYWON_MONTH:
+					pline("Artifact specs: if you use a toilet by moving over it while carrying this artifact, the squeaking skill is trained more quickly. If the current month is May, it also boosts your HP regeneration without causing extra hunger."); break;
+				case ART_ORDERLY_PROPER:
+					pline("Artifact specs: +5 strength and +8 constitution while carried."); break;
+				case ART_HEMEPHEELE:
+					pline("Artifact specs: while carrying it, effects that cause you to bleed will cause more bleeding, but you have 10 extra points of AC and if you use a shield, it has 10%% extra chance to block."); break;
+				case ART_COLORFUL_CLOTHING:
+					pline("Artifact specs: while carried, you might occasionally find more armor pieces."); break;
+				case ART_SEXY_DYKE_BITCH:
+					pline("Artifact specs: +5 charisma and +1 strength, dexterity and constitution while carried."); break;
+				case ART_HOPSCOTCH_CUP:
+					pline("Artifact specs: flying while carried, but monsters who hit you with glib melee attacks also cause bleeding."); break;
+				case ART_HUGKICK:
+					pline("Artifact specs: +10 kick damage while carried, and if you're wearing hugging boots, another +10 kick damage and also +10 strength. It can be invoked to create a heavily cursed pair of hugging boots that forcibly equips itself on you, but only if this artifact is at least +0, and it'll become -1 in the process."); break;
+				case ART_DECADENCE_IN_DOSES:
+					pline("Artifact specs: causes the antje 2 trap effect to trigger more often, resist poison and sickness while carried."); break;
+				case ART_SUNNY_HONEYDEW:
+					pline("Artifact specs: stronger julia trap effect and fire immunity while carried."); break;
+				case ART_IRREGULAR_RADIANCE:
+					pline("Artifact specs: +10 charisma while carried, and your charisma will very slowly increase over time."); break;
+				case ART_PANTYSHINE:
+					pline("Artifact specs: while you carry it, all monsters whose pants are visible can be seen in the dark."); break;
+				case ART_LESS_STICK_CHEW:
+					pline("Artifact specs: discount action when carried."); break;
+				case ART_STILETTOS_OF_NORTHERN_RUSS:
+					pline("Artifact specs: if you carry it while wearing stiletto heels, you're immune to fumbling."); break;
+				case ART_BOUGHT_THE_RED_ROOM:
+					pline("Artifact specs: experience boost when carried."); break;
+				case ART_PARASYM_ACCEPTANCE:
+					pline("Artifact specs: while carrying it, you occasionally get a cursed symbiote if you don't have one yet."); break;
+				case ART_BACKHISTORY_REMEMBERANCE:
+					pline("Artifact specs: searching bonus and defusing when carried."); break;
+				case ART_UNDEAD_BECOME_HAVE:
+					pline("Artifact specs: unbreathing and resistance to sleep, cold and poison when carried."); break;
+				case ART_LEARNING_BY_DOING:
+					pline("Artifact specs: if you use a toilet while carrying it, your alignment and maximum go up a bit, however you might do evil things."); break;
+				case ART_LEARN_THE_MODEL_HANDICRAFT:
+					pline("Artifact specs: while carrying it, all specific high heel type skills train twice as fast."); break;
+				case ART_NOT_A_VERY_STRONG_POISON:
+					pline("Artifact specs: can be invoked to fire poison beams in all directions."); break;
+				case ART_ADWAODITH_S_HERECOME:
+					pline("Artifact specs: stronger irina trap effect when carried and when it generated, it might have boosted your wedge heels skill."); break;
+				case ART_PAS_SUPEROP_:
+					pline("Artifact specs: while carried, all your ranged attacks have +5 to-hit and if you use a bow, it gains +1 multishot bonus."); break;
+				case ART_HEADCRUNCH_KICK:
+					pline("Artifact specs: if you carry it and kick a monster that has a head which isn't protected by a helmet, you deal extra damage and may also damage the monster's maximum health."); break;
+				case ART_CLASSRACE_INVITATION:
+					pline("Artifact specs: can be invoked to perform the marathon technique. This works only if you're wearing wedge heels."); break;
+				case ART_TRISHA_S_ABILITIES:
+					pline("Artifact specs: made of steel, and when they generated, they probably boosted your club, mace, morning star and hammer skill caps."); break;
+				case ART_LEASTE_SEE_OL:
+					pline("Artifact specs: ESP and warning when carried."); break;
+				case ART_BLUE_ELP:
+					pline("Artifact specs: regeneration and pain sense when carried."); break;
+				case ART_SURROUND_VIEW:
+					pline("Artifact specs: sight bonus when carried."); break;
+				case ART_KHOR_S_BOMB:
+					pline("Artifact specs: while carrying it, bombs occasionally explode under your feet."); break;
+				case ART_HUNGER_FOR_THE_RES:
+					pline("Artifact specs: magic resistance when carried."); break;
+				case ART_UGGHEN:
+					pline("Artifact specs: double keen memory when carried."); break;
+				case ART_EMGESHOT:
+					pline("Artifact specs: can be invoked to perform the star digging technique."); break;
+				case ART_TWO_ACTIVATES_RAGE:
+					pline("Artifact specs: if you train the devices skill while carrying it, your strength may occasionally go up."); break;
+				case ART_POISONOUS_IVE:
+					pline("Artifact specs: acid immunity when carried."); break;
+				case ART_COMPLETELY_AT_THE_BOTTOM:
+					pline("Artifact specs: acts as a luckstone when carried."); break;
+				case ART_NOT_ACCURATELY_MASOCHISTIC:
+					pline("Artifact specs: protection when carried."); break;
+				case ART_CALORYBURN:
+					pline("Artifact specs: hunger when carried."); break;
+				case ART_COOLHEAD_KEEPER:
+					pline("Artifact specs: confusion resistance when carried."); break;
+				case ART_UNSTOPPABLE_RUNNER:
+					pline("Artifact specs: very fast speed when carried."); break;
+				case ART_RICK_S_SECRET:
+					pline("Artifact specs: clairvoyance when carried."); break;
+				case ART_SIRIAN_S_COMPLAINT:
+					pline("Artifact specs: while carrying it, stairs traps spawn more monsters on average."); break;
+				case ART_FILLUP_LIKE_CRAZY:
+					pline("Artifact specs: x-ray vision when carried."); break;
+				case ART_ARE_YOU_SO_UNABLE_:
+					pline("Artifact specs: +2 intelligence when carried."); break;
+				case ART_GHOSTERCHURCH:
+					pline("Artifact specs: drain resistance when carried."); break;
+				case ART_ON_THE_REBATATES:
+					pline("Artifact specs: full nutrients when carried."); break;
+				case ART_NIXBRINGING:
+					pline("Artifact specs: double see invisible when carried."); break;
+				case ART_MIRIAM_S_FEELING:
+					pline("Artifact specs: death resistance when carried."); break;
+				case ART_TEASELING_:
+					pline("Artifact specs: can be invoked to perform a random technique."); break;
+				case ART_FINISHED_ANYWAY:
+					pline("Artifact specs: while carrying it, you have +10 constitution and wisdom, death and mystery resistance and discount action."); break;
+				case ART_SMILEYSEE:
+					pline("Artifact specs: see invisible when carried."); break;
+				case ART_EXCLAMATION_MARK_:
+					pline("Artifact specs: while carrying it, the monster spawn rate is sped up even more."); break;
+				case ART_SPHINGEN_EYES:
+					pline("Artifact specs: stun resistance when carried."); break;
+				case ART_SHARPBLADE_SECT:
+					pline("Artifact specs: while carrying it, your melee damage output is boosted by 2."); break;
+				case ART_CASHAGO:
+					pline("Artifact specs: can be invoked to gain a few zorkmids."); break;
+				case ART_GREENFACE:
+					pline("Artifact specs: poison resistance when carried."); break;
+				case ART_BLINK_HERE__WALK_THERE:
+					pline("Artifact specs: teleportitis and disables teleport control when carried."); break;
+				case ART_SPORTAL_FIGHTER:
+					pline("Artifact specs: +10 strength and +1 to all other stats when carried."); break;
+				case ART_ENYGSIGN:
+					pline("Artifact specs: half spell damage when carried."); break;
+				case ART_HARDIBIA:
+					pline("Artifact specs: +30 damage. This obviously applies only if you shoot this artifact with a sling, in case you were somehow delusional and actually thought I'd make this artifact completely overpowered by giving such a high damage bonus to all of your attacks. :-P"); break;
+				case ART_STAY_AWAKE___:
+					pline("Artifact specs: sleep resistance when carried."); break;
+				case ART_TEALGLEAM:
+					pline("Artifact specs: fear resistance when carried, and your metallic armor pieces no longer hinder spellcasting."); break;
+				case ART_GONNA_KICK_YOUR_ASS:
+					pline("Artifact specs: while carrying it, your kick can't be clumsy. It can be invoked to change your martial style to a random one."); break;
+				case ART_HELIOKOPIS_S_ANNOYANCE:
+					pline("Artifact specs: while carrying it, monsters whose level is higher than yours are displayed as glitchy graphics."); break;
+				case ART_BING___BACK_:
+					pline("Artifact specs: reflection when carried."); break;
+				case ART_FRABULOUS_FAMISH:
+					pline("Artifact specs: double magic find when carried."); break;
+				case ART_JUGIBAP:
+					pline("Artifact specs: fast speed when carried."); break;
+				case ART_IT_S_MAGIC___:
+					pline("Artifact specs: magic resistance when carried."); break;
+				case ART_MADE_OF_STONE:
+					pline("Artifact specs: carrying it while actually having completely gray spells gives stone resistance."); break;
+				case ART_DOLORES__CRAZYPLAY:
+					pline("Artifact specs: while carrying it, hostile monsters may occasionally lose a turn."); break;
+				case ART_UP_GOES_THE_POLY:
+					pline("Artifact specs: while carrying it, your polymorphing skill trains much faster and if you train it far past your cap, it'll increase the cap by one level."); break;
+				case ART_FIBRIBALM:
+					pline("Artifact specs: double regeneration when carried."); break;
+				case ART_HACK_ACTIVATED:
+					pline("Artifact specs: while carrying it, items spawn more often."); break;
+				case ART_SKRIIIIIIIIIIIIIE_:
+					pline("Artifact specs: double teleport control when carried."); break;
+				case ART_IN_SEPARATION:
+					pline("Artifact specs: can be invoked for lockout."); break;
+				case ART_I_LL_MURDER_EVERYONE_:
+					pline("Artifact specs: while carrying it, traps are created over time and you have double defusing."); break;
+				case ART_FIELD_CLICK_RADIO:
+					pline("Artifact specs: occasionally creates trap fields when carried, and traps slowly reveal themselves over time."); break;
+				case ART_TICK_TOCK_TRAUMA:
+					pline("Artifact specs: while carrying it, clock monsters spawn much more often."); break;
+				case ART_FOR_ME_IT_ALWAYS_GOES_FORW:
+					pline("Artifact specs: ultra fast speed when carried."); break;
+				case ART_DARKDERES:
+					pline("Artifact specs: curse resistance when carried."); break;
+				case ART_DESIREE_S_MMMMM_WORTHINESS:
+					pline("Artifact specs: +5 charisma and fire resistance when carried."); break;
+				case ART_EARTHSPARK:
+					pline("Artifact specs: double shock resistance when carried."); break;
+				case ART_STRONGER_STOMACH:
+					pline("Artifact specs: sickness resistance when carried."); break;
+				case ART_TRISTREHOLD:
+					pline("Artifact specs: while carrying it, you rarely get a random good effect."); break;
+				case ART_RALF_S_HIGHWAY:
+					pline("Artifact specs: while carrying it, you move significantly faster. This effect stacks with speed effects from intrinsics or other gear."); break;
+				case ART_PLOS_MOH_:
+					pline("Artifact specs: if you use firearms while carrying it, monsters can no longer avoid or evade your projectiles (but normal to-hit calculations still apply)."); break;
+				case ART_WHERE_THE_SUN_DOESN_T_SHIN:
+					pline("Artifact specs: while carrying it, you're resistant to solar beams."); break;
+				case ART_PERFECTLY_DEFENDABLE_POSIT:
+					pline("Artifact specs: ESP and warning when carried."); break;
+				case ART_DITAECT_MAENNSTERS:
+					pline("Artifact specs: detect monsters when carried and every once in a while your items become cursed. How are you even reading this message, you're supposed to have message suppression..."); break;
+				case ART_COMPLEX_BUILDED:
+					pline("Artifact specs: while carried, you have resistances to fire, contamination and fear, and are also affected by burden and a magic vacuum. Additionally you have resistance piercing, intrinsic magic find, double spellboost, wild weather, energy regeneration and the yvonne trap effect. Whew, that was a mouthful."); break;
+				case ART_BOH_THE_SHOUT_:
+					pline("Artifact specs: if you wield something that counts as a weapon while carrying this artifact, the weapon in question will very occasionally gain a point of enchantment. The maximum that can be reached this way is +10."); break;
+				case ART_SCHWILILI_CUTOFF:
+					pline("Artifact specs: polymorph control when carried."); break;
+				case ART_SYLVIE_S_SEE:
+					pline("Artifact specs: invisibility and see invisible when carried."); break;
+				case ART_SYLVIE_S_OPEN_SECRET:
+					pline("Artifact specs: double clairvoyance when carried."); break;
+				case ART_LAST_PART:
+					pline("Artifact specs: death resistance when carried, and occasionally some random base items become identified. Not necessarily ones that you actually have, mind."); break;
+				case ART_CASTLEPSYCHE:
+					pline("Artifact specs: double psi resistance when carried."); break;
+				case ART_GTWCTTWW:
+					pline("Artifact specs: reflection and acid immunity when carried. This artifact is usually yellow."); break;
+				case ART_LINKIN_PARK_LISTENIN:
+					pline("Artifact specs: carrying it makes you resistant to sound-based attacks."); break;
+				case ART_ANTIWRAP:
+					pline("Artifact specs: carrying it protects you from wrap attacks, similar to an oilskin cloak."); break;
+				case ART_HAHAHA_NOW_YOU_NEED_TO_BE_:
+					pline("Artifact specs: +2 intelligence when carried."); break;
+				case ART_FORMFALL:
+					pline("Artifact specs: disintegration resistance when carried."); break;
+				case ART_FREESWING:
+					pline("Artifact specs: free action when carried."); break;
+				case ART_BULLGARB:
+					pline("Artifact specs: as long as you're carrying it, items are no longer susceptible to rotting damage."); break;
+				case ART_STRANGELY_HUGGENSOFT:
+					pline("Artifact specs: monsters with kick attacks are less likely to hit you in melee."); break;
+				case ART_MARC_S_DEFINITIVE_BREAK:
+					pline("Artifact specs: can be invoked for charging. The invoke timeout of this artifact is significantly higher than that of other artifacts."); break;
+				case ART_ARE_YOU_MAN_ENOUGH_:
+					pline("Artifact specs: displacement and infravision when carried."); break;
+				case ART_ADDERCOUNTER:
+					pline("Artifact specs: while carrying it, your score slowly goes up over time."); break;
+				case ART_CINCELOBLO:
+					pline("Artifact specs: mystery resistance when carried."); break;
+				case ART_ENJOY_THE_MESSAGE_FLEET___:
+					pline("Artifact specs: sleep resistance when carried."); break;
+				case ART_WHERESIT:
+					pline("Artifact specs: double displacement when carried."); break;
+				case ART_QUANTUM_BRAIN:
+					pline("Artifact specs: while carrying it, your spell memory won't decay over time."); break;
+				case ART_US_STAYS_NO_SELECTION:
+					pline("Artifact specs: while carrying it, you can't have teleport control or polymorph control. It can be invoked for self-polymorph."); break;
+				case ART_ADWARCE_BLUERED:
+					pline("Artifact specs: regeneration and energy regeneration when carried."); break;
+				case ART_DA_AREA_SOLE:
+					pline("Artifact specs: when it generated, it probably unlocked the sexy flats and high heels skills or improved their cap."); break;
+				case ART_FLIWITEERER:
+					pline("Artifact specs: double ESP when carried as well as levitation, but you can still go down stairs or use trapdoors with the > key. It can be invoked to perform the telekinesis technique."); break;
+				case ART_ELOPORTAL:
+					pline("Artifact specs: aggravate monster when carried, can be invoked for taming."); break;
+				case ART_MATTERKEEPER:
+					pline("Artifact specs: keen memory when carried."); break;
+				case ART_BLUEDAYPAPER_BECOMES_SHITT:
+					pline("Artifact specs: brown spells when carried and effects that reduce your alignment are much less likely to affect you. It can be invoked to gain a point of luck."); break;
+				case ART_NUTTY_BITS:
+					pline("Artifact specs: stronger exploding dice effect when carried and +d6 damage for your melee attacks."); break;
+				case ART_ELENA_S_CELEBRATION:
+					pline("Artifact specs: elena trap effect when carried, and it can save your life. If it does, you lose two experience levels and get the deprovement nastytrap effect for a while, but this artifact is *not* used up in the process meaning it can potentially lifesave you repeatedly as long as you don't let your XL get too low."); break;
+				case ART_PERSON_IN_THE_VEIL:
+					pline("Artifact specs: double stealth when carried and monsters are short-sighted."); break;
+				case ART_GOLD_FOR_EVERYONE:
+					pline("Artifact specs: can be invoked to see which monsters have been born or killed."); break;
+				case ART_GRACIOUS_SWAN:
+					pline("Artifact specs: flying when carried. If you lifesave while carrying it, you don't lose the usual point of constitution; be aware that this artifact itself doesn't provide life saving, you need to bring your own source."); break;
+				case ART_RUGGELUU_:
+					pline("Artifact specs: premature death and life saving when carried. If it actually lifesaves you, it's used up."); break;
+				case ART_YOUR_BLACK_HAND:
+					pline("Artifact specs: can be invoked to perform the draining punch technique. It won't work if you're wielding a weapon."); break;
+				case ART_HANG_WITH_THE_MIND:
+					pline("Artifact specs: +2 intelligence and wisdom when carried, and eating a monster with intelligence-draining attacks can boost them further."); break;
+				case ART_WIKKED_NEIGHBORHOOD:
+					pline("Artifact specs: while carrying it, monsters will occasionally be affected by random negative effects. This applies to pets, peaceful and hostile monsters alike."); break;
+				case ART_LUKE_S_BLUE_LUMEN:
+					pline("Artifact specs: double use the force when carried."); break;
+				case ART___OTHER_BADDIES:
+					pline("Artifact specs: demon warning when carried."); break;
+				case ART_TODAY_HUE__TOMORROW_HOTT:
+					pline("Artifact specs: while carrying it, directives change more often."); break;
+				case ART_BURNGLASS_PRISM:
+					pline("Artifact specs: prism reflection when carried but disables fire resistance."); break;
+				case ART_SUCH_A_CUDDLE:
+					pline("Artifact specs: boosts your AC by 2 when carried."); break;
+				case ART_CAN_YOU_BOOKSTAFFEER:
+					pline("Artifact specs: scent view and echolocation when carried."); break;
+				case ART_BLACKTHRUST:
+					pline("Artifact specs: use the force when carried."); break;
+				case ART_IT_S_HER_DISEASE:
+					pline("Artifact specs: nora trap effect when carried, and you can wear block heels without having the necessary skills and won't get penalized. It can be invoked to perform the shopping queen technique, but beware: while carrying it, shopping queen can only generate block-heeled footwear."); break;
+				case ART_BADASS_MAN_OF_STEEL:
+					pline("Artifact specs: ironman mode when carried."); break;
+				case ART_DEPTH_SURVIVE:
+					pline("Artifact specs: magical breathing and protects your inventory from water damage when carried."); break;
+				case ART_FIRRRRRRRR____GA_:
+					pline("Artifact specs: while carrying it, the form XIII (Firga) skill passively trains over time, and faster if you wield a lit lightsaber."); break;
+				case ART_SOMKON_DESTERATION:
+					pline("Artifact specs: levelteleportitis when carried. This cannot be controlled, even if you have teleport control."); break;
+				case ART_FULL_VOLUME___:
+					pline("Artifact specs: can be invoked to boost your character for a couple of turns."); break;
+				case ART_ANTSYVEAL:
+					pline("Artifact specs: while carried, may reveal nasty traps inside the giant explorer radius, but only if you've already been subjected to their effects."); break;
+				case ART_FLIT_AROUND_LIKE_CRAZY:
+					pline("Artifact specs: trapwarping happens a lot more often while you carry it."); break;
+				case ART_RHAAAAAAAAAAAAAR_:
+					pline("Artifact specs: sleep resistance when carried."); break;
+				case ART_ZIM_SOUND:
+					pline("Artifact specs: while carried, you usually sense the arrival of monsters."); break;
+				case ART_UE___UE___UE:
+					pline("Artifact specs: can be invoked to perform the time stop technique."); break;
+				case ART_REPREHENDATION_OUTTA_NOWHE:
+					pline("Artifact specs: +2 all stats when carried."); break;
+				case ART_THEY_MAKE_KILL_KILL_KILL_N:
+					pline("Artifact specs: while carrying it, killer room spawns happen more often."); break;
+				case ART_LONGBATTLE:
+					pline("Artifact specs: half physical and spell damage when carried and boosts your AC by 10."); break;
+				case ART_THEY_KEEP_MISSING_EACH_OTH:
+					pline("Artifact specs: boosts your AC by 10 when carried, and monsters hit you less often in melee and have less multishot with ranged weapons."); break;
+				case ART_BARKSTERS:
+					pline("Artifact specs: while carrying it, the petkeeping skill trains twice as fast and pets no longer rebel spontaneously."); break;
+				case ART_BOOSTTOWASTE:
+					pline("Artifact specs: spellboost when carried."); break;
+				case ART_SCRIBEN_SLOWLY:
+					pline("Artifact specs: while carrying it, your engravings don't misengrave."); break;
+				case ART_RED_BUTTON_FLASH:
+					pline("Artifact specs: intrinsic warning when carried."); break;
+				case ART_TREVER_AXE:
+					pline("Artifact specs: +10 damage, can disenchant the enemy's gear into the negatives."); break;
+				case ART_TREVER_POLE:
+					pline("Artifact specs: +8 to-hit and +8 damage, can disenchant the enemy's gear into the negatives."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

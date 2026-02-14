@@ -480,6 +480,8 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (Role_if(PM_PALADIN) && is_demon(mtmp->data))
 		    ways_seen++;
+		if (carryingarti(ART___OTHER_BADDIES) && is_demon(mtmp->data))
+		    ways_seen++;
 		if (uarmc && uarmc->oartifact == ART_DEMONIC_UNDEAD_RADAR && is_demon(mtmp->data))
 		    ways_seen++;
 		if (uarms && uarms->oartifact == ART_SHIELD_OF_THE_PALADIN && is_demon(mtmp->data))
@@ -562,7 +564,7 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (uarm && uarm->oartifact == ART_JOKE_S_OVER && is_jokemonster(mtmp->data) )
 		    ways_seen++;
-		if (have_maybrittclick() && is_jokemonster(mtmp->data) )
+		if (carryingarti(ART_MAY_BRITT_S_CLICK) && is_jokemonster(mtmp->data) )
 		    ways_seen++;
 		if (uarmh && uarmh->otyp == GOOD_ESP_HELMET && mtmp->data->maligntyp > 0 && distu(mtmp->mx, mtmp->my) < 26) 
 		    ways_seen++;
@@ -697,6 +699,10 @@ lookat(x, y, buf, monbuf)
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
 		    if (Role_if(PM_PALADIN) && is_demon(mtmp->data)) {
+			strcat(monbuf, "warned of demons");
+			if (ways_seen-- > 1) strcat(monbuf, ", ");
+		    }
+		    if (carryingarti(ART___OTHER_BADDIES) && is_demon(mtmp->data)) {
 			strcat(monbuf, "warned of demons");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
@@ -869,7 +875,7 @@ lookat(x, y, buf, monbuf)
 			strcat(monbuf, "joke monster view");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
-		    if (have_maybrittclick() && is_jokemonster(mtmp->data) ) {
+		    if (carryingarti(ART_MAY_BRITT_S_CLICK) && is_jokemonster(mtmp->data) ) {
 			strcat(monbuf, "joke monster view");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }

@@ -6786,6 +6786,7 @@ boolean guaranteed;
 		if (uarms->spe < 0) shieldblockrate += (uarms->spe * 2);
 
 		if (uarm && uarm->oartifact == ART_WOODSTOCK) shieldblockrate += 5;
+		if (carryingarti(ART_HEMEPHEELE)) shieldblockrate += 10;
 		if (uarm && uarm->oartifact == ART_SEWERIC_OUTLOOKPOST) shieldblockrate += 20;
 		if (uamul && uamul->oartifact == ART_IMPROVED_SIGN) shieldblockrate += 10;
 		if (uwep && uwep->oartifact == ART_HOLD_IT_OUT) shieldblockrate += 20;
@@ -6852,7 +6853,7 @@ boolean guaranteed;
 	if ((guaranteed || !rn2(10)) && Hunger && !StrongHunger) enl_msg("You hunger", "", "ed", " rapidly");
 	if ((guaranteed || !rn2(10)) && Hunger && StrongHunger) enl_msg("You hunger", "", "ed", " extremely rapidly");
 
-	if ((guaranteed || !rn2(10)) && have_sleepstone()) enl_msg("You ", "are", "were", " very tired");
+	if ((guaranteed || !rn2(10)) && carrying(SLEEPSTONE)) enl_msg("You ", "are", "were", " very tired");
 	if ((guaranteed || !rn2(10)) && have_cursedmagicresstone()) enl_msg("You ", "take", "took", " double damage");
 	if ((guaranteed || !rn2(10)) && uamul && uamul->otyp == AMULET_OF_VULNERABILITY) enl_msg("You ", "take", "took", " extra damage");
 
@@ -11577,6 +11578,7 @@ int final;
 		if (uarms->spe < 0) shieldblockrate += (uarms->spe * 2);
 
 		if (uarm && uarm->oartifact == ART_WOODSTOCK) shieldblockrate += 5;
+		if (carryingarti(ART_HEMEPHEELE)) shieldblockrate += 10;
 		if (uarm && uarm->oartifact == ART_SEWERIC_OUTLOOKPOST) shieldblockrate += 20;
 		if (uamul && uamul->oartifact == ART_IMPROVED_SIGN) shieldblockrate += 10;
 		if (uwep && uwep->oartifact == ART_HOLD_IT_OUT) shieldblockrate += 20;
@@ -11641,7 +11643,7 @@ int final;
 	if (Hunger && !StrongHunger) dump("  ", "You hungered rapidly");
 	if (Hunger && StrongHunger) dump("  ", "You hungered extremely rapidly");
 
-	if (have_sleepstone())  dump("  ", "You were very tired");
+	if (carrying(SLEEPSTONE))  dump("  ", "You were very tired");
 	if (have_cursedmagicresstone()) dump("  ", "You took double damage");
 	if (uamul && uamul->otyp == AMULET_OF_VULNERABILITY) dump("  ", "You took extra damage");
 

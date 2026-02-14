@@ -3467,7 +3467,7 @@ int abil;
 			return FALSE;
 			break;
 		case ABIL_POLY_FARTNORMAL:
-			if (youmonst.data->msound == MS_FART_NORMAL || (uarmf && uarmf->oartifact == ART_CLAUDIA_S_BEAUTY) || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_BASIC && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_FART_NORMAL) || (Race_if(PM_LOLI) && !Upolyd && mons[PM_LOLI].msound == MS_FART_NORMAL) ) return TRUE;
+			if (youmonst.data->msound == MS_FART_NORMAL || carryingarti(ART_BUTTCHARM) || (uarmf && uarmf->oartifact == ART_CLAUDIA_S_BEAUTY) || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_BASIC && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_FART_NORMAL) || (Race_if(PM_LOLI) && !Upolyd && mons[PM_LOLI].msound == MS_FART_NORMAL) ) return TRUE;
 			return FALSE;
 			break;
 		case ABIL_POLY_FARTLOUD:
@@ -3487,7 +3487,7 @@ int abil;
 			return FALSE;
 			break;
 		case ABIL_POLY_PERFUME:
-			if ( ( (Role_if(PM_HUSSY) && (!Upolyd && flags.female)) || (uarmf && uarmf->oartifact == ART_ANJA_S_WIDE_FIELD) || (uarmf && uarmf->oartifact == ART_CLAUDIA_S_BEAUTY) || (uarmf && uarmf->oartifact == ART_SCRATCHE_HUSSY) || have_femityjewel() || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_SKILLED && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_STENCH) || (Upolyd && youmonst.data->msound == MS_STENCH) ) && !u.hussyperfume) return TRUE;
+			if ( ( (Role_if(PM_HUSSY) && (!Upolyd && flags.female)) || (uarmf && uarmf->oartifact == ART_ANJA_S_WIDE_FIELD) || (uarmf && uarmf->oartifact == ART_CLAUDIA_S_BEAUTY) || (uarmf && uarmf->oartifact == ART_SCRATCHE_HUSSY) || carryingarti(ART_FEMITY_SOLVE) || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_SKILLED && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_STENCH) || (Upolyd && youmonst.data->msound == MS_STENCH) ) && !u.hussyperfume) return TRUE;
 			return FALSE;
 			break;
 		case ABIL_HUSSY_CRAP:
@@ -4976,7 +4976,7 @@ callingoutdone:
 		{
 			You("spread the lovely feminine drum stint reluctance brand perfume to intoxicate monsters around you!");
 
-			if (have_femityjewel()) {
+			if (carryingarti(ART_FEMITY_SOLVE)) {
 				int attempts = 0;
 				struct permonst *pm = 0;
 
@@ -9238,7 +9238,7 @@ resettechdone:
 			heelidentity = (PLASTEEL_BOOTS + rn2(LEVITATION_BOOTS - PLASTEEL_BOOTS + 1) );
 			trycnt = 0;
 
-			while (trycnt < 5000 && !ishighheeledb(heelidentity) ) {
+			while (trycnt < 5000 && (!ishighheeledb(heelidentity) || (carryingarti(ART_IT_S_HER_DISEASE) && !isblockheeledb(heelidentity)) ) ) {
 				heelidentity = (PLASTEEL_BOOTS + rn2(LEVITATION_BOOTS - PLASTEEL_BOOTS + 1) );
 				trycnt++;
 			}
@@ -9254,7 +9254,7 @@ resettechdone:
 				heelidentity = (PLASTEEL_BOOTS + rn2(LEVITATION_BOOTS - PLASTEEL_BOOTS + 1) );
 				trycnt = 0;
 
-				while (trycnt < 5000 && !ishighheeledb(heelidentity) ) {
+				while (trycnt < 5000 && (!ishighheeledb(heelidentity) || (carryingarti(ART_IT_S_HER_DISEASE) && !isblockheeledb(heelidentity)) ) ) {
 					heelidentity = (PLASTEEL_BOOTS + rn2(LEVITATION_BOOTS - PLASTEEL_BOOTS + 1) );
 					trycnt++;
 				}
@@ -9268,7 +9268,7 @@ resettechdone:
 				heelidentity = (PLASTEEL_BOOTS + rn2(LEVITATION_BOOTS - PLASTEEL_BOOTS + 1) );
 				trycnt = 0;
 
-				while (trycnt < 5000 && !ishighheeledb(heelidentity) ) {
+				while (trycnt < 5000 && (!ishighheeledb(heelidentity) || (carryingarti(ART_IT_S_HER_DISEASE) && !isblockheeledb(heelidentity)) ) ) {
 					heelidentity = (PLASTEEL_BOOTS + rn2(LEVITATION_BOOTS - PLASTEEL_BOOTS + 1) );
 					trycnt++;
 				}
@@ -9286,7 +9286,7 @@ resettechdone:
 				heelidentity = (PLASTEEL_BOOTS + rn2(LEVITATION_BOOTS - PLASTEEL_BOOTS + 1) );
 				trycnt = 0;
 
-				while (trycnt < 5000 && !ishighheeledb(heelidentity) ) {
+				while (trycnt < 5000 && (!ishighheeledb(heelidentity) || (carryingarti(ART_IT_S_HER_DISEASE) && !isblockheeledb(heelidentity)) ) ) {
 					heelidentity = (PLASTEEL_BOOTS + rn2(LEVITATION_BOOTS - PLASTEEL_BOOTS + 1) );
 					trycnt++;
 				}
@@ -9300,7 +9300,7 @@ resettechdone:
 				heelidentity = (PLASTEEL_BOOTS + rn2(LEVITATION_BOOTS - PLASTEEL_BOOTS + 1) );
 				trycnt = 0;
 
-				while (trycnt < 5000 && !ishighheeledb(heelidentity) ) {
+				while (trycnt < 5000 && (!ishighheeledb(heelidentity) || (carryingarti(ART_IT_S_HER_DISEASE) && !isblockheeledb(heelidentity)) ) ) {
 					heelidentity = (PLASTEEL_BOOTS + rn2(LEVITATION_BOOTS - PLASTEEL_BOOTS + 1) );
 					trycnt++;
 				}
@@ -9318,7 +9318,7 @@ resettechdone:
 				heelidentity = (PLASTEEL_BOOTS + rn2(LEVITATION_BOOTS - PLASTEEL_BOOTS + 1) );
 				trycnt = 0;
 
-				while (trycnt < 5000 && !ishighheeledb(heelidentity) ) {
+				while (trycnt < 5000 && (!ishighheeledb(heelidentity) || (carryingarti(ART_IT_S_HER_DISEASE) && !isblockheeledb(heelidentity)) ) ) {
 					heelidentity = (PLASTEEL_BOOTS + rn2(LEVITATION_BOOTS - PLASTEEL_BOOTS + 1) );
 					trycnt++;
 				}
@@ -9332,7 +9332,7 @@ resettechdone:
 				heelidentity = (PLASTEEL_BOOTS + rn2(LEVITATION_BOOTS - PLASTEEL_BOOTS + 1) );
 				trycnt = 0;
 
-				while (trycnt < 5000 && !ishighheeledb(heelidentity) ) {
+				while (trycnt < 5000 && (!ishighheeledb(heelidentity) || (carryingarti(ART_IT_S_HER_DISEASE) && !isblockheeledb(heelidentity)) ) ) {
 					heelidentity = (PLASTEEL_BOOTS + rn2(LEVITATION_BOOTS - PLASTEEL_BOOTS + 1) );
 					trycnt++;
 				}
@@ -9346,7 +9346,7 @@ resettechdone:
 				heelidentity = (PLASTEEL_BOOTS + rn2(LEVITATION_BOOTS - PLASTEEL_BOOTS + 1) );
 				trycnt = 0;
 
-				while (trycnt < 5000 && !ishighheeledb(heelidentity) ) {
+				while (trycnt < 5000 && (!ishighheeledb(heelidentity) || (carryingarti(ART_IT_S_HER_DISEASE) && !isblockheeledb(heelidentity)) ) ) {
 					heelidentity = (PLASTEEL_BOOTS + rn2(LEVITATION_BOOTS - PLASTEEL_BOOTS + 1) );
 					trycnt++;
 				}
@@ -9360,7 +9360,7 @@ resettechdone:
 				heelidentity = (PLASTEEL_BOOTS + rn2(LEVITATION_BOOTS - PLASTEEL_BOOTS + 1) );
 				trycnt = 0;
 
-				while (trycnt < 5000 && !ishighheeledb(heelidentity) ) {
+				while (trycnt < 5000 && (!ishighheeledb(heelidentity) || (carryingarti(ART_IT_S_HER_DISEASE) && !isblockheeledb(heelidentity)) ) ) {
 					heelidentity = (PLASTEEL_BOOTS + rn2(LEVITATION_BOOTS - PLASTEEL_BOOTS + 1) );
 					trycnt++;
 				}
@@ -9374,7 +9374,7 @@ resettechdone:
 				heelidentity = (PLASTEEL_BOOTS + rn2(LEVITATION_BOOTS - PLASTEEL_BOOTS + 1) );
 				trycnt = 0;
 
-				while (trycnt < 5000 && !ishighheeledb(heelidentity) ) {
+				while (trycnt < 5000 && (!ishighheeledb(heelidentity) || (carryingarti(ART_IT_S_HER_DISEASE) && !isblockheeledb(heelidentity)) ) ) {
 					heelidentity = (PLASTEEL_BOOTS + rn2(LEVITATION_BOOTS - PLASTEEL_BOOTS + 1) );
 					trycnt++;
 				}

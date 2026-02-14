@@ -864,6 +864,7 @@ register struct monst *mtmp;
 	/* dragonmaster can of course wear DSM (sorry AntiGulp) and it prevents dragons from rebelling --Amy */
 	if (Role_if(PM_DRAGONMASTER) && mtmp->data->mlet == S_DRAGON && uarm && Is_dragon_armor(uarm) ) return FALSE;
 	if (uamul && uamul->oartifact == ART_MEDI_LEASH) return FALSE;
+	if (carryingarti(ART_BARKSTERS)) return FALSE;
 
 	if (uarmh && uarmh->oartifact == ART_DOGGERSEE && mtmp->data->mlet == S_DOG) return FALSE;
 

@@ -4130,6 +4130,17 @@ register int pm;
 		  }
 		}
 
+		if (dmgtype(ptr, AD_DRIN) && carryingarti(ART_HANG_WITH_THE_MIND) && !(CannotGetIntrinsics) ) {
+			if (!rn2(2) && (ABASE(A_INT) < ATTRMAX(A_INT))) {
+				You_feel("smarter!");
+				(void) adjattrib(A_INT, 1, 2, TRUE);
+			}
+			if (!rn2(2) && (ABASE(A_WIS) < ATTRMAX(A_WIS))) {
+				You_feel("wiser!");
+				(void) adjattrib(A_WIS, 1, 2, TRUE);
+			}
+		}
+
 	/* psi-based enemies grant INT too --Amy */
 		if (dmgtype(ptr, AD_SPC2) && (ptr->mlevel > rn2(Race_if(PM_ILLITHID) ? 105 : 35) && rn2(4) && !(CannotGetIntrinsics) ) ) {
 		 if (ABASE(A_INT) < ATTRMAX(A_INT)) {
@@ -9439,7 +9450,7 @@ register int num;
 	if (Full_nutrient && num > 1 && u.uhunger < 2500) num /= 2;
 	if (StrongFull_nutrient && num > 1 && u.uhunger < 2500) num /= 2;
 
-	if (num < 0 && (CutNutritionEffect || u.uprops[CUT_NUTRITION].extrinsic || have_cutnutritionstone() || (uarmh && uarmh->oartifact == ART_GISELA_S_TRICK) || (uchain && uchain->oartifact == ART_CAN_TOTALLY_EAT__BUT_LACK_) || have_estealdoctor() || autismweaponcheck(ART_HAVANA_NERO) ) ) num /= 3;
+	if (num < 0 && (CutNutritionEffect || u.uprops[CUT_NUTRITION].extrinsic || have_cutnutritionstone() || (uarmh && uarmh->oartifact == ART_GISELA_S_TRICK) || (uchain && uchain->oartifact == ART_CAN_TOTALLY_EAT__BUT_LACK_) || carryingarti(ART_DOCTOR_ENERGY_STEAL) || autismweaponcheck(ART_HAVANA_NERO) ) ) num /= 3;
 
 	u.uhunger -= num;
 	newuhs(TRUE);
@@ -9455,7 +9466,7 @@ register int num;
 #ifdef DEBUG
 	debugpline("lesshungry(%d)", num);
 #endif
-	if (num > 0 && (CutNutritionEffect || u.uprops[CUT_NUTRITION].extrinsic || have_cutnutritionstone() || (uarmh && uarmh->oartifact == ART_GISELA_S_TRICK) || have_estealdoctor() || autismweaponcheck(ART_HAVANA_NERO) ) ) num /= 3;
+	if (num > 0 && (CutNutritionEffect || u.uprops[CUT_NUTRITION].extrinsic || have_cutnutritionstone() || (uarmh && uarmh->oartifact == ART_GISELA_S_TRICK) || carryingarti(ART_DOCTOR_ENERGY_STEAL) || autismweaponcheck(ART_HAVANA_NERO) ) ) num /= 3;
 
 	if (Race_if(PM_GERTEUT)) {
 		num *= 4;

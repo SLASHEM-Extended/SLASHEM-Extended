@@ -2334,7 +2334,7 @@ struct monst *mon;
 		mmove /= 2;
 	}
 
-	if (have_kickart() && attacktype(mon->data, AT_KICK) && (mmove > 0) && !rn2(10)) {
+	if (carryingarti(ART_KICK_ART) && attacktype(mon->data, AT_KICK) && (mmove > 0) && !rn2(10)) {
 		mmove *= 2;
 	}
 
@@ -4814,6 +4814,11 @@ register struct monst *mtmp, *mtmp2;
 			 LS_MONSTER, (void *)mtmp2);
 	/* here we rely on the fact that `mtmp' hasn't actually been deleted */
 	del_light_source(LS_MONSTER, (void *)mtmp);
+    } else if (carryingarti(ART_PANTYSHINE) && mtmp2->lisaseen) {
+	new_light_source(mtmp2->mx, mtmp2->my,
+			 1, LS_MONSTER, (void *)mtmp2);
+	del_light_source(LS_MONSTER, (void *)mtmp);
+
     }
     /* If poly'ed,  move polytimer along */
     if (unpolytime = (stop_timer(UNPOLY_MON, (void *) mtmp))) {
@@ -4864,8 +4869,11 @@ struct permonst *mptr;	/* reflects mtmp->data _prior_ to mtmp's death */
 	if (mtmp->data->msound == MS_NEMESIS && mtmp->mnum >= PM_LORD_CARNARVON && mtmp->mnum <= PM_UPPER_BULL) nemdead();
 	relobj(mtmp, 0, FALSE);
 	remove_monster(mtmp->mx, mtmp->my);
-	if (emits_light(mptr))
+	if (emits_light(mptr)) {
 	    del_light_source(LS_MONSTER, (void *)mtmp);
+	} else if (carryingarti(ART_PANTYSHINE) && mtmp) {
+	    del_light_source(LS_MONSTER, (void *)mtmp);
+	}
 	newsym(mtmp->mx,mtmp->my);
 	unstuck(mtmp);
 	fill_pit(mtmp->mx, mtmp->my);
@@ -8938,7 +8946,7 @@ sarahdone:
     }
 
     if(monstersoundtype(mtmp) == MS_SOUND || mtmp->egotype_sounder) {
-	if (!(uimplant && uimplant->oartifact == ART_LIVE_AT_READING && rn2(10))) {
+	if (!(uimplant && uimplant->oartifact == ART_LIVE_AT_READING && rn2(10)) && !(carryingarti(ART_LINKIN_PARK_LISTENIN) && rn2(10)) ) {
 		pline("%s lets out an ear-splitting scream!", Monnam(mtmp) );
 		make_stunned(HStun + (mtmp->m_lev + 2), TRUE);
 		if (isevilvariant || !rn2(issoviet ? 2 : 5)) (void)destroy_item(POTION_CLASS, AD_COLD);
@@ -11288,7 +11296,7 @@ symbiotemelee()
 			symchance += 15; break;
 	}
 
-	if (have_luckypack()) symchance += 5;
+	if (carryingarti(ART_LUCKY_PACK)) symchance += 5;
 
 	symchance += boost_power_value();
 
@@ -11366,7 +11374,7 @@ symbiotepassive()
 			symchance += 15; break;
 	}
 
-	if (have_luckypack()) symchance += 5;
+	if (carryingarti(ART_LUCKY_PACK)) symchance += 5;
 
 	symchance += boost_power_value();
 

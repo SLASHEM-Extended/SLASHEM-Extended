@@ -1206,7 +1206,7 @@ can_reach_floor()
 {
 	return (boolean)(!u.uswallow &&
 			/* Restricted/unskilled riders can't reach the floor */
-			!(u.usteed && !(uwep && uwep->oartifact == ART_SORTIE_A_GAUCHE) && !bmwride(ART_MARIKE_S_WALL_BUTT) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && !FemtrapActiveKerstin && !bmwride(ART_JAFARO_ON_TOUR) && !(bmwride(ART_DEEPER_LAID_BMW)) && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) ) &&
+			!(u.usteed && !(uwep && uwep->oartifact == ART_SORTIE_A_GAUCHE) && !carryingarti(ART_HEIGHTBOOST) && !bmwride(ART_MARIKE_S_WALL_BUTT) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && !FemtrapActiveKerstin && !bmwride(ART_JAFARO_ON_TOUR) && !(bmwride(ART_DEEPER_LAID_BMW)) && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) ) &&
 			 ((!Levitation || (uarmf && uarmf->oartifact == ART_FLOTATED_DESK) || StrongLevitation) || is_table(u.ux, u.uy) ||
 			  Is_airlevel(&u.uz) || Is_waterlevel(&u.uz)));
 }
@@ -2769,7 +2769,7 @@ doengrave()
 
 	for (sp = ebuf; *sp; sp++) {
 	    if (isspace(*sp)) continue;
-	    if ( (rn2(5) || !Role_if(PM_ARTIST)) && ((type == DUST || type == ENGR_BLOOD || isfriday) && !(nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_DIDI_S_LEG_PAINTING) && !(uwep && uwep->oartifact == ART_PINSELFLINSELING) && (ishaxor ? !rn2(40) : !rn2(30) ) ) || (isfriday && !rn2(30)) ||
+	    if ( (rn2(5) || !Role_if(PM_ARTIST)) && ((type == DUST || type == ENGR_BLOOD || isfriday) && !(nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_DIDI_S_LEG_PAINTING) && !(uwep && uwep->oartifact == ART_PINSELFLINSELING) && !carryingarti(ART_SCRIBEN_SLOWLY) && (ishaxor ? !rn2(40) : !rn2(30) ) ) || (isfriday && !rn2(30)) ||
 		    (Blind && (ishaxor ? !rn2(35) : !rn2(25)) ) || 
 			(Confusion && (ishaxor ? !rn2(30) : !rn2(20)) ) ||
 			(Burned && (ishaxor ? !rn2(32) : !rn2(22)) ) ||
@@ -6646,6 +6646,8 @@ static const char *epitaphs[] = {
 	"What, you're playing a monk and owning pretty much everything and are still complaining that the game is supposedly 'hard'? Dude if it feels like that, it's probably because you're not playing your character to the full extent of her abilities! You're roleplaying and therefore pretend that missile weapons, spells, non-vegan comestibles and various other things don't exist, no wonder it's 'harder' for you!",
 	"What, you're complaining that a monk with maxxed martial arts skill is doing 'only' 25 damage per hit? Dude do you even know how powerful that is, a valkyrie with a +7 long sword at expert skill might do about the same damage but she needs to find and enchant the sword first, and it can be disenchanted, stolen or many other things, while your monk's fists are always with you! The monk's melee is certainly not too weak, play a ranger or locksmith if you want to see what it's like to play a char who's weak at melee!",
 	"Create monster effect snowballed. Something read a cursed scroll that summoned over a dozen monsters and one of them then had a wand of create monster to summon a couple dozen more.",
+	"What, you're complaining about the fact that this NetHack variant added playable roles and races? Dude, just play a boring dwarf valkyrie if you for some inexplicable reason don't like new character choices! And stop telling me that the new roles and races are supposedly a problem, you don't have to play them, just play whatever combo you'd play in vanilla! If at all, the only problem that exists is the one staring at your monitor!",
+	"What, you're complaining about the fact that this NetHack variant has a monster called 'hanging semen ejaculator'? Dude you don't have to play it if you don't like it, you're free to bore your ass off with vanilla nethack or whatever other lame variant floats your boat! But for the sake of us all, don't try to steal the fun from those who actually enjoy SLEX, I don't have to change my game for people who don't even play it!",
 
 };
 

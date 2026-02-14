@@ -963,61 +963,75 @@ register const char *s;
 		}
 	}
 
+	if (carryingarti(ART_HACK_ACTIVATED)) {
+#ifdef BIGSLEX
+		for(x = (rn2(4) ? rn1(12,24) : rn1(24, 48)); x; x--) {
+#else
+		for(x = (rn2(4) ? rn1(8,16) : rn1(16, 32)); x; x--) {
+#endif
+			if (timebasedlowerchance() || timebasedlowerchance() || timebasedlowerchance()) {
+				mazexy_all(&mm);
+				(void) mkobj_at(!rn2(25) ? GEM_CLASS : 0, mm.x, mm.y, TRUE, FALSE);
+			}
+		}
+	}
+
 	if (ishaxor) {
 #ifdef BIGSLEX
-	for(x = (rn2(4) ? rn1(12,24) : rn1(24, 48)); x; x--) {
+		for(x = (rn2(4) ? rn1(12,24) : rn1(24, 48)); x; x--) {
 #else
-	for(x = (rn2(4) ? rn1(8,16) : rn1(16, 32)); x; x--) {
+		for(x = (rn2(4) ? rn1(8,16) : rn1(16, 32)); x; x--) {
 #endif
-		if (timebasedlowerchance() || timebasedlowerchance() || timebasedlowerchance()) {
-			mazexy_all(&mm);
-			(void) mkobj_at(!rn2(25) ? GEM_CLASS : 0, mm.x, mm.y, TRUE, FALSE);
-		}
-	}
-#ifdef BIGSLEX
-	for (x = rn1(7,35); x; x--) {
-#else
-	for (x = rn1(2,10); x; x--) {
-#endif
-		mazexy_all(&mm);
-			    char buf[BUFSZ];
-				const char *mesg = random_engraving(buf);
-			    make_engr_at(mm.x, mm.y, mesg, 0L, (xchar)0);
+			if (timebasedlowerchance() || timebasedlowerchance() || timebasedlowerchance()) {
+				mazexy_all(&mm);
+				(void) mkobj_at(!rn2(25) ? GEM_CLASS : 0, mm.x, mm.y, TRUE, FALSE);
 			}
-	for(x = rn1(10,2); x; x--) {
-		mazexy_all(&mm);
-		(void) mksobj_at(BOULDER, mm.x, mm.y, TRUE, FALSE, FALSE);
-	}
-	if (!(iszapem && !(u.zapemescape)) && !(u.preversionmode && !u.preversionescape) && (depth(&u.uz) > depth(&medusa_level))) {
-	for (x = rn2(3); x; x--) {
-		mazexy_all(&mm);
-		if (!ishomicider) (void) makemon(minotaurvariant(), mm.x, mm.y, MM_MAYSLEEP);
-		else makerandomtrap_at(mm.x, mm.y, TRUE);
-		}
-	}	 /* cause they would be outta depth when mazes are generated at a shallow level --Amy */
-#ifdef BIGSLEX
-	for(x = (rn2(2) ? rn1(70, 98) : rn2(4) ? rn1(18,24) : rn1(35, 49)); x; x--) {
-#else
-	for(x = (rn2(2) ? rn1(20, 28) : rn2(4) ? rn1(5,7) : rn1(10, 14)); x; x--) {
-#endif
-		mazexy_all(&mm);
-		if (!ishomicider) (void) makemon((struct permonst *) 0, mm.x, mm.y, MM_MAYSLEEP);
-		else makerandomtrap_at(mm.x, mm.y, TRUE);
-	}
-	for(x = rn1(6,7); x; x--) {
-		mazexy_all(&mm);
-		(void) mkgold(0L,mm.x,mm.y);
-	}
-#ifdef BIGSLEX
-	for(x = (!rn2(6) ? rn1(84, 98) : rn2(4) ? rn1(21,24) : rn1(42, 49)); x; x--) {
-#else
-	for(x = (!rn2(6) ? rn1(24, 28) : rn2(4) ? rn1(6,7) : rn1(12, 14)); x; x--) {
-#endif
-		if (!(depth(&u.uz) == 1 && In_dod(&u.uz) && rn2(3)) && !(depth(&u.uz) == 2 && In_dod(&u.uz) && rn2(2)) ) {
-			mktrap(0,1,(struct mkroom *) 0, (coord*) 0, TRUE);
 		}
 
-	}
+#ifdef BIGSLEX
+		for (x = rn1(7,35); x; x--) {
+#else
+		for (x = rn1(2,10); x; x--) {
+#endif
+			mazexy_all(&mm);
+				    char buf[BUFSZ];
+					const char *mesg = random_engraving(buf);
+				    make_engr_at(mm.x, mm.y, mesg, 0L, (xchar)0);
+				}
+		for(x = rn1(10,2); x; x--) {
+			mazexy_all(&mm);
+			(void) mksobj_at(BOULDER, mm.x, mm.y, TRUE, FALSE, FALSE);
+		}
+		if (!(iszapem && !(u.zapemescape)) && !(u.preversionmode && !u.preversionescape) && (depth(&u.uz) > depth(&medusa_level))) {
+		for (x = rn2(3); x; x--) {
+			mazexy_all(&mm);
+			if (!ishomicider) (void) makemon(minotaurvariant(), mm.x, mm.y, MM_MAYSLEEP);
+			else makerandomtrap_at(mm.x, mm.y, TRUE);
+			}
+		}	 /* cause they would be outta depth when mazes are generated at a shallow level --Amy */
+#ifdef BIGSLEX
+		for(x = (rn2(2) ? rn1(70, 98) : rn2(4) ? rn1(18,24) : rn1(35, 49)); x; x--) {
+#else
+		for(x = (rn2(2) ? rn1(20, 28) : rn2(4) ? rn1(5,7) : rn1(10, 14)); x; x--) {
+#endif
+			mazexy_all(&mm);
+			if (!ishomicider) (void) makemon((struct permonst *) 0, mm.x, mm.y, MM_MAYSLEEP);
+			else makerandomtrap_at(mm.x, mm.y, TRUE);
+		}
+		for(x = rn1(6,7); x; x--) {
+			mazexy_all(&mm);
+			(void) mkgold(0L,mm.x,mm.y);
+		}
+#ifdef BIGSLEX
+		for(x = (!rn2(6) ? rn1(84, 98) : rn2(4) ? rn1(21,24) : rn1(42, 49)); x; x--) {
+#else
+		for(x = (!rn2(6) ? rn1(24, 28) : rn2(4) ? rn1(6,7) : rn1(12, 14)); x; x--) {
+#endif
+			if (!(depth(&u.uz) == 1 && In_dod(&u.uz) && rn2(3)) && !(depth(&u.uz) == 2 && In_dod(&u.uz) && rn2(2)) ) {
+				mktrap(0,1,(struct mkroom *) 0, (coord*) 0, TRUE);
+			}
+
+		}
 
 	} /* haxor check */
 

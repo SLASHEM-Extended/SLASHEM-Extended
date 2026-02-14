@@ -247,7 +247,7 @@ boolean digest_meal;
 	    (!rn2(regenrate) || (FemtrapActiveGudrun && mon->female && humanoid(mon->data)) || regenerates(mon->data) || mercedesride(ART_AGAINCHEWER, mon) || mon->egotype_regeneration )) mon->mhp++;
 
 	if ((mon->mhp < mon->mhpmax) && FemtrapActiveRonja && mon->female) mon->mhp++;
-	if ((mon->mhp < mon->mhpmax) && have_gronjajewel() && mon->female) mon->mhp++;
+	if ((mon->mhp < mon->mhpmax) && carryingarti(ART_GRONJA_S_FALSIFICATION) && mon->female) mon->mhp++;
 
 	if (mon->data == &mons[PM_GROGGY_GUY]) {
 		mon->mhp += rnd(5);
@@ -671,6 +671,8 @@ register struct monst *mtmp;
 	if ((mdat == &mons[PM_SARAH_S_AIRTIGHT_PANTS]) && rn2(5)) return 0;
 
 	if (uarmf && uarmf->oartifact == ART_ELIZAH_S_SINKER && (mtmp->data->mlet == S_EEL || mtmp->data->mlet == S_FLYFISH) && rn2(2)) return 0;
+
+	if (carryingarti(ART_DOLORES__CRAZYPLAY) && !rn2(10)) return 0;
 
 	if (uarmh && uarmh->oartifact == ART_LORSKEL_S_BACKCUSS && !rn2(5) && Dimmed && (mtmp->data->geno & G_UNIQ)) return 0;
 
@@ -2010,7 +2012,7 @@ newbossSING:
 		}
 	}
 
-	if ( (monstersoundtype(mtmp) == MS_SOUND || mtmp->egotype_sounder) && !(uimplant && uimplant->oartifact == ART_LIVE_AT_READING && rn2(10)) && !rn2(20) && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful)
+	if ( (monstersoundtype(mtmp) == MS_SOUND || mtmp->egotype_sounder) && !(carryingarti(ART_LINKIN_PARK_LISTENIN) && rn2(10)) && !(uimplant && uimplant->oartifact == ART_LIVE_AT_READING && rn2(10)) && !rn2(20) && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful)
 	    m_respond(mtmp);
 	if (mdat == &mons[PM_MEDUSA] && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && couldsee(mtmp->mx, mtmp->my))
 	    m_respond(mtmp);
@@ -2547,7 +2549,7 @@ newbossSING:
 		}
 	}
 
-	if ((monstersoundtype(mtmp) == MS_CONVERT || mtmp->egotype_converter) && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !Race_if(PM_TURMENE) && !Race_if(PM_HC_ALIEN) && !Race_if(PM_SLYER_ALIEN) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !(have_hardcoreaddiction() && rn2(10)) && !(uarmh && uarmh->oartifact == ART_JAMILA_S_BELIEF) && !rn2(10)) {
+	if ((monstersoundtype(mtmp) == MS_CONVERT || mtmp->egotype_converter) && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !Race_if(PM_TURMENE) && !Race_if(PM_HC_ALIEN) && !Race_if(PM_SLYER_ALIEN) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !(carryingarti(ART_HARDCORE_ADDICTION) && rn2(10)) && !(uarmh && uarmh->oartifact == ART_JAMILA_S_BELIEF) && !rn2(10)) {
 
 		conversionsermon();
 		stop_occupation();
@@ -2621,7 +2623,7 @@ newbossSING:
 
 convertdone:
 
-	if ((monstersoundtype(mtmp) == MS_HCALIEN || mtmp->egotype_wouwouer) && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !Race_if(PM_TURMENE) && !Race_if(PM_HC_ALIEN) && !Race_if(PM_SLYER_ALIEN) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !(have_hardcoreaddiction() && rn2(4)) && !(uarmh && uarmh->oartifact == ART_JAMILA_S_BELIEF) && !rn2(15)) {
+	if ((monstersoundtype(mtmp) == MS_HCALIEN || mtmp->egotype_wouwouer) && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !Race_if(PM_TURMENE) && !Race_if(PM_HC_ALIEN) && !Race_if(PM_SLYER_ALIEN) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !(carryingarti(ART_HARDCORE_ADDICTION) && rn2(4)) && !(uarmh && uarmh->oartifact == ART_JAMILA_S_BELIEF) && !rn2(15)) {
 
 		wouwoutaunt();
 		u.cnd_wouwoucount++;
@@ -2843,6 +2845,10 @@ convertdone:
 
 	if ( ((monstersoundtype(mtmp) == MS_OMEN) || mtmp->egotype_omenenacter) && !rn2(1000)) {
 		badeffect();
+	}
+
+	if (carryingarti(ART_WIKKED_NEIGHBORHOOD) && !rn2(5000)) {
+		badpeteffect(mtmp);
 	}
 
 	if ( ((monstersoundtype(mtmp) == MS_TRIP) || mtmp->egotype_nastytripper) && !rn2(10000)) {
@@ -4434,7 +4440,7 @@ altarfound:
 		boolean should_see = (couldsee(omx, omy) &&
 				      (levl[gx][gy].lit ||
 				       !levl[omx][omy].lit) &&
-				      (dist2(omx, omy, gx, gy) <= (level.flags.shortsighted ? 36 : u.tempradiusto ? 36 : (uwep && uwep->oartifact == ART_BLACK_SUN_ORB && !rn2(3)) ? 36 : (uwep && uwep->oartifact == ART_ERYNDREL_S_ECLIPSE) ? 36 : (ublindf && ublindf->oartifact == ART_IT_BE_NITE) ? 36 : (u.currentweather == WEATHER_FOG && !rn2(5)) ? 36 : 100) ));
+				      (dist2(omx, omy, gx, gy) <= (level.flags.shortsighted ? 36 : u.tempradiusto ? 36 : (uwep && uwep->oartifact == ART_BLACK_SUN_ORB && !rn2(3)) ? 36 : (uwep && uwep->oartifact == ART_ERYNDREL_S_ECLIPSE) ? 36 : carryingarti(ART_PERSON_IN_THE_VEIL) ? 36 : (ublindf && ublindf->oartifact == ART_IT_BE_NITE) ? 36 : (u.currentweather == WEATHER_FOG && !rn2(5)) ? 36 : 100) ));
 
 		if (astralspecial) should_see = TRUE;
 
@@ -4714,7 +4720,7 @@ altarfound:
 	    chi = -1;
 	    nidist = dist2(nix,niy,gx,gy);
 	    /* allow monsters be shortsighted on some levels for balance */
-	    if(!mtmp->mpeaceful && (level.flags.shortsighted || u.tempradiusto || (u.currentweather == WEATHER_FOG && !rn2(5)) || (uwep && uwep->oartifact == ART_ERYNDREL_S_ECLIPSE) || (ublindf && ublindf->oartifact == ART_IT_BE_NITE) || (uwep && uwep->oartifact == ART_BLACK_SUN_ORB && !rn2(3)) || (uarmf && uarmf->oartifact == ART_UPWARD_HEELS) || (uarm && uarm->oartifact == ART_THEY_WON_T_SEE_ME___ && !rn2(4)) || (uarm && uarm->oartifact == ART_DARK_L) || (rn2(10) && RngeLightAbsorption) || (rn2(10) && uarmc && itemhasappearance(uarmc, APP_ABSORBING_CLOAK) ) ) &&
+	    if(!mtmp->mpeaceful && (level.flags.shortsighted || u.tempradiusto || (u.currentweather == WEATHER_FOG && !rn2(5)) || (uwep && uwep->oartifact == ART_ERYNDREL_S_ECLIPSE) || (ublindf && ublindf->oartifact == ART_IT_BE_NITE) || carryingarti(ART_PERSON_IN_THE_VEIL) || (uwep && uwep->oartifact == ART_BLACK_SUN_ORB && !rn2(3)) || (uarmf && uarmf->oartifact == ART_UPWARD_HEELS) || (uarm && uarm->oartifact == ART_THEY_WON_T_SEE_ME___ && !rn2(4)) || (uarm && uarm->oartifact == ART_DARK_L) || (rn2(10) && RngeLightAbsorption) || (rn2(10) && uarmc && itemhasappearance(uarmc, APP_ABSORBING_CLOAK) ) ) &&
 	       nidist > (couldsee(nix,niy) ? 144 : 36) && appr == 1) appr = 0;
 
 		/* special coding for "homing" giant wasps from the hunger games --Amy */

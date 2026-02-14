@@ -3123,7 +3123,7 @@ dopray()
 		}
 	} /* cheater prayer end */
 
-    if (have_superjonadabstone()) {
+    if (carryingarti(ART_JONADAB_S_EXTRA_MODE)) {
 
 	if (can_pray(FALSE) && !u.ugangr) godvoice(u.ualign.type, "Ah yes, my scholar, pray to me and I will lend thee my helping hand!");
 	else {

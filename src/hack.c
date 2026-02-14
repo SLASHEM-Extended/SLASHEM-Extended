@@ -564,7 +564,7 @@ moverock()
 	ry = u.uy + 2 * u.dy;
 	nomul(0, 0, FALSE);
 	/* if you combine levitator and sokosolver the game shouldn't be unwinnable --Amy */
-	if ((Levitation || Is_airlevel(&u.uz)) && !Race_if(PM_LEVITATOR) ) {
+	if ((Levitation || Is_airlevel(&u.uz)) && !Race_if(PM_LEVITATOR) && !carryingarti(ART_FLIWITEERER) ) {
 		if (Blind) feel_location(sx,sy);
 	    You("don't have enough leverage to push %s.", the(xname(otmp)));
 	    /* Give them a chance to climb over it? */
@@ -783,7 +783,7 @@ moverock()
 		 if (Blind) feel_location(sx,sy);
 	cannot_push:
 	    if (throws_rocks(youmonst.data) || (uarmg && uarmg->oartifact == ART_MOUNTAIN_FISTS) ) {
-		if (u.usteed && !(uwep && uwep->oartifact == ART_SORTIE_A_GAUCHE) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && !FemtrapActiveKerstin && !bmwride(ART_JAFARO_ON_TOUR) && !bmwride(ART_MARIKE_S_WALL_BUTT) && !(bmwride(ART_DEEPER_LAID_BMW)) && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) ) {
+		if (u.usteed && !(uwep && uwep->oartifact == ART_SORTIE_A_GAUCHE) && !carryingarti(ART_HEIGHTBOOST) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && !FemtrapActiveKerstin && !bmwride(ART_JAFARO_ON_TOUR) && !bmwride(ART_MARIKE_S_WALL_BUTT) && !(bmwride(ART_DEEPER_LAID_BMW)) && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) ) {
 		    You("aren't skilled enough to %s %s from %s.",
 			(flags.pickup && !In_sokoban(&u.uz))
 			    ? "pick up" : "push aside",
@@ -2946,6 +2946,7 @@ peacedisplace:
 		if (canpyramidalheel && (u.pyramidalturns >= pyramidalneeded)) {
 			u.pyramidalturns = 0;
 			u.pyramidalskill++;
+			if (carryingarti(ART_LEARN_THE_MODEL_HANDICRAFT)) u.pyramidalskill++;
 			if (uamul && uamul->oartifact == ART_GREETINGS_FROM_EVI) u.pyramidalskill += 2;
 			if (uimplant && uimplant->oartifact == ART_TORSTEN_S_FEMININENESS && !flags.female) u.pyramidalskill += 4;
 			if (u.pyramidalskill == 20) You("are now more skilled in type 7: pyramidal heels.");
@@ -2972,6 +2973,7 @@ peacedisplace:
 		if (canballheel && (u.ballturns >= ballneeded)) {
 			u.ballturns = 0;
 			u.ballskill++;
+			if (carryingarti(ART_LEARN_THE_MODEL_HANDICRAFT)) u.ballskill++;
 			if (uamul && uamul->oartifact == ART_GREETINGS_FROM_EVI) u.ballskill += 2;
 			if (uimplant && uimplant->oartifact == ART_TORSTEN_S_FEMININENESS && !flags.female) u.ballskill += 4;
 			if (u.ballskill == 20) You("are now more skilled in type 6: ball heels.");
@@ -3001,6 +3003,7 @@ peacedisplace:
 		if (cancolumnar && (u.columnarturns >= columnarneeded)) {
 			u.columnarturns = 0;
 			u.columnarskill++;
+			if (carryingarti(ART_LEARN_THE_MODEL_HANDICRAFT)) u.columnarskill++;
 			if (uamul && uamul->oartifact == ART_GREETINGS_FROM_EVI) u.columnarskill += 2;
 			if (uimplant && uimplant->oartifact == ART_TORSTEN_S_FEMININENESS && !flags.female) u.columnarskill += 4;
 			if (u.columnarskill == 20) You("are now more skilled in type 5: columnar heels.");
@@ -4539,7 +4542,7 @@ dopickup()
 		return(0);
 	}
 	if (!can_reach_floor()) {
-		if (u.usteed && !(uwep && uwep->oartifact == ART_SORTIE_A_GAUCHE) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && !FemtrapActiveKerstin && !bmwride(ART_JAFARO_ON_TOUR) && !bmwride(ART_MARIKE_S_WALL_BUTT) && !(bmwride(ART_DEEPER_LAID_BMW)) && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) )
+		if (u.usteed && !(uwep && uwep->oartifact == ART_SORTIE_A_GAUCHE) && !carryingarti(ART_HEIGHTBOOST) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && !FemtrapActiveKerstin && !bmwride(ART_JAFARO_ON_TOUR) && !bmwride(ART_MARIKE_S_WALL_BUTT) && !(bmwride(ART_DEEPER_LAID_BMW)) && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) )
 		    You("aren't skilled enough to reach from %s.",
 			y_monnam(u.usteed));
 		else
@@ -6092,7 +6095,7 @@ max_carr_cap() /* your absolute maximum carry cap (the actual one is lower, see 
 		if (uwep && uwep->oclass == BALL_CLASS) maxcarrcap += (uwep->owt / 2);
 		if (u.twoweap && uswapwep && uswapwep->oclass == BALL_CLASS) maxcarrcap += (uswapwep->owt / 2);
 	}
-	if (have_daisybag()) maxcarrcap += 500;
+	if (carryingarti(ART_DAISY_S_HANDBAG)) maxcarrcap += 500;
 	if (uarm && uarm->oartifact == ART_COLLECTING_EXPANSION) maxcarrcap += 5000;
 	if (uwep && uwep->oartifact == ART_FIRST_CARRYING_BOX) maxcarrcap += 1000;
 	if (uarm && uarm->oartifact == ART_SCHOOL_SATCHEL) maxcarrcap += 2000;
@@ -6117,8 +6120,8 @@ max_carr_cap() /* your absolute maximum carry cap (the actual one is lower, see 
 		maxcarrcap += 1000;
 		if (flags.female && u.ulevel < 10) maxcarrcap += 4000;
 	}
-	if (have_flatgirl() && PlayerInSexyFlats) maxcarrcap += 1000;
-	if (have_sportivox()) maxcarrcap += 250;
+	if (carryingarti(ART_FLATGIRL) && PlayerInSexyFlats) maxcarrcap += 1000;
+	if (carryingarti(ART_SPORTIVOX)) maxcarrcap += 250;
 	if (uarmc && uarmc->oartifact == ART_FEATHER_LIGHT) {
 		maxcarrcap += 100;
 		if (uwep && objects[uwep->otyp].oc_material == MT_PAPER) maxcarrcap += 300;
@@ -6211,7 +6214,7 @@ weight_cap() /* your current max carry cap (the one displayed on the bottom stat
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_GIRLFUL_BONKING) carrcap -= 500;
 	if (uleft && uleft->oartifact == ART_CORGON_S_RING) carrcap += 100;
 	if (uright && uright->oartifact == ART_CORGON_S_RING) carrcap += 100;
-	if (have_daisybag()) carrcap += 1000;
+	if (carryingarti(ART_DAISY_S_HANDBAG)) carrcap += 1000;
 	if (uarm && uarm->oartifact == ART_COLLECTING_EXPANSION) carrcap += 2000;
 	if (uarmf && uarmf->oartifact == ART_ERIK_S_MARCHING_BOOTS) carrcap += 200;
 	if (uarm && uarm->oartifact == ART_SCHOOL_SATCHEL) carrcap += 2000;
@@ -6230,9 +6233,9 @@ weight_cap() /* your current max carry cap (the one displayed on the bottom stat
 		carrcap += 1000;
 		if (flags.female && u.ulevel < 10) carrcap += 4000;
 	}
-	if (have_flatgirl() && PlayerInSexyFlats && flags.female) carrcap += 1000;
+	if (carryingarti(ART_FLATGIRL) && PlayerInSexyFlats && flags.female) carrcap += 1000;
 	if (uchain && uchain->oartifact == ART_JORMUNGANDR_S_COIL) carrcap += 2000;
-	if (have_sportivox()) carrcap += 250;
+	if (carryingarti(ART_SPORTIVOX)) carrcap += 250;
 	if (uarmc && uarmc->oartifact == ART_FEATHER_LIGHT) {
 		carrcap += 100;
 		if (uwep && objects[uwep->otyp].oc_material == MT_PAPER) carrcap += 300;
@@ -6312,7 +6315,7 @@ weight_cap() /* your current max carry cap (the one displayed on the bottom stat
 		if (EWounded_legs) carrcap -= 250;
 	}
 
-	if (have_clonedyke()) carrcap -= 750;
+	if (carryingarti(ART_CLONE_DYKE_TREASURE)) carrcap -= 750;
 
 	if (u.martialstyle == MARTIALSTYLE_BUHURT) carrcap -= 1000;
 
@@ -6342,7 +6345,7 @@ weight_cap() /* your current max carry cap (the one displayed on the bottom stat
 	if(carrcap > (max_carr_cap())) carrcap = max_carr_cap();
 
 	/* the "fuck you Amy, your weight limits are as shitty as vanilla nethack's" effect :-P */
-	if (CarrcapEffect || u.uprops[CARRCAP_EFFECT].extrinsic || have_carrcapstone() || (ublindf && ublindf->oartifact == ART_ARABELLA_S_SEE_NO_EVIL_MON) || (uamul && uamul->oartifact == ART_ARVIAT_S_LOAD) || have_minimejewel() ) {
+	if (CarrcapEffect || u.uprops[CARRCAP_EFFECT].extrinsic || have_carrcapstone() || (ublindf && ublindf->oartifact == ART_ARABELLA_S_SEE_NO_EVIL_MON) || (uamul && uamul->oartifact == ART_ARVIAT_S_LOAD) || carryingarti(ART_MINIMAL_MINI_ME) ) {
 		if (carrcap > 500) carrcap = 500;
 	}
 
@@ -6395,7 +6398,7 @@ inv_weight()
 	if (uarm && uarm->oartifact == ART_GREAT_TOME) wt += 1000;
 	if (uarmf && itemhasappearance(uarmf, APP_WEIGHT_ATTACHMENT_BOOTS)) wt += 500;
 	if (uarm && itemhasappearance(uarm, APP_SUPER_HEAVY_ROBE)) wt += 500;
-	if (have_stashitcontainer()) wt += 1000;
+	if (carryingarti(ART_STASHIT)) wt += 1000;
 	if (uwep && uwep->oartifact == ART_MJOLLNIR) wt += 500;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_MJOLLNIR) wt += 500;
 	if (uwep && uwep->oartifact == ART_FRISIA_S_TAIL) wt += 500;

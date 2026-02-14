@@ -71,6 +71,13 @@ register boolean clumsy;
 		if (verysmall(mon->data)) dmg += 5;
 	}
 
+	if (carryingarti(ART_HEADCRUNCH_KICK) && !(mon->misc_worn_check & W_ARMH)) dmg += 5;
+
+	if (carryingarti(ART_HUGKICK)) {
+		dmg += 10;
+		if (uarmf && itemhasappearance(uarmf, APP_HUGGING_BOOTS)) dmg += 10;
+	}
+
 	if (u.ulevel >= 30) dmg += rnd(4);
 	else if (u.ulevel >= 24) dmg += rnd(3);
 	else if (u.ulevel >= 16) dmg += rnd(2);
@@ -97,8 +104,8 @@ register boolean clumsy;
 		You("scratch the last shred away.");
 		dmg += 10000;
 	}
-	if (have_kickart()) dmg += 8;
-	if (have_peepshow() && uarmf && uarmf->otyp == JUEN_PEEP_TOES) dmg += 10;
+	if (carryingarti(ART_KICK_ART)) dmg += 8;
+	if (carryingarti(ART_PEEPSHOW) && uarmf && uarmf->otyp == JUEN_PEEP_TOES) dmg += 10;
 
 	if (uarmf && itemhasappearance(uarmf, APP_ALLIGATOR_PUMPS) && !rn2(1000) && !(mon->data->geno & G_UNIQ) && !bigmonst(mon->data) ) {
 		pline("*gulp*");
@@ -275,7 +282,7 @@ register boolean clumsy;
 
 		}
 
-		if (have_peepshow()) {
+		if (carryingarti(ART_PEEPSHOW)) {
 			if (PlayerInBlockHeels) {
 				switch (P_SKILL(P_BLOCK_HEELS)) {
 					case P_BASIC:		dmg +=  1; break;
@@ -510,6 +517,7 @@ register boolean clumsy;
 	if (u.martialstyle == MARTIALSTYLE_KARATE) clumsy = FALSE;
 
 	if (uarmf && uarmf->oartifact == ART_MAILIE_S_CHALLENGE) clumsy = FALSE;
+	if (carryingarti(ART_GONNA_KICK_YOUR_ASS)) clumsy = FALSE;
 	if (uwep && uwep->oartifact == ART_INSECTMASHER) clumsy = FALSE;
 	if (uwep && uwep->oartifact == ART_BLU_TOE) clumsy = FALSE;
 	if (uarmf && uarmf->oartifact == ART_FRONT_TARGET) clumsy = FALSE;
@@ -877,6 +885,12 @@ register boolean clumsy;
 		if (mon->mhp > mon->mhpmax) mon->mhp--;
 	}
 
+	if (carryingarti(ART_HEADCRUNCH_KICK) && !(mon->misc_worn_check & W_ARMH) && !rn2(3) && mon->mhpmax > 1) {
+		You("brutally kick %s in the back of the %s.", mon_nam(mon), mbodypart(mon, HEAD));
+		mon->mhpmax--;
+		if (mon->mhp > mon->mhpmax) mon->mhp--;
+	}
+
 	if (uarmf && uarmf->oartifact == ART_STEFANJE_S_PROBLEM && mon->mhpmax > 1) {
 		pline("Your 'Stefanje' sandals stomp %s with their lovely heels.", mon_nam(mon));
 		mon->mhpmax--;
@@ -1226,6 +1240,7 @@ register boolean clumsy;
 
 	if (PlayerInPyramidalHeels && !rn2((flags.female) ? 16 : 150) ) {
 		u.pyramidalskill++;
+		if (carryingarti(ART_LEARN_THE_MODEL_HANDICRAFT)) u.pyramidalskill++;
 		if (uamul && uamul->oartifact == ART_GREETINGS_FROM_EVI) u.pyramidalskill += 2;
 		if (uimplant && uimplant->oartifact == ART_TORSTEN_S_FEMININENESS && !flags.female) u.pyramidalskill += 4;
 		if (u.pyramidalskill == 20) You("are now more skilled in type 7: pyramidal heels.");
@@ -1237,6 +1252,7 @@ register boolean clumsy;
 	}
 	if (PlayerInBallHeels && !rn2((flags.female) ? 15 : 100) ) {
 		u.ballskill++;
+		if (carryingarti(ART_LEARN_THE_MODEL_HANDICRAFT)) u.ballskill++;
 		if (uamul && uamul->oartifact == ART_GREETINGS_FROM_EVI) u.ballskill += 2;
 		if (uimplant && uimplant->oartifact == ART_TORSTEN_S_FEMININENESS && !flags.female) u.ballskill += 4;
 		if (u.ballskill == 20) You("are now more skilled in type 6: ball heels.");
@@ -1248,6 +1264,7 @@ register boolean clumsy;
 	}
 	if (PlayerInColumnarHeels && !rn2((flags.female) ? 100 : 12) ) {
 		u.columnarskill++;
+		if (carryingarti(ART_LEARN_THE_MODEL_HANDICRAFT)) u.columnarskill++;
 		if (uamul && uamul->oartifact == ART_GREETINGS_FROM_EVI) u.columnarskill += 2;
 		if (uimplant && uimplant->oartifact == ART_TORSTEN_S_FEMININENESS && !flags.female) u.columnarskill += 4;
 		if (u.columnarskill == 20) You("are now more skilled in type 5: columnar heels.");
@@ -1400,7 +1417,7 @@ register xchar x, y;
 
 	if (uarmf && uarmf->oartifact == ART_KYLIE_LUM_S_SNAKESKIN_BOOT) i += 6000;
 
-	if((i < (j*3)/10) && !(uarmf && uarmf->oartifact == ART_MAILIE_S_CHALLENGE) && !(uwep && uwep->oartifact == ART_INSECTMASHER) && !(uwep && uwep->oartifact == ART_BLU_TOE) && !(uarmf && uarmf->oartifact == ART_FRONT_TARGET) && !(uarmf && uarmf->oartifact == ART_ELENETTES) && !(uarmc && uarmc->oartifact == ART_MARC_S_MANAFILL && !flags.female) && u.martialstyle != MARTIALSTYLE_KARATE && !(uarmf && uarmf->oartifact == ART_JOHN_S_REDBLOCK) && !(uarmf && uarmf->oartifact == ART_EVIL_HAIRTEAR) && !(uarmf && itemhasappearance(uarmf, APP_CALF_LEATHER_SANDALS)) ) {
+	if((i < (j*3)/10) && !(uarmf && uarmf->oartifact == ART_MAILIE_S_CHALLENGE) && !carryingarti(ART_GONNA_KICK_YOUR_ASS) && !(uwep && uwep->oartifact == ART_INSECTMASHER) && !(uwep && uwep->oartifact == ART_BLU_TOE) && !(uarmf && uarmf->oartifact == ART_FRONT_TARGET) && !(uarmf && uarmf->oartifact == ART_ELENETTES) && !(uarmc && uarmc->oartifact == ART_MARC_S_MANAFILL && !flags.female) && u.martialstyle != MARTIALSTYLE_KARATE && !(uarmf && uarmf->oartifact == ART_JOHN_S_REDBLOCK) && !(uarmf && uarmf->oartifact == ART_EVIL_HAIRTEAR) && !(uarmf && itemhasappearance(uarmf, APP_CALF_LEATHER_SANDALS)) ) {
 		if((!rn2((i < j/10) ? 2 : (i < j/5) ? 3 : 4)) || (isfriday && !rn2(5))) {
 			if(martial() && !rn2(isfriday ? 10 : 2)) goto doit;
 			Your("clumsy kick does no damage.");
@@ -1419,6 +1436,7 @@ register xchar x, y;
 	if (uarmf && itemhasappearance(uarmf, APP_COMBAT_BOOTS) ) clumsy = FALSE;
 
 	if (uarmf && uarmf->oartifact == ART_MAILIE_S_CHALLENGE) clumsy = FALSE;
+	if (carryingarti(ART_GONNA_KICK_YOUR_ASS)) clumsy = FALSE;
 	if (uwep && uwep->oartifact == ART_INSECTMASHER) clumsy = FALSE;
 	if (uarmf && uarmf->oartifact == ART_FRONT_TARGET) clumsy = FALSE;
 	if (uarmf && uarmf->oartifact == ART_ELENETTES) clumsy = FALSE;

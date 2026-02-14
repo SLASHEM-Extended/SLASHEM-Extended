@@ -19220,7 +19220,7 @@ A("Soko Busta",				AMULET_OF_REFLECTION, /* prevents luck loss when cheating in 
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
 
-A("Reggie's Pointstep",				AMULET_OF_REFLECTION, /* super luisa trap effect, high heels and sexy flats train 2x as fast, high heel forms train 3x as fast */
+A("Reggie's Pointstep",				AMULET_OF_REFLECTION, /* super luisa trap effect, high heels and sexy flats train 2x as fast, high heel forms train 3x as fast (but not special ones like columnar heels) */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
 
@@ -27934,6 +27934,662 @@ A("Drunkrock",				WORTHLESS_PIECE_OF_VIOLET_GLAS, /* if you fire it, the damage 
 A("Glaustock",				WORTHLESS_PIECE_OF_DARK_BLUE_G,
 	(SPFX_RESTR|SPFX_ATTK), 0, 0,
 	MAGM(2, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10L ),
+
+A("Her Brooklaughter Voice",				JETTE_S_JEWEL, /* upon generating, you get rnz(25k) turns of the jette trap effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Safer Shin",				MADELEINE_S_JEWEL,
+	(SPFX_RESTR|SPFX_EVIL), (SPFX_HPHDAM), 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Eroge Cheek",				THAI_S_JEWEL, /* death resistance while carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Ascendance Ability",				ELENA_S_JEWEL,
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, CREATE_PORTAL, A_NONE, NON_PM, NON_PM, 15000L ),
+
+A("Legendarium Percentage",				JESSICA_S_JEWEL, /* double free action and +2 MC when carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Grifted Capability",				JEANETTA_S_JEWEL, /* wonderlegs and diminished bleeding when carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Buttcharm",				KATI_S_JEWEL, /* while carried, you can #monster to use MS_FART_NORMAL */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Heightboost",				SABRINA_S_JEWEL, /* if it's generated while you don't have the riding skill, it's unlocked with a cap of basic; while carried, you can reach the ground while riding even when unskilled */
+	(SPFX_RESTR|SPFX_NOWISH|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Narnia's Classity",				KRISTINA_S_JEWEL, /* burn attacks from the trap become stronger, free action when carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Chaundra Poka",				MELISSA_S_JEWEL, /* stealing attacks from the trap become stronger, +4 INT, +2 WIS and +15% spellcasting success chances when carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Maywon Month",				YVONNE_S_JEWEL, /* improves effects if you use the toilet, and if the current month is May, your HP regeneration is increased by the equivalent of 10 healthstones */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Orderly Proper",				NELLY_S_JEWEL, /* +5 STR and +8 CON while carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Hemepheele",				ANITA_S_JEWEL, /* playerbleed effects cause 20% more bleeding, 10 extra AC while carried and if you have a shield, also +10% chance to block */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Colorful Clothing",				KRISTIN_S_JEWEL, /* while carried, all types of item masters spawn with a random armor piece */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Sexy Dyke Bitch",				ANTJE_S_JEWEL, /* +5 CHA, +1 STR/DEX/CON when carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Hopscotch Cup",				ALMUT_S_JEWEL, /* AD_GLIB melee attacks also cause bleeding, flying while carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Hugkick",				INA_S_JEWEL, /* +10 kick damage; if you invoke it while it's at least +0, it becomes -1, creates a pair of hugging boots that becomes heavily cursed and is forcibly equipped. while wearing hugging boots, you have +10 STR and another +10 kick damage */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Decadence In Doses",				ANTJE_S_SECOND_JEWEL, /* trap effect triggers more often, resist poison and sickness when carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Sunny Honeydew",				JULIA_S_JEWEL, /* stronger version of the trap effect and fire immunity when carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
+
+A("Irregular Radiance",				ANNEMARIE_S_JEWEL, /* +10 CHA when carried and 1 in 20000 chance per turn that it increases by one */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Pantyshine",				LISA_S_JEWEL, /* while carried, all monsters whose panties are visible have light radius 1 */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Less-stick-chew",				KATRIN_S_JEWEL, /* discount action when carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Stilettos of Northern Russia",				RITA_S_JEWEL, /* if you're wearing stilettos, you're immune to fumbling */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Bought the Red Room",				LYDIA_S_JEWEL, /* experience boost while carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Parasym Acceptance",				CONNY_S_JEWEL, /* occasionally gives you a cursed symbiote like the climacterial effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Backhistory Rememberance",				ARIANE_S_JEWEL, /* defusing while carried */
+	(SPFX_RESTR|SPFX_EVIL), (SPFX_SEEK), 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Undead Become Have",				RUTH_S_JEWEL, /* unbreathing and resist sleep, cold and poison while carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 18000L ),
+
+A("Learning by Doing",				MAGDALENA_S_JEWEL, /* using a toilet acts like some other feminism trap effect and gives +10 alignment and +1 max */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Learn The Model Handicraft",				NAOMI_S_JEWEL, /* all the specific high heel form skills train twice as fast while you carry it */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Not a very strong poison",				JASIEEN_S_JEWEL, /* can be invoked to fire strength-6 poison beams in all directions */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Adwaodith's Herecome",				IRINA_S_JEWEL, /* stronger version of the trap effect; upon generating, unlocks wedge heels with a cap of expert or boosts its cap by 2 levels */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 18000L ),
+
+A("Pas Superop!",				JANE_S_JEWEL, /* while carried, you have +5 ranged to-hit and if you use a bow, you have +1 multishot */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2600L ),
+
+A("Headcrunch Kick",				SABINE_S_JEWEL, /* if you kick a monster that has a head and isn't wearing a helmet, your kick deals +5 damage and has 1 in 3 chance of reducing the target's maximum HP by one */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Classrace Invitation",				HANNAH_S_JEWEL, /* can be invoked to perform the marathon technique */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Trisha's Abilities",				STILETTO_SANDALS, /* become STEEL when generated and give +1 to the cap of your club, mace and morning star skills and +2 to hammer */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 40000L ),
+
+A("Leaste see ol",				RIGHT_MOUSE_BUTTON_STONE,
+	(SPFX_RESTR|SPFX_EVIL), (SPFX_ESP|SPFX_WARN), 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Blue-elp",				DISPLAY_LOSS_STONE, /* pain sense when carried */
+	(SPFX_RESTR|SPFX_EVIL), (SPFX_REGEN), 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Surround View",				SPELL_LOSS_STONE, /* sight bonus when carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Khor's Bomb",				AUTO_DESTRUCT_STONE, /* acts like demolition gloves while carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Hunger for the res",				MEMORY_LOSS_STONE, /* magic resistance when carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Ugghen",				INVENTORY_LOSS_STONE, /* double keen memory when carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Emgeshot",				BLACKY_STONE, /* can be invoked to perform the star digging technique */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Two Activates Rage",				MENU_BUG_STONE, /* while carried, training the devices skill has 1% chance of increasing your STR by one */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Poisonous Ive",				SUPERSCROLLER_STONE, /* acid immunity when carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 15000L ),
+
+A("Completely at the bottom",				UNLUCKY_STONE,
+	(SPFX_RESTR|SPFX_EVIL), (SPFX_LUCK), 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Not Accurately Masochistic",				SHADES_OF_GREY_STONE,
+	(SPFX_RESTR|SPFX_EVIL), (SPFX_PROTEC), 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Caloryburn",				WEAKNESS_STONE, /* hunger while carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Coolhead Keeper",				ROT_THIRTEEN_STONE, /* confusion resistance while carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Unstoppable Runner",				BISHOP_STONE, /* very fast speed while carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Rick's Secret",				DSTW_STONE, /* clairvoyance while carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Sirian's Complaint",				STAIRSTRAP_STONE, /* stairs traps spawn more monsters on average */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Fillup Like Crazy",				RESPAWN_STONE,
+	(SPFX_RESTR|SPFX_EVIL), (SPFX_XRAY), 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Are you so unable?",				CAPTCHA_STONE, /* +2 INT while carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Ghosterchurch",				NONSACRED_STONE, /* drain resistance while carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("On The Rebatates",				STARVATION_STONE, /* full nutrients while carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("nixbringing",				GHOSTLY_STONE, /* double see invisible while carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Miriam's Feeling",				STONE_OF_HATE, /* death resistance while carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Teaseling!",				STONE_OF_NAKED_STRIPPING, /* can be invoked to use the tech metronome */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("finished anyway",				ANTILEVEL_STONE, /* while carried, you have +10 CON and WIS, death and mystery resistance and discount action */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 25000L ),
+
+A("Smileysee",				MAP_STONE, /* see invis while carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Exclamation Mark!",				VERISIERT_STONE, /* doubles monster spawn rate again */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Sphingen Eyes",				QUIZ_STONE, /* stun resistance while carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Sharpblade Sect",				BLOOD_LOSS_STONE, /* +2 increase melee damage while carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("cashago",				BOUND_DAY_STONE, /* can be invoked to extend your budget */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Greenface",				ROTTEN_STONE, /* poison res while carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Blink here, walk there",				DISCONNECT_STONE, /* teleportitis and disables teleport control when carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Sportal Fighter",				BOSSFIGHT_STONE, /* +10 STR, +1 all other stats while carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Enygsign",				ENTIRE_LEVEL_STONE,
+	(SPFX_RESTR|SPFX_EVIL), (SPFX_HSPDAM), 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Hardibia",				BONE_STONE,
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0, 30), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 50L ),
+
+A("Stay awake...",				SOUND_EFFECT_STONE, /* sleep res while carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Tealgleam",				TIME_USE_STONE, /* fear resistance while carried and metallic armor pieces don't hinder spellcasting */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Gonna kick your ass",				REAL_LIE_STONE, /* your kick can't be clumsy, can be invoked to change your martial style to a random one */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Heliokopis's Annoyance",				ESCAPE_PAST_STONE, /* all monsters whose level is higher than yours are displayed as mojibake glyphs similar to MS_GRAKA */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Bing - back.",				DETECTATION_STONE,
+	(SPFX_RESTR|SPFX_EVIL), (SPFX_REFLECT), 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Frabulous Famish",				LOOTCUT_STONE, /* double magic find while carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Jugibap",				MONSTER_SPEED_STONE, /* fast speed while carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("It's Magic!!!",				INIMICAL_STONE, /* magic resistance while carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("made of stone",				GREYOUT_STONE, /* if your spells are completely gray, you have stone resistance */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 15000L ),
+
+A("Dolores' Crazyplay",				QUASAR_STONE, /* hostile monsters have 10% chance to lose their turn */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("up goes the poly",				WEREFORM_STONE, /* polymorphing skill trains 3x as fast and if you reach a training amount that is 10x the cap of the next skill level past your maximum, it's unlocked and reset to the previous skill level */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Fibribalm",				HARD_MODE_STONE, /* also gives intrinsic regen while carried */
+	(SPFX_RESTR|SPFX_EVIL), (SPFX_REGEN), 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Hack Activated",				EATER_STONE, /* doubles randomly spawned items like haxor race (and stacks with that) */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("SKRIIIIIIIIIIIIIE!",				COVETOUS_STONE, /* also gives intrinsic tele control while carried */
+	(SPFX_RESTR|SPFX_EVIL), (SPFX_TCTRL), 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("In Separation",				NON_SEEING_STONE, /* can be invoked for do_lockfloodP */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("I'll murder everyone!",				HOMICIDE_STONE, /* trap creation nastytrap effect and double defusing when carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Field Click Radio",				MULTITRAPPING_STONE, /* 1 in 5000 chance per turn to replicate field trap effect, trap revealing (1 in 500) */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Tick Tock Trauma",				CLOCKWISE_STONE, /* while carried, MS_CLOCK monsters have +50 spawn freq */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 400L ),
+
+A("For me it always goes forward",				COUNTERCLOCKWISE_STONE, /* ultra fast speed */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Darkderes",				BLESSCURSE_STONE, /* curse resistance while carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Desiree's Mmmmm-Worthiness",				DELIGHT_STONE, /* +5 CHA and fire resistance when carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Earthspark",				DISCHARGE_STONE, /* double shock resistance when carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Stronger Stomach",				FILTERING_STONE, /* sick resistance while carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Tristrehold",				DEFORMATTING_STONE, /* 1 in 25000 chance per turn to get a random good effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Ralf's Highway",				FLICKER_STRIP_STONE, /* boosts your speed like 3x real speed devil */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Plos-Moh!",				HYPER_BLUE_STONE, /* if you use firearms, monsters can no longer avoid the projectiles due to size, being amorphous etc. */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Where The Sun Doesn't Shine",				NO_LIGHT_STONE, /* resistance to solar beams while carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Perfectly Defendable Position",				PARANOIA_STONE,
+	(SPFX_RESTR|SPFX_EVIL), (SPFX_ESP|SPFX_WARN), 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("DITAECT MAENNSTERS",				MESSAGE_SUPPRESSION_STONE, /* detect monsters while carried and 1 in 2000 chance per turn to get the curse items effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 25000L ),
+
+A("Complex Builded",				STUCK_ANNOUNCEMENT_STONE, /* resist fire, contamination and fear, burden, magic vacuum, resistance piercing, intrinsic magic find, double spellboost, wild weather, energy regeneration and yvonne trap effect when carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 15000L ),
+
+A("Boh the shout!",				STORM_STONE, /* while wielding something that counts as a weapon, 1 in 20000 chance to gain +1 to that weapon up to a maximum of +10 */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
+
+A("schwilili-cutoff",				MAXIMUM_DAMAGE_STONE, /* polymorph control when carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Sylvie's See",				STARLIT_SKY_STONE, /* invis and see invis when carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Sylvie's Open Secret",				HIGHSCORE_STONE, /* double clairvoyance */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4500L ),
+
+A("The Last Part",				EVC_STONE, /* death resistance while carried, 1 in 5000 chance while carried to identify d10 random base items */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4500L ),
+
+A("CastlePsyche",				HEAP_STONE, /* double psi resistance while carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("GTWCTTWW",				TRON_STONE, /* acid immunity while carried, color becomes YELLOW upon generating */
+	(SPFX_RESTR|SPFX_EVIL), (SPFX_REFLECT), 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 18000L ),
+
+A("Linkin Park Listenin",				TOO_HEAVY_STONE, /* while carried, you're 90% resistant to MS_SOUND and AD_SOUN */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Antiwrap",				ELONGATED_STONE, /* protects from AD_WRAP like oilskin cloak */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("hahaha now you need to be smart",				MELEE_PREFIX_STONE, /* +2 INT when carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Formfall",				AUTOMORE_STONE, /* disint res when carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Freeswing",				MEAN_BURDEN_STONE, /* free action when carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Bullgarb",				CARRCAP_STONE, /* while carried, all items are non-susceptible to rotting damage */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Strangely Huggensoft",				BAD_PART_STONE, /* monsters with AT_KICK have -d20 melee to-hit against you */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Marc's Definitive Break",				COMPLETELY_BAD_PART_STONE, /* artitimeout is multiplied by rn1(2,2) */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, CHARGE_OBJ, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Are you man enough?",				EVIL_VARIANT_STONE, /* displacement and infravision when carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Addercounter",				REALLY_BAD_STONE, /* while carrying it, you gain one point of score per turn */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Cinceloblo",				BLAST_STONE, /* mystery res while carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Enjoy the message fleet...",				LONGING_STONE, /* sleep res while carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Wheresit",				QUAVERSAL_STONE, /* double displacement when carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Quantum Brain",				APPEARANCE_SHUFFLING_STONE, /* while carrying it, your spell memory doesn't decay over time */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Us Stays No Selection",				CHOICELESS_STONE, /* disables tele and poly control while carried, can be invoked to polymorph yourself */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Adwarce Bluered",				GUSHLUSH_STONE,
+	(SPFX_RESTR|SPFX_EVIL), (SPFX_REGEN|SPFX_EREGEN), 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Da Area Sole",				SOILTYPE_STONE, /* upon generating, unlocks high heels and sexy flats skills or improves their cap by one */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 16000L ),
+
+A("Fliwiteerer",				DANGEROUS_TERRAIN_STONE, /* levitation when carried and allows you to perform actions like the levitator race, can be invoked to perform the telekinesis technique, also conveys intrinsic ESP */
+	(SPFX_RESTR|SPFX_EVIL), (SPFX_ESP), 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Eloportal",				GRAVATION_STONE, /* aggravate monster when carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, TAMING, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Matterkeeper",				UNCALLED_STONE, /* keen memory when carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Bluedaypaper becomes shitty",				AEFDE_STONE, /* brown spell effect, effects that reduce your alignment have 95% chance to not affect you, can be invoked to gain a point of luck */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 4500L ),
+
+A("Nutty Bits",				EXPLODING_DICE_STONE, /* 1 in 3 chance for dice to explode, +d6 increase melee damage while carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 12000L ),
+
+A("Elena's Celebration",				PERMACURSE_STONE, /* elena trap effect, life saving when carried (you lose two XLs and get rnz(25k) turns of the deprovement nastytrap effect when it triggers) */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 40000L ),
+
+A("Person In The Veil",				SHROUDED_IDENTITY_STONE, /* also gives intrinsic stealth when carried and monsters behave as if they were shortsighted */
+	(SPFX_RESTR|SPFX_EVIL), (SPFX_STLTH), 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Gold For Everyone",				FEELER_GAUGE_STONE, /* can be invoked to do do_vanquished() but it also displays wizard mode info */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Gracious Swan",				WING_YELLOW_STONE, /* flying when carried and if you lifesave, you don't lose a point of CON */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4500L ),
+
+A("Ruggeluu!",				LIFE_SAVING_STONE, /* premature death and life saving when carried; if it lifesaves you, it's used up */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Your Black Hand",				CURSEUSE_STONE, /* can be invoked to perform the draining punch technique */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Hang With The Mind",				CUT_NUTRITION_STONE, /* +2 INT and WIS, eating an AD_DRIN has an additional 50% (individual) chance to give a point of INT and one of WIS */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Wikked Neighborhood",				AUTOPILOT_STONE, /* while carrying it, all monsters have a 1 in 5000 chance when they move to get hit by a bad pet effect, even if they're not actually a pet */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Luke's Blue Lumen",				FORCE_STONE, /* double use the force when carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("& Other Baddies",				MONSTER_GLYPH_STONE, /* demon warning while carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Today hue, tomorrow hott",				CHANGING_DIRECTIVE_STONE, /* directives change more often */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Burnglass Prism",				ONE_RAINBOW_STONE, /* prism reflection when carried but disables fire resistance */
+	(SPFX_RESTR|SPFX_EVIL), (SPFX_REFLECT), 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Such a cuddle",				TOP_LINE_STONE, /* +2 AC when carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("can you bookstaffeer",				CAPS_STONE, /* scent view and echolocation when carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Blackthrust",				DARKHANCE_STONE, /* use the force when carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("It's Her Disease",				TARMUSTROKINGNORA_STONE, /* nora trap effect when carried, can be invoked to perform the shopping queen technique but it only creates block-heeled footwear; if you wear block heels, you don't get penalized for lacking the skills */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 4500L ),
+
+A("Badass Man of Steel",				FREQUENTATION_SPAWN_STONE, /* ironman mode when carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Depth Survive",				DYWYPI_STONE, /* magical breathing and protects inventory from water when carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Firrrrrrrr... GA!",				ELM_STREET_STONE, /* firga form slowly trains over time, or 5x as fast if you're wielding a lit lightsaber while elm street is active */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Somkon Desteration",				EPVI_STONE, /* levelteleportitis while carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Full Volume!!!",				SANE_TREBLE_STONE, /* can be invoked to give the potion of boost effect for rn1(100,100) (more) turns */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Antsyveal",				GIANT_EXPLORER_STONE, /* if giant explorer causes you to trigger a nasty trap that isn't invisible, it's revealed */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Flit Around Like Crazy",				TRAPWARP_STONE, /* trapwarping happens 5x as often */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Rhaaaaaaaaaaaaar!",				YAWM_STONE, /* resist sleep while carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("ZIM Sound",				CHAOSCRADLE_STONE, /* 90% chance that willsenser in makemon.c is TRUE */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("ue - ue - ue",				BOSSGOD_STONE, /* can be invoked to perform the time stop technique */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 12000L ),
+
+A("Reprehendation Outta Nowhere",				TOO_GOOD_GO_STONE, /* +2 all stats when carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("they make kill kill kill now",				KILLER_ROOM_STONE, /* killer room effect happens 2x as often */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3500L ),
+
+A("Longbattle",				REDDAM_STONE, /* +10 AC when carried */
+	(SPFX_RESTR|SPFX_EVIL), (SPFX_HPHDAM|SPFX_HSPDAM), 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("they keep missing each other",				REDINC_STONE, /* +10 AC when carried, monsters have -d10 to-hit in melee and -1 multishot with ranged weapons */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("barksters",				MULCH_STONE, /* while carrying it, petkeeping skill trains twice as fast and pets don't rebel spontaneously */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("BoostToWaste",				INACCURACY_STONE, /* spellboost while carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("scriben slowly",				HAVE_A_PIN_STONE, /* your engravings don't misengrave */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Red Button Flash",				COSTLY_FAILURE_STONE, /* intrinsic warning while carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Trever Axe",				AXE, /* randart2 axe, does AD_NGEN to target */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Trever Pole",				HALBERD, /* randart2 polearm, does AD_NGEN to target */
+	(SPFX_RESTR), 0, 0,
+	PHYS(8, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3500L ),
 
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 

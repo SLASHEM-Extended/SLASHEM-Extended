@@ -138,11 +138,17 @@ dosit()
 			if (issoviet && u.uhs > 0) pline("Vy der'mo vedro, vy delayete svoye der'mo iz vozdukha? Nel'zya dazhe der'mo, kak i vy!");
 
 			use_skill(P_SQUEAKING, 2);
+
 			if (uarmu && uarmu->oartifact == ART_KATIA_S_SOFT_COTTON) {
 				You("produce very erotic noises.");
 				if (!rn2(10)) adjattrib(rn2(A_CHA), 1, -1, TRUE);
-			}
-			else if (Role_if(PM_BARBARIAN) || Role_if(PM_NOOB_MODE_BARB) || Role_if(PM_CAVEMAN)) You("miss...");
+			} else if (carryingarti(ART_LEARNING_BY_DOING)) {
+				pline("Intentionally, you decided to not open the lid before taking a crap.");
+				adjalign(10);
+				u.alignlim++;
+				reducesanity(100);
+				decontaminate(100);
+			} else if (Role_if(PM_BARBARIAN) || Role_if(PM_NOOB_MODE_BARB) || Role_if(PM_CAVEMAN)) You("miss...");
 			else You("grunt.");
 
 			if (practicantterror) {

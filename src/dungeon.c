@@ -1279,6 +1279,7 @@ boolean	at_stairs;
 			NoStaircase = 10 + rnz(monster_difficulty() + 1);
 			pushplayer(TRUE);
 			(void)nasty((struct monst *)0);
+			if (carryingarti(ART_SIRIAN_S_COMPLAINT)) (void)nasty((struct monst *)0);
 
 		}
 
@@ -1320,6 +1321,7 @@ boolean	at_stairs;
 			NoStaircase = 10 + rnz(monster_difficulty() + 1);
 			pushplayer(TRUE);
 			(void)nasty((struct monst *)0);
+			if (carryingarti(ART_SIRIAN_S_COMPLAINT)) (void)nasty((struct monst *)0);
 
 		}
 
@@ -1369,6 +1371,7 @@ boolean	at_stairs;
 				NoStaircase = 10 + rnz(monster_difficulty() + 1);
 				pushplayer(TRUE);
 				(void)nasty((struct monst *)0);
+				if (carryingarti(ART_SIRIAN_S_COMPLAINT)) (void)nasty((struct monst *)0);
 
 			}
 
@@ -1410,6 +1413,7 @@ boolean	at_stairs;
 			NoStaircase = 10 + rnz(monster_difficulty() + 1);
 			pushplayer(TRUE);
 			(void)nasty((struct monst *)0);
+			if (carryingarti(ART_SIRIAN_S_COMPLAINT)) (void)nasty((struct monst *)0);
 		}
 
 			if (!rn2(ishaxor ? 2500 : 5000)) {
