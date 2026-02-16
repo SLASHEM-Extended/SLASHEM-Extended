@@ -3134,6 +3134,10 @@ convertdone:
 
 	}
 
+	if (carryingarti(ART_PANTYSHINE) && mtmp->lisaseen && !has_light_source((void *)mtmp) ) {
+		new_light_source(mtmp->mx, mtmp->my, 1, LS_MONSTER, (void *)mtmp);
+	}
+
 	/* the watch will look around and see if you are up to no good :-) */
 	if (mdat == &mons[PM_WATCHMAN] || mdat == &mons[PM_WATCH_CAPTAIN] || mdat == &mons[PM_WATCH_LEADER] || mdat == &mons[PM_WATCH_LIEUTENANT])
 		watch_on_duty(mtmp);

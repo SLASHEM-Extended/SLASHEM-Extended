@@ -1599,6 +1599,7 @@ E int dosuspend(void);
 
 E void new_light_source(XCHAR_P, XCHAR_P, int, int, void *);
 E void del_light_source(int, void *);
+E boolean has_light_source(void *);
 E void do_light_sources(char **);
 E struct monst *find_mid(unsigned, unsigned);
 E void save_light_sources(int, int, int);

@@ -5436,6 +5436,7 @@ newboss:
 		a->adtyp = AD_GLIB;
 		a->damn = 1;
 		a->damd = 1;
+		if (carryingarti(ART_HOPSCOTCH_CUP)) a->damd = (1 + (mtmp->m_lev));
 
 		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
 				!touch_petrifies(youmonst.data))) {

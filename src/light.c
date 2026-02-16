@@ -128,7 +128,28 @@ del_light_source(type, id)
 	    return;
 	}
     }
-    impossible("del_light_source: not found type=%d, id=0x%lx", type, (long)id);
+    /* because stuff like wereblacklights emit light in some form and not another, this can apparently happen now... --Amy */
+    /*impossible("del_light_source: not found type=%d, id=0x%lx", type, (long)id);*/
+}
+
+/* does the monster "mtmpid" have a light source? return TRUE if it does, FALSE otherwise --Amy */
+boolean
+has_light_source(mtmpid)
+void * mtmpid;
+{
+    light_source *curr, *prev;
+    void * tmp_id;
+
+    tmp_id = (void *)(((struct monst *)mtmpid)->m_id);
+
+    for (prev = 0, curr = light_base; curr; prev = curr, curr = curr->next) {
+	if (curr->type != LS_MONSTER) continue;
+      if (curr->id == ((curr->flags & LSF_NEEDS_FIXUP) ? tmp_id : mtmpid)) {
+		return TRUE;
+	}
+    }
+
+    return FALSE;
 }
 
 /* Mark locations that are temporarily lit via mobile light sources. */
