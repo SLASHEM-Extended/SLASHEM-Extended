@@ -182,8 +182,12 @@ picklock()	/* try to open/close a lock */
 	    xlock.box->olocked = !xlock.box->olocked;
 	    if (!xlock.box->olocked) u.cnd_unlockamount++;
 	    if(xlock.box->otrapped) {
-		if (Role_if(PM_CYBERNINJA) && rn2(5)) You("also disarm the trap you found on it.");
-		else (void) chest_trap(xlock.box, FINGER, FALSE);
+		if (Role_if(PM_CYBERNINJA) && rn2(5)) {
+			You("also disarm the trap you found on it.");
+			xlock.box->otrapped = FALSE;
+		} else {
+			(void) chest_trap(xlock.box, FINGER, FALSE);
+		}
 	    }
 	}
 	exercise(A_DEX, TRUE);
