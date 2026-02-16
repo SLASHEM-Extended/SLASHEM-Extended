@@ -8854,7 +8854,7 @@ newbossJANI:
 						if (!(FemtrapActiveAntje && PlayerInBlockHeels) && !(uleft && uleft->otyp == RIN_AURORA) && !(uright && uright->otyp == RIN_AURORA) && !(uarmh && itemhasappearance(uarmh, APP_SHEMAGH)) && !(uarmf && uarmf->otyp == STILETTO_SANDALS) && !(Race_if(PM_DUTHOL) && rn2(10)) && !(uarmf && itemhasappearance(uarmf, APP_SAND_ALS)) && !(uarmc && uarmc->oartifact == ART_WHISPERWIND_CLOAK) && !u.uswallow && !(IS_TUNNELWALL(levl[u.ux][u.uy].typ) ) && !(is_wagon(u.ux, u.uy) && u.uundetected) ) {
 
 							You("are caught in a sandstorm, and the sand gets in your %s!", body_part(EYE));
-							make_blinded(Blinded + rnz(25),FALSE);
+							make_blinded(Blinded + rnz(10),FALSE);
 							stop_occupation();
 						}
 					}
