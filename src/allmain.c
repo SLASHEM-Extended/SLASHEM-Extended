@@ -23438,9 +23438,11 @@ int x, y;
 	if (MON_AT(x, y)) {
 		if ((grakamon = level.monsters[x][y]) != (struct monst *)0) {
 			if (grakamon->data != (struct permonst *)0) {
-				if (monstersoundtype(grakamon) == MS_GRAKA) return TRUE;
-				if (grakamon->egotype_grakabug) return TRUE;
-				if (carryingarti(ART_HELIOKOPIS_S_ANNOYANCE) && (grakamon->m_lev > u.ulevel)) return TRUE;
+				if (grakamon->mnum >= 0 && grakamon->mnum < NUMMONS) {
+					if (monstersoundtype(grakamon) == MS_GRAKA) return TRUE;
+					if (grakamon->egotype_grakabug) return TRUE;
+					if (carryingarti(ART_HELIOKOPIS_S_ANNOYANCE) && (grakamon->m_lev > u.ulevel)) return TRUE;
+				}
 			}
 		}
 	}
