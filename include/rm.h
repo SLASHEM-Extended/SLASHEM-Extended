@@ -1556,10 +1556,16 @@ extern dlevel_t level;	/* structure describing the current level */
 #define OBJ_AT(x,y)	(level.objects[x][y] != (struct obj *)0)
 /*
  * Macros for encapsulation of level.monsters references.
+ * Somehow, this has started to bug out like hell lately when the char is riding. What the fuck??? --Amy
+ * It keeps getting glitched, nonexistant monsters instead of your steed!
  */
 #define MON_AT(x,y)	(level.monsters[x][y] != (struct monst *)0 && \
+			(level.monsters[x][y])->mx == x && (level.monsters[x][y])->my == y && \
+			(level.monsters[x][y])->mnum >= 0 && (level.monsters[x][y])->mnum < NUMMONS && \
 			 !(level.monsters[x][y])->mburied)
 #define MON_BURIED_AT(x,y)	(level.monsters[x][y] != (struct monst *)0 && \
+			(level.monsters[x][y])->mx == x && (level.monsters[x][y])->my == y && \
+			(level.monsters[x][y])->mnum >= 0 && (level.monsters[x][y])->mnum < NUMMONS && \
 				(level.monsters[x][y])->mburied)
 #define place_worm_seg(m,x,y)	level.monsters[x][y] = m
 #define remove_monster(x,y)	level.monsters[x][y] = (struct monst *)0
