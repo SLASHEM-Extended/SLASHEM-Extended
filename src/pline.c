@@ -1119,7 +1119,7 @@ generate_crythroat_string()
 
 		/* separate long strings with some blank spaces, please */
 		stringsdo++;
-		if (stringsdo > rn1(8, 2)) {
+		if (stringsdo > rn1(9, 1)) {
 			sprintf(eos(string), " ", tmpstr);
 			stringsdo = 0;
 		}

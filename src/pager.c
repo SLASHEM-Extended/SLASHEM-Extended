@@ -5221,6 +5221,15 @@ static const char * const noroelacommodity[] = {
 "a RTS game where the AI doesn't use cheats to get extra resources",
 "a cure for capacitor plague",
 "a full recap for my Windows XP machine",
+"a list of evidence bullets",
+"a profile of 16th student Mukuro Ikusaba",
+"a Super High-School Level Despair membership",
+"a corpse that looks like Junko Enoshima but is really her sister",
+"a remote-controlled Monobear",
+"a Hope's Peak Academy student ID card",
+"a report of the murders committed by Genocider Syo",
+"a remote-controlled Slender Man who kills harmless girls in the forest",
+"hang gliding lessons",
 };
 
 /* demagogue lines: some of these are obviously inspired by Donald Trump and other RL political figures; this does not mean Amy agrees with their position,
@@ -5397,6 +5406,7 @@ static NEARDATA const char * const demagoguelines[] = {
 "The assholes from the other parties should heed the rules of democracy, which state that every party gets their fair chance! If our party happens to get the majority of votes, that just means the people identify with our position more than with the other parties' positions, and that's no reason for those other parties to engage in illegal actions like tearing down our election posters or threatening our representatives!",
 "Please stop the fake outrage and focus on something today that actually matters to our country.", /* I think that one is from Karoline Leavitt? */
 "The biggest insecurity factor is the human, specifically if there's stupid people in positions of power who can make decisions that effect our entire population! That's why we have to remove them from those positions, and replace them with clever people who make the right decisions! No power to the stupid!!",
+"The people from that hostile country aren't humans, they're monsters! And we're allowed to eradicate monsters, for heaven's sake!",
 };
 
 static NEARDATA const char * const longinglines[] = {
@@ -5908,6 +5918,7 @@ static NEARDATA const char * const longinglines[] = {
 "You'd love to play a game with %s where she is only allowed to stroke and caress your buttocks, but not hurt them.",
 "You want to totally give yourself in to %s's platform fleecies, allowing her to step on your unprotected hands with the thick platform soles again and again.",
 "You'd love to engage in a shin kick duel with %s, especially if she wears a totally lovely pair of platform girl boots because then it's so beautifully painful when she kicks you.",
+"Even if you're never going to get to caress %s herself, at the very least you want to caress her soft female shoes.",
 };
 
 static NEARDATA const char * const soviettaunts[] = {
@@ -7483,6 +7494,8 @@ static NEARDATA const char * const bosstaunts[] = {
 "has decided that the game you're playing is too offensive to be hosted on a public server, and deletes it, along with your current savegame file.",
 "screams 'Antivaxxer! I'm gonna make sure you'll never endanger anyone with your covid spread again!'",
 "announces: 'I know you don't want to be vaccinated, but I just decided to forcibly vaccinate you. Either you allow me to use this syringe on you now, or I'll beat you into submission and then jam the needle into your arm anyway.'",
+"suddenly fills your screen with static! Look away or your sanity will be drained to zero!",
+"suddenly emits a horrible 'SKRIIIIIIIIIE' sound and heavy static invades your screen! You have 0.2 seconds to get away or your brain will be sucked out!",
 
 };
 
@@ -30789,6 +30802,16 @@ static NEARDATA const char * const fake_plines[] = {
 	"Incoming message for Player 1. The message is from 'Nicole'. It reads: 'Oh god, you're a sexual predator! I gotta warn all of my friends about you!'",
 	"Incoming message for Player 1. The message is from 'Nicole'. It reads: 'I gotta ensure that you never get close to me again!'",
 	"You feel a permament loss of skill knowledge!",
+	"Why would you subject yourself to a forum where other users can pay real money to change your (yes, you read that right, this is not a misspelling, I actually meant 'your' here, not 'their own') user title to something juvenile like 'a little penis' and you then need to pay real money to have it changed back to something else? Why would anyone want to use a forum run by such moneygrabbers?",
+	"Why would you subject yourself to a forum where other users can pay real money to change your user title and you then have to pay real money in order to change it back, except if you're trans, then you somehow have the right to change it back without having to pay?!",
+	"Suddenly your screen starts to fill up with static!",
+	"Suddenly your screen starts to fill up with static! Turn around! You're looking at the Slender Man and if you do that for too long, you lose all of your sanity!",
+	"Suddenly there is a dramatic chord out of nowhere!",
+	"Suddenly there is a dramatic chord out of nowhere! RUN! The sound means that the Slender Man is standing right behind you and you have a split second to get away or you die!",
+	"Suddenly there is a very short 'SKRIE' sound and heavy static for a split second!",
+	"Suddenly there is a very short 'SKRIE' sound and heavy static for a split second! This means that the Slender Man has just teleported to a place near you, and if you turn around, or if you decide to stop moving, he'll catch you!",
+	"Suddenly there is a horrible 'SKRIIIIIIIIIE' sound and your screen fills with heavy static!",
+	"Suddenly there is a horrible 'SKRIIIIIIIIIE' sound and your screen fills with heavy static! RUN for your life, you have 0.2 seconds to get away or the Slender Man will kill you.",
 
 };
 

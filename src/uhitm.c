@@ -7528,7 +7528,7 @@ melatechoice:
 
 			else if ((Role_if(PM_SPACEWARS_FIGHTER) || (monstersoundtype(mon) == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || FemtrapActiveAriane || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || (u.usanity > rn2(1000)) ) && (!rn2(5) || (monstersoundtype(mon) == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) ) && !thrown) {
 
-				switch (rnd(790)) {
+				switch (rnd(793)) {
 
 				case 1: pline("You crush %s's skull into jelly.", mon_nam(mon)); break;
 				case 2: pline("You decapitate %s with a backhand stroke.", mon_nam(mon)); break;
@@ -8343,8 +8343,11 @@ melatechoice:
 				case 786: pline("%s's %s %ss for one last time, and then %s dies of cardiac arrest.", Monnam(mon), mbodypart(mon, HEART), mbodypart(mon, BEAT), mhe(mon)); break;
 				case 787: pline("%s's %s %s and disintegrate into a thousand pieces.", Monnam(mon), mbodypart(mon, BONES), mbodypart(mon, CRACK)); break;
 				case 788: pline("You bite %s's %s clean off, causing %s to develop a severe case of %s poisoning resulting in a swift death.", mon_nam(mon), mbodypart(mon, EAR), mhim(mon), mbodypart(mon, BLOOD)); break;
-				case 789: pline("%s's %s %s and stops %sing.", Monnam(mon), mbodypart(mon, HEART), mbodypart(mon, CRACK), mbodypart(mon, BEAT)); break;
+				case 789: pline("%s's %s %ss and stops %sing.", Monnam(mon), mbodypart(mon, HEART), mbodypart(mon, CRACK), mbodypart(mon, BEAT)); break;
 				case 790: pline("There is a loud, wicked-sounding %s... and then %s's body just stops functioning.", mbodypart(mon, CRACK), mon_nam(mon)); break;
+				case 791: pline("%s went down singing and soundless.", Monnam(mon)); break;
+				case 792: pline("You mercilessly cut down %s, and now %s spouse and children can weep and mourn %s death for all eternity.", mon_nam(mon), mhis(mon), mhis(mon)); break;
+				case 793: pline("Suddenly the Slender Man appears right in front of %s and emits a horrible 'SKRIIIIIIIE' sound while sucking out %s's sanity.", mon_nam(mon), mon_nam(mon)); break;
 
 				default: pline("You hit %s very hard!", mon_nam(mon)); break;
 	
@@ -10790,7 +10793,7 @@ register int roll;
 
 	} else if ((Role_if(PM_SPACEWARS_FIGHTER) || (monstersoundtype(mdef) == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || FemtrapActiveAriane || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || (u.usanity > rn2(1000)) ) && (!rn2(5) || (monstersoundtype(mdef) == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) ) && canspotmon(mdef) && flags.verbose) {
 
-		switch (rnd(861)) {
+		switch (rnd(864)) {
 
 		case 1: pline("%s cringes from your strike behind its %sshield.", Monnam(mdef), which_armor(mdef, W_ARMS) ? "" : "nonexistant "); break;
 		case 2: pline("You smash into %s's %sshield, striking sparks.", mon_nam(mdef), which_armor(mdef, W_ARMS) ? "" : "nonexistant "); break;
@@ -11661,6 +11664,9 @@ register int roll;
 		case 859: pline("The arrow that you fired bounces off %s's %sring!", mon_nam(mdef), mbodypart(mdef, EAR)); break;
 		case 860: pline("Your armor %ss too much, allowing %s plenty of time to react to your attack and dodge.", body_part(CREAK), mon_nam(mdef)); break;
 		case 861: pline("You try to attack %s with a blunt weapon, but %s %s deflects the blow.", mon_nam(mdef), mhis(mdef), mbodypart(mdef, BODY_FLESH)); break;
+		case 862: pline("You press the button to perform a jump kick against %s, but due to a bug the game causes you to execute a dive instead, and you fly through the air missing your target. Great.", mon_nam(mdef)); break;
+		case 863: pline("You launch a super mega expensive ballistic missile at %s, but the nearby air defense system shoots it down and now all the cash you've spent for that missile went up in smoke. Damn. Maybe you should've taken out that air defense system first.", mon_nam(mdef)); break;
+		case 864: pline("As you try to charge %s for a devastating attack, your screen suddenly fills up with static and you see that the Slender Man is standing there! Horrified, you turn around and run for your life.", mon_nam(mdef)); break;
 
 		default: pline("You missed %s!", mon_nam(mdef)); break;
 

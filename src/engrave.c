@@ -1093,6 +1093,7 @@ static const char *random_mesg[] = {
 	"Invocans tam damnum sanescit, te velocissimum facit et sic duratione tutelam eiicit.",
 	"The best NetHack variant for both local and online play is SLEX, hands down.",
 	"The real name of the Ace Attorney judge is Udgey. Yes, it's a play of words about the title 'Judge', but come on, EVERY character in that series has a name that is a wordplay of some sort! So it only makes sense that the judge has such a kind of name too! Like, having such an important character and then not actually giving him a name is badly negligent, so for all sorts of purposes, he shall forever be referred to as 'Udgey'!",
+	"Are you sure it's a good idea to stop running to read an engraving on the floor? Do you WANT to be caught by the Slender Man? He's right behind you!",
 
 };
 
@@ -6648,6 +6649,15 @@ static const char *epitaphs[] = {
 	"Create monster effect snowballed. Something read a cursed scroll that summoned over a dozen monsters and one of them then had a wand of create monster to summon a couple dozen more.",
 	"What, you're complaining about the fact that this NetHack variant added playable roles and races? Dude, just play a boring dwarf valkyrie if you for some inexplicable reason don't like new character choices! And stop telling me that the new roles and races are supposedly a problem, you don't have to play them, just play whatever combo you'd play in vanilla! If at all, the only problem that exists is the one staring at your monitor!",
 	"What, you're complaining about the fact that this NetHack variant has a monster called 'hanging semen ejaculator'? Dude you don't have to play it if you don't like it, you're free to bore your ass off with vanilla nethack or whatever other lame variant floats your boat! But for the sake of us all, don't try to steal the fun from those who actually enjoy SLEX, I don't have to change my game for people who don't even play it!",
+	"If you want to win, play the game properly. If you just want to goof around, go ahead but then don't expect us to mourn if you don't win.",
+	"Here lies Kate. She got lost in the woods and then her flashlight ran out (which only lasted for a bit over 15 minutes), so she had no way of seeing where the hell she was, and then suddenly the Slender Man snuck up on her and killed her.",
+	"Here lies Kate. She made the mistake of saving the house for last, and so the Slender Man's aggresivity was too high allowing him to corner her in that total deathtrap with no chance for her to escape.",
+	"Here lies Kate. She was strolling around the forest leisurely but all of a sudden the Slender Man was right behind her, forced her to turn around to him and made a terrible 'SKRIIIIIIIIIIE' sound while draining all of her sanity.",
+	"It shouldn't be that in the bestiary there are a few monsters sprinkled in that just read 'fuck you player, I have spawned so now you get rekt muahahahaha'.",
+	"In vanilla NetHack and especially in variants like TSX, it feels like the best way to win is to hope not to lose. Which, incidentally, is because it's entirely true; stuff like poisoned spike pits or lieutenants with a wand of death, or also werewolves who instantly infect you and cause a transformation to trigger before you can reach for your wolfsbane, can randomly happen at any time and screw you over.",
+	"It feels like the best way to win is to not lose hope. But that does you a big fat lot of good if that chameleon on level 6 transforms into an arch-lich, instantly teleports to you, and instantly casts touch of death before you even get another turn.",
+	"Here lies Kate. With her Nvidia GeForce 7100, she was able to see everything in the forest even without the flashlight, but it lagged like hell. After collecting a couple of pages, the Slender Man spawned next to her and due to the lag she failed to run away, the dude caught up with her, and - SKRIIIIIIIIIIIE - sucked out her brain.",
+	"Here lies Kate. She had actually collected all eight pages but then mere seconds later the Slender Man caught her anyway. SKRIIIIIIIIIIIE! Kate's brain was sucked out by the Slender Man's tentacles.",
 
 };
 

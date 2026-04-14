@@ -6527,6 +6527,7 @@ boolean gone;
 		    obj->known = 1;
 		    update_inventory();
 		}
+		break;
 	case RIN_THREE_POINT_SEVEN_PROTECTI:
 		/* might have forgotten it due to amnesia */
 		if (obj->spe) {
@@ -6535,6 +6536,7 @@ boolean gone;
 		    obj->known = 1;
 		    update_inventory();
 		}
+		break;
 	case RIN_PROTECTION_FROM_SHAPE_CHAN:
 		/* If you're no longer protected, let the chameleons
 		 * change shape again -dgk

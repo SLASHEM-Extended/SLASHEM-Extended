@@ -77851,6 +77851,12 @@ essential in locating the Amulet of Yendor."
 %Cp - 01275
 "Nothing on this Earth can save your sorry hide!"
 %E
+%Cp - 01276
+"Likoneneu!"
+%E
+
+# they start with 0, so if this is e.g. 1276 then QTN_ANGELIC must be 277
+
 
 #
 #       Demonic maledictions.
@@ -78854,6 +78860,9 @@ essential in locating the Amulet of Yendor."
 %Cp - 02332
 "I'll leave you devastated, mutilated, and perforated!"
 %E
+
+# they start with 0, so if this is e.g. 2332 then QTN_DEMONIC must be 333
+
 
 #
 #	Banishment message (for converted hero)

@@ -885,6 +885,9 @@ static const char *actualshirtmessages[] = { /* Scott Bigham */
 	"I love women's movements, they're so nice to look at.",
 	"I love women's movements, especially underneath my body.",
 	"As long as you don't have compelling arguments to refute my statement, it is by definition correct and valid.",
+	"Don't worry, a knife is not a dangerous weapon in my hands. I may be a self-harmer, but I use... other tools instead.",
+	"Err there is a housefly! You asshole!",
+	"I managed to beat Slender The Eight Pages without using the flashlight at all!",
 
 };
 
