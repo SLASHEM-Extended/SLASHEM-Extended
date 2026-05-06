@@ -6661,6 +6661,7 @@ static const char *epitaphs[] = {
 	"If you accidentally anger a shopkeeper and are a less than stellar player, you should *definitely* not hang around on the level like a complete dorf to 'see whether the shopkeeper will kill you'. Because if you don't know what you're doing and are just stumbling through the game like an airhead, the shopkeeper WILL kill you. Use the first opportunity to get the hell OFF the level or you can roll a new character and you'll only have yourself to blame.",
 	"Noooooo, this is the end, my jedi ran out of lightsaber energy completely and the charge saber technique never restores enough, if it even works at all. Most of the time I get interrupted anyway, causing it to not work.",
 	"Whaaaaaaat, dipping items into lethe water now causes the water to squirt over my body and cause amnesia, that's sooooo dumb, #quit. Amy you suck and I hope nobody ever plays your game again, I'm going to play Nethack 5.00 now, praise the dev team and Satan. SLEX sucks!",
+	"NOOOOOOOOOOOOOOooooooooooo, Amy made it so that the wand of make invisible only makes the topmost item of a stack invisible now, I painstakingly dropped 30 pages worth of items and now they didn't all become invisible! I'll never play this game again unless Amy reverts that STUPID change, and I'll erect a big protest camp where all other NetHack players will join in my protest against the stupidity that is SLEX!",
 
 };
 

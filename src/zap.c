@@ -4254,6 +4254,13 @@ bhitpile(obj,fhito,tx,ty)
     int hitanything = 0;
     register struct obj *otmp, *next_obj;
 
+    boolean onlyone = FALSE;
+
+    /* Amy note: certain wands should only affect the top item on a pile now */
+    if (obj->otyp == WAN_CANCELLATION || obj->otyp == SPE_CANCELLATION || obj->otyp == WAN_MAKE_INVISIBLE || obj->otyp == SPE_DRAIN_LIFE || obj->otyp == WAN_DRAINING || obj->otyp == SPE_TIME || obj->otyp == WAN_TIME || obj->otyp == WAN_REDUCE_MAX_HITPOINTS || obj->otyp == WAN_INCREASE_MAX_HITPOINTS || obj->otyp == WAN_MAKE_VISIBLE || obj->otyp == SPE_MAKE_VISIBLE || obj->otyp == SPE_STONE_TO_FLESH || obj->otyp == WAN_STONE_TO_FLESH) {
+	onlyone = TRUE;
+    }
+
     if (obj->otyp == SPE_FORCE_BOLT || obj->otyp == WAN_STRIKING || obj->otyp == SPE_GRAVITY_BEAM || obj->otyp == WAN_GRAVITY_BEAM) {
 	struct trap *t = t_at(tx, ty);
 
@@ -4272,6 +4279,7 @@ bhitpile(obj,fhito,tx,ty)
 	/* Fix for polymorph bug, Tim Wright */
 	next_obj = otmp->nexthere;
 	hitanything += (*fhito)(otmp, obj);
+	if (onlyone && (hitanything > 0)) break; /* out of the for loop */
     }
     if(poly_zapped >= 0)
 	create_polymon(level.objects[tx][ty], poly_zapped);

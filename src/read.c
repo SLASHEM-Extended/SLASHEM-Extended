@@ -6861,7 +6861,7 @@ aliasagain:
 			if (obj->oclass == COIN_CLASS) continue;
 #endif
 			wornmask = (obj->owornmask & ~(W_BALL|W_ART|W_ARTI));
-			if (wornmask && !sobj->blessed) {
+			if (wornmask) {
 			    /* handle a couple of special cases; we don't
 			       allow auxiliary weapon slots to be used to
 			       artificially increase number of worn items */
@@ -6873,8 +6873,8 @@ aliasagain:
 
 			    } /* remove curse spell ignores quiver, this is intentional --Amy */
 			}
-			/* Amy nerf: blessed ones were way too powerful, allowing you to more or less ignore curses */
-			if (( (sobj->blessed && !rn2(5)) || wornmask ||
+
+			if (( wornmask ||
 			     obj->otyp == LOADSTONE ||
 			     obj->otyp == LOADBOULDER ||
 			     obj->otyp == STARLIGHTSTONE ||
@@ -6967,7 +6967,7 @@ aliasagain:
 			if (obj->oclass == COIN_CLASS) continue;
 #endif
 			wornmask = (obj->owornmask & ~(W_BALL|W_ART|W_ARTI));
-			if (wornmask && !sobj->blessed) {
+			if (wornmask) {
 			    /* handle a couple of special cases; we don't
 			       allow auxiliary weapon slots to be used to
 			       artificially increase number of worn items */
@@ -6991,7 +6991,7 @@ aliasagain:
 			    }
 			}
 			/* Amy nerf: blessed ones were way too powerful, allowing you to more or less ignore curses */
-			if (( (sobj->blessed && !rn2(5)) || wornmask ||
+			if (( wornmask ||
 			     obj->otyp == LOADSTONE ||
 			     obj->otyp == LOADBOULDER ||
 			     obj->otyp == STARLIGHTSTONE ||
@@ -7010,6 +7010,36 @@ aliasagain:
 		}
 
 		if(Punished && !confused && !(uchain && uchain->oartifact == ART_DON_T_GO_AWAY) && !(uball && uball->oartifact == ART_DOCKEM_GOOD)) unpunish();
+
+		/* instead of trying to uncurse everything (which would make the effect scale with how much stuff you can cram into your inventory), a blessed
+		 * scroll will now allow you to do a target uncursing of a few choice items --Amy */
+		if (sobj->blessed) {
+			int cremovals = rnd(5);
+
+			register struct obj *secrem;
+			if (CannotSelectItemsInPrompts) break;
+			pline("You can uncurse some items.");
+			known = TRUE;
+unsecremchoice:
+			secrem = getobj(allnoncount, "uncurse");
+			cremovals--;
+			if (!secrem) {
+				if (yn("Really exit with no object selected?") == 'y')
+					pline("You just wasted the opportunity to remove curses from an item.");
+				else goto unsecremchoice;
+				pline("Oh well, if you don't wanna...");
+			} else {
+				if (stack_too_big(secrem)) {
+					pline("The stack was too big! Nothing happens.");
+				} else {
+					uncurse(secrem, TRUE);
+					pline("Your %s is surrounded by a warm aura.", xname(secrem));
+					secrem->bknown = TRUE;
+				}
+			}
+
+			if (cremovals > 0) goto unsecremchoice;
+		}
 
 		update_inventory();
 

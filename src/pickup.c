@@ -1303,13 +1303,14 @@ boolean alwaysflag;
 	result = -1;	/* nothing lifted */
 
 /* Trying to allow the player to pick up as much as they want. --Amy
- * If you REALLY want the limit to come back for some weird reason, enable the knapsacklimit option */
+ * If you REALLY want the limit to come back for some weird reason, enable the knapsacklimit option
+ * actually, you shouldn't really need to have more than 200 out in the open, like ever, so this'll hopefully reduce lag issues */
 
 #ifndef GOLDOBJ
-    } else if ((flags.knapsacklimit || InventorySizeLimited) && obj->otyp != LOADSTONE && obj->otyp != HEALTHSTONE && obj->otyp != LUCKSTONE && obj->otyp != MANASTONE && obj->otyp != SLEEPSTONE && obj->otyp != LOADBOULDER && obj->otyp != STARLIGHTSTONE && obj->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(obj) && !is_feminismstone(obj) && obj->oclass != COIN_CLASS && inv_cnt() >= (InventorySizeXtra ? 26 : 52) &&
+    } else if (obj->otyp != LOADSTONE && obj->otyp != HEALTHSTONE && obj->otyp != LUCKSTONE && obj->otyp != MANASTONE && obj->otyp != SLEEPSTONE && obj->otyp != LOADBOULDER && obj->otyp != STARLIGHTSTONE && obj->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(obj) && !is_feminismstone(obj) && obj->oclass != COIN_CLASS && inv_cnt() >= (InventorySizeXtra ? 26 : (flags.knapsacklimit || InventorySizeLimited) ? 52 : 200) &&
 		!merge_choice(invent, obj)) {
 #else
-    } else if ((flags.knapsacklimit || InventorySizeLimited) && obj->otyp != LOADSTONE && obj->otyp != HEALTHSTONE && obj->otyp != LUCKSTONE && obj->otyp != MANASTONE && obj->otyp != SLEEPSTONE && obj->otyp != LOADBOULDER && obj->otyp != STARLIGHTSTONE && obj->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(obj) && !is_feminismstone(obj) && inv_cnt() >= (InventorySizeXtra ? 26 : 52) && !merge_choice(invent, obj)) {
+    } else if (obj->otyp != LOADSTONE && obj->otyp != HEALTHSTONE && obj->otyp != LUCKSTONE && obj->otyp != MANASTONE && obj->otyp != SLEEPSTONE && obj->otyp != LOADBOULDER && obj->otyp != STARLIGHTSTONE && obj->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(obj) && !is_feminismstone(obj) && inv_cnt() >= (InventorySizeXtra ? 26 : (flags.knapsacklimit || InventorySizeLimited) ? 52 : 200) && !merge_choice(invent, obj)) {
 #endif
 	Your("knapsack cannot accommodate any more items.");
 	result = -1;	/* nothing lifted */
