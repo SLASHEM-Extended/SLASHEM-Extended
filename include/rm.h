@@ -1458,6 +1458,7 @@ struct levelflags {
 	Bitfield(has_voidroom, 1);
 	Bitfield(has_armory, 1);
 	Bitfield(has_hamletroom, 1);
+	Bitfield(has_regularkroom, 1);
 	Bitfield(has_kopstation, 1);
 	Bitfield(has_bossroom, 1);
 	Bitfield(has_rngcenter, 1);

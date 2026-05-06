@@ -903,7 +903,31 @@ dosounds()
 			"hear the nearby ACME building!",
 			"feel that this place is a mess.",
 		};
-		You("%s", library_msg[rn2(8)+hallu*8]);
+		You("%s", library_msg[rn2(8+hallu*8)]);
+		return;
+	    }
+
+	    if (level.flags.has_regularkroom && !rn2(200)) {
+		static const char *kroom_msg[] = {
+			"hear a lot of monster sounds.",
+			"feel the presence of a lot of monsters on this floor.",
+			"feel that there is a killer room nearby.",
+			"hear the monsters growling.",
+			"feel that there's a room with lots of monsters somewhere around here.",
+			"feel that the monsters are present in force here.",
+			"feel that there's always more monsters than you'd expect.",
+			"feel that the badguys' lair is near.",
+
+			"realize that the monsters somehow have a radar, and always seem to know exactly where you are!",
+			"wonder how the hell the monsters could find you?!",
+			"keep killing monsters but more of them keep coming, are they ever going to end?",
+			"lured a monster to the other end of the map, killed it and a short while later, a steady stream of them is now heading straight for you!",
+			"are shocked to learn that attacking a single monster will wake up the entire group, and they'll all come for your position directly!",
+			"wonder how for all in the world those monsters keep finding you again?!",
+			"get bored of having to clear out the same killer rooms every playthrough, and wish they had some randomness!",
+			"feel like just flipping the bird to the annoying killer room on this level and leaving via the nearest staircase.",
+		};
+		You("%s", kroom_msg[rn2(8+hallu*8)]);
 		return;
 	    }
 

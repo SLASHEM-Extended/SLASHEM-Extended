@@ -30815,6 +30815,22 @@ static NEARDATA const char * const fake_plines[] = {
 	"Rougrue - butubutubili, smokubiliaskyll-aao.",
 	"Oh no! The sparkling water squirts over your body!",
 	"Oh no! The sparkling water squirts over your body! That happens when you dip something into a lethe water pool, so you'd better not do that.",
+	"You hear a lot of monster sounds.",
+	"You feel the presence of a lot of monsters on this floor.",
+	"You feel that there is a killer room nearby.",
+	"You hear the monsters growling.",
+	"You feel that there's a room with lots of monsters somewhere around here.",
+	"You feel that the monsters are present in force here.",
+	"You feel that there's always more monsters than you'd expect.",
+	"You feel that the badguys' lair is near.",
+	"You realize that the monsters somehow have a radar, and always seem to know exactly where you are!",
+	"You wonder how the hell the monsters could find you?!",
+	"You keep killing monsters but more of them keep coming, are they ever going to end?",
+	"You lured a monster to the other end of the map, killed it and a short while later, a steady stream of them is now heading straight for you!",
+	"You are shocked to learn that attacking a single monster will wake up the entire group, and they'll all come for your position directly!",
+	"You wonder how for all in the world those monsters keep finding you again?!",
+	"You get bored of having to clear out the same killer rooms every playthrough, and wish they had some randomness!",
+	"You feel like just flipping the bird to the annoying killer room on this level and leaving via the nearest staircase.",
 
 };
 

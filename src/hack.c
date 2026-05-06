@@ -3947,6 +3947,10 @@ register boolean newlev;
                 pline(FunnyHallu ? "Your body warps strangely and you cease to exist... Do you want your possessions identified? [ynq] (n) _" : "You entered the Void!");
 		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
                 break;
+	      case REGULARKROOM:
+                pline(FunnyHallu ? "You fall asleep from the thought of having to clear out another one of those boring killer rooms!" : "You enter a monster lair!");
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
+                break;
 	      case HAMLETROOM:
                 pline(FunnyHallu ? "This room looks not dangerous at all." : "You've stumbled over a tiny hamlet!");
 			if (Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER)) {

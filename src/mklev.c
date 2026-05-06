@@ -152,7 +152,7 @@ STATIC_OVL int
 findrandtype()
 {
 retryrandtype:
-	switch (rnd(93)) {
+	switch (rnd(94)) {
 		case 1: return COURT;
 		case 2: return SWAMP;
 		case 3: return BEEHIVE;
@@ -249,6 +249,7 @@ retryrandtype:
 		case 91: return FUNGALMARSHROOM;
 		case 92: return POKEMONROOM;
 		case 93: return ENCLAVEROOM;
+		case 94: return REGULARKROOM;
 	}
 
 	return EMPTYNEST;
@@ -2206,6 +2207,7 @@ clear_level_structures()
 	level.flags.has_voidroom = 0;
 	level.flags.has_armory = 0;
 	level.flags.has_hamletroom = 0;
+	level.flags.has_regularkroom = 0;
 	level.flags.has_kopstation = 0;
 	level.flags.has_bossroom = 0;
 	level.flags.has_rngcenter = 0;
@@ -11436,7 +11438,8 @@ gehennomxtra:
 	if (rn2(4)) {
 
 	    if(depth(&u.uz) > (issoviet ? 4 : 3) && (ishaxor ? !rn2(6) : !rn2(12))) mkroom(COURT);
-		else if (depth(&u.uz) > (issoviet ? 5 : 4) && (ishaxor ? !rn2(5) : !rn2(9))) mkroom(LEPREHALL);
+		else if (depth(&u.uz) > (issoviet ? 5 : 4) && (ishaxor ? !rn2(10) : !rn2(18))) mkroom(LEPREHALL);
+		else if (depth(&u.uz) > (issoviet ? 8 : 1) && (ishaxor ? !rn2(10) : !rn2(18))) mkroom(REGULARKROOM);
 	    else if(depth(&u.uz) > (issoviet ? 14 : 10) && (ishaxor ? !rn2(15) : !rn2(30))) mkroom(GIANTCOURT);
 	    else if(depth(&u.uz) > (issoviet ? 14 : 7) && (ishaxor ? !rn2(20) : !rn2(40))) mkroom(WIZARDSDORM);
 	    else if(depth(&u.uz) > (issoviet ? 16 : 10) && (ishaxor ? !rn2(13) : !rn2(26))) mkroom(BARRACKS);

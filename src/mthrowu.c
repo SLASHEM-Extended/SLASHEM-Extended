@@ -1088,6 +1088,7 @@ int x,y;
 		else verbalize("Here is a grenade four you!"); /* sic */
 
 		if (!ohit) {
+			obj->mstartinvent = obj->mstartinventB = obj->mstartinventC = obj->mstartinventD = obj->mstartinventE = obj->mstartinventX = 0;
 			create = 1; /* Don't destroy */
 			arm_bomb(obj, FALSE);
 		} else {

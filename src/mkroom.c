@@ -174,6 +174,7 @@ int	roomtype;
 	case COOLINGCHAMBER: mkzoo(COOLINGCHAMBER); break;
 	case VOIDROOM: mkzoo(VOIDROOM); break;
 	case HAMLETROOM: mkzoo(HAMLETROOM); break;
+	case REGULARKROOM: mkzoo(REGULARKROOM); break;
 	case KOPSTATION: mkzoo(KOPSTATION); break;
 	case BOSSROOM: mkbossroom(); break;
 	case RNGCENTER: mkzoo(RNGCENTER); break;
@@ -223,7 +224,7 @@ int	roomtype;
 	case RANDOMROOM: {
 
 retryrandtype:
-		switch (rnd(93)) {
+		switch (rnd(94)) {
 
 			case 1: mkzoo(COURT); break;
 			case 2: mkswamp(); break;
@@ -322,6 +323,7 @@ retryrandtype:
 			case 91: mkzoo(FUNGALMARSHROOM); break;
 			case 92: mkzoo(POKEMONROOM); break;
 			case 93: mkzoo(ENCLAVEROOM); break;
+			case 94: mkzoo(REGULARKROOM); break;
 
 		}
 		break;
@@ -887,6 +889,7 @@ struct mkroom *sroom;
 			(type == KOPSTATION) ? mkclass(S_KOP,0) :
 			(type == RNGCENTER) ? (!rn2(2) ? specialtensmon(312) : specialtensmon(331) ) /* AD_RNG, M5_RANDOMIZED */ :
 			(type == HAMLETROOM) ? mkclass(S_GIANT,0) :
+			(type == REGULARKROOM) ? specialtensmon(329) : /* M5_VANILLA */
 			(type == GOLEMHALL) ? mkclass(S_GOLEM,0) :
 			(type == CRYPTROOM) ? specialtensmon(95) /* M2_UNDEAD */ :
 			(type == NUCLEARCHAMBER) ? specialtensmon(337) /* AD_CONT */ :
@@ -1868,6 +1871,9 @@ cgrfinished:
 		break;
 	    case VOIDROOM:
 		level.flags.has_voidroom = 1;
+		break;
+	    case REGULARKROOM:
+		level.flags.has_regularkroom = 1;
 		break;
 	    case HAMLETROOM:
 		  if (!rn2(10)) {

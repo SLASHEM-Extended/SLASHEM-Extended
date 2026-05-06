@@ -158,10 +158,11 @@ extern NEARDATA struct door doors[DOORMAX];
 #define QUESTTEMPROOMC 99
 #define QUESTTEMPROOMD 100
 #define QUESTTEMPROOME 101
+#define REGULARKROOM 102	/* vanilla monsters */
 
-#define RANDOMROOM 102	/* supposed to select one from an array of other special rooms, for use in .des files */
+#define RANDOMROOM 103	/* supposed to select one from an array of other special rooms, for use in .des files */
 
-#define SHOPBASE        103     	/* everything above this is a shop */
+#define SHOPBASE        104     	/* everything above this is a shop */
 #define ARMORSHOP       (SHOPBASE+ 1)   /* specific shop defines for level compiler */
 #define SCROLLSHOP      (SHOPBASE+ 2)
 #define POTIONSHOP      (SHOPBASE+ 3)
