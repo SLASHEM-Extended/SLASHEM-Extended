@@ -27413,7 +27413,8 @@ drown()
 	    if (Swimming) pline("Thankfully you know how to swim, so you can stay on the surface.");
 	}
 
-	if (level.flags.lethe) {
+	/* lethe water amnesia: make sure that you don't get hit with that if you're riding a swimming steed! --Amy */
+	if (level.flags.lethe && !(u.usteed && is_swimmer(u.usteed->data)) ) {
 	    /* Bad idea */
 	    You_feel("the sparkling waters of the Lethe sweep away your cares!");
 	    forget(5, FALSE); /* used to be 25 --Amy */
