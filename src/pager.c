@@ -30812,6 +30812,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"Suddenly there is a very short 'SKRIE' sound and heavy static for a split second! This means that the Slender Man has just teleported to a place near you, and if you turn around, or if you decide to stop moving, he'll catch you!",
 	"Suddenly there is a horrible 'SKRIIIIIIIIIE' sound and your screen fills with heavy static!",
 	"Suddenly there is a horrible 'SKRIIIIIIIIIE' sound and your screen fills with heavy static! RUN for your life, you have 0.2 seconds to get away or the Slender Man will kill you.",
+	"Rougrue - butubutubili, smokubiliaskyll-aao.",
 
 };
 
