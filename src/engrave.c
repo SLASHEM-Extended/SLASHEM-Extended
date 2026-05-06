@@ -6660,6 +6660,7 @@ static const char *epitaphs[] = {
 	"Here lies Kate. She had actually collected all eight pages but then mere seconds later the Slender Man caught her anyway. SKRIIIIIIIIIIIE! Kate's brain was sucked out by the Slender Man's tentacles.",
 	"If you accidentally anger a shopkeeper and are a less than stellar player, you should *definitely* not hang around on the level like a complete dorf to 'see whether the shopkeeper will kill you'. Because if you don't know what you're doing and are just stumbling through the game like an airhead, the shopkeeper WILL kill you. Use the first opportunity to get the hell OFF the level or you can roll a new character and you'll only have yourself to blame.",
 	"Noooooo, this is the end, my jedi ran out of lightsaber energy completely and the charge saber technique never restores enough, if it even works at all. Most of the time I get interrupted anyway, causing it to not work.",
+	"Whaaaaaaat, dipping items into lethe water now causes the water to squirt over my body and cause amnesia, that's sooooo dumb, #quit. Amy you suck and I hope nobody ever plays your game again, I'm going to play Nethack 5.00 now, praise the dev team and Satan. SLEX sucks!",
 
 };
 

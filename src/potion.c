@@ -19195,6 +19195,10 @@ dodip()
 			}
 
 			(void) get_wet(obj, level.flags.lethe);
+			if (level.flags.lethe) {
+			    pline("Oh no! The sparkling water squirts over your body!");
+			    forget(rnd(5), FALSE);
+			}
 			if (obj->otyp == POT_ACID) useup(obj);
 		    }
 		    return 1;

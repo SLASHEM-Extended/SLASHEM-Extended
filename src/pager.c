@@ -30813,6 +30813,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"Suddenly there is a horrible 'SKRIIIIIIIIIE' sound and your screen fills with heavy static!",
 	"Suddenly there is a horrible 'SKRIIIIIIIIIE' sound and your screen fills with heavy static! RUN for your life, you have 0.2 seconds to get away or the Slender Man will kill you.",
 	"Rougrue - butubutubili, smokubiliaskyll-aao.",
+	"Oh no! The sparkling water squirts over your body!",
+	"Oh no! The sparkling water squirts over your body! That happens when you dip something into a lethe water pool, so you'd better not do that.",
 
 };
 
