@@ -4360,6 +4360,7 @@ register boolean newlev;
 					if (levl[u.ux + i + 3][u.uy + j].typ != STAIRS && levl[u.ux + i + 3][u.uy + j].typ != LADDER && levl[u.ux + i + 3][u.uy + j].typ != ALTAR) {
 						levl[u.ux + i + 3][u.uy + j].typ = CROSSWALL;
 						levl[u.ux + i + 3][u.uy + j].wall_info |= W_NONDIGGABLE;
+						blockorunblock_point(u.ux + i + 3, u.uy + j);
 						newsym(u.ux + i + 3, u.uy + j);
 					}
 				}
@@ -4389,7 +4390,7 @@ register boolean newlev;
 
 			if ((u.jeffersonquestvar >= 7) && !u.intakewallopened && Is_jefferson_maint(&u.uz)) {
 
-				int i, j, bd = 1, be = 2;
+				int i, j, bd = 1, be = 2, bg = 20;
 
 				for(i = -be; i <= be; i++) for(j = -bd; j <= bd; j++) {
 					if (!isok(u.ux + i + 3, u.uy + j)) continue;
@@ -4397,6 +4398,7 @@ register boolean newlev;
 					if (levl[u.ux + i + 3][u.uy + j].typ != STAIRS && levl[u.ux + i + 3][u.uy + j].typ != LADDER && levl[u.ux + i + 3][u.uy + j].typ != ALTAR) {
 						levl[u.ux + i + 3][u.uy + j].typ = ROOM;
 						levl[u.ux + i + 3][u.uy + j].wall_info &= ~W_NONDIGGABLE;
+						blockorunblock_point(u.ux + i + 3, u.uy + j);
 						newsym(u.ux + i + 3, u.uy + j);
 					}
 				}
@@ -4407,6 +4409,18 @@ register boolean newlev;
 					if (levl[u.ux + i - 8][u.uy + j - 8].typ != STAIRS && levl[u.ux + i + 3][u.uy + j].typ != LADDER && levl[u.ux + i + 3][u.uy + j].typ != ALTAR) {
 						levl[u.ux + i - 8][u.uy + j - 8].typ = ROOM;
 						levl[u.ux + i - 8][u.uy + j - 8].wall_info &= ~W_NONDIGGABLE;
+						blockorunblock_point(u.ux + i - 8, u.uy + j - 8);
+						newsym(u.ux + i - 8, u.uy + j - 8);
+					}
+				}
+
+				for(i = -bg; i <= bg; i++) for(j = -bg; j <= bg; j++) {
+					if (!isok(u.ux + i - 8, u.uy + j - 8)) continue;
+
+					if (levl[u.ux + i - 8][u.uy + j - 8].typ == CROSSWALL) {
+						levl[u.ux + i - 8][u.uy + j - 8].typ = ROOM;
+						levl[u.ux + i - 8][u.uy + j - 8].wall_info &= ~W_NONDIGGABLE;
+						blockorunblock_point(u.ux + i - 8, u.uy + j - 8);
 						newsym(u.ux + i - 8, u.uy + j - 8);
 					}
 				}
