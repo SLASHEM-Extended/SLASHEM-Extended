@@ -152,7 +152,7 @@ STATIC_OVL int
 findrandtype()
 {
 retryrandtype:
-	switch (rnd(94)) {
+	switch (rnd(95)) {
 		case 1: return COURT;
 		case 2: return SWAMP;
 		case 3: return BEEHIVE;
@@ -250,6 +250,7 @@ retryrandtype:
 		case 92: return POKEMONROOM;
 		case 93: return ENCLAVEROOM;
 		case 94: return REGULARKROOM;
+		case 95: return XTENSHALL;
 	}
 
 	return EMPTYNEST;
@@ -545,6 +546,7 @@ do_room_or_subroom(croom, lowx, lowy, hix, hiy, lit, rtype, special, is_room, ca
 	if (/*!special && */rtype == DOUGROOM) croom->colouur = CLR_BRIGHT_CYAN;
 	if (/*!special && */rtype == ARMORY) croom->colouur = CLR_CYAN;
 	if (/*!special && */rtype == TENSHALL) croom->colouur = 20;
+	if (/*!special && */rtype == XTENSHALL) croom->colouur = 20;
 	if (/*!special && */rtype == INSIDEROOM) croom->colouur = 20;
 	if (/*!special && */rtype == POOLROOM) croom->colouur = CLR_BRIGHT_BLUE;
 	if (/*!special && */rtype == EMPTYNEST) croom->colouur = (!rn2(20) ? 20 : rnd(15) );
@@ -11453,7 +11455,7 @@ gehennomxtra:
 	else if (u_depth > (issoviet ? 5 : 1) && (ishaxor ? !rn2(29) : !rn2(58))) mkroom(TRAPROOM);
 	else if (u_depth > (issoviet ? 24 : 5) && (ishaxor ? !rn2(29) : !rn2(58))) mkroom(ILLUSIONROOM);
 	else if (u_depth > (issoviet ? 12 : 5) && (ishaxor ? !rn2(100) : !rn2(200))) mkroom(ARDUOUSMOUNTAIN);
-	else if (u_depth > (issoviet ? 8 : 1) && (ishaxor ? !rn2(13) : !rn2(25))) mkroom(TENSHALL);
+	else if (u_depth > (issoviet ? 8 : 1) && (ishaxor ? !rn2(13) : !rn2(25))) mkroom(rn2(2) ? XTENSHALL : TENSHALL);
 	else if (u_depth > (issoviet ? 25 : 1) && (Role_if(PM_CAMPERSTRIKER) ? !rn2(10) : (ishaxor && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (ishaxor || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(INSIDEROOM);
 	else if (u_depth > (issoviet ? 15 : 1) && (Role_if(PM_CAMPERSTRIKER) ? !rn2(10) : Role_if(PM_GANG_SCHOLAR) ? !rn2(10) : (ishaxor && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (ishaxor || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(RIVERROOM);
 
@@ -11478,7 +11480,7 @@ gehennomxtra:
 	else if (u_depth > (issoviet ? 16 : 7) && (ishaxor ? !rn2(10) : !rn2(20))) mkroom(ARMORY);
 	else if (u_depth > (issoviet ? 15 : 1) && (ishaxor ? !rn2(17) : !rn2(34))) mkroom(POOLROOM);
 	else if (u_depth > (issoviet ? 25 : 3) && (ishaxor ? !rn2(34) : !rn2(68))) mkroom(MIXEDPOOL);
-	else if (u_depth > (issoviet ? 8 : 1) && (ishaxor ? !rn2(13) : !rn2(25))) mkroom(TENSHALL);
+	else if (u_depth > (issoviet ? 8 : 1) && (ishaxor ? !rn2(13) : !rn2(25))) mkroom(rn2(2) ? XTENSHALL : TENSHALL);
 	else if (u_depth > (issoviet ? 25 : 1) && (Role_if(PM_CAMPERSTRIKER) ? !rn2(10) : (ishaxor && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (ishaxor || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(INSIDEROOM);
 	else if (u_depth > (issoviet ? 15 : 1) && (Role_if(PM_CAMPERSTRIKER) ? !rn2(10) : Role_if(PM_GANG_SCHOLAR) ? !rn2(10) : (ishaxor && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (ishaxor || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(RIVERROOM);
 
@@ -11506,7 +11508,7 @@ gehennomxtra:
 	else if (u_depth > (issoviet ? 7 : 3) && (ishaxor ? !rn2(17) : !rn2(33))) mkroom(EXHIBITROOM);
 	else if (u_depth > (issoviet ? 5 : 1) && (ishaxor ? !rn2(50) : !rn2(100))) mkroom(BOSSROOM);
 	else if (u_depth > (issoviet ? 5 : 1) && (ishaxor ? !rn2(13) : !rn2(25))) mkroom(STATUEROOM);
-	else if (u_depth > (issoviet ? 8 : 1) && (ishaxor ? !rn2(13) : !rn2(25))) mkroom(TENSHALL);
+	else if (u_depth > (issoviet ? 8 : 1) && (ishaxor ? !rn2(13) : !rn2(25))) mkroom(rn2(2) ? XTENSHALL : TENSHALL);
 	else if (u_depth > (issoviet ? 25 : 1) && (Role_if(PM_CAMPERSTRIKER) ? !rn2(10) : (ishaxor && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (ishaxor || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(INSIDEROOM);
 	else if (u_depth > (issoviet ? 15 : 1) && (Role_if(PM_CAMPERSTRIKER) ? !rn2(10) : Role_if(PM_GANG_SCHOLAR) ? !rn2(10) : (ishaxor && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (ishaxor || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(RIVERROOM);
 
@@ -11543,7 +11545,7 @@ gehennomxtra:
         else if (depth(&u.uz) > (issoviet ? 14 : 5) && (ishaxor ? !rn2(33) : !rn2(66))) mkroom(RNGCENTER);
  	else if(depth(&u.uz) > (issoviet ? 15 : 1) && (ishaxor ? !rn2(16) : !rn2(32))) mkroom(ENCLAVEROOM);
  	else if(depth(&u.uz) > (issoviet ? 20 : 10) && (ishaxor ? !rn2(16) : !rn2(32))) mkroom(DOUGROOM);
-	else if (u_depth > (issoviet ? 8 : 1) && (ishaxor ? !rn2(13) : !rn2(25))) mkroom(TENSHALL);
+	else if (u_depth > (issoviet ? 8 : 1) && (ishaxor ? !rn2(13) : !rn2(25))) mkroom(rn2(2) ? XTENSHALL : TENSHALL);
 	else if (u_depth > (issoviet ? 25 : 1) && (Role_if(PM_CAMPERSTRIKER) ? !rn2(10) : (ishaxor && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (ishaxor || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(INSIDEROOM);
 	else if (u_depth > (issoviet ? 15 : 1) && (Role_if(PM_CAMPERSTRIKER) ? !rn2(10) : Role_if(PM_GANG_SCHOLAR) ? !rn2(10) : (ishaxor && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (ishaxor || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(RIVERROOM);
 
@@ -11572,7 +11574,7 @@ gehennomxtra:
 	else if (u_depth > (issoviet ? 20 : 4) && (ishaxor ? !rn2(36) : !rn2(64))) mkroom(FEMINISMROOM);
 	else if (u_depth > (issoviet ? 24 : 8) && (ishaxor ? !rn2(50) : !rn2(100))) mkroom(CHANGINGROOM);
 	    else if (u_depth > (issoviet ? 5 : 1) && (ishaxor ? !rn2(100) : !rn2(200))) mkroom(NASTYCENTRAL);
-	else if (u_depth > (issoviet ? 8 : 1) && (ishaxor ? !rn2(13) : !rn2(25))) mkroom(TENSHALL);
+	else if (u_depth > (issoviet ? 8 : 1) && (ishaxor ? !rn2(13) : !rn2(25))) mkroom(rn2(2) ? XTENSHALL : TENSHALL);
 	else if (u_depth > (issoviet ? 25 : 1) && (Role_if(PM_CAMPERSTRIKER) ? !rn2(10) : (ishaxor && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (ishaxor || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(INSIDEROOM);
 	else if (u_depth > (issoviet ? 15 : 1) && (Role_if(PM_CAMPERSTRIKER) ? !rn2(10) : Role_if(PM_GANG_SCHOLAR) ? !rn2(10) : (ishaxor && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (ishaxor || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(RIVERROOM);
 

@@ -1054,6 +1054,14 @@ unsigned *ospecial;
 				color = rnd(15);
 			}
 			else color = cmap_color(offset);
+		} else if(*in_rooms(x,y,XTENSHALL)) {
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
+				color = rnd(15);
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = rnd(15);
+			}
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,EVILROOM)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = rn2(2) ? CLR_MAGENTA : CLR_BRIGHT_MAGENTA;

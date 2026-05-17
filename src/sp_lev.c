@@ -4104,7 +4104,7 @@ boolean prefilled;
 	if (croom && croom->rtype == OROOM && !rn2( ((isironman || RngeIronmanMode || carryingarti(ART_BADASS_MAN_OF_STEEL) || In_netherrealm(&u.uz)) && (depth(&u.uz) > 1 && !(u.preversionmode && In_greencross(&u.uz) && (dunlev(&u.uz) == 1)) && !(iszapem && In_spacebase(&u.uz) && (dunlev(&u.uz) == 1))) ) ? 1 : ((isironman || RngeIronmanMode || carryingarti(ART_BADASS_MAN_OF_STEEL) || In_netherrealm(&u.uz)) && depth(&u.uz) < 2) ? 10 : Role_if(PM_CAMPERSTRIKER) ? 50 : 5000) ) {
 
 retryrandtype:
-		switch (rnd(114)) {
+		switch (rnd(115)) {
 
 			case 1: croom->rtype = COURT; break;
 			case 2: croom->rtype = SWAMP; break;
@@ -4224,6 +4224,7 @@ retryrandtype:
 			case 112: croom->rtype = POKEMONROOM; break;
 			case 113: croom->rtype = ENCLAVEROOM; break;
 			case 114: croom->rtype = REGULARKROOM; break;
+			case 115: croom->rtype = XTENSHALL; break;
 
 		}
 
@@ -4365,7 +4366,7 @@ retryrandtype:
 
 	if (croom->rtype == RANDOMROOM) {
 
-		switch (rnd(94)) {
+		switch (rnd(95)) {
 
 			case 1: croom->rtype = COURT; break;
 			case 2: croom->rtype = SWAMP; break;
@@ -4461,6 +4462,7 @@ retryrandtype:
 			case 92: croom->rtype = POKEMONROOM; break;
 			case 93: croom->rtype = ENCLAVEROOM; break;
 			case 94: croom->rtype = REGULARKROOM; break;
+			case 95: croom->rtype = XTENSHALL; break;
 
 		}
 
@@ -4551,6 +4553,7 @@ retryrandtype:
 		case COINHALL:
 		case ARMORY:
 		case TENSHALL:
+		case XTENSHALL:
 		/*case TRAPROOM:*/
 		/*case POOLROOM:*/
 		case GRUEROOM:
@@ -5147,6 +5150,7 @@ retryrandtype:
 		level.flags.has_terrorhall = TRUE;
 		break;
 	    case TENSHALL:
+	    case XTENSHALL:
 		level.flags.has_tenshall = TRUE;
 		break;
 	    case BARRACKS:

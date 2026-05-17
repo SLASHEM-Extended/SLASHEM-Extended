@@ -1101,6 +1101,8 @@ static struct {
 	{ "playercentral", PLAYERCENTRAL },
 	{ "fullroom", FULLROOM },
 	{ "randomroom",  RANDOMROOM },
+	{ "xtenshall",  XTENSHALL },
+
 	{ "shop",	 SHOPBASE },
 	{ "armor shop",	 ARMORSHOP },
 	{ "scroll shop", SCROLLSHOP },

@@ -3850,6 +3850,7 @@ register boolean newlev;
 		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
                 break;
 	      case TENSHALL:
+	      case XTENSHALL:
                 You(FunnyHallu ? "have died. Do you want your possessions identified? [ynq] (n) _" : "enter a killer room! This is actually an ADOM tension room.");
 		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
                 break;

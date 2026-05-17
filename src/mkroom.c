@@ -144,6 +144,7 @@ int	roomtype;
 	case CLINIC: mkzoo(CLINIC); break;
 	case TERRORHALL: mkzoo(TERRORHALL); break;
 	case TENSHALL: mkzoo(TENSHALL); break;
+	case XTENSHALL: mkzoo(XTENSHALL); break;
 	case ELEMHALL: mkzoo(ELEMHALL); break;
 	case ANGELHALL: mkzoo(ANGELHALL); break;
 	case MIMICHALL: mkzoo(MIMICHALL); break;
@@ -224,7 +225,7 @@ int	roomtype;
 	case RANDOMROOM: {
 
 retryrandtype:
-		switch (rnd(94)) {
+		switch (rnd(95)) {
 
 			case 1: mkzoo(COURT); break;
 			case 2: mkswamp(); break;
@@ -324,6 +325,7 @@ retryrandtype:
 			case 92: mkzoo(POKEMONROOM); break;
 			case 93: mkzoo(ENCLAVEROOM); break;
 			case 94: mkzoo(REGULARKROOM); break;
+			case 95: mkzoo(XTENSHALL); break;
 
 		}
 		break;
@@ -719,6 +721,12 @@ struct mkroom *sroom;
 				if (!rn2(4)) u.specialtensionmonsterB = rnd(434);
 			}
 			break;
+		case XTENSHALL:
+			u.tensionmonster = (rn2(187) + 1);
+			u.tensionmonsteX = (rn2(100) + 1);
+			u.specialtensionmonster = rnd(434); /* monstercolor function! */
+			if (!rn2(4)) u.specialtensionmonsterB = rnd(434);
+			break;
 	    case DRAGONLAIR:
 		goldlim = 1500 * level_difficulty();
 		break;
@@ -866,6 +874,7 @@ struct mkroom *sroom;
 			(type == ILLUSIONROOM) ? illusionmon() :
 			(type == GAMECORNER) ? specialtensmon(u.specialtensionmonster) :
 			(type == TENSHALL) ? (u.specialtensionmonsterB ? (rn2(2) ? specialtensmon(u.specialtensionmonsterB) : specialtensmon(u.specialtensionmonster) ) : u.specialtensionmonster ? specialtensmon(u.specialtensionmonster) : u.tensionmonsterspecB ? (rn2(2) ? u.tensionmonsterspecB : u.tensionmonsterspec ) : u.tensionmonsterspec ? u.tensionmonsterspec : u.colormonsterB ? (rn2(2) ? colormon(u.colormonsterB) : colormon(u.colormonster) ) : u.colormonster ? colormon(u.colormonster) : u.tensionmonsterB ? (rn2(2) ? tenshallmon() : tenshallmonB() ) : tenshallmon()) :
+			(type == XTENSHALL) ? (u.specialtensionmonsterB ? (rn2(2) ? specialtensmon(u.specialtensionmonsterB) : specialtensmon(u.specialtensionmonster)) : specialtensmon(u.specialtensionmonster) ) :
 			(type == ELEMHALL) ? mkclass(S_ELEMENTAL,0) :
 			(type == ANGELHALL) ? mkclass(S_ANGEL,0) :
 			(type == FEMINISMROOM) ? (!rn2(50) ? specialtensmon(369) /* AD_FEMI */ : !rn2(20) ? specialtensmon(333) /* MS_STENCH */ : !rn2(3) ? specialtensmon(38) : !rn2(2) ? specialtensmon(39) : specialtensmon(40) ) /* MS_FART_foo */ :
@@ -1683,6 +1692,7 @@ cgrfinished:
               level.flags.has_riverroom = 1;
               break;
             case TENSHALL:
+            case XTENSHALL:
 		  if (!rn2(50)) {
 			  if (somexy(sroom, &mm))
 				  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE, FALSE);
