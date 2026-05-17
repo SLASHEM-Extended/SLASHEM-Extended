@@ -9750,6 +9750,11 @@ SCROLL((char *)0,               "THE BIGGEST WORST MOST DESPAIR INDUCING INCIDEN
 SCROLL((char *)0,               "MAKOTO NAEGI THE SUPER HIGH SCHOOL LEVEL DIMWIT",  P_NONE,     1,   0, 100, CLR_CYAN, 1),
 SCROLL((char *)0,               "THERE IS A SKRIIIIIIIIIE SOUND WHEN THE SLENDER MAN CATCHES KATE",  P_NONE,     1,   0, 100, CLR_BRIGHT_BLUE, 1),
 SCROLL((char *)0,               "THE HOUSE IN SLENDER THE EIGHT PAGES IS A TOTAL DEATHTRAP",  P_NONE,     1,   0, 100, CLR_WHITE, 1),
+SCROLL((char *)0,               "THERE WILL NEVER BE PARANOID PHASING",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
+SCROLL((char *)0,               "IT TAKES 10 TURNS OF WALLWALKING BEFORE ANY FLUIDATORS CAN SPAWN",  P_NONE,     1,   0, 100, CLR_BRIGHT_CYAN, 1),
+SCROLL((char *)0,               "TRUMP TURNS THE MAGATAMA INTO THE M A G A TAMA",  P_NONE,     1,   0, 100, CLR_BROWN, 1),
+SCROLL((char *)0,               "MA GA MA GA MA GA MA GA MA GA",  P_NONE,     1,   0, 100, CLR_ORANGE, 1),
+SCROLL((char *)0,               "THE LORD OF CATS IS STRONGER THE MORE CATS YOU KILL",  P_NONE,     1,   0, 100, CLR_YELLOW, 1),
 
 /* dummy for easier copypasting */
 /* SCROLL((char *)0,               "",  P_NONE,     1,   0, 100, CLR_, 1), */

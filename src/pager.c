@@ -5230,6 +5230,15 @@ static const char * const noroelacommodity[] = {
 "a report of the murders committed by Genocider Syo",
 "a remote-controlled Slender Man who kills harmless girls in the forest",
 "hang gliding lessons",
+"a magatama that doubles as a magical lie detector",
+"a version of Waiting for Godot where Godot actually appears",
+"a bionic eye",
+"kidney stones",
+"a Schatzki ring",
+"a very dear humeral head fracture",
+"a paranoid phasing option",
+"the newest PorkEM variant of SLEX",
+"a cartridge with Super Releasio 64",
 };
 
 /* demagogue lines: some of these are obviously inspired by Donald Trump and other RL political figures; this does not mean Amy agrees with their position,

@@ -12300,7 +12300,9 @@ bucchoice:
 				}
 
 				otmp->bknown = TRUE;
+				pline("You examine %s.", doname(otmp));
 				if (otmp->blessed || otmp->cursed) pline("Your %s flashes %s.", doname(otmp), hcolor(otmp->blessed ? NH_AMBER : NH_BLACK));
+				else pline("But there are no colored flashes.");
 			}
 
 			t_timeout = rnz(4000);
