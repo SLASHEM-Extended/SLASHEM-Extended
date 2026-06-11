@@ -5239,6 +5239,8 @@ static const char * const noroelacommodity[] = {
 "a paranoid phasing option",
 "the newest PorkEM variant of SLEX",
 "a cartridge with Super Releasio 64",
+"cranberry juice",
+"a treatment for urinary tract diseases",
 };
 
 /* demagogue lines: some of these are obviously inspired by Donald Trump and other RL political figures; this does not mean Amy agrees with their position,
@@ -30840,6 +30842,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"You wonder how for all in the world those monsters keep finding you again?!",
 	"You get bored of having to clear out the same killer rooms every playthrough, and wish they had some randomness!",
 	"You feel like just flipping the bird to the annoying killer room on this level and leaving via the nearest staircase.",
+	"tax character spammage",
 
 };
 

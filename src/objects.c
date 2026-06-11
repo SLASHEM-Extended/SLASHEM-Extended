@@ -9755,6 +9755,11 @@ SCROLL((char *)0,               "IT TAKES 10 TURNS OF WALLWALKING BEFORE ANY FLU
 SCROLL((char *)0,               "TRUMP TURNS THE MAGATAMA INTO THE M A G A TAMA",  P_NONE,     1,   0, 100, CLR_BROWN, 1),
 SCROLL((char *)0,               "MA GA MA GA MA GA MA GA MA GA",  P_NONE,     1,   0, 100, CLR_ORANGE, 1),
 SCROLL((char *)0,               "THE LORD OF CATS IS STRONGER THE MORE CATS YOU KILL",  P_NONE,     1,   0, 100, CLR_YELLOW, 1),
+SCROLL((char *)0,               "CANNOT SEE THE FOREST FROM LOUD BAA",  P_NONE,     1,   0, 100, CLR_GREEN, 1),
+SCROLL((char *)0,               "ORANI IS A MIRACLE",  P_NONE,     1,   0, 100, CLR_ORANGE, 1),
+SCROLL((char *)0,               "IT SHOULD STOP TO ZWOCKEN",  P_NONE,     1,   0, 100, CLR_RED, 1),
+SCROLL((char *)0,               "N E A F",  P_NONE,     1,   0, 100, CLR_BROWN, 1),
+SCROLL((char *)0,               "EY DIE KAKVERSION IS SO NIEAUMTYPIE",  P_NONE,     1,   0, 100, CLR_BLUE, 1),
 
 /* dummy for easier copypasting */
 /* SCROLL((char *)0,               "",  P_NONE,     1,   0, 100, CLR_, 1), */
