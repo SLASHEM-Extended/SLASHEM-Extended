@@ -1095,7 +1095,8 @@ register int type;
 /* routine by Amy that checks once per player keypress whether you have certain items or artifacts in your open inventory
  * this is to reduce lag issues when checking e.g. interface screwing nastytrap stones, so that the player's inventory isn't checked
  * *once per square* or something every turn, but instead just once per turn; in particular, stuff that affects monster movement would be
- * checking your entire inventory for every single monster on the level every turn, causing ungodly amounts of lag! */
+ * checking your entire inventory for every single monster on the level every turn, causing ungodly amounts of lag!
+ * keywords: marlena, timerun */
 void
 check_carried_stuff()
 {
@@ -1130,6 +1131,544 @@ check_carried_stuff()
 	u.arti_carry_fieldclickradio = FALSE;
 	u.arti_carry_jonaextramode = FALSE;
 	u.arti_carry_quantumbrain = FALSE;
+	u.arti_carry_dissolvotek = FALSE;
+	u.arti_carry_arcticerwinter = FALSE;
+	u.arti_carry_roysmanliness = FALSE;
+	u.arti_carry_marlenasforest = FALSE;
+	u.arti_carry_mourndressing = FALSE;
+	u.arti_carry_nogleamshine = FALSE;
+	u.arti_carry_darkcellarhousing = FALSE;
+	u.arti_carry_colorofsexuality = FALSE;
+	u.arti_carry_inasbrightness = FALSE;
+	u.arti_carry_katrinsthrill = FALSE;
+	u.arti_carry_buttoutput = FALSE;
+	u.arti_carry_beholdenname = FALSE;
+	u.arti_carry_irisflaxsharp = FALSE;
+	u.arti_carry_muxxerhead = FALSE;
+	u.arti_carry_fortunefeet = FALSE;
+	u.arti_carry_madeofstone = FALSE;
+
+	u.arti_carry_howdeepcan = FALSE;
+	u.arti_carry_feelsgoodenough = FALSE;
+	u.arti_carry_marioand = FALSE;
+	u.arti_carry_quewuewue = FALSE;
+	u.arti_carry_nonasianwoman = FALSE;
+	u.arti_carry_onioncake = FALSE;
+	u.arti_carry_airtightwar = FALSE;
+	u.arti_carry_onthewaterfront = FALSE;
+	u.arti_carry_disgustinghighly = FALSE;
+	u.arti_carry_greetlets = FALSE;
+	u.arti_carry_lamademoiselle = FALSE;
+	u.arti_carry_moddedthedungeon = FALSE;
+	u.arti_carry_littleflask = FALSE;
+	u.arti_carry_islama = FALSE;
+	u.arti_carry_fuckingbirds = FALSE;
+	u.arti_carry_littlegirlamber = FALSE;
+	u.arti_carry_bonuscleaning = FALSE;
+	u.arti_carry_russiankarate = FALSE;
+	u.arti_carry_sillyfree = FALSE;
+	u.arti_carry_odorantsocks = FALSE;
+	u.arti_carry_wonteverfind = FALSE;
+	u.arti_carry_shouldsmashyou = FALSE;
+	u.arti_carry_darknessstorm = FALSE;
+	u.arti_carry_gluttonyis = FALSE;
+	u.arti_carry_liveontheland = FALSE;
+	u.arti_carry_whatifthecushion = FALSE;
+	u.arti_carry_cleanputter = FALSE;
+	u.arti_carry_prettybut = FALSE;
+	u.arti_carry_skiersbridge = FALSE;
+	u.arti_carry_absorbhole = FALSE;
+	u.arti_carry_searchanek = FALSE;
+	u.arti_carry_pamelarosan = FALSE;
+	u.arti_carry_onaneberet = FALSE;
+	u.arti_carry_incrediblysexy = FALSE;
+	u.arti_carry_prrooo = FALSE;
+	u.arti_carry_greencolorfem = FALSE;
+	u.arti_carry_wherehasshegone = FALSE;
+	u.arti_carry_spacesare = FALSE;
+	u.arti_carry_howcouldshefall = FALSE;
+	u.arti_carry_klackklack = FALSE;
+	u.arti_carry_facedisappears = FALSE;
+	u.arti_carry_protectherblue = FALSE;
+	u.arti_carry_inhalepersian = FALSE;
+	u.arti_carry_iceblocksister = FALSE;
+	u.arti_carry_swoonelnadine = FALSE;
+	u.arti_carry_sassysmall = FALSE;
+	u.arti_carry_cutefacial = FALSE;
+	u.arti_carry_nuaerdudoed = FALSE;
+	u.arti_carry_sendinthehorde = FALSE;
+	u.arti_carry_youwontstop = FALSE;
+	u.arti_carry_fleecywithe = FALSE;
+	u.arti_carry_pretendthatsome = FALSE;
+	u.arti_carry_endanwissing = FALSE;
+	u.arti_carry_eventheblock = FALSE;
+	u.arti_carry_namesaysit = FALSE;
+	u.arti_carry_horriblescratch = FALSE;
+	u.arti_carry_stayawayfrom = FALSE;
+	u.arti_carry_delallesbkk = FALSE;
+	u.arti_carry_bedrock = FALSE;
+	u.arti_carry_extrahighdiff = FALSE;
+	u.arti_carry_quaffspark = FALSE;
+	u.arti_carry_donotwork = FALSE;
+	u.arti_carry_loudclap = FALSE;
+	u.arti_carry_navigatemess = FALSE;
+	u.arti_carry_severeuninf = FALSE;
+	u.arti_carry_gremlinsrev = FALSE;
+	u.arti_carry_keepstumb = FALSE;
+	u.arti_carry_pureaids = FALSE;
+	u.arti_carry_whoneedsitems = FALSE;
+	u.arti_carry_infernalarea = FALSE;
+	u.arti_carry_livefast = FALSE;
+	u.arti_carry_thatsderp = FALSE;
+	u.arti_carry_wallifyup = FALSE;
+	u.arti_carry_tryitout = FALSE;
+	u.arti_carry_sofunny = FALSE;
+	u.arti_carry_goodluckneed = FALSE;
+	u.arti_carry_unplayablegame = FALSE;
+	u.arti_carry_notsosecret = FALSE;
+	u.arti_carry_robbieswear = FALSE;
+	u.arti_carry_tinyvisi = FALSE;
+	u.arti_carry_biggershroud = FALSE;
+	u.arti_carry_seeevenless = FALSE;
+	u.arti_carry_hohoiate = FALSE;
+	u.arti_carry_arrghhecomes = FALSE;
+	u.arti_carry_waitinggodot = FALSE;
+	u.arti_carry_betterputit = FALSE;
+	u.arti_carry_itexplodes = FALSE;
+	u.arti_carry_needfairness = FALSE;
+	u.arti_carry_lastforeva = FALSE;
+	u.arti_carry_nuclearwar = FALSE;
+	u.arti_carry_screenglitch = FALSE;
+	u.arti_carry_quasiperma = FALSE;
+	u.arti_carry_trashit = FALSE;
+	u.arti_carry_flucker = FALSE;
+	u.arti_carry_grrmdaddy = FALSE;
+	u.arti_carry_womanler = FALSE;
+	u.arti_carry_doorningday = FALSE;
+	u.arti_carry_blabberblabber = FALSE;
+	u.arti_carry_leikiquest = FALSE;
+	u.arti_carry_loseallspells = FALSE;
+	u.arti_carry_manlush = FALSE;
+	u.arti_carry_toutdaau = FALSE;
+	u.arti_carry_wastewither = FALSE;
+	u.arti_carry_morkmore = FALSE;
+	u.arti_carry_fffffqp = FALSE;
+	u.arti_carry_gasweapon = FALSE;
+	u.arti_carry_beyondhelp = FALSE;
+	u.arti_carry_clapaway = FALSE;
+	u.arti_carry_iseeyou = FALSE;
+	u.arti_carry_fredopt = FALSE;
+	u.arti_carry_fullyid = FALSE;
+	u.arti_carry_deepdesc = FALSE;
+	u.arti_carry_halfcuthaha = FALSE;
+	u.arti_carry_fuckwithu = FALSE;
+	u.arti_carry_umengflyer = FALSE;
+	u.arti_carry_dndnoone = FALSE;
+	u.arti_carry_albieswhite = FALSE;
+	u.arti_carry_everythingshot = FALSE;
+	u.arti_carry_satanspecial = FALSE;
+	u.arti_carry_anainsurance = FALSE;
+	u.arti_carry_breakpilot = FALSE;
+
+	u.item_carry_femjewel1 = FALSE;
+	u.item_carry_femjewel2 = FALSE;
+	u.item_carry_femjewel3 = FALSE;
+	u.item_carry_femjewel4 = FALSE;
+	u.item_carry_femjewel5 = FALSE;
+	u.item_carry_femjewel6 = FALSE;
+	u.item_carry_femjewel7 = FALSE;
+	u.item_carry_femjewel8 = FALSE;
+	u.item_carry_femjewel9 = FALSE;
+	u.item_carry_femjewel10 = FALSE;
+	u.item_carry_femjewel11 = FALSE;
+	u.item_carry_femjewel12 = FALSE;
+	u.item_carry_femjewel13 = FALSE;
+	u.item_carry_femjewel14 = FALSE;
+	u.item_carry_femjewel15 = FALSE;
+	u.item_carry_femjewel16 = FALSE;
+	u.item_carry_femjewel17 = FALSE;
+	u.item_carry_femjewel18 = FALSE;
+	u.item_carry_femjewel19 = FALSE;
+	u.item_carry_femjewel20 = FALSE;
+	u.item_carry_femjewel21 = FALSE;
+	u.item_carry_femjewel22 = FALSE;
+	u.item_carry_femjewel23 = FALSE;
+	u.item_carry_femjewel24 = FALSE;
+	u.item_carry_femjewel25 = FALSE;
+	u.item_carry_femjewel26 = FALSE;
+	u.item_carry_femjewel27 = FALSE;
+	u.item_carry_femjewel28 = FALSE;
+	u.item_carry_femjewel29 = FALSE;
+	u.item_carry_femjewel30 = FALSE;
+	u.item_carry_femjewel31 = FALSE;
+	u.item_carry_femjewel32 = FALSE;
+	u.item_carry_femjewel33 = FALSE;
+	u.item_carry_femjewel34 = FALSE;
+	u.item_carry_femjewel35 = FALSE;
+	u.item_carry_femjewel36 = FALSE;
+	u.item_carry_femjewel37 = FALSE;
+	u.item_carry_femjewel38 = FALSE;
+	u.item_carry_femjewel39 = FALSE;
+	u.item_carry_femjewel40 = FALSE;
+	u.item_carry_femjewel41 = FALSE;
+	u.item_carry_femjewel42 = FALSE;
+	u.item_carry_femjewel43 = FALSE;
+	u.item_carry_femjewel44 = FALSE;
+	u.item_carry_femjewel45 = FALSE;
+	u.item_carry_femjewel46 = FALSE;
+	u.item_carry_femjewel47 = FALSE;
+	u.item_carry_femjewel48 = FALSE;
+	u.item_carry_femjewel49 = FALSE;
+	u.item_carry_femjewel50 = FALSE;
+	u.item_carry_femjewel51 = FALSE;
+	u.item_carry_femjewel52 = FALSE;
+	u.item_carry_femjewel53 = FALSE;
+	u.item_carry_femjewel54 = FALSE;
+	u.item_carry_femjewel55 = FALSE;
+	u.item_carry_femjewel56 = FALSE;
+	u.item_carry_femjewel57 = FALSE;
+	u.item_carry_femjewel58 = FALSE;
+	u.item_carry_femjewel59 = FALSE;
+	u.item_carry_femjewel60 = FALSE;
+	u.item_carry_femjewel61 = FALSE;
+	u.item_carry_femjewel62 = FALSE;
+	u.item_carry_femjewel63 = FALSE;
+	u.item_carry_femjewel64 = FALSE;
+	u.item_carry_femjewel65 = FALSE;
+	u.item_carry_femjewel66 = FALSE;
+	u.item_carry_femjewel67 = FALSE;
+	u.item_carry_femjewel68 = FALSE;
+	u.item_carry_femjewel69 = FALSE;
+	u.item_carry_femjewel70 = FALSE;
+	u.item_carry_femjewel71 = FALSE;
+	u.item_carry_femjewel72 = FALSE;
+	u.item_carry_femjewel73 = FALSE;
+	u.item_carry_femjewel74 = FALSE;
+	u.item_carry_femjewel75 = FALSE;
+	u.item_carry_femjewel76 = FALSE;
+	u.item_carry_femjewel77 = FALSE;
+	u.item_carry_femjewel78 = FALSE;
+	u.item_carry_femjewel79 = FALSE;
+	u.item_carry_femjewel80 = FALSE;
+	u.item_carry_femjewel81 = FALSE;
+	u.item_carry_femjewel82 = FALSE;
+	u.item_carry_femjewel83 = FALSE;
+	u.item_carry_femjewel84 = FALSE;
+	u.item_carry_femjewel85 = FALSE;
+	u.item_carry_femjewel86 = FALSE;
+	u.item_carry_femjewel87 = FALSE;
+	u.item_carry_femjewel88 = FALSE;
+	u.item_carry_femjewel89 = FALSE;
+	u.item_carry_femjewel90 = FALSE;
+	u.item_carry_femjewel91 = FALSE;
+	u.item_carry_femjewel92 = FALSE;
+	u.item_carry_femjewel93 = FALSE;
+	u.item_carry_femjewel94 = FALSE;
+	u.item_carry_femjewel95 = FALSE;
+	u.item_carry_femjewel96 = FALSE;
+	u.item_carry_femjewel97 = FALSE;
+	u.item_carry_femjewel98 = FALSE;
+	u.item_carry_femjewel99 = FALSE;
+	u.item_carry_femjewel100 = FALSE;
+	u.item_carry_femjewel101 = FALSE;
+	u.item_carry_femjewel102 = FALSE;
+	u.item_carry_femjewel103 = FALSE;
+	u.item_carry_femjewel104 = FALSE;
+	u.item_carry_femjewel105 = FALSE;
+	u.item_carry_femjewel106 = FALSE;
+	u.item_carry_femjewel107 = FALSE;
+	u.item_carry_femjewel108 = FALSE;
+	u.item_carry_femjewel109 = FALSE;
+	u.item_carry_femjewel110 = FALSE;
+
+	u.item_carry_nastystone1 = FALSE;
+	u.item_carry_nastystone2 = FALSE;
+	u.item_carry_nastystone3 = FALSE;
+	u.item_carry_nastystone4 = FALSE;
+	u.item_carry_nastystone5 = FALSE;
+	u.item_carry_nastystone6 = FALSE;
+	u.item_carry_nastystone7 = FALSE;
+	u.item_carry_nastystone8 = FALSE;
+	u.item_carry_nastystone9 = FALSE;
+	u.item_carry_nastystone10 = FALSE;
+	u.item_carry_nastystone11 = FALSE;
+	u.item_carry_nastystone12 = FALSE;
+	u.item_carry_nastystone13 = FALSE;
+	u.item_carry_nastystone14 = FALSE;
+	u.item_carry_nastystone15 = FALSE;
+	u.item_carry_nastystone16 = FALSE;
+	u.item_carry_nastystone17 = FALSE;
+	u.item_carry_nastystone18 = FALSE;
+	u.item_carry_nastystone19 = FALSE;
+	u.item_carry_nastystone20 = FALSE;
+	u.item_carry_nastystone21 = FALSE;
+	u.item_carry_nastystone22 = FALSE;
+	u.item_carry_nastystone23 = FALSE;
+	u.item_carry_nastystone24 = FALSE;
+	u.item_carry_nastystone25 = FALSE;
+	u.item_carry_nastystone26 = FALSE;
+	u.item_carry_nastystone27 = FALSE;
+	u.item_carry_nastystone28 = FALSE;
+	u.item_carry_nastystone29 = FALSE;
+	u.item_carry_nastystone30 = FALSE;
+	u.item_carry_nastystone31 = FALSE;
+	u.item_carry_nastystone32 = FALSE;
+	u.item_carry_nastystone33 = FALSE;
+	u.item_carry_nastystone34 = FALSE;
+	u.item_carry_nastystone35 = FALSE;
+	u.item_carry_nastystone36 = FALSE;
+	u.item_carry_nastystone37 = FALSE;
+	u.item_carry_nastystone38 = FALSE;
+	u.item_carry_nastystone39 = FALSE;
+	u.item_carry_nastystone40 = FALSE;
+	u.item_carry_nastystone41 = FALSE;
+	u.item_carry_nastystone42 = FALSE;
+	u.item_carry_nastystone43 = FALSE;
+	u.item_carry_nastystone44 = FALSE;
+	u.item_carry_nastystone45 = FALSE;
+	u.item_carry_nastystone46 = FALSE;
+	u.item_carry_nastystone47 = FALSE;
+	u.item_carry_nastystone48 = FALSE;
+	u.item_carry_nastystone49 = FALSE;
+	u.item_carry_nastystone50 = FALSE;
+	u.item_carry_nastystone51 = FALSE;
+	u.item_carry_nastystone52 = FALSE;
+	u.item_carry_nastystone53 = FALSE;
+	u.item_carry_nastystone54 = FALSE;
+	u.item_carry_nastystone55 = FALSE;
+	u.item_carry_nastystone56 = FALSE;
+	u.item_carry_nastystone57 = FALSE;
+	u.item_carry_nastystone58 = FALSE;
+	u.item_carry_nastystone59 = FALSE;
+	u.item_carry_nastystone60 = FALSE;
+	u.item_carry_nastystone61 = FALSE;
+	u.item_carry_nastystone62 = FALSE;
+	u.item_carry_nastystone63 = FALSE;
+	u.item_carry_nastystone64 = FALSE;
+	u.item_carry_nastystone65 = FALSE;
+	u.item_carry_nastystone66 = FALSE;
+	u.item_carry_nastystone67 = FALSE;
+	u.item_carry_nastystone68 = FALSE;
+	u.item_carry_nastystone69 = FALSE;
+	u.item_carry_nastystone70 = FALSE;
+	u.item_carry_nastystone71 = FALSE;
+	u.item_carry_nastystone72 = FALSE;
+	u.item_carry_nastystone73 = FALSE;
+	u.item_carry_nastystone74 = FALSE;
+	u.item_carry_nastystone75 = FALSE;
+	u.item_carry_nastystone76 = FALSE;
+	u.item_carry_nastystone77 = FALSE;
+	u.item_carry_nastystone78 = FALSE;
+	u.item_carry_nastystone79 = FALSE;
+	u.item_carry_nastystone80 = FALSE;
+	u.item_carry_nastystone81 = FALSE;
+	u.item_carry_nastystone82 = FALSE;
+	u.item_carry_nastystone83 = FALSE;
+	u.item_carry_nastystone84 = FALSE;
+	u.item_carry_nastystone85 = FALSE;
+	u.item_carry_nastystone86 = FALSE;
+	u.item_carry_nastystone87 = FALSE;
+	u.item_carry_nastystone88 = FALSE;
+	u.item_carry_nastystone89 = FALSE;
+	u.item_carry_nastystone90 = FALSE;
+	u.item_carry_nastystone91 = FALSE;
+	u.item_carry_nastystone92 = FALSE;
+	u.item_carry_nastystone93 = FALSE;
+	u.item_carry_nastystone94 = FALSE;
+	u.item_carry_nastystone95 = FALSE;
+	u.item_carry_nastystone96 = FALSE;
+	u.item_carry_nastystone97 = FALSE;
+	u.item_carry_nastystone98 = FALSE;
+	u.item_carry_nastystone99 = FALSE;
+	u.item_carry_nastystone100 = FALSE;
+	u.item_carry_nastystone101 = FALSE;
+	u.item_carry_nastystone102 = FALSE;
+	u.item_carry_nastystone103 = FALSE;
+	u.item_carry_nastystone104 = FALSE;
+	u.item_carry_nastystone105 = FALSE;
+	u.item_carry_nastystone106 = FALSE;
+	u.item_carry_nastystone107 = FALSE;
+	u.item_carry_nastystone108 = FALSE;
+	u.item_carry_nastystone109 = FALSE;
+	u.item_carry_nastystone110 = FALSE;
+	u.item_carry_nastystone111 = FALSE;
+	u.item_carry_nastystone112 = FALSE;
+	u.item_carry_nastystone113 = FALSE;
+	u.item_carry_nastystone114 = FALSE;
+	u.item_carry_nastystone115 = FALSE;
+	u.item_carry_nastystone116 = FALSE;
+	u.item_carry_nastystone117 = FALSE;
+	u.item_carry_nastystone118 = FALSE;
+	u.item_carry_nastystone119 = FALSE;
+	u.item_carry_nastystone120 = FALSE;
+	u.item_carry_nastystone121 = FALSE;
+	u.item_carry_nastystone122 = FALSE;
+	u.item_carry_nastystone123 = FALSE;
+	u.item_carry_nastystone124 = FALSE;
+	u.item_carry_nastystone125 = FALSE;
+	u.item_carry_nastystone126 = FALSE;
+	u.item_carry_nastystone127 = FALSE;
+	u.item_carry_nastystone128 = FALSE;
+	u.item_carry_nastystone129 = FALSE;
+	u.item_carry_nastystone130 = FALSE;
+	u.item_carry_nastystone131 = FALSE;
+	u.item_carry_nastystone132 = FALSE;
+	u.item_carry_nastystone133 = FALSE;
+	u.item_carry_nastystone134 = FALSE;
+	u.item_carry_nastystone135 = FALSE;
+	u.item_carry_nastystone136 = FALSE;
+	u.item_carry_nastystone137 = FALSE;
+	u.item_carry_nastystone138 = FALSE;
+	u.item_carry_nastystone139 = FALSE;
+	u.item_carry_nastystone140 = FALSE;
+	u.item_carry_nastystone141 = FALSE;
+	u.item_carry_nastystone142 = FALSE;
+	u.item_carry_nastystone143 = FALSE;
+	u.item_carry_nastystone144 = FALSE;
+	u.item_carry_nastystone145 = FALSE;
+	u.item_carry_nastystone146 = FALSE;
+	u.item_carry_nastystone147 = FALSE;
+	u.item_carry_nastystone148 = FALSE;
+	u.item_carry_nastystone149 = FALSE;
+	u.item_carry_nastystone150 = FALSE;
+	u.item_carry_nastystone151 = FALSE;
+	u.item_carry_nastystone152 = FALSE;
+	u.item_carry_nastystone153 = FALSE;
+	u.item_carry_nastystone154 = FALSE;
+	u.item_carry_nastystone155 = FALSE;
+	u.item_carry_nastystone156 = FALSE;
+	u.item_carry_nastystone157 = FALSE;
+	u.item_carry_nastystone158 = FALSE;
+	u.item_carry_nastystone159 = FALSE;
+	u.item_carry_nastystone160 = FALSE;
+	u.item_carry_nastystone161 = FALSE;
+	u.item_carry_nastystone162 = FALSE;
+	u.item_carry_nastystone163 = FALSE;
+	u.item_carry_nastystone164 = FALSE;
+	u.item_carry_nastystone165 = FALSE;
+	u.item_carry_nastystone166 = FALSE;
+	u.item_carry_nastystone167 = FALSE;
+	u.item_carry_nastystone168 = FALSE;
+	u.item_carry_nastystone169 = FALSE;
+	u.item_carry_nastystone170 = FALSE;
+	u.item_carry_nastystone171 = FALSE;
+	u.item_carry_nastystone172 = FALSE;
+	u.item_carry_nastystone173 = FALSE;
+	u.item_carry_nastystone174 = FALSE;
+	u.item_carry_nastystone175 = FALSE;
+	u.item_carry_nastystone176 = FALSE;
+	u.item_carry_nastystone177 = FALSE;
+	u.item_carry_nastystone178 = FALSE;
+	u.item_carry_nastystone179 = FALSE;
+	u.item_carry_nastystone180 = FALSE;
+	u.item_carry_nastystone181 = FALSE;
+	u.item_carry_nastystone182 = FALSE;
+	u.item_carry_nastystone183 = FALSE;
+	u.item_carry_nastystone184 = FALSE;
+	u.item_carry_nastystone185 = FALSE;
+	u.item_carry_nastystone186 = FALSE;
+	u.item_carry_nastystone187 = FALSE;
+	u.item_carry_nastystone188 = FALSE;
+	u.item_carry_nastystone189 = FALSE;
+	u.item_carry_nastystone190 = FALSE;
+	u.item_carry_nastystone191 = FALSE;
+	u.item_carry_nastystone192 = FALSE;
+	u.item_carry_nastystone193 = FALSE;
+	u.item_carry_nastystone194 = FALSE;
+	u.item_carry_nastystone195 = FALSE;
+	u.item_carry_nastystone196 = FALSE;
+	u.item_carry_nastystone197 = FALSE;
+	u.item_carry_nastystone198 = FALSE;
+	u.item_carry_nastystone199 = FALSE;
+	u.item_carry_nastystone100 = FALSE;
+	u.item_carry_nastystone201 = FALSE;
+	u.item_carry_nastystone202 = FALSE;
+	u.item_carry_nastystone203 = FALSE;
+	u.item_carry_nastystone204 = FALSE;
+	u.item_carry_nastystone205 = FALSE;
+	u.item_carry_nastystone206 = FALSE;
+	u.item_carry_nastystone207 = FALSE;
+	u.item_carry_nastystone208 = FALSE;
+	u.item_carry_nastystone209 = FALSE;
+	u.item_carry_nastystone210 = FALSE;
+	u.item_carry_nastystone211 = FALSE;
+	u.item_carry_nastystone212 = FALSE;
+	u.item_carry_nastystone213 = FALSE;
+	u.item_carry_nastystone214 = FALSE;
+	u.item_carry_nastystone215 = FALSE;
+	u.item_carry_nastystone216 = FALSE;
+	u.item_carry_nastystone217 = FALSE;
+	u.item_carry_nastystone218 = FALSE;
+	u.item_carry_nastystone219 = FALSE;
+	u.item_carry_nastystone220 = FALSE;
+	u.item_carry_nastystone221 = FALSE;
+	u.item_carry_nastystone222 = FALSE;
+	u.item_carry_nastystone223 = FALSE;
+	u.item_carry_nastystone224 = FALSE;
+	u.item_carry_nastystone225 = FALSE;
+	u.item_carry_nastystone226 = FALSE;
+	u.item_carry_nastystone227 = FALSE;
+	u.item_carry_nastystone228 = FALSE;
+	u.item_carry_nastystone229 = FALSE;
+	u.item_carry_nastystone230 = FALSE;
+	u.item_carry_nastystone231 = FALSE;
+	u.item_carry_nastystone232 = FALSE;
+	u.item_carry_nastystone233 = FALSE;
+	u.item_carry_nastystone234 = FALSE;
+	u.item_carry_nastystone235 = FALSE;
+	u.item_carry_nastystone236 = FALSE;
+	u.item_carry_nastystone237 = FALSE;
+	u.item_carry_nastystone238 = FALSE;
+	u.item_carry_nastystone239 = FALSE;
+	u.item_carry_nastystone240 = FALSE;
+	u.item_carry_nastystone241 = FALSE;
+	u.item_carry_nastystone242 = FALSE;
+	u.item_carry_nastystone243 = FALSE;
+	u.item_carry_nastystone244 = FALSE;
+	u.item_carry_nastystone245 = FALSE;
+	u.item_carry_nastystone246 = FALSE;
+	u.item_carry_nastystone247 = FALSE;
+	u.item_carry_nastystone248 = FALSE;
+	u.item_carry_nastystone249 = FALSE;
+	u.item_carry_nastystone250 = FALSE;
+	u.item_carry_nastystone251 = FALSE;
+	u.item_carry_nastystone252 = FALSE;
+	u.item_carry_nastystone253 = FALSE;
+	u.item_carry_nastystone254 = FALSE;
+	u.item_carry_nastystone255 = FALSE;
+	u.item_carry_nastystone256 = FALSE;
+	u.item_carry_nastystone257 = FALSE;
+	u.item_carry_nastystone258 = FALSE;
+	u.item_carry_nastystone259 = FALSE;
+	u.item_carry_nastystone260 = FALSE;
+	u.item_carry_nastystone261 = FALSE;
+	u.item_carry_nastystone262 = FALSE;
+	u.item_carry_nastystone263 = FALSE;
+	u.item_carry_nastystone264 = FALSE;
+	u.item_carry_nastystone265 = FALSE;
+	u.item_carry_nastystone266 = FALSE;
+	u.item_carry_nastystone267 = FALSE;
+	u.item_carry_nastystone268 = FALSE;
+	u.item_carry_nastystone269 = FALSE;
+	u.item_carry_nastystone270 = FALSE;
+	u.item_carry_nastystone271 = FALSE;
+	u.item_carry_nastystone272 = FALSE;
+	u.item_carry_nastystone273 = FALSE;
+	u.item_carry_nastystone274 = FALSE;
+	u.item_carry_nastystone275 = FALSE;
+	u.item_carry_nastystone276 = FALSE;
+	u.item_carry_nastystone277 = FALSE;
+	u.item_carry_nastystone278 = FALSE;
+	u.item_carry_nastystone279 = FALSE;
+	u.item_carry_nastystone280 = FALSE;
+	u.item_carry_nastystone281 = FALSE;
+	u.item_carry_nastystone282 = FALSE;
+	u.item_carry_nastystone283 = FALSE;
+	u.item_carry_nastystone284 = FALSE;
+	u.item_carry_nastystone285 = FALSE;
+	u.item_carry_nastystone286 = FALSE;
+	u.item_carry_nastystone287 = FALSE;
+	u.item_carry_nastystone288 = FALSE;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		/* replacing "carryingarti" functions */
@@ -1162,6 +1701,546 @@ check_carried_stuff()
 		if (otmp->oartifact == ART_FIELD_CLICK_RADIO) u.arti_carry_fieldclickradio = TRUE;
 		if (otmp->oartifact == ART_JONADAB_S_EXTRA_MODE) u.arti_carry_jonaextramode = TRUE;
 		if (otmp->oartifact == ART_QUANTUM_BRAIN) u.arti_carry_quantumbrain = TRUE;
+		if (otmp->oartifact == ART_DISSOLVOTEK) u.arti_carry_dissolvotek = TRUE;
+		if (otmp->oartifact == ART_ARCTICER_WINTER) u.arti_carry_arcticerwinter = TRUE;
+		if (otmp->oartifact == ART_ROY_S_MANLINESS) u.arti_carry_roysmanliness = TRUE;
+		if (otmp->oartifact == ART_MARLENA_S_FOREST) u.arti_carry_marlenasforest = TRUE;
+		if (otmp->oartifact == ART_MOURNDRESSING) u.arti_carry_mourndressing = TRUE;
+		if (otmp->oartifact == ART_NO_GLEAMSHINE) u.arti_carry_nogleamshine = TRUE;
+		if (otmp->oartifact == ART_DARK_CELLAR_HOUSING) u.arti_carry_darkcellarhousing = TRUE;
+		if (otmp->oartifact == ART_COLOR_OF_SEXUALITY) u.arti_carry_colorofsexuality = TRUE;
+		if (otmp->oartifact == ART_INA_S_BRIGHTNESS) u.arti_carry_inasbrightness = TRUE;
+		if (otmp->oartifact == ART_KATRIN_S_THRILL) u.arti_carry_katrinsthrill = TRUE;
+		if (otmp->oartifact == ART_BUTT_OUTPUT) u.arti_carry_buttoutput = TRUE;
+		if (otmp->oartifact == ART_BEHOLDEN_IN_THE_NAME) u.arti_carry_beholdenname = TRUE;
+		if (otmp->oartifact == ART_IRIS_FLAX_SHARP) u.arti_carry_irisflaxsharp = TRUE;
+		if (otmp->oartifact == ART_MUXXERHEAD) u.arti_carry_muxxerhead = TRUE;
+		if (otmp->oartifact == ART_FORTUNEFEET) u.arti_carry_fortunefeet = TRUE;
+		if (otmp->oartifact == ART_MADE_OF_STONE) u.arti_carry_madeofstone = TRUE;
+
+		if (otmp->oartifact == ART_HOW_DEEP_CAN_YOU_SINK_) u.arti_carry_howdeepcan = TRUE;
+		if (otmp->oartifact == ART_FEELS_GOOD_ENOUGH_TO_DO_IT) u.arti_carry_feelsgoodenough = TRUE;
+		if (otmp->oartifact == ART_MARIO_AND_LUIGI_WILL_FAIL_) u.arti_carry_marioand = TRUE;
+		if (otmp->oartifact == ART_QUEWUEWUE_QUEUEUEUEK_) u.arti_carry_quewuewue = TRUE;
+		if (otmp->oartifact == ART_NON_ASIAN_WOMAN_WITH_AN_AS) u.arti_carry_nonasianwoman = TRUE;
+		if (otmp->oartifact == ART_ONION_CAKE_EAT) u.arti_carry_onioncake = TRUE;
+		if (otmp->oartifact == ART_AIRTIGHT_WAR_MATERIAL) u.arti_carry_airtightwar = TRUE;
+		if (otmp->oartifact == ART_ON_THE_WATERFRONT) u.arti_carry_onthewaterfront = TRUE;
+		if (otmp->oartifact == ART_DISGUSTING_HIGHLY_THREE) u.arti_carry_disgustinghighly = TRUE;
+		if (otmp->oartifact == ART_GREETLETS_) u.arti_carry_greetlets = TRUE;
+		if (otmp->oartifact == ART_LA_MADEMOISELLE_REGNE_SUR_) u.arti_carry_lamademoiselle = TRUE;
+		if (otmp->oartifact == ART_MODDED_THE_DUNGEON_DEFINIT) u.arti_carry_moddedthedungeon = TRUE;
+		if (otmp->oartifact == ART_LITTLE_FLASK_OF_PERFUME) u.arti_carry_littleflask = TRUE;
+		if (otmp->oartifact == ART_ISLAM_A_GECECEKSINIZ_) u.arti_carry_islama = TRUE;
+		if (otmp->oartifact == ART_FUCKING_BIRDS__MAN_) u.arti_carry_fuckingbirds = TRUE;
+		if (otmp->oartifact == ART_LITTLE_GIRL_OF_AMBER) u.arti_carry_littlegirlamber = TRUE;
+		if (otmp->oartifact == ART_BONUS_CLEANING_ROUND) u.arti_carry_bonuscleaning = TRUE;
+		if (otmp->oartifact == ART_RUSSIAN_KARATE_WOMAN) u.arti_carry_russiankarate = TRUE;
+		if (otmp->oartifact == ART_SILLY__FREE_LIKE_A_BIRD___) u.arti_carry_sillyfree = TRUE;
+		if (otmp->oartifact == ART_ODORANT_SOCKS) u.arti_carry_odorantsocks = TRUE;
+		if (otmp->oartifact == ART_WON_T_EVER_FIND_HER) u.arti_carry_wonteverfind = TRUE;
+		if (otmp->oartifact == ART_SHOULD_SMASH_YOU_AGAIN_) u.arti_carry_shouldsmashyou = TRUE;
+		if (otmp->oartifact == ART_DARKNESS_STORM__SURE_) u.arti_carry_darknessstorm = TRUE;
+		if (otmp->oartifact == ART_GLUTTONY_IS_THE_MOST_FUN_D) u.arti_carry_gluttonyis = TRUE;
+		if (otmp->oartifact == ART_LIVE_ON_THE_LAND) u.arti_carry_liveontheland = TRUE;
+		if (otmp->oartifact == ART_WHAT_IF_THE_CUSHION___) u.arti_carry_whatifthecushion = TRUE;
+		if (otmp->oartifact == ART_CLEANPUTTER_S_WIN) u.arti_carry_cleanputter = TRUE;
+		if (otmp->oartifact == ART_PRETTY__BUT_POWERFUL_) u.arti_carry_prettybut = TRUE;
+		if (otmp->oartifact == ART_SKIERS_ON_THE_BRIDGE) u.arti_carry_skiersbridge = TRUE;
+		if (otmp->oartifact == ART_ABSORB_LIKE_A_HOLE) u.arti_carry_absorbhole = TRUE;
+		if (otmp->oartifact == ART_SEARCHANEK__MISSING_DISPLA) u.arti_carry_searchanek = TRUE;
+		if (otmp->oartifact == ART_PAMELA_ROSAN) u.arti_carry_pamelarosan = TRUE;
+		if (otmp->oartifact == ART_ONA_NE_BERET_VSE) u.arti_carry_onaneberet = TRUE;
+		if (otmp->oartifact == ART_SHE_S_INCREDIBLY_SEXY) u.arti_carry_incrediblysexy = TRUE;
+		if (otmp->oartifact == ART_PRRRRRRRRRRRRRRRRRRRROOOOO) u.arti_carry_prrooo = TRUE;
+		if (otmp->oartifact == ART_GREEN_IS_THE_COLOR_OF_FEMI) u.arti_carry_greencolorfem = TRUE;
+		if (otmp->oartifact == ART_WHERE_HAS_SHE_GONE_) u.arti_carry_wherehasshegone = TRUE;
+		if (otmp->oartifact == ART______________THE_SPACES_AR) u.arti_carry_spacesare = TRUE;
+		if (otmp->oartifact == ART_HOW_COULD_SHE_FALL_FOR_THE) u.arti_carry_howcouldshefall = TRUE;
+		if (otmp->oartifact == ART_KLACK__KLACK_) u.arti_carry_klackklack = TRUE;
+		if (otmp->oartifact == ART_FACE_DISAPPEARS_IN_HER_BUN) u.arti_carry_facedisappears = TRUE;
+		if (otmp->oartifact == ART_PROTECT_HER_BLUE_FOOTWEAR) u.arti_carry_protectherblue = TRUE;
+		if (otmp->oartifact == ART_INHALE_THE_PERSIAN_VAPORS) u.arti_carry_inhalepersian = TRUE;
+		if (otmp->oartifact == ART_TYPE_OF_ICE_BLOCK_S_LITTLE) u.arti_carry_iceblocksister = TRUE;
+		if (otmp->oartifact == ART_SWOONELNADINE) u.arti_carry_swoonelnadine = TRUE;
+		if (otmp->oartifact == ART_SASSY_SMALL_ONE___) u.arti_carry_sassysmall = TRUE;
+		if (otmp->oartifact == ART_CUTE_FACIAL_EXPRESSION) u.arti_carry_cutefacial = TRUE;
+		if (otmp->oartifact == ART_NU_AER_DU_DOED__I_NAMN_AV_) u.arti_carry_nuaerdudoed = TRUE;
+		if (otmp->oartifact == ART_SEND_IN_THE_HORDE) u.arti_carry_sendinthehorde = TRUE;
+		if (otmp->oartifact == ART_YOU_WON_T_STOP_US__PERIOD_) u.arti_carry_youwontstop = TRUE;
+		if (otmp->oartifact == ART_FLEEEEEEECY) u.arti_carry_fleecywithe = TRUE;
+		if (otmp->oartifact == ART_PRETEND_THAT_SOME_GUY_BROK) u.arti_carry_pretendthatsome = TRUE;
+		if (otmp->oartifact == ART_EN_DAN_WIS_SING_WIS_SING_W) u.arti_carry_endanwissing = TRUE;
+		if (otmp->oartifact == ART_EVEN_THE_BLOCK_HEEL_IS_TRE) u.arti_carry_eventheblock = TRUE;
+		if (otmp->oartifact == ART_NAME_SAYS_IT_ALL) u.arti_carry_namesaysit = TRUE;
+		if (otmp->oartifact == ART_HORRIBLE_SCRATCHING_WOUNDS) u.arti_carry_horriblescratch = TRUE;
+		if (otmp->oartifact == ART_STAY_AWAY_FROM_THE_SHIT) u.arti_carry_stayawayfrom = TRUE;
+		if (otmp->oartifact == ART_DEL_ALLES_BKK) u.arti_carry_delallesbkk = TRUE;
+		if (otmp->oartifact == ART_ARABELLA_S_BEDROCK) u.arti_carry_bedrock = TRUE;
+		if (otmp->oartifact == ART_EXTRA_HIGH_DIFFICULTY) u.arti_carry_extrahighdiff = TRUE;
+		if (otmp->oartifact == ART_QUAFF_THAT_SPARKLING_WINE) u.arti_carry_quaffspark = TRUE;
+		if (otmp->oartifact == ART_DONOT_WORK_ATALL) u.arti_carry_donotwork = TRUE;
+		if (otmp->oartifact == ART_THERE_IS_A_LOUD_CLAP) u.arti_carry_loudclap = TRUE;
+		if (otmp->oartifact == ART_NAVIGATE_THIS_MESS) u.arti_carry_navigatemess = TRUE;
+		if (otmp->oartifact == ART_SEVERE_UNINFORMATION) u.arti_carry_severeuninf = TRUE;
+		if (otmp->oartifact == ART_GREMLIN_S_REVENGE) u.arti_carry_gremlinsrev = TRUE;
+		if (otmp->oartifact == ART_KEEP_STUMBLING) u.arti_carry_keepstumb = TRUE;
+		if (otmp->oartifact == ART_PURE_AIDS) u.arti_carry_pureaids = TRUE;
+		if (otmp->oartifact == ART_WHO_NEEDS_ITEMS_ANYWAY_) u.arti_carry_whoneedsitems = TRUE;
+		if (otmp->oartifact == ART_INFERNAL_AREA) u.arti_carry_infernalarea = TRUE;
+		if (otmp->oartifact == ART_LIVE_FAST__DIE_YOUNG__HAE_) u.arti_carry_livefast = TRUE;
+		if (otmp->oartifact == ART_THATS_DERP) u.arti_carry_thatsderp = TRUE;
+		if (otmp->oartifact == ART_WALLIFY_UP_) u.arti_carry_wallifyup = TRUE;
+		if (otmp->oartifact == ART_TRY_IT_OUT_LONGER) u.arti_carry_tryitout = TRUE;
+		if (otmp->oartifact == ART_THIS_IS_SO_FUNNY) u.arti_carry_sofunny = TRUE;
+		if (otmp->oartifact == ART_GOOD_LUCK__YOU_LL_NEED_IT) u.arti_carry_goodluckneed = TRUE;
+		if (otmp->oartifact == ART_UNPLAYABLE_GAME_) u.arti_carry_unplayablegame = TRUE;
+		if (otmp->oartifact == ART_NOT_SO_SECRET_ANYMORE) u.arti_carry_notsosecret = TRUE;
+		if (otmp->oartifact == ART_ROBBIE_S_WEARINESS) u.arti_carry_robbieswear = TRUE;
+		if (otmp->oartifact == ART_TINY_VISIBILITY_WINDOW) u.arti_carry_tinyvisi = TRUE;
+		if (otmp->oartifact == ART_MAKE_THE_SHROUD_BIGGER) u.arti_carry_biggershroud = TRUE;
+		if (otmp->oartifact == ART_SEE_EVEN_LESS) u.arti_carry_seeevenless = TRUE;
+		if (otmp->oartifact == ART_HOHO_I_ATE_YOUR_INPUT) u.arti_carry_hohoiate = TRUE;
+		if (otmp->oartifact == ART_ARRGH_HE_COMES_FOR_US) u.arti_carry_arrghhecomes = TRUE;
+		if (otmp->oartifact == ART_WAITING_FOR_GODOT) u.arti_carry_waitinggodot = TRUE;
+		if (otmp->oartifact == ART_BETTER_PUT_IT_ALL_AWAY) u.arti_carry_betterputit = TRUE;
+		if (otmp->oartifact == ART_IT_EXPLODES_) u.arti_carry_itexplodes = TRUE;
+		if (otmp->oartifact == ART_WHO_NEEDS_FAIRNESS_ANYWAY) u.arti_carry_needfairness = TRUE;
+		if (otmp->oartifact == ART_LAST_FOREVA) u.arti_carry_lastforeva = TRUE;
+		if (otmp->oartifact == ART_NUCLEAR_WAR_AFTERMATH) u.arti_carry_nuclearwar = TRUE;
+		if (otmp->oartifact == ART_SCREEN_GLITCH) u.arti_carry_screenglitch = TRUE;
+		if (otmp->oartifact == ART_QUASI_PERMANENCE) u.arti_carry_quasiperma = TRUE;
+		if (otmp->oartifact == ART_TRASH_IT_) u.arti_carry_trashit = TRUE;
+		if (otmp->oartifact == ART_FLUCKER_LOW) u.arti_carry_flucker = TRUE;
+		if (otmp->oartifact == ART_GRRM__TAA_TATATATAAAA__TA_) u.arti_carry_grrmdaddy = TRUE;
+		if (otmp->oartifact == ART_WOMANLER_GIVES_CHASE) u.arti_carry_womanler = TRUE;
+		if (otmp->oartifact == ART_DOORNING_DAY) u.arti_carry_doorningday = TRUE;
+		if (otmp->oartifact == ART_BLABBERBLABBERWANAMADA_) u.arti_carry_blabberblabber = TRUE;
+		if (otmp->oartifact == ART_LEIKI_S_QUEST) u.arti_carry_leikiquest = TRUE;
+		if (otmp->oartifact == ART_LOSE_ALL_THE_SPELLS) u.arti_carry_loseallspells = TRUE;
+		if (otmp->oartifact == ART_MAN_ARE_YOU_LUSH) u.arti_carry_manlush = TRUE;
+		if (otmp->oartifact == ART_TOUT_DAAU___DAAU___DAAU) u.arti_carry_toutdaau = TRUE;
+		if (otmp->oartifact == ART_WASTEFUL_WITHER) u.arti_carry_wastewither = TRUE;
+		if (otmp->oartifact == ART_MORK_MORE) u.arti_carry_morkmore = TRUE;
+		if (otmp->oartifact == ART_FFFFF_QUEAK_PRRRT) u.arti_carry_fffffqp = TRUE;
+		if (otmp->oartifact == ART_GAS_AS_A_WEAPON) u.arti_carry_gasweapon = TRUE;
+		if (otmp->oartifact == ART_BEYOND_HELP) u.arti_carry_beyondhelp = TRUE;
+		if (otmp->oartifact == ART_CLAP_IT_AWAY) u.arti_carry_clapaway = TRUE;
+		if (otmp->oartifact == ART_I_SEE_YOUUUUU) u.arti_carry_iseeyou = TRUE;
+		if (otmp->oartifact == ART_FRED_S_OPTIOMETRIST) u.arti_carry_fredopt = TRUE;
+		if (otmp->oartifact == ART_FULLY_ID_OR_NOPE) u.arti_carry_fullyid = TRUE;
+		if (otmp->oartifact == ART_DEEP_DESCENT) u.arti_carry_deepdesc = TRUE;
+		if (otmp->oartifact == ART_HALFCUT_HAHAHAHAHA_HAHAHA_) u.arti_carry_halfcuthaha = TRUE;
+		if (otmp->oartifact == ART_FUUUUUUUUCK_) u.arti_carry_fuckwithu = TRUE;
+		if (otmp->oartifact == ART_UMENG_FLYER__UMENG_HIDER__) u.arti_carry_umengflyer = TRUE;
+		if (otmp->oartifact == ART_DND_NO_ONE_IS_GETTING) u.arti_carry_dndnoone = TRUE;
+		if (otmp->oartifact == ART_ALBIE_S_WHITEOUT) u.arti_carry_albieswhite = TRUE;
+		if (otmp->oartifact == ART_EVERYTHING_IS_SHOT_TWO_SHI) u.arti_carry_everythingshot = TRUE;
+		if (otmp->oartifact == ART_SATAN_S_SPECIAL_CONDUCT) u.arti_carry_satanspecial = TRUE;
+		if (otmp->oartifact == ART_ANASTASIA_S_INSURANCE) u.arti_carry_anainsurance = TRUE;
+		if (otmp->oartifact == ART_BREAKCRASH_PILOT) u.arti_carry_breakpilot = TRUE;
+
+		/* ensuring that feminism gems and nasty stones aren't checked more than once per turn either */
+
+		if(otmp->otyp == FEMMY_S_JEWEL) u.item_carry_femjewel1 = TRUE;
+		if(otmp->otyp == MADELEINE_S_JEWEL) u.item_carry_femjewel2 = TRUE;
+		if(otmp->otyp == MARLENA_S_JEWEL) u.item_carry_femjewel3 = TRUE;
+		if(otmp->otyp == ANASTASIA_S_JEWEL) u.item_carry_femjewel4 = TRUE;
+		if(otmp->otyp == JESSICA_S_JEWEL) u.item_carry_femjewel5 = TRUE;
+		if(otmp->otyp == SOLVEJG_S_JEWEL) u.item_carry_femjewel6 = TRUE;
+		if(otmp->otyp == WENDY_S_JEWEL) u.item_carry_femjewel7 = TRUE;
+		if(otmp->otyp == KATHARINA_S_JEWEL) u.item_carry_femjewel8 = TRUE;
+		if(otmp->otyp == ELENA_S_JEWEL) u.item_carry_femjewel9 = TRUE;
+		if(otmp->otyp == THAI_S_JEWEL) u.item_carry_femjewel10 = TRUE;
+		if(otmp->otyp == ELIF_S_JEWEL) u.item_carry_femjewel11 = TRUE;
+		if(otmp->otyp == NADJA_S_JEWEL) u.item_carry_femjewel12 = TRUE;
+		if(otmp->otyp == SANDRA_S_JEWEL) u.item_carry_femjewel13 = TRUE;
+		if(otmp->otyp == NATALJE_S_JEWEL) u.item_carry_femjewel14 = TRUE;
+		if(otmp->otyp == JEANETTA_S_JEWEL) u.item_carry_femjewel15 = TRUE;
+		if(otmp->otyp == YVONNE_S_JEWEL) u.item_carry_femjewel16 = TRUE;
+		if(otmp->otyp == MAURAH_S_JEWEL) u.item_carry_femjewel17 = TRUE;
+		if(otmp->otyp == MELTEM_S_JEWEL) u.item_carry_femjewel18 = TRUE;
+		if(otmp->otyp == SARAH_S_JEWEL) u.item_carry_femjewel19 = TRUE;
+		if(otmp->otyp == CLAUDIA_S_JEWEL) u.item_carry_femjewel20 = TRUE;
+		if(otmp->otyp == LUDGERA_S_JEWEL) u.item_carry_femjewel21 = TRUE;
+		if(otmp->otyp == KATI_S_JEWEL) u.item_carry_femjewel22 = TRUE;
+		if(otmp->otyp == NELLY_S_JEWEL) u.item_carry_femjewel23 = TRUE;
+		if(otmp->otyp == EVELINE_S_JEWEL) u.item_carry_femjewel24 = TRUE;
+		if(otmp->otyp == KARIN_S_JEWEL) u.item_carry_femjewel25 = TRUE;
+		if(otmp->otyp == JUEN_S_JEWEL) u.item_carry_femjewel26 = TRUE;
+		if(otmp->otyp == KRISTINA_S_JEWEL) u.item_carry_femjewel27 = TRUE;
+		if(otmp->otyp == LOU_S_JEWEL) u.item_carry_femjewel28 = TRUE;
+		if(otmp->otyp == ALMUT_S_JEWEL) u.item_carry_femjewel29 = TRUE;
+		if(otmp->otyp == JULIETTA_S_JEWEL) u.item_carry_femjewel30 = TRUE;
+		if(otmp->otyp == ARABELLA_S_JEWEL) u.item_carry_femjewel31 = TRUE;
+		if(otmp->otyp == KRISTIN_S_JEWEL) u.item_carry_femjewel32 = TRUE;
+		if(otmp->otyp == ANNA_S_JEWEL) u.item_carry_femjewel33 = TRUE;
+		if(otmp->otyp == RUEA_S_JEWEL) u.item_carry_femjewel34 = TRUE;
+		if(otmp->otyp == DORA_S_JEWEL) u.item_carry_femjewel35 = TRUE;
+		if(otmp->otyp == MARIKE_S_JEWEL) u.item_carry_femjewel36 = TRUE;
+		if(otmp->otyp == JETTE_S_JEWEL) u.item_carry_femjewel37 = TRUE;
+		if(otmp->otyp == INA_S_JEWEL) u.item_carry_femjewel38 = TRUE;
+		if(otmp->otyp == SING_S_JEWEL) u.item_carry_femjewel39 = TRUE;
+		if(otmp->otyp == VICTORIA_S_JEWEL) u.item_carry_femjewel40 = TRUE;
+		if(otmp->otyp == MELISSA_S_JEWEL) u.item_carry_femjewel41 = TRUE;
+		if(otmp->otyp == ANITA_S_JEWEL) u.item_carry_femjewel42 = TRUE;
+		if(otmp->otyp == HENRIETTA_S_JEWEL) u.item_carry_femjewel43 = TRUE;
+		if(otmp->otyp == VERENA_S_JEWEL) u.item_carry_femjewel44 = TRUE;
+		if(otmp->otyp == ANNEMARIE_S_JEWEL) u.item_carry_femjewel45 = TRUE;
+		if(otmp->otyp == JIL_S_JEWEL) u.item_carry_femjewel46 = TRUE;
+		if(otmp->otyp == JANA_S_JEWEL) u.item_carry_femjewel47 = TRUE;
+		if(otmp->otyp == KATRIN_S_JEWEL) u.item_carry_femjewel48 = TRUE;
+		if(otmp->otyp == GUDRUN_S_JEWEL) u.item_carry_femjewel49 = TRUE;
+		if(otmp->otyp == ELLA_S_JEWEL) u.item_carry_femjewel50 = TRUE;
+		if(otmp->otyp == MANUELA_S_JEWEL) u.item_carry_femjewel51 = TRUE;
+		if(otmp->otyp == JENNIFER_S_JEWEL) u.item_carry_femjewel52 = TRUE;
+		if(otmp->otyp == PATRICIA_S_JEWEL) u.item_carry_femjewel53 = TRUE;
+		if(otmp->otyp == ANTJE_S_JEWEL) u.item_carry_femjewel54 = TRUE;
+		if(otmp->otyp == ANTJE_S_SECOND_JEWEL) u.item_carry_femjewel55 = TRUE;
+		if(otmp->otyp == KERSTIN_S_JEWEL) u.item_carry_femjewel56 = TRUE;
+		if(otmp->otyp == LAURA_S_JEWEL) u.item_carry_femjewel57 = TRUE;
+		if(otmp->otyp == LARISSA_S_JEWEL) u.item_carry_femjewel58 = TRUE;
+		if(otmp->otyp == NORA_S_JEWEL) u.item_carry_femjewel59 = TRUE;
+		if(otmp->otyp == NATALIA_S_JEWEL) u.item_carry_femjewel60 = TRUE;
+		if(otmp->otyp == SUSANNE_S_JEWEL) u.item_carry_femjewel61 = TRUE;
+		if(otmp->otyp == LISA_S_JEWEL) u.item_carry_femjewel62 = TRUE;
+		if(otmp->otyp == BRIDGHITTE_S_JEWEL) u.item_carry_femjewel63 = TRUE;
+		if(otmp->otyp == JULIA_S_JEWEL) u.item_carry_femjewel64 = TRUE;
+		if(otmp->otyp == NICOLE_S_JEWEL) u.item_carry_femjewel65 = TRUE;
+		if(otmp->otyp == RITA_S_JEWEL) u.item_carry_femjewel66 = TRUE;
+		if(otmp->otyp == JANINA_S_JEWEL) u.item_carry_femjewel67 = TRUE;
+		if(otmp->otyp == ROSA_S_JEWEL) u.item_carry_femjewel68 = TRUE;
+		if(otmp->otyp == KSENIA_S_JEWEL) u.item_carry_femjewel69 = TRUE;
+		if(otmp->otyp == LYDIA_S_JEWEL) u.item_carry_femjewel70 = TRUE;
+		if(otmp->otyp == CONNY_S_JEWEL) u.item_carry_femjewel71 = TRUE;
+		if(otmp->otyp == KATIA_S_JEWEL) u.item_carry_femjewel72 = TRUE;
+		if(otmp->otyp == MARIYA_S_JEWEL) u.item_carry_femjewel73 = TRUE;
+		if(otmp->otyp == ELISE_S_JEWEL) u.item_carry_femjewel74 = TRUE;
+		if(otmp->otyp == RONJA_S_JEWEL) u.item_carry_femjewel75 = TRUE;
+		if(otmp->otyp == ARIANE_S_JEWEL) u.item_carry_femjewel76 = TRUE;
+		if(otmp->otyp == JOHANNA_S_JEWEL) u.item_carry_femjewel77 = TRUE;
+		if(otmp->otyp == INGE_S_JEWEL) u.item_carry_femjewel78 = TRUE;
+		if(otmp->otyp == RUTH_S_JEWEL) u.item_carry_femjewel79 = TRUE;
+		if(otmp->otyp == MAGDALENA_S_JEWEL) u.item_carry_femjewel80 = TRUE;
+		if(otmp->otyp == MARLEEN_S_JEWEL) u.item_carry_femjewel81 = TRUE;
+		if(otmp->otyp == KLARA_S_JEWEL) u.item_carry_femjewel82 = TRUE;
+		if(otmp->otyp == FRIEDERIKE_S_JEWEL) u.item_carry_femjewel83 = TRUE;
+		if(otmp->otyp == NAOMI_S_JEWEL) u.item_carry_femjewel84 = TRUE;
+		if(otmp->otyp == UTE_S_JEWEL) u.item_carry_femjewel85 = TRUE;
+		if(otmp->otyp == JASIEEN_S_JEWEL) u.item_carry_femjewel86 = TRUE;
+		if(otmp->otyp == YASAMAN_S_JEWEL) u.item_carry_femjewel87 = TRUE;
+		if(otmp->otyp == MAY_BRITT_S_JEWEL) u.item_carry_femjewel88 = TRUE;
+		if(otmp->otyp == NADINE_S_JEWEL) u.item_carry_femjewel89 = TRUE;
+		if(otmp->otyp == LUISA_S_JEWEL) u.item_carry_femjewel90 = TRUE;
+		if(otmp->otyp == IRINA_S_JEWEL) u.item_carry_femjewel91 = TRUE;
+		if(otmp->otyp == LISELOTTE_S_JEWEL) u.item_carry_femjewel92 = TRUE;
+		if(otmp->otyp == GRETA_S_JEWEL) u.item_carry_femjewel93 = TRUE;
+		if(otmp->otyp == JANE_S_JEWEL) u.item_carry_femjewel94 = TRUE;
+		if(otmp->otyp == SUE_LYN_S_JEWEL) u.item_carry_femjewel95 = TRUE;
+		if(otmp->otyp == CHARLOTTE_S_JEWEL) u.item_carry_femjewel96 = TRUE;
+		if(otmp->otyp == HANNAH_S_JEWEL) u.item_carry_femjewel97 = TRUE;
+		if(otmp->otyp == LITTLE_MARIE_S_JEWEL) u.item_carry_femjewel98 = TRUE;
+		if(otmp->otyp == TANJA_S_JEWEL) u.item_carry_femjewel99 = TRUE;
+		if(otmp->otyp == SONJA_S_JEWEL) u.item_carry_femjewel100 = TRUE;
+		if(otmp->otyp == RHEA_S_JEWEL) u.item_carry_femjewel101 = TRUE;
+		if(otmp->otyp == LARA_S_JEWEL) u.item_carry_femjewel102 = TRUE;
+		if(otmp->otyp == SABRINA_S_JEWEL) u.item_carry_femjewel103 = TRUE;
+		if(otmp->otyp == JANET_S_JEWEL) u.item_carry_femjewel104 = TRUE;
+		if(otmp->otyp == SABINE_S_JEWEL) u.item_carry_femjewel105 = TRUE;
+		if(otmp->otyp == JUDITH_S_JEWEL) u.item_carry_femjewel106 = TRUE;
+		if(otmp->otyp == ANJA_S_JEWEL) u.item_carry_femjewel107 = TRUE;
+		if(otmp->otyp == CELIA_S_JEWEL) u.item_carry_femjewel108 = TRUE;
+		if(otmp->otyp == CHLOE_S_JEWEL) u.item_carry_femjewel109 = TRUE;
+		if(otmp->otyp == JOHANETTA_S_JEWEL) u.item_carry_femjewel110 = TRUE;
+
+		if(otmp->otyp == RIGHT_MOUSE_BUTTON_STONE) u.item_carry_nastystone1 = TRUE;
+		if(otmp->otyp == DISPLAY_LOSS_STONE) u.item_carry_nastystone2 = TRUE;
+		if(otmp->otyp == YELLOW_SPELL_STONE) u.item_carry_nastystone3 = TRUE;
+		if(otmp->otyp == SPELL_LOSS_STONE) u.item_carry_nastystone4 = TRUE;
+		if(otmp->otyp == AUTO_DESTRUCT_STONE) u.item_carry_nastystone5 = TRUE;
+		if(otmp->otyp == MEMORY_LOSS_STONE) u.item_carry_nastystone6 = TRUE;
+		if(otmp->otyp == INVENTORY_LOSS_STONE) u.item_carry_nastystone7 = TRUE;
+		if(otmp->otyp == BLACKY_STONE) u.item_carry_nastystone8 = TRUE;
+		if(otmp->otyp == MENU_BUG_STONE) u.item_carry_nastystone9 = TRUE;
+		if(otmp->otyp == SPEEDBUG_STONE) u.item_carry_nastystone10 = TRUE;
+		if(otmp->otyp == SUPERSCROLLER_STONE) u.item_carry_nastystone11 = TRUE;
+		if(otmp->otyp == FREE_HAND_BUG_STONE) u.item_carry_nastystone12 = TRUE;
+		if(otmp->otyp == UNIDENTIFY_STONE) u.item_carry_nastystone13 = TRUE;
+		if(otmp->otyp == STONE_OF_THIRST) u.item_carry_nastystone14 = TRUE;
+		if(otmp->otyp == UNLUCKY_STONE) u.item_carry_nastystone15 = TRUE;
+		if(otmp->otyp == SHADES_OF_GREY_STONE) u.item_carry_nastystone16 = TRUE;
+		if(otmp->otyp == STONE_OF_FAINTING) u.item_carry_nastystone17 = TRUE;
+		if(otmp->otyp == STONE_OF_CURSING) u.item_carry_nastystone18 = TRUE;
+		if(otmp->otyp == STONE_OF_DIFFICULTY) u.item_carry_nastystone19 = TRUE;
+		if(otmp->otyp == DEAFNESS_STONE) u.item_carry_nastystone20 = TRUE;
+		if(otmp->otyp == WEAKNESS_STONE) u.item_carry_nastystone21 = TRUE;
+		if(otmp->otyp == ANTIMAGIC_STONE) u.item_carry_nastystone22 = TRUE;
+		if(otmp->otyp == ROT_THIRTEEN_STONE) u.item_carry_nastystone23 = TRUE;
+		if(otmp->otyp == BISHOP_STONE) u.item_carry_nastystone24 = TRUE;
+		if(otmp->otyp == CONFUSION_STONE) u.item_carry_nastystone25 = TRUE;
+		if(otmp->otyp == DROPBUG_STONE) u.item_carry_nastystone26 = TRUE;
+		if(otmp->otyp == DSTW_STONE) u.item_carry_nastystone27 = TRUE;
+		if(otmp->otyp == AMNESIA_STONE) u.item_carry_nastystone28 = TRUE;
+		if(otmp->otyp == BIGSCRIPT_STONE) u.item_carry_nastystone29 = TRUE;
+		if(otmp->otyp == BANK_STONE) u.item_carry_nastystone30 = TRUE;
+		if(otmp->otyp == MAP_STONE) u.item_carry_nastystone31 = TRUE;
+		if(otmp->otyp == TECHNIQUE_STONE) u.item_carry_nastystone32 = TRUE;
+		if(otmp->otyp == DISENCHANTMENT_STONE) u.item_carry_nastystone33 = TRUE;
+		if(otmp->otyp == VERISIERT_STONE) u.item_carry_nastystone34 = TRUE;
+		if(otmp->otyp == CHAOS_TERRAIN_STONE) u.item_carry_nastystone35 = TRUE;
+		if(otmp->otyp == MUTENESS_STONE) u.item_carry_nastystone36 = TRUE;
+		if(otmp->otyp == ENGRAVING_STONE) u.item_carry_nastystone37 = TRUE;
+		if(otmp->otyp == MAGIC_DEVICE_STONE) u.item_carry_nastystone38 = TRUE;
+		if(otmp->otyp == BOOK_STONE) u.item_carry_nastystone39 = TRUE;
+		if(otmp->otyp == LEVEL_STONE) u.item_carry_nastystone40 = TRUE;
+		if(otmp->otyp == QUIZ_STONE) u.item_carry_nastystone41 = TRUE;
+		if(otmp->otyp == STATUS_STONE) u.item_carry_nastystone42 = TRUE;
+		if(otmp->otyp == ALIGNMENT_STONE) u.item_carry_nastystone43 = TRUE;
+		if(otmp->otyp == STAIRSTRAP_STONE) u.item_carry_nastystone44 = TRUE;
+		if(otmp->otyp == UNINFORMATION_STONE) u.item_carry_nastystone45 = TRUE;
+		if(otmp->otyp == CAPTCHA_STONE) u.item_carry_nastystone46 = TRUE;
+		if(otmp->otyp == FARLOOK_STONE) u.item_carry_nastystone47 = TRUE;
+		if(otmp->otyp == RESPAWN_STONE) u.item_carry_nastystone48 = TRUE;
+		if(otmp->otyp == STONE_OF_INTRINSIC_LOSS) u.item_carry_nastystone49 = TRUE;
+		if(otmp->otyp == BLOOD_LOSS_STONE) u.item_carry_nastystone50 = TRUE;
+		if(otmp->otyp == BAD_EFFECT_STONE) u.item_carry_nastystone51 = TRUE;
+		if(otmp->otyp == TRAP_CREATION_STONE) u.item_carry_nastystone52 = TRUE;
+		if(otmp->otyp == STONE_OF_VULNERABILITY) u.item_carry_nastystone53 = TRUE;
+		if(otmp->otyp == ITEM_TELEPORTING_STONE) u.item_carry_nastystone54 = TRUE;
+		if(otmp->otyp == NASTY_STONE) u.item_carry_nastystone55 = TRUE;
+		if(otmp->otyp == METABOLIC_STONE) u.item_carry_nastystone56 = TRUE;
+		if(otmp->otyp == STONE_OF_NO_RETURN) u.item_carry_nastystone57 = TRUE;
+		if(otmp->otyp == EGOSTONE) u.item_carry_nastystone58 = TRUE;
+		if(otmp->otyp == FAST_FORWARD_STONE) u.item_carry_nastystone59 = TRUE;
+		if(otmp->otyp == ROTTEN_STONE) u.item_carry_nastystone60 = TRUE;
+		if(otmp->otyp == UNSKILLED_STONE) u.item_carry_nastystone61 = TRUE;
+		if(otmp->otyp == LOW_STAT_STONE) u.item_carry_nastystone62 = TRUE;
+		if(otmp->otyp == TRAINING_STONE) u.item_carry_nastystone63 = TRUE;
+		if(otmp->otyp == EXERCISE_STONE) u.item_carry_nastystone64 = TRUE;
+		if(otmp->otyp == TURN_LIMIT_STONE) u.item_carry_nastystone65 = TRUE;
+		if(otmp->otyp == WEAK_SIGHT_STONE) u.item_carry_nastystone66 = TRUE;
+		if(otmp->otyp == CHATTER_STONE) u.item_carry_nastystone67 = TRUE;
+		if(otmp->otyp == NONSACRED_STONE) u.item_carry_nastystone68 = TRUE;
+		if(otmp->otyp == STARVATION_STONE) u.item_carry_nastystone69 = TRUE;
+		if(otmp->otyp == DROPLESS_STONE) u.item_carry_nastystone70 = TRUE;
+		if(otmp->otyp == LOW_EFFECT_STONE) u.item_carry_nastystone71 = TRUE;
+		if(otmp->otyp == INVISO_STONE) u.item_carry_nastystone72 = TRUE;
+		if(otmp->otyp == GHOSTLY_STONE) u.item_carry_nastystone73 = TRUE;
+		if(otmp->otyp == DEHYDRATING_STONE) u.item_carry_nastystone74 = TRUE;
+		if(otmp->otyp == STONE_OF_HATE) u.item_carry_nastystone75 = TRUE;
+		if(otmp->otyp == DIRECTIONAL_SWAP_STONE) u.item_carry_nastystone76 = TRUE;
+		if(otmp->otyp == NONINTRINSICAL_STONE) u.item_carry_nastystone77 = TRUE;
+		if(otmp->otyp == DROPCURSE_STONE) u.item_carry_nastystone78 = TRUE;
+		if(otmp->otyp == STONE_OF_NAKED_STRIPPING) u.item_carry_nastystone79 = TRUE;
+		if(otmp->otyp == ANTILEVEL_STONE) u.item_carry_nastystone80 = TRUE;
+		if(otmp->otyp == STEALER_STONE) u.item_carry_nastystone81 = TRUE;
+		if(otmp->otyp == REBEL_STONE) u.item_carry_nastystone82 = TRUE;
+		if(otmp->otyp == SHIT_STONE) u.item_carry_nastystone83 = TRUE;
+		if(otmp->otyp == STONE_OF_MISFIRING) u.item_carry_nastystone84 = TRUE;
+		if(otmp->otyp == STONE_OF_PERMANENCE) u.item_carry_nastystone85 = TRUE;
+		if(otmp->otyp == DISCONNECT_STONE) u.item_carry_nastystone86 = TRUE;
+		if(otmp->otyp == SCREW_STONE) u.item_carry_nastystone87 = TRUE;
+		if(otmp->otyp == BOSSFIGHT_STONE) u.item_carry_nastystone88 = TRUE;
+		if(otmp->otyp == ENTIRE_LEVEL_STONE) u.item_carry_nastystone89 = TRUE;
+		if(otmp->otyp == BONE_STONE) u.item_carry_nastystone90 = TRUE;
+		if(otmp->otyp == AUTOCURSE_STONE) u.item_carry_nastystone91 = TRUE;
+		if(otmp->otyp == HIGHLEVEL_STONE) u.item_carry_nastystone92 = TRUE;
+		if(otmp->otyp == SPELL_MEMORY_STONE) u.item_carry_nastystone93 = TRUE;
+		if(otmp->otyp == SOUND_EFFECT_STONE) u.item_carry_nastystone94 = TRUE;
+		if(otmp->otyp == TIME_USE_STONE) u.item_carry_nastystone95 = TRUE;
+		if(otmp->otyp == LOOTCUT_STONE) u.item_carry_nastystone96 = TRUE;
+		if(otmp->otyp == MONSTER_SPEED_STONE) u.item_carry_nastystone97 = TRUE;
+		if(otmp->otyp == SCALING_STONE) u.item_carry_nastystone98 = TRUE;
+		if(otmp->otyp == INIMICAL_STONE) u.item_carry_nastystone99 = TRUE;
+		if(otmp->otyp == WHITE_SPELL_STONE) u.item_carry_nastystone100 = TRUE;
+		if(otmp->otyp == GREYOUT_STONE) u.item_carry_nastystone101 = TRUE;
+		if(otmp->otyp == QUASAR_STONE) u.item_carry_nastystone102 = TRUE;
+		if(otmp->otyp == MOMMY_STONE) u.item_carry_nastystone103 = TRUE;
+		if(otmp->otyp == HORROR_STONE) u.item_carry_nastystone104 = TRUE;
+		if(otmp->otyp == ARTIFICIAL_STONE) u.item_carry_nastystone105 = TRUE;
+		if(otmp->otyp == WEREFORM_STONE) u.item_carry_nastystone106 = TRUE;
+		if(otmp->otyp == ANTIPRAYER_STONE) u.item_carry_nastystone107 = TRUE;
+		if(otmp->otyp == EVIL_PATCH_STONE) u.item_carry_nastystone108 = TRUE;
+		if(otmp->otyp == HARD_MODE_STONE) u.item_carry_nastystone109 = TRUE;
+		if(otmp->otyp == SECRET_ATTACK_STONE) u.item_carry_nastystone110 = TRUE;
+		if(otmp->otyp == EATER_STONE) u.item_carry_nastystone111 = TRUE;
+		if(otmp->otyp == COVETOUS_STONE) u.item_carry_nastystone112 = TRUE;
+		if(otmp->otyp == NON_SEEING_STONE) u.item_carry_nastystone113 = TRUE;
+		if(otmp->otyp == DARKMODE_STONE) u.item_carry_nastystone114 = TRUE;
+		if(otmp->otyp == UNFINDABLE_STONE) u.item_carry_nastystone115 = TRUE;
+		if(otmp->otyp == HOMICIDE_STONE) u.item_carry_nastystone116 = TRUE;
+		if(otmp->otyp == MULTITRAPPING_STONE) u.item_carry_nastystone117 = TRUE;
+		if(otmp->otyp == WAKEUP_CALL_STONE) u.item_carry_nastystone118 = TRUE;
+		if(otmp->otyp == GRAYOUT_STONE) u.item_carry_nastystone119 = TRUE;
+		if(otmp->otyp == GRAY_CENTER_STONE) u.item_carry_nastystone120 = TRUE;
+		if(otmp->otyp == CHECKERBOARD_STONE) u.item_carry_nastystone121 = TRUE;
+		if(otmp->otyp == CLOCKWISE_STONE) u.item_carry_nastystone122 = TRUE;
+		if(otmp->otyp == COUNTERCLOCKWISE_STONE) u.item_carry_nastystone123 = TRUE;
+		if(otmp->otyp == LAG_STONE) u.item_carry_nastystone124 = TRUE;
+		if(otmp->otyp == BLESSCURSE_STONE) u.item_carry_nastystone125 = TRUE;
+		if(otmp->otyp == DELIGHT_STONE) u.item_carry_nastystone126 = TRUE;
+		if(otmp->otyp == DISCHARGE_STONE) u.item_carry_nastystone127 = TRUE;
+		if(otmp->otyp == TRASH_STONE) u.item_carry_nastystone128 = TRUE;
+		if(otmp->otyp == FILTERING_STONE) u.item_carry_nastystone129 = TRUE;
+		if(otmp->otyp == DEFORMATTING_STONE) u.item_carry_nastystone130 = TRUE;
+		if(otmp->otyp == FLICKER_STRIP_STONE) u.item_carry_nastystone131 = TRUE;
+		if(otmp->otyp == UNDRESSING_STONE) u.item_carry_nastystone132 = TRUE;
+		if(otmp->otyp == HYPER_BLUE_STONE) u.item_carry_nastystone133 = TRUE;
+		if(otmp->otyp == NO_LIGHT_STONE) u.item_carry_nastystone134 = TRUE;
+		if(otmp->otyp == PARANOIA_STONE) u.item_carry_nastystone135 = TRUE;
+		if(otmp->otyp == FLEECE_STONE) u.item_carry_nastystone136 = TRUE;
+		if(otmp->otyp == INTERRUPTION_STONE) u.item_carry_nastystone137 = TRUE;
+		if(otmp->otyp == DUSTBIN_STONE) u.item_carry_nastystone138 = TRUE;
+		if(otmp->otyp == BATTERY_STONE) u.item_carry_nastystone139 = TRUE;
+		if(otmp->otyp == BUTTERFINGER_STONE) u.item_carry_nastystone140 = TRUE;
+		if(otmp->otyp == MISCASTING_STONE) u.item_carry_nastystone141 = TRUE;
+		if(otmp->otyp == MESSAGE_SUPPRESSION_STONE) u.item_carry_nastystone142 = TRUE;
+		if(otmp->otyp == STUCK_ANNOUNCEMENT_STONE) u.item_carry_nastystone143 = TRUE;
+		if(otmp->otyp == STORM_STONE) u.item_carry_nastystone144 = TRUE;
+		if(otmp->otyp == MAXIMUM_DAMAGE_STONE) u.item_carry_nastystone145 = TRUE;
+		if(otmp->otyp == LATENCY_STONE) u.item_carry_nastystone146 = TRUE;
+		if(otmp->otyp == STARLIT_SKY_STONE) u.item_carry_nastystone147 = TRUE;
+		if(otmp->otyp == TRAP_KNOWLEDGE_STONE) u.item_carry_nastystone148 = TRUE;
+		if(otmp->otyp == HIGHSCORE_STONE) u.item_carry_nastystone149 = TRUE;
+		if(otmp->otyp == PINK_SPELL_STONE) u.item_carry_nastystone150 = TRUE;
+		if(otmp->otyp == GREEN_SPELL_STONE) u.item_carry_nastystone151 = TRUE;
+		if(otmp->otyp == EVC_STONE) u.item_carry_nastystone152 = TRUE;
+		if(otmp->otyp == UNDERLAID_STONE) u.item_carry_nastystone153 = TRUE;
+		if(otmp->otyp == DAMAGE_METER_STONE) u.item_carry_nastystone154 = TRUE;
+		if(otmp->otyp == WEIGHT_STONE) u.item_carry_nastystone155 = TRUE;
+		if(otmp->otyp == INFOFUCK_STONE) u.item_carry_nastystone156 = TRUE;
+		if(otmp->otyp == BLACK_SPELL_STONE) u.item_carry_nastystone157 = TRUE;
+		if(otmp->otyp == CYAN_SPELL_STONE) u.item_carry_nastystone158 = TRUE;
+		if(otmp->otyp == HEAP_STONE) u.item_carry_nastystone159 = TRUE;
+		if(otmp->otyp == BLUE_SPELL_STONE) u.item_carry_nastystone160 = TRUE;
+		if(otmp->otyp == TRON_STONE) u.item_carry_nastystone161 = TRUE;
+		if(otmp->otyp == RED_SPELL_STONE) u.item_carry_nastystone162 = TRUE;
+		if(otmp->otyp == TOO_HEAVY_STONE) u.item_carry_nastystone163 = TRUE;
+		if(otmp->otyp == ELONGATED_STONE) u.item_carry_nastystone164 = TRUE;
+		if(otmp->otyp == WRAPOVER_STONE) u.item_carry_nastystone165 = TRUE;
+		if(otmp->otyp == DESTRUCTION_STONE) u.item_carry_nastystone166 = TRUE;
+		if(otmp->otyp == MELEE_PREFIX_STONE) u.item_carry_nastystone167 = TRUE;
+		if(otmp->otyp == AUTOMORE_STONE) u.item_carry_nastystone168 = TRUE;
+		if(otmp->otyp == UNFAIR_ATTACK_STONE) u.item_carry_nastystone169 = TRUE;
+		if(otmp->otyp == ORANGE_SPELL_STONE) u.item_carry_nastystone170 = TRUE;
+		if(otmp->otyp == VIOLET_SPELL_STONE) u.item_carry_nastystone171 = TRUE;
+		if(otmp->otyp == LONGING_STONE) u.item_carry_nastystone172 = TRUE;
+		if(otmp->otyp == CURSED_PART_STONE) u.item_carry_nastystone173 = TRUE;
+		if(otmp->otyp == QUAVERSAL_STONE) u.item_carry_nastystone174 = TRUE;
+		if(otmp->otyp == APPEARANCE_SHUFFLING_STONE) u.item_carry_nastystone175 = TRUE;
+		if(otmp->otyp == BROWN_SPELL_STONE) u.item_carry_nastystone176 = TRUE;
+		if(otmp->otyp == CHOICELESS_STONE) u.item_carry_nastystone177 = TRUE;
+		if(otmp->otyp == GOLDSPELL_STONE) u.item_carry_nastystone178 = TRUE;
+		if(otmp->otyp == DEPROVEMENT_STONE) u.item_carry_nastystone179 = TRUE;
+		if(otmp->otyp == INITIALIZATION_STONE) u.item_carry_nastystone180 = TRUE;
+		if(otmp->otyp == GUSHLUSH_STONE) u.item_carry_nastystone181 = TRUE;
+		if(otmp->otyp == SOILTYPE_STONE) u.item_carry_nastystone182 = TRUE;
+		if(otmp->otyp == DANGEROUS_TERRAIN_STONE) u.item_carry_nastystone183 = TRUE;
+		if(otmp->otyp == FALLOUT_STONE) u.item_carry_nastystone184 = TRUE;
+		if(otmp->otyp == MOJIBAKE_STONE) u.item_carry_nastystone185 = TRUE;
+		if(otmp->otyp == GRAVATION_STONE) u.item_carry_nastystone186 = TRUE;
+		if(otmp->otyp == UNCALLED_STONE) u.item_carry_nastystone187 = TRUE;
+		if(otmp->otyp == EXPLODING_DICE_STONE) u.item_carry_nastystone188 = TRUE;
+		if(otmp->otyp == PERMACURSE_STONE) u.item_carry_nastystone189 = TRUE;
+		if(otmp->otyp == SHROUDED_IDENTITY_STONE) u.item_carry_nastystone190 = TRUE;
+		if(otmp->otyp == FEELER_GAUGE_STONE) u.item_carry_nastystone191 = TRUE;
+		if(otmp->otyp == LONG_SCREWUP_STONE) u.item_carry_nastystone192 = TRUE;
+		if(otmp->otyp == WING_YELLOW_STONE) u.item_carry_nastystone193 = TRUE;
+		if(otmp->otyp == LIFE_SAVING_STONE) u.item_carry_nastystone194 = TRUE;
+		if(otmp->otyp == CURSEUSE_STONE) u.item_carry_nastystone195 = TRUE;
+		if(otmp->otyp == CUT_NUTRITION_STONE) u.item_carry_nastystone196 = TRUE;
+		if(otmp->otyp == SKILL_LOSS_STONE) u.item_carry_nastystone197 = TRUE;
+		if(otmp->otyp == AUTOPILOT_STONE) u.item_carry_nastystone198 = TRUE;
+		if(otmp->otyp == FORCE_STONE) u.item_carry_nastystone199 = TRUE;
+		if(otmp->otyp == MONSTER_GLYPH_STONE) u.item_carry_nastystone100 = TRUE;
+		if(otmp->otyp == CHANGING_DIRECTIVE_STONE) u.item_carry_nastystone201 = TRUE;
+		if(otmp->otyp == CONTAINER_KABOOM_STONE) u.item_carry_nastystone202 = TRUE;
+		if(otmp->otyp == STEAL_DEGRADE_STONE) u.item_carry_nastystone203 = TRUE;
+		if(otmp->otyp == LEFT_INVENTORY_STONE) u.item_carry_nastystone204 = TRUE;
+		if(otmp->otyp == FLUCTUATING_SPEED_STONE) u.item_carry_nastystone205 = TRUE;
+		if(otmp->otyp == TARMUSTROKINGNORA_STONE) u.item_carry_nastystone206 = TRUE;
+		if(otmp->otyp == FAILURE_STONE) u.item_carry_nastystone207 = TRUE;
+		if(otmp->otyp == BRIGHT_CYAN_SPELL_STONE) u.item_carry_nastystone208 = TRUE;
+		if(otmp->otyp == FREQUENTATION_SPAWN_STONE) u.item_carry_nastystone209 = TRUE;
+		if(otmp->otyp == PET_AI_STONE) u.item_carry_nastystone210 = TRUE;
+		if(otmp->otyp == SATAN_STONE) u.item_carry_nastystone211 = TRUE;
+		if(otmp->otyp == REMEMBERANCE_STONE) u.item_carry_nastystone212 = TRUE;
+		if(otmp->otyp == POKELIE_STONE) u.item_carry_nastystone213 = TRUE;
+		if(otmp->otyp == AUTOPICKUP_STONE) u.item_carry_nastystone214 = TRUE;
+		if(otmp->otyp == DYWYPI_STONE) u.item_carry_nastystone215 = TRUE;
+		if(otmp->otyp == SILVER_SPELL_STONE) u.item_carry_nastystone216 = TRUE;
+		if(otmp->otyp == METAL_SPELL_STONE) u.item_carry_nastystone217 = TRUE;
+		if(otmp->otyp == PLATINUM_SPELL_STONE) u.item_carry_nastystone218 = TRUE;
+		if(otmp->otyp == MANLER_STONE) u.item_carry_nastystone219 = TRUE;
+		if(otmp->otyp == DOORNING_STONE) u.item_carry_nastystone220 = TRUE;
+		if(otmp->otyp == NOWNSIBLE_STONE) u.item_carry_nastystone221 = TRUE;
+		if(otmp->otyp == ELM_STREET_STONE) u.item_carry_nastystone222 = TRUE;
+		if(otmp->otyp == MONNOISE_STONE) u.item_carry_nastystone223 = TRUE;
+		if(otmp->otyp == RANG_CALL_STONE) u.item_carry_nastystone224 = TRUE;
+		if(otmp->otyp == RECURRING_SPELL_LOSS_STONE) u.item_carry_nastystone225 = TRUE;
+		if(otmp->otyp == ANTI_TRAINING_STONE) u.item_carry_nastystone226 = TRUE;
+		if(otmp->otyp == TECHOUT_STONE) u.item_carry_nastystone227 = TRUE;
+		if(otmp->otyp == STAT_DECAY_STONE) u.item_carry_nastystone228 = TRUE;
+		if(otmp->otyp == MOVEMORK_STONE) u.item_carry_nastystone229 = TRUE;
+		if(otmp->otyp == BAD_PART_STONE) u.item_carry_nastystone230 = TRUE;
+		if(otmp->otyp == COMPLETELY_BAD_PART_STONE) u.item_carry_nastystone231 = TRUE;
+		if(otmp->otyp == EVIL_VARIANT_STONE) u.item_carry_nastystone232 = TRUE;
+		if(otmp->otyp == SANE_TREBLE_STONE) u.item_carry_nastystone233 = TRUE;
+		if(otmp->otyp == STATCREASE_STONE) u.item_carry_nastystone234 = TRUE;
+		if(otmp->otyp == SIMEOUT_STONE) u.item_carry_nastystone235 = TRUE;
+		if(otmp->otyp == GIANT_EXPLORER_STONE) u.item_carry_nastystone236 = TRUE;
+		if(otmp->otyp == TRAPWARP_STONE) u.item_carry_nastystone237 = TRUE;
+		if(otmp->otyp == YAWM_STONE) u.item_carry_nastystone238 = TRUE;
+		if(otmp->otyp == CHAOSCRADLE_STONE) u.item_carry_nastystone239 = TRUE;
+		if(otmp->otyp == TEZ_STONE) u.item_carry_nastystone240 = TRUE;
+		if(otmp->otyp == BOSSGOD_STONE) u.item_carry_nastystone241 = TRUE;
+		if(otmp->otyp == UBERGOD_STONE) u.item_carry_nastystone242 = TRUE;
+		if(otmp->otyp == TOO_GOOD_GO_STONE) u.item_carry_nastystone243 = TRUE;
+		if(otmp->otyp == KILLER_ROOM_STONE) u.item_carry_nastystone244 = TRUE;
+		if(otmp->otyp == FUNWALL_STONE) u.item_carry_nastystone245 = TRUE;
+		if(otmp->otyp == REALLY_BAD_STONE) u.item_carry_nastystone246 = TRUE;
+		if(otmp->otyp == COVID_STONE) u.item_carry_nastystone247 = TRUE;
+		if(otmp->otyp == BLAST_STONE) u.item_carry_nastystone248 = TRUE;
+		if(otmp->otyp == NASTYCURSE_STONE) u.item_carry_nastystone249 = TRUE;
+		if(otmp->otyp == REAL_LIE_STONE) u.item_carry_nastystone250 = TRUE;
+		if(otmp->otyp == ESCAPE_PAST_STONE) u.item_carry_nastystone251 = TRUE;
+		if(otmp->otyp == PETHATE_STONE) u.item_carry_nastystone252 = TRUE;
+		if(otmp->otyp == PET_LASHOUT_STONE) u.item_carry_nastystone253 = TRUE;
+		if(otmp->otyp == PETSTARVE_STONE) u.item_carry_nastystone254 = TRUE;
+		if(otmp->otyp == PETSCREW_STONE) u.item_carry_nastystone255 = TRUE;
+		if(otmp->otyp == TECH_LOSS_STONE) u.item_carry_nastystone256 = TRUE;
+		if(otmp->otyp == PROOFLOSS_STONE) u.item_carry_nastystone257 = TRUE;
+		if(otmp->otyp == UN_INVIS_STONE) u.item_carry_nastystone258 = TRUE;
+		if(otmp->otyp == DETECTATION_STONE) u.item_carry_nastystone259 = TRUE;
+		if(otmp->otyp == OPTION_STONE) u.item_carry_nastystone260 = TRUE;
+		if(otmp->otyp == MISCOLOR_STONE) u.item_carry_nastystone261 = TRUE;
+		if(otmp->otyp == ONE_RAINBOW_STONE) u.item_carry_nastystone262 = TRUE;
+		if(otmp->otyp == COLORSHIFT_STONE) u.item_carry_nastystone263 = TRUE;
+		if(otmp->otyp == TOP_LINE_STONE) u.item_carry_nastystone264 = TRUE;
+		if(otmp->otyp == CAPS_STONE) u.item_carry_nastystone265 = TRUE;
+		if(otmp->otyp == UN_KNOWLEDGE_STONE) u.item_carry_nastystone266 = TRUE;
+		if(otmp->otyp == DARKHANCE_STONE) u.item_carry_nastystone267 = TRUE;
+		if(otmp->otyp == DSCHUEUEUET_STONE) u.item_carry_nastystone268 = TRUE;
+		if(otmp->otyp == NOPESKILL_STONE) u.item_carry_nastystone269 = TRUE;
+		if(otmp->otyp == STONE_OF_COMPLETE_FUCKUP) u.item_carry_nastystone270 = TRUE;
+		if(otmp->otyp == EPVI_STONE) u.item_carry_nastystone271 = TRUE;
+		if(otmp->otyp == AEFDE_STONE) u.item_carry_nastystone272 = TRUE;
+		if(otmp->otyp == MEAN_BURDEN_STONE) u.item_carry_nastystone273 = TRUE;
+		if(otmp->otyp == CARRCAP_STONE) u.item_carry_nastystone274 = TRUE;
+		if(otmp->otyp == UMENG_STONE) u.item_carry_nastystone275 = TRUE;
+		if(otmp->otyp == SPELL_COOLDOWN_STONE) u.item_carry_nastystone276 = TRUE;
+		if(otmp->otyp == TURBODULL_STONE) u.item_carry_nastystone277 = TRUE;
+		if(otmp->otyp == REDDAM_STONE) u.item_carry_nastystone278 = TRUE;
+		if(otmp->otyp == REDINC_STONE) u.item_carry_nastystone279 = TRUE;
+		if(otmp->otyp == MULCH_STONE) u.item_carry_nastystone280 = TRUE;
+		if(otmp->otyp == INACCURACY_STONE) u.item_carry_nastystone281 = TRUE;
+		if(otmp->otyp == MONSTER_MULTISHOT_STONE) u.item_carry_nastystone282 = TRUE;
+		if(otmp->otyp == HAVE_A_PIN_STONE) u.item_carry_nastystone283 = TRUE;
+		if(otmp->otyp == COSTLY_FAILURE_STONE) u.item_carry_nastystone284 = TRUE;
+		if(otmp->otyp == INVENTORY_SIZE_STONE) u.item_carry_nastystone285 = TRUE;
+		if(otmp->otyp == ANTISWITCH_STONE) u.item_carry_nastystone286 = TRUE;
+		if(otmp->otyp == BOUND_DAY_STONE) u.item_carry_nastystone287 = TRUE;
+		if(otmp->otyp == ANTIMATTER_STONE) u.item_carry_nastystone288 = TRUE;
 	}
 }
 
@@ -1516,29 +2595,29 @@ have_burnerdream()
 	return(FALSE);
 }
 
+/* carried artifacts for spell colors; this needs to be a function, not a macro!! --Amy */
 int
 have_spellcolorartifact()
 {
 	register struct obj *otmp;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(SpellColorYellow && otmp->oartifact == ART_DISSOLVOTEK) return YELLOW_SPELL_STONE;
-		if(SpellColorWhite && otmp->oartifact == ART_ARCTICER_WINTER) return WHITE_SPELL_STONE;
-		if(SpellColorPink && otmp->oartifact == ART_ROY_S_MANLINESS) return PINK_SPELL_STONE;
-		if(SpellColorGreen && otmp->oartifact == ART_MARLENA_S_FOREST) return GREEN_SPELL_STONE;
-		if(SpellColorBlack && otmp->oartifact == ART_MOURNDRESSING) return BLACK_SPELL_STONE;
-		if(SpellColorCyan && otmp->oartifact == ART_NO_GLEAMSHINE) return CYAN_SPELL_STONE;
-		if(SpellColorBlue && otmp->oartifact == ART_DARK_CELLAR_HOUSING) return BLUE_SPELL_STONE;
-		if(SpellColorRed && otmp->oartifact == ART_COLOR_OF_SEXUALITY) return RED_SPELL_STONE;
-		if(SpellColorOrange && otmp->oartifact == ART_INA_S_BRIGHTNESS) return ORANGE_SPELL_STONE;
-		if(SpellColorViolet && otmp->oartifact == ART_KATRIN_S_THRILL) return VIOLET_SPELL_STONE;
-		if(SpellColorBrown && otmp->oartifact == ART_BUTT_OUTPUT) return BROWN_SPELL_STONE;
-		if(SpellColorBrightCyan && otmp->oartifact == ART_BEHOLDEN_IN_THE_NAME) return BRIGHT_CYAN_SPELL_STONE;
-		if(SpellColorSilver && otmp->oartifact == ART_IRIS_FLAX_SHARP) return SILVER_SPELL_STONE;
-		if(SpellColorMetal && otmp->oartifact == ART_MUXXERHEAD) return METAL_SPELL_STONE;
-		if(SpellColorPlatinum && otmp->oartifact == ART_FORTUNEFEET) return PLATINUM_SPELL_STONE;
-		if(SpellColorGray && otmp->oartifact == ART_MADE_OF_STONE) return GREYOUT_STONE;
-	}
+	if(SpellColorYellow && u.arti_carry_dissolvotek) return YELLOW_SPELL_STONE;
+	if(SpellColorWhite && u.arti_carry_arcticerwinter) return WHITE_SPELL_STONE;
+	if(SpellColorPink && u.arti_carry_roysmanliness) return PINK_SPELL_STONE;
+	if(SpellColorGreen && u.arti_carry_marlenasforest) return GREEN_SPELL_STONE;
+	if(SpellColorBlack && u.arti_carry_mourndressing) return BLACK_SPELL_STONE;
+	if(SpellColorCyan && u.arti_carry_nogleamshine) return CYAN_SPELL_STONE;
+	if(SpellColorBlue && u.arti_carry_darkcellarhousing) return BLUE_SPELL_STONE;
+	if(SpellColorRed && u.arti_carry_colorofsexuality) return RED_SPELL_STONE;
+	if(SpellColorOrange && u.arti_carry_inasbrightness) return ORANGE_SPELL_STONE;
+	if(SpellColorViolet && u.arti_carry_katrinsthrill) return VIOLET_SPELL_STONE;
+	if(SpellColorBrown && u.arti_carry_buttoutput) return BROWN_SPELL_STONE;
+	if(SpellColorBrightCyan && u.arti_carry_beholdenname) return BRIGHT_CYAN_SPELL_STONE;
+	if(SpellColorSilver && u.arti_carry_irisflaxsharp) return SILVER_SPELL_STONE;
+	if(SpellColorMetal && u.arti_carry_muxxerhead) return METAL_SPELL_STONE;
+	if(SpellColorPlatinum && u.arti_carry_fortunefeet) return PLATINUM_SPELL_STONE;
+	if(SpellColorGray && u.arti_carry_madeofstone) return GREYOUT_STONE;
+
 	return(FALSE);
 }
 
@@ -1586,16 +2665,12 @@ have_refractura()
 int
 have_femtrapfemmy()
 {
-	register struct obj *otmp;
-
 	if (u.tempsuperfemtrap_femmy) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == FEMMY_S_JEWEL) {
-			if (otmp->oartifact == ART_HOW_DEEP_CAN_YOU_SINK_) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_howdeepcan) return 2;
+
+	if (u.item_carry_femjewel1) return TRUE;
+
 	if (feminizecheck(1)) return TRUE;
 	return(FALSE);
 }
@@ -1603,13 +2678,8 @@ have_femtrapfemmy()
 int
 have_femtrapmadeleine()
 {
-	register struct obj *otmp;
+	if (u.item_carry_femjewel2) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MADELEINE_S_JEWEL) {
-			return(TRUE);
-		}
-	}
 	if (feminizecheck(2)) return TRUE;
 	return(FALSE);
 }
@@ -1617,15 +2687,10 @@ have_femtrapmadeleine()
 int
 have_femtrapmarlena()
 {
-	register struct obj *otmp;
-
 	/*if (u.tempsuperfemtrap_marlena) return 2;*/
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MARLENA_S_JEWEL) {
-			return(TRUE);
-		}
-	}
+	if (u.item_carry_femjewel3) return TRUE;
+
 	if (feminizecheck(3)) return TRUE;
 	return(FALSE);
 }
@@ -1633,16 +2698,12 @@ have_femtrapmarlena()
 int
 have_femtrapanastasia()
 {
-	register struct obj *otmp;
-
 	if (u.tempsuperfemtrap_anastasia) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ANASTASIA_S_JEWEL) {
-			if (otmp->oartifact == ART_FEELS_GOOD_ENOUGH_TO_DO_IT) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_feelsgoodenough) return 2;
+
+	if (u.item_carry_femjewel4) return TRUE;
+
 	if (feminizecheck(4)) return TRUE;
 	return(FALSE);
 }
@@ -1650,13 +2711,8 @@ have_femtrapanastasia()
 int
 have_femtrapjessica()
 {
-	register struct obj *otmp;
+	if (u.item_carry_femjewel5) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == JESSICA_S_JEWEL) {
-			return(TRUE);
-		}
-	}
 	if (feminizecheck(5)) return TRUE;
 	return(FALSE);
 }
@@ -1664,13 +2720,8 @@ have_femtrapjessica()
 int
 have_femtrapsolvejg()
 {
-	register struct obj *otmp;
+	if (u.item_carry_femjewel6) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == SOLVEJG_S_JEWEL) {
-			return(TRUE);
-		}
-	}
 	if (feminizecheck(6)) return TRUE;
 	return(FALSE);
 }
@@ -1678,16 +2729,12 @@ have_femtrapsolvejg()
 int
 have_femtrapwendy()
 {
-	register struct obj *otmp;
-
 	if (u.tempsuperfemtrap_wendy) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == WENDY_S_JEWEL) {
-			if (otmp->oartifact == ART_MARIO_AND_LUIGI_WILL_FAIL_) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_marioand) return 2;
+
+	if (u.item_carry_femjewel7) return TRUE;
+
 	if (feminizecheck(7)) return TRUE;
 	return(FALSE);
 }
@@ -1695,16 +2742,12 @@ have_femtrapwendy()
 int
 have_femtrapkatharina()
 {
-	register struct obj *otmp;
-
 	if (u.tempsuperfemtrap_katharina) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == KATHARINA_S_JEWEL) {
-			if (otmp->oartifact == ART_QUEWUEWUE_QUEUEUEUEK_) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_quewuewue) return 2;
+
+	if (u.item_carry_femjewel8) return TRUE;
+
 	if (feminizecheck(8)) return TRUE;
 	return(FALSE);
 }
@@ -1712,13 +2755,8 @@ have_femtrapkatharina()
 int
 have_femtrapelena()
 {
-	register struct obj *otmp;
+	if (u.item_carry_femjewel9) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ELENA_S_JEWEL) {
-			return(TRUE);
-		}
-	}
 	if (feminizecheck(9)) return TRUE;
 	return(FALSE);
 }
@@ -1726,13 +2764,8 @@ have_femtrapelena()
 int
 have_femtrapthai()
 {
-	register struct obj *otmp;
+	if (u.item_carry_femjewel10) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == THAI_S_JEWEL) {
-			return(TRUE);
-		}
-	}
 	if (feminizecheck(10)) return TRUE;
 	return(FALSE);
 }
@@ -1740,16 +2773,12 @@ have_femtrapthai()
 int
 have_femtrapelif()
 {
-	register struct obj *otmp;
-
 	if (u.tempsuperfemtrap_elif) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ELIF_S_JEWEL) {
-			if (otmp->oartifact == ART_NON_ASIAN_WOMAN_WITH_AN_AS) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_nonasianwoman) return 2;
+
+	if (u.item_carry_femjewel11) return TRUE;
+
 	if (feminizecheck(11)) return TRUE;
 	return(FALSE);
 }
@@ -1757,13 +2786,8 @@ have_femtrapelif()
 int
 have_femtrapnadja()
 {
-	register struct obj *otmp;
+	if (u.item_carry_femjewel12) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == NADJA_S_JEWEL) {
-			return(TRUE);
-		}
-	}
 	if (feminizecheck(12)) return TRUE;
 	return(FALSE);
 }
@@ -1771,13 +2795,8 @@ have_femtrapnadja()
 int
 have_femtrapsandra()
 {
-	register struct obj *otmp;
+	if (u.item_carry_femjewel13) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == SANDRA_S_JEWEL) {
-			return(TRUE);
-		}
-	}
 	if (feminizecheck(13)) return TRUE;
 	return(FALSE);
 }
@@ -1785,13 +2804,8 @@ have_femtrapsandra()
 int
 have_femtrapnatalje()
 {
-	register struct obj *otmp;
+	if (u.item_carry_femjewel14) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == NATALJE_S_JEWEL) {
-			return(TRUE);
-		}
-	}
 	if (feminizecheck(14)) return TRUE;
 	return(FALSE);
 }
@@ -1799,13 +2813,8 @@ have_femtrapnatalje()
 int
 have_femtrapjeanetta()
 {
-	register struct obj *otmp;
+	if (u.item_carry_femjewel15) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == JEANETTA_S_JEWEL) {
-			return(TRUE);
-		}
-	}
 	if (feminizecheck(15)) return TRUE;
 	return(FALSE);
 }
@@ -1813,13 +2822,8 @@ have_femtrapjeanetta()
 int
 have_femtrapyvonne()
 {
-	register struct obj *otmp;
+	if (u.item_carry_femjewel16) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == YVONNE_S_JEWEL) {
-			return(TRUE);
-		}
-	}
 	if (feminizecheck(16)) return TRUE;
 	return(FALSE);
 }
@@ -1827,16 +2831,12 @@ have_femtrapyvonne()
 int
 have_femtrapmaurah()
 {
-	register struct obj *otmp;
-
 	if (u.tempsuperfemtrap_maurah) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MAURAH_S_JEWEL) {
-			if (otmp->oartifact == ART_ONION_CAKE_EAT) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_onioncake) return 2;
+
+	if (u.item_carry_femjewel17) return TRUE;
+
 	if (feminizecheck(17)) return TRUE;
 	return(FALSE);
 }
@@ -1844,13 +2844,8 @@ have_femtrapmaurah()
 int
 have_femtrapmeltem()
 {
-	register struct obj *otmp;
+	if (u.item_carry_femjewel18) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MELTEM_S_JEWEL) {
-			return(TRUE);
-		}
-	}
 	if (feminizecheck(18)) return TRUE;
 	return(FALSE);
 }
@@ -1858,16 +2853,12 @@ have_femtrapmeltem()
 int
 have_femtrapsarah()
 {
-	register struct obj *otmp;
-
 	if (u.tempsuperfemtrap_sarah) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == SARAH_S_JEWEL) {
-			if (otmp->oartifact == ART_AIRTIGHT_WAR_MATERIAL) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_airtightwar) return 2;
+
+	if (u.item_carry_femjewel19) return TRUE;
+
 	if (feminizecheck(19)) return TRUE;
 	return(FALSE);
 }
@@ -1875,16 +2866,12 @@ have_femtrapsarah()
 int
 have_femtrapclaudia()
 {
-	register struct obj *otmp;
-
 	if (u.tempsuperfemtrap_claudia) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == CLAUDIA_S_JEWEL) {
-			if (otmp->oartifact == ART_ON_THE_WATERFRONT) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_onthewaterfront) return 2;
+
+	if (u.item_carry_femjewel20) return TRUE;
+
 	if (feminizecheck(20)) return TRUE;
 	return(FALSE);
 }
@@ -1892,16 +2879,12 @@ have_femtrapclaudia()
 int
 have_femtrapludgera()
 {
-	register struct obj *otmp;
-
 	if (u.tempsuperfemtrap_ludgera) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == LUDGERA_S_JEWEL) {
-			if (otmp->oartifact == ART_DISGUSTING_HIGHLY_THREE) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_disgustinghighly) return 2;
+
+	if (u.item_carry_femjewel21) return TRUE;
+
 	if (feminizecheck(21)) return TRUE;
 	return(FALSE);
 }
@@ -1909,13 +2892,8 @@ have_femtrapludgera()
 int
 have_femtrapkati()
 {
-	register struct obj *otmp;
+	if (u.item_carry_femjewel22) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == KATI_S_JEWEL) {
-			return(TRUE);
-		}
-	}
 	if (feminizecheck(22)) return TRUE;
 	return(FALSE);
 }
@@ -1923,13 +2901,8 @@ have_femtrapkati()
 int
 have_femtrapnelly()
 {
-	register struct obj *otmp;
+	if (u.item_carry_femjewel23) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == NELLY_S_JEWEL) {
-			return(TRUE);
-		}
-	}
 	if (feminizecheck(23)) return TRUE;
 	return(FALSE);
 }
@@ -1937,16 +2910,12 @@ have_femtrapnelly()
 int
 have_femtrapeveline()
 {
-	register struct obj *otmp;
-
 	if (u.tempsuperfemtrap_eveline) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == EVELINE_S_JEWEL) {
-			if (otmp->oartifact == ART_GREETLETS_) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_greetlets) return 2;
+
+	if (u.item_carry_femjewel24) return TRUE;
+
 	if (feminizecheck(24)) return TRUE;
 	return(FALSE);
 }
@@ -1954,13 +2923,8 @@ have_femtrapeveline()
 int
 have_femtrapkarin()
 {
-	register struct obj *otmp;
+	if (u.item_carry_femjewel25) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == KARIN_S_JEWEL) {
-			return(TRUE);
-		}
-	}
 	if (feminizecheck(25)) return TRUE;
 	return(FALSE);
 }
@@ -1968,13 +2932,8 @@ have_femtrapkarin()
 int
 have_femtrapjuen()
 {
-	register struct obj *otmp;
+	if (u.item_carry_femjewel26) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == JUEN_S_JEWEL) {
-			return(TRUE);
-		}
-	}
 	if (feminizecheck(26)) return TRUE;
 	return(FALSE);
 }
@@ -1982,13 +2941,8 @@ have_femtrapjuen()
 int
 have_femtrapkristina()
 {
-	register struct obj *otmp;
+	if (u.item_carry_femjewel27) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == KRISTINA_S_JEWEL) {
-			return(TRUE);
-		}
-	}
 	if (feminizecheck(27)) return TRUE;
 	return(FALSE);
 }
@@ -1996,13 +2950,8 @@ have_femtrapkristina()
 int
 have_femtraplou()
 {
-	register struct obj *otmp;
+	if (u.item_carry_femjewel28) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == LOU_S_JEWEL) {
-			return(TRUE);
-		}
-	}
 	if (feminizecheck(28)) return TRUE;
 	return(FALSE);
 }
@@ -2010,13 +2959,8 @@ have_femtraplou()
 int
 have_femtrapalmut()
 {
-	register struct obj *otmp;
+	if (u.item_carry_femjewel29) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ALMUT_S_JEWEL) {
-			return(TRUE);
-		}
-	}
 	if (feminizecheck(29)) return TRUE;
 	return(FALSE);
 }
@@ -2024,16 +2968,12 @@ have_femtrapalmut()
 int
 have_femtrapjulietta()
 {
-	register struct obj *otmp;
-
 	if (u.tempsuperfemtrap_julietta) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == JULIETTA_S_JEWEL) {
-			if (otmp->oartifact == ART_LA_MADEMOISELLE_REGNE_SUR_) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_lamademoiselle) return 2;
+
+	if (u.item_carry_femjewel30) return TRUE;
+
 	if (feminizecheck(30)) return TRUE;
 	return(FALSE);
 }
@@ -2041,16 +2981,12 @@ have_femtrapjulietta()
 int
 have_femtraparabella()
 {
-	register struct obj *otmp;
-
 	if (u.tempsuperfemtrap_arabella) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ARABELLA_S_JEWEL) {
-			if (otmp->oartifact == ART_MODDED_THE_DUNGEON_DEFINIT) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_moddedthedungeon) return 2;
+
+	if (u.item_carry_femjewel31) return TRUE;
+
 	if (feminizecheck(31)) return TRUE;
 	return(FALSE);
 }
@@ -2058,13 +2994,8 @@ have_femtraparabella()
 int
 have_femtrapkristin()
 {
-	register struct obj *otmp;
+	if (u.item_carry_femjewel32) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == KRISTIN_S_JEWEL) {
-			return(TRUE);
-		}
-	}
 	if (feminizecheck(32)) return TRUE;
 	return(FALSE);
 }
@@ -2072,16 +3003,12 @@ have_femtrapkristin()
 int
 have_femtrapanna()
 {
-	register struct obj *otmp;
-
 	if (u.tempsuperfemtrap_anna) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ANNA_S_JEWEL) {
-			if (otmp->oartifact == ART_LITTLE_FLASK_OF_PERFUME) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_littleflask) return 2;
+
+	if (u.item_carry_femjewel33) return TRUE;
+
 	if (feminizecheck(33)) return TRUE;
 	return(FALSE);
 }
@@ -2089,16 +3016,12 @@ have_femtrapanna()
 int
 have_femtrapruea()
 {
-	register struct obj *otmp;
-
 	if (u.tempsuperfemtrap_ruea) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == RUEA_S_JEWEL) {
-			if (otmp->oartifact == ART_ISLAM_A_GECECEKSINIZ_) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_islama) return 2;
+
+	if (u.item_carry_femjewel34) return TRUE;
+
 	if (feminizecheck(34)) return TRUE;
 	return(FALSE);
 }
@@ -2106,16 +3029,12 @@ have_femtrapruea()
 int
 have_femtrapdora()
 {
-	register struct obj *otmp;
-
 	if (u.tempsuperfemtrap_dora) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == DORA_S_JEWEL) {
-			if (otmp->oartifact == ART_FUCKING_BIRDS__MAN_) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_fuckingbirds) return 2;
+
+	if (u.item_carry_femjewel35) return TRUE;
+
 	if (feminizecheck(35)) return TRUE;
 	return(FALSE);
 }
@@ -2123,16 +3042,12 @@ have_femtrapdora()
 int
 have_femtrapmarike()
 {
-	register struct obj *otmp;
-
 	if (u.tempsuperfemtrap_marike) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MARIKE_S_JEWEL) {
-			if (otmp->oartifact == ART_LITTLE_GIRL_OF_AMBER) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_littlegirlamber) return 2;
+
+	if (u.item_carry_femjewel36) return TRUE;
+
 	if (feminizecheck(36)) return TRUE;
 	return(FALSE);
 }
@@ -2140,13 +3055,8 @@ have_femtrapmarike()
 int
 have_femtrapjette()
 {
-	register struct obj *otmp;
+	if (u.item_carry_femjewel37) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == JETTE_S_JEWEL) {
-			return(TRUE);
-		}
-	}
 	if (feminizecheck(37)) return TRUE;
 	return(FALSE);
 }
@@ -2154,13 +3064,8 @@ have_femtrapjette()
 int
 have_femtrapina()
 {
-	register struct obj *otmp;
+	if (u.item_carry_femjewel38) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == INA_S_JEWEL) {
-			return(TRUE);
-		}
-	}
 	if (feminizecheck(38)) return TRUE;
 	return(FALSE);
 }
@@ -2168,16 +3073,12 @@ have_femtrapina()
 int
 have_femtrapsing()
 {
-	register struct obj *otmp;
-
 	if (u.tempsuperfemtrap_sing) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == SING_S_JEWEL) {
-			if (otmp->oartifact == ART_BONUS_CLEANING_ROUND) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_bonuscleaning) return 2;
+
+	if (u.item_carry_femjewel39) return TRUE;
+
 	if (feminizecheck(39)) return TRUE;
 	return(FALSE);
 }
@@ -2185,16 +3086,12 @@ have_femtrapsing()
 int
 have_femtrapvictoria()
 {
-	register struct obj *otmp;
-
 	if (u.tempsuperfemtrap_victoria) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == VICTORIA_S_JEWEL) {
-			if (otmp->oartifact == ART_RUSSIAN_KARATE_WOMAN) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_russiankarate) return 2;
+
+	if (u.item_carry_femjewel40) return TRUE;
+
 	if (feminizecheck(40)) return TRUE;
 	return(FALSE);
 }
@@ -2202,13 +3099,8 @@ have_femtrapvictoria()
 int
 have_femtrapmelissa()
 {
-	register struct obj *otmp;
+	if (u.item_carry_femjewel41) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MELISSA_S_JEWEL) {
-			return(TRUE);
-		}
-	}
 	if (feminizecheck(41)) return TRUE;
 	return(FALSE);
 }
@@ -2216,13 +3108,8 @@ have_femtrapmelissa()
 int
 have_femtrapanita()
 {
-	register struct obj *otmp;
+	if (u.item_carry_femjewel42) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ANITA_S_JEWEL) {
-			return(TRUE);
-		}
-	}
 	if (feminizecheck(42)) return TRUE;
 	return(FALSE);
 }
@@ -2230,13 +3117,8 @@ have_femtrapanita()
 int
 have_femtraphenrietta()
 {
-	register struct obj *otmp;
+	if (u.item_carry_femjewel43) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == HENRIETTA_S_JEWEL) {
-			return(TRUE);
-		}
-	}
 	if (feminizecheck(43)) return TRUE;
 	return(FALSE);
 }
@@ -2244,16 +3126,12 @@ have_femtraphenrietta()
 int
 have_femtrapverena()
 {
-	register struct obj *otmp;
-
 	if (u.tempsuperfemtrap_verena) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == VERENA_S_JEWEL) {
-			if (otmp->oartifact == ART_SILLY__FREE_LIKE_A_BIRD___) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_sillyfree) return 2;
+
+	if (u.item_carry_femjewel44) return TRUE;
+
 	if (feminizecheck(44)) return TRUE;
 	return(FALSE);
 }
@@ -2261,13 +3139,8 @@ have_femtrapverena()
 int
 have_femtrapannemarie()
 {
-	register struct obj *otmp;
+	if (u.item_carry_femjewel45) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ANNEMARIE_S_JEWEL) {
-			return(TRUE);
-		}
-	}
 	if (feminizecheck(45)) return TRUE;
 	return(FALSE);
 }
@@ -2275,16 +3148,12 @@ have_femtrapannemarie()
 int
 have_femtrapjil()
 {
-	register struct obj *otmp;
-
 	if (u.tempsuperfemtrap_jil) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == JIL_S_JEWEL) {
-			if (otmp->oartifact == ART_ODORANT_SOCKS) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_odorantsocks) return 2;
+
+	if (u.item_carry_femjewel46) return TRUE;
+
 	if (feminizecheck(46)) return TRUE;
 	return(FALSE);
 }
@@ -2292,16 +3161,12 @@ have_femtrapjil()
 int
 have_femtrapjana()
 {
-	register struct obj *otmp;
-
 	if (u.tempsuperfemtrap_jana) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == JANA_S_JEWEL) {
-			if (otmp->oartifact == ART_WON_T_EVER_FIND_HER) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_wonteverfind) return 2;
+
+	if (u.item_carry_femjewel47) return TRUE;
+
 	if (feminizecheck(47)) return TRUE;
 	return(FALSE);
 }
@@ -2309,13 +3174,8 @@ have_femtrapjana()
 int
 have_femtrapkatrin()
 {
-	register struct obj *otmp;
+	if (u.item_carry_femjewel48) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == KATRIN_S_JEWEL) {
-			return(TRUE);
-		}
-	}
 	if (feminizecheck(48)) return TRUE;
 	return(FALSE);
 }
@@ -2323,13 +3183,8 @@ have_femtrapkatrin()
 int
 have_femtrapgudrun()
 {
-	register struct obj *otmp;
+	if (u.item_carry_femjewel49) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == GUDRUN_S_JEWEL) {
-			return(TRUE);
-		}
-	}
 	if (feminizecheck(49)) return TRUE;
 	return(FALSE);
 }
@@ -2337,13 +3192,8 @@ have_femtrapgudrun()
 int
 have_femtrapella()
 {
-	register struct obj *otmp;
+	if (u.item_carry_femjewel50) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ELLA_S_JEWEL) {
-			return(TRUE);
-		}
-	}
 	if (feminizecheck(50)) return TRUE;
 	return(FALSE);
 }
@@ -2351,16 +3201,12 @@ have_femtrapella()
 int
 have_femtrapmanuela()
 {
-	register struct obj *otmp;
-
 	if (u.tempsuperfemtrap_manuela) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MANUELA_S_JEWEL) {
-			if (otmp->oartifact == ART_SHOULD_SMASH_YOU_AGAIN_) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_shouldsmashyou) return 2;
+
+	if (u.item_carry_femjewel51) return TRUE;
+
 	if (feminizecheck(51)) return TRUE;
 	return(FALSE);
 }
@@ -2368,16 +3214,12 @@ have_femtrapmanuela()
 int
 have_femtrapjennifer()
 {
-	register struct obj *otmp;
-
 	if (u.tempsuperfemtrap_jennifer) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == JENNIFER_S_JEWEL) {
-			if (otmp->oartifact == ART_DARKNESS_STORM__SURE_) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_darknessstorm) return 2;
+
+	if (u.item_carry_femjewel52) return TRUE;
+
 	if (feminizecheck(52)) return TRUE;
 	return(FALSE);
 }
@@ -2385,16 +3227,12 @@ have_femtrapjennifer()
 int
 have_femtrappatricia()
 {
-	register struct obj *otmp;
-
 	if (u.tempsuperfemtrap_patricia) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == PATRICIA_S_JEWEL) {
-			if (otmp->oartifact == ART_GLUTTONY_IS_THE_MOST_FUN_D) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_gluttonyis) return 2;
+
+	if (u.item_carry_femjewel53) return TRUE;
+
 	if (feminizecheck(53)) return TRUE;
 	return(FALSE);
 }
@@ -2402,13 +3240,8 @@ have_femtrappatricia()
 int
 have_femtrapantje()
 {
-	register struct obj *otmp;
+	if (u.item_carry_femjewel54) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ANTJE_S_JEWEL) {
-			return(TRUE);
-		}
-	}
 	if (feminizecheck(54)) return TRUE;
 	return(FALSE);
 }
@@ -2416,13 +3249,8 @@ have_femtrapantje()
 int
 have_femtrapantjex()
 {
-	register struct obj *otmp;
+	if (u.item_carry_femjewel55) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ANTJE_S_SECOND_JEWEL) {
-			return(TRUE);
-		}
-	}
 	if (feminizecheck(55)) return TRUE;
 	return(FALSE);
 }
@@ -2430,16 +3258,12 @@ have_femtrapantjex()
 int
 have_femtrapkerstin()
 {
-	register struct obj *otmp;
-
 	if (u.tempsuperfemtrap_kerstin) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == KERSTIN_S_JEWEL) {
-			if (otmp->oartifact == ART_LIVE_ON_THE_LAND) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_liveontheland) return 2;
+
+	if (u.item_carry_femjewel56) return TRUE;
+
 	if (feminizecheck(56)) return TRUE;
 	return(FALSE);
 }
@@ -2447,16 +3271,12 @@ have_femtrapkerstin()
 int
 have_femtraplaura()
 {
-	register struct obj *otmp;
-
 	if (u.tempsuperfemtrap_laura) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == LAURA_S_JEWEL) {
-			if (otmp->oartifact == ART_WHAT_IF_THE_CUSHION___) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_whatifthecushion) return 2;
+
+	if (u.item_carry_femjewel57) return TRUE;
+
 	if (feminizecheck(57)) return TRUE;
 	return(FALSE);
 }
@@ -2464,16 +3284,12 @@ have_femtraplaura()
 int
 have_femtraplarissa()
 {
-	register struct obj *otmp;
-
 	if (u.tempsuperfemtrap_larissa) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == LARISSA_S_JEWEL) {
-			if (otmp->oartifact == ART_CLEANPUTTER_S_WIN) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_cleanputter) return 2;
+
+	if (u.item_carry_femjewel58) return TRUE;
+
 	if (feminizecheck(58)) return TRUE;
 	return(FALSE);
 }
@@ -2481,13 +3297,8 @@ have_femtraplarissa()
 int
 have_femtrapnora()
 {
-	register struct obj *otmp;
+	if (u.item_carry_femjewel59) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == NORA_S_JEWEL) {
-			return(TRUE);
-		}
-	}
 	if (feminizecheck(59)) return TRUE;
 	return(FALSE);
 }
@@ -2495,13 +3306,8 @@ have_femtrapnora()
 int
 have_femtrapnatalia()
 {
-	register struct obj *otmp;
+	if (u.item_carry_femjewel60) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == NATALIA_S_JEWEL) {
-			return(TRUE);
-		}
-	}
 	if (feminizecheck(60)) return TRUE;
 	return(FALSE);
 }
@@ -2509,16 +3315,12 @@ have_femtrapnatalia()
 int
 have_femtrapsusanne()
 {
-	register struct obj *otmp;
-
 	if (u.tempsuperfemtrap_susanne) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == SUSANNE_S_JEWEL) {
-			if (otmp->oartifact == ART_PRETTY__BUT_POWERFUL_) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_prettybut) return 2;
+
+	if (u.item_carry_femjewel61) return TRUE;
+
 	if (feminizecheck(61)) return TRUE;
 	return(FALSE);
 }
@@ -2526,13 +3328,8 @@ have_femtrapsusanne()
 int
 have_femtraplisa()
 {
-	register struct obj *otmp;
+	if (u.item_carry_femjewel62) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == LISA_S_JEWEL) {
-			return(TRUE);
-		}
-	}
 	if (feminizecheck(62)) return TRUE;
 	return(FALSE);
 }
@@ -2540,16 +3337,12 @@ have_femtraplisa()
 int
 have_femtrapbridghitte()
 {
-	register struct obj *otmp;
-
 	if (u.tempsuperfemtrap_bridghitte) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == BRIDGHITTE_S_JEWEL) {
-			if (otmp->oartifact == ART_SKIERS_ON_THE_BRIDGE) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_skiersbridge) return 2;
+
+	if (u.item_carry_femjewel63) return TRUE;
+
 	if (feminizecheck(63)) return TRUE;
 	return(FALSE);
 }
@@ -2557,13 +3350,8 @@ have_femtrapbridghitte()
 int
 have_femtrapjulia()
 {
-	register struct obj *otmp;
+	if (u.item_carry_femjewel64) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == JULIA_S_JEWEL) {
-			return(TRUE);
-		}
-	}
 	if (feminizecheck(64)) return TRUE;
 	return(FALSE);
 }
@@ -2571,16 +3359,12 @@ have_femtrapjulia()
 int
 have_femtrapnicole()
 {
-	register struct obj *otmp;
-
 	if (u.tempsuperfemtrap_nicole) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == NICOLE_S_JEWEL) {
-			if (otmp->oartifact == ART_ABSORB_LIKE_A_HOLE) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_absorbhole) return 2;
+
+	if (u.item_carry_femjewel65) return TRUE;
+
 	if (feminizecheck(65)) return TRUE;
 	return(FALSE);
 }
@@ -2588,13 +3372,8 @@ have_femtrapnicole()
 int
 have_femtraprita()
 {
-	register struct obj *otmp;
+	if (u.item_carry_femjewel66) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == RITA_S_JEWEL) {
-			return(TRUE);
-		}
-	}
 	if (feminizecheck(66)) return TRUE;
 	return(FALSE);
 }
@@ -2602,16 +3381,12 @@ have_femtraprita()
 int
 have_femtrapjanina()
 {
-	register struct obj *otmp;
-
 	if (u.tempsuperfemtrap_janina) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == JANINA_S_JEWEL) {
-			if (otmp->oartifact == ART_SEARCHANEK__MISSING_DISPLA) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_searchanek) return 2;
+
+	if (u.item_carry_femjewel67) return TRUE;
+
 	if (feminizecheck(67)) return TRUE;
 	return(FALSE);
 }
@@ -2619,16 +3394,12 @@ have_femtrapjanina()
 int
 have_femtraprosa()
 {
-	register struct obj *otmp;
-
 	if (u.tempsuperfemtrap_rosa) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ROSA_S_JEWEL) {
-			if (otmp->oartifact == ART_PAMELA_ROSAN) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_pamelarosan) return 2;
+
+	if (u.item_carry_femjewel68) return TRUE;
+
 	if (feminizecheck(68)) return TRUE;
 	return(FALSE);
 }
@@ -2636,16 +3407,12 @@ have_femtraprosa()
 int
 have_femtrapksenia()
 {
-	register struct obj *otmp;
-
 	if (u.tempsuperfemtrap_ksenia) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == KSENIA_S_JEWEL) {
-			if (otmp->oartifact == ART_ONA_NE_BERET_VSE) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_onaneberet) return 2;
+
+	if (u.item_carry_femjewel69) return TRUE;
+
 	if (feminizecheck(69)) return TRUE;
 	return(FALSE);
 }
@@ -2653,13 +3420,8 @@ have_femtrapksenia()
 int
 have_femtraplydia()
 {
-	register struct obj *otmp;
+	if (u.item_carry_femjewel70) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == LYDIA_S_JEWEL) {
-			return(TRUE);
-		}
-	}
 	if (feminizecheck(70)) return TRUE;
 	return(FALSE);
 }
@@ -2667,13 +3429,8 @@ have_femtraplydia()
 int
 have_femtrapconny()
 {
-	register struct obj *otmp;
+	if (u.item_carry_femjewel71) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == CONNY_S_JEWEL) {
-			return(TRUE);
-		}
-	}
 	if (feminizecheck(71)) return TRUE;
 	return(FALSE);
 }
@@ -2681,16 +3438,12 @@ have_femtrapconny()
 int
 have_femtrapkatia()
 {
-	register struct obj *otmp;
-
 	if (u.tempsuperfemtrap_katia) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == KATIA_S_JEWEL) {
-			if (otmp->oartifact == ART_SHE_S_INCREDIBLY_SEXY) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_incrediblysexy) return 2;
+
+	if (u.item_carry_femjewel72) return TRUE;
+
 	if (feminizecheck(72)) return TRUE;
 	return(FALSE);
 }
@@ -2698,16 +3451,12 @@ have_femtrapkatia()
 int
 have_femtrapmariya()
 {
-	register struct obj *otmp;
-
 	if (u.tempsuperfemtrap_mariya) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MARIYA_S_JEWEL) {
-			if (otmp->oartifact == ART_PRRRRRRRRRRRRRRRRRRRROOOOO) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_prrooo) return 2;
+
+	if (u.item_carry_femjewel73) return TRUE;
+
 	if (feminizecheck(73)) return TRUE;
 	return(FALSE);
 }
@@ -2715,16 +3464,12 @@ have_femtrapmariya()
 int
 have_femtrapelise()
 {
-	register struct obj *otmp;
-
 	if (u.tempsuperfemtrap_elise) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ELISE_S_JEWEL) {
-			if (otmp->oartifact == ART_GREEN_IS_THE_COLOR_OF_FEMI) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_greencolorfem) return 2;
+
+	if (u.item_carry_femjewel74) return TRUE;
+
 	if (feminizecheck(74)) return TRUE;
 	return(FALSE);
 }
@@ -2732,13 +3477,8 @@ have_femtrapelise()
 int
 have_femtrapronja()
 {
-	register struct obj *otmp;
+	if (u.item_carry_femjewel75) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == RONJA_S_JEWEL) {
-			return(TRUE);
-		}
-	}
 	if (feminizecheck(75)) return TRUE;
 	return(FALSE);
 }
@@ -2746,13 +3486,8 @@ have_femtrapronja()
 int
 have_femtrapariane()
 {
-	register struct obj *otmp;
+	if (u.item_carry_femjewel76) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ARIANE_S_JEWEL) {
-			return(TRUE);
-		}
-	}
 	if (feminizecheck(76)) return TRUE;
 	return(FALSE);
 }
@@ -2760,16 +3495,12 @@ have_femtrapariane()
 int
 have_femtrapjohanna()
 {
-	register struct obj *otmp;
-
 	if (u.tempsuperfemtrap_johanna) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == JOHANNA_S_JEWEL) {
-			if (otmp->oartifact == ART_WHERE_HAS_SHE_GONE_) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_wherehasshegone) return 2;
+
+	if (u.item_carry_femjewel77) return TRUE;
+
 	if (feminizecheck(77)) return TRUE;
 	return(FALSE);
 }
@@ -2777,16 +3508,12 @@ have_femtrapjohanna()
 int
 have_femtrapinge()
 {
-	register struct obj *otmp;
-
 	if (u.tempsuperfemtrap_inge) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == INGE_S_JEWEL) {
-			if (otmp->oartifact == ART______________THE_SPACES_AR) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_spacesare) return 2;
+
+	if (u.item_carry_femjewel78) return TRUE;
+
 	if (feminizecheck(78)) return TRUE;
 	return(FALSE);
 }
@@ -2794,13 +3521,8 @@ have_femtrapinge()
 int
 have_femtrapruth()
 {
-	register struct obj *otmp;
+	if (u.item_carry_femjewel79) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == RUTH_S_JEWEL) {
-			return(TRUE);
-		}
-	}
 	if (feminizecheck(79)) return TRUE;
 	return(FALSE);
 }
@@ -2808,13 +3530,8 @@ have_femtrapruth()
 int
 have_femtrapmagdalena()
 {
-	register struct obj *otmp;
+	if (u.item_carry_femjewel80) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MAGDALENA_S_JEWEL) {
-			return(TRUE);
-		}
-	}
 	if (feminizecheck(80)) return TRUE;
 	return(FALSE);
 }
@@ -2822,16 +3539,12 @@ have_femtrapmagdalena()
 int
 have_femtrapmarleen()
 {
-	register struct obj *otmp;
-
 	if (u.tempsuperfemtrap_marleen) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MARLEEN_S_JEWEL) {
-			if (otmp->oartifact == ART_HOW_COULD_SHE_FALL_FOR_THE) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_howcouldshefall) return 2;
+
+	if (u.item_carry_femjewel81) return TRUE;
+
 	if (feminizecheck(81)) return TRUE;
 	return(FALSE);
 }
@@ -2839,16 +3552,12 @@ have_femtrapmarleen()
 int
 have_femtrapklara()
 {
-	register struct obj *otmp;
-
 	if (u.tempsuperfemtrap_klara) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == KLARA_S_JEWEL) {
-			if (otmp->oartifact == ART_KLACK__KLACK_) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_klackklack) return 2;
+
+	if (u.item_carry_femjewel82) return TRUE;
+
 	if (feminizecheck(82)) return TRUE;
 	return(FALSE);
 }
@@ -2856,16 +3565,12 @@ have_femtrapklara()
 int
 have_femtrapfriederike()
 {
-	register struct obj *otmp;
-
 	if (u.tempsuperfemtrap_friederike) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == FRIEDERIKE_S_JEWEL) {
-			if (otmp->oartifact == ART_FACE_DISAPPEARS_IN_HER_BUN) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_facedisappears) return 2;
+
+	if (u.item_carry_femjewel83) return TRUE;
+
 	if (feminizecheck(83)) return TRUE;
 	return(FALSE);
 }
@@ -2873,13 +3578,8 @@ have_femtrapfriederike()
 int
 have_femtrapnaomi()
 {
-	register struct obj *otmp;
+	if (u.item_carry_femjewel84) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == NAOMI_S_JEWEL) {
-			return(TRUE);
-		}
-	}
 	if (feminizecheck(84)) return TRUE;
 	return(FALSE);
 }
@@ -2887,16 +3587,12 @@ have_femtrapnaomi()
 int
 have_femtrapute()
 {
-	register struct obj *otmp;
-
 	if (u.tempsuperfemtrap_ute) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == UTE_S_JEWEL) {
-			if (otmp->oartifact == ART_PROTECT_HER_BLUE_FOOTWEAR) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_protectherblue) return 2;
+
+	if (u.item_carry_femjewel85) return TRUE;
+
 	if (feminizecheck(85)) return TRUE;
 	return(FALSE);
 }
@@ -2904,13 +3600,8 @@ have_femtrapute()
 int
 have_femtrapjasieen()
 {
-	register struct obj *otmp;
+	if (u.item_carry_femjewel86) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == JASIEEN_S_JEWEL) {
-			return(TRUE);
-		}
-	}
 	if (feminizecheck(86)) return TRUE;
 	return(FALSE);
 }
@@ -2918,16 +3609,12 @@ have_femtrapjasieen()
 int
 have_femtrapyasaman()
 {
-	register struct obj *otmp;
-
 	if (u.tempsuperfemtrap_yasaman) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == YASAMAN_S_JEWEL) {
-			if (otmp->oartifact == ART_INHALE_THE_PERSIAN_VAPORS) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_inhalepersian) return 2;
+
+	if (u.item_carry_femjewel87) return TRUE;
+
 	if (feminizecheck(87)) return TRUE;
 	return(FALSE);
 }
@@ -2935,16 +3622,12 @@ have_femtrapyasaman()
 int
 have_femtrapmaybritt()
 {
-	register struct obj *otmp;
-
 	if (u.tempsuperfemtrap_maybritt) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MAY_BRITT_S_JEWEL) {
-			if (otmp->oartifact == ART_TYPE_OF_ICE_BLOCK_S_LITTLE) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_iceblocksister) return 2;
+
+	if (u.item_carry_femjewel88) return TRUE;
+
 	if (feminizecheck(88)) return TRUE;
 	return(FALSE);
 }
@@ -2952,16 +3635,12 @@ have_femtrapmaybritt()
 int
 have_femtrapnadine()
 {
-	register struct obj *otmp;
-
 	if (u.tempsuperfemtrap_nadine) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == NADINE_S_JEWEL) {
-			if (otmp->oartifact == ART_SWOONELNADINE) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_swoonelnadine) return 2;
+
+	if (u.item_carry_femjewel89) return TRUE;
+
 	if (feminizecheck(89)) return TRUE;
 	return(FALSE);
 }
@@ -2969,16 +3648,12 @@ have_femtrapnadine()
 int
 have_femtrapluisa()
 {
-	register struct obj *otmp;
-
 	if (u.tempsuperfemtrap_luisa) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == LUISA_S_JEWEL) {
-			if (otmp->oartifact == ART_SASSY_SMALL_ONE___) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_sassysmall) return 2;
+
+	if (u.item_carry_femjewel90) return TRUE;
+
 	if (feminizecheck(90)) return TRUE;
 	return(FALSE);
 }
@@ -2986,13 +3661,8 @@ have_femtrapluisa()
 int
 have_femtrapirina()
 {
-	register struct obj *otmp;
+	if (u.item_carry_femjewel91) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == IRINA_S_JEWEL) {
-			return(TRUE);
-		}
-	}
 	if (feminizecheck(91)) return TRUE;
 	return(FALSE);
 }
@@ -3000,16 +3670,12 @@ have_femtrapirina()
 int
 have_femtrapliselotte()
 {
-	register struct obj *otmp;
-
 	if (u.tempsuperfemtrap_liselotte) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == LISELOTTE_S_JEWEL) {
-			if (otmp->oartifact == ART_CUTE_FACIAL_EXPRESSION) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_cutefacial) return 2;
+
+	if (u.item_carry_femjewel92) return TRUE;
+
 	if (feminizecheck(92)) return TRUE;
 	return(FALSE);
 }
@@ -3017,16 +3683,12 @@ have_femtrapliselotte()
 int
 have_femtrapgreta()
 {
-	register struct obj *otmp;
-
 	if (u.tempsuperfemtrap_greta) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == GRETA_S_JEWEL) {
-			if (otmp->oartifact == ART_NU_AER_DU_DOED__I_NAMN_AV_) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_nuaerdudoed) return 2;
+
+	if (u.item_carry_femjewel93) return TRUE;
+
 	if (feminizecheck(93)) return TRUE;
 	return(FALSE);
 }
@@ -3034,13 +3696,8 @@ have_femtrapgreta()
 int
 have_femtrapjane()
 {
-	register struct obj *otmp;
+	if (u.item_carry_femjewel94) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == JANE_S_JEWEL) {
-			return(TRUE);
-		}
-	}
 	if (feminizecheck(94)) return TRUE;
 	return(FALSE);
 }
@@ -3048,13 +3705,8 @@ have_femtrapjane()
 int
 have_femtrapsuelyn()
 {
-	register struct obj *otmp;
+	if (u.item_carry_femjewel95) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == SUE_LYN_S_JEWEL) {
-			return(TRUE);
-		}
-	}
 	if (feminizecheck(95)) return TRUE;
 	return(FALSE);
 }
@@ -3062,16 +3714,12 @@ have_femtrapsuelyn()
 int
 have_femtrapcharlotte()
 {
-	register struct obj *otmp;
-
 	if (u.tempsuperfemtrap_charlotte) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == CHARLOTTE_S_JEWEL) {
-			if (otmp->oartifact == ART_SEND_IN_THE_HORDE) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_sendinthehorde) return 2;
+
+	if (u.item_carry_femjewel96) return TRUE;
+
 	if (feminizecheck(96)) return TRUE;
 	return(FALSE);
 }
@@ -3079,13 +3727,8 @@ have_femtrapcharlotte()
 int
 have_femtraphannah()
 {
-	register struct obj *otmp;
+	if (u.item_carry_femjewel97) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == HANNAH_S_JEWEL) {
-			return(TRUE);
-		}
-	}
 	if (feminizecheck(97)) return TRUE;
 	return(FALSE);
 }
@@ -3093,16 +3736,12 @@ have_femtraphannah()
 int
 have_femtraplittlemarie()
 {
-	register struct obj *otmp;
-
 	if (u.tempsuperfemtrap_littlemarie) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == LITTLE_MARIE_S_JEWEL) {
-			if (otmp->oartifact == ART_YOU_WON_T_STOP_US__PERIOD_) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_youwontstop) return 2;
+
+	if (u.item_carry_femjewel98) return TRUE;
+
 	if (feminizecheck(98)) return TRUE;
 	return(FALSE);
 }
@@ -3110,16 +3749,12 @@ have_femtraplittlemarie()
 int
 have_femtraptanja()
 {
-	register struct obj *otmp;
-
 	if (u.tempsuperfemtrap_tanja) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == TANJA_S_JEWEL) {
-			if (otmp->oartifact == ART_FLEEEEEEECY) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_fleecywithe) return 2;
+
+	if (u.item_carry_femjewel99) return TRUE;
+
 	if (feminizecheck(99)) return TRUE;
 	return(FALSE);
 }
@@ -3127,16 +3762,12 @@ have_femtraptanja()
 int
 have_femtrapsonja()
 {
-	register struct obj *otmp;
-
 	if (u.tempsuperfemtrap_sonja) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == SONJA_S_JEWEL) {
-			if (otmp->oartifact == ART_PRETEND_THAT_SOME_GUY_BROK) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_pretendthatsome) return 2;
+
+	if (u.item_carry_femjewel100) return TRUE;
+
 	if (feminizecheck(100)) return TRUE;
 	return(FALSE);
 }
@@ -3144,16 +3775,12 @@ have_femtrapsonja()
 int
 have_femtraprhea()
 {
-	register struct obj *otmp;
-
 	if (u.tempsuperfemtrap_rhea) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == RHEA_S_JEWEL) {
-			if (otmp->oartifact == ART_EN_DAN_WIS_SING_WIS_SING_W) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_endanwissing) return 2;
+
+	if (u.item_carry_femjewel101) return TRUE;
+
 	if (feminizecheck(101)) return TRUE;
 	return(FALSE);
 }
@@ -3161,16 +3788,12 @@ have_femtraprhea()
 int
 have_femtraplara()
 {
-	register struct obj *otmp;
-
 	if (u.tempsuperfemtrap_lara) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == LARA_S_JEWEL) {
-			if (otmp->oartifact == ART_EVEN_THE_BLOCK_HEEL_IS_TRE) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_eventheblock) return 2;
+
+	if (u.item_carry_femjewel102) return TRUE;
+
 	if (feminizecheck(102)) return TRUE;
 	return(FALSE);
 }
@@ -3178,13 +3801,8 @@ have_femtraplara()
 int
 have_femtrapsabrina()
 {
-	register struct obj *otmp;
+	if (u.item_carry_femjewel103) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == SABRINA_S_JEWEL) {
-			return(TRUE);
-		}
-	}
 	if (feminizecheck(103)) return TRUE;
 	return(FALSE);
 }
@@ -3192,16 +3810,12 @@ have_femtrapsabrina()
 int
 have_femtrapjanet()
 {
-	register struct obj *otmp;
-
 	if (u.tempsuperfemtrap_janet) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == JANET_S_JEWEL) {
-			if (otmp->oartifact == ART_NAME_SAYS_IT_ALL) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_namesaysit) return 2;
+
+	if (u.item_carry_femjewel104) return TRUE;
+
 	if (feminizecheck(104)) return TRUE;
 	return(FALSE);
 }
@@ -3209,13 +3823,8 @@ have_femtrapjanet()
 int
 have_femtrapsabine()
 {
-	register struct obj *otmp;
+	if (u.item_carry_femjewel105) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == SABINE_S_JEWEL) {
-			return(TRUE);
-		}
-	}
 	if (feminizecheck(105)) return TRUE;
 	return(FALSE);
 }
@@ -3223,16 +3832,12 @@ have_femtrapsabine()
 int
 have_femtrapjudith()
 {
-	register struct obj *otmp;
-
 	if (u.tempsuperfemtrap_judith) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == JUDITH_S_JEWEL) {
-			if (otmp->oartifact == ART_HORRIBLE_SCRATCHING_WOUNDS) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_horriblescratch) return 2;
+
+	if (u.item_carry_femjewel106) return TRUE;
+
 	if (feminizecheck(106)) return TRUE;
 	return(FALSE);
 }
@@ -3240,13 +3845,8 @@ have_femtrapjudith()
 int
 have_femtrapanja()
 {
-	register struct obj *otmp;
+	if (u.item_carry_femjewel107) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ANJA_S_JEWEL) {
-			return(TRUE);
-		}
-	}
 	if (feminizecheck(107)) return TRUE;
 	return(FALSE);
 }
@@ -3254,16 +3854,12 @@ have_femtrapanja()
 int
 have_femtrapcelia()
 {
-	register struct obj *otmp;
-
 	if (u.tempsuperfemtrap_celia) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == CELIA_S_JEWEL) {
-			if (otmp->oartifact == ART_STAY_AWAY_FROM_THE_SHIT) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_stayawayfrom) return 2;
+
+	if (u.item_carry_femjewel108) return TRUE;
+
 	if (feminizecheck(108)) return TRUE;
 	return(FALSE);
 }
@@ -3271,13 +3867,8 @@ have_femtrapcelia()
 int
 have_femtrapchloe()
 {
-	register struct obj *otmp;
+	if (u.item_carry_femjewel109) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == CHLOE_S_JEWEL) {
-			return(TRUE);
-		}
-	}
 	if (feminizecheck(109)) return TRUE;
 	return(FALSE);
 }
@@ -3285,13 +3876,8 @@ have_femtrapchloe()
 int
 have_femtrapjohanetta()
 {
-	register struct obj *otmp;
+	if (u.item_carry_femjewel110) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == JOHANETTA_S_JEWEL) {
-			return(TRUE);
-		}
-	}
 	if (feminizecheck(110)) return TRUE;
 	return(FALSE);
 }
@@ -4025,14 +4611,8 @@ have_starlightstone()
 int
 have_rmbstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone1) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == RIGHT_MOUSE_BUTTON_STONE) {
-			return(TRUE);
-		}
-
-	}
 	if (u.nastinator01) return TRUE;
 	if (sjwcheck(1)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 6 && u.femauspices6 == 1) return TRUE;
@@ -4042,13 +4622,8 @@ have_rmbstone()
 int
 have_displaystone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone2) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == DISPLAY_LOSS_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator02) return TRUE;
 	if (sjwcheck(2)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 6 && u.femauspices6 == 2) return TRUE;
@@ -4058,13 +4633,8 @@ have_displaystone()
 int
 have_yellowspellstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone3) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == YELLOW_SPELL_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator03) return TRUE;
 	if (sjwcheck(3)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 1) return TRUE;
@@ -4074,13 +4644,8 @@ have_yellowspellstone()
 int
 have_spelllossstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone4) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == SPELL_LOSS_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator04) return TRUE;
 	if (sjwcheck(4)) return TRUE;
 	return(FALSE);
@@ -4089,13 +4654,8 @@ have_spelllossstone()
 int
 have_autodestructstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone5) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == AUTO_DESTRUCT_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator05) return TRUE;
 	if (sjwcheck(5)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 15 && u.femauspices15 == 2) return TRUE;
@@ -4105,13 +4665,8 @@ have_autodestructstone()
 int
 have_memorylossstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone6) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MEMORY_LOSS_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator06) return TRUE;
 	if (sjwcheck(6)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 6 && u.femauspices6 == 3) return TRUE;
@@ -4121,13 +4676,8 @@ have_memorylossstone()
 int
 have_inventorylossstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone7) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == INVENTORY_LOSS_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator07) return TRUE;
 	if (sjwcheck(7)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 30 && u.femauspices30 == 1) return TRUE;
@@ -4137,13 +4687,8 @@ have_inventorylossstone()
 int
 have_blackystone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone8) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == BLACKY_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator08) return TRUE;
 	if (sjwcheck(8)) return TRUE;
 	return(FALSE);
@@ -4152,13 +4697,8 @@ have_blackystone()
 int
 have_menubugstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone9) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MENU_BUG_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator09) return TRUE;
 	if (sjwcheck(9)) return TRUE;
 	return(FALSE);
@@ -4167,13 +4707,8 @@ have_menubugstone()
 int
 have_speedbugstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone10) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == SPEEDBUG_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator10) return TRUE;
 	if (sjwcheck(10)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 15 && u.femauspices15 == 1) return TRUE;
@@ -4183,13 +4718,8 @@ have_speedbugstone()
 int
 have_superscrollerstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone11) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == SUPERSCROLLER_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator11) return TRUE;
 	if (sjwcheck(11)) return TRUE;
 	return(FALSE);
@@ -4198,13 +4728,8 @@ have_superscrollerstone()
 int
 have_freehandbugstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone12) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == FREE_HAND_BUG_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator12) return TRUE;
 	if (sjwcheck(12)) return TRUE;
 	return(FALSE);
@@ -4213,16 +4738,12 @@ have_freehandbugstone()
 int
 have_unidentifystone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_unidentify) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == UNIDENTIFY_STONE) {
-			if (otmp->oartifact == ART_DEL_ALLES_BKK) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_delallesbkk) return 2;
+
+	if (u.item_carry_nastystone13) return TRUE;
+
 	if (u.nastinator13) return TRUE;
 	if (sjwcheck(13)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 20 && u.femauspices20 == 1) return TRUE;
@@ -4232,13 +4753,8 @@ have_unidentifystone()
 int
 have_thirststone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone14) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == STONE_OF_THIRST) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator14) return TRUE;
 	if (sjwcheck(14)) return TRUE;
 	return(FALSE);
@@ -4247,13 +4763,8 @@ have_thirststone()
 int
 have_unluckystone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone15) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == UNLUCKY_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator15) return TRUE;
 	if (sjwcheck(15)) return TRUE;
 	return(FALSE);
@@ -4262,13 +4773,8 @@ have_unluckystone()
 int
 have_shadesofgreystone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone16) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == SHADES_OF_GREY_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator16) return TRUE;
 	if (sjwcheck(16)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 8 && u.femauspices8 == 1) return TRUE;
@@ -4278,13 +4784,8 @@ have_shadesofgreystone()
 int
 have_faintingstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone17) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == STONE_OF_FAINTING) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator17) return TRUE;
 	if (sjwcheck(17)) return TRUE;
 	return(FALSE);
@@ -4293,16 +4794,12 @@ have_faintingstone()
 int
 have_cursingstone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_cursing) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == STONE_OF_CURSING) {
-			if (otmp->oartifact == ART_ARABELLA_S_BEDROCK) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_bedrock) return 2;
+
+	if (u.item_carry_nastystone18) return TRUE;
+
 	if (u.nastinator18) return TRUE;
 	if (sjwcheck(18)) return TRUE;
 	return(FALSE);
@@ -4311,14 +4808,12 @@ have_cursingstone()
 int
 have_difficultystone()
 {
-	register struct obj *otmp;
+	if (u.tempsupernastytrap_difficulty) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == STONE_OF_DIFFICULTY) {
-			if (otmp->oartifact == ART_EXTRA_HIGH_DIFFICULTY) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_extrahighdiff) return 2;
+
+	if (u.item_carry_nastystone19) return TRUE;
+
 	if (u.nastinator19) return TRUE;
 	if (sjwcheck(19)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 17 && u.femauspices17 == 1) return TRUE;
@@ -4328,13 +4823,8 @@ have_difficultystone()
 int
 have_deafnessstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone20) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == DEAFNESS_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator20) return TRUE;
 	if (sjwcheck(20)) return TRUE;
 	return(FALSE);
@@ -4343,13 +4833,8 @@ have_deafnessstone()
 int
 have_weaknessstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone21) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == WEAKNESS_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator21) return TRUE;
 	if (sjwcheck(21)) return TRUE;
 	return(FALSE);
@@ -4358,13 +4843,8 @@ have_weaknessstone()
 int
 have_antimagicstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone22) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ANTIMAGIC_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator22) return TRUE;
 	if (sjwcheck(22)) return TRUE;
 	return(FALSE);
@@ -4373,13 +4853,8 @@ have_antimagicstone()
 int
 have_rotthirteenstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone23) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ROT_THIRTEEN_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator23) return TRUE;
 	if (sjwcheck(23)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 8 && u.femauspices8 == 2) return TRUE;
@@ -4389,13 +4864,8 @@ have_rotthirteenstone()
 int
 have_bishopstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone24) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == BISHOP_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator24) return TRUE;
 	if (sjwcheck(24)) return TRUE;
 	return(FALSE);
@@ -4404,13 +4874,8 @@ have_bishopstone()
 int
 have_confusionstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone25) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == CONFUSION_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator25) return TRUE;
 	if (sjwcheck(25)) return TRUE;
 	return(FALSE);
@@ -4419,13 +4884,8 @@ have_confusionstone()
 int
 have_dropbugstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone26) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == DROPBUG_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator26) return TRUE;
 	if (sjwcheck(26)) return TRUE;
 	return(FALSE);
@@ -4434,13 +4894,8 @@ have_dropbugstone()
 int
 have_dstwstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone27) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == DSTW_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator27) return TRUE;
 	if (sjwcheck(27)) return TRUE;
 
@@ -4452,16 +4907,12 @@ have_dstwstone()
 int
 have_amnesiastone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_amnesia) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == AMNESIA_STONE) {
-			if (otmp->oartifact == ART_QUAFF_THAT_SPARKLING_WINE) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_quaffspark) return 2;
+
+	if (u.item_carry_nastystone28) return TRUE;
+
 	if (u.nastinator28) return TRUE;
 	if (sjwcheck(28)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 28 && u.femauspices28 == 2) return TRUE;
@@ -4471,13 +4922,8 @@ have_amnesiastone()
 int
 have_bigscriptstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone29) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == BIGSCRIPT_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator29) return TRUE;
 	if (sjwcheck(29)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 6 && u.femauspices6 == 4) return TRUE;
@@ -4487,13 +4933,8 @@ have_bigscriptstone()
 int
 have_bankstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone30) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == BANK_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator30) return TRUE;
 	if (sjwcheck(30)) return TRUE;
 	return(FALSE);
@@ -4502,13 +4943,8 @@ have_bankstone()
 int
 have_mapstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone31) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MAP_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator31) return TRUE;
 	if (sjwcheck(31)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 20 && u.femauspices20 == 3) return TRUE;
@@ -4518,16 +4954,12 @@ have_mapstone()
 int
 have_techniquestone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_technique) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == TECHNIQUE_STONE) {
-			if (otmp->oartifact == ART_DONOT_WORK_ATALL) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_donotwork) return 2;
+
+	if (u.item_carry_nastystone32) return TRUE;
+
 	if (u.nastinator32) return TRUE;
 	if (sjwcheck(32)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 4 && u.femauspices4 == 2) return TRUE;
@@ -4537,16 +4969,12 @@ have_techniquestone()
 int
 have_disenchantmentstone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_disenchantment) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == DISENCHANTMENT_STONE) {
-			if (otmp->oartifact == ART_THERE_IS_A_LOUD_CLAP) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_loudclap) return 2;
+
+	if (u.item_carry_nastystone33) return TRUE;
+
 	if (u.nastinator33) return TRUE;
 	if (sjwcheck(33)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 28 && u.femauspices28 == 3) return TRUE;
@@ -4556,13 +4984,8 @@ have_disenchantmentstone()
 int
 have_verisiertstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone34) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == VERISIERT_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator34) return TRUE;
 	if (sjwcheck(34)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 17 && u.femauspices17 == 2) return TRUE;
@@ -4572,16 +4995,12 @@ have_verisiertstone()
 int
 have_chaosterrainstone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_chaosterrain) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == CHAOS_TERRAIN_STONE) {
-			if (otmp->oartifact == ART_NAVIGATE_THIS_MESS) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_navigatemess) return 2;
+
+	if (u.item_carry_nastystone35) return TRUE;
+
 	if (u.nastinator35) return TRUE;
 	if (sjwcheck(35)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 22 && u.femauspices22 == 2) return TRUE;
@@ -4591,13 +5010,8 @@ have_chaosterrainstone()
 int
 have_mutenessstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone36) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MUTENESS_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator36) return TRUE;
 	if (sjwcheck(36)) return TRUE;
 	return(FALSE);
@@ -4606,13 +5020,8 @@ have_mutenessstone()
 int
 have_engravingstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone37) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ENGRAVING_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator37) return TRUE;
 	if (sjwcheck(37)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 4 && u.femauspices4 == 3) return TRUE;
@@ -4622,13 +5031,8 @@ have_engravingstone()
 int
 have_magicdevicestone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone38) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MAGIC_DEVICE_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator38) return TRUE;
 	if (sjwcheck(38)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 4 && u.femauspices4 == 4) return TRUE;
@@ -4638,13 +5042,8 @@ have_magicdevicestone()
 int
 have_bookstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone39) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == BOOK_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator39) return TRUE;
 	if (sjwcheck(39)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 4 && u.femauspices4 == 5) return TRUE;
@@ -4654,13 +5053,8 @@ have_bookstone()
 int
 have_levelstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone40) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == LEVEL_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator40) return TRUE;
 	if (sjwcheck(40)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 20 && u.femauspices20 == 4) return TRUE;
@@ -4670,13 +5064,8 @@ have_levelstone()
 int
 have_quizstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone41) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == QUIZ_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator41) return TRUE;
 	if (sjwcheck(41)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 8 && u.femauspices8 == 4) return TRUE;
@@ -4686,13 +5075,8 @@ have_quizstone()
 int
 have_statusstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone42) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == STATUS_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator42) return TRUE;
 	if (sjwcheck(42)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 22 && u.femauspices22 == 1) return TRUE;
@@ -4702,13 +5086,8 @@ have_statusstone()
 int
 have_alignmentstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone43) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ALIGNMENT_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator43) return TRUE;
 	if (sjwcheck(43)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 28 && u.femauspices28 == 1) return TRUE;
@@ -4718,13 +5097,8 @@ have_alignmentstone()
 int
 have_stairstrapstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone44) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == STAIRSTRAP_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator44) return TRUE;
 	if (sjwcheck(44)) return TRUE;
 	return(FALSE);
@@ -4733,16 +5107,12 @@ have_stairstrapstone()
 int
 have_uninformationstone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_uninformation) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == UNINFORMATION_STONE) {
-			if (otmp->oartifact == ART_SEVERE_UNINFORMATION) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_severeuninf) return 2;
+
+	if (u.item_carry_nastystone45) return TRUE;
+
 	if (u.nastinator45) return TRUE;
 	if (sjwcheck(45)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 20 && u.femauspices20 == 2) return TRUE;
@@ -4752,13 +5122,8 @@ have_uninformationstone()
 int
 have_captchastone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone46) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == CAPTCHA_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator46) return TRUE;
 	if (sjwcheck(46)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 8 && u.femauspices8 == 3) return TRUE;
@@ -4768,13 +5133,8 @@ have_captchastone()
 int
 have_farlookstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone47) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == FARLOOK_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator47) return TRUE;
 	if (sjwcheck(47)) return TRUE;
 	return(FALSE);
@@ -4783,13 +5143,8 @@ have_farlookstone()
 int
 have_respawnstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone48) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == RESPAWN_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator48) return TRUE;
 	if (sjwcheck(48)) return TRUE;
 	return(FALSE);
@@ -4798,16 +5153,12 @@ have_respawnstone()
 int
 have_intrinsiclossstone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_intrinsicloss) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == STONE_OF_INTRINSIC_LOSS) {
-			if (otmp->oartifact == ART_GREMLIN_S_REVENGE) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_gremlinsrev) return 2;
+
+	if (u.item_carry_nastystone49) return TRUE;
+
 	if (u.nastinator49) return TRUE;
 	if (sjwcheck(49)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 13 && u.femauspices13 == 1) return TRUE;
@@ -4817,13 +5168,8 @@ have_intrinsiclossstone()
 int
 have_bloodlossstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone50) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == BLOOD_LOSS_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator50) return TRUE;
 	if (sjwcheck(50)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 13 && u.femauspices13 == 3) return TRUE;
@@ -4833,13 +5179,8 @@ have_bloodlossstone()
 int
 have_badeffectstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone51) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == BAD_EFFECT_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator51) return TRUE;
 	if (sjwcheck(51)) return TRUE;
 	return(FALSE);
@@ -4848,16 +5189,12 @@ have_badeffectstone()
 int
 have_trapcreationstone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_trapcreation) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == TRAP_CREATION_STONE) {
-			if (otmp->oartifact == ART_KEEP_STUMBLING) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_keepstumb) return 2;
+
+	if (u.item_carry_nastystone52) return TRUE;
+
 	if (u.nastinator52) return TRUE;
 	if (sjwcheck(52)) return TRUE;
 	return(FALSE);
@@ -4866,16 +5203,12 @@ have_trapcreationstone()
 int
 have_vulnerabilitystone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_vulnerability) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == STONE_OF_VULNERABILITY) {
-			if (otmp->oartifact == ART_PURE_AIDS) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_pureaids) return 2;
+
+	if (u.item_carry_nastystone53) return TRUE;
+
 	if (u.nastinator53) return TRUE;
 	if (sjwcheck(53)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 13 && u.femauspices13 == 2) return TRUE;
@@ -4885,16 +5218,12 @@ have_vulnerabilitystone()
 int
 have_itemportstone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_itemport) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ITEM_TELEPORTING_STONE) {
-			if (otmp->oartifact == ART_WHO_NEEDS_ITEMS_ANYWAY_) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_whoneedsitems) return 2;
+
+	if (u.item_carry_nastystone54) return TRUE;
+
 	if (u.nastinator54) return TRUE;
 	if (sjwcheck(54)) return TRUE;
 	return(FALSE);
@@ -4903,16 +5232,12 @@ have_itemportstone()
 int
 have_nastystone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_nasty) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == NASTY_STONE) {
-			if (otmp->oartifact == ART_INFERNAL_AREA) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_infernalarea) return 2;
+
+	if (u.item_carry_nastystone55) return TRUE;
+
 	if (u.nastinator55) return TRUE;
 	if (sjwcheck(55)) return TRUE;
 	if (AssholeModeActive) return TRUE;
@@ -4922,13 +5247,8 @@ have_nastystone()
 int
 have_metabolicstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone56) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == METABOLIC_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator56) return TRUE;
 	if (sjwcheck(56)) return TRUE;
 	return(FALSE);
@@ -4937,13 +5257,8 @@ have_metabolicstone()
 int
 have_noreturnstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone57) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == STONE_OF_NO_RETURN) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator57) return TRUE;
 	if (sjwcheck(57)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 15 && u.femauspices15 == 3) return TRUE;
@@ -4953,13 +5268,8 @@ have_noreturnstone()
 int
 have_egostone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone58) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == EGOSTONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator58) return TRUE;
 	if (sjwcheck(58)) return TRUE;
 	return(FALSE);
@@ -4968,13 +5278,8 @@ have_egostone()
 int
 have_fastforwardstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone59) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == FAST_FORWARD_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator59) return TRUE;
 	if (sjwcheck(59)) return TRUE;
 	return(FALSE);
@@ -4983,13 +5288,8 @@ have_fastforwardstone()
 int
 have_rottenstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone60) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ROTTEN_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator60) return TRUE;
 	if (sjwcheck(60)) return TRUE;
 	return(FALSE);
@@ -4998,13 +5298,8 @@ have_rottenstone()
 int
 have_unskilledstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone61) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == UNSKILLED_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator61) return TRUE;
 	if (sjwcheck(61)) return TRUE;
 	return(FALSE);
@@ -5013,13 +5308,8 @@ have_unskilledstone()
 int
 have_lowstatstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone62) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == LOW_STAT_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator62) return TRUE;
 	if (sjwcheck(62)) return TRUE;
 	return(FALSE);
@@ -5028,13 +5318,8 @@ have_lowstatstone()
 int
 have_trainingstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone63) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == TRAINING_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator63) return TRUE;
 	if (sjwcheck(63)) return TRUE;
 	return(FALSE);
@@ -5043,13 +5328,8 @@ have_trainingstone()
 int
 have_exercisestone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone64) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == EXERCISE_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator64) return TRUE;
 	if (sjwcheck(64)) return TRUE;
 	return(FALSE);
@@ -5058,16 +5338,12 @@ have_exercisestone()
 int
 have_limitationstone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_limitation) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == TURN_LIMIT_STONE) {
-			if (otmp->oartifact == ART_LIVE_FAST__DIE_YOUNG__HAE_) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_livefast) return 2;
+
+	if (u.item_carry_nastystone65) return TRUE;
+
 	if (u.nastinator65) return TRUE;
 	if (sjwcheck(65)) return TRUE;
 	return(FALSE);
@@ -5076,13 +5352,8 @@ have_limitationstone()
 int
 have_weaksightstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone66) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == WEAK_SIGHT_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator66) return TRUE;
 	if (sjwcheck(66)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 6 && u.femauspices6 == 5) return TRUE;
@@ -5092,13 +5363,8 @@ have_weaksightstone()
 int
 have_messagestone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone67) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == CHATTER_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator67) return TRUE;
 	if (sjwcheck(67)) return TRUE;
 	return(FALSE);
@@ -5107,13 +5373,8 @@ have_messagestone()
 int
 have_nonsacredstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone68) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == NONSACRED_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator68) return TRUE;
 	if (sjwcheck(68)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 22 && u.femauspices22 == 3) return TRUE;
@@ -5123,13 +5384,8 @@ have_nonsacredstone()
 int
 have_starvationstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone69) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == STARVATION_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator69) return TRUE;
 	if (sjwcheck(69)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 30 && u.femauspices30 == 2) return TRUE;
@@ -5140,13 +5396,8 @@ have_starvationstone()
 int
 have_droplessstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone70) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == DROPLESS_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator70) return TRUE;
 	if (sjwcheck(70)) return TRUE;
 	return(FALSE);
@@ -5155,13 +5406,8 @@ have_droplessstone()
 int
 have_loweffectstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone71) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == LOW_EFFECT_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator71) return TRUE;
 	if (sjwcheck(71)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 4 && u.femauspices4 == 6) return TRUE;
@@ -5171,13 +5417,8 @@ have_loweffectstone()
 int
 have_invisostone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone72) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == INVISO_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator72) return TRUE;
 	if (sjwcheck(72)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 22 && u.femauspices22 == 5) return TRUE;
@@ -5187,13 +5428,8 @@ have_invisostone()
 int
 have_ghostlystone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone73) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == GHOSTLY_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator73) return TRUE;
 	if (sjwcheck(73)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 22 && u.femauspices22 == 4) return TRUE;
@@ -5203,13 +5439,8 @@ have_ghostlystone()
 int
 have_dehydratingstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone74) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == DEHYDRATING_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator74) return TRUE;
 	if (sjwcheck(74)) return TRUE;
 	return(FALSE);
@@ -5218,13 +5449,8 @@ have_dehydratingstone()
 int
 have_hatestone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone75) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == STONE_OF_HATE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator75) return TRUE;
 	if (sjwcheck(75)) return TRUE;
 	return(FALSE);
@@ -5233,13 +5459,8 @@ have_hatestone()
 int
 have_directionswapstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone76) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == DIRECTIONAL_SWAP_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator76) return TRUE;
 	if (sjwcheck(76)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 30 && u.femauspices30 == 3) return TRUE;
@@ -5249,13 +5470,8 @@ have_directionswapstone()
 int
 have_nonintrinsicstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone77) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == NONINTRINSICAL_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator77) return TRUE;
 	if (sjwcheck(77)) return TRUE;
 	return(FALSE);
@@ -5264,16 +5480,12 @@ have_nonintrinsicstone()
 int
 have_dropcursestone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_dropcurse) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == DROPCURSE_STONE) {
-			if (otmp->oartifact == ART_THATS_DERP) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_thatsderp) return 2;
+
+	if (u.item_carry_nastystone78) return TRUE;
+
 	if (u.nastinator78) return TRUE;
 	if (sjwcheck(78)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 15 && u.femauspices15 == 4) return TRUE;
@@ -5283,13 +5495,8 @@ have_dropcursestone()
 int
 have_nakedstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone79) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == STONE_OF_NAKED_STRIPPING) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator79) return TRUE;
 	if (sjwcheck(79)) return TRUE;
 	return(FALSE);
@@ -5298,13 +5505,8 @@ have_nakedstone()
 int
 have_antilevelstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone80) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ANTILEVEL_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator80) return TRUE;
 	if (sjwcheck(80)) return TRUE;
 	return(FALSE);
@@ -5313,13 +5515,8 @@ have_antilevelstone()
 int
 have_stealerstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone81) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == STEALER_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator81) return TRUE;
 	if (sjwcheck(81)) return TRUE;
 	if (u.arti_carry_suckstone) return TRUE;
@@ -5329,13 +5526,8 @@ have_stealerstone()
 int
 have_rebelstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone82) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == REBEL_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator82) return TRUE;
 	if (sjwcheck(82)) return TRUE;
 	return(FALSE);
@@ -5344,13 +5536,8 @@ have_rebelstone()
 int
 have_shitstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone83) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == SHIT_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator83) return TRUE;
 	if (sjwcheck(83)) return TRUE;
 	return(FALSE);
@@ -5359,13 +5546,8 @@ have_shitstone()
 int
 have_misfirestone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone84) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == STONE_OF_MISFIRING) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator84) return TRUE;
 	if (sjwcheck(84)) return TRUE;
 	return(FALSE);
@@ -5374,16 +5556,12 @@ have_misfirestone()
 int
 have_wallstone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_wall) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == STONE_OF_PERMANENCE) {
-			if (otmp->oartifact == ART_WALLIFY_UP_) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_wallifyup) return 2;
+
+	if (u.item_carry_nastystone85) return TRUE;
+
 	if (u.nastinator85) return TRUE;
 	if (sjwcheck(85)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 22 && u.femauspices22 == 6) return TRUE;
@@ -5393,13 +5571,8 @@ have_wallstone()
 int
 have_disconnectstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone86) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == DISCONNECT_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator86) return TRUE;
 	if (sjwcheck(86)) return TRUE;
 	return(FALSE);
@@ -5408,13 +5581,8 @@ have_disconnectstone()
 int
 have_interfacescrewstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone87) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == SCREW_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator87) return TRUE;
 	if (sjwcheck(87)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 30 && u.femauspices30 == 4) return TRUE;
@@ -5424,13 +5592,8 @@ have_interfacescrewstone()
 int
 have_bossfightstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone88) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == BOSSFIGHT_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator88) return TRUE;
 	if (sjwcheck(88)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 17 && u.femauspices17 == 3) return TRUE;
@@ -5440,13 +5603,8 @@ have_bossfightstone()
 int
 have_entirelevelstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone89) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ENTIRE_LEVEL_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator89) return TRUE;
 	if (sjwcheck(89)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 17 && u.femauspices17 == 4) return TRUE;
@@ -5456,13 +5614,8 @@ have_entirelevelstone()
 int
 have_bonestone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone90) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == BONE_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator90) return TRUE;
 	if (sjwcheck(90)) return TRUE;
 	return(FALSE);
@@ -5471,16 +5624,12 @@ have_bonestone()
 int
 have_autocursestone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_autocurse) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == AUTOCURSE_STONE) {
-			if (otmp->oartifact == ART_TRY_IT_OUT_LONGER) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_tryitout) return 2;
+
+	if (u.item_carry_nastystone91) return TRUE;
+
 	if (u.nastinator91) return TRUE;
 	if (sjwcheck(91)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 28 && u.femauspices28 == 4) return TRUE;
@@ -5490,13 +5639,8 @@ have_autocursestone()
 int
 have_highlevelstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone92) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == HIGHLEVEL_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator92) return TRUE;
 	if (sjwcheck(92)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 17 && u.femauspices17 == 5) return TRUE;
@@ -5506,13 +5650,8 @@ have_highlevelstone()
 int
 have_spellforgettingstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone93) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == SPELL_MEMORY_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator93) return TRUE;
 	if (sjwcheck(93)) return TRUE;
 	return(FALSE);
@@ -5521,13 +5660,8 @@ have_spellforgettingstone()
 int
 have_soundeffectstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone94) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == SOUND_EFFECT_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator94) return TRUE;
 	if (sjwcheck(94)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 8 && u.femauspices8 == 5) return TRUE;
@@ -5537,15 +5671,12 @@ have_soundeffectstone()
 int
 have_timerunstone()
 {
-	register struct obj *otmp;
-
 	/*if (u.tempsupernastytrap_timerun) return 2;*/
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == TIME_USE_STONE) { /* Amy note: femauspices for certain nasty traps */
-			return(TRUE);
-		}
-	}
+	/* !!! Amy note: femauspices for certain nasty traps !!!!!!! */
+
+	if (u.item_carry_nastystone95) return TRUE;
+
 	if (u.nastinator95) return TRUE;
 	if (sjwcheck(95)) return TRUE;
 	return(FALSE);
@@ -5554,13 +5685,8 @@ have_timerunstone()
 int
 have_lootcutstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone96) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == LOOTCUT_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator96) return TRUE;
 	if (sjwcheck(96)) return TRUE;
 	if (AssholeModeActive) return TRUE;
@@ -5570,13 +5696,8 @@ have_lootcutstone()
 int
 have_monsterspeedstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone97) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MONSTER_SPEED_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator97) return TRUE;
 	if (sjwcheck(97)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 15 && u.femauspices15 == 5) return TRUE;
@@ -5586,13 +5707,8 @@ have_monsterspeedstone()
 int
 have_scalingstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone98) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == SCALING_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator98) return TRUE;
 	if (sjwcheck(98)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 17 && u.femauspices17 == 6) return TRUE;
@@ -5602,13 +5718,8 @@ have_scalingstone()
 int
 have_inimicalstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone99) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == INIMICAL_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator99) return TRUE;
 	if (sjwcheck(99)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 13 && u.femauspices13 == 4) return TRUE;
@@ -5618,13 +5729,8 @@ have_inimicalstone()
 int
 have_whitespellstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone100) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == WHITE_SPELL_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator100) return TRUE;
 	if (sjwcheck(100)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 2) return TRUE;
@@ -5634,13 +5740,8 @@ have_whitespellstone()
 int
 have_greyoutstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone101) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == GREYOUT_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator101) return TRUE;
 	if (sjwcheck(101)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 3) return TRUE;
@@ -5650,13 +5751,8 @@ have_greyoutstone()
 int
 have_quasarstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone102) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == QUASAR_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator102) return TRUE;
 	if (sjwcheck(102)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 30 && u.femauspices30 == 5) return TRUE;
@@ -5666,13 +5762,8 @@ have_quasarstone()
 int
 have_mommystone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone103) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MOMMY_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator103) return TRUE;
 	if (sjwcheck(103)) return TRUE;
 	return(FALSE);
@@ -5681,16 +5772,12 @@ have_mommystone()
 int
 have_horrorstone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_horror) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == HORROR_STONE) {
-			if (otmp->oartifact == ART_THIS_IS_SO_FUNNY) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_sofunny) return 2;
+
+	if (u.item_carry_nastystone104) return TRUE;
+
 	if (u.nastinator104) return TRUE;
 	if (sjwcheck(104)) return TRUE;
 	return(FALSE);
@@ -5699,16 +5786,12 @@ have_horrorstone()
 int
 have_artificialstone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_artificial) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ARTIFICIAL_STONE) {
-			if (otmp->oartifact == ART_GOOD_LUCK__YOU_LL_NEED_IT) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_goodluckneed) return 2;
+
+	if (u.item_carry_nastystone105) return TRUE;
+
 	if (u.nastinator105) return TRUE;
 	if (sjwcheck(105)) return TRUE;
 	return(FALSE);
@@ -5717,13 +5800,8 @@ have_artificialstone()
 int
 have_wereformstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone106) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == WEREFORM_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator106) return TRUE;
 	if (sjwcheck(106)) return TRUE;
 	return(FALSE);
@@ -5732,13 +5810,8 @@ have_wereformstone()
 int
 have_antiprayerstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone107) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ANTIPRAYER_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator107) return TRUE;
 	if (sjwcheck(107)) return TRUE;
 	return(FALSE);
@@ -5747,16 +5820,12 @@ have_antiprayerstone()
 int
 have_evilpatchstone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_evilpatch) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == EVIL_PATCH_STONE) {
-			if (otmp->oartifact == ART_UNPLAYABLE_GAME_) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_unplayablegame) return 2;
+
+	if (u.item_carry_nastystone108) return TRUE;
+
 	if (u.nastinator108) return TRUE;
 	if (sjwcheck(108)) return TRUE;
 	return(FALSE);
@@ -5765,13 +5834,8 @@ have_evilpatchstone()
 int
 have_hardmodestone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone109) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == HARD_MODE_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator109) return TRUE;
 	if (sjwcheck(109)) return TRUE;
 	return(FALSE);
@@ -5780,16 +5844,12 @@ have_hardmodestone()
 int
 have_secretattackstone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_secretattack) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == SECRET_ATTACK_STONE) {
-			if (otmp->oartifact == ART_NOT_SO_SECRET_ANYMORE) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_notsosecret) return 2;
+
+	if (u.item_carry_nastystone110) return TRUE;
+
 	if (u.nastinator110) return TRUE;
 	if (sjwcheck(110)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 28 && u.femauspices28 == 5) return TRUE;
@@ -5799,13 +5859,8 @@ have_secretattackstone()
 int
 have_eaterstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone111) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == EATER_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator111) return TRUE;
 	if (sjwcheck(111)) return TRUE;
 	return(FALSE);
@@ -5814,13 +5869,8 @@ have_eaterstone()
 int
 have_covetousstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone112) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == COVETOUS_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator112) return TRUE;
 	if (sjwcheck(112)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 13 && u.femauspices13 == 5) return TRUE;
@@ -5830,13 +5880,8 @@ have_covetousstone()
 int
 have_nonseeingstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone113) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == NON_SEEING_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator113) return TRUE;
 	if (sjwcheck(113)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 20 && u.femauspices20 == 5) return TRUE;
@@ -5846,13 +5891,8 @@ have_nonseeingstone()
 int
 have_darkmodestone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone114) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == DARKMODE_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator114) return TRUE;
 	if (sjwcheck(114)) return TRUE;
 	return(FALSE);
@@ -5861,13 +5901,8 @@ have_darkmodestone()
 int
 have_unfindablestone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone115) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == UNFINDABLE_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator115) return TRUE;
 	if (sjwcheck(115)) return TRUE;
 	return(FALSE);
@@ -5876,13 +5911,8 @@ have_unfindablestone()
 int
 have_homicidestone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone116) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == HOMICIDE_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator116) return TRUE;
 	if (sjwcheck(116)) return TRUE;
 	return(FALSE);
@@ -5891,13 +5921,8 @@ have_homicidestone()
 int
 have_multitrappingstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone117) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MULTITRAPPING_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator117) return TRUE;
 	if (sjwcheck(117)) return TRUE;
 	return(FALSE);
@@ -5906,16 +5931,12 @@ have_multitrappingstone()
 int
 have_wakeupcallstone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_wakeupcall) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == WAKEUP_CALL_STONE) {
-			if (otmp->oartifact == ART_ROBBIE_S_WEARINESS) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_robbieswear) return 2;
+
+	if (u.item_carry_nastystone118) return TRUE;
+
 	if (u.nastinator118) return TRUE;
 	if (sjwcheck(118)) return TRUE;
 	return(FALSE);
@@ -5924,16 +5945,12 @@ have_wakeupcallstone()
 int
 have_grayoutstone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_grayout) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == GRAYOUT_STONE) {
-			if (otmp->oartifact == ART_TINY_VISIBILITY_WINDOW) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_tinyvisi) return 2;
+
+	if (u.item_carry_nastystone119) return TRUE;
+
 	if (u.nastinator119) return TRUE;
 	if (sjwcheck(119)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 25 && u.femauspices25 == 1) return TRUE;
@@ -5943,16 +5960,12 @@ have_grayoutstone()
 int
 have_graycenterstone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_graycenter) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == GRAY_CENTER_STONE) {
-			if (otmp->oartifact == ART_MAKE_THE_SHROUD_BIGGER) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_biggershroud) return 2;
+
+	if (u.item_carry_nastystone120) return TRUE;
+
 	if (u.nastinator120) return TRUE;
 	if (sjwcheck(120)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 25 && u.femauspices25 == 2) return TRUE;
@@ -5962,16 +5975,12 @@ have_graycenterstone()
 int
 have_checkerboardstone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_checkerboard) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == CHECKERBOARD_STONE) {
-			if (otmp->oartifact == ART_SEE_EVEN_LESS) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_seeevenless) return 2;
+
+	if (u.item_carry_nastystone121) return TRUE;
+
 	if (u.nastinator121) return TRUE;
 	if (sjwcheck(121)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 25 && u.femauspices25 == 3) return TRUE;
@@ -5981,13 +5990,8 @@ have_checkerboardstone()
 int
 have_clockwisestone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone122) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == CLOCKWISE_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator122) return TRUE;
 	if (sjwcheck(122)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 30 && u.femauspices30 == 6) return TRUE;
@@ -5997,13 +6001,8 @@ have_clockwisestone()
 int
 have_counterclockwisestone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone123) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == COUNTERCLOCKWISE_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator123) return TRUE;
 	if (sjwcheck(123)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 30 && u.femauspices30 == 7) return TRUE;
@@ -6013,16 +6012,12 @@ have_counterclockwisestone()
 int
 have_lagstone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_lag) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == LAG_STONE) {
-			if (otmp->oartifact == ART_HOHO_I_ATE_YOUR_INPUT) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_hohoiate) return 2;
+
+	if (u.item_carry_nastystone124) return TRUE;
+
 	if (u.nastinator124) return TRUE;
 	if (sjwcheck(124)) return TRUE;
 	return(FALSE);
@@ -6031,14 +6026,9 @@ have_lagstone()
 int
 have_blesscursestone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone125) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == BLESSCURSE_STONE) {
-			return(TRUE);
-		}
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 15 && u.femauspices15 == 6) return TRUE;
-	}
 	if (u.nastinator125) return TRUE;
 	if (sjwcheck(125)) return TRUE;
 	return(FALSE);
@@ -6047,13 +6037,8 @@ have_blesscursestone()
 int
 have_delightstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone126) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == DELIGHT_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator126) return TRUE;
 	if (sjwcheck(126)) return TRUE;
 	return(FALSE);
@@ -6062,13 +6047,8 @@ have_delightstone()
 int
 have_dischargestone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone127) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == DISCHARGE_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator127) return TRUE;
 	if (sjwcheck(127)) return TRUE;
 	return(FALSE);
@@ -6077,13 +6057,8 @@ have_dischargestone()
 int
 have_trashstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone128) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == TRASH_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator128) return TRUE;
 	if (sjwcheck(128)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 28 && u.femauspices28 == 6) return TRUE;
@@ -6093,13 +6068,8 @@ have_trashstone()
 int
 have_filteringstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone129) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == FILTERING_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator129) return TRUE;
 	if (sjwcheck(129)) return TRUE;
 	return(FALSE);
@@ -6108,13 +6078,8 @@ have_filteringstone()
 int
 have_deformattingstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone130) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == DEFORMATTING_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator130) return TRUE;
 	if (sjwcheck(130)) return TRUE;
 	return(FALSE);
@@ -6123,13 +6088,8 @@ have_deformattingstone()
 int
 have_flickerstripstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone131) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == FLICKER_STRIP_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator131) return TRUE;
 	if (sjwcheck(131)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 6 && u.femauspices6 == 6) return TRUE;
@@ -6139,16 +6099,12 @@ have_flickerstripstone()
 int
 have_undressingstone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_undressing) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == UNDRESSING_STONE) {
-			if (otmp->oartifact == ART_ARRGH_HE_COMES_FOR_US) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_arrghhecomes) return 2;
+
+	if (u.item_carry_nastystone132) return TRUE;
+
 	if (u.nastinator132) return TRUE;
 	if (sjwcheck(132)) return TRUE;
 	return(FALSE);
@@ -6157,13 +6113,8 @@ have_undressingstone()
 int
 have_hyperbluestone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone133) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == HYPER_BLUE_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator133) return TRUE;
 	if (sjwcheck(133)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 8 && u.femauspices8 == 6) return TRUE;
@@ -6173,13 +6124,8 @@ have_hyperbluestone()
 int
 have_nolightstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone134) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == NO_LIGHT_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator134) return TRUE;
 	if (sjwcheck(134)) return TRUE;
 	return(FALSE);
@@ -6188,13 +6134,8 @@ have_nolightstone()
 int
 have_paranoiastone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone135) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == PARANOIA_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator135) return TRUE;
 	if (sjwcheck(135)) return TRUE;
 	return(FALSE);
@@ -6203,13 +6144,8 @@ have_paranoiastone()
 int
 have_fleecestone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone136) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == FLEECE_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator136) return TRUE;
 	if (sjwcheck(136)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 6 && u.femauspices6 == 7) return TRUE;
@@ -6219,13 +6155,8 @@ have_fleecestone()
 int
 have_interruptionstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone137) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == INTERRUPTION_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator137) return TRUE;
 	if (sjwcheck(137)) return TRUE;
 	return(FALSE);
@@ -6234,13 +6165,8 @@ have_interruptionstone()
 int
 have_dustbinstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone138) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == DUSTBIN_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator138) return TRUE;
 	if (sjwcheck(138)) return TRUE;
 	return(FALSE);
@@ -6249,13 +6175,8 @@ have_dustbinstone()
 int
 have_batterystone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone139) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == BATTERY_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator139) return TRUE;
 	if (sjwcheck(139)) return TRUE;
 	return(FALSE);
@@ -6264,13 +6185,8 @@ have_batterystone()
 int
 have_butterfingerstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone140) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == BUTTERFINGER_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator140) return TRUE;
 	if (sjwcheck(140)) return TRUE;
 	return(FALSE);
@@ -6279,13 +6195,8 @@ have_butterfingerstone()
 int
 have_miscastingstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone141) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MISCASTING_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator141) return TRUE;
 	if (sjwcheck(141)) return TRUE;
 	return(FALSE);
@@ -6294,13 +6205,8 @@ have_miscastingstone()
 int
 have_messagesuppressionstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone142) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MESSAGE_SUPPRESSION_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator142) return TRUE;
 	if (sjwcheck(142)) return TRUE;
 	return(FALSE);
@@ -6309,13 +6215,8 @@ have_messagesuppressionstone()
 int
 have_stuckannouncementstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone143) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == STUCK_ANNOUNCEMENT_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator143) return TRUE;
 	if (sjwcheck(143)) return TRUE;
 	return(FALSE);
@@ -6324,13 +6225,8 @@ have_stuckannouncementstone()
 int
 have_stormstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone144) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == STORM_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator144) return TRUE;
 	if (sjwcheck(144)) return TRUE;
 	return(FALSE);
@@ -6339,13 +6235,8 @@ have_stormstone()
 int
 have_maximumdamagestone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone145) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MAXIMUM_DAMAGE_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator145) return TRUE;
 	if (sjwcheck(145)) return TRUE;
 	return(FALSE);
@@ -6354,16 +6245,12 @@ have_maximumdamagestone()
 int
 have_latencystone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_latency) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == LATENCY_STONE) {
-			if (otmp->oartifact == ART_WAITING_FOR_GODOT) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_waitinggodot) return 2;
+
+	if (u.item_carry_nastystone146) return TRUE;
+
 	if (u.nastinator146) return TRUE;
 	if (sjwcheck(146)) return TRUE;
 	return(FALSE);
@@ -6372,13 +6259,8 @@ have_latencystone()
 int
 have_starlitskystone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone147) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == STARLIT_SKY_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator147) return TRUE;
 	if (sjwcheck(147)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 25 && u.femauspices25 == 5) return TRUE;
@@ -6388,13 +6270,8 @@ have_starlitskystone()
 int
 have_trapknowledgestone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone148) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == TRAP_KNOWLEDGE_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator148) return TRUE;
 	if (sjwcheck(148)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 25 && u.femauspices25 == 4) return TRUE;
@@ -6404,13 +6281,8 @@ have_trapknowledgestone()
 int
 have_highscorestone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone149) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == HIGHSCORE_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator149) return TRUE;
 	if (sjwcheck(149)) return TRUE;
 	return(FALSE);
@@ -6419,13 +6291,8 @@ have_highscorestone()
 int
 have_pinkspellstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone150) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == PINK_SPELL_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator150) return TRUE;
 	if (sjwcheck(150)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 9) return TRUE;
@@ -6435,13 +6302,8 @@ have_pinkspellstone()
 int
 have_greenspellstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone151) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == GREEN_SPELL_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator151) return TRUE;
 	if (sjwcheck(151)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 5) return TRUE;
@@ -6451,13 +6313,8 @@ have_greenspellstone()
 int
 have_evcstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone152) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == EVC_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator152) return TRUE;
 	if (sjwcheck(152)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 20 && u.femauspices20 == 6) return TRUE;
@@ -6467,13 +6324,8 @@ have_evcstone()
 int
 have_underlaidstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone153) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == UNDERLAID_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator153) return TRUE;
 	if (sjwcheck(153)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 20 && u.femauspices20 == 7) return TRUE;
@@ -6483,13 +6335,8 @@ have_underlaidstone()
 int
 have_damagemeterstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone154) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == DAMAGE_METER_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator154) return TRUE;
 	if (sjwcheck(154)) return TRUE;
 	return(FALSE);
@@ -6498,13 +6345,8 @@ have_damagemeterstone()
 int
 have_weightstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone155) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == WEIGHT_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator155) return TRUE;
 	if (sjwcheck(155)) return TRUE;
 	return(FALSE);
@@ -6513,13 +6355,8 @@ have_weightstone()
 int
 have_infofuckstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone156) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == INFOFUCK_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator156) return TRUE;
 	if (sjwcheck(156)) return TRUE;
 	return(FALSE);
@@ -6528,13 +6365,8 @@ have_infofuckstone()
 int
 have_blackspellstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone157) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == BLACK_SPELL_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator157) return TRUE;
 	if (sjwcheck(157)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 7) return TRUE;
@@ -6544,13 +6376,8 @@ have_blackspellstone()
 int
 have_cyanspellstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone158) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == CYAN_SPELL_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator158) return TRUE;
 	if (sjwcheck(158)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 8) return TRUE;
@@ -6560,13 +6387,8 @@ have_cyanspellstone()
 int
 have_heapstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone159) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == HEAP_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator159) return TRUE;
 	if (sjwcheck(159)) return TRUE;
 	return(FALSE);
@@ -6575,13 +6397,8 @@ have_heapstone()
 int
 have_bluespellstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone160) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == BLUE_SPELL_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator160) return TRUE;
 	if (sjwcheck(160)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 4) return TRUE;
@@ -6591,13 +6408,8 @@ have_bluespellstone()
 int
 have_tronstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone161) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == TRON_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator161) return TRUE;
 	if (sjwcheck(161)) return TRUE;
 	return(FALSE);
@@ -6606,13 +6418,8 @@ have_tronstone()
 int
 have_redspellstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone162) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == RED_SPELL_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator162) return TRUE;
 	if (sjwcheck(162)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 6) return TRUE;
@@ -6622,13 +6429,8 @@ have_redspellstone()
 int
 have_tooheavystone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone163) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == TOO_HEAVY_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator163) return TRUE;
 	if (sjwcheck(163)) return TRUE;
 	return(FALSE);
@@ -6637,13 +6439,8 @@ have_tooheavystone()
 int
 have_elongatedstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone164) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ELONGATED_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator164) return TRUE;
 	if (sjwcheck(164)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 28 && u.femauspices28 == 7) return TRUE;
@@ -6653,16 +6450,12 @@ have_elongatedstone()
 int
 have_wrapoverstone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_wrapover) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == WRAPOVER_STONE) {
-			if (otmp->oartifact == ART_BETTER_PUT_IT_ALL_AWAY) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_betterputit) return 2;
+
+	if (u.item_carry_nastystone165) return TRUE;
+
 	if (u.nastinator165) return TRUE;
 	if (sjwcheck(165)) return TRUE;
 	return(FALSE);
@@ -6671,16 +6464,12 @@ have_wrapoverstone()
 int
 have_destructionstone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_destruction) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == DESTRUCTION_STONE) {
-			if (otmp->oartifact == ART_IT_EXPLODES_) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_itexplodes) return 2;
+
+	if (u.item_carry_nastystone166) return TRUE;
+
 	if (u.nastinator166) return TRUE;
 	if (sjwcheck(166)) return TRUE;
 	return(FALSE);
@@ -6689,13 +6478,8 @@ have_destructionstone()
 int
 have_meleeprefixstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone167) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MELEE_PREFIX_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator167) return TRUE;
 	if (sjwcheck(167)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 30 && u.femauspices30 == 8) return TRUE;
@@ -6705,13 +6489,8 @@ have_meleeprefixstone()
 int
 have_automorestone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone168) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == AUTOMORE_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator168) return TRUE;
 	if (sjwcheck(168)) return TRUE;
 	return(FALSE);
@@ -6720,16 +6499,12 @@ have_automorestone()
 int
 have_unfairattackstone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_unfairattack) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == UNFAIR_ATTACK_STONE) {
-			if (otmp->oartifact == ART_WHO_NEEDS_FAIRNESS_ANYWAY) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_needfairness) return 2;
+
+	if (u.item_carry_nastystone169) return TRUE;
+
 	if (u.nastinator169) return TRUE;
 	if (sjwcheck(169)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 28 && u.femauspices28 == 8) return TRUE;
@@ -6739,13 +6514,8 @@ have_unfairattackstone()
 int
 have_orangespellstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone170) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ORANGE_SPELL_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator170) return TRUE;
 	if (sjwcheck(170)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 10) return TRUE;
@@ -6755,13 +6525,8 @@ have_orangespellstone()
 int
 have_violetspellstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone171) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == VIOLET_SPELL_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator171) return TRUE;
 	if (sjwcheck(171)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 11) return TRUE;
@@ -6771,13 +6536,8 @@ have_violetspellstone()
 int
 have_longingstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone172) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == LONGING_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator172) return TRUE;
 	if (sjwcheck(172)) return TRUE;
 	return(FALSE);
@@ -6786,16 +6546,12 @@ have_longingstone()
 int
 have_cursedpartstone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_cursedpart) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == CURSED_PART_STONE) {
-			if (otmp->oartifact == ART_LAST_FOREVA) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_lastforeva) return 2;
+
+	if (u.item_carry_nastystone173) return TRUE;
+
 	if (u.nastinator173) return TRUE;
 	if (sjwcheck(173)) return TRUE;
 	return(FALSE);
@@ -6804,13 +6560,8 @@ have_cursedpartstone()
 int
 have_quaversalstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone174) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == QUAVERSAL_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator174) return TRUE;
 	if (sjwcheck(174)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 30 && u.femauspices30 == 9) return TRUE;
@@ -6820,13 +6571,8 @@ have_quaversalstone()
 int
 have_appearanceshufflingstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone175) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == APPEARANCE_SHUFFLING_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator175) return TRUE;
 	if (sjwcheck(175)) return TRUE;
 	return(FALSE);
@@ -6835,13 +6581,8 @@ have_appearanceshufflingstone()
 int
 have_brownspellstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone176) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == BROWN_SPELL_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator176) return TRUE;
 	if (sjwcheck(176)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 12) return TRUE;
@@ -6851,13 +6592,8 @@ have_brownspellstone()
 int
 have_choicelessstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone177) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == CHOICELESS_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator177) return TRUE;
 	if (sjwcheck(177)) return TRUE;
 	return(FALSE);
@@ -6866,13 +6602,8 @@ have_choicelessstone()
 int
 have_goldspellstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone178) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == GOLDSPELL_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator178) return TRUE;
 	if (sjwcheck(178)) return TRUE;
 	return(FALSE);
@@ -6881,13 +6612,8 @@ have_goldspellstone()
 int
 have_deprovementstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone179) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == DEPROVEMENT_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator179) return TRUE;
 	if (sjwcheck(179)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 25 && u.femauspices25 == 6) return TRUE;
@@ -6897,13 +6623,8 @@ have_deprovementstone()
 int
 have_initializationstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone180) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == INITIALIZATION_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator180) return TRUE;
 	if (sjwcheck(180)) return TRUE;
 	return(FALSE);
@@ -6912,13 +6633,8 @@ have_initializationstone()
 int
 have_gushlushstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone181) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == GUSHLUSH_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator181) return TRUE;
 	if (sjwcheck(181)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 25 && u.femauspices25 == 7) return TRUE;
@@ -6928,13 +6644,8 @@ have_gushlushstone()
 int
 have_soiltypestone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone182) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == SOILTYPE_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator182) return TRUE;
 	if (sjwcheck(182)) return TRUE;
 	return(FALSE);
@@ -6943,13 +6654,8 @@ have_soiltypestone()
 int
 have_dangerousterrainstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone183) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == DANGEROUS_TERRAIN_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator183) return TRUE;
 	if (sjwcheck(183)) return TRUE;
 	return(FALSE);
@@ -6958,16 +6664,12 @@ have_dangerousterrainstone()
 int
 have_falloutstone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_fallout) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == FALLOUT_STONE) {
-			if (otmp->oartifact == ART_NUCLEAR_WAR_AFTERMATH) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_nuclearwar) return 2;
+
+	if (u.item_carry_nastystone184) return TRUE;
+
 	if (u.nastinator184) return TRUE;
 	if (sjwcheck(184)) return TRUE;
 	return(FALSE);
@@ -6976,16 +6678,12 @@ have_falloutstone()
 int
 have_mojibakestone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_mojibake) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MOJIBAKE_STONE) {
-			if (otmp->oartifact == ART_SCREEN_GLITCH) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_screenglitch) return 2;
+
+	if (u.item_carry_nastystone185) return TRUE;
+
 	if (u.nastinator185) return TRUE;
 	if (sjwcheck(185)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 6 && u.femauspices6 == 8) return TRUE;
@@ -6995,13 +6693,8 @@ have_mojibakestone()
 int
 have_gravationstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone186) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == GRAVATION_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator186) return TRUE;
 	if (sjwcheck(186)) return TRUE;
 	return(FALSE);
@@ -7010,13 +6703,8 @@ have_gravationstone()
 int
 have_uncalledstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone187) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == UNCALLED_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator187) return TRUE;
 	if (sjwcheck(187)) return TRUE;
 	return(FALSE);
@@ -7025,13 +6713,8 @@ have_uncalledstone()
 int
 have_explodingdicestone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone188) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == EXPLODING_DICE_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator188) return TRUE;
 	if (sjwcheck(188)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 17 && u.femauspices17 == 7) return TRUE;
@@ -7041,13 +6724,8 @@ have_explodingdicestone()
 int
 have_permacursestone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone189) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == PERMACURSE_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator189) return TRUE;
 	if (sjwcheck(189)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 4 && u.femauspices4 == 7) return TRUE;
@@ -7057,13 +6735,8 @@ have_permacursestone()
 int
 have_shroudedidentitystone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone190) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == SHROUDED_IDENTITY_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator190) return TRUE;
 	if (sjwcheck(190)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 13 && u.femauspices13 == 6) return TRUE;
@@ -7073,13 +6746,8 @@ have_shroudedidentitystone()
 int
 have_feelergaugesstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone191) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == FEELER_GAUGE_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator191) return TRUE;
 	if (sjwcheck(191)) return TRUE;
 	return(FALSE);
@@ -7088,16 +6756,12 @@ have_feelergaugesstone()
 int
 have_longscrewupstone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_longscrewup) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == LONG_SCREWUP_STONE) {
-			if (otmp->oartifact == ART_QUASI_PERMANENCE) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_quasiperma) return 2;
+
+	if (u.item_carry_nastystone192) return TRUE;
+
 	if (u.nastinator192) return TRUE;
 	if (sjwcheck(192)) return TRUE;
 	return(FALSE);
@@ -7106,13 +6770,8 @@ have_longscrewupstone()
 int
 have_wingyellowstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone193) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == WING_YELLOW_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator193) return TRUE;
 	if (sjwcheck(193)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 20 && u.femauspices20 == 8) return TRUE;
@@ -7122,13 +6781,8 @@ have_wingyellowstone()
 int
 have_lifesavingstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone194) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == LIFE_SAVING_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator194) return TRUE;
 	if (sjwcheck(194)) return TRUE;
 	return(FALSE);
@@ -7137,13 +6791,8 @@ have_lifesavingstone()
 int
 have_curseusestone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone195) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == CURSEUSE_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator195) return TRUE;
 	if (sjwcheck(195)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 15 && u.femauspices15 == 7) return TRUE;
@@ -7153,13 +6802,8 @@ have_curseusestone()
 int
 have_cutnutritionstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone196) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == CUT_NUTRITION_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator196) return TRUE;
 	if (sjwcheck(196)) return TRUE;
 	return(FALSE);
@@ -7168,16 +6812,12 @@ have_cutnutritionstone()
 int
 have_skilllossstone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_skillloss) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == SKILL_LOSS_STONE) {
-			if (otmp->oartifact == ART_TRASH_IT_) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_trashit) return 2;
+
+	if (u.item_carry_nastystone197) return TRUE;
+
 	if (u.nastinator197) return TRUE;
 	if (sjwcheck(197)) return TRUE;
 	return(FALSE);
@@ -7186,13 +6826,8 @@ have_skilllossstone()
 int
 have_autopilotstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone198) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == AUTOPILOT_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator198) return TRUE;
 	if (sjwcheck(198)) return TRUE;
 	return(FALSE);
@@ -7201,13 +6836,8 @@ have_autopilotstone()
 int
 have_forcestone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone199) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == FORCE_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator199) return TRUE;
 	if (sjwcheck(199)) return TRUE;
 	return(FALSE);
@@ -7216,13 +6846,8 @@ have_forcestone()
 int
 have_monsterglyphstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone200) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MONSTER_GLYPH_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator200) return TRUE;
 	if (sjwcheck(200)) return TRUE;
 	return(FALSE);
@@ -7231,13 +6856,8 @@ have_monsterglyphstone()
 int
 have_changingdirectivestone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone201) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == CHANGING_DIRECTIVE_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator201) return TRUE;
 	if (sjwcheck(201)) return TRUE;
 	return(FALSE);
@@ -7246,13 +6866,8 @@ have_changingdirectivestone()
 int
 have_containerkaboomstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone202) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == CONTAINER_KABOOM_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator202) return TRUE;
 	if (sjwcheck(202)) return TRUE;
 	return(FALSE);
@@ -7261,13 +6876,8 @@ have_containerkaboomstone()
 int
 have_stealdegradestone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone203) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == STEAL_DEGRADE_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator203) return TRUE;
 	if (sjwcheck(203)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 15 && u.femauspices15 == 8) return TRUE;
@@ -7277,13 +6887,8 @@ have_stealdegradestone()
 int
 have_leftinventorystone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone204) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == LEFT_INVENTORY_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator204) return TRUE;
 	if (sjwcheck(204)) return TRUE;
 	return(FALSE);
@@ -7292,16 +6897,12 @@ have_leftinventorystone()
 int
 have_fluctuatingspeedstone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_fluctuatingspeed) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == FLUCTUATING_SPEED_STONE) {
-			if (otmp->oartifact == ART_FLUCKER_LOW) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_flucker) return 2;
+
+	if (u.item_carry_nastystone205) return TRUE;
+
 	if (u.nastinator205) return TRUE;
 	if (sjwcheck(205)) return TRUE;
 	return(FALSE);
@@ -7310,13 +6911,8 @@ have_fluctuatingspeedstone()
 int
 have_tarmustrokingnorastone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone206) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == TARMUSTROKINGNORA_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator206) return TRUE;
 	if (sjwcheck(206)) return TRUE;
 	return(FALSE);
@@ -7325,13 +6921,8 @@ have_tarmustrokingnorastone()
 int
 have_failurestone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone207) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == FAILURE_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator207) return TRUE;
 	if (sjwcheck(207)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 4 && u.femauspices4 == 8) return TRUE;
@@ -7341,13 +6932,8 @@ have_failurestone()
 int
 have_brightcyanspellstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone208) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == BRIGHT_CYAN_SPELL_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator208) return TRUE;
 	if (sjwcheck(208)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 13) return TRUE;
@@ -7357,13 +6943,8 @@ have_brightcyanspellstone()
 int
 have_frequentationspawnstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone209) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == FREQUENTATION_SPAWN_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator209) return TRUE;
 	if (sjwcheck(209)) return TRUE;
 	return(FALSE);
@@ -7372,13 +6953,8 @@ have_frequentationspawnstone()
 int
 have_petaistone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone210) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == PET_AI_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator210) return TRUE;
 	if (sjwcheck(210)) return TRUE;
 	return(FALSE);
@@ -7387,16 +6963,12 @@ have_petaistone()
 int
 have_satanstone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_satan) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == SATAN_STONE) {
-			if (otmp->oartifact == ART_GRRM__TAA_TATATATAAAA__TA_) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_grrmdaddy) return 2;
+
+	if (u.item_carry_nastystone211) return TRUE;
+
 	if (u.nastinator211) return TRUE;
 	if (sjwcheck(211)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 13 && u.femauspices13 == 7) return TRUE;
@@ -7406,13 +6978,8 @@ have_satanstone()
 int
 have_rememberancestone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone212) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == REMEMBERANCE_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator212) return TRUE;
 	if (sjwcheck(212)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 22 && u.femauspices22 == 7) return TRUE;
@@ -7422,13 +6989,8 @@ have_rememberancestone()
 int
 have_pokeliestone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone213) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == POKELIE_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator213) return TRUE;
 	if (sjwcheck(213)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 8 && u.femauspices8 == 7) return TRUE;
@@ -7438,13 +7000,8 @@ have_pokeliestone()
 int
 have_autopickupstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone214) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == AUTOPICKUP_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator214) return TRUE;
 	if (sjwcheck(214)) return TRUE;
 	return(FALSE);
@@ -7453,13 +7010,8 @@ have_autopickupstone()
 int
 have_dywypistone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone215) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == DYWYPI_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator215) return TRUE;
 	if (sjwcheck(215)) return TRUE;
 	return(FALSE);
@@ -7468,13 +7020,8 @@ have_dywypistone()
 int
 have_silverspellstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone216) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == SILVER_SPELL_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator216) return TRUE;
 	if (sjwcheck(216)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 14) return TRUE;
@@ -7484,13 +7031,8 @@ have_silverspellstone()
 int
 have_metalspellstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone217) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == METAL_SPELL_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator217) return TRUE;
 	if (sjwcheck(217)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 15) return TRUE;
@@ -7500,13 +7042,8 @@ have_metalspellstone()
 int
 have_platinumspellstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone218) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == PLATINUM_SPELL_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator218) return TRUE;
 	if (sjwcheck(218)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 16) return TRUE;
@@ -7516,16 +7053,12 @@ have_platinumspellstone()
 int
 have_manlerstone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_manler) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MANLER_STONE) {
-			if (otmp->oartifact == ART_WOMANLER_GIVES_CHASE) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_womanler) return 2;
+
+	if (u.item_carry_nastystone219) return TRUE;
+
 	if (u.nastinator219) return TRUE;
 	if (sjwcheck(219)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 25 && u.femauspices25 == 8) return TRUE;
@@ -7535,16 +7068,12 @@ have_manlerstone()
 int
 have_doorningstone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_doorning) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == DOORNING_STONE) {
-			if (otmp->oartifact == ART_DOORNING_DAY) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_doorningday) return 2;
+
+	if (u.item_carry_nastystone220) return TRUE;
+
 	if (u.nastinator220) return TRUE;
 	if (sjwcheck(220)) return TRUE;
 	return(FALSE);
@@ -7553,13 +7082,8 @@ have_doorningstone()
 int
 have_nownsiblestone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone221) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == NOWNSIBLE_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator221) return TRUE;
 	if (sjwcheck(221)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 22 && u.femauspices22 == 8) return TRUE;
@@ -7569,13 +7093,8 @@ have_nownsiblestone()
 int
 have_elmstreetstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone222) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ELM_STREET_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator222) return TRUE;
 	if (sjwcheck(222)) return TRUE;
 	if (u.arti_carry_suckstone) return TRUE;
@@ -7586,16 +7105,12 @@ have_elmstreetstone()
 int
 have_monnoisestone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_monnoise) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MONNOISE_STONE) {
-			if (otmp->oartifact == ART_BLABBERBLABBERWANAMADA_) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_blabberblabber) return 2;
+
+	if (u.item_carry_nastystone223) return TRUE;
+
 	if (u.nastinator223) return TRUE;
 	if (sjwcheck(223)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 8 && u.femauspices8 == 8) return TRUE;
@@ -7605,16 +7120,12 @@ have_monnoisestone()
 int
 have_rangcallstone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_rangcall) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == RANG_CALL_STONE) {
-			if (otmp->oartifact == ART_LEIKI_S_QUEST) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_leikiquest) return 2;
+
+	if (u.item_carry_nastystone224) return TRUE;
+
 	if (u.nastinator224) return TRUE;
 	if (sjwcheck(224)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 28 && u.femauspices28 == 9) return TRUE;
@@ -7624,16 +7135,12 @@ have_rangcallstone()
 int
 have_recurringspelllossstone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_recurringspellloss) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == RECURRING_SPELL_LOSS_STONE) {
-			if (otmp->oartifact == ART_LOSE_ALL_THE_SPELLS) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_loseallspells) return 2;
+
+	if (u.item_carry_nastystone225) return TRUE;
+
 	if (u.nastinator225) return TRUE;
 	if (sjwcheck(225)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 4 && u.femauspices4 == 9) return TRUE;
@@ -7643,16 +7150,12 @@ have_recurringspelllossstone()
 int
 have_antitrainingstone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_antitraining) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ANTI_TRAINING_STONE) {
-			if (otmp->oartifact == ART_MAN_ARE_YOU_LUSH) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_manlush) return 2;
+
+	if (u.item_carry_nastystone226) return TRUE;
+
 	if (u.nastinator226) return TRUE;
 	if (sjwcheck(226)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 4 && u.femauspices4 == 10) return TRUE;
@@ -7662,16 +7165,12 @@ have_antitrainingstone()
 int
 have_techoutstone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_techout) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == TECHOUT_STONE) {
-			if (otmp->oartifact == ART_TOUT_DAAU___DAAU___DAAU) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_toutdaau) return 2;
+
+	if (u.item_carry_nastystone227) return TRUE;
+
 	if (u.nastinator227) return TRUE;
 	if (sjwcheck(227)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 4 && u.femauspices4 == 11) return TRUE;
@@ -7681,16 +7180,12 @@ have_techoutstone()
 int
 have_statdecaystone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_statdecay) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == STAT_DECAY_STONE) {
-			if (otmp->oartifact == ART_WASTEFUL_WITHER) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_wastewither) return 2;
+
+	if (u.item_carry_nastystone228) return TRUE;
+
 	if (u.nastinator228) return TRUE;
 	if (sjwcheck(228)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 30 && u.femauspices30 == 10) return TRUE;
@@ -7700,16 +7195,12 @@ have_statdecaystone()
 int
 have_movemorkstone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_movemork) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MOVEMORK_STONE) {
-			if (otmp->oartifact == ART_MORK_MORE) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_morkmore) return 2;
+
+	if (u.item_carry_nastystone229) return TRUE;
+
 	if (u.nastinator229) return TRUE;
 	if (sjwcheck(229)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 13 && u.femauspices13 == 8) return TRUE;
@@ -7719,13 +7210,8 @@ have_movemorkstone()
 int
 have_badpartstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone230) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == BAD_PART_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator230) return TRUE;
 	if (sjwcheck(230)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 13 && u.femauspices13 == 9) return TRUE;
@@ -7735,13 +7221,8 @@ have_badpartstone()
 int
 have_completelybadpartstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone231) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == COMPLETELY_BAD_PART_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator231) return TRUE;
 	if (sjwcheck(231)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 13 && u.femauspices13 == 10) return TRUE;
@@ -7751,13 +7232,8 @@ have_completelybadpartstone()
 int
 have_evilvariantstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone232) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == EVIL_VARIANT_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator232) return TRUE;
 	if (sjwcheck(232)) return TRUE;
 	return(FALSE);
@@ -7766,13 +7242,8 @@ have_evilvariantstone()
 int
 have_sanitytreblestone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone233) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == SANE_TREBLE_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator233) return TRUE;
 	if (sjwcheck(233)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 6 && u.femauspices6 == 9) return TRUE;
@@ -7782,13 +7253,8 @@ have_sanitytreblestone()
 int
 have_statdecreasestone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone234) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == STATCREASE_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator234) return TRUE;
 	if (sjwcheck(234)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 8 && u.femauspices8 == 9) return TRUE;
@@ -7798,13 +7264,8 @@ have_statdecreasestone()
 int
 have_simeoutstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone235) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == SIMEOUT_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator235) return TRUE;
 	if (sjwcheck(235)) return TRUE;
 	return(FALSE);
@@ -7813,13 +7274,8 @@ have_simeoutstone()
 int
 have_giantexplorerstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone236) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == GIANT_EXPLORER_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator236) return TRUE;
 	if (sjwcheck(236)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 25 && u.femauspices25 == 9) return TRUE;
@@ -7829,13 +7285,8 @@ have_giantexplorerstone()
 int
 have_trapwarpstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone237) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == TRAPWARP_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator237) return TRUE;
 	if (sjwcheck(237)) return TRUE;
 	return(FALSE);
@@ -7844,13 +7295,8 @@ have_trapwarpstone()
 int
 have_yawmstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone238) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == YAWM_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator238) return TRUE;
 	if (sjwcheck(238)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 20 && u.femauspices20 == 9) return TRUE;
@@ -7860,13 +7306,8 @@ have_yawmstone()
 int
 have_chaoscradlestone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone239) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == CHAOSCRADLE_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator239) return TRUE;
 	if (sjwcheck(239)) return TRUE;
 	return(FALSE);
@@ -7875,13 +7316,8 @@ have_chaoscradlestone()
 int
 have_tezstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone240) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == TEZ_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator240) return TRUE;
 	if (sjwcheck(240)) return TRUE;
 	return(FALSE);
@@ -7890,13 +7326,8 @@ have_tezstone()
 int
 have_bossgodstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone241) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == BOSSGOD_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator241) return TRUE;
 	if (sjwcheck(241)) return TRUE;
 	return(FALSE);
@@ -7905,16 +7336,12 @@ have_bossgodstone()
 int
 have_ubergodstone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_ubergod) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == UBERGOD_STONE) {
-			if (otmp->oartifact == ART_FFFFF_QUEAK_PRRRT) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_fffffqp) return 2;
+
+	if (u.item_carry_nastystone242) return TRUE;
+
 	if (u.nastinator242) return TRUE;
 	if (sjwcheck(242)) return TRUE;
 	return(FALSE);
@@ -7923,13 +7350,8 @@ have_ubergodstone()
 int
 have_toogoodgostone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone243) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == TOO_GOOD_GO_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator243) return TRUE;
 	if (sjwcheck(243)) return TRUE;
 	return(FALSE);
@@ -7938,13 +7360,8 @@ have_toogoodgostone()
 int
 have_killerroomstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone244) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == KILLER_ROOM_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator244) return TRUE;
 	if (sjwcheck(244)) return TRUE;
 	return(FALSE);
@@ -7953,16 +7370,12 @@ have_killerroomstone()
 int
 have_funwallstone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_funwall) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == FUNWALL_STONE) {
-			if (otmp->oartifact == ART_GAS_AS_A_WEAPON) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_gasweapon) return 2;
+
+	if (u.item_carry_nastystone245) return TRUE;
+
 	if (u.nastinator245) return TRUE;
 	if (sjwcheck(245)) return TRUE;
 	return(FALSE);
@@ -7971,13 +7384,8 @@ have_funwallstone()
 int
 have_reallybadstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone246) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == REALLY_BAD_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator246) return TRUE;
 	if (sjwcheck(246)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 22 && u.femauspices22 == 9) return TRUE;
@@ -7987,16 +7395,12 @@ have_reallybadstone()
 int
 have_covidstone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_covid) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == COVID_STONE) {
-			if (otmp->oartifact == ART_BEYOND_HELP) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_beyondhelp) return 2;
+
+	if (u.item_carry_nastystone247) return TRUE;
+
 	if (u.nastinator247) return TRUE;
 	if (sjwcheck(247)) return TRUE;
 	return(FALSE);
@@ -8005,13 +7409,8 @@ have_covidstone()
 int
 have_blaststone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone248) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == BLAST_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator248) return TRUE;
 	if (sjwcheck(248)) return TRUE;
 	return(FALSE);
@@ -8020,13 +7419,8 @@ have_blaststone()
 int
 have_nastycursestone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone249) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == NASTYCURSE_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator249) return TRUE;
 	if (sjwcheck(249)) return TRUE;
 	return(FALSE);
@@ -8035,13 +7429,8 @@ have_nastycursestone()
 int
 have_realliestone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone250) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == REAL_LIE_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator250) return TRUE;
 	if (sjwcheck(250)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 22 && u.femauspices22 == 10) return TRUE;
@@ -8051,13 +7440,8 @@ have_realliestone()
 int
 have_escapepaststone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone251) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ESCAPE_PAST_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator251) return TRUE;
 	if (sjwcheck(251)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 20 && u.femauspices20 == 10) return TRUE;
@@ -8067,13 +7451,8 @@ have_escapepaststone()
 int
 have_pethatestone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone252) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == PETHATE_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator252) return TRUE;
 	if (sjwcheck(252)) return TRUE;
 	return(FALSE);
@@ -8082,13 +7461,8 @@ have_pethatestone()
 int
 have_petlashoutstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone253) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == PET_LASHOUT_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator253) return TRUE;
 	if (sjwcheck(253)) return TRUE;
 	return(FALSE);
@@ -8097,13 +7471,8 @@ have_petlashoutstone()
 int
 have_petstarvestone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone254) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == PETSTARVE_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator254) return TRUE;
 	if (sjwcheck(254)) return TRUE;
 	return(FALSE);
@@ -8112,13 +7481,8 @@ have_petstarvestone()
 int
 have_petscrewstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone255) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == PETSCREW_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator255) return TRUE;
 	if (sjwcheck(255)) return TRUE;
 	return(FALSE);
@@ -8127,13 +7491,8 @@ have_petscrewstone()
 int
 have_techlossstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone256) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == TECH_LOSS_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator256) return TRUE;
 	if (sjwcheck(256)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 6 && u.femauspices6 == 10) return TRUE;
@@ -8143,16 +7502,12 @@ have_techlossstone()
 int
 have_prooflossstone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_proofloss) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == PROOFLOSS_STONE) {
-			if (otmp->oartifact == ART_CLAP_IT_AWAY) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_clapaway) return 2;
+
+	if (u.item_carry_nastystone257) return TRUE;
+
 	if (u.nastinator257) return TRUE;
 	if (sjwcheck(257)) return TRUE;
 	return(FALSE);
@@ -8161,16 +7516,12 @@ have_prooflossstone()
 int
 have_uninvisstone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_uninvis) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == UN_INVIS_STONE) {
-			if (otmp->oartifact == ART_I_SEE_YOUUUUU) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_iseeyou) return 2;
+
+	if (u.item_carry_nastystone258) return TRUE;
+
 	if (u.nastinator258) return TRUE;
 	if (sjwcheck(258)) return TRUE;
 	return(FALSE);
@@ -8179,13 +7530,8 @@ have_uninvisstone()
 int
 have_detectationstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone259) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == DETECTATION_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator259) return TRUE;
 	if (sjwcheck(259)) return TRUE;
 	return(FALSE);
@@ -8195,16 +7541,12 @@ have_detectationstone()
 int
 have_optionstone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_option) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == OPTION_STONE) {
-			if (otmp->oartifact == ART_FRED_S_OPTIOMETRIST) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_fredopt) return 2;
+
+	if (u.item_carry_nastystone260) return TRUE;
+
 	if (u.nastinator260) return TRUE;
 	if (sjwcheck(260)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 25 && u.femauspices25 == 10) return TRUE;
@@ -8214,13 +7556,8 @@ have_optionstone()
 int
 have_miscolorstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone261) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MISCOLOR_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator261) return TRUE;
 	if (sjwcheck(261)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 8 && u.femauspices8 == 11) return TRUE;
@@ -8230,13 +7567,8 @@ have_miscolorstone()
 int
 have_onerainbowstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone262) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ONE_RAINBOW_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator262) return TRUE;
 	if (sjwcheck(262)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 8 && u.femauspices8 == 12) return TRUE;
@@ -8246,13 +7578,8 @@ have_onerainbowstone()
 int
 have_colorshiftstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone263) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == COLORSHIFT_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator263) return TRUE;
 	if (sjwcheck(263)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 8 && u.femauspices8 == 13) return TRUE;
@@ -8262,13 +7589,8 @@ have_colorshiftstone()
 int
 have_toplinestone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone264) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == TOP_LINE_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator264) return TRUE;
 	if (sjwcheck(264)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 8 && u.femauspices8 == 10) return TRUE;
@@ -8278,13 +7600,8 @@ have_toplinestone()
 int
 have_capsstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone265) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == CAPS_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator265) return TRUE;
 	if (sjwcheck(265)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 6 && u.femauspices6 == 11) return TRUE;
@@ -8294,16 +7611,12 @@ have_capsstone()
 int
 have_unknowledgestone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_unknowledge) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == UN_KNOWLEDGE_STONE) {
-			if (otmp->oartifact == ART_FULLY_ID_OR_NOPE) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_fullyid) return 2;
+
+	if (u.item_carry_nastystone266) return TRUE;
+
 	if (u.nastinator266) return TRUE;
 	if (sjwcheck(266)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 15 && u.femauspices15 == 9) return TRUE;
@@ -8313,13 +7626,8 @@ have_unknowledgestone()
 int
 have_darkhancestone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone267) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == DARKHANCE_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator267) return TRUE;
 	if (sjwcheck(267)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 6 && u.femauspices6 == 12) return TRUE;
@@ -8329,16 +7637,12 @@ have_darkhancestone()
 int
 have_dschueueuetstone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_dschueueuet) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == DSCHUEUEUET_STONE) {
-			if (otmp->oartifact == ART_DEEP_DESCENT) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_deepdesc) return 2;
+
+	if (u.item_carry_nastystone268) return TRUE;
+
 	if (u.nastinator268) return TRUE;
 	if (sjwcheck(268)) return TRUE;
 	return(FALSE);
@@ -8347,16 +7651,12 @@ have_dschueueuetstone()
 int
 have_nopeskillstone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_nopeskill) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == NOPESKILL_STONE) {
-			if (otmp->oartifact == ART_HALFCUT_HAHAHAHAHA_HAHAHA_) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_halfcuthaha) return 2;
+
+	if (u.item_carry_nastystone269) return TRUE;
+
 	if (u.nastinator269) return TRUE;
 	if (sjwcheck(269)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 22 && u.femauspices22 == 12) return TRUE;
@@ -8366,16 +7666,12 @@ have_nopeskillstone()
 int
 have_fuckfuckfuckstone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_fuckfuckfuck) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == STONE_OF_COMPLETE_FUCKUP) {
-			if (otmp->oartifact == ART_FUUUUUUUUCK_) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_fuckwithu) return 2;
+
+	if (u.item_carry_nastystone270) return TRUE;
+
 	if (u.nastinator270) return TRUE;
 	if (sjwcheck(270)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 15 && u.femauspices15 == 10) return TRUE;
@@ -8385,13 +7681,8 @@ have_fuckfuckfuckstone()
 int
 have_epvistone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone271) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == EPVI_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator271) return TRUE;
 	if (sjwcheck(271)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 4 && u.femauspices4 == 12) return TRUE;
@@ -8401,13 +7692,8 @@ have_epvistone()
 int
 have_aefdestone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone272) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == AEFDE_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator272) return TRUE;
 	if (sjwcheck(272)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 17 && u.femauspices17 == 8) return TRUE;
@@ -8417,13 +7703,8 @@ have_aefdestone()
 int
 have_meanburdenstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone273) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MEAN_BURDEN_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator273) return TRUE;
 	if (sjwcheck(273)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 17 && u.femauspices17 == 9) return TRUE;
@@ -8433,13 +7714,8 @@ have_meanburdenstone()
 int
 have_carrcapstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone274) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == CARRCAP_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator274) return TRUE;
 	if (sjwcheck(274)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 17 && u.femauspices17 == 10) return TRUE;
@@ -8449,16 +7725,12 @@ have_carrcapstone()
 int
 have_umengstone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_umeng) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == UMENG_STONE) {
-			if (otmp->oartifact == ART_UMENG_FLYER__UMENG_HIDER__) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_umengflyer) return 2;
+
+	if (u.item_carry_nastystone275) return TRUE;
+
 	if (u.nastinator275) return TRUE;
 	if (sjwcheck(275)) return TRUE;
 	return(FALSE);
@@ -8467,17 +7739,13 @@ have_umengstone()
 int
 have_spellcooldownstone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_spellcooldown) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == SPELL_COOLDOWN_STONE) {
-			if (otmp->oartifact == ART_DND_NO_ONE_IS_GETTING) return 2;
-			if (otmp->oartifact == ART_ALBIE_S_WHITEOUT) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_dndnoone) return 2;
+	if (u.arti_carry_albieswhite) return 2;
+
+	if (u.item_carry_nastystone276) return TRUE;
+
 	if (u.nastinator276) return TRUE;
 	if (sjwcheck(276)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 22 && u.femauspices22 == 13) return TRUE;
@@ -8487,16 +7755,12 @@ have_spellcooldownstone()
 int
 have_turbodullstone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_turbodull) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == TURBODULL_STONE) {
-			if (otmp->oartifact == ART_EVERYTHING_IS_SHOT_TWO_SHI) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_everythingshot) return 2;
+
+	if (u.item_carry_nastystone277) return TRUE;
+
 	if (u.nastinator277) return TRUE;
 	if (sjwcheck(277)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 28 && u.femauspices28 == 10) return TRUE;
@@ -8506,13 +7770,8 @@ have_turbodullstone()
 int
 have_reddamstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone278) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == REDDAM_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator278) return TRUE;
 	if (sjwcheck(278)) return TRUE;
 	return(FALSE);
@@ -8521,13 +7780,8 @@ have_reddamstone()
 int
 have_redincstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone279) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == REDINC_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator279) return TRUE;
 	if (sjwcheck(279)) return TRUE;
 	return(FALSE);
@@ -8536,13 +7790,8 @@ have_redincstone()
 int
 have_mulchstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone280) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MULCH_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator280) return TRUE;
 	if (sjwcheck(280)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 17 && u.femauspices17 == 11) return TRUE;
@@ -8552,13 +7801,8 @@ have_mulchstone()
 int
 have_inaccuracystone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone281) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == INACCURACY_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator281) return TRUE;
 	if (sjwcheck(281)) return TRUE;
 	return(FALSE);
@@ -8567,13 +7811,8 @@ have_inaccuracystone()
 int
 have_monstermultishotstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone282) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MONSTER_MULTISHOT_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator282) return TRUE;
 	if (sjwcheck(282)) return TRUE;
 	return(FALSE);
@@ -8582,13 +7821,8 @@ have_monstermultishotstone()
 int
 have_haveapinstone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone283) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == HAVE_A_PIN_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator283) return TRUE;
 	if (sjwcheck(283)) return TRUE;
 	return(FALSE);
@@ -8597,13 +7831,8 @@ have_haveapinstone()
 int
 have_costlyfailurestone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone284) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == COSTLY_FAILURE_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator284) return TRUE;
 	if (sjwcheck(284)) return TRUE;
 	return(FALSE);
@@ -8612,16 +7841,12 @@ have_costlyfailurestone()
 int
 have_inventorysizestone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_inventorysize) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == INVENTORY_SIZE_STONE) {
-			if (otmp->oartifact == ART_SATAN_S_SPECIAL_CONDUCT) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_satanspecial) return 2;
+
+	if (u.item_carry_nastystone285) return TRUE;
+
 	if (u.nastinator285) return TRUE;
 	if (sjwcheck(285)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 17 && u.femauspices17 == 12) return TRUE;
@@ -8631,16 +7856,12 @@ have_inventorysizestone()
 int
 have_antiswitchstone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_antiswitch) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ANTISWITCH_STONE) {
-			if (otmp->oartifact == ART_ANASTASIA_S_INSURANCE) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_anainsurance) return 2;
+
+	if (u.item_carry_nastystone286) return TRUE;
+
 	if (u.nastinator286) return TRUE;
 	if (sjwcheck(286)) return TRUE;
 	return(FALSE);
@@ -8649,13 +7870,8 @@ have_antiswitchstone()
 int
 have_bounddaychoicestone()
 {
-	register struct obj *otmp;
+	if (u.item_carry_nastystone287) return TRUE;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == BOUND_DAY_STONE) {
-			return(TRUE);
-		}
-	}
 	if (u.nastinator287) return TRUE;
 	if (sjwcheck(287)) return TRUE;
 	return(FALSE);
@@ -8664,16 +7880,12 @@ have_bounddaychoicestone()
 int
 have_antimatterstone()
 {
-	register struct obj *otmp;
-
 	if (u.tempsupernastytrap_antimatter) return 2;
 
-	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ANTIMATTER_STONE) {
-			if (otmp->oartifact == ART_BREAKCRASH_PILOT) return 2;
-			return(TRUE);
-		}
-	}
+	if (u.arti_carry_breakpilot) return 2;
+
+	if (u.item_carry_nastystone288) return TRUE;
+
 	if (u.nastinator288) return TRUE;
 	if (sjwcheck(288)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 28 && u.femauspices28 == 11) return TRUE;

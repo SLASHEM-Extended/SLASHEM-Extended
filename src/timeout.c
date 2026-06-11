@@ -4310,7 +4310,7 @@ nh_timeout()
 
 	if (!rn2(1000) && u.repunishcounter && !Punished) punishx();
 
-	if (carrying(SLEEPSTONE) && !rn2(200)) {
+	if (!rn2(200) && carrying(SLEEPSTONE) ) {
 	    fall_asleep(-rnd(10), TRUE);
 		pline("You fall asleep.");
 	}
