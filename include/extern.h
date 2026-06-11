@@ -1075,6 +1075,7 @@ E struct obj *carryingarti(int);
 E struct obj *carryingappearance(int);
 E boolean itemsurvivedestruction(struct obj *, int);
 E const char *objtypenames[];
+E void check_carried_stuff(void);
 
 /* checking for the presence of a specific item in the player's inventory is done via the various "carrying" functions above --Amy
  * functions that check for something specific are needed only if additional stuff has to be checked, e.g. the item's lit state */

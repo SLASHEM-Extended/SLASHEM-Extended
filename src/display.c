@@ -1237,7 +1237,7 @@ newsym(x,y)
 		(uamul && uamul->otyp == AMULET_OF_OWN_RACE_WARNING && your_race(mon->data) ) ||
 		(powerfulimplants() && uimplant && uimplant->oartifact == ART_IMANI_S_POINT && (poisonous(mon->data) || your_race(mon->data) || is_covetous(mon->data) || mon->egotype_covetous ) ) ||
 		(Role_if(PM_PALADIN) && is_demon(mon->data) ) ||
-		(carryingarti(ART___OTHER_BADDIES) && is_demon(mon->data) ) ||
+		(u.arti_carry_otherbaddies && is_demon(mon->data) ) ||
 		(uarms && uarms->oartifact == ART_SHIELD_OF_THE_PALADIN && is_demon(mon->data) ) ||
 		(uarms && uarms->oartifact == ART_SHIELD_OF_THE_CHEVALIER__W && is_demon(mon->data) ) ||
 		(uarmc && uarmc->oartifact == ART_DEMONIC_UNDEAD_RADAR && is_demon(mon->data) ) ||
@@ -1291,7 +1291,7 @@ newsym(x,y)
 		(u.tempnoflysee && (is_flyer(mon->data) || mon->egotype_flying) ) ||
 		(isselfhybrid && strongmonst(mon->data) && is_wanderer(mon->data) ) ||
 		(uarm && uarm->oartifact == ART_JOKE_S_OVER && is_jokemonster(mon->data) ) ||
-		(carryingarti(ART_MAY_BRITT_S_CLICK) && is_jokemonster(mon->data) ) ||
+		(u.arti_carry_maybrittclick && is_jokemonster(mon->data) ) ||
 		(uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) ||
 		(haveartileash(ART_PETCAMERA) && mon->mleashed) ||
 		(haveartileash(ART_ANNOYING_PET_MONITOR) && mon->mtame) ||
@@ -1393,7 +1393,7 @@ newsym(x,y)
 		(uamul && uamul->otyp == AMULET_OF_OWN_RACE_WARNING && your_race(mon->data) ) ||
 		(powerfulimplants() && uimplant && uimplant->oartifact == ART_IMANI_S_POINT && (poisonous(mon->data) || your_race(mon->data) || is_covetous(mon->data) || mon->egotype_covetous ) ) ||
 		(Role_if(PM_PALADIN) && is_demon(mon->data) ) ||
-		(carryingarti(ART___OTHER_BADDIES) && is_demon(mon->data) ) ||
+		(u.arti_carry_otherbaddies && is_demon(mon->data) ) ||
 		(uarms && uarms->oartifact == ART_SHIELD_OF_THE_PALADIN && is_demon(mon->data) ) ||
 		(uarms && uarms->oartifact == ART_SHIELD_OF_THE_CHEVALIER__W && is_demon(mon->data) ) ||
 		(uarmc && uarmc->oartifact == ART_DEMONIC_UNDEAD_RADAR && is_demon(mon->data) ) ||
@@ -1447,7 +1447,7 @@ newsym(x,y)
 		(u.tempnoflysee && (is_flyer(mon->data) || mon->egotype_flying) ) ||
 		(isselfhybrid && strongmonst(mon->data) && is_wanderer(mon->data) ) ||
 		(uarm && uarm->oartifact == ART_JOKE_S_OVER && is_jokemonster(mon->data) ) ||
-		(carryingarti(ART_MAY_BRITT_S_CLICK) && is_jokemonster(mon->data) ) ||
+		(u.arti_carry_maybrittclick && is_jokemonster(mon->data) ) ||
 		(uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) ||
 		(haveartileash(ART_PETCAMERA) && mon->mleashed) ||
 		(haveartileash(ART_ANNOYING_PET_MONITOR) && mon->mtame) ||
@@ -1724,7 +1724,7 @@ newsymX(x,y)
 		(uamul && uamul->otyp == AMULET_OF_OWN_RACE_WARNING && your_race(mon->data) ) ||
 		(powerfulimplants() && uimplant && uimplant->oartifact == ART_IMANI_S_POINT && (poisonous(mon->data) || your_race(mon->data) || is_covetous(mon->data) || mon->egotype_covetous ) ) ||
 		(Role_if(PM_PALADIN) && is_demon(mon->data) ) ||
-		(carryingarti(ART___OTHER_BADDIES) && is_demon(mon->data) ) ||
+		(u.arti_carry_otherbaddies && is_demon(mon->data) ) ||
 		(uarms && uarms->oartifact == ART_SHIELD_OF_THE_PALADIN && is_demon(mon->data) ) ||
 		(uarms && uarms->oartifact == ART_SHIELD_OF_THE_CHEVALIER__W && is_demon(mon->data) ) ||
 		(uarmc && uarmc->oartifact == ART_DEMONIC_UNDEAD_RADAR && is_demon(mon->data) ) ||
@@ -1778,7 +1778,7 @@ newsymX(x,y)
 		(u.tempnoflysee && (is_flyer(mon->data) || mon->egotype_flying) ) ||
 		(isselfhybrid && strongmonst(mon->data) && is_wanderer(mon->data) ) ||
 		(uarm && uarm->oartifact == ART_JOKE_S_OVER && is_jokemonster(mon->data) ) ||
-		(carryingarti(ART_MAY_BRITT_S_CLICK) && is_jokemonster(mon->data) ) ||
+		(u.arti_carry_maybrittclick && is_jokemonster(mon->data) ) ||
 		(uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) ||
 		(haveartileash(ART_PETCAMERA) && mon->mleashed) ||
 		(haveartileash(ART_ANNOYING_PET_MONITOR) && mon->mtame) ||
@@ -1880,7 +1880,7 @@ newsymX(x,y)
 		(uamul && uamul->otyp == AMULET_OF_OWN_RACE_WARNING && your_race(mon->data) ) ||
 		(powerfulimplants() && uimplant && uimplant->oartifact == ART_IMANI_S_POINT && (poisonous(mon->data) || your_race(mon->data) || is_covetous(mon->data) || mon->egotype_covetous ) ) ||
 		(Role_if(PM_PALADIN) && is_demon(mon->data) ) ||
-		(carryingarti(ART___OTHER_BADDIES) && is_demon(mon->data) ) ||
+		(u.arti_carry_otherbaddies && is_demon(mon->data) ) ||
 		(uarms && uarms->oartifact == ART_SHIELD_OF_THE_PALADIN && is_demon(mon->data) ) ||
 		(uarms && uarms->oartifact == ART_SHIELD_OF_THE_CHEVALIER__W && is_demon(mon->data) ) ||
 		(uarmc && uarmc->oartifact == ART_DEMONIC_UNDEAD_RADAR && is_demon(mon->data) ) ||
@@ -1934,7 +1934,7 @@ newsymX(x,y)
 		(u.tempnoflysee && (is_flyer(mon->data) || mon->egotype_flying) ) ||
 		(isselfhybrid && strongmonst(mon->data) && is_wanderer(mon->data) ) ||
 		(uarm && uarm->oartifact == ART_JOKE_S_OVER && is_jokemonster(mon->data) ) ||
-		(carryingarti(ART_MAY_BRITT_S_CLICK) && is_jokemonster(mon->data) ) ||
+		(u.arti_carry_maybrittclick && is_jokemonster(mon->data) ) ||
 		(uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) ||
 		(haveartileash(ART_PETCAMERA) && mon->mleashed) ||
 		(haveartileash(ART_ANNOYING_PET_MONITOR) && mon->mtame) ||
@@ -3901,7 +3901,7 @@ struct monst *mon;
 	if (Role_if(PM_ACTIVISTOR) && type_is_pname(mon->data) && uwep && is_quest_artifact(uwep) ) return TRUE;
 	if (uamul && uamul->otyp == AMULET_OF_POISON_WARNING && poisonous(mon->data) ) return TRUE;
 	if (Role_if(PM_PALADIN) && is_demon(mon->data) ) return TRUE;
-	if (carryingarti(ART___OTHER_BADDIES) && is_demon(mon->data) ) return TRUE;
+	if (u.arti_carry_otherbaddies && is_demon(mon->data) ) return TRUE;
 	if (uarms && uarms->oartifact == ART_SHIELD_OF_THE_PALADIN && is_demon(mon->data) ) return TRUE;
 	if (uarms && uarms->oartifact == ART_SHIELD_OF_THE_CHEVALIER__W && is_demon(mon->data) ) return TRUE;
 	if (uarmc && uarmc->oartifact == ART_DEMONIC_UNDEAD_RADAR && is_demon(mon->data) ) return TRUE;
@@ -3959,7 +3959,7 @@ struct monst *mon;
 	if (uarmc && uarmc->oartifact == ART_KING_SAYS_WHERE_IT_GOES && (mon->mhp < mon->mhpmax)) return TRUE;
 	if (isselfhybrid && strongmonst(mon->data) && is_wanderer(mon->data) ) return TRUE;
 	if (uarm && uarm->oartifact == ART_JOKE_S_OVER && is_jokemonster(mon->data) ) return TRUE;
-	if (carryingarti(ART_MAY_BRITT_S_CLICK) && is_jokemonster(mon->data) ) return TRUE;
+	if (u.arti_carry_maybrittclick && is_jokemonster(mon->data) ) return TRUE;
 	if (uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) return TRUE;
 	if (haveartileash(ART_PETCAMERA) && mon->mleashed) return TRUE;
 	if (haveartileash(ART_ANNOYING_PET_MONITOR) && mon->mtame) return TRUE;

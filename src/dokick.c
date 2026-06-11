@@ -104,7 +104,7 @@ register boolean clumsy;
 		You("scratch the last shred away.");
 		dmg += 10000;
 	}
-	if (carryingarti(ART_KICK_ART)) dmg += 8;
+	if (u.arti_carry_kickart) dmg += 8;
 	if (carryingarti(ART_PEEPSHOW) && uarmf && uarmf->otyp == JUEN_PEEP_TOES) dmg += 10;
 
 	if (uarmf && itemhasappearance(uarmf, APP_ALLIGATOR_PUMPS) && !rn2(1000) && !(mon->data->geno & G_UNIQ) && !bigmonst(mon->data) ) {

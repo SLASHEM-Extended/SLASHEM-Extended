@@ -7216,7 +7216,7 @@ int degree;
 	if (uright && uright->oartifact == ART_IT_MAKES_EH_WHAT_IT_WANTS && skill == P_PETKEEPING) degree *= 3;
 	if (uarm && uarm->oartifact == ART_MOCCASYL && skill == P_SEXY_FLATS) degree *= 2;
 	if (uarm && uarm->oartifact == ART_PRISMATIC_DRAGON_PLATE && skill == P_PETKEEPING) degree *= 3;
-	if (carryingarti(ART_BARKSTERS) && skill == P_PETKEEPING) degree *= 2;
+	if (u.arti_carry_barksters && skill == P_PETKEEPING) degree *= 2;
 	if (uarmf && uarmf->oartifact == ART_CANNOT_WALK_WITH_THE_ARIAN && skill == P_HIGH_HEELS) degree *= 3;
 	if (uarmc && uarmc->oartifact == ART_EXCITEMENT_OF_HAX && skill == P_SHIELD) degree *= 2;
 	if (Race_if(PM_MAYMES) && (skill == P_FIREARM || skill == P_BOW || skill == P_CROSSBOW)) degree *= 2;

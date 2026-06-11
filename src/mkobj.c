@@ -868,7 +868,7 @@ struct obj *box;
 				if (powerfulimplants()) otmp->quan *= 2;
 			}
 
-			if (carryingarti(ART_TRIPPING)) {
+			if (u.arti_carry_tripping) {
 				otmp->quan *= 3; otmp->quan /= 2;
 			}
 			if (uarmh && uarmh->oartifact == ART_GOLD_STANDARD) otmp->quan *= 2;

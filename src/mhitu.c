@@ -2495,7 +2495,7 @@ mattacku(mtmp)
 	if (mtmp->data == &mons[PM_UNEXPECTED_BANNER]) tmp -= rnd(20);	/* ditto */
 	if (mtmp->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_]) tmp += rnd(100); /* the elder priest uses an aimbot and a wallhack */
 	if (uwep && uwep->oartifact == ART_KARATE_KID && attacktype(mtmp->data, AT_KICK)) tmp += 20;
-	if (carryingarti(ART_KICK_ART) && attacktype(mtmp->data, AT_KICK)) tmp += 20;
+	if (u.arti_carry_kickart && attacktype(mtmp->data, AT_KICK)) tmp += 20;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_KARATE_KID && attacktype(mtmp->data, AT_KICK)) tmp += 20;
 	if (Race_if(PM_PLAYER_ZRUTY) && is_human(mtmp->data)) tmp += rnd(5);
 	if (uwep && uwep->oartifact == ART_PERFECT_UNIVERSE && MON_WEP(mtmp)) tmp -= 5;

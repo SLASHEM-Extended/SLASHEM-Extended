@@ -1092,6 +1092,79 @@ register int type;
 	return((struct obj *) 0);
 }
 
+/* routine by Amy that checks once per player keypress whether you have certain items or artifacts in your open inventory
+ * this is to reduce lag issues when checking e.g. interface screwing nastytrap stones, so that the player's inventory isn't checked
+ * *once per square* or something every turn, but instead just once per turn; in particular, stuff that affects monster movement would be
+ * checking your entire inventory for every single monster on the level every turn, causing ungodly amounts of lag! */
+void
+check_carried_stuff()
+{
+	register struct obj *otmp;
+
+	u.arti_carry_minimalminime = FALSE;
+	u.arti_carry_bluedaypaper = FALSE;
+	u.arti_carry_fragrantgirls = FALSE;
+	u.arti_carry_allislost = FALSE;
+	u.arti_carry_leoishigh = FALSE;
+	u.arti_carry_redbuttonflash = FALSE;
+	u.arti_carry_ditaectmaennsters = FALSE;
+	u.arti_carry_ugghen = FALSE;
+	u.arti_carry_matterkeeper = FALSE;
+	u.arti_carry_bookstaffeer = FALSE;
+	u.arti_carry_firrrga = FALSE;
+	u.arti_carry_hungerhealer = FALSE;
+	u.arti_carry_anstyveal = FALSE;
+	u.arti_carry_helioannoyance = FALSE;
+	u.arti_carry_otherbaddies = FALSE;
+	u.arti_carry_maybrittclick = FALSE;
+	u.arti_carry_barksters = FALSE;
+	u.arti_carry_notcontam = FALSE;
+	u.arti_carry_suckstone = FALSE;
+	u.arti_carry_pantyshine = FALSE;
+	u.arti_carry_zimsound = FALSE;
+	u.arti_carry_tripping = FALSE;
+	u.arti_carry_kickart = FALSE;
+	u.arti_carry_gronjafals = FALSE;
+	u.arti_carry_dolorescrazy = FALSE;
+	u.arti_carry_personintheveil = FALSE;
+	u.arti_carry_fieldclickradio = FALSE;
+	u.arti_carry_jonaextramode = FALSE;
+	u.arti_carry_quantumbrain = FALSE;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		/* replacing "carryingarti" functions */
+		if (otmp->oartifact == ART_MINIMAL_MINI_ME) u.arti_carry_minimalminime = TRUE;
+		if (otmp->oartifact == ART_BLUEDAYPAPER_BECOMES_SHITT) u.arti_carry_bluedaypaper = TRUE;
+		if (otmp->oartifact == ART_ALL_THE_FRAGRANT_GIRLS) u.arti_carry_fragrantgirls = TRUE;
+		if (otmp->oartifact == ART_ALL_IS_LOST) u.arti_carry_allislost = TRUE;
+		if (otmp->oartifact == ART_LEO_IS_ALWAYS_HIGH) u.arti_carry_leoishigh = TRUE;
+		if (otmp->oartifact == ART_RED_BUTTON_FLASH) u.arti_carry_redbuttonflash = TRUE;
+		if (otmp->oartifact == ART_DITAECT_MAENNSTERS) u.arti_carry_ditaectmaennsters = TRUE;
+		if (otmp->oartifact == ART_UGGHEN) u.arti_carry_ugghen = TRUE;
+		if (otmp->oartifact == ART_MATTERKEEPER) u.arti_carry_matterkeeper = TRUE;
+		if (otmp->oartifact == ART_CAN_YOU_BOOKSTAFFEER) u.arti_carry_bookstaffeer = TRUE;
+		if (otmp->oartifact == ART_FIRRRRRRRR____GA_) u.arti_carry_firrrga = TRUE;
+		if (otmp->oartifact == ART_HUNGERHEALER) u.arti_carry_hungerhealer = TRUE;
+		if (otmp->oartifact == ART_ANTSYVEAL) u.arti_carry_anstyveal = TRUE;
+		if (otmp->oartifact == ART_HELIOKOPIS_S_ANNOYANCE) u.arti_carry_helioannoyance = TRUE;
+		if (otmp->oartifact == ART___OTHER_BADDIES) u.arti_carry_otherbaddies = TRUE;
+		if (otmp->oartifact == ART_MAY_BRITT_S_CLICK) u.arti_carry_maybrittclick = TRUE;
+		if (otmp->oartifact == ART_BARKSTERS) u.arti_carry_barksters = TRUE;
+		if (otmp->oartifact == ART_NOT_GONNA_CONTAMINATE) u.arti_carry_notcontam = TRUE;
+		if (otmp->oartifact == ART_SUCKSTONE) u.arti_carry_suckstone = TRUE;
+		if (otmp->oartifact == ART_PANTYSHINE) u.arti_carry_pantyshine = TRUE;
+		if (otmp->oartifact == ART_ZIM_SOUND) u.arti_carry_zimsound = TRUE;
+		if (otmp->oartifact == ART_TRIPPING) u.arti_carry_tripping = TRUE;
+		if (otmp->oartifact == ART_KICK_ART) u.arti_carry_kickart = TRUE;
+		if (otmp->oartifact == ART_GRONJA_S_FALSIFICATION) u.arti_carry_gronjafals = TRUE;
+		if (otmp->oartifact == ART_DOLORES__CRAZYPLAY) u.arti_carry_dolorescrazy = TRUE;
+		if (otmp->oartifact == ART_PERSON_IN_THE_VEIL) u.arti_carry_personintheveil = TRUE;
+		if (otmp->oartifact == ART_FIELD_CLICK_RADIO) u.arti_carry_fieldclickradio = TRUE;
+		if (otmp->oartifact == ART_JONADAB_S_EXTRA_MODE) u.arti_carry_jonaextramode = TRUE;
+		if (otmp->oartifact == ART_QUANTUM_BRAIN) u.arti_carry_quantumbrain = TRUE;
+	}
+}
+
 struct obj *
 carryingarti(type)
 register int type;
@@ -3345,7 +3418,7 @@ boolean
 feminizecheck(femnumber)
 int femnumber;
 {
-	if (!isfeminizer && !Role_if(PM_CLIMACTERIAL) && !(uamul && uamul->oartifact == ART_NAMED_NUKA_COLA) && !u.tempnukaeffect && !(carryingarti(ART_NOT_GONNA_CONTAMINATE)) ) return FALSE;
+	if (!isfeminizer && !Role_if(PM_CLIMACTERIAL) && !(uamul && uamul->oartifact == ART_NAMED_NUKA_COLA) && !u.tempnukaeffect && !(u.arti_carry_notcontam) ) return FALSE;
 
 	if (Role_if(PM_CLIMACTERIAL)) {
 		if (u.urmaxlvlUP >= 3 && u.climauspices3 == femnumber) return TRUE;
@@ -3362,7 +3435,7 @@ int femnumber;
 
 	/* caution: make sure any added items are also checked above!! --Amy */
 	if (isfeminizer && u.feminizeffect == femnumber) return TRUE;
-	if (carryingarti(ART_NOT_GONNA_CONTAMINATE) && (u.contamjeweleffect == femnumber)) return TRUE;
+	if (u.arti_carry_notcontam && (u.contamjeweleffect == femnumber)) return TRUE;
 	if (uamul && uamul->oartifact == ART_NAMED_NUKA_COLA && (u.nukafemeffect == femnumber)) return TRUE;
 	if (u.tempnukaeffect && (u.tempnukaefftype == femnumber) ) return TRUE;
 	/* caution: make sure any added items are also checked above!! --Amy */
@@ -5249,7 +5322,7 @@ have_stealerstone()
 	}
 	if (u.nastinator81) return TRUE;
 	if (sjwcheck(81)) return TRUE;
-	if (carryingarti(ART_SUCKSTONE)) return TRUE;
+	if (u.arti_carry_suckstone) return TRUE;
 	return(FALSE);
 }
 
@@ -7505,7 +7578,7 @@ have_elmstreetstone()
 	}
 	if (u.nastinator222) return TRUE;
 	if (sjwcheck(222)) return TRUE;
-	if (carryingarti(ART_SUCKSTONE)) return TRUE;
+	if (u.arti_carry_suckstone) return TRUE;
 
 	return(FALSE);
 }

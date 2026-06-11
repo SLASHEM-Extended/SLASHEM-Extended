@@ -2334,7 +2334,7 @@ struct monst *mon;
 		mmove /= 2;
 	}
 
-	if (carryingarti(ART_KICK_ART) && attacktype(mon->data, AT_KICK) && (mmove > 0) && !rn2(10)) {
+	if (u.arti_carry_kickart && attacktype(mon->data, AT_KICK) && (mmove > 0) && !rn2(10)) {
 		mmove *= 2;
 	}
 
@@ -4814,7 +4814,7 @@ register struct monst *mtmp, *mtmp2;
 			 LS_MONSTER, (void *)mtmp2);
 	/* here we rely on the fact that `mtmp' hasn't actually been deleted */
 	del_light_source(LS_MONSTER, (void *)mtmp);
-    } else if (carryingarti(ART_PANTYSHINE) && mtmp2->lisaseen) {
+    } else if (u.arti_carry_pantyshine && mtmp2->lisaseen) {
 	new_light_source(mtmp2->mx, mtmp2->my,
 			 1, LS_MONSTER, (void *)mtmp2);
 	del_light_source(LS_MONSTER, (void *)mtmp);
@@ -4871,7 +4871,7 @@ struct permonst *mptr;	/* reflects mtmp->data _prior_ to mtmp's death */
 	remove_monster(mtmp->mx, mtmp->my);
 	if (emits_light(mptr)) {
 	    del_light_source(LS_MONSTER, (void *)mtmp);
-	} else if (carryingarti(ART_PANTYSHINE) && mtmp) {
+	} else if (u.arti_carry_pantyshine && mtmp) {
 	    del_light_source(LS_MONSTER, (void *)mtmp);
 	}
 	newsym(mtmp->mx,mtmp->my);

@@ -2436,6 +2436,36 @@ struct you {
 	boolean symbiotedmghack;	/* make something damage you even if you have a symbiote */
 	int shutdowntime;	/* for nurse's shutdown symbiote service */
 
+	boolean arti_carry_minimalminime;	/* these are for checking whether you have specific artifacts in your inventory */
+	boolean arti_carry_bluedaypaper;
+	boolean arti_carry_fragrantgirls;
+	boolean arti_carry_allislost;
+	boolean arti_carry_leoishigh;
+	boolean arti_carry_redbuttonflash;
+	boolean arti_carry_ditaectmaennsters;
+	boolean arti_carry_ugghen;
+	boolean arti_carry_matterkeeper;
+	boolean arti_carry_bookstaffeer;
+	boolean arti_carry_firrrga;
+	boolean arti_carry_hungerhealer;
+	boolean arti_carry_anstyveal;
+	boolean arti_carry_helioannoyance;
+	boolean arti_carry_otherbaddies;
+	boolean arti_carry_maybrittclick;
+	boolean arti_carry_barksters;
+	boolean arti_carry_notcontam;
+	boolean arti_carry_suckstone;
+	boolean arti_carry_pantyshine;
+	boolean arti_carry_zimsound;
+	boolean arti_carry_tripping;
+	boolean arti_carry_kickart;
+	boolean arti_carry_gronjafals;
+	boolean arti_carry_dolorescrazy;
+	boolean arti_carry_personintheveil;
+	boolean arti_carry_fieldclickradio;
+	boolean arti_carry_jonaextramode;
+	boolean arti_carry_quantumbrain;
+
 #define WEATHER_OVERCAST 0
 #define WEATHER_RAIN 1
 #define WEATHER_THUNDERSTORM 2

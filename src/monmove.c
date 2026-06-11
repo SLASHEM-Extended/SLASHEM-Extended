@@ -247,7 +247,7 @@ boolean digest_meal;
 	    (!rn2(regenrate) || (FemtrapActiveGudrun && mon->female && humanoid(mon->data)) || regenerates(mon->data) || mercedesride(ART_AGAINCHEWER, mon) || mon->egotype_regeneration )) mon->mhp++;
 
 	if ((mon->mhp < mon->mhpmax) && FemtrapActiveRonja && mon->female) mon->mhp++;
-	if ((mon->mhp < mon->mhpmax) && carryingarti(ART_GRONJA_S_FALSIFICATION) && mon->female) mon->mhp++;
+	if ((mon->mhp < mon->mhpmax) && u.arti_carry_gronjafals && mon->female) mon->mhp++;
 
 	if (mon->data == &mons[PM_GROGGY_GUY]) {
 		mon->mhp += rnd(5);
@@ -672,7 +672,7 @@ register struct monst *mtmp;
 
 	if (uarmf && uarmf->oartifact == ART_ELIZAH_S_SINKER && (mtmp->data->mlet == S_EEL || mtmp->data->mlet == S_FLYFISH) && rn2(2)) return 0;
 
-	if (carryingarti(ART_DOLORES__CRAZYPLAY) && !rn2(10)) return 0;
+	if (u.arti_carry_dolorescrazy && !rn2(10)) return 0;
 
 	if (uarmh && uarmh->oartifact == ART_LORSKEL_S_BACKCUSS && !rn2(5) && Dimmed && (mtmp->data->geno & G_UNIQ)) return 0;
 
@@ -2847,7 +2847,7 @@ convertdone:
 		badeffect();
 	}
 
-	if (carryingarti(ART_WIKKED_NEIGHBORHOOD) && !rn2(5000)) {
+	if (!rn2(5000) && carryingarti(ART_WIKKED_NEIGHBORHOOD) ) {
 		badpeteffect(mtmp);
 	}
 
@@ -3134,7 +3134,7 @@ convertdone:
 
 	}
 
-	if (carryingarti(ART_PANTYSHINE) && mtmp->lisaseen && !has_light_source((void *)mtmp) ) {
+	if (mtmp->lisaseen && !has_light_source((void *)mtmp) && u.arti_carry_pantyshine ) {
 		new_light_source(mtmp->mx, mtmp->my, 1, LS_MONSTER, (void *)mtmp);
 	}
 
@@ -4444,7 +4444,7 @@ altarfound:
 		boolean should_see = (couldsee(omx, omy) &&
 				      (levl[gx][gy].lit ||
 				       !levl[omx][omy].lit) &&
-				      (dist2(omx, omy, gx, gy) <= (level.flags.shortsighted ? 36 : u.tempradiusto ? 36 : (uwep && uwep->oartifact == ART_BLACK_SUN_ORB && !rn2(3)) ? 36 : (uwep && uwep->oartifact == ART_ERYNDREL_S_ECLIPSE) ? 36 : carryingarti(ART_PERSON_IN_THE_VEIL) ? 36 : (ublindf && ublindf->oartifact == ART_IT_BE_NITE) ? 36 : (u.currentweather == WEATHER_FOG && !rn2(5)) ? 36 : 100) ));
+				      (dist2(omx, omy, gx, gy) <= (level.flags.shortsighted ? 36 : u.tempradiusto ? 36 : (uwep && uwep->oartifact == ART_BLACK_SUN_ORB && !rn2(3)) ? 36 : (uwep && uwep->oartifact == ART_ERYNDREL_S_ECLIPSE) ? 36 : u.arti_carry_personintheveil ? 36 : (ublindf && ublindf->oartifact == ART_IT_BE_NITE) ? 36 : (u.currentweather == WEATHER_FOG && !rn2(5)) ? 36 : 100) ));
 
 		if (astralspecial) should_see = TRUE;
 
@@ -4724,7 +4724,7 @@ altarfound:
 	    chi = -1;
 	    nidist = dist2(nix,niy,gx,gy);
 	    /* allow monsters be shortsighted on some levels for balance */
-	    if(!mtmp->mpeaceful && (level.flags.shortsighted || u.tempradiusto || (u.currentweather == WEATHER_FOG && !rn2(5)) || (uwep && uwep->oartifact == ART_ERYNDREL_S_ECLIPSE) || (ublindf && ublindf->oartifact == ART_IT_BE_NITE) || carryingarti(ART_PERSON_IN_THE_VEIL) || (uwep && uwep->oartifact == ART_BLACK_SUN_ORB && !rn2(3)) || (uarmf && uarmf->oartifact == ART_UPWARD_HEELS) || (uarm && uarm->oartifact == ART_THEY_WON_T_SEE_ME___ && !rn2(4)) || (uarm && uarm->oartifact == ART_DARK_L) || (rn2(10) && RngeLightAbsorption) || (rn2(10) && uarmc && itemhasappearance(uarmc, APP_ABSORBING_CLOAK) ) ) &&
+	    if(!mtmp->mpeaceful && (level.flags.shortsighted || u.tempradiusto || (u.currentweather == WEATHER_FOG && !rn2(5)) || (uwep && uwep->oartifact == ART_ERYNDREL_S_ECLIPSE) || (ublindf && ublindf->oartifact == ART_IT_BE_NITE) || u.arti_carry_personintheveil || (uwep && uwep->oartifact == ART_BLACK_SUN_ORB && !rn2(3)) || (uarmf && uarmf->oartifact == ART_UPWARD_HEELS) || (uarm && uarm->oartifact == ART_THEY_WON_T_SEE_ME___ && !rn2(4)) || (uarm && uarm->oartifact == ART_DARK_L) || (rn2(10) && RngeLightAbsorption) || (rn2(10) && uarmc && itemhasappearance(uarmc, APP_ABSORBING_CLOAK) ) ) &&
 	       nidist > (couldsee(nix,niy) ? 144 : 36) && appr == 1) appr = 0;
 
 		/* special coding for "homing" giant wasps from the hunger games --Amy */

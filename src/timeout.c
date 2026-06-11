@@ -1423,7 +1423,7 @@ nh_timeout()
 
 	}
 
-	if (carryingarti(ART_FIELD_CLICK_RADIO)) {
+	if (u.arti_carry_fieldclickradio) {
 
 	    struct trap *t;
 
@@ -1536,7 +1536,7 @@ nh_timeout()
 
 	}
 
-	if (carryingarti(ART_JONADAB_S_EXTRA_MODE)) {
+	if (u.arti_carry_jonaextramode) {
 
 	    struct trap *t;
 

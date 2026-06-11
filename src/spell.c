@@ -2894,7 +2894,7 @@ age_spells()
 	for (i = 0; i < MAXSPELL && spellid(i) != NO_SPELL; i++)
 	    if (spellknow(i) ) {
 
-		if (!(uarmc && itemhasappearance(uarmc, APP_GUILD_CLOAK) ) && !carryingarti(ART_QUANTUM_BRAIN) && !(uamul && uamul->oartifact == ART_SUPER_MEMORY) && !tech_inuse(T_SPELL_SPAM) ) {
+		if (!(uarmc && itemhasappearance(uarmc, APP_GUILD_CLOAK) ) && !u.arti_carry_quantumbrain && !(uamul && uamul->oartifact == ART_SUPER_MEMORY) && !tech_inuse(T_SPELL_SPAM) ) {
 
 			/* 10000 turns is nothing compared to the length of the game; have it last longer, please! --Amy */
 			if (spellmemorize(i) && !rn2(2)) continue;
@@ -14931,7 +14931,7 @@ rerollX:
 		if (Keen_memory && !rn2(StrongKeen_memory ? 3 : 5)) cyanwillgodown = FALSE;
 		if (uarm && uarm->oartifact == ART_COPE_OF_THE_ELDRITCH_KNIGH && rn2(2)) cyanwillgodown = FALSE;
 		if (uarmc && itemhasappearance(uarmc, APP_GUILD_CLOAK) ) cyanwillgodown = FALSE;
-		if (carryingarti(ART_QUANTUM_BRAIN)) cyanwillgodown = FALSE;
+		if (u.arti_carry_quantumbrain) cyanwillgodown = FALSE;
 		if (uamul && uamul->oartifact == ART_SUPER_MEMORY) cyanwillgodown = FALSE;
 		if (tech_inuse(T_SPELL_SPAM)) cyanwillgodown = FALSE;
 		if (uarms && uarms->oartifact == ART_UNUSUAL_ENCH && !rn2(5)) cyanwillgodown = FALSE;

@@ -2080,7 +2080,7 @@ set_moreluck()
 	if (uarmf && uarmf->oartifact == ART_NATALIA_S_GREAT_LUCK) u.moreluck += 5;
 	if (carryingarti(ART_AMATEURHOUR_S_SIGH)) u.moreluck += 5;
 	if (uarmf && uarmf->oartifact == ART_HAPPY_CLOUD) u.moreluck += 5;
-	if (carryingarti(ART_SUCKSTONE)) u.moreluck += 5;
+	if (u.arti_carry_suckstone) u.moreluck += 5;
 	if (uarmh && uarmh->oartifact == ART_XTRALUCK) u.moreluck += 3;
 	if (uwep && uwep->oartifact == ART_LUCKLESS_FOLLY) u.moreluck -= 3;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_LUCKLESS_FOLLY) u.moreluck -= 3;
@@ -3330,7 +3330,7 @@ int x;
 		if (uwep && uwep->oartifact == ART_PHYSSTATBOOST) tmp += 5;
 		if (uarmg && uarmg->oartifact == ART_STRBONUS) tmp += 5;
 		if (uarm && uarm->oartifact == ART_SMILEY_FACE) tmp += 1;
-		if (carryingarti(ART_JONADAB_S_EXTRA_MODE)) tmp += 10;
+		if (u.arti_carry_jonaextramode) tmp += 10;
 		if (uimplant && uimplant->oartifact == ART_DUNGEON_BOSS__WITH_SHARP_S) tmp += (powerfulimplants() ? 10 : 1);
 		if (uleft && uleft->otyp == RIN_GAIN_STRENGTH) tmp += uleft->spe;
 		if (uright && uright->otyp == RIN_GAIN_STRENGTH) tmp += uright->spe;
@@ -3615,7 +3615,7 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_LORENZI_S_CLEANING_RESIDUE) tmp += 2;
 		if (u.combatcommand) tmp += 1;
 		if (uarm && uarm->oartifact == ART_SMILEY_FACE) tmp += 3;
-		if (carryingarti(ART_JONADAB_S_EXTRA_MODE)) tmp += 10;
+		if (u.arti_carry_jonaextramode) tmp += 10;
 		if (uimplant && uimplant->oartifact == ART_DUNGEON_BOSS__WITH_SHARP_S) tmp += (powerfulimplants() ? 2 : 1);
 		if (uarmh && uarmh->otyp == CORNUTHAUM && Role_if(PM_WIZARD)) tmp += 1;
 		if (uleft && uleft->otyp == RIN_ADORNMENT && !(uleft->oartifact == ART_NIX_) ) tmp += uleft->spe;
@@ -3834,7 +3834,7 @@ int x;
 		if (uarm && uarm->oartifact == ART_SMILEY_FACE) tmp += 1;
 		if (x == A_INT && uarms && uarms->oartifact == ART_YELLOW_STATUS) tmp += 2;
 		if (x == A_INT && uarmg && uarmg->oartifact == ART_NIA_S_NEAR_MISS) tmp += 3;
-		if (carryingarti(ART_JONADAB_S_EXTRA_MODE)) tmp += 10;
+		if (u.arti_carry_jonaextramode) tmp += 10;
 		if (x == A_WIS && powerfulimplants() && uimplant && uimplant->oartifact == ART_GLEN_HOSPITAL) tmp += 10;
 		if (x == A_INT && powerfulimplants() && uimplant && uimplant->oartifact == ART_FOOD_FOR_THOUGHT) tmp += 2;
 		if (uimplant && uimplant->oartifact == ART_DUNGEON_BOSS__WITH_SHARP_S) tmp += (powerfulimplants() ? 2 : 1);
@@ -4085,7 +4085,7 @@ int x;
 		if (uwep && uwep->oartifact == ART_PHYSSTATBOOST) tmp += 5;
 		if (uarmg && uarmg->oartifact == ART_DEXBONUS) tmp += 5;
 		if (uarm && uarm->oartifact == ART_SMILEY_FACE) tmp += 1;
-		if (carryingarti(ART_JONADAB_S_EXTRA_MODE)) tmp += 10;
+		if (u.arti_carry_jonaextramode) tmp += 10;
 		if (uimplant && uimplant->oartifact == ART_DUNGEON_BOSS__WITH_SHARP_S) tmp += (powerfulimplants() ? 2 : 1);
 		if (uleft && uleft->otyp == RIN_GAIN_DEXTERITY) tmp += uleft->spe;
 		if (uright && uright->otyp == RIN_GAIN_DEXTERITY) tmp += uright->spe;
@@ -4294,7 +4294,7 @@ int x;
 		if (uarmc && uarmc->oartifact == ART_CORNY_DOOD && !flags.female) tmp += 3;
 		if (uwep && uwep->oartifact == ART_PHYSSTATBOOST) tmp += 5;
 		if (uarm && uarm->oartifact == ART_SMILEY_FACE) tmp += 1;
-		if (carryingarti(ART_JONADAB_S_EXTRA_MODE)) tmp += 10;
+		if (u.arti_carry_jonaextramode) tmp += 10;
 		if (uimplant && uimplant->oartifact == ART_DUNGEON_BOSS__WITH_SHARP_S) tmp += (powerfulimplants() ? 2 : 1);
 		if (uleft && uleft->otyp == RIN_GAIN_CONSTITUTION) tmp += uleft->spe;
 		if (uright && uright->otyp == RIN_GAIN_CONSTITUTION) tmp += uright->spe;
@@ -4420,7 +4420,7 @@ register int n;
 		return;
 	}
 
-	if (carryingarti(ART_BLUEDAYPAPER_BECOMES_SHITT) && rn2(20) && (n < 0)) {
+	if (u.arti_carry_bluedaypaper && rn2(20) && (n < 0)) {
 		return;
 	}
 

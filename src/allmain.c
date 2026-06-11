@@ -338,7 +338,7 @@ moveloop()
 			if (autismringcheck(ART_BETTER_GET_RID_QUICKLY)) monclock *= 2; /* doesn't stack if you wear two, this is by design --Amy */
 			if (uarm && uarm->oartifact == ART_ISIMOUD) monclock *= 2;
 			if (uarmu && uarmu->oartifact == ART_FIRST_THERE_WE_WERE) monclock *= 2;
-			if (carryingarti(ART_MINIMAL_MINI_ME)) monclock *= 3;
+			if (u.arti_carry_minimalminime) monclock *= 3;
 
 			if (Race_if(PM_DEVELOPER) && ((u.ulevel > 9) || (moves > 10000)) ) monclock /= 3;
 
@@ -385,7 +385,7 @@ moveloop()
 			if (Race_if(PM_RODNEYAN)) xtraclock /= 4;
 			if (uarmg && uarmg->oartifact == ART_DIFFICULTY__) xtraclock /= 2;
 			if (issuxxor) xtraclock *= 2;
-			if (carryingarti(ART_MINIMAL_MINI_ME)) xtraclock *= 3;
+			if (u.arti_carry_minimalminime) xtraclock *= 3;
 			if (uarmc && uarmc->oartifact == ART_BLEBLE___) xtraclock *= 2;
 			if (uarmf && uarmf->oartifact == ART_CHRRRRRRR) xtraclock *= 2;
 			if (uarm && uarm->oartifact == ART_ISIMOUD) xtraclock *= 2;
@@ -2736,6 +2736,8 @@ moveloop()
 
 		u.freeplaytransit = FALSE;
 
+		check_carried_stuff();
+
 		if (Race_if(PM_PERVERT)) {
 			u.pervertsex++;
 			u.pervertpray++;
@@ -2799,7 +2801,7 @@ moveloop()
 			u.urexp += 1;
 		}
 
-		if (carryingarti(ART_LAST_PART) && !rn2(5000)) {
+		if (!rn2(5000) && carryingarti(ART_LAST_PART) ) {
 			int i, j;
 			int identamount = rnd(10);
 			pline("You learn the identity of some objects:");
@@ -2812,7 +2814,7 @@ moveloop()
 
 		}
 
-		if (carryingarti(ART_BOH_THE_SHOUT_) && !rn2(20000)) {
+		if (!rn2(20000) && carryingarti(ART_BOH_THE_SHOUT_) ) {
 			if (uwep) {
 				if (uwep->oclass == WEAPON_CLASS || uwep->oclass == BALL_CLASS || uwep->oclass == GEM_CLASS || uwep->oclass == CHAIN_CLASS || uwep->oclass == VENOM_CLASS || is_weptool(uwep)) {
 					if (uwep->spe < 10) {
@@ -2882,7 +2884,7 @@ nyssaraend:
 			}
 		}
 
-		if (carryingarti(ART_FIELD_CLICK_RADIO) && !rn2(5000)) {
+		if (!rn2(5000) && u.arti_carry_fieldclickradio ) {
 			int cx,cy;
 			int i, j;
 			boolean canbeinawall = FALSE;
@@ -2901,7 +2903,7 @@ nyssaraend:
 
 		}
 
-		if (carryingarti(ART_IRREGULAR_RADIANCE) && !rn2(20000)) {
+		if (!rn2(20000) && carryingarti(ART_IRREGULAR_RADIANCE) ) {
 			You_feel("more attractive!");
 			(void) adjattrib(A_CHA, 1, FALSE, TRUE);
 		}
@@ -3196,7 +3198,7 @@ nyssaraend:
 			uarms->spe++;
 		}
 
-		if (carryingarti(ART_TRISTREHOLD) && !rn2(25000)) {
+		if (!rn2(25000) && carryingarti(ART_TRISTREHOLD) ) {
 			goodeffect();
 		}
 
@@ -3876,7 +3878,7 @@ nyssaraend:
 			}
 		}
 
-		if (carryingarti(ART_REPEATING_LOAD) && !rn2(2500)) {
+		if (!rn2(2500) && carryingarti(ART_REPEATING_LOAD) ) {
 			struct obj *ldstone;
 			pline("A gray stone appears from nowhere!");
 			ldstone = mksobj_at(LOADSTONE, u.ux, u.uy, TRUE, FALSE, FALSE);
@@ -5873,7 +5875,7 @@ newbossS:
 			You("feel the need to enter the secret course leading to the public toilet!");
 			antjeminigame();
 		}
-		if (carryingarti(ART_DECADENCE_IN_DOSES) && !rn2(2000)) {
+		if (!rn2(2000) && carryingarti(ART_DECADENCE_IN_DOSES) ) {
 			You("feel the need to enter the secret course leading to the public toilet!");
 			antjeminigame();
 		}
@@ -6291,7 +6293,7 @@ greasingdone:
 
 		}
 
-		if (carryingarti(ART_TODAY_HUE__TOMORROW_HOTT) && !rn2(100)) {
+		if (!rn2(100) && carryingarti(ART_TODAY_HUE__TOMORROW_HOTT) ) {
 			switch (rnd(5)) {
 
 				case 1:
@@ -6436,7 +6438,7 @@ greasingdone:
 			else skilltrainingdecrease(level_difficulty() + 1);
 		}
 
-		if (carryingarti(ART_AMATEURHOUR_S_SIGH) && !rn2(100)) {
+		if (!rn2(100) && carryingarti(ART_AMATEURHOUR_S_SIGH) ) {
 			contaminate(rnd(10), FALSE);
 		}
 
@@ -9202,7 +9204,7 @@ newbossJANI:
 			litroomlite(FALSE);
 		}
 
-		if (carryingarti(ART_MIRACLE_BEAUTIFUL_NOISES) && !rn2(200)) reducesanity(1);
+		if (!rn2(200) && carryingarti(ART_MIRACLE_BEAUTIFUL_NOISES) ) reducesanity(1);
 		if (uleft && uleft->oartifact == ART_CONTINUOUS_JUICE && !rn2(100)) reducesanity(1);
 		if (uright && uright->oartifact == ART_CONTINUOUS_JUICE && !rn2(100)) reducesanity(1);
 
@@ -9711,7 +9713,7 @@ newbossSTEN:
 
 		}
 
-		if (carryingarti(ART_PARASYM_ACCEPTANCE) && !rn2(500)) {
+		if (!rn2(500) && carryingarti(ART_PARASYM_ACCEPTANCE) ) {
 			if (uinsymbiosis) {
 				if (!u.usymbiote.cursed) cursesymbiote();
 			} else {
@@ -9835,12 +9837,12 @@ newbossBUTT:
 			}
 		}
 
-		if ((uwep && is_lightsaber(uwep) && uwep->lamplit && isfriday) || carryingarti(ART_FIRRRRRRRR____GA_)) {
+		if ((uwep && is_lightsaber(uwep) && uwep->lamplit && isfriday) || u.arti_carry_firrrga) {
 
 			if (!SkillTrainingImpossible) {
 
 				u.firgaturns++;
-				if (carryingarti(ART_FIRRRRRRRR____GA_) && uwep && is_lightsaber(uwep) && uwep->lamplit && isfriday) u.firgaturns += 4;
+				if (u.arti_carry_firrrga && uwep && is_lightsaber(uwep) && uwep->lamplit && isfriday) u.firgaturns += 4;
 				if (u.firgaturns >= 10) {
 					u.firgaturns -= 10;
 					if (!rn2(131313)) {
@@ -10071,7 +10073,7 @@ newbossSUPERSING:
 
 		}
 
-		if (carryingarti(ART_ADWAODITH_S_HERECOME) && !rn2(25000)) {
+		if (!rn2(25000) && carryingarti(ART_ADWAODITH_S_HERECOME) ) {
 
 			if (Aggravate_monster) {
 				u.aggravation = 1;
@@ -11885,7 +11887,7 @@ newbossO:
 			randomcuss();
 		}
 
-		if (carryingarti(ART_JAN_S_GRUMBLEBUMBLE) && !rn2(100)) {
+		if (!rn2(100) && carryingarti(ART_JAN_S_GRUMBLEBUMBLE) ) {
 			randomcuss();
 		}
 
@@ -12261,7 +12263,7 @@ newbossX:
 
 		}
 
-		if (carryingarti(ART_DITAECT_MAENNSTERS) && !rn2(2000)) {
+		if (!rn2(2000) && u.arti_carry_ditaectmaennsters ) {
 			rndcurse();
 		}
 
@@ -15613,7 +15615,7 @@ newboss:
 			morehungry(rnd(1000));
 		}
 
-		if (carryingarti(ART_HUNGERHEALER)) {
+		if (u.arti_carry_hungerhealer) {
 			morehungry(1);
 			if (uinsymbiosis && Role_if(PM_SYMBIANT)) {
 				if (u.usymbiote.mhp < u.usymbiote.mhpmax) {
@@ -17389,7 +17391,7 @@ past4:
 
 			}
 
-			if (carryingarti(ART_SOMKON_DESTERATION) && !rn2(2000) ) {
+			if (!rn2(2000) && carryingarti(ART_SOMKON_DESTERATION) ) {
 
 				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 				pline("A mysterious force surrounds you...");
@@ -17618,6 +17620,8 @@ past4:
 
 		}
 
+		check_carried_stuff();
+
 	} /* actual time passed */
 
 	/****************************************/
@@ -17645,6 +17649,8 @@ past4:
 	u.mondiffhack = 0;
 	u.castlecrushglitch = FALSE;
 	u.fungalsandals = FALSE;
+
+	check_carried_stuff();
 
 	kill_deathmarked_monsters();
 
@@ -17857,7 +17863,7 @@ past4:
 		for(ttmp = ftrap; ttmp; ttmp = ttmp->ntrap) {
 			if (ttmp && distu(ttmp->tx, ttmp->ty) < 101 && is_nasty_trap(ttmp->ttyp)) {
 				dotrap(ttmp, DONTREVEAL|SKIPGARBAGE);
-				if (ttmp && !ttmp->tseen && carryingarti(ART_ANTSYVEAL)) {
+				if (ttmp && !ttmp->tseen && u.arti_carry_anstyveal) {
 					if (!ttmp->hiddentrap) {
 						ttmp->tseen = 1;
 						map_trap(ttmp, TRUE);
@@ -23441,7 +23447,7 @@ int x, y;
 				if (grakamon->mnum >= 0 && grakamon->mnum < NUMMONS) {
 					if (monstersoundtype(grakamon) == MS_GRAKA) return TRUE;
 					if (grakamon->egotype_grakabug) return TRUE;
-					if (carryingarti(ART_HELIOKOPIS_S_ANNOYANCE) && (grakamon->m_lev > u.ulevel)) return TRUE;
+					if (u.arti_carry_helioannoyance && (grakamon->m_lev > u.ulevel)) return TRUE;
 				}
 			}
 		}

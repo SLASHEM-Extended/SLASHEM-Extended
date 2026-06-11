@@ -6364,7 +6364,7 @@ weight_cap() /* your current max carry cap (the one displayed on the bottom stat
 	if(carrcap > (max_carr_cap())) carrcap = max_carr_cap();
 
 	/* the "fuck you Amy, your weight limits are as shitty as vanilla nethack's" effect :-P */
-	if (CarrcapEffect || u.uprops[CARRCAP_EFFECT].extrinsic || have_carrcapstone() || (ublindf && ublindf->oartifact == ART_ARABELLA_S_SEE_NO_EVIL_MON) || (uamul && uamul->oartifact == ART_ARVIAT_S_LOAD) || carryingarti(ART_MINIMAL_MINI_ME) ) {
+	if (CarrcapEffect || u.uprops[CARRCAP_EFFECT].extrinsic || have_carrcapstone() || (ublindf && ublindf->oartifact == ART_ARABELLA_S_SEE_NO_EVIL_MON) || (uamul && uamul->oartifact == ART_ARVIAT_S_LOAD) || u.arti_carry_minimalminime ) {
 		if (carrcap > 500) carrcap = 500;
 	}
 
