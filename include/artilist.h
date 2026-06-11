@@ -28591,6 +28591,70 @@ A("Trever Pole",				HALBERD, /* randart2 polearm, does AD_NGEN to target */
 	(SPFX_RESTR), 0, 0,
 	PHYS(8, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3500L ),
 
+A("Scutum!",				SHIELD, /* randart shield, +5 AC, +10% chance to block */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Anastasia's Surprise",				LOW_BOOTS, /* initialized to always be elite sneakers, anastasia trap effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(1, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Jessica's Unfair Mode",				COMBAT_STILETTOS, /* jessica trap effect, putting them on changes martial style to "karate" */
+	(SPFX_RESTR|SPFX_BEHEAD|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Maurah's Absolute Heart Shoes",				FEMININE_PUMPS, /* +10 CHA, prevents normal CHA-reducing effects from affecting you and 90% resistance to permanent CHA drain; resist psi */
+	(SPFX_RESTR|SPFX_REFLECT), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 12000L ),
+
+A("Juen's Pride and Joy",				LADY_BOOTS, /* +5 AC */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Almut's Nocare",				LOW_BOOTS, /* initialized to always be block-heeled boots, dora trap effect, kick cannot be clumsy, resist disint and death */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0, 5), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Arabella's Soft Gray",				SOFT_SNEAKERS, /* kick has 10% chance to cause rn1(4,4) turns of paralysis for the target monster, but it gets a saving throw */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Country Spaket",				CRAM_RATION, /* rnz(4000) turns of full nutrients when eaten */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Turning Packet",				CRAM_RATION, /* gives 3x the normal amount of nutrition when eaten */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 400L ),
+
+A("Aisha, e cu te moir",				SPE_LIGHT, /* randart2 spellbook, reading it generates a random katana or if you're currently wielding one that doesn't have an egotype, it gets a random one */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Double-U Baeibae",				SPE_LIGHT, /* randart spellbook, reading it summons rn1(3,3) random W-class monsters on random location and one more which spawns tame */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("My Sight Is Vital",				SPE_LIGHT, /* randart spellbook, reading it gives 2k turns of blindness resist and 10k turns of see invis */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Abisimibaala!",				SPE_LIGHT, /* randart2 spellbook, reading it gives 10k turns of keen memory and rolls a random spell from the list of ones you know, giving it +rn1(50)+25% memory */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 17000L ),
+
+A("Verena's Through-Broguedness",				LOW_BOOTS, /* initialized to always be block-heeled boots, cannot be eroded or disenchanted, kicking a monster gives it the heal block status for rn1(50,50) (more) turns */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Pingpower +2",				SLING, /* +2 multishot */
+	(SPFX_RESTR), 0, 0,
+	PHYS(2, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4500L ),
+
+A("Ancient Bible Verse",				SLING, /* randart sling, +1 multishot */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

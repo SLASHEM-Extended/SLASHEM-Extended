@@ -8365,6 +8365,10 @@ register struct obj *otmp;
 		You_feel("lucky.");
 	}
 
+	if (otmp && otmp->oartifact == ART_TURNING_PACKET) {
+		lesshungry(1500);
+	}
+
 	if (otmp && otmp->oartifact == ART_CRYO_PANCAKE) {
 		u.cryopancaketurns += 5000;
 		You("feel immune to cold!");
@@ -8401,6 +8405,11 @@ register struct obj *otmp;
 		if (Sick) make_sick(0L, (char *)0, TRUE, SICK_ALL);
 		CrapEffect += rnz(2000);
 		pline("Everything's being flushed out...");
+	}
+
+	if (otmp && otmp->oartifact == ART_COUNTRY_SPAKET) {
+		incr_itimeout(&HFull_nutrient, rnz(4000));
+		Your("belly feels very full.");
 	}
 
 	if (otmp && otmp->oartifact == ART_ACROLEIN_ADDICTION) {

@@ -615,6 +615,11 @@ Boots_on()
 	}
     }
 
+    if (uarmf && uarmf->oartifact == ART_JESSICA_S_UNFAIR_MODE) {
+	u.martialstyle = MARTIALSTYLE_KARATE;
+	pline("Your new martial arts style is %s.", currentmartialstyle());
+    }
+
     if (uarmf && uarmf->oartifact == ART_DORIKA_S_COLORBLOCK) {
 	curse(uarmf);
 	uarmf->stckcurse = TRUE;
@@ -8063,6 +8068,7 @@ find_ac()
 	if (uarmg && uarmg->oartifact == ART_TANKS_A_LOT) uac -= 5;
 	if (uarms && uarms->oartifact == ART_AEAEAEAEAEGIS) uac -= 10;
 	if (uarms && uarms->oartifact == ART_WHANG_CLINK_CLONK) uac -= 5;
+	if (uarmf && uarmf->oartifact == ART_JUEN_S_PRIDE_AND_JOY) uac -= 5;
 	if (uarmf && uarmf->oartifact == ART_I_M_A_BITCH__DEAL_WITH_IT) uac -= 5;
 	if (uarmf && uarmf->oartifact == ART_MELISSA_S_BEAUTY) uac -= 5;
 	if (uleft && uleft->oartifact == ART_CRYLOCK) uac -= 10;
@@ -8137,6 +8143,7 @@ find_ac()
 	if (uarmc && uarmc->oartifact == ART_PHANTOM_OF_THE_OPERA) uac -= 5;
 	if (uarm && uarm->oartifact == ART_SILKS_OF_THE_VICTOR) uac -= 5;
 	if (uarm && uarm->oartifact == ART_ERDRICK_S_ARMOR) uac -= 5;
+	if (uarms && uarms->oartifact == ART_SCUTUM_) uac -= 5;
 	if (uarmc && uarmc->oartifact == ART_SPACEWASTE) uac -= 3;
 	if (uarmh && uarmh->oartifact == ART_NOSED_BUG) uac -= 7;
 	if (uarm && uarm->oartifact == ART_OAR_SUPER_GRAPHICS_CARD_BU) uac -= 10;

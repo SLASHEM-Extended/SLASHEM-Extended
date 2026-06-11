@@ -5715,6 +5715,8 @@ register struct obj *otmp;
 
 	if (otmp && otmp->oartifact == ART_WORKER_METAL) return FALSE;
 	if (otmp && otmp->oartifact == ART_VAELGROM_S_SPINE) return FALSE;
+	if (otmp && otmp->oartifact == ART_VERENA_S_THROUGH_BROGUEDNE) return FALSE;
+	if (otmp && otmp->oartifact == ART_SARTIRO) return FALSE;
 	if (otmp && otmp->oartifact == ART_MASSIVITY_CUTEBLOCK) return FALSE;
 	if (otmp && otmp->oartifact == ART_BESTANDING_IN_THE_WEATHER) return FALSE;
 	if (otmp && otmp->oartifact == ART_MARTINA_S_SUPERFLEECE) return FALSE;
@@ -5773,6 +5775,8 @@ register struct obj *otmp;
 
 	if (otmp && otmp->oartifact == ART_WORKER_METAL) return FALSE;
 	if (otmp && otmp->oartifact == ART_VAELGROM_S_SPINE) return FALSE;
+	if (otmp && otmp->oartifact == ART_VERENA_S_THROUGH_BROGUEDNE) return FALSE;
+	if (otmp && otmp->oartifact == ART_SARTIRO) return FALSE;
 	if (otmp && otmp->oartifact == ART_MASSIVITY_CUTEBLOCK) return FALSE;
 	if (otmp && otmp->oartifact == ART_BESTANDING_IN_THE_WEATHER) return FALSE;
 	if (otmp && otmp->oartifact == ART_MARTINA_S_SUPERFLEECE) return FALSE;
@@ -5822,6 +5826,8 @@ register struct obj *otmp;
 	if (otmp && otmp->oartifact == ART_CAN_T_BE_DAMAGED_FURTHER) return FALSE;
 	if (otmp && otmp->oartifact == ART_WORKER_METAL) return FALSE;
 	if (otmp && otmp->oartifact == ART_VAELGROM_S_SPINE) return FALSE;
+	if (otmp && otmp->oartifact == ART_VERENA_S_THROUGH_BROGUEDNE) return FALSE;
+	if (otmp && otmp->oartifact == ART_SARTIRO) return FALSE;
 	if (otmp && otmp->oartifact == ART_RUST_OK) return FALSE;
 	if (otmp && otmp->oartifact == ART_MASSIVITY_CUTEBLOCK) return FALSE;
 	if (otmp && otmp->oartifact == ART_BESTANDING_IN_THE_WEATHER) return FALSE;
@@ -5859,6 +5865,8 @@ register struct obj *otmp;
 
 	if (otmp && otmp->oartifact == ART_WORKER_METAL) return FALSE;
 	if (otmp && otmp->oartifact == ART_VAELGROM_S_SPINE) return FALSE;
+	if (otmp && otmp->oartifact == ART_VERENA_S_THROUGH_BROGUEDNE) return FALSE;
+	if (otmp && otmp->oartifact == ART_SARTIRO) return FALSE;
 	if (otmp && otmp->oartifact == ART_MASSIVITY_CUTEBLOCK) return FALSE;
 	if (otmp && otmp->oartifact == ART_BESTANDING_IN_THE_WEATHER) return FALSE;
 	if (otmp && otmp->oartifact == ART_MARTINA_S_SUPERFLEECE) return FALSE;

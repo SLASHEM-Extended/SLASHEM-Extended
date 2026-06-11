@@ -2020,6 +2020,7 @@ burnagain:
 	if (itemhasappearance(otmp, APP_IMAGINARY_HEELS) ) vulnerable = FALSE;
 
 	if (otmp->oartifact == ART_SARTIRO ) vulnerable = FALSE;
+	if (otmp->oartifact == ART_VERENA_S_THROUGH_BROGUEDNE ) vulnerable = FALSE;
 	if (otmp->oartifact == ART_CUMBERSOME_DESC ) vulnerable = FALSE;
 	if (otmp->oartifact == ART_GOODRES_ELVEN ) vulnerable = FALSE;
 	if (otmp->oartifact == ART_PARTICULARLY_SOLID_SKULL ) vulnerable = FALSE;
@@ -2157,6 +2158,7 @@ struct monst *victim;
 	if (itemhasappearance(otmp, APP_IMAGINARY_HEELS) ) vulnerable = FALSE;
 
 	if (otmp->oartifact == ART_SARTIRO ) vulnerable = FALSE;
+	if (otmp->oartifact == ART_VERENA_S_THROUGH_BROGUEDNE ) vulnerable = FALSE;
 	if (otmp->oartifact == ART_CUMBERSOME_DESC ) vulnerable = FALSE;
 	if (otmp->oartifact == ART_GOODRES_ELVEN ) vulnerable = FALSE;
 	if (otmp->oartifact == ART_PARTICULARLY_SOLID_SKULL ) vulnerable = FALSE;
@@ -26639,6 +26641,7 @@ register boolean force, here;
 		if (itemhasappearance(obj, APP_IMAGINARY_HEELS) ) continue;
 
 		if (obj->oartifact == ART_SARTIRO ) continue;
+		if (obj->oartifact == ART_VERENA_S_THROUGH_BROGUEDNE ) continue;
 		if (obj->oartifact == ART_CUMBERSOME_DESC ) continue;
 		if (obj->oartifact == ART_GOODRES_ELVEN ) continue;
 		if (obj->oartifact == ART_PARTICULARLY_SOLID_SKULL ) continue;
@@ -27145,6 +27148,7 @@ register boolean force, here;
 		if (itemhasappearance(obj, APP_IMAGINARY_HEELS) ) continue;
 
 		if (obj->oartifact == ART_SARTIRO ) continue;
+		if (obj->oartifact == ART_VERENA_S_THROUGH_BROGUEDNE ) continue;
 		if (obj->oartifact == ART_CUMBERSOME_DESC ) continue;
 		if (obj->oartifact == ART_GOODRES_ELVEN ) continue;
 		if (obj->oartifact == ART_PARTICULARLY_SOLID_SKULL ) continue;
@@ -27238,6 +27242,7 @@ register boolean force, here;
 		if (itemhasappearance(obj, APP_IMAGINARY_HEELS) ) continue;
 
 		if (obj->oartifact == ART_SARTIRO ) continue;
+		if (obj->oartifact == ART_VERENA_S_THROUGH_BROGUEDNE ) continue;
 		if (obj->oartifact == ART_CUMBERSOME_DESC ) continue;
 		if (obj->oartifact == ART_GOODRES_ELVEN ) continue;
 		if (obj->oartifact == ART_PARTICULARLY_SOLID_SKULL ) continue;

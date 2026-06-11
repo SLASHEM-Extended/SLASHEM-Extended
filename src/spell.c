@@ -4104,6 +4104,79 @@ struct obj *book2;
 		}
 	}
 
+	if (book2->oartifact == ART_AISHA__E_CU_TE_MOIR) {
+		struct obj *uammo;
+
+		if (uwep && uwep->otyp == KATANA && !uwep->enchantment) {
+			struct obj *tempwep = uwep;
+			long savewornmask;
+			tempwep->enchantment = randweaponenchantment();
+			pline("Your %s seems to have gained special magical properties!", xname(tempwep) );
+			savewornmask = tempwep->owornmask;
+			setworn((struct obj *)0, tempwep->owornmask);
+			setworn(tempwep, savewornmask);
+		} else {
+			uammo = mksobj(KATANA, TRUE, FALSE, FALSE);
+			if (uammo) {
+				uammo->quan = 1;
+				uammo->owt = weight(uammo);
+				dropy(uammo);
+				stackobj(uammo);
+				pline("A katana has formed on the ground!");
+			}
+		}
+	}
+
+	if (book2->oartifact == ART_DOUBLE_U_BAEIBAE) {
+
+		int wraithamount = rn1(3,3);
+		while (wraithamount > 0) {
+			(void) makemon(mkclass(S_WRAITH,0), 0, 0, NO_MM_FLAGS);
+			wraithamount--;
+		}
+
+		register struct monst *tamegolem;
+		tamegolem = makemon(mkclass(S_WRAITH,0), 0, 0, NO_MM_FLAGS);
+		if (tamegolem) {
+			tamegolem = tamedog(tamegolem, (struct obj *) 0, FALSE);
+		}
+
+	}
+
+	if (book2->oartifact == ART_MY_SIGHT_IS_VITAL) {
+		incr_itimeout(&HBlind_resistance, 2000);
+		incr_itimeout(&HSee_invisible, 10000);
+		Your("sight is improved.");
+	}
+
+	if (book2->oartifact == ART_ABISIMIBAALA_) {
+		int n, thisone, choicenumber;
+
+		incr_itimeout(&HKeen_memory, 10000);
+		Your("memory is improved!");
+
+		for (n = 0; n < MAXSPELL && spellid(n) != NO_SPELL; n++)
+			continue;
+		if (n) {
+			thisone = -1;
+			choicenumber = 0;
+			for (n = 0; n < MAXSPELL && spellid(n) != NO_SPELL; n++) {
+
+				if (spellknow(n) <= 0) continue;
+
+				if (!choicenumber || (!rn2(choicenumber + 1)) ) {
+					thisone = n;
+				}
+				choicenumber++;
+			}
+
+			if (choicenumber > 0 && thisone >= 0) {
+				boostknow(thisone, rn1(5000, 2500));
+				pline("Your %s spell's memory has been boosted.", spellname(thisone));
+			}
+		}
+	}
+
 	if (book2->oartifact == ART_MATPLAS_OLGE) {
 		struct obj *uammo;
 		uammo = mksobj(!rn2(10) ? SCR_SUPERIOR_MATERIAL : !rn2(3) ? SCR_REGULAR_MATERIAL : SCR_INFERIOR_MATERIAL, TRUE, FALSE, FALSE);

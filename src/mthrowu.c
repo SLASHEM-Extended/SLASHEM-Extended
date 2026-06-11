@@ -160,6 +160,7 @@ const char *name;	/* if null, then format `obj' */
 		if (uarm && uarm->oartifact == ART_MOEBIUS_ARMOR) shieldblockrate += 10;
 		if (uarms->oartifact == ART_I_M_GETTING_HUNGRY) shieldblockrate += 20;
 		if (uarms->oartifact == ART_WHANG_CLINK_CLONK) shieldblockrate += 10;
+		if (uarms->oartifact == ART_SCUTUM_) shieldblockrate += 10;
 		if (uarms->oartifact == ART_SIDONIE_S_MIRROR) shieldblockrate += 25;
 		if (uarms->oartifact == ART_EASY_HOLD && !(uwep && bimanual(uwep)) && !(u.twoweap && uswapwep) ) shieldblockrate += 20;
 		if (uarms->oartifact == ART_BLACK_TOWER) shieldblockrate += 10;

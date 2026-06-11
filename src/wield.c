@@ -1927,6 +1927,7 @@ boolean fade_scrolls;
 	if (target->oartifact == ART_RATCH_CLOSURE_SCRATCHING && rn2(4) ) return;
 
 	if (target->oartifact == ART_SARTIRO ) return;
+	if (target->oartifact == ART_VERENA_S_THROUGH_BROGUEDNE ) return;
 	if (target->oartifact == ART_CUMBERSOME_DESC ) return;
 	if (target->oartifact == ART_GOODRES_ELVEN ) return;
 	if (target->oartifact == ART_PARTICULARLY_SOLID_SKULL ) return;
@@ -2064,6 +2065,7 @@ boolean fade_scrolls;
 	if (itemhasappearance(target, APP_IMAGINARY_HEELS) ) return;
 
 	if (target->oartifact == ART_SARTIRO ) return;
+	if (target->oartifact == ART_VERENA_S_THROUGH_BROGUEDNE ) return;
 	if (target->oartifact == ART_CUMBERSOME_DESC ) return;
 	if (target->oartifact == ART_GOODRES_ELVEN ) return;
 	if (target->oartifact == ART_PARTICULARLY_SOLID_SKULL ) return;

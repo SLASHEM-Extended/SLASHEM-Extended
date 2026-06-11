@@ -35525,6 +35525,38 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: +10 damage, can disenchant the enemy's gear into the negatives."); break;
 				case ART_TREVER_POLE:
 					pline("Artifact specs: +8 to-hit and +8 damage, can disenchant the enemy's gear into the negatives."); break;
+				case ART_SCUTUM_:
+					pline("Artifact specs: boosts your AC by 5 and your chance to block by 10%% when worn."); break;
+				case ART_ANASTASIA_S_SURPRISE:
+					pline("Artifact specs: double kick damage. But something tells you that you're gonna step into a heap of shit with them."); break;
+				case ART_JESSICA_S_UNFAIR_MODE:
+					pline("Artifact specs: jessica trap effect and changes your martial arts style to 'karate' when you put them on. Kicking a monster with them may behead the monster."); break;
+				case ART_MAURAH_S_ABSOLUTE_HEART_SH:
+					pline("Artifact specs: +10 charisma, reflection and psi resistance when worn. It prevents charisma-draining effects from affecting you; if it's permanent drain, you have a high chance of resisting but may occasionally still be affected."); break;
+				case ART_JUEN_S_PRIDE_AND_JOY:
+					pline("Artifact specs: boosts your AC by 5 and deals +8 kick damage when worn."); break;
+				case ART_ALMUT_S_NOCARE:
+					pline("Artifact specs: +5 kick damage, dora trap effect, disintegration and death resistance when worn and your kick cannot be clumsy."); break;
+				case ART_ARABELLA_S_SOFT_GRAY:
+					pline("Artifact specs: magic resistance when worn, and kicking an enemy may occasionally paralyze it."); break;
+				case ART_COUNTRY_SPAKET:
+					pline("Artifact specs: grants temporary full nutrients when eaten."); break;
+				case ART_TURNING_PACKET:
+					pline("Artifact specs: grants much more nutrition when eaten."); break;
+				case ART_AISHA__E_CU_TE_MOIR:
+					pline("Artifact specs: reading it generates a katana on the ground, or if you're currently wielding one and it doesn't have an egotype yet, it gains a random one."); break;
+				case ART_DOUBLE_U_BAEIBAE:
+					pline("Artifact specs: reading it summons random wraiths on the dungeon level, one of which will be tame."); break;
+				case ART_MY_SIGHT_IS_VITAL:
+					pline("Artifact specs: reading it gives temporary blindness resistance and see invisible."); break;
+				case ART_ABISIMIBAALA_:
+					pline("Artifact specs: reading it gives temporary keen memory and increases the spell memory of a random known spell."); break;
+				case ART_VERENA_S_THROUGH_BROGUEDNE:
+					pline("Artifact specs: cannot be eroded or disenchanted, and kicking a monster prevents it from healing its HP for a while."); break;
+				case ART_PINGPOWER___:
+					pline("Artifact specs: +2 to-hit and +2 damage, and grants +2 multishot to ammo fired from it."); break;
+				case ART_ANCIENT_BIBLE_VERSE:
+					pline("Artifact specs: +10 damage, +1 multishot."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

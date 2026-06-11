@@ -289,6 +289,8 @@ int thrown;
 	    if (launcher && launcher->oartifact == ART_CLACKINDRA) multishot += 3;
 	    if (launcher && launcher->oartifact == ART_UZ_I) multishot += rnd(3);
 	    if (launcher && launcher->oartifact == ART_HEAVY_CROSSBOW_OF_ETERNITY) multishot += 2;
+	    if (launcher && launcher->oartifact == ART_PINGPOWER___) multishot += 2;
+	    if (launcher && launcher->oartifact == ART_ANCIENT_BIBLE_VERSE) multishot += 1;
 	    if (launcher && obj && obj->oartifact == ART_FUCK_THE_SERVER) multishot += 2;
 	    if (launcher && obj && obj->oartifact == ART_WARRIOR_WOMAN) multishot += rnd(2);
 	    if (launcher && obj && obj->oartifact == ART_BLOCKEL_EM) multishot += rnd(3);

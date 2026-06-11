@@ -2594,6 +2594,7 @@ register struct obj *obj;
 
 	if (obj && obj->oartifact == ART_CAN_T_BE_DAMAGED_FURTHER) return FALSE;
 	if (obj && obj->oartifact == ART_VAELGROM_S_SPINE) return FALSE;
+	if (obj && obj->oartifact == ART_VERENA_S_THROUGH_BROGUEDNE) return FALSE;
 	if (obj && objects[obj->otyp].oc_material == MT_TITANIUM) return FALSE;
 
 	if (obj && uwep && uwep->oartifact == ART_SLAM_ && rn2(10) && (obj->owornmask & W_ARMOR) ) return FALSE;
@@ -2708,6 +2709,7 @@ register struct obj *obj;
 
 	if (obj && obj->oartifact == ART_CAN_T_BE_DAMAGED_FURTHER) return FALSE;
 	if (obj && obj->oartifact == ART_VAELGROM_S_SPINE) return FALSE;
+	if (obj && obj->oartifact == ART_VERENA_S_THROUGH_BROGUEDNE) return FALSE;
 	if (obj && objects[obj->otyp].oc_material == MT_TITANIUM) return FALSE;
 
 	if (obj && uwep && uwep->oartifact == ART_SLAM_ && rn2(10) && (obj->owornmask & W_ARMOR) ) return FALSE;
@@ -2765,6 +2767,7 @@ register struct obj *obj;
 
 	if (obj && obj->oartifact == ART_CAN_T_BE_DAMAGED_FURTHER) return FALSE;
 	if (obj && obj->oartifact == ART_VAELGROM_S_SPINE) return FALSE;
+	if (obj && obj->oartifact == ART_VERENA_S_THROUGH_BROGUEDNE) return FALSE;
 	if (obj && objects[obj->otyp].oc_material == MT_TITANIUM) return FALSE;
 
 	if (obj && uwep && uwep->oartifact == ART_SLAM_ && rn2(10) && (obj->owornmask & W_ARMOR) ) return FALSE;

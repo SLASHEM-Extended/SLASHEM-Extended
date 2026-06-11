@@ -1834,6 +1834,11 @@ adjattrib(ndx, incr, msgflg, canresist)
 			return FALSE;
 		}
 
+		if (uarmf && uarmf->oartifact == ART_MAURAH_S_ABSOLUTE_HEART_SH && (ndx == A_CHA)) {
+			You("look as gorgeous as ever!");
+			return FALSE;
+		}
+
 		if (FemtrapActiveChloe && uarmf && uarmf->otyp == CHLOE_BALL_HEELS && (ndx == A_CHA)) {
 			Your("beauty cannot be diminished!");
 			return FALSE;
@@ -3431,6 +3436,7 @@ int x;
 		if (uchain && uchain->oartifact == ART_AMORINA_S_CHAIN) tmp += 3;
 		if (carryingarti(ART_DESIREE_S_MMMMM_WORTHINESS)) tmp += 5;
 		if (uarmc && uarmc->oartifact == ART_TEAM_BRIDE) tmp += 10;
+		if (uarmf && uarmf->oartifact == ART_MAURAH_S_ABSOLUTE_HEART_SH) tmp += 10;
 		if (uarmf && uarmf->oartifact == ART_LITTLE_ICE_BLOCK_WITH_THE_) tmp += 2;
 		if (carryingarti(ART_SPORTAL_FIGHTER)) tmp += 1;
 		if (uarmf && uarmf->oartifact == ART_YVONNE_S_MODEL_AMBITION) tmp += 2;

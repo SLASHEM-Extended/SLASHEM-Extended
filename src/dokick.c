@@ -362,6 +362,11 @@ register boolean clumsy;
 		}
 	}
 
+	if (uarmf && uarmf->oartifact == ART_VERENA_S_THROUGH_BROGUEDNE) {
+		if (!mon->healblock) pline("%s cannot resist anymore!", Monnam(mon));
+		mon->healblock += rn1(50,50);
+	}
+
 	if (uarmf && uarmf->oartifact == ART_SLAM_INTO && humanoid(mon->data) && !is_neuter(mon->data) && !(mon->female)) {
 		dmg += 8;
 		if (!resist(mon, TOOL_CLASS, 0, NOTELL)) {
@@ -388,6 +393,15 @@ register boolean clumsy;
 			mon->mfrozen = rnd(12);
 			mon->mstrategy &= ~STRAT_WAITFORU;
 			pline("You roll over %s with your roller blades!", mon_nam(mon));
+		}
+	}
+
+	if (uarmf && uarmf->oartifact == ART_ARABELLA_S_SOFT_GRAY && mon->mcanmove && !rn2(10)) {
+		if (!resist(mon, ARMOR_CLASS, 0, NOTELL)) {
+			mon->mcanmove = 0;
+			mon->mfrozen = rn1(4,4);
+			mon->mstrategy &= ~STRAT_WAITFORU;
+			pline("You manage to paralyze %s with your kick!", mon_nam(mon));
 		}
 	}
 
@@ -517,6 +531,7 @@ register boolean clumsy;
 	if (u.martialstyle == MARTIALSTYLE_KARATE) clumsy = FALSE;
 
 	if (uarmf && uarmf->oartifact == ART_MAILIE_S_CHALLENGE) clumsy = FALSE;
+	if (uarmf && uarmf->oartifact == ART_ALMUT_S_NOCARE) clumsy = FALSE;
 	if (carryingarti(ART_GONNA_KICK_YOUR_ASS)) clumsy = FALSE;
 	if (uwep && uwep->oartifact == ART_INSECTMASHER) clumsy = FALSE;
 	if (uwep && uwep->oartifact == ART_BLU_TOE) clumsy = FALSE;
@@ -1417,7 +1432,7 @@ register xchar x, y;
 
 	if (uarmf && uarmf->oartifact == ART_KYLIE_LUM_S_SNAKESKIN_BOOT) i += 6000;
 
-	if((i < (j*3)/10) && !(uarmf && uarmf->oartifact == ART_MAILIE_S_CHALLENGE) && !carryingarti(ART_GONNA_KICK_YOUR_ASS) && !(uwep && uwep->oartifact == ART_INSECTMASHER) && !(uwep && uwep->oartifact == ART_BLU_TOE) && !(uarmf && uarmf->oartifact == ART_FRONT_TARGET) && !(uarmf && uarmf->oartifact == ART_ELENETTES) && !(uarmc && uarmc->oartifact == ART_MARC_S_MANAFILL && !flags.female) && u.martialstyle != MARTIALSTYLE_KARATE && !(uarmf && uarmf->oartifact == ART_JOHN_S_REDBLOCK) && !(uarmf && uarmf->oartifact == ART_EVIL_HAIRTEAR) && !(uarmf && itemhasappearance(uarmf, APP_CALF_LEATHER_SANDALS)) ) {
+	if((i < (j*3)/10) && !(uarmf && uarmf->oartifact == ART_MAILIE_S_CHALLENGE) && !(uarmf && uarmf->oartifact == ART_ALMUT_S_NOCARE) && !carryingarti(ART_GONNA_KICK_YOUR_ASS) && !(uwep && uwep->oartifact == ART_INSECTMASHER) && !(uwep && uwep->oartifact == ART_BLU_TOE) && !(uarmf && uarmf->oartifact == ART_FRONT_TARGET) && !(uarmf && uarmf->oartifact == ART_ELENETTES) && !(uarmc && uarmc->oartifact == ART_MARC_S_MANAFILL && !flags.female) && u.martialstyle != MARTIALSTYLE_KARATE && !(uarmf && uarmf->oartifact == ART_JOHN_S_REDBLOCK) && !(uarmf && uarmf->oartifact == ART_EVIL_HAIRTEAR) && !(uarmf && itemhasappearance(uarmf, APP_CALF_LEATHER_SANDALS)) ) {
 		if((!rn2((i < j/10) ? 2 : (i < j/5) ? 3 : 4)) || (isfriday && !rn2(5))) {
 			if(martial() && !rn2(isfriday ? 10 : 2)) goto doit;
 			Your("clumsy kick does no damage.");
@@ -1436,6 +1451,7 @@ register xchar x, y;
 	if (uarmf && itemhasappearance(uarmf, APP_COMBAT_BOOTS) ) clumsy = FALSE;
 
 	if (uarmf && uarmf->oartifact == ART_MAILIE_S_CHALLENGE) clumsy = FALSE;
+	if (uarmf && uarmf->oartifact == ART_ALMUT_S_NOCARE) clumsy = FALSE;
 	if (carryingarti(ART_GONNA_KICK_YOUR_ASS)) clumsy = FALSE;
 	if (uwep && uwep->oartifact == ART_INSECTMASHER) clumsy = FALSE;
 	if (uarmf && uarmf->oartifact == ART_FRONT_TARGET) clumsy = FALSE;
