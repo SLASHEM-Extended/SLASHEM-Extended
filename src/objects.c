@@ -9760,6 +9760,8 @@ SCROLL((char *)0,               "ORANI IS A MIRACLE",  P_NONE,     1,   0, 100, 
 SCROLL((char *)0,               "IT SHOULD STOP TO ZWOCKEN",  P_NONE,     1,   0, 100, CLR_RED, 1),
 SCROLL((char *)0,               "N E A F",  P_NONE,     1,   0, 100, CLR_BROWN, 1),
 SCROLL((char *)0,               "EY DIE KAKVERSION IS SO NIEAUMTYPIE",  P_NONE,     1,   0, 100, CLR_BLUE, 1),
+SCROLL((char *)0,               "DER SCHULZENTURM IST DER TURM WO DER SCHULZE WOHNT",  P_NONE,     1,   0, 100, CLR_BRIGHT_BLUE, 1),
+SCROLL((char *)0,               "OU GOTTOMATIK IM DOPPELHIMMEL",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
 
 /* dummy for easier copypasting */
 /* SCROLL((char *)0,               "",  P_NONE,     1,   0, 100, CLR_, 1), */

@@ -30843,6 +30843,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"You get bored of having to clear out the same killer rooms every playthrough, and wish they had some randomness!",
 	"You feel like just flipping the bird to the annoying killer room on this level and leaving via the nearest staircase.",
 	"tax character spammage",
+	"The people want to be surveyed by the wing-tufted wing bundle and his fleecy-tender gentle Marie Thingamabobs.", /* based on something one of my colleagues said once; he doesn't care about shoes at all and therefore cannot even remember the simple term "Mary Janes" :-P --Amy */
 
 };
 

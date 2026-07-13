@@ -6683,6 +6683,7 @@ static const char *epitaphs[] = {
 	"Here lies Klavier Gavin's name. Even though 'Klavier' is already a proper German word, the German version of Ace Attorney somehow translated his name as 'Kantilen', which sounds just so turbo wierd.",
 	"Here lies a berserker. She had less than 300 max HP, and a one-eyed jack came along and killed her in one round.", /* happened to Amy in ToME-SX */
 	"You do know what a skirmisher is though?",
+	"Schau, selbst so suesse Sandaletten sind schon sehr schmerzhaft!", /* "Look, even such sweet sandals are already very painful!" but then it doesn't alliterate :-P */
 
 };
 

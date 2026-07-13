@@ -891,6 +891,7 @@ static const char *actualshirtmessages[] = { /* Scott Bigham */
 	"Ich-hab-so-gar-Block-ab-saet-ze-und-die-sind-sehr-flau-schig!",
 	"I even have block heels, and they're very fleecy!",
 	"Well, do you like my sexy mary janes with treaded block heels? (y/y)",
+	"The name of the mascot in Danganronpa is Monobear. Yes, I know, the Japanese version calls him 'Monokuma', but 'kuma' is just Japanese for bear, and so his English name is and will always be Monobear.",
 
 };
 
