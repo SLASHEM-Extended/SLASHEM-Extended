@@ -1843,6 +1843,7 @@ int dieroll;
 	boolean inkaobj = FALSE;
 	boolean odorobj = FALSE;
 	boolean valid_weapon_attack = FALSE;
+	boolean objwasusedup = FALSE;
 	boolean unarmed = !uwep && !uarm && !uarms;
 	int jousting = 0;
 	boolean vapekilled = FALSE; /* WAC added boolean for vamps vaporize */
@@ -2966,6 +2967,7 @@ int dieroll;
 				setuswapwep((struct obj *)0, FALSE);
 			}
 			useup(obj);
+			objwasusedup = TRUE;
 			if (!more_than_1) obj = (struct obj *) 0;
 			hittxt = TRUE;
 			if (!is_shade(mdat) && !(mon->egotype_shader))
@@ -3688,7 +3690,10 @@ int dieroll;
 			}
 
 		    if (obj && obj->oclass == VENOM_CLASS) {
-			if (!thrown) useup(obj);
+			if (!thrown) {
+				useup(obj);
+				objwasusedup = TRUE;
+			}
 			/* if (thrown) obfree(obj, (struct obj *)0); */
 		    }
 
@@ -3895,6 +3900,7 @@ int dieroll;
 				shk_your(yourbuf, obj));
 			    change_luck(-2);
 			    useup(obj);
+			    objwasusedup = TRUE;
 			    obj = (struct obj *) 0;
 			    unarmed = FALSE;	/* avoid obj==0 confusion */
 			    get_dmg_bonus = FALSE;
@@ -3905,6 +3911,7 @@ int dieroll;
 			You("succeed in destroying %s camera.  Congratulations!",
 			    shk_your(yourbuf, obj));
 			useup(obj);
+			objwasusedup = TRUE;
 			return(TRUE);
 			/*NOTREACHED*/
 			break;
@@ -4108,6 +4115,7 @@ int dieroll;
 			}
 			if (thrown) obfree(obj, (struct obj *)0);
 			else useup(obj);
+			objwasusedup = TRUE;
 			hittxt = TRUE;
 			get_dmg_bonus = FALSE;
 			tmp = 0;
@@ -4123,6 +4131,7 @@ int dieroll;
 			}
 			if (thrown) obfree(obj, (struct obj *)0);
 			else useup(obj);
+			objwasusedup = TRUE;
 			hittxt = TRUE;
 			get_dmg_bonus = FALSE;
 			break;
@@ -4435,7 +4444,7 @@ int dieroll;
 	}
 
 	/* boomerangs shouldn't be completely endless --Amy */
-	if (thrown && obj && ((objects[obj->otyp].oc_skill == P_BOOMERANG) || (objects[obj->otyp].oc_skill == -P_BOOMERANG)) ) {
+	if (!objwasusedup && thrown && obj && ((objects[obj->otyp].oc_skill == P_BOOMERANG) || (objects[obj->otyp].oc_skill == -P_BOOMERANG)) ) {
 		if (!rn2(1000) && (!obj->oartifact || !rn2(10)) ) {
 			if (obj->spe > -20) {
 				obj->spe -= rnd(10);
