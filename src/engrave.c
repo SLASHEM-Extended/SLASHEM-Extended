@@ -6684,6 +6684,8 @@ static const char *epitaphs[] = {
 	"Here lies a berserker. She had less than 300 max HP, and a one-eyed jack came along and killed her in one round.", /* happened to Amy in ToME-SX */
 	"You do know what a skirmisher is though?",
 	"Schau, selbst so suesse Sandaletten sind schon sehr schmerzhaft!", /* "Look, even such sweet sandals are already very painful!" but then it doesn't alliterate :-P */
+	"You forgot that striking a Bumbo with a Flumpus produces a wide-angle potion-exploding beam? Oops!", /* by ojousama; but that is actually something one would expect from dnethack, where you have all kinds of arcane interactions that aren't even documented anywhere and which screw you over if you don't know about them */
+	"Here lies Komaru Naegi. She had to endure the motivation machine constructed by that purple-haired monster Kotoko, somehow failed to bash away the hands that Kotoko calls 'tentacles', and got groped to the point where her will just broke and she said that she 'liked it', even though she really didn't. And so she got a non-standard game over.",
 
 };
 

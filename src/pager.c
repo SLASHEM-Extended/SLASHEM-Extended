@@ -5241,6 +5241,7 @@ static const char * const noroelacommodity[] = {
 "a cartridge with Super Releasio 64",
 "cranberry juice",
 "a treatment for urinary tract diseases",
+"a motivation machine with groping tentacle hands",
 };
 
 /* demagogue lines: some of these are obviously inspired by Donald Trump and other RL political figures; this does not mean Amy agrees with their position,

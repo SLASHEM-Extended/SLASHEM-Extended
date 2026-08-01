@@ -77854,6 +77854,9 @@ essential in locating the Amulet of Yendor."
 %Cp - 01276
 "Likoneneu!"
 %E
+%Cp - 01277
+"Ey I'll kiegel you some now!"
+%E
 
 # they start with 0, so if this is e.g. 1276 then QTN_ANGELIC must be 277
 

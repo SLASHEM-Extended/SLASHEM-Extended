@@ -5936,6 +5936,7 @@ newboss:
 				if (uarm) {
 					pline("%s grins evilly, and pulls down your suit!", Monnam(mtmp));
 					remove_worn_item(uarm, TRUE);
+					if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 				} else {
 					if (ublindf && (ublindf->otyp == CONDOME || ublindf->otyp == SOFT_CHASTITY_BELT)) {
 						pline("%s tries to thrust %s penis into your vagina, but is stopped by your protective gear. Thank God.", Monnam(mtmp), mhis(mtmp));
@@ -6068,6 +6069,7 @@ newboss:
 
 				}
 				increasesanity(rnz(5));
+				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 			} /* end molest choice */
 
 			u.cnd_molestcount++;
@@ -6198,6 +6200,7 @@ newboss:
 		if(lined_up(mtmp) && ((dist2(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy) <= BOLT_LIM*BOLT_LIM) || (elongation_monster(mtmp->data) || ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) ) && (tmp > (rnd(20+i))) && !rn2(10) ) {  
 			if (foundyou) {
 				pline("%s's %spenis shoots some semen at you!", Monnam(mtmp), mtmp->female ? "imaginary " : "");
+				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 				contaminate(rnd(10 + mtmp->m_lev), TRUE);
 				if (!rn2(5)) increasesanity(rnd(5));
 
