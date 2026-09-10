@@ -8967,7 +8967,7 @@ chargingchoice:
 					}
 				} else {
 					impossible("hugkick made non-boot item");
-					return;
+					return 1;
 				}
 			}
 
