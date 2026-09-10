@@ -269,6 +269,14 @@ NEARDATA const char *hallubreathwep[] = {
 "urine",
 "construction sites",
 "eggs",
+"arrows",
+"crossbow bolts",
+"daggers",
+"throwing stars",
+"darts",
+"bullets",
+"buckshot",
+"rockets",
 
 };
 

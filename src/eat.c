@@ -1164,7 +1164,7 @@ register int pm;
 		u.alignlim -= 10;
 		adjalign(-50);
 		u.ugangr++; u.ugangr++; u.ugangr++;
-		prayer_done();
+		prayer_done(1);
 
 	    break;
 
@@ -9881,7 +9881,7 @@ vomit()		/* A good idea from David Neves */
 		u.ugangr++;
 		if (!rn2(5)) u.ugangr++;
 		if (!rn2(25)) u.ugangr++;
-		prayer_done();
+		prayer_done(1);
 	}
 }
 

@@ -19110,6 +19110,16 @@ boolean new_game;	/* false => restoring an old game */
 		if (Race_if(PM_MATRAYSER)) matraysershuffle();
 	}
 
+	/* Amy switch to invalidate older versions */
+#if 0
+	if (moves < 100) {
+		pline("**IMPORTANT NOTICE (MUST READ)*** - you decided to play an old version of SLASH'EM Extended, which is only available for the purpose of continuing an existing savegame, and you don't seem to have one. Therefore, your game ends now. If you feel that a savegame file should in fact exist, get on the #em.slashem.me IRC channel on Libera and complain to Amy. Otherwise, *kindly start a new game on the up-to-date version*. Thank you for your understanding.");
+		done(QUIT);
+	} else {
+		pline("Attention: You are playing an old version of SLASH'EM Extended. This is only permitted for the purpose of finishing an old savegame file from before the last version update. You can keep playing for now, but please be aware that once this character is finished, you will have to start your next game on the up-to-date version like everyone else.");
+	}
+#endif
+
 	if (TheInfoIsFucked) {
 		pline("You've forgotten who you are, but you are back.");
 		return;
@@ -22695,14 +22705,6 @@ boolean new_game;	/* false => restoring an old game */
 
 	u.stethocheat = moves;
 	init_uasmon();
-
-	/* Amy switch to invalidate older versions */
-#if 0
-	if (moves < 100) {
-		pline("Sorry, but this version of SLASH'EM Extended is outdated. Your current game ends now. Please start a new game on the up-to-date version, because this old version exists only to allow players to finish old runs and you don't seem to have an old savegame. If you feel that this is in error, get on the #em.slashem.me IRC channel on Libera and complain to Amy.");
-		done(QUIT);
-	}
-#endif
 
 	if (!new_game && (u.uhp <= 0 && (!Upolyd || u.mh <= 0))) {
 

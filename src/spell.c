@@ -4967,7 +4967,7 @@ repairhomiechoice:
 	}
 
 	if (book2->oartifact == ART_PUNYBODY) {
-		prayer_done();
+		prayer_done(0);
 	}
 
 	if (book2->oartifact == ART_MORGANA_S_MIRROR_SCRIPT) {

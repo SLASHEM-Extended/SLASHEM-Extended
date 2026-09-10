@@ -9765,6 +9765,9 @@ SCROLL((char *)0,               "OU GOTTOMATIK IM DOPPELHIMMEL",  P_NONE,     1,
 SCROLL((char *)0,               "KIEGEL CHELAU IS THE GERMAN BUNDESLIGA CHAMPION OF WOMENS SOCCER",  P_NONE,     1,   0, 100, CLR_RED, 1),
 SCROLL((char *)0,               "MAKE THE SUPPORT INTO A GARDENER",  P_NONE,     1,   0, 100, CLR_GREEN, 1),
 SCROLL((char *)0,               "WANNA BE GROPED BY KOTOKOS MOTIVATION MACHINE",  P_NONE,     1,   0, 100, CLR_BRIGHT_MAGENTA, 1),
+SCROLL((char *)0,               "AKANE OWARI IS TOTALLY NOT A PALETTE SWAP OF AOI ASAHINA",  P_NONE,     1,   0, 100, CLR_RED, 1),
+SCROLL((char *)0,               "BYAKUYA TOGAMI SOMEHOW GAINED 70 KG OF WEIGHT IN ONE YEAR",  P_NONE,     1,   0, 100, CLR_BROWN, 1),
+SCROLL((char *)0,               "USAMI THE WINGED MONOBUNNY IS TURNED INTO MONOMI",  P_NONE,     1,   0, 100, CLR_BRIGHT_MAGENTA, 1),
 
 /* dummy for easier copypasting */
 /* SCROLL((char *)0,               "",  P_NONE,     1,   0, 100, CLR_, 1), */

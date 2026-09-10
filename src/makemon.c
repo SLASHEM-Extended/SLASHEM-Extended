@@ -9315,6 +9315,16 @@ register struct	monst	*mtmp;
 			}
 		}
 
+		if (ptr == &mons[PM_MARSH_SOLDIER]) {
+			(void) mongets(mtmp, SHOVEL);
+			(void) mongets(mtmp, DENTED_POT);
+			(void) mongets(mtmp, SHORT_SWORD);
+			(void) mongets(mtmp, STUDDED_LEATHER_ARMOR);
+			(void) mongets(mtmp, SMALL_SHIELD);
+			(void) mongets(mtmp, LOW_BOOTS);
+			(void) mongets(mtmp, REGULAR_GLOVES);
+		}
+
 		if (ptr == &mons[PM_ENCLAVE_SCIENTIST]) {
 			monster_weapon_enclave(mtmp, FALSE);
 			(void) mongets(mtmp, LAB_COAT);
@@ -12539,7 +12549,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_EIGHTY_POWER_RUBBER]) (void) mongets(mtmp, UNICORN_HORN);
 		if (mtmp->data == &mons[PM_MANIA_COURT_HEALER]) (void) mongets(mtmp, ELVEN_TOGA);
 
-		if (mtmp->data == &mons[PM_REGULATOR] || mtmp->data == &mons[PM_REGULATOR_WAYLAYER] || mtmp->data == &mons[PM_DETECTIVE_REGULATOR] || mtmp->data == &mons[PM_GRAYDITCH_REGULATOR] || mtmp->data == &mons[PM_AMBUSH_REGULATOR] || mtmp->data == &mons[PM_WASTELAND_REGULATOR] || mtmp->data == &mons[PM_POLICE_REGULATOR]) monster_weapon_regulator(mtmp, TRUE);
+		if (mtmp->data == &mons[PM_REGULATOR] || mtmp->data == &mons[PM_MODULATOR] || mtmp->data == &mons[PM_POLICE_MODULATOR] || mtmp->data == &mons[PM_WASTELAND_MODULATOR] || mtmp->data == &mons[PM_REGULATOR_WAYLAYER] || mtmp->data == &mons[PM_DETECTIVE_REGULATOR] || mtmp->data == &mons[PM_GRAYDITCH_REGULATOR] || mtmp->data == &mons[PM_AMBUSH_REGULATOR] || mtmp->data == &mons[PM_WASTELAND_REGULATOR] || mtmp->data == &mons[PM_POLICE_REGULATOR]) monster_weapon_regulator(mtmp, TRUE);
 
 		if (ptr == &mons[PM_LASER_SHARCHON]) {
 			(void) mongets(mtmp, HAND_BLASTER);
@@ -14620,6 +14630,22 @@ loveheelover:
 		  	(void) mongets(mtmp, RIFLE);
 		  	m_initthrow(mtmp, RIFLE_BULLET, 30);
 		}
+
+		if (mtmp->data == &mons[PM_FLEECY_ORANGE_BEE]) {
+			struct obj *osaddle;
+			if (!!(osaddle = mksobj(LEATHER_SADDLE, TRUE, FALSE, FALSE))) {
+				if (mpickobj(mtmp, osaddle, TRUE)) { /* it became a gold piece (e.g. minimalist) --Amy */
+					if (wizard) impossible("merged saddle?");
+				} else {
+					mtmp->misc_worn_check |= W_SADDLE;
+					osaddle->dknown = osaddle->bknown = osaddle->rknown = 1;
+					osaddle->owornmask = W_SADDLE;
+					osaddle->leashmon = mtmp->m_id;
+					update_mon_intrinsics(mtmp, osaddle, TRUE, TRUE);
+				}
+			}
+		}
+
 		if (ptr == &mons[PM_SPLICE_BULLET_ANT]) {
 		  	(void) mongets(mtmp, SUBMACHINE_GUN);
 		  	m_initthrow(mtmp, SMG_BULLET, 50);
@@ -18721,6 +18747,11 @@ loveheelover:
 			(void) mongets(mtmp, SLING);
 			(void) mongets(mtmp, ELVEN_MITHRIL_COAT);
 			 m_initthrow(mtmp, SMALL_PIECE_OF_UNREFINED_MITHR, 25);
+		}
+
+		if (ptr == &mons[PM_PROLITHIC_PROFESSOR]) {
+			(void) mongets(mtmp, SLING);
+			 m_initthrow(mtmp, ROCK, 30);
 		}
 
 		if (ptr == &mons[PM_ARIANE__LADY_OF_THE_ELEMENTS]) {
@@ -27631,6 +27662,11 @@ register int	mmflags;
 			levl[x][y].typ = TOILET;
 		}
 
+	}
+	if (ptr == &mons[PM_MARSH_SOLDIER] && isok(x, y)) {
+		if ( !(levl[x][y].typ == ALTAR && (Is_astralevel(&u.uz) || Is_sanctum(&u.uz)) ) && !(levl[x][y].wall_info & W_NONDIGGABLE) && !(levl[x][y].typ == STAIRS) && !(levl[x][y].typ == LADDER) ) {
+			levl[x][y].typ = MOORLAND;
+		}
 	}
 
 	if (ptr == &mons[PM_LANDMINE_OGRE] && isok(x, y) && !(t_at(x, y)) )

@@ -5987,7 +5987,7 @@ newboss:
 								pline("Becoming pregnant before you're married is a grave sin, and the gods are really angry.");
 								adjalign(-250);
 								change_luck(-5);
-								prayer_done();
+								prayer_done(1);
 							}
 
 							if (uarmc && uarmc->oartifact == ART_CATHERINE_S_SEXUALITY) {
@@ -6238,7 +6238,7 @@ newboss:
 						pline("Becoming pregnant before you're married is a grave sin, and the gods are really angry.");
 						adjalign(-250);
 						change_luck(-5);
-						prayer_done();
+						prayer_done(1);
 					}
 
 					if (uarmc && uarmc->oartifact == ART_CATHERINE_S_SEXUALITY) {
@@ -21034,7 +21034,7 @@ enjoyable:
 			pline("Becoming pregnant before you're married is a grave sin, and the gods are really angry.");
 			adjalign(-250);
 			change_luck(-5);
-			prayer_done();
+			prayer_done(1);
 
 		}
 

@@ -3235,7 +3235,7 @@ dopray()
 
     nomul(-3, "praying unsuccessfully", TRUE); /* note by Amy: if successfully, you're invulnerable... */
     nomovemsg = "You finish your prayer.";
-    afternmv = prayer_done;
+    afternmv = prayer_done(0);
 
 	u.pervertpray = 0;
 
@@ -3249,8 +3249,11 @@ dopray()
 }
 
 /*STATIC_PTR */int
-prayer_done()		/* M. Stephenson (1.0.3b) */
+prayer_done(praymod)		/* M. Stephenson (1.0.3b) */
+int praymod; /* 0 = no change, 1 = force it to fail */
 {
+    if (praymod == 1 && (p_type > 1) ) p_type = 1;
+
     aligntyp alignment = p_aligntyp;
 
     u.uinvulnerable = FALSE;

@@ -6824,7 +6824,7 @@ dotakeoff()
 					u.ugangr++;
 					adjalign(-50);
 					change_luck(-1);
-					prayer_done();
+					prayer_done(1);
 					return 1;
 
 				}
@@ -7363,7 +7363,7 @@ dowear()
 					u.ugangr++;
 					adjalign(-50);
 					change_luck(-1);
-					prayer_done();
+					prayer_done(1);
 					return 1;
 
 				}
@@ -9485,7 +9485,7 @@ doddoremarm()
 					u.ugangr++;
 					adjalign(-50);
 					change_luck(-1);
-					prayer_done();
+					prayer_done(1);
 					return 1;
 
 				}

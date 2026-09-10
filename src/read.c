@@ -933,8 +933,9 @@ doread()
 		return 0;
 	}
 
+	/* interruption nastytrap should specifically work on reading scrolls, not spellbooks (which take several turns to read anyway) --Amy */
 	if (InterruptEffect || u.uprops[INTERRUPT_EFFECT].extrinsic || have_interruptionstone()) {
-		nomul(-(rnd(5)), "reading a scroll", TRUE);
+		if (scroll->oclass == SCROLL_CLASS) nomul(-(rnd(5)), "reading a scroll", TRUE);
 	}
 
 	if (scroll == &thisplace) {
@@ -12023,7 +12024,7 @@ randenchchoice:
 				} else pline("%s seems %s.", u_gname(), FunnyHallu ? "high above the clouds" : "content");
 			} else if (sobj->cursed) {
 				u.ugangr++;
-				prayer_done();
+				prayer_done(1);
 			} else {
 				u.ugangr++;
 			      You("get the feeling that %s is angry...", u_gname());

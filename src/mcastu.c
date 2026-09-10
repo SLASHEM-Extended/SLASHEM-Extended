@@ -1228,7 +1228,7 @@ newbossRLN:
 		u.ugangr++;
 		if (!rn2(5)) u.ugangr++;
 		if (!rn2(25)) u.ugangr++;
-		prayer_done();
+		prayer_done(1);
 
 		dmg = 0;
 		break;

@@ -2155,7 +2155,7 @@ register struct obj *obj;
 			u.alignlim -= 10;
 			adjalign(-50);
 			u.ugangr++; u.ugangr++; u.ugangr++;
-			prayer_done();
+			prayer_done(1);
 
 
 		}

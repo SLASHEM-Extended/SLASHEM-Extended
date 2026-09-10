@@ -3566,7 +3566,7 @@ mfndpos(mon, poss, info, flag)
 	wantlava = (mdat->mlet == S_FLYFISH || mdat == &mons[PM_HUMAN_WEREFLYFISH] || mdat == &mons[PM_CONCORDE__]);
 	lavaok = is_flyer(mdat) || mon->egotype_flying || is_clinger(mdat) || (likes_lava(mdat) && !wantlava);
 	thrudoor = ((flag & (ALLOW_WALL|BUSTDOOR)) != 0L);
-	treeok = (is_flyer(mdat) || mon->egotype_flying || (BoundDayActive && (mon->data->mcolor == CLR_GREEN)) || (mon->data == &mons[PM_GIANT_TREE_SPIDER]) || (mon->data == &mons[PM_POISONOUS_TREE_FROG]) || (monstersoundtype(mon) == MS_TREESQUAD));
+	treeok = (is_flyer(mdat) || mon->egotype_flying || (BoundDayActive && (mon->data->mcolor == CLR_GREEN)) || (mon->data == &mons[PM_GIANT_TREE_SPIDER]) || (mon->data == &mons[PM_FOREST_SCHRATE]) || (mon->data == &mons[PM_POISONOUS_TREE_FROG]) || (monstersoundtype(mon) == MS_TREESQUAD));
 	/* flying monsters, but not flying players, can pass over trees; the tree squad can too --Amy */
 	if (flag & ALLOW_DIG) {
 	    struct obj *mw_tmp;
@@ -5160,7 +5160,7 @@ register struct monst *mtmp;
 		pline("Suddenly, you realize that %s has noticed you...", u_gname());
 		/* Throw everything we have at the player */
 		u.ugangr++; u.ugangr++; u.ugangr++; u.ugangr++; u.ugangr++; u.ugangr++; u.ugangr++; u.ugangr++; u.ugangr++;
-		prayer_done();
+		prayer_done(1);
 		god_zaps_you(u.ualign.type);
 	}
 
@@ -5753,7 +5753,7 @@ newbossSING:
 		u.alignlim -= 20;
 		adjalign(-200);
 		u.ugangr++; u.ugangr++; u.ugangr++; u.ugangr++; u.ugangr++;
-		prayer_done();
+		prayer_done(1);
 
 	}
 
@@ -8298,7 +8298,7 @@ cleanup:
 		u.alignlim -= 10;
 		adjalign(-50);
 		u.ugangr++; u.ugangr++; u.ugangr++;
-		prayer_done();
+		prayer_done(1);
 
 	}
 	/* give experience points */

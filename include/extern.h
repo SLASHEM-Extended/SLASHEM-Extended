@@ -2684,7 +2684,7 @@ E void practicant_payup(void);
 /* ### pray.c ### */
 
 /*#ifdef USE_TRAMPOLI*/
-E int prayer_done(void);
+E int prayer_done(int);
 
 E void god_zaps_you(ALIGNTYP_P);
 E void godvoice(ALIGNTYP_P, const char*);

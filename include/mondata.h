@@ -228,7 +228,7 @@
 #define highheeledshoemonster(ptr)		(((ptr)->mflags4 & M4_HIGHHEELED) != 0L)
 #define opentoeshoemonster(ptr)		(((ptr)->mflags4 & M4_OPENTOE) != 0L)
 
-#define canalwaysride(ptr)	((ptr) == &mons[PM_SLOW_HUMPER] || (ptr) == &mons[PM_TLOTTING_HUMPER] || (ptr) == &mons[PM_HUMPER] || (ptr) == &mons[PM_DOMESTIC_HUMPER] || (ptr) == &mons[PM_FAST_HUMPER] || (ptr) == &mons[PM_PETTY_FAST_HUMPER] || (ptr) == &mons[PM_BLITZ_HUMPER] || (ptr) == &mons[PM_WEAPONIZED_HUMPER] || (ptr) == &mons[PM_EFFING_HUMPER] || (ptr) == &mons[PM_TURBO_HUMPER] || (ptr) == &mons[PM_RARE_HUMPER] || (ptr) == &mons[PM_WOODEN_RAFT] || (ptr) == &mons[PM_MINE_TROLLEY] || (ptr) == &mons[PM_CLASHING_MINE_TROLLEY] || (ptr) == &mons[PM_SHIP_O__THE_SEA] || (ptr) == &mons[PM_RIDABLE_HUMPER] || (ptr) == &mons[PM_INKA_HUMPER] || (ptr) == &mons[PM_DIGGING_ON_FARMER])
+#define canalwaysride(ptr)	((ptr) == &mons[PM_SLOW_HUMPER] || (ptr) == &mons[PM_TLOTTING_HUMPER] || (ptr) == &mons[PM_FLEECY_ORANGE_BEE] || (ptr) == &mons[PM_HUMPER] || (ptr) == &mons[PM_DOMESTIC_HUMPER] || (ptr) == &mons[PM_FAST_HUMPER] || (ptr) == &mons[PM_PETTY_FAST_HUMPER] || (ptr) == &mons[PM_BLITZ_HUMPER] || (ptr) == &mons[PM_WEAPONIZED_HUMPER] || (ptr) == &mons[PM_EFFING_HUMPER] || (ptr) == &mons[PM_TURBO_HUMPER] || (ptr) == &mons[PM_RARE_HUMPER] || (ptr) == &mons[PM_WOODEN_RAFT] || (ptr) == &mons[PM_MINE_TROLLEY] || (ptr) == &mons[PM_CLASHING_MINE_TROLLEY] || (ptr) == &mons[PM_SHIP_O__THE_SEA] || (ptr) == &mons[PM_RIDABLE_HUMPER] || (ptr) == &mons[PM_INKA_HUMPER] || (ptr) == &mons[PM_DIGGING_ON_FARMER])
 
 #define is_nonmoving(ptr) ( (ptr)->mmove < 1 || (ptr)->mlet == S_TURRET || ((ptr)->mflags3 & M3_NONMOVING) )
 
@@ -265,7 +265,7 @@
 #define slime_on_touch(ptr)		((ptr)->mflags3 & M3_SLIME)
 
 /* will the monster split in water (only regular gremlin in vanilla but different types here in slex)? */
-#define splittinggremlin(ptr)		((ptr) == &mons[PM_GREMLIN] || (ptr) == &mons[PM_GAME_OVER] || (ptr) == &mons[PM_BLACK_PUDDLIN] || (ptr) == &mons[PM_NAYSAYER_GREMLIN] || (ptr) == &mons[PM_HEA_LOL_GREMLIN] || (ptr) == &mons[PM_DISSOLIN] || (ptr) == &mons[PM_GRRGRRGRR] || (ptr) == &mons[PM_GREMLIN_MANYFOLDCURSER] || (ptr) == &mons[PM_GREMLIN_VIRER] || (ptr) == &mons[PM_DISTANCE_GREMLIN] || (ptr) == &mons[PM_SPREAD_CONTACT_GREMLIN] || (ptr) == &mons[PM_YAY_AMNESIA_GREMLIN] || (ptr) == &mons[PM_GREMLIN_LEADER] || (ptr) == &mons[PM_GREMLIN_WARLORD] || (ptr) == &mons[PM_GREMLIN_DEATHSUCKER])
+#define splittinggremlin(ptr)		((ptr) == &mons[PM_GREMLIN] || (ptr) == &mons[PM_GAME_OVER] || (ptr) == &mons[PM_BUTT_GREMLIN] || (ptr) == &mons[PM_BLACK_PUDDLIN] || (ptr) == &mons[PM_NAYSAYER_GREMLIN] || (ptr) == &mons[PM_HEA_LOL_GREMLIN] || (ptr) == &mons[PM_DISSOLIN] || (ptr) == &mons[PM_GRRGRRGRR] || (ptr) == &mons[PM_GREMLIN_MANYFOLDCURSER] || (ptr) == &mons[PM_GREMLIN_VIRER] || (ptr) == &mons[PM_DISTANCE_GREMLIN] || (ptr) == &mons[PM_SPREAD_CONTACT_GREMLIN] || (ptr) == &mons[PM_YAY_AMNESIA_GREMLIN] || (ptr) == &mons[PM_GREMLIN_LEADER] || (ptr) == &mons[PM_GREMLIN_WARLORD] || (ptr) == &mons[PM_GREMLIN_DEATHSUCKER])
 #define splittinglavagremlin(ptr)	((ptr) == &mons[PM_LAVA_GREMLIN])
 
 #define always_egotype(ptr)		((ptr)->mflags3 & M3_EGOTYPE)
@@ -341,6 +341,7 @@
 				 ((ptr) == &mons[PM_FIRE_VAMPIRE])? 2 : \
 				 ((ptr) == &mons[PM_GLOWING_DRACONIAN]) ? 2 : \
 				 ((ptr) == &mons[PM_UNDERWATER_THREAT]) ? 2 : \
+				 ((ptr) == &mons[PM_LUX]) ? 2 : \
 				 ((ptr) == &mons[PM_GLOSSO_GOBY]) ? 2 : \
 				 ((ptr) == &mons[PM_GLAMOROUS_GOBY]) ? 2 : \
 				 ((ptr) == &mons[PM_FLAMING_SPHERE]) ? 1 : \
