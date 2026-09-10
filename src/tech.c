@@ -5408,7 +5408,7 @@ newbossSTEN:
 			if (u.uen < cost) {
 				You("lack the energy to use your shouting ability! Need at least %d mana!", cost);
 				if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
-				return;
+				break;
 			}
 
 			abilreturncode = TRUE;
