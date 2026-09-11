@@ -3252,7 +3252,7 @@ dopray()
 STATIC_PTR int
 regular_prayer_done()
 {
-	prayer_done(0);
+	return prayer_done(0);
 }
 
 /*STATIC_PTR */int
