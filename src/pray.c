@@ -6,7 +6,7 @@
 #include "epri.h"
 #include "qtext.h"
 
-/*STATIC_PTR int prayer_done(void);*/
+STATIC_PTR int regular_prayer_done(void);
 STATIC_DCL struct obj *worst_cursed_item(void);
 STATIC_DCL int in_trouble(void);
 STATIC_DCL void fix_worst_trouble(int);
@@ -3235,7 +3235,7 @@ dopray()
 
     nomul(-3, "praying unsuccessfully", TRUE); /* note by Amy: if successfully, you're invulnerable... */
     nomovemsg = "You finish your prayer.";
-    afternmv = prayer_done(0);
+    afternmv = regular_prayer_done;
 
 	u.pervertpray = 0;
 
@@ -3246,6 +3246,13 @@ dopray()
 	use_skill(P_SPIRITUALITY, Role_if(PM_PRIEST) ? rnd(100) : rnd(20) );
     }
     return(1);
+}
+
+/* because this is so uber wierd that "afternmv" apparently requires a void function... --Amy */
+STATIC_PTR int
+regular_prayer_done()
+{
+	prayer_done(0);
 }
 
 /*STATIC_PTR */int
