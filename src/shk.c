@@ -1283,6 +1283,24 @@ register xchar ox,oy;
 	hot_pursuit(shkp);
 }
 
+/* the same function but without making the shopkeeper angry --Amy */
+void
+clear_all_bills(shkp)
+register struct monst *shkp;
+{
+	struct eshk *eshkp = ESHK(shkp);
+
+	/* all pending shop transactions are now "past due" */
+	if (eshkp->billct || eshkp->debit || eshkp->loan || eshkp->credit) {
+	    eshkp->robbed += (addupbill(shkp) + eshkp->debit + eshkp->loan);
+	    eshkp->robbed -= eshkp->credit;
+	    if (eshkp->robbed < 0L) eshkp->robbed = 0L;
+	    /* billct, debit, loan, and credit will be cleared by setpaid */
+	    setpaid(shkp);
+	}
+
+}
+
 STATIC_VAR const char no_money[] = "Moreover, you%s have no money.";
 STATIC_VAR const char not_enough_money[] =
 			    "Besides, you don't have enough to interest %s.";

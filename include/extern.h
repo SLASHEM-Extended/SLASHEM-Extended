@@ -3136,6 +3136,7 @@ E void home_shk(struct monst *,BOOLEAN_P);
 E void make_happy_shk(struct monst *,BOOLEAN_P);
 E void hot_pursuit(struct monst *);
 E void make_angry_shk(struct monst *,XCHAR_P,XCHAR_P);
+E void clear_all_bills(struct monst *);
 E int dopay(void);
 E boolean paybill(int);
 E void finish_paybill(void);

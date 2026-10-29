@@ -1649,10 +1649,15 @@ register int x, y;
 	/* shopkeepers will only teleport if you zap them with a wand of
 	   teleportation or if they've been transformed into a jumpy monster;
 	   the latter only happens if you've attacked them with polymorph
-	   Amy edit: that is no longer the case, so this shouldn't make them hostile anymore! */
-	if (resident_shk && issoviet && !inhishop(mtmp)) {
-		make_angry_shk(mtmp, oldx, oldy);
-		pline("VA-KHA-KHA-KHA, lavochnik ub'yet tebya.");
+	   Amy edit: that is no longer the case, so this shouldn't make them hostile anymore!
+	   but we still need to clear the bills or everything will bug out */
+	if (resident_shk && !inhishop(mtmp)) {
+		if (issoviet) {
+			make_angry_shk(mtmp, oldx, oldy);
+			pline("VA-KHA-KHA-KHA, lavochnik ub'yet tebya.");
+		} else {
+			clear_all_bills(mtmp);
+		}
 	}
 }
 
@@ -2412,9 +2417,13 @@ boolean give_feedback;
 		else if (rloc_pos_ok(cc.x, cc.y, mtmp)) {
 		    rloc_to(mtmp, cc.x, cc.y);
 		    /* As rloc() ... */
-		    if (mtmp->isshk && !inhishop(mtmp) && issoviet) {
-			make_angry_shk(mtmp, omx, omy);
-			pline("VA-KHA-KHA-KHA, lavochnik ub'yet tebya.");
+		    if (mtmp->isshk && !inhishop(mtmp)) {
+			if (issoviet) {
+				make_angry_shk(mtmp, omx, omy);
+				pline("VA-KHA-KHA-KHA, lavochnik ub'yet tebya.");
+			} else {
+				clear_all_bills(mtmp);
+			}
 		    }
 		} else {
 		    pline("Sorry...");
@@ -2437,35 +2446,39 @@ boolean give_feedback;
 
 	if (mtmp->data == &mons[PM_BAN_EVADING_TROLL]) return FALSE;
 
-	if (mtmp->isshk && issoviet) {
-		make_angry_shk(mtmp, 0, 0);
-		pline("VA-KHA-KHA-KHA, lavochnik ub'yet tebya.");
+	if (mtmp->isshk) {
+		if (issoviet) {
+			make_angry_shk(mtmp, 0, 0);
+			pline("VA-KHA-KHA-KHA, lavochnik ub'yet tebya.");
+		} else {
+			clear_all_bills(mtmp);
+		}
 	}
 
-			int nlev;
-			d_level flev;
+	int nlev;
+	d_level flev;
 
-			if (mon_has_amulet(mtmp) || In_endgame(&u.uz)) {
-				if (give_feedback) pline("%s seems very disoriented for a moment.", Monnam(mtmp));
-				return 2;
-			}
-			nlev = random_lvlport_level();
-			if (nlev == depth(&u.uz)) {
-				if (give_feedback) pline("%s shudders for a moment.", Monnam(mtmp));
-				return 2;
-			}
+	if (mon_has_amulet(mtmp) || In_endgame(&u.uz)) {
+		if (give_feedback) pline("%s seems very disoriented for a moment.", Monnam(mtmp));
+		return 2;
+	}
+	nlev = random_lvlport_level();
+	if (nlev == depth(&u.uz)) {
+		if (give_feedback) pline("%s shudders for a moment.", Monnam(mtmp));
+		return 2;
+	}
 
-			if (u.uswallow) {
-				u.uswldtim = u.uswallow = 0;
-				if (Punished && !ball_active) {
-				    /* ensure ball placement, like unstuck */
-				    ball_active = TRUE;
-				}
-				docrt();
-			}
+	if (u.uswallow) {
+		u.uswldtim = u.uswallow = 0;
+		if (Punished && !ball_active) {
+		    /* ensure ball placement, like unstuck */
+		    ball_active = TRUE;
+		}
+		docrt();
+	}
 
-			get_level(&flev, nlev);
-			migrate_to_level(mtmp, ledger_no(&flev), MIGR_RANDOM, (coord *)0);
+	get_level(&flev, nlev);
+	migrate_to_level(mtmp, ledger_no(&flev), MIGR_RANDOM, (coord *)0);
 
 	return TRUE;
 }
@@ -2480,21 +2493,25 @@ boolean give_feedback;
 
 	if (mtmp->data == &mons[PM_BAN_EVADING_TROLL]) return FALSE;
 
-	if (mtmp->isshk && issoviet) {
-		make_angry_shk(mtmp, 0, 0);
-		pline("VA-KHA-KHA-KHA, lavochnik ub'yet tebya.");
+	if (mtmp->isshk) {
+		if (issoviet) {
+			make_angry_shk(mtmp, 0, 0);
+			pline("VA-KHA-KHA-KHA, lavochnik ub'yet tebya.");
+		} else {
+			clear_all_bills(mtmp);
+		}
 	}
 
-			int nlev;
-			d_level flev;
+	int nlev;
+	d_level flev;
 
-			if (mon_has_amulet(mtmp) || In_endgame(&u.uz)) {
-				if (give_feedback) pline("%s seems very disoriented for a moment.", Monnam(mtmp));
-				return 2;
-			}
+	if (mon_has_amulet(mtmp) || In_endgame(&u.uz)) {
+		if (give_feedback) pline("%s seems very disoriented for a moment.", Monnam(mtmp));
+		return 2;
+	}
 
-			flev = random_branchport_level();
-			migrate_to_level(mtmp, ledger_no(&flev), MIGR_RANDOM, (coord *)0);
+	flev = random_branchport_level();
+	migrate_to_level(mtmp, ledger_no(&flev), MIGR_RANDOM, (coord *)0);
 
 	return TRUE;
 }
@@ -2509,21 +2526,25 @@ boolean give_feedback;
 
 	if (mtmp->data == &mons[PM_BAN_EVADING_TROLL]) return FALSE;
 
-	if (mtmp->isshk && issoviet) {
-		make_angry_shk(mtmp, 0, 0);
-		pline("VA-KHA-KHA-KHA, lavochnik ub'yet tebya.");
+	if (mtmp->isshk) {
+		if (issoviet) {
+			make_angry_shk(mtmp, 0, 0);
+			pline("VA-KHA-KHA-KHA, lavochnik ub'yet tebya.");
+		} else {
+			clear_all_bills(mtmp);
+		}
 	}
 
-			int nlev;
-			d_level flev;
+	int nlev;
+	d_level flev;
 
-			if (mon_has_amulet(mtmp) || In_endgame(&u.uz)) {
-				if (give_feedback) pline("%s seems very disoriented for a moment.", Monnam(mtmp));
-				return 2;
-			}
+	if (mon_has_amulet(mtmp) || In_endgame(&u.uz)) {
+		if (give_feedback) pline("%s seems very disoriented for a moment.", Monnam(mtmp));
+		return 2;
+	}
 
-			flev = random_banishment_level();
-			migrate_to_level(mtmp, ledger_no(&flev), MIGR_RANDOM, (coord *)0);
+	flev = random_banishment_level();
+	migrate_to_level(mtmp, ledger_no(&flev), MIGR_RANDOM, (coord *)0);
 
 	return TRUE;
 }
